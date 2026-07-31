@@ -34,11 +34,18 @@ corpus:
 content_roots:
   - path: "instruments"
     doc_type: "federal_instrument"
-    # DOES NOT EXIST IN THE TOOLKIT YET. `external_reference` cannot be used: the schema
-    # forces content_mode: summary on it, and most instruments here are 17 U.S.C. § 105
-    # works we are entitled to reproduce in full. Needs a toolkit release of the same shape
-    # as audit_report (v1.10.0). Harmless while the corpus is empty — frontmatter
-    # validation has nothing to reject — and blocking the moment Stage 1 ingests anything.
+    # Added in corpus-toolkit v1.12.0. `external_reference` cannot be used here: the
+    # schema forces content_mode: summary on it, and most instruments in this corpus are
+    # 17 U.S.C. § 105 works we are entitled to reproduce in full.
+    #
+    # THE DOC TYPE IS THE COPYRIGHT DETERMINATION, which is what makes it enforceable
+    # instead of a field nothing checks:
+    #   federal_instrument   we MAY reproduce  -> content_mode: verbatim, provenance
+    #                                             verifies every line against a snapshot
+    #   external_reference   we may NOT        -> content_mode: summary
+    # So a federal document we can only summarize — an incorporated ISO standard, a CJIS
+    # version carrying its own distribution terms — belongs under external_reference and
+    # NOT here, even though it is federal.
 
 plugins:
   citation_module: "src.citation_schemes"

@@ -3,14 +3,18 @@
 # The [mcp] extra installs the MCP SDK that `corpus-mcp-serve` imports. Without it the CLI
 # is on PATH but fails at import, so it must be present for the container to serve.
 #
-# v1.11.0 is the floor: it is the first release with mcp.extra_document_fields, and this
-# corpus depends on that more than any other. `as_of` and `amended_on` are the pair that
-# lets a caller tell current text from the text in force when a rule was written — invisible
-# fields would make that comparison impossible rather than merely inconvenient.
+# v1.12.0 is a hard floor, and both reasons are specific to this corpus:
 #
-# NOTE: a further release is required before Stage 1 can ingest anything. The
-# `federal_instrument` doc_type does not exist yet; `external_reference` cannot substitute
-# because the schema forces content_mode: summary on it, and most instruments here are
-# 17 U.S.C. § 105 works we may reproduce in full.
-corpus-toolkit[mcp] @ git+https://github.com/OregonAI/corpus-toolkit@v1.11.0
+#   * v1.12.0  the `federal_instrument` doc_type. Nothing here can validate without it.
+#              `external_reference` cannot substitute: the schema forces
+#              content_mode: summary on it, and most instruments here are 17 U.S.C. § 105
+#              works we may reproduce in full. That type split is also how the copyright
+#              determination gets ENFORCED rather than merely recorded — federal_instrument
+#              means "we may reproduce this", external_reference means "we may not".
+#   * v1.11.0  mcp.extra_document_fields. This corpus leans on it harder than any other:
+#              `as_of` and `amended_on` are what let a caller tell current text from the
+#              text in force when a citing rule was written. Invisible, that comparison is
+#              impossible rather than merely inconvenient — and getting it wrong here means
+#              answering a compliance question with law that postdates the question.
+corpus-toolkit[mcp] @ git+https://github.com/OregonAI/corpus-toolkit@v1.12.0
 pyyaml
