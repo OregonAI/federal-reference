@@ -32,6 +32,7 @@ import argparse
 import pathlib
 import re
 import sys
+import time
 import urllib.request
 import xml.etree.ElementTree as ET
 
@@ -111,6 +112,34 @@ def part_dates() -> tuple[str, str]:
     """
     fm = yaml.safe_load((INSTRUMENTS / f"{PART_ID}.md").read_text().split("---")[1])
     return str(fm["as_of"]), str(fm["retrieved"])
+
+
+def hist_retrieved(hist_xml: pathlib.Path, fetched: bool) -> str:
+    """`retrieved` for the SUPERSEDED sections — from the historical snapshot, not the part.
+
+    This used to be `HIST_RETRIEVED = PART_RETRIEVED`, justified by the same reasoning as
+    `part_dates`: a section carries the same bytes as the part, so it inherits the part's
+    dates. That argument is exactly the one that does NOT apply here. The superseded sections
+    are cut from a different file — the point-in-time snapshot at LAST_IN_FORCE — fetched at a
+    different time from a different URL. Inheriting the part's date made two documents assert
+    a retrieval that belonged to bytes they were not cut from, and it moved every time the
+    part was re-ingested.
+
+    `as_of` is untouched and stays LAST_IN_FORCE: that one IS pinned by the URL, and it is the
+    field the guardrail actually turns on.
+    """
+    if fetched:
+        return time.strftime("%Y-%m-%d")
+    for sec in ("53", "62"):
+        doc = INSTRUMENTS / f"{PART_ID}.{sec}.md"
+        if doc.is_file():
+            try:
+                fm = yaml.safe_load(doc.read_text(encoding="utf-8").split("---")[1])
+            except (IndexError, yaml.YAMLError):
+                continue
+            if (fm or {}).get("retrieved"):
+                return str(fm["retrieved"])
+    return time.strftime("%Y-%m-%d", time.localtime(hist_xml.stat().st_mtime))
 
 
 def build(sec: str, head: str, body: str, meta: dict, sha: str,
@@ -222,15 +251,16 @@ def main() -> int:
         return 1
     global PART_AS_OF, PART_RETRIEVED, HIST_RETRIEVED
     PART_AS_OF, PART_RETRIEVED = part_dates()
-    HIST_RETRIEVED = PART_RETRIEVED
     current = sections_from(part_xml.read_bytes())
     print(f"  part snapshot: {len(current)} sections")
 
     hist_xml = SNAPSHOTS / f"{HIST_ID}.xml"
-    if args.refetch or not hist_xml.is_file():
+    fetched = args.refetch or not hist_xml.is_file()
+    if fetched:
         print(f"  fetching {LAST_IN_FORCE} point-in-time snapshot …")
         raw = urllib.request.urlopen(HIST_URL, timeout=300).read()
         hist_xml.write_bytes(raw)
+    HIST_RETRIEVED = hist_retrieved(hist_xml, fetched)
     hist = sections_from(hist_xml.read_bytes())
     print(f"  {LAST_IN_FORCE} snapshot: {len(hist)} sections")
 
