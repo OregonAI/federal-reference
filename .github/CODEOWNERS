@@ -1,0 +1,12 @@
+# Every PR needs a review from an owner listed here.
+#
+# The template ships `* @OregonAI/OWNER-PLACEHOLDER`, and no such team exists. GitHub
+# SILENTLY IGNORES an owner it cannot resolve — no error, no warning, no review
+# requirement — so the file reads as a review gate while enforcing nothing at all. That is
+# strictly worse than having no CODEOWNERS, because you believe you are protected.
+* @morficflux
+
+/instruments/ @morficflux
+/_meta/        @morficflux
+/src/          @morficflux
+/.github/      @morficflux

@@ -1,0 +1,83 @@
+# Corpus configuration — the single source of truth the toolkit reads.
+corpus:
+  id: "federal-reference"
+  name: "Federal Reference — instruments Oregon must comply with"
+  # NOT oregon. Everything else on this platform stops at the state border; this corpus is
+  # deliberately the other side of it. (executive-regulatory-frameworks currently declares
+  # its one NIST document as jurisdiction: oregon, which is wrong and gets fixed when that
+  # document migrates here.)
+  jurisdiction: "us"
+  archetype: "document"
+  # The eCFR is the authoritative home for the largest family here and, unlike most upstream
+  # sources on this platform, it has a real point-in-time API — any part as of any date.
+  # Named publications (IRS, CJIS) carry their own source_url per document, which is the
+  # more precise answer and wins over this one.
+  authoritative_source: "https://www.ecfr.gov/"
+  schema_version: 1
+  contract_version: 1
+
+# WHY THIS CORPUS EXISTS, because the obvious reading is wrong.
+#
+# It is NOT primarily here to retire dead citations in Oregon rules. Measured before
+# building anything (executive-regulatory-frameworks/_meta/catalog/external-citations.yml):
+# Oregon rules make 916 federal authority claims, and the four instruments the seed named
+# by title account for 2 of them.
+#
+# The corpus is here so an agency can find the federal requirement it must COMPLY WITH.
+# Obligations do not depend on an OAR happening to cite them. The clearest case:
+#
+#   2 CFR 200, the Uniform Guidance, governs every federal grant Oregon receives.
+#   ZERO Oregon rules declare it as authority. It is cited 180 times in Oregon's
+#   single audits — the reports that audit the state against federal requirements.
+#
+# So intake is ranked by three measured signals, not one, and the compliance surface leads.
+content_roots:
+  - path: "instruments"
+    doc_type: "federal_instrument"
+    # DOES NOT EXIST IN THE TOOLKIT YET. `external_reference` cannot be used: the schema
+    # forces content_mode: summary on it, and most instruments here are 17 U.S.C. § 105
+    # works we are entitled to reproduce in full. Needs a toolkit release of the same shape
+    # as audit_report (v1.10.0). Harmless while the corpus is empty — frontmatter
+    # validation has nothing to reject — and blocking the moment Stage 1 ingests anything.
+
+plugins:
+  citation_module: "src.citation_schemes"
+  extra_schema_checks: []
+
+# DECLARED EMPTY AND WIRED LATER, on purpose. The inbound direction is what matters here —
+# executive-regulatory-frameworks and oregon-audits declaring THIS corpus as their sibling,
+# so an Oregon rule's federal citation resolves upward. This corpus citing back down is not
+# a use case anyone has asked for.
+# siblings: []
+
+disclaimer_marker: "NON-AUTHORITATIVE"
+graph_path: "_meta/graph.json"
+source_manifest_path: "_meta/source-manifest.yml"
+snapshot_dir: "_meta/snapshots"
+
+provenance:
+  coverage_fail_threshold: 0.70
+  coverage_warn_threshold: 0.90
+
+mcp:
+  server_name: "federal-reference"
+  transports: [stdio, http]
+  # The fields that make a federal citation answerable. `as_of` and `amended_on` are the
+  # pair that stops the silent wrong answer this corpus is most exposed to: an Oregon rule
+  # written in 2019 implements the text that existed in 2019, and we hold CURRENT text.
+  # Both dates must be legible to a caller or that comparison cannot be made at all.
+  extra_document_fields:
+    - instrument_kind
+    - version
+    - as_of
+    - amended_on
+    - reproduction
+    - reproduction_basis
+    - superseded_by
+
+status:
+  # Quarterly, and this is the OPPOSITE of the audits corpus's reasoning. An audit report is
+  # immutable once published; federal regulations are amended continuously — eCFR reported
+  # Title 29 amended the day this corpus was created. Here re-verification is about CONTENT
+  # drift, which is real and frequent, not link rot.
+  reverify_days: 90

@@ -1,0 +1,16 @@
+# Runtime + tooling dependencies for this corpus.
+#
+# The [mcp] extra installs the MCP SDK that `corpus-mcp-serve` imports. Without it the CLI
+# is on PATH but fails at import, so it must be present for the container to serve.
+#
+# v1.11.0 is the floor: it is the first release with mcp.extra_document_fields, and this
+# corpus depends on that more than any other. `as_of` and `amended_on` are the pair that
+# lets a caller tell current text from the text in force when a rule was written — invisible
+# fields would make that comparison impossible rather than merely inconvenient.
+#
+# NOTE: a further release is required before Stage 1 can ingest anything. The
+# `federal_instrument` doc_type does not exist yet; `external_reference` cannot substitute
+# because the schema forces content_mode: summary on it, and most instruments here are
+# 17 U.S.C. § 105 works we may reproduce in full.
+corpus-toolkit[mcp] @ git+https://github.com/OregonAI/corpus-toolkit@v1.11.0
+pyyaml
