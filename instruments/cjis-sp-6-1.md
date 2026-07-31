@@ -24,7 +24,7 @@ known_cited_versions_not_held:
 source_url: https://le.fbi.gov/file-repository/cjis_security_policy_v6-1_20260625.pdf
 source_format: pdf
 retrieved: '2026-07-30'
-source_sha256: ba9cf45dd3fd2ecc7785ccb6b5131c8ea2763d209868e6c20ac52f184e7fd74b
+source_sha256: 4069224689472cf0af5f0026657869b68989525d227d4315477712e4d44c2000
 status: current
 content_mode: verbatim
 maintainer: '@morficflux'
@@ -57,6 +57,7 @@ Criminal Justice Information Services Division
 Criminal Justice Information Services (CJIS)
 Security Policy
 Version 6.1
+06/25/2026
 Prepared by:
 FBI CJIS Information Security Officer
 Approved by:
@@ -186,6 +187,7 @@ Restricted Files Information, and NCIC Non-Restricted Files Information ........
 4.2.1 Proper Access, Use, and Dissemination of CHRI ....................................................11
 4.2.2 Proper Access, Use, and Dissemination of NCIC Restricted Files Information ......11
 4.2.3 Proper Access, Use, and Dissemination of NCIC Non-Restricted Files Information
+11
 4.2.3.1 For Official Purposes .........................................................................................11
 4.2.3.2 For Other Authorized Purposes .........................................................................12
 4.2.3.3 CSO Authority in Other Circumstances ............................................................12
@@ -353,12 +355,14 @@ CP-7 ALTERNATE PROCESSING SITE .................................................
 (3) ALTERNATE PROCESSING SITE | PRIORITY OF SERVICE ...............................87
 CP-8 TELECOMMUNICATIONS SERVICES ....................................................................87
 (1) TELECOMMUNICATIONS SERVICES | PRIORITY OF SERVICE PROVISIONS
+88
 (2) TELECOMMUNICATIONS SERVICES | SINGLE POINTS OF FAILURE ...........88
 CP-9 SYSTEM BACKUP .....................................................................................................89
 (1) SYSTEM BACKUP | TESTING FOR RELIABILITY AND INTEGRITY ...............89
 (8) SYSTEM BACKUP | CRYPTOGRAPHIC PROTECTION .......................................90
 CP-10 SYSTEM RECOVERY AND RECONSTITUTION .................................................90
 (2) SYSTEM RECOVERY AND RECONSTITUTION | TRANSACTION RECOVERY
+90
 IDENTIFICATION AND AUTHENTICATION (IA) ..............................................................92
 IA-0 USE OF ORIGINATING AGENCY IDENTIFIERS IN TRANSACTIONS AND
 INFORMATION EXCHANGES ..................................................................................92
@@ -388,12 +392,14 @@ cryptographic authenticators, both hardware- and software-based) ...............
 (2) AUTHENTICATOR MANAGEMENT | PUBLIC KEY BASED
 AUTHENTICATION ..............................................................................................137
 (6) AUTHENTICATOR MANAGEMENT | PROTECTION OF AUTHENTICATORS
+138
 IA-6 AUTHENTICATION FEEDBACK ............................................................................138
 IA-7 CRYPTOGRAPHIC MODULE AUTHENTICATIONF ...........................................139
 IA-8 IDENTIFICATION AND AUTHENTICATION (NON-ORGANIZATIONAL
 USERS) ........................................................................................................................139
 (1) IDENTIFICATION AND AUTHENTICATION (NON-ORGANIZATIONAL
 USERS) | ACCEPTANCE OF PIV CREDENTIALS FROM OTHER AGENCIES
+139
 (2) IDENTIFICATION AND AUTHENTICATION (NON-ORGANIZATIONAL
 USERS) | ACCEPTANCE OF EXTERNAL AUTHENTICATORS ......................140
 (4) IDENTIFICATION AND AUTHENTICATION (NON-ORGANIZATIONAL
@@ -410,8 +416,10 @@ IR-2 INCIDENT RESPONSE TRAINING ................................................
 (3) INCIDENT RESPONSE TRAINING | BREACH .....................................................168
 IR-3 INCIDENT RESPONSE TESTING ............................................................................169
 (2) INCIDENT RESPONSE TESTING | COORDINATION WITH RELATED PLANS
+169
 IR-4 INCIDENT HANDLING ............................................................................................169
 (1) INCIDENT HANDLING | AUTOMATED INCIDENT HANDLING PROCESSES
+170
 IR-5 INCIDENT MONITORING ........................................................................................170
 IR-6 INCIDENT REPORTING ...........................................................................................171
 (1) INCIDENT REPORTING | AUTOMATED REPORTING ......................................171
@@ -494,6 +502,7 @@ RA-5 VULNERABILITY MONITORING AND SCANNING .....................................
 (2) VULNERABILITY MONITORING AND SCANNING | UPDATE
 VULNERABILITIES TO BE SCANNED ..............................................................217
 (5) VULNERABILITY MONITORING AND SCANNING | PRIVILEGED ACCESS
+217
 (11) VULNERABILITY MONITORING AND SCANNING | PUBLIC DISCLOSURE
 PROGRAM ..............................................................................................................217
 RA-7 RISK RESPONSE ......................................................................................................218
@@ -538,6 +547,7 @@ EXCEPTION ......................................................................
 (8) BOUNDARY PROTECTION | ROUTE TRAFFIC TO AUTHENTICATED PROXY
 SERVERS ................................................................................................................240
 (24) BOUNDARY PROTECTION | PERSONALLY IDENTIFIABLE INFORMATION
+240
 SC-8 TRANSMISSION CONFIDENTIALITY AND INTEGRITY ..................................240
 (1) TRANSMISSION CONFIDENTIALITY AND INTEGRITY | CRYPTOGRAPHIC
 PROTECTION .........................................................................................................241
@@ -16443,6 +16453,7 @@ Systems; Federal Information Processing Standards Publication, FIPS PUB 199;
 February 2004
 [FIPS 200] Minimum Security Requirements for Federal Information and Information Systems;
 Federal Information Processing Standards Publication, FIPS PUB 200; March
+2006
 [FIPS 201] Personal Identity Verification for Federal Employees and Contractors; Federal
 Information Processing Standards Publication, FIPS PUB 201-1
 [NIST IR 8523] Multi-Factor Authentication for Criminal Justice Information Systems, NIST
@@ -16467,6 +16478,7 @@ I-2
 NIST Special Publication 800–39
 [NIST SP 800–40] Procedures for Handling Security Patches; NIST Special Publication 800–40
 [NIST SP 800–44] Guidelines on Securing Public Web Servers; NIST Special Publication 800–
+44
 [NIST SP 800–45] Guidelines on Electronic Mail Security; NIST Special Publication 800–45,
 Version 2
 [NIST SP 800–46] Security for Telecommuting and Broadband Communications; NIST Special
@@ -16519,11 +16531,13 @@ Random Bit Generators; NIST Special Publication 800-90Ar1
 800–97
 [NIST SP 800–121] Guide to Bluetooth Security, NIST Special Publication 800-121
 [NIST SP 800–124] Guidelines on Cell Phone and PDA Security, NIST Special Publication 800-
+124
 [NIST SP 800-125] Guide to Security for Full Virtualization Technologies; NIST Special
 Publication 800-125
 [NIST SP 800–144] Guidelines on Security and Privacy in Public Cloud Computing; NIST
 Special Publication 800-144
 [NIST SP 800–145] The NIST Definition of Cloud Computing; NIST Special Publication 800-
+145
 [NIST SP 800–146] Cloud Computing Synopsis and Recommendations; NIST Special
 Publication 800-146
 [OMB A–130] Management of Federal Information Resources; Circular No. A–130; Revised;
@@ -16533,6 +16547,7 @@ December 16, 2003
 [OMB M–06–15] Safeguarding Personally Identifiable Information; OMB Memo 06–15; May
 22, 2006
 [OMB M–06–16] Protection of Sensitive Agency Information; OMB Memo 06–16; June 23,
+2006
 [OMB M–06–19] Reporting Incidents Involving Personally Identifiable Information and
 Incorporating the Cost for Security in Agency Information Technology
 Investments; OMB Memo 06–19; July 12, 2006

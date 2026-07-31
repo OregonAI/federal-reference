@@ -39,6 +39,21 @@ OUT = ROOT / "_meta" / "cited-sections.yml"
 # general CFR-citation regex here would quietly collect sections of parts we do not hold.
 SECTION_RE = re.compile(r"\b2\s+C\.?\s?F\.?\s?R\.?\s*(?:Part\s+)?§{0,2}\s*200\.(\d+)\b")
 
+# THE SHORT FORM, which the anchored pattern above cannot see and which is how real documents
+# actually cite. A report names "2 CFR 200" once and then writes "§200.414" for the rest of
+# the section. Requiring the literal "2 CFR" on every hit hid 42 citations across 18 sections,
+# NINE of which had no document at all -- including § 200.414 at 10 citations, which would
+# rank seventh of the whole list.
+#
+# ONLY COUNTED IN FILES THAT ALSO CARRY A FULL `2 CFR 200` CITATION. Bare `§200.NNN` is
+# ambiguous on its own -- ORS has a chapter 200 too -- so the full citation elsewhere in the
+# same document is what establishes which part the short form refers to. (Measured: Oregon
+# material writes ORS sections as `ORS 200.055`, never as `§200.055`, so this is belt and
+# braces rather than the only thing standing between us and a false positive.)
+SHORT_RE = re.compile(r"§{1,2}\s*200\.(\d+)\b")
+# A full part citation anywhere in the file, which licenses the short form above.
+PART_RE = re.compile(r"\b2\s+C\.?\s?F\.?\s?R\.?\s*(?:Part\s+)?§{0,2}\s*200\b")
+
 SKIP_PARTS = ("/.git/", "/_meta/", "/snapshots/", "/node_modules/")
 
 
@@ -52,7 +67,12 @@ def scan(root: pathlib.Path, label: str, counts, sources) -> int:
         if any(p in s for p in SKIP_PARTS):
             continue
         n += 1
-        for sec in SECTION_RE.findall(path.read_text(errors="ignore")):
+        text = path.read_text(errors="ignore")
+        hits = SECTION_RE.findall(text)
+        if hits or PART_RE.search(text):
+            # The short form only counts once this file has established the part.
+            hits = hits + SHORT_RE.findall(text)
+        for sec in hits:
             counts[sec] += 1
             sources[sec].add(label)
     return n

@@ -13,9 +13,9 @@ note: |
                 statutes_implemented in executive-regulatory-frameworks).
     named       high-stakes instrument named in the seed regardless of citation count.
 
-  The rankings barely overlap. 2 CFR 200 leads `audited` at 180 citations and has ZERO
-  authority claims; 29 CFR 1910 leads prose mentions across ERF and has no authority claims
-  either. Ranking intake by what Oregon RULES cite would have put IDEA first and never
+  The rankings barely overlap. 2 CFR 200 leads `audited` at 180 citations while drawing only
+  15 authority claims (1.6% of ERF's 916); 29 CFR 1910 leads prose mentions across ERF and
+  has no authority claims at all. Ranking intake by what Oregon RULES cite would have put IDEA first and never
   reached the Uniform Guidance, which binds every federal dollar the state receives.
 
   VERSIONS ARE PART OF IDENTITY, not metadata, for anything publishing discrete versions.
@@ -40,10 +40,12 @@ sources:
     signal: "audited"
     why: >
       The Uniform Guidance. Governs every federal grant Oregon receives. Cited 180 times in
-      Oregon's single audits and claimed as authority by ZERO Oregon rules — the clearest
-      case that compliance obligations do not depend on an OAR pointing at them.
+      Oregon's single audits and declared as legal authority by 15 Oregon documents — the
+      clearest case that compliance obligations far outrun the rules that point at them.
+      (An earlier revision of this file said ZERO authority claims; that was a misreading of
+      the citation catalog's `resolves: False` field and is corrected here.)
     reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
-    sha256: ""
+    sha256: "2eec240fe32106328b66320aa9beb57afa7f07cac7447a72453cf74718e82510"
     notes: >
       180 sections, 6 subparts, 12 appendices. Title 2 last amended 2026-07-16. eCFR is a
       point-in-time API, so this URL pins the as-of date explicitly rather than meaning
@@ -62,11 +64,13 @@ sources:
       across ERF — low citation count, real penalties. Exactly the case the compliance-first
       scoping decision exists for.
     reproduction_basis: "17 U.S.C. § 105 — work of the U.S. government"
-    sha256: ""
+    sha256: "cbc6ca49987a046d1e037d995323f5a646cf77958820084e5c3e14b05e7971ea"
     notes: >
       1.89 MB PDF. The URL is UNVERSIONED, so the revision must be read out of the document
       itself and written to `version` — the revision is part of this instrument's identity,
-      not a label on it.
+      not a label on it. The DOCUMENT id therefore carries it too (irs-pub-1075-11-2021),
+      while this manifest id keys the snapshot files; a sibling can only see a version if it
+      is in the id, because corpus-index.json rows are [title, doc_type, path].
 
   - id: "cjis-sp-6-1"
     url: "https://le.fbi.gov/file-repository/cjis_security_policy_v6-1_20260625.pdf"
@@ -86,10 +90,10 @@ sources:
       distribution restrictions independent of copyright, so "federal, therefore
       publishable" is not the argument being made.
     known_cited_versions_not_held: ["5.6", "5.9.4", "6.0"]
-    sha256: ""
+    sha256: "fe71f553291eda2839c076bf097901493cb507d1ea37b26796d79ed7e942f973"
     notes: "4.44 MB PDF. Oregon cites 5.6, 5.9.4 and 6.0 — none current, none held."
 
-  - id: "pl-113-128-wioa"
+  - id: "pl-113-128"
     url: "https://www.govinfo.gov/content/pkg/PLAW-113publ128/pdf/PLAW-113publ128.pdf"
     format: "pdf"
     instrument_kind: "public_law"
@@ -100,10 +104,10 @@ sources:
       Workforce funds and the conditions attached to them. 93 mentions and 0 authority claims
       across ERF — discussed constantly, never claimed as authority.
     reproduction_basis: "17 U.S.C. § 105 — text of a federal statute"
-    sha256: ""
+    sha256: "8707f96780cc55eb18e2815accf27b5a798d89587fc0eee6d5635975aa6905da"
     notes: "895 KB PDF from govinfo."
 
-  - id: "pl-115-224-perkins"
+  - id: "pl-115-224"
     url: "https://www.govinfo.gov/content/pkg/PLAW-115publ224/pdf/PLAW-115publ224.pdf"
     format: "pdf"
     instrument_kind: "public_law"
@@ -115,5 +119,5 @@ sources:
       in this corpus at 2 mentions — included because the money is real and the conditions
       bind, which citation count does not measure.
     reproduction_basis: "17 U.S.C. § 105 — text of a federal statute"
-    sha256: ""
+    sha256: "542c91a3362955667bfefc42a6792ef011ded34972fb89303740bb79814d508c"
     notes: "328 KB PDF from govinfo."

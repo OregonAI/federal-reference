@@ -18,3 +18,14 @@
 #              answering a compliance question with law that postdates the question.
 corpus-toolkit[mcp] @ git+https://github.com/OregonAI/corpus-toolkit@v1.12.0
 pyyaml
+
+# PINNED EXACTLY, and the exactness is load-bearing rather than tidiness.
+#
+# src/check_extraction.py re-extracts every committed PDF and compares it token-for-token
+# against the committed text. pypdf's text extraction changes between releases, so an
+# unpinned or range-pinned version makes that check fail for a reason that is not extraction
+# loss -- and the natural response to a check that cries wolf is to weaken it. It was also
+# simply UNDECLARED until now: src/ingest_instruments.py imports it, and CI's `generated`
+# job installed only the toolkit, so the fidelity check died on ModuleNotFoundError the
+# first time it ran.
+pypdf==6.14.2
