@@ -27,8 +27,22 @@ corpus:
 # Obligations do not depend on an OAR happening to cite them. The clearest case:
 #
 #   2 CFR 200, the Uniform Guidance, governs every federal grant Oregon receives.
-#   ZERO Oregon rules declare it as authority. It is cited 180 times in Oregon's
-#   single audits — the reports that audit the state against federal requirements.
+#   It is cited 180 times in Oregon's single audits — the reports that audit the
+#   state against federal requirements — and declared as legal authority by only
+#   15 Oregon documents (14 rules and one DAS manual), 1.6% of the 916 federal
+#   authority claims ERF makes.
+#
+# CORRECTION, 2026-07-30. This block previously said ZERO Oregon rules declare it as
+# authority. That was wrong, and it was wrong in the direction that flattered the argument.
+# The number is 15, verified in the documents themselves: oar-581-051-0500 and neighbours
+# carry `legal_authority: 2 CFR 200`, oar-461-135-1230 carries
+# `statutes_implemented: 2 CFR 200.404`. The error came from misreading the citation
+# catalog, where `resolves: False` and `targets_resolving: 0` sit beside
+# `authority_claims: 15` — the zero counted targets that RESOLVED, not claims that existed.
+#
+# The argument survives intact and is actually sharper stated correctly: 15 authority claims
+# against 180 audit citations is still an order of magnitude, and it is the ratio, not a
+# zero, that shows the compliance surface is the larger one.
 #
 # So intake is ranked by three measured signals, not one, and the compliance surface leads.
 content_roots:

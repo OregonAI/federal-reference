@@ -13,9 +13,9 @@ note: |
                 statutes_implemented in executive-regulatory-frameworks).
     named       high-stakes instrument named in the seed regardless of citation count.
 
-  The rankings barely overlap. 2 CFR 200 leads `audited` at 180 citations and has ZERO
-  authority claims; 29 CFR 1910 leads prose mentions across ERF and has no authority claims
-  either. Ranking intake by what Oregon RULES cite would have put IDEA first and never
+  The rankings barely overlap. 2 CFR 200 leads `audited` at 180 citations while drawing only
+  15 authority claims (1.6% of ERF's 916); 29 CFR 1910 leads prose mentions across ERF and
+  has no authority claims at all. Ranking intake by what Oregon RULES cite would have put IDEA first and never
   reached the Uniform Guidance, which binds every federal dollar the state receives.
 
   VERSIONS ARE PART OF IDENTITY, not metadata, for anything publishing discrete versions.
@@ -40,8 +40,10 @@ sources:
     signal: "audited"
     why: >
       The Uniform Guidance. Governs every federal grant Oregon receives. Cited 180 times in
-      Oregon's single audits and claimed as authority by ZERO Oregon rules — the clearest
-      case that compliance obligations do not depend on an OAR pointing at them.
+      Oregon's single audits and declared as legal authority by 15 Oregon documents — the
+      clearest case that compliance obligations far outrun the rules that point at them.
+      (An earlier revision of this file said ZERO authority claims; that was a misreading of
+      the citation catalog's `resolves: False` field and is corrected here.)
     reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
     sha256: ""
     notes: >

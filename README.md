@@ -89,8 +89,9 @@ must *comply with* — and obligations do not depend on a rule happening to cite
 The clearest case, and the flagship document:
 
 > **2 CFR 200**, the Uniform Guidance, governs every federal grant Oregon receives.
-> **Zero** Oregon rules declare it as authority. It is cited **180 times** in Oregon's
-> single audits — the reports that audit the state against federal requirements.
+> It is cited **180 times** in Oregon's single audits — the reports that audit the state
+> against federal requirements — and declared as legal authority by **15** Oregon documents,
+> 1.6% of the 916 federal authority claims Oregon rules make.
 
 ### Before you quote anything from here
 
