@@ -26,9 +26,24 @@ jobs:
       # _meta/snapshots/ is excluded because a large corpus's snapshots would drag
       # hundreds of upstream URLs into a per-PR gate; upstream availability is what
       # the scheduled drift job is for.
+      # `instruments/` is excluded because its links are NOT this repository's links.
+      #
+      # Every document's `## Full text` is verbatim federal text, and federal documents cite
+      # URLs constantly. Measured on the first run: 72 links checked, 14 errors, ALL of them
+      # inside instruments/ — NIST drafts and third-party articles the FBI cited in the CJIS
+      # policy years ago (kernelthread.com, windowsecurity.com). A 2016 publication citing a
+      # page that died in 2019 is an accurate copy, not link rot in this corpus, and
+      # "fixing" one would mean editing federal text, which is the one thing a corpus whose
+      # doc_type asserts verbatim reproduction must never do.
+      #
+      # THE LINKS THAT ARE OURS ARE STILL CHECKED, just not here. Every document's
+      # frontmatter source_url is fetched by the `drift` job in scheduled.yml, which exits
+      # non-zero on any fetch failure. Verified before excluding: 0 of our 5 source_urls
+      # appear among the 14 failures.
       exclude-paths: |
         _meta/snapshots
         _meta/templates
+        instruments
 
   # EVERY COMMITTED GENERATED ARTIFACT MUST BE CURRENT, checked on every PR.
   #

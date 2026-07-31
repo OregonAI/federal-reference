@@ -1,27 +1,119 @@
-# Every upstream source this corpus consumes. Human-approved via PR BEFORE any
-# ingestion (review gate #1).
-#
-# WHICH KEYS THE TOOLKIT ACTUALLY READS (corpus_toolkit/sources/changes.py):
-#   url     REQUIRED. Missing it raises KeyError mid-run, not a clean error.
-#   format  Strongly recommended. Without it the format is INFERRED FROM THE URL
-#           EXTENSION — and an extensionless URL that actually serves a PDF is
-#           inferred as html, so drift detection runs an HTML-to-text converter
-#           over PDF bytes and reports a change EVERY RUN, FOREVER. Declare it
-#           whenever the URL does not end in a real extension.
-#   id      Used to name the snapshot and report which source drifted.
-#
-# Everything else below is for humans and for this repo's own ingester; the
-# toolkit ignores it. That is fine — record what your reviewers need.
-#
-# sources:
-#   - id: ""                # -> _meta/snapshots/<id>.<format>
-#     url: ""               # REQUIRED
-#     format: pdf           # html | pdf | json | xlsx | ... declare it explicitly
-#     citation: ""
-#     title: ""
-#     doc_type: ""
-#     recheck: monthly | quarterly | annual | biennial
-#     sha256: ""            # filled at first fetch
-#     why_relevant: ""
-#     references_out: []
-sources: []
+note: |
+  Every upstream source this corpus consumes. HAND-AUTHORED and human-approved via PR —
+  deliberately not generated, because unlike every other corpus here there is no upstream
+  index to walk. The federal government does not publish "the list of instruments Oregon
+  must comply with"; that list is a judgement, so it is made explicitly and reviewed.
+
+  Each entry records WHICH SIGNAL put it here, because the three disagree and the
+  disagreement is the most useful thing we know:
+
+    audited     cited in Oregon's single audits — what the state is audited AGAINST.
+                The compliance surface, and the signal the original seed lacked.
+    authority   claimed as legal authority by an Oregon rule (legal_authority or
+                statutes_implemented in executive-regulatory-frameworks).
+    named       high-stakes instrument named in the seed regardless of citation count.
+
+  The rankings barely overlap. 2 CFR 200 leads `audited` at 180 citations and has ZERO
+  authority claims; 29 CFR 1910 leads prose mentions across ERF and has no authority claims
+  either. Ranking intake by what Oregon RULES cite would have put IDEA first and never
+  reached the Uniform Guidance, which binds every federal dollar the state receives.
+
+  VERSIONS ARE PART OF IDENTITY, not metadata, for anything publishing discrete versions.
+  Requirements change between revisions, so resolving a 2019 citation to 2026 text is a
+  wrong answer wearing a right answer's clothes. Where Oregon cites versions we do not hold,
+  the entry says so rather than letting the current one quietly stand in.
+
+  `format` is declared on every entry, per the template's warning. It matters more here than
+  usual: the eCFR URL ends in `?part=200`, so an inferred format would be html, and drift
+  detection would run an HTML-to-text converter over XML and report a change every run.
+
+index: "https://www.ecfr.gov/"
+recheck: quarterly
+
+sources:
+  - id: "2-cfr-200"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-07-29/title-2.xml?part=200"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "2 CFR 200"
+    title: "Uniform Administrative Requirements, Cost Principles, and Audit Requirements for Federal Awards"
+    signal: "audited"
+    why: >
+      The Uniform Guidance. Governs every federal grant Oregon receives. Cited 180 times in
+      Oregon's single audits and claimed as authority by ZERO Oregon rules — the clearest
+      case that compliance obligations do not depend on an OAR pointing at them.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+    sha256: ""
+    notes: >
+      180 sections, 6 subparts, 12 appendices. Title 2 last amended 2026-07-16. eCFR is a
+      point-in-time API, so this URL pins the as-of date explicitly rather than meaning
+      "whatever is current when you happen to fetch". Sections are ## anchors in the part
+      document; the 29 Oregon actually cites become their own documents in Stage 1b.
+
+  - id: "irs-pub-1075"
+    url: "https://www.irs.gov/pub/irs-pdf/p1075.pdf"
+    format: "pdf"
+    instrument_kind: "irs_publication"
+    citation: "IRS Pub 1075"
+    title: "Tax Information Security Guidelines for Federal, State and Local Agencies"
+    signal: "named"
+    why: >
+      Governs any agency handling federal tax information. 7 mentions and 0 authority claims
+      across ERF — low citation count, real penalties. Exactly the case the compliance-first
+      scoping decision exists for.
+    reproduction_basis: "17 U.S.C. § 105 — work of the U.S. government"
+    sha256: ""
+    notes: >
+      1.89 MB PDF. The URL is UNVERSIONED, so the revision must be read out of the document
+      itself and written to `version` — the revision is part of this instrument's identity,
+      not a label on it.
+
+  - id: "cjis-sp-6-1"
+    url: "https://le.fbi.gov/file-repository/cjis_security_policy_v6-1_20260625.pdf"
+    format: "pdf"
+    instrument_kind: "fbi_policy"
+    citation: "CJIS Security Policy 6.1"
+    title: "Criminal Justice Information Services (CJIS) Security Policy"
+    version: "6.1"
+    signal: "named"
+    why: >
+      Binds any agency touching criminal justice information. 8 mentions, 0 authority claims
+      across ERF.
+    reproduction_basis: >
+      17 U.S.C. § 105 — work of the U.S. government; distribution terms for this specific
+      version reviewed by the operator 2026-07-30 and found not to restrict redistribution.
+      Recorded as what was CHECKED rather than inferred: a U.S. government work can carry
+      distribution restrictions independent of copyright, so "federal, therefore
+      publishable" is not the argument being made.
+    known_cited_versions_not_held: ["5.6", "5.9.4", "6.0"]
+    sha256: ""
+    notes: "4.44 MB PDF. Oregon cites 5.6, 5.9.4 and 6.0 — none current, none held."
+
+  - id: "pl-113-128-wioa"
+    url: "https://www.govinfo.gov/content/pkg/PLAW-113publ128/pdf/PLAW-113publ128.pdf"
+    format: "pdf"
+    instrument_kind: "public_law"
+    citation: "Pub. L. 113-128"
+    title: "Workforce Innovation and Opportunity Act"
+    signal: "named"
+    why: >
+      Workforce funds and the conditions attached to them. 93 mentions and 0 authority claims
+      across ERF — discussed constantly, never claimed as authority.
+    reproduction_basis: "17 U.S.C. § 105 — text of a federal statute"
+    sha256: ""
+    notes: "895 KB PDF from govinfo."
+
+  - id: "pl-115-224-perkins"
+    url: "https://www.govinfo.gov/content/pkg/PLAW-115publ224/pdf/PLAW-115publ224.pdf"
+    format: "pdf"
+    instrument_kind: "public_law"
+    citation: "Pub. L. 115-224"
+    title: "Strengthening Career and Technical Education for the 21st Century Act (Perkins V)"
+    signal: "named"
+    why: >
+      Career and technical education funds and their conditions. The least-cited instrument
+      in this corpus at 2 mentions — included because the money is real and the conditions
+      bind, which citation count does not measure.
+    reproduction_basis: "17 U.S.C. § 105 — text of a federal statute"
+    sha256: ""
+    notes: "328 KB PDF from govinfo."
