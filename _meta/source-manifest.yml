@@ -64,7 +64,7 @@ sources:
       across ERF — low citation count, real penalties. Exactly the case the compliance-first
       scoping decision exists for.
     reproduction_basis: "17 U.S.C. § 105 — work of the U.S. government"
-    sha256: "9b8f2eea6cdb4bfc98458a38edf0d933b03536abd14de9346c8d89f2fd8251cd"
+    sha256: ""   # filled by the refresh-source-hashes job (needs pdftotext)
     notes: >
       1.89 MB PDF. The URL is UNVERSIONED, so the revision must be read out of the document
       itself and written to `version` — the revision is part of this instrument's identity,
@@ -90,7 +90,7 @@ sources:
       distribution restrictions independent of copyright, so "federal, therefore
       publishable" is not the argument being made.
     known_cited_versions_not_held: ["5.6", "5.9.4", "6.0"]
-    sha256: "4069224689472cf0af5f0026657869b68989525d227d4315477712e4d44c2000"
+    sha256: ""   # filled by the refresh-source-hashes job (needs pdftotext)
     notes: "4.44 MB PDF. Oregon cites 5.6, 5.9.4 and 6.0 — none current, none held."
 
   - id: "pl-113-128"
@@ -104,7 +104,7 @@ sources:
       Workforce funds and the conditions attached to them. 93 mentions and 0 authority claims
       across ERF — discussed constantly, never claimed as authority.
     reproduction_basis: "17 U.S.C. § 105 — text of a federal statute"
-    sha256: "be99dfcfa129a80c31bfdecea5bab3c66848c6f364b4fc2068f8816690795a52"
+    sha256: ""   # filled by the refresh-source-hashes job (needs pdftotext)
     notes: "895 KB PDF from govinfo."
 
   - id: "pl-115-224"
@@ -119,5 +119,5 @@ sources:
       in this corpus at 2 mentions — included because the money is real and the conditions
       bind, which citation count does not measure.
     reproduction_basis: "17 U.S.C. § 105 — text of a federal statute"
-    sha256: "5b37dbd870568ab36799fdcf13538410a3beb05d944f60d21fe87756442e3090"
+    sha256: ""   # filled by the refresh-source-hashes job (needs pdftotext)
     notes: "328 KB PDF from govinfo."
