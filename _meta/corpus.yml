@@ -20,8 +20,11 @@ corpus:
 #
 # It is NOT primarily here to retire dead citations in Oregon rules. Measured before
 # building anything (executive-regulatory-frameworks/_meta/catalog/external-citations.yml):
-# Oregon rules make 916 federal authority claims, and the four instruments the seed named
-# by title account for 2 of them.
+# Oregon rules make 916 federal authority claims, and the four instruments the seed named by
+# title account for ZERO of them — WIOA, Perkins, IRS Pub 1075 and the CJIS policy each have
+# `authority_claims: 0` in that catalog. (This said "2" until 2026-07-30. The 2 belongs to
+# HIPAA, which this corpus does not hold; the same catalog-misreading that produced the
+# "zero authority claims" error corrected below, made twice in one file.)
 #
 # The corpus is here so an agency can find the federal requirement it must COMPLY WITH.
 # Obligations do not depend on an OAR happening to cite them. The clearest case:

@@ -88,6 +88,55 @@ def cfr_amended_on(url: str) -> str:
     return max(dates)
 
 
+def record_source_hash(rid: str, raw: bytes, fmt: str) -> str:
+    """Record the hash corpus-detect-changes will compare against. Returns a status line.
+
+    PDFs go through `pdftotext`, which is not present in every environment. When it is
+    missing this SKIPS rather than writing a hash computed some other way -- a manifest hash
+    produced by a different function than the detector uses is worse than an empty one,
+    because an empty one is visibly unpopulated while a wrong one looks authoritative and
+    reports CHANGED forever.
+    """
+    from corpus_toolkit.sources.changes import content_hash
+    try:
+        sha = content_hash(raw, fmt)
+    except FileNotFoundError as e:                   # pdftotext absent
+        return (f"sha256 for {rid} NOT recorded: {e.filename} unavailable — run "
+                f"`python3 src/refresh_source_hashes.py` where poppler is installed")
+    return f"recorded sha256 for {rid}" if write_manifest_hash(rid, sha) else ""
+
+
+def write_manifest_hash(rid: str, sha: str) -> bool:
+    """Record a source's content hash back into the manifest. Returns True if it changed.
+
+    WITHOUT THIS THE DRIFT DETECTOR IS A 100% FALSE POSITIVE. corpus-detect-changes compares
+    the freshly computed hash against `sha256` in the manifest, which shipped as "" for every
+    source -- so all five reported CHANGED on every weekly run, forever. A check that always
+    fires tells you nothing, and the only upstream-content guard this corpus has was doing
+    exactly that.
+
+    Edited as TEXT, not round-tripped through yaml.safe_dump: the manifest is hand-authored
+    and its comments carry the reasoning for every intake decision. Dumping it would silently
+    delete all of them.
+    """
+    lines = MANIFEST.read_text(encoding="utf-8").splitlines(keepends=True)
+    out, in_block, changed = [], False, False
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith("- id:"):
+            in_block = stripped.split("- id:", 1)[1].strip().strip('"\'') == rid
+        if in_block and stripped.startswith("sha256:"):
+            new = f'{line[:len(line) - len(line.lstrip())]}sha256: "{sha}"\n'
+            changed = new != line
+            out.append(new)
+            in_block = False
+            continue
+        out.append(line)
+    if changed:
+        MANIFEST.write_text("".join(out), encoding="utf-8")
+    return changed
+
+
 def fetch(url: str, dest: Path, refetch: bool) -> bytes:
     if dest.is_file() and not refetch:
         return dest.read_bytes()
@@ -104,8 +153,26 @@ def _flatten(el) -> str:
     return " ".join("".join(el.itertext()).split())
 
 
+def guard_headings(text: str) -> str:
+    r"""Never let SOURCE text start a line with `## `.
+
+    corpus_toolkit.repo.FULLTEXT_RE reads the body as `^## Full text\s*$(.*?)(?=^## |\Z)`,
+    so any line beginning `## ` at column zero ends the document there. A leading space stops
+    the match and normalize_ws erases it before any comparison, so nothing downstream sees it.
+
+    THIS WAS CLAIMED AND NOT DONE. extract_pdf applied it with a comment reading "Same `## `
+    guard as the CFR path" -- but the CFR path had no guard at all, which is why
+    split_cfr_sections.py had to carry its own. The failure is silent AND survives CI on a
+    document this size: coverage thresholds are fail 0.70 / warn 0.90, so a stray `## ` in
+    the last tenth of 633,000 characters truncates the tail and still scores above 90%, and
+    the in-order line check passes because a truncated document's lines are all still there
+    and still in order.
+    """
+    return re.sub(r"^(#{1,6}\s)", r" \1", text, flags=re.M)
+
+
 def extract_cfr(raw: bytes) -> tuple[str, dict]:
-    """eCFR part XML -> markdown, one `##` heading per section.
+    """eCFR part XML -> markdown, one `###` heading per section and appendix.
 
     Sections come from `DIV8[@TYPE='SECTION']`, whose `N` attribute is the section number.
     Appendices are kept: 2 CFR 200 has 12 of them and they carry substantive requirements,
@@ -136,7 +203,7 @@ def extract_cfr(raw: bytes) -> tuple[str, dict]:
         for child in el:
             if child is head_el:
                 continue
-            t = _flatten(child)
+            t = guard_headings(_flatten(child))
             if t:
                 out.append(t)
         out.append("")
@@ -211,8 +278,7 @@ def extract_pdf(path: Path) -> tuple[str, dict]:
                 continue
             out.append(s)
     text = re.sub(r"\n{3,}", "\n\n", "\n".join(out)).strip()
-    # Same '## ' guard as the CFR path, for the same reason.
-    text = re.sub(r"^(#{1,6}\s)", r" \1", text, flags=re.M)
+    text = guard_headings(text)
     return text, {"pages": len(reader.pages)}
 
 
@@ -402,6 +468,16 @@ def main() -> int:
 
             (SNAPSHOTS / f"{rid}.txt").write_text(text, encoding="utf-8")
             sha = hash_snapshot(rid, fmt, SNAPSHOTS)
+            # The MANIFEST hash is a different quantity from the document's source_sha256,
+            # and conflating them is a trap I fell into once already. `source_sha256` is
+            # hash_snapshot() -- our extractor's output. The manifest's is what
+            # corpus-detect-changes will compute on a fresh fetch, via the TOOLKIT's
+            # converter. Storing ours there swaps one permanent false positive for another
+            # while looking fixed. Verified: content_hash on the committed XML equals what
+            # the drift job computed from the live URL, to the character.
+            note = record_source_hash(rid, raw, fmt)
+            if note:
+                print(f"    {note}")
             (OUT_DIR / f"{doc_id(src, version)}.md").write_text(
                 build(src, text, sha, stats, version),
                                                encoding="utf-8")

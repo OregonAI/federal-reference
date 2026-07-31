@@ -37,3 +37,57 @@ jobs:
     with:
       # Pin the CODE, not just the workflow file above — separate knobs.
       toolkit-ref: v1.12.0
+
+  # OUR OWN links, the ones ci.yml's lychee exclusion deliberately skips. Network-dependent,
+  # so weekly rather than per-PR.
+  source-urls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python3 src/check_source_urls.py
+
+  # POPULATE THE DRIFT BASELINE, on demand.
+  #
+  # corpus-detect-changes compares a fresh fetch against `sha256:` in the manifest. Those
+  # shipped EMPTY, so every source reported CHANGED on every weekly run — the only
+  # upstream-content guard this corpus has was a 100% false positive, which is the same as
+  # having no guard.
+  #
+  # It lives here rather than in the ingester because the hash for a PDF is whatever
+  # `pdftotext` produces, and poppler is not present on a normal dev machine. Writing a hash
+  # computed by any other function would swap one permanent false positive for another while
+  # looking fixed.
+  #
+  # Manual, not scheduled: recording a new baseline is how you ACCEPT an upstream change, and
+  # that is a decision a person makes after looking at the diff, not something a cron should
+  # do quietly on a corpus of federal requirements.
+  refresh-source-hashes:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python3 src/refresh_source_hashes.py
+      - name: Commit any change
+        run: |
+          if [ -n "$(git status --porcelain _meta/source-manifest.yml)" ]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add _meta/source-manifest.yml
+            git commit -m "Record drift baseline hashes for manifest sources"
+            git push
+          else
+            echo "manifest hashes already current"
+          fi
