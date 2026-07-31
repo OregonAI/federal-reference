@@ -210,6 +210,13 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None) -> s
         "amended_on": src.get("amended_on"),
         "reproduction_basis": " ".join(str(src["reproduction_basis"]).split()),
         "superseded_by": None,
+        # Carried into the DOCUMENT, not left in the manifest. src/citation_schemes.py names
+        # these when it refuses a citation to a version we do not hold ("Oregon cites 5.6,
+        # 5.9.4 and 6.0, none of which is held") -- and a refusal that cannot say what is
+        # missing is much weaker than one that can.
+        **({"known_cited_versions_not_held":
+            [str(v) for v in src["known_cited_versions_not_held"]]}
+           if src.get("known_cited_versions_not_held") else {}),
         "source_url": src["url"],
         "source_format": src["format"],
         "retrieved": time.strftime("%Y-%m-%d"),
