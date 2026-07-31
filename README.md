@@ -15,11 +15,48 @@ Archetype: **document**. MCP interface: contract v1.
 | [STATUS.md](STATUS.md) | Generated health: freshness, coverage, drift |
 | `_meta/corpus.yml` | Corpus configuration |
 
-## Status: bootstrapped, **no documents yet**
+## Status: **34 documents** — 5 instruments and 29 CFR sections
 
-The repository exists and CI is wired. The corpus is **empty**, and one toolkit release is
-still required before it can hold anything — the `federal_instrument` doc_type does not
-exist yet.
+| | |
+|---|---|
+| `2-cfr-200` | Uniform Guidance — 180 sections, 12 appendices |
+| `2-cfr-200.NNN` | the **29 sections Oregon actually cites**, individually addressable |
+| `cjis-sp-6-1` | CJIS Security Policy 6.1 — 473 pages |
+| `pl-113-128-wioa` | Workforce Innovation and Opportunity Act — 298 pages |
+| `irs-pub-1075` | Tax Information Security Guidelines, rev. 11-2021 — 216 pages |
+| `pl-115-224-perkins` | Perkins V — 61 pages |
+
+**Nothing points here yet.** Citation schemes (Stage 3) and the sibling declarations in
+`executive-regulatory-frameworks` and `oregon-audits` (Stage 4) are what make this corpus
+reachable; until then it is a well-formed island.
+
+### Why the sections are split out
+
+**81% of the Uniform Guidance citations Oregon makes are section-level** — 188 of 232, with
+§ 200.303 alone accounting for 58. A corpus holding only the part would answer `2 CFR 200`
+and miss every one of those. The split list is derived, not chosen:
+
+```
+python3 src/scan_cited_sections.py --erf ../oregon-policy-repo --audits ../oregon-audits
+python3 src/split_cfr_sections.py
+```
+
+The result is committed to `_meta/cited-sections.yml` because CI cannot reach the sibling
+repositories — a build-time scan would find nothing there and split nothing, silently.
+
+Sections share the part's snapshot via `snapshot_id` rather than storing their own copies,
+so a section cannot drift from the part it was cut from. `src/slicing.py` tells the
+provenance checker which span of that snapshot each section is answerable for.
+
+### Two sections in here no longer exist
+
+§ 200.53 and § 200.62 were **removed on 2021-02-22**, when Subpart A's definitions were
+consolidated into § 200.1. Oregon audits still cite them, because they were in force for
+the fiscal years under audit. They are held at their **last-in-force text** (2021-02-21),
+marked `status: superseded` with `superseded_by: 2-cfr-200.1`.
+
+Resolving them to current text would answer with law that was not in force when it was
+cited; dropping them would leave four real citations pointing at nothing.
 
 ## What this is
 
@@ -33,7 +70,7 @@ Oregon rules make 916 federal authority claims, and the instruments most people 
 first account for 2 of them. The corpus is here so an agency can find the requirement it
 must *comply with* — and obligations do not depend on a rule happening to cite them.
 
-The clearest case, and the first document planned:
+The clearest case, and the flagship document:
 
 > **2 CFR 200**, the Uniform Guidance, governs every federal grant Oregon receives.
 > **Zero** Oregon rules declare it as authority. It is cited **180 times** in Oregon's
@@ -48,6 +85,10 @@ It holds **current text**, with an `as_of` date and the upstream `amended_on`. A
 rule written in 2019 implements the text that existed in 2019 — resolving its citation to
 today's text is a wrong answer that looks like a right one. Both dates are served on every
 document so that comparison can be made. See [AGENTS.md](AGENTS.md).
+
+The two exceptions are deliberate and labelled: § 200.53 and § 200.62 are held at their
+**last-in-force** text with `status: superseded`, because Oregon material cites them and
+they no longer exist. Check `status` before treating anything here as current law.
 
 ## License
 Content (curated government material): CC0-1.0. Tooling, structure,
