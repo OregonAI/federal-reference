@@ -87,7 +87,11 @@ jobs:
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git add _meta/source-manifest.yml
             git commit -m "Record drift baseline hashes for manifest sources"
-            git push
+            # The `drift` job in this same workflow commits its own STATUS.md repair to the
+            # same branch, so the two race and whichever pushes second is rejected. Rebase
+            # onto whatever landed first rather than failing the run.
+            git pull --rebase --quiet origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
           else
             echo "manifest hashes already current"
           fi
