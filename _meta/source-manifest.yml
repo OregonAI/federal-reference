@@ -68,7 +68,9 @@ sources:
     notes: >
       1.89 MB PDF. The URL is UNVERSIONED, so the revision must be read out of the document
       itself and written to `version` — the revision is part of this instrument's identity,
-      not a label on it.
+      not a label on it. The DOCUMENT id therefore carries it too (irs-pub-1075-11-2021),
+      while this manifest id keys the snapshot files; a sibling can only see a version if it
+      is in the id, because corpus-index.json rows are [title, doc_type, path].
 
   - id: "cjis-sp-6-1"
     url: "https://le.fbi.gov/file-repository/cjis_security_policy_v6-1_20260625.pdf"

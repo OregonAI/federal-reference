@@ -81,12 +81,31 @@ def _norm_rev(s: str) -> str:
     return "".join((s or "").split()).replace("/", "-")
 
 
+# A version-ish token ANYWHERE in the citation string. Deliberately generous, and used only
+# to decide whether the caller NAMED a version -- never to pick a document.
+#
+# The bug this exists to kill: the version group inside CJIS_RE/IRSPUB_RE was optional and
+# the patterns were case-sensitive, so `CJIS Security Policy, Version 6.0` captured nothing,
+# fell through to the "no version named" branch, and returned 6.1 -- while asserting "the
+# citation named no version" about a string that named 6.0, a version listed in that very
+# document's `known_cited_versions_not_held`. An uncaptured version must REFUSE, never
+# default to "unversioned".
+CJIS_VER_TOKEN = re.compile(r"\b\d+\.\d+(?:\.\d+)?\b")
+IRS_REV_TOKEN = re.compile(r"\b(\d{1,2})\s*[-/]\s*(\d{4})\b")
+
+
+def _declared(pattern, text: str):
+    """The first version-ish token in `text`, or None."""
+    m = pattern.search(text or "")
+    return m.group(0) if m else None
+
+
 # --------------------------------------------------------------------------- CFR
 # `2 CFR 200`, `2 C.F.R. § 200.303`, `2 CFR Part 200.303`, `2 CFR §§ 200.303`.
 #
 # ONE scheme covers part and section. Splitting them makes resolution depend on registration
 # order, and the section form is the common one -- 188 of the 232 citations Oregon makes.
-CFR_RE = (r"(?P<title>\d{1,2})\s*C\.?\s?F\.?\s?R\.?\s*(?:Part\s+)?§{0,2}\s*"
+CFR_RE = (r"(?i)(?P<title>\d{1,2})\s*C\.?\s?F\.?\s?R\.?\s*(?:Part\s+)?§{0,2}\s*"
           r"(?P<part>\d{1,4})(?:\.(?P<sec>\d{1,4}))?\b")
 
 
@@ -147,7 +166,7 @@ register_scheme("cfr", CFR_RE, resolver=_cfr)
 
 # --------------------------------------------------------------------------- Public law
 # `Pub. L. 113-128`, `Public Law No. 115-224`, `PL 113-128`.
-PUBLAW_RE = (r"P(?:ub(?:lic)?)?\.?\s*L(?:aw)?\.?\s*(?:No\.?\s*)?"
+PUBLAW_RE = (r"(?i)P(?:ub(?:lic)?)?\.?\s*L(?:aw)?\.?\s*(?:No\.?\s*)?"
              r"(?P<cong>\d{2,3})\s*[-–]\s*(?P<num>\d{1,4})\b")
 
 # Derived from what is held, so adding a public law makes it resolvable without editing this
@@ -171,20 +190,26 @@ register_scheme("public-law", PUBLAW_RE, resolver=_publaw)
 
 # --------------------------------------------------------------------------- IRS publication
 # `IRS Pub 1075`, `IRS Publication 1075 (Rev. 11-2021)`.
-IRSPUB_RE = (r"IRS\s+Pub(?:lication)?\.?\s*(?P<num>\d{3,4})"
-             r"(?:\s*\(?\s*Rev\.?\s*(?P<rev>\d{1,2}\s*[-/]\s*\d{4})\s*\)?)?")
+IRSPUB_RE = r"(?i)IRS\s+Pub(?:lication)?\.?\s*(?P<num>\d{3,4})"
 
 
 def _irspub(m, nodes=None):
-    num, rev = m.group("num"), _norm_rev(m.group("rev") or "")
+    num = m.group("num")
+    # Read the revision off the WHOLE citation, not just what IRSPUB_RE captured.
+    tok = IRS_REV_TOKEN.search(m.string or "")
+    rev = f"{tok.group(1).zfill(2)}-{tok.group(2)}" if tok else ""
     doc = f"irs-pub-{num}"
     if doc not in HELD:
-        held_pubs = ", ".join(sorted(i for i in HELD if i.startswith("irs-pub-")))
-        return [], (f"IRS Publication {num} is not held; this corpus holds "
-                    f"{held_pubs or 'no IRS publications'}.")
+        # Try the revision-qualified id, which is how these are named once a revision is
+        # part of the identity (irs-pub-1075-11-2021).
+        doc = next((i for i in HELD if i.startswith(f"irs-pub-{num}-")), None)
+        if doc is None:
+            held_pubs = ", ".join(sorted(i for i in HELD if i.startswith("irs-pub-")))
+            return [], (f"IRS Publication {num} is not held; this corpus holds "
+                        f"{held_pubs or 'no IRS publications'}.")
 
     held = _version_of(doc)
-    if rev and held and rev != held:
+    if rev and held and _norm_rev(rev) != _norm_rev(held):
         # THE REVISION IS PART OF THE IDENTITY. Requirements change between revisions, so
         # handing back 11-2021 for a citation to an earlier one is exactly the substitution
         # this corpus exists to refuse.
@@ -204,8 +229,7 @@ register_scheme("irs-pub", IRSPUB_RE, resolver=_irspub)
 
 # --------------------------------------------------------------------------- CJIS
 # `CJIS Security Policy 5.9.4`, `CJIS SP v6.1`, `CJIS Security Policy`.
-CJIS_RE = (r"CJIS(?:\s+Security)?(?:\s+Policy|\s+SP)?\.?\s*"
-           r"(?:v(?:ersion)?\.?\s*)?(?P<ver>\d+(?:\.\d+){0,2})?")
+CJIS_RE = r"(?i)CJIS(?:\s+Security)?(?:\s+Policy|\s+SP)?"
 
 _CJIS = next((i for i in sorted(HELD) if i.startswith("cjis-")), None)
 
@@ -213,7 +237,8 @@ _CJIS = next((i for i in sorted(HELD) if i.startswith("cjis-")), None)
 def _cjis(m, nodes=None):
     if _CJIS is None:
         return [], "no CJIS Security Policy is held by this corpus."
-    ver, held = m.group("ver"), _version_of(_CJIS)
+    # Read the version off the WHOLE citation, not just what CJIS_RE captured.
+    ver, held = _declared(CJIS_VER_TOKEN, m.string), _version_of(_CJIS)
 
     if ver and held and ver != held:
         # The version gap this corpus RECORDED at ingest rather than resolved: Oregon cites
@@ -251,7 +276,7 @@ register_scheme("cjis-policy", CJIS_RE, resolver=_cjis)
 # sketched exactly that aliasing ("with the U.S.C. sections it created as aliases"); it is
 # not implemented, because it would resolve a citation to a document that is not what was
 # cited.
-USC_RE = r"(?P<title>\d{1,2})\s*U\.?\s?S\.?\s?C\.?\s*(?:§{1,2}\s*)?(?P<sec>\d{1,5}[a-z]{0,2})\b"
+USC_RE = r"(?i)(?P<title>\d{1,2})\s*U\.?\s?S\.?\s?C\.?\s*(?:§{1,2}\s*)?(?P<sec>\d{1,5}[a-z]{0,2})\b"
 
 
 def _usc(m, nodes=None):

@@ -23,7 +23,7 @@ Archetype: **document**. MCP interface: contract v1.
 | `2-cfr-200.NNN` | the **29 sections Oregon actually cites**, individually addressable |
 | `cjis-sp-6-1` | CJIS Security Policy 6.1 — 473 pages |
 | `pl-113-128` | Workforce Innovation and Opportunity Act — 298 pages |
-| `irs-pub-1075` | Tax Information Security Guidelines, rev. 11-2021 — 216 pages |
+| `irs-pub-1075-11-2021` | Tax Information Security Guidelines — 216 pages |
 | `pl-115-224` | Perkins V — 61 pages |
 
 **Nothing points here yet.** Citation schemes (Stage 3) and the sibling declarations in
@@ -67,6 +67,7 @@ guessing, and `src/check_citations.py` enforces it in CI:
 |---|---|
 | `CJIS Security Policy 5.9.4` | **refused** — 6.1 is held; Oregon cites 5.6, 5.9.4, 6.0, none held |
 | `IRS Pub 1075 (Rev. 09-2016)` | **refused** — revision 11-2021 is held; requirements differ |
+| `CJIS Security Policy, Version 6.0` | **refused** — the refusal holds across spellings, not one canonical form |
 | `2 CFR 200.53` | returned, labelled **not current law**, removed 2021-02-22 |
 | `2 CFR 200.200` | returns the **part**, and says it did so instead of the section |
 | `42 U.S.C. 1396` | **refused** — enacted public laws are held, not the codified Code |

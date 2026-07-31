@@ -102,3 +102,10 @@ jobs:
       # assertions, each confirmed to fail when the behaviour it guards is removed.
       - name: Citation resolution must refuse what it cannot answer
         run: python3 src/check_citations.py
+      # corpus-verify-provenance CANNOT catch extraction loss: source_sha256 hashes the
+      # committed .txt, and that .txt is written by the extractor from the same string that
+      # goes into the document, so the whole chain compares the extractor against itself.
+      # CJIS SP 6.1 shipped with a year and a standard number deleted while five checks were
+      # green. This one re-reads the raw PDF/XML.
+      - name: Committed text must match the raw source
+        run: python3 src/check_extraction.py
