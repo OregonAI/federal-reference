@@ -15,6 +15,10 @@ Archetype: **document**. MCP interface: contract v1.
 | [STATUS.md](STATUS.md) | Generated health: freshness, coverage, drift |
 | `_meta/corpus.yml` | Corpus configuration |
 
+**MCP endpoint:** `https://oregonai.morficflux.com/federal-reference/mcp`
+Six tools: `resolve_citation`, `get_document`, `search_corpus`, `graph_neighbors`,
+`authority_chain`, `corpus_overview`.
+
 ## Status: **43 documents** — 5 instruments and 38 CFR sections
 
 | | |

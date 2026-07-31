@@ -1,0 +1,22 @@
+# The RAW sources only. They exist so corpus-verify-provenance and src/check_extraction.py
+# can check the documents against what they came from, and both run in CI, never in the
+# server. ~9 MB of the repo.
+_meta/snapshots/*.pdf
+_meta/snapshots/*.xml
+
+# THE .txt EXTRACTIONS STAY -- they are a RUNTIME dependency, which is not obvious.
+# src/citation_schemes.py reads _meta/snapshots/2-cfr-200-2021-02-21.txt AT IMPORT to build
+# the set of sections that existed before the 2021-02-22 consolidation; that is what lets
+# `2 CFR 200.56` answer "removed on 2021-02-22" instead of "no such section". Excluding the
+# whole directory was tried first and the framework raised FileNotFoundError before serving
+# a single request.
+
+# Build/verification-only, never imported by the server.
+.github/
+_meta/.cache/
+
+# NOT .git — IT IS A RUNTIME DEPENDENCY. The FTS cache key is `git rev-parse HEAD` plus a
+# hash of `git status --porcelain`, and corpus_overview() shells out to `git log -1`. Drop it
+# and repo_state() collapses to a constant, so content changes are never picked up — silently,
+# which is the worst way for a corpus to be wrong. The Dockerfile header says the same thing;
+# it is repeated here because this is the file where someone would try to remove it.
