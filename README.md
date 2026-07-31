@@ -15,24 +15,25 @@ Archetype: **document**. MCP interface: contract v1.
 | [STATUS.md](STATUS.md) | Generated health: freshness, coverage, drift |
 | `_meta/corpus.yml` | Corpus configuration |
 
-## Status: **34 documents** — 5 instruments and 29 CFR sections
+## Status: **43 documents** — 5 instruments and 38 CFR sections
 
 | | |
 |---|---|
 | `2-cfr-200` | Uniform Guidance — 180 sections, 12 appendices |
-| `2-cfr-200.NNN` | the **29 sections Oregon actually cites**, individually addressable |
+| `2-cfr-200.NNN` | the **38 sections Oregon actually cites**, individually addressable |
 | `cjis-sp-6-1` | CJIS Security Policy 6.1 — 473 pages |
-| `pl-113-128-wioa` | Workforce Innovation and Opportunity Act — 298 pages |
-| `irs-pub-1075` | Tax Information Security Guidelines, rev. 11-2021 — 216 pages |
-| `pl-115-224-perkins` | Perkins V — 61 pages |
+| `pl-113-128` | Workforce Innovation and Opportunity Act — 298 pages |
+| `irs-pub-1075-11-2021` | Tax Information Security Guidelines — 216 pages |
+| `pl-115-224` | Perkins V — 61 pages |
 
-**Nothing points here yet.** Citation schemes (Stage 3) and the sibling declarations in
-`executive-regulatory-frameworks` and `oregon-audits` (Stage 4) are what make this corpus
-reachable; until then it is a well-formed island.
+**Both siblings now point here.** `executive-regulatory-frameworks` and `oregon-audits`
+declare this corpus and resolve federal citations into it. Of the audits' 393 federal
+citation occurrences, 181 (46%) land here; of ERF's 916 federal authority claims, 15 do —
+small, and the 15 are rules whose stated legal basis previously resolved to nothing.
 
 ### Why the sections are split out
 
-**81% of the Uniform Guidance citations Oregon makes are section-level** — 188 of 232, with
+**85% of the Uniform Guidance citations Oregon makes are section-level** — 256 of 300, with
 § 200.303 alone accounting for 58. A corpus holding only the part would answer `2 CFR 200`
 and miss every one of those. The split list is derived, not chosen:
 
@@ -43,6 +44,12 @@ python3 src/split_cfr_sections.py
 
 The result is committed to `_meta/cited-sections.yml` because CI cannot reach the sibling
 repositories — a build-time scan would find nothing there and split nothing, silently.
+`--check` on the splitter keeps that file and the 38 documents from drifting apart.
+
+The scan counts the **short form** (`§200.414`) as well as the full one, but only in files
+that also carry a full `2 CFR 200` citation to establish which part is meant. Requiring the
+literal `2 CFR` on every hit hid 42 citations across 18 sections, nine of which had no
+document — including § 200.414 at 10 citations.
 
 Sections share the part's snapshot via `snapshot_id` rather than storing their own copies,
 so a section cannot drift from the part it was cut from. `src/slicing.py` tells the
@@ -58,6 +65,23 @@ marked `status: superseded` with `superseded_by: 2-cfr-200.1`.
 Resolving them to current text would answer with law that was not in force when it was
 cited; dropping them would leave four real citations pointing at nothing.
 
+### What a citation this corpus cannot answer gets back
+
+An **explanation**, never a plausible substitute. `resolve_citation` refuses rather than
+guessing, and `src/check_citations.py` enforces it in CI:
+
+| Citation | Answer |
+|---|---|
+| `CJIS Security Policy 5.9.4` | **refused** — 6.1 is held; Oregon cites 5.6, 5.9.4, 6.0, none held |
+| `IRS Pub 1075 (Rev. 09-2016)` | **refused** — revision 11-2021 is held; requirements differ |
+| `CJIS Security Policy, Version 6.0` | **refused** — the refusal holds across spellings, not one canonical form |
+| `2 CFR 200.53` | returned, labelled **not current law**, removed 2021-02-22 |
+| `2 CFR 200.200` | returns the **part**, and says it did so instead of the section |
+| `42 U.S.C. 1396` | **refused** — enacted public laws are held, not the codified Code |
+
+The dangerous failure is not "did not resolve", which is visible. It is "resolved to
+something plausible that is not what was cited" — an answer an agent would act on.
+
 ## What this is
 
 Federal instruments Oregon agencies must comply with and cite as legal authority. Every
@@ -66,15 +90,16 @@ requirement resolved to nothing, so the authority chain ran statute → rule →
 then hit a wall exactly where the binding constraint lives.
 
 **It is not primarily here to retire dead citations.** Measured before building anything:
-Oregon rules make 916 federal authority claims, and the instruments most people would name
-first account for 2 of them. The corpus is here so an agency can find the requirement it
+Oregon rules make 916 federal authority claims, and the four instruments the seed named by
+title account for **none** of them — the 2 belong to HIPAA, which this corpus does not hold. The corpus is here so an agency can find the requirement it
 must *comply with* — and obligations do not depend on a rule happening to cite them.
 
 The clearest case, and the flagship document:
 
 > **2 CFR 200**, the Uniform Guidance, governs every federal grant Oregon receives.
-> **Zero** Oregon rules declare it as authority. It is cited **180 times** in Oregon's
-> single audits — the reports that audit the state against federal requirements.
+> It is cited **180 times** in Oregon's single audits — the reports that audit the state
+> against federal requirements — and declared as legal authority by **15** Oregon documents,
+> 1.6% of the 916 federal authority claims Oregon rules make.
 
 ### Before you quote anything from here
 

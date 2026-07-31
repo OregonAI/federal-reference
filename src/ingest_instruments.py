@@ -48,30 +48,93 @@ UA = ("OregonAI-corpus-bot/0.1 (+https://github.com/OregonAI/federal-reference; 
 IRS_REV = re.compile(r"\(\s*Rev\.?\s*(\d{1,2}[-/]\d{4})\s*\)", re.I)
 
 
-def cfr_amended_on(url: str) -> str | None:
-    """The date eCFR says this TITLE was last amended, read from eCFR rather than the manifest.
+def cfr_amended_on(url: str) -> str:
+    """The date THIS PART was last amended, from eCFR's per-section version record.
 
     `amended_on` is half of the pair that makes this corpus's central guardrail work: with
     `as_of` it is what lets a caller tell current text from the text in force when a citing
-    rule was written. Leaving it null defeats the purpose of holding current text at all.
+    rule was written.
 
-    Derived, not transcribed. A hand-copied date in the manifest is correct until the next
-    amendment and silently wrong afterwards, and this one moves often -- Title 2 was amended
-    twice in the month this corpus was built.
+    IT MUST BE THE PART'S DATE, NOT THE TITLE'S. This read titles.json and returned
+    `latest_amended_on` for the whole of Title 2 -- which covers every part from 1 to 9903,
+    so ANY amendment anywhere in the title moved it. 2 CFR 200 was published claiming
+    `amended_on: 2026-07-16` when the part's last actual amendment was 2024-10-01, twenty
+    months earlier. The part's own snapshot said so plainly ("[89 FR 30136, Apr. 22, 2024,
+    as amended at 89 FR 79732, Oct. 1, 2024]") and so did all 29 section documents, which
+    take their dates from the per-section record.
+
+    A caller comparing a 2025 Oregon rule against that field was told the requirement
+    changed after the rule when it had not -- the exact "wrong answer wearing a right
+    answer's clothes" this field exists to prevent.
+
+    RAISES rather than returning None. This used to swallow every exception, so a transient
+    DNS or eCFR hiccup silently published the document with `amended_on: null` and exited 0.
+    For a cfr_part that field is not optional, and a corpus that cannot date its text should
+    fail loudly instead of shipping an undated requirement.
     """
     m = re.search(r"title-(\d+)", url)
-    if not m:
-        return None
+    part = re.search(r"part=(\d+)", url)
+    if not m or not part:
+        raise ValueError(f"cannot read title/part from {url!r}")
+    api = (f"https://www.ecfr.gov/api/versioner/v1/versions/title-{m.group(1)}.json"
+           f"?part={part.group(1)}")
+    req = urllib.request.Request(api, headers={"User-Agent": UA})
+    data = json.load(urllib.request.urlopen(req, timeout=60))
+    dates = [r.get("amendment_date") for r in
+             (data.get("content_versions") or data.get("versions") or [])
+             if r.get("amendment_date") and not r.get("removed")]
+    if not dates:
+        raise RuntimeError(f"eCFR returned no amendment dates for {api}")
+    return max(dates)
+
+
+def record_source_hash(rid: str, raw: bytes, fmt: str) -> str:
+    """Record the hash corpus-detect-changes will compare against. Returns a status line.
+
+    PDFs go through `pdftotext`, which is not present in every environment. When it is
+    missing this SKIPS rather than writing a hash computed some other way -- a manifest hash
+    produced by a different function than the detector uses is worse than an empty one,
+    because an empty one is visibly unpopulated while a wrong one looks authoritative and
+    reports CHANGED forever.
+    """
+    from corpus_toolkit.sources.changes import content_hash
     try:
-        req = urllib.request.Request("https://www.ecfr.gov/api/versioner/v1/titles.json",
-                                     headers={"User-Agent": UA})
-        data = json.load(urllib.request.urlopen(req, timeout=60))
-    except Exception:                                # noqa: BLE001 — absence is reported, not fatal
-        return None
-    for t in data.get("titles", []):
-        if str(t.get("number")) == m.group(1):
-            return t.get("latest_amended_on")
-    return None
+        sha = content_hash(raw, fmt)
+    except FileNotFoundError as e:                   # pdftotext absent
+        return (f"sha256 for {rid} NOT recorded: {e.filename} unavailable — run "
+                f"`python3 src/refresh_source_hashes.py` where poppler is installed")
+    return f"recorded sha256 for {rid}" if write_manifest_hash(rid, sha) else ""
+
+
+def write_manifest_hash(rid: str, sha: str) -> bool:
+    """Record a source's content hash back into the manifest. Returns True if it changed.
+
+    WITHOUT THIS THE DRIFT DETECTOR IS A 100% FALSE POSITIVE. corpus-detect-changes compares
+    the freshly computed hash against `sha256` in the manifest, which shipped as "" for every
+    source -- so all five reported CHANGED on every weekly run, forever. A check that always
+    fires tells you nothing, and the only upstream-content guard this corpus has was doing
+    exactly that.
+
+    Edited as TEXT, not round-tripped through yaml.safe_dump: the manifest is hand-authored
+    and its comments carry the reasoning for every intake decision. Dumping it would silently
+    delete all of them.
+    """
+    lines = MANIFEST.read_text(encoding="utf-8").splitlines(keepends=True)
+    out, in_block, changed = [], False, False
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith("- id:"):
+            in_block = stripped.split("- id:", 1)[1].strip().strip('"\'') == rid
+        if in_block and stripped.startswith("sha256:"):
+            new = f'{line[:len(line) - len(line.lstrip())]}sha256: "{sha}"\n'
+            changed = new != line
+            out.append(new)
+            in_block = False
+            continue
+        out.append(line)
+    if changed:
+        MANIFEST.write_text("".join(out), encoding="utf-8")
+    return changed
 
 
 def fetch(url: str, dest: Path, refetch: bool) -> bytes:
@@ -90,8 +153,26 @@ def _flatten(el) -> str:
     return " ".join("".join(el.itertext()).split())
 
 
+def guard_headings(text: str) -> str:
+    r"""Never let SOURCE text start a line with `## `.
+
+    corpus_toolkit.repo.FULLTEXT_RE reads the body as `^## Full text\s*$(.*?)(?=^## |\Z)`,
+    so any line beginning `## ` at column zero ends the document there. A leading space stops
+    the match and normalize_ws erases it before any comparison, so nothing downstream sees it.
+
+    THIS WAS CLAIMED AND NOT DONE. extract_pdf applied it with a comment reading "Same `## `
+    guard as the CFR path" -- but the CFR path had no guard at all, which is why
+    split_cfr_sections.py had to carry its own. The failure is silent AND survives CI on a
+    document this size: coverage thresholds are fail 0.70 / warn 0.90, so a stray `## ` in
+    the last tenth of 633,000 characters truncates the tail and still scores above 90%, and
+    the in-order line check passes because a truncated document's lines are all still there
+    and still in order.
+    """
+    return re.sub(r"^(#{1,6}\s)", r" \1", text, flags=re.M)
+
+
 def extract_cfr(raw: bytes) -> tuple[str, dict]:
-    """eCFR part XML -> markdown, one `##` heading per section.
+    """eCFR part XML -> markdown, one `###` heading per section and appendix.
 
     Sections come from `DIV8[@TYPE='SECTION']`, whose `N` attribute is the section number.
     Appendices are kept: 2 CFR 200 has 12 of them and they carry substantive requirements,
@@ -122,7 +203,7 @@ def extract_cfr(raw: bytes) -> tuple[str, dict]:
         for child in el:
             if child is head_el:
                 continue
-            t = _flatten(child)
+            t = guard_headings(_flatten(child))
             if t:
                 out.append(t)
         out.append("")
@@ -134,15 +215,21 @@ def extract_cfr(raw: bytes) -> tuple[str, dict]:
 
 # ---------------------------------------------------------------- PDF
 
+# How many non-blank lines at each end of a page count as "where furniture lives". Used
+# both to LEARN furniture and to REMOVE it -- the two must agree, or the extractor deletes
+# text in places it never looked for a pattern.
+FURNITURE_BAND = 3
+
+
 def page_furniture(pages: list[list[str]]) -> tuple[set[str], set[str]]:
     """Lines repeated at the top/bottom of most pages: letterhead, banners, footers."""
     if len(pages) < 4:
         return set(), set()
     top, bot = {}, {}
     for p in pages:
-        for l in [x.strip() for x in p[:3] if x.strip()]:
+        for l in [x.strip() for x in p[:FURNITURE_BAND] if x.strip()]:
             top[l] = top.get(l, 0) + 1
-        for l in [x.strip() for x in p[-3:] if x.strip()]:
+        for l in [x.strip() for x in p[-FURNITURE_BAND:] if x.strip()]:
             bot[l] = bot.get(l, 0) + 1
     half = len(pages) / 2
     return ({l for l, n in top.items() if n > half},
@@ -156,19 +243,42 @@ def is_page_number(line: str, npages: int) -> bool:
 
 
 def extract_pdf(path: Path) -> tuple[str, dict]:
+    """PDF -> text, stripping page furniture ONLY where page furniture can occur.
+
+    THE BAND IS THE WHOLE POINT. Both filters used to run against every line on every page,
+    so any body line that happened to be a bare number was deleted wherever it appeared.
+    That is not hypothetical -- it removed real text from a shipped document:
+
+        CJIS SP 6.1  "... FIPS PUB 200; March" + "2006"   -> the year deleted
+        CJIS SP 6.1  "... NIST Special Publication 800-" + "124" -> the number deleted
+
+    Both are wrapped entries in the incorporated-by-reference appendix, where the standard's
+    identifier lands on its own line. Silently truncating the identifier of an incorporated
+    standard is precisely the wrong-document failure a compliance corpus cannot afford, and
+    nothing caught it -- see check_extraction.py for why provenance structurally could not.
+
+    page_furniture() only ever LEARNS from the first and last three non-blank lines, so
+    applying what it learned outside that band was never justified: a running header that
+    also occurs as body prose would be erased document-wide.
+    """
     reader = PdfReader(str(path))
     pages = [(p.extract_text() or "").splitlines() for p in reader.pages]
     head, foot = page_furniture(pages)
     out = []
     for lines in pages:
-        for l in lines:
-            s = l.strip()
-            if not s or s in head or s in foot or is_page_number(s, len(pages)):
+        stripped = [l.strip() for l in lines]
+        filled = [i for i, s in enumerate(stripped) if s]
+        # Same 3-line band page_furniture() learns from, measured in NON-BLANK lines so a
+        # page with leading blank lines does not shift the band off the header.
+        band = set(filled[:FURNITURE_BAND]) | set(filled[-FURNITURE_BAND:])
+        for i, s in enumerate(stripped):
+            if not s:
+                continue
+            if i in band and (s in head or s in foot or is_page_number(s, len(pages))):
                 continue
             out.append(s)
     text = re.sub(r"\n{3,}", "\n\n", "\n".join(out)).strip()
-    # Same '## ' guard as the CFR path, for the same reason.
-    text = re.sub(r"^(#{1,6}\s)", r" \1", text, flags=re.M)
+    text = guard_headings(text)
     return text, {"pages": len(reader.pages)}
 
 
@@ -189,8 +299,26 @@ def cited_section_ids() -> list[str]:
             for key in ("current", "removed") for e in (doc.get(key) or [])]
 
 
+def doc_id(src: dict, version: str | None) -> str:
+    """The document id, with the version in it when the version IS the identity.
+
+    CJIS already worked this way (`cjis-sp-6-1`), and the asymmetry cost us: IRS shipped as
+    `irs-pub-1075`, so a sibling deriving an id from `IRS Pub 1075 (Rev. 09-2016)` produced
+    an EXACT HIT on the 11-2021 document. Sibling resolution is exact-id lookup against an
+    index of [title, doc_type, path] -- no version field -- so the id is the only place a
+    version can live where a sibling can see it. federal-reference refused that citation
+    while oregon-audits and ERF answered it.
+
+    The snapshot keeps the manifest id (`snapshot_id`), so files on disk do not churn when a
+    new revision is ingested alongside the old one.
+    """
+    if src["instrument_kind"] == "irs_publication" and version:
+        return f"{src['id']}-{version}"
+    return src["id"]
+
+
 def build(src: dict, text: str, sha: str, stats: dict, version: str | None) -> str:
-    rid = src["id"]
+    rid = doc_id(src, version)
     fm = {
         "schema_version": 1,
         "corpus": "federal-reference",
@@ -198,7 +326,9 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None) -> s
         "id": rid,
         "title": src["title"],
         "doc_type": "federal_instrument",
-        "citation": src["citation"],
+        "citation": (f"{src['citation']} (Rev. {version})"
+                     if src["instrument_kind"] == "irs_publication" and version
+                     else src["citation"]),
         "authority_level": "federal",
         "issuing_body": {"cfr_part": "Office of Management and Budget",
                          "irs_publication": "Internal Revenue Service",
@@ -210,8 +340,18 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None) -> s
         "amended_on": src.get("amended_on"),
         "reproduction_basis": " ".join(str(src["reproduction_basis"]).split()),
         "superseded_by": None,
+        # Carried into the DOCUMENT, not left in the manifest. src/citation_schemes.py names
+        # these when it refuses a citation to a version we do not hold ("Oregon cites 5.6,
+        # 5.9.4 and 6.0, none of which is held") -- and a refusal that cannot say what is
+        # missing is much weaker than one that can.
+        **({"known_cited_versions_not_held":
+            [str(v) for v in src["known_cited_versions_not_held"]]}
+           if src.get("known_cited_versions_not_held") else {}),
         "source_url": src["url"],
         "source_format": src["format"],
+        # Snapshot files stay keyed by the MANIFEST id even when the document id gains a
+        # revision, so ingesting a second revision adds a document without renaming files.
+        **({"snapshot_id": src["id"]} if rid != src["id"] else {}),
         "retrieved": time.strftime("%Y-%m-%d"),
         "source_sha256": sha,
         "status": "current",
@@ -328,7 +468,18 @@ def main() -> int:
 
             (SNAPSHOTS / f"{rid}.txt").write_text(text, encoding="utf-8")
             sha = hash_snapshot(rid, fmt, SNAPSHOTS)
-            (OUT_DIR / f"{rid}.md").write_text(build(src, text, sha, stats, version),
+            # The MANIFEST hash is a different quantity from the document's source_sha256,
+            # and conflating them is a trap I fell into once already. `source_sha256` is
+            # hash_snapshot() -- our extractor's output. The manifest's is what
+            # corpus-detect-changes will compute on a fresh fetch, via the TOOLKIT's
+            # converter. Storing ours there swaps one permanent false positive for another
+            # while looking fixed. Verified: content_hash on the committed XML equals what
+            # the drift job computed from the live URL, to the character.
+            note = record_source_hash(rid, raw, fmt)
+            if note:
+                print(f"    {note}")
+            (OUT_DIR / f"{doc_id(src, version)}.md").write_text(
+                build(src, text, sha, stats, version),
                                                encoding="utf-8")
             ok += 1
             print(f"  {rid:22} {len(text):>9,} chars  {stats}  version={version}")

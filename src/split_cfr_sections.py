@@ -7,8 +7,8 @@
 Reads `_meta/cited-sections.yml` (produced by src/scan_cited_sections.py) and writes one
 `instruments/2-cfr-200.NNN.md` per cited section. Run AFTER ingest_instruments.py.
 
-WHY SPLIT AT ALL. 81% of the section-or-part citations Oregon makes to the Uniform Guidance
-are section-level (188 of 232), and § 200.303 alone accounts for 58. A corpus holding only the
+WHY SPLIT AT ALL. 85% of the section-or-part citations Oregon makes to the Uniform Guidance
+are section-level (256 of 300), and § 200.303 alone accounts for 58. A corpus holding only the
 part answers "2 CFR 200" and misses every one of those, so the sibling edges built in Stage 4
 would resolve the least-cited form of the citation and nothing else.
 
@@ -122,7 +122,13 @@ def build(sec: str, head: str, body: str, meta: dict, sha: str,
         "corpus": "federal-reference",
         "jurisdiction": "us",
         "id": doc_id,
-        "title": f"2 CFR {sec} — {subject(head)}",
+        # THE TITLE CARRIES THE SUPERSESSION, and that is load-bearing rather than cosmetic.
+        # A sibling corpus resolves into this one through `corpus-index.json`, whose rows are
+        # [title, doc_type, path] -- no `status`, no `version`. So an audit resolving
+        # `2 CFR 200.53` gets back a title and nothing else, and without the marker it reads
+        # as current law. Frontmatter `status: superseded` is invisible across that boundary.
+        "title": (f"2 CFR {sec} — {subject(head)}" if live else
+                  f"2 CFR {sec} — {subject(head)} (SUPERSEDED {meta['removed_on']})"),
         "doc_type": "federal_instrument",
         "citation": f"2 CFR {sec}",
         "authority_level": "federal",
@@ -199,6 +205,8 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--refetch", action="store_true",
                     help="re-fetch the historical snapshot even if committed")
+    ap.add_argument("--check", action="store_true",
+                    help="verify the committed section documents match what this would write")
     args = ap.parse_args()
 
     from corpus_toolkit.repo import hash_snapshot
@@ -255,6 +263,22 @@ def main() -> int:
     from scan_cited_sections import ecfr_versions
     vers = ecfr_versions(2, 200)
 
+    stale: list[str] = []
+
+    def emit(path, text: str) -> None:
+        """Write, or in --check mode record a mismatch.
+
+        WITHOUT --check THESE FILES WERE UNGATED. _meta/cited-sections.yml says "GENERATED
+        -- do not hand-edit" and the 38 section documents are generated from it, but nothing
+        compared them: edit either side and CI stayed green, which is the exact failure the
+        `generated` job exists to prevent and which this repo's own AGENTS.md forbids.
+        """
+        if args.check:
+            if not path.is_file() or path.read_text(encoding="utf-8") != text:
+                stale.append(path.name)
+        else:
+            path.write_text(text, encoding="utf-8")
+
     written = 0
     for entry in cited["current"]:
         sec = entry["section"]
@@ -265,7 +289,7 @@ def main() -> int:
         head, body = current[sec]
         amended = (vers.get(sec) or {}).get("amendment_date")
         out = INSTRUMENTS / f"{PART_ID}.{sec.split('.', 1)[1]}.md"
-        out.write_text(build(sec, head, body, entry, part_sha, amended, None), encoding="utf-8")
+        emit(out, build(sec, head, body, entry, part_sha, amended, None))
         written += 1
 
     for entry in cited["removed"]:
@@ -279,10 +303,26 @@ def main() -> int:
             return 1
         head, body = hist[sec]
         out = INSTRUMENTS / f"{PART_ID}.{sec.split('.', 1)[1]}.md"
-        out.write_text(build(sec, head, body, entry, hist_sha, entry["removed_on"],
-                             f"{PART_ID}.1"), encoding="utf-8")
+        emit(out, build(sec, head, body, entry, hist_sha, entry["removed_on"], f"{PART_ID}.1"))
         written += 1
         print(f"    {sec} superseded -> {PART_ID}.1  ({entry['citations']} citations)")
+
+    if args.check:
+        # An EXTRA section document nobody generates is drift too -- a hand-added file, or one
+        # left behind when a section drops out of the citation list.
+        expected = {f"{PART_ID}.{e['section'].split('.', 1)[1]}.md"
+                    for e in cited["current"] + cited["removed"]}
+        orphans = sorted(p.name for p in INSTRUMENTS.glob(f"{PART_ID}.*.md")
+                         if p.name not in expected)
+        if stale or orphans:
+            for n in stale:
+                print(f"  STALE    {n}", file=sys.stderr)
+            for n in orphans:
+                print(f"  ORPHAN   {n} — not in _meta/cited-sections.yml", file=sys.stderr)
+            print("\nRe-run: python3 src/split_cfr_sections.py", file=sys.stderr)
+            return 1
+        print(f"  {written} section documents are current")
+        return 0
 
     print(f"  wrote {written} section documents")
     return 0

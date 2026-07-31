@@ -36,10 +36,15 @@ jobs:
       # "fixing" one would mean editing federal text, which is the one thing a corpus whose
       # doc_type asserts verbatim reproduction must never do.
       #
-      # THE LINKS THAT ARE OURS ARE STILL CHECKED, just not here. Every document's
-      # frontmatter source_url is fetched by the `drift` job in scheduled.yml, which exits
-      # non-zero on any fetch failure. Verified before excluding: 0 of our 5 source_urls
-      # appear among the 14 failures.
+      # THE LINKS THAT ARE OURS ARE STILL CHECKED, just not here — by
+      # src/check_source_urls.py in scheduled.yml, which fetches every distinct frontmatter
+      # source_url and exits non-zero on any failure.
+      #
+      # That sentence used to name the `drift` job instead, and it was FALSE:
+      # corpus-detect-changes iterates the five MANIFEST sources and never opens a document.
+      # Once the section split landed, 28 of our own source_urls were checked by nothing at
+      # all while this comment said they were covered. Verified before excluding: none of our
+      # source_urls appear among the 14 in-document failures.
       exclude-paths: |
         _meta/snapshots
         _meta/templates
@@ -91,7 +96,30 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install ./.toolkit
+      # src/ scripts need pypdf (pinned) as well as the toolkit — check_extraction.py
+      # re-reads the raw PDFs, and ingest_instruments.py imports it at module load.
+      - run: pip install -r requirements.txt
       - name: Authority graph must be current
         run: python3 src/build_graph.py --check
       - name: STATUS.md must be current
         run: corpus-generate-status --config _meta/corpus.yml --output STATUS.md --check
+      # _meta/cited-sections.yml says "GENERATED -- do not hand-edit" and the 38 section
+      # documents are generated from it, but nothing compared them: edit either side and CI
+      # stayed green. --check also reports ORPHANs, so a hand-added section document or one
+      # left behind by a dropped citation is caught too.
+      - name: Split CFR sections must match the citation list
+        run: python3 src/split_cfr_sections.py --check
+      # Every other check here verifies documents are well-formed. This one verifies the
+      # server does not give a CONFIDENT WRONG ANSWER — CJIS 6.1 returned for a 5.9.4
+      # citation, current text returned for a superseded section, a public law returned for
+      # a U.S. Code section. Those look correct and would be acted on. Mostly negative
+      # assertions, each confirmed to fail when the behaviour it guards is removed.
+      - name: Citation resolution must refuse what it cannot answer
+        run: python3 src/check_citations.py
+      # corpus-verify-provenance CANNOT catch extraction loss: source_sha256 hashes the
+      # committed .txt, and that .txt is written by the extractor from the same string that
+      # goes into the document, so the whole chain compares the extractor against itself.
+      # CJIS SP 6.1 shipped with a year and a standard number deleted while five checks were
+      # green. This one re-reads the raw PDF/XML.
+      - name: Committed text must match the raw source
+        run: python3 src/check_extraction.py
