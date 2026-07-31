@@ -91,6 +91,9 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install ./.toolkit
+      # src/ scripts need pypdf (pinned) as well as the toolkit — check_extraction.py
+      # re-reads the raw PDFs, and ingest_instruments.py imports it at module load.
+      - run: pip install -r requirements.txt
       - name: Authority graph must be current
         run: python3 src/build_graph.py --check
       - name: STATUS.md must be current
