@@ -179,9 +179,31 @@ def extract_cfr(raw: bytes) -> tuple[str, dict]:
     not just forms.
     """
     root = ET.fromstring(raw)
-    out, n_sec, n_app = [], 0, 0
+    out, n_sec, n_app, n_sub = [], 0, 0, 0
     for el in root.iter():
         kind = el.get("TYPE")
+        # THE PART'S OWN AUTHORITY AND SOURCE NOTE. Visiting only SECTION and APPENDIX
+        # dropped 992 characters that never reached the document, and the AUTHORITY block is
+        # the item that matters: it is the statutory basis for the whole part, in a corpus
+        # whose entire purpose is telling a reader what a requirement rests on. A federal
+        # instrument that cannot state its own authority is missing the field this corpus
+        # exists to supply.
+        if el.tag in ("AUTH", "SOURCE"):
+            t = guard_headings(_flatten(el))
+            if t:
+                out.append(t)
+                out.append("")
+            continue
+        # Subpart headings are the part's structure. Without them the document is a flat run
+        # of 200 sections and a reader cannot tell that § 200.400 opens Cost Principles.
+        # `###` for the same FULLTEXT_RE reason as sections — see the comment below.
+        if kind in ("PART", "SUBPART"):
+            head_el = el.find("HEAD")
+            if head_el is not None:
+                out.append(f"### {_flatten(head_el)}")
+                out.append("")
+                n_sub += kind == "SUBPART"
+            continue
         if kind not in ("SECTION", "APPENDIX"):
             continue
         head_el = el.find("HEAD")
@@ -210,7 +232,7 @@ def extract_cfr(raw: bytes) -> tuple[str, dict]:
         n_sec += kind == "SECTION"
         n_app += kind == "APPENDIX"
     text = re.sub(r"\n{3,}", "\n\n", "\n".join(out)).strip()
-    return text, {"sections": n_sec, "appendices": n_app}
+    return text, {"sections": n_sec, "appendices": n_app, "subparts": n_sub}
 
 
 # ---------------------------------------------------------------- PDF
@@ -317,7 +339,51 @@ def doc_id(src: dict, version: str | None) -> str:
     return src["id"]
 
 
-def build(src: dict, text: str, sha: str, stats: dict, version: str | None) -> str:
+# The eCFR point-in-time API pins the date IN THE URL. That date, not today's, is what the
+# text is as of.
+CFR_POINT_IN_TIME = re.compile(r"/full/(\d{4}-\d{2}-\d{2})/")
+
+
+def _recorded_retrieved(doc_path: Path) -> str | None:
+    """The `retrieved` already published for this document, if any."""
+    if not doc_path.is_file():
+        return None
+    try:
+        fm = yaml.safe_load(doc_path.read_text(encoding="utf-8").split("---")[1])
+    except (IndexError, yaml.YAMLError):
+        return None
+    value = (fm or {}).get("retrieved")
+    return str(value) if value else None
+
+
+def source_dates(src: dict, snap: Path, fresh: bool, doc_path: Path) -> tuple[str, str]:
+    """(as_of, retrieved) — from the SOURCE, never from the wall clock.
+
+    Both fields used to be `time.strftime` at every run, which made two false claims.
+
+    `retrieved` is the field a reviewer uses to decide whether a snapshot is stale, and
+    stamping it on a cached run moved it FORWARD every time the ingester ran — so the older
+    a snapshot got, the fresher it claimed to be. It now advances only when bytes were
+    actually fetched; otherwise the published date is carried forward, falling back to the
+    snapshot's mtime for a document that does not exist yet.
+
+    `as_of` is the date the TEXT is as of, which for eCFR is pinned in the URL itself
+    (`/full/2026-07-29/`) — the document claimed 2026-07-30 while its own `source_url` said
+    otherwise. For the PDFs there is no versioned URL: the file at that address is whatever
+    is there today, so the date we pulled it is genuinely the best statement of what the
+    text is as of, and as_of tracks retrieved rather than inventing precision.
+    """
+    if fresh:
+        retrieved = time.strftime("%Y-%m-%d")
+    else:
+        retrieved = (_recorded_retrieved(doc_path)
+                     or time.strftime("%Y-%m-%d", time.localtime(snap.stat().st_mtime)))
+    pinned = CFR_POINT_IN_TIME.search(src["url"])
+    return (pinned.group(1) if pinned else retrieved), retrieved
+
+
+def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
+          as_of: str, retrieved: str) -> str:
     rid = doc_id(src, version)
     fm = {
         "schema_version": 1,
@@ -336,7 +402,7 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None) -> s
                          "public_law": "United States Congress"}[src["instrument_kind"]],
         "instrument_kind": src["instrument_kind"],
         "version": version,
-        "as_of": time.strftime("%Y-%m-%d"),
+        "as_of": as_of,
         "amended_on": src.get("amended_on"),
         "reproduction_basis": " ".join(str(src["reproduction_basis"]).split()),
         "superseded_by": None,
@@ -352,7 +418,7 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None) -> s
         # Snapshot files stay keyed by the MANIFEST id even when the document id gains a
         # revision, so ingesting a second revision adds a document without renaming files.
         **({"snapshot_id": src["id"]} if rid != src["id"] else {}),
-        "retrieved": time.strftime("%Y-%m-%d"),
+        "retrieved": retrieved,
         "source_sha256": sha,
         "status": "current",
         # federal_instrument is in VERBATIM_REQUIRED, so this is not a free choice — the
@@ -478,9 +544,11 @@ def main() -> int:
             note = record_source_hash(rid, raw, fmt)
             if note:
                 print(f"    {note}")
-            (OUT_DIR / f"{doc_id(src, version)}.md").write_text(
-                build(src, text, sha, stats, version),
-                                               encoding="utf-8")
+            doc_path = OUT_DIR / f"{doc_id(src, version)}.md"
+            as_of, retrieved = source_dates(src, snap, fresh, doc_path)
+            doc_path.write_text(
+                build(src, text, sha, stats, version, as_of, retrieved),
+                encoding="utf-8")
             ok += 1
             print(f"  {rid:22} {len(text):>9,} chars  {stats}  version={version}")
             if fresh:
