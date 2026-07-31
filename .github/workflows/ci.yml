@@ -95,3 +95,10 @@ jobs:
         run: python3 src/build_graph.py --check
       - name: STATUS.md must be current
         run: corpus-generate-status --config _meta/corpus.yml --output STATUS.md --check
+      # Every other check here verifies documents are well-formed. This one verifies the
+      # server does not give a CONFIDENT WRONG ANSWER — CJIS 6.1 returned for a 5.9.4
+      # citation, current text returned for a superseded section, a public law returned for
+      # a U.S. Code section. Those look correct and would be acted on. Mostly negative
+      # assertions, each confirmed to fail when the behaviour it guards is removed.
+      - name: Citation resolution must refuse what it cannot answer
+        run: python3 src/check_citations.py

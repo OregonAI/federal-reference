@@ -58,6 +58,22 @@ marked `status: superseded` with `superseded_by: 2-cfr-200.1`.
 Resolving them to current text would answer with law that was not in force when it was
 cited; dropping them would leave four real citations pointing at nothing.
 
+### What a citation this corpus cannot answer gets back
+
+An **explanation**, never a plausible substitute. `resolve_citation` refuses rather than
+guessing, and `src/check_citations.py` enforces it in CI:
+
+| Citation | Answer |
+|---|---|
+| `CJIS Security Policy 5.9.4` | **refused** — 6.1 is held; Oregon cites 5.6, 5.9.4, 6.0, none held |
+| `IRS Pub 1075 (Rev. 09-2016)` | **refused** — revision 11-2021 is held; requirements differ |
+| `2 CFR 200.53` | returned, labelled **not current law**, removed 2021-02-22 |
+| `2 CFR 200.200` | returns the **part**, and says it did so instead of the section |
+| `42 U.S.C. 1396` | **refused** — enacted public laws are held, not the codified Code |
+
+The dangerous failure is not "did not resolve", which is visible. It is "resolved to
+something plausible that is not what was cited" — an answer an agent would act on.
+
 ## What this is
 
 Federal instruments Oregon agencies must comply with and cite as legal authority. Every

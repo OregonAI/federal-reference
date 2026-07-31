@@ -17,6 +17,10 @@ reproduction_basis: '17 U.S.C. § 105 — work of the U.S. government; distribut
   was CHECKED rather than inferred: a U.S. government work can carry distribution restrictions independent
   of copyright, so "federal, therefore publishable" is not the argument being made.'
 superseded_by: null
+known_cited_versions_not_held:
+- '5.6'
+- 5.9.4
+- '6.0'
 source_url: https://le.fbi.gov/file-repository/cjis_security_policy_v6-1_20260625.pdf
 source_format: pdf
 retrieved: '2026-07-30'

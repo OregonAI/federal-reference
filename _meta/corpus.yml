@@ -83,9 +83,10 @@ mcp:
     - version
     - as_of
     - amended_on
-    - reproduction
     - reproduction_basis
     - superseded_by
+    # Named by resolve_citation when it REFUSES a citation to a version we do not hold.
+    - known_cited_versions_not_held
 
 status:
   # Quarterly, and this is the OPPOSITE of the audits corpus's reasoning. An audit report is
