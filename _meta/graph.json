@@ -1,9 +1,183 @@
 {
  "corpus": "federal-reference",
- "n_nodes": 5,
- "n_edges": 0,
+ "n_nodes": 34,
+ "n_edges": 60,
  "n_edges_external": 0,
  "nodes": [
+  {
+   "id": "2-cfr-200.1",
+   "title": "2 CFR 200.1 — Definitions",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.1.md"
+  },
+  {
+   "id": "2-cfr-200.302",
+   "title": "2 CFR 200.302 — Financial management",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.302.md"
+  },
+  {
+   "id": "2-cfr-200.303",
+   "title": "2 CFR 200.303 — Internal controls",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.303.md"
+  },
+  {
+   "id": "2-cfr-200.305",
+   "title": "2 CFR 200.305 — Federal payment",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.305.md"
+  },
+  {
+   "id": "2-cfr-200.311",
+   "title": "2 CFR 200.311 — Real property",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.311.md"
+  },
+  {
+   "id": "2-cfr-200.313",
+   "title": "2 CFR 200.313 — Equipment",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.313.md"
+  },
+  {
+   "id": "2-cfr-200.317",
+   "title": "2 CFR 200.317 — Procurements by States and Indian Tribes",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.317.md"
+  },
+  {
+   "id": "2-cfr-200.328",
+   "title": "2 CFR 200.328 — Financial reporting",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.328.md"
+  },
+  {
+   "id": "2-cfr-200.331",
+   "title": "2 CFR 200.331 — Subrecipient and contractor determinations",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.331.md"
+  },
+  {
+   "id": "2-cfr-200.332",
+   "title": "2 CFR 200.332 — Requirements for pass-through entities",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.332.md"
+  },
+  {
+   "id": "2-cfr-200.333",
+   "title": "2 CFR 200.333 — Fixed amount subawards",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.333.md"
+  },
+  {
+   "id": "2-cfr-200.339",
+   "title": "2 CFR 200.339 — Remedies for noncompliance",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.339.md"
+  },
+  {
+   "id": "2-cfr-200.343",
+   "title": "2 CFR 200.343 — Effects of suspension and termination",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.343.md"
+  },
+  {
+   "id": "2-cfr-200.400",
+   "title": "2 CFR 200.400 — Policy guide",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.400.md"
+  },
+  {
+   "id": "2-cfr-200.403",
+   "title": "2 CFR 200.403 — Factors affecting allowability of costs",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.403.md"
+  },
+  {
+   "id": "2-cfr-200.404",
+   "title": "2 CFR 200.404 — Reasonable costs",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.404.md"
+  },
+  {
+   "id": "2-cfr-200.413",
+   "title": "2 CFR 200.413 — Direct costs",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.413.md"
+  },
+  {
+   "id": "2-cfr-200.430",
+   "title": "2 CFR 200.430 — Compensation—personal services",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.430.md"
+  },
+  {
+   "id": "2-cfr-200.439",
+   "title": "2 CFR 200.439 — Equipment and other capital expenditures",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.439.md"
+  },
+  {
+   "id": "2-cfr-200.459",
+   "title": "2 CFR 200.459 — Professional service costs",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.459.md"
+  },
+  {
+   "id": "2-cfr-200.501",
+   "title": "2 CFR 200.501 — Audit requirements",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.501.md"
+  },
+  {
+   "id": "2-cfr-200.508",
+   "title": "2 CFR 200.508 — Auditee responsibilities",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.508.md"
+  },
+  {
+   "id": "2-cfr-200.510",
+   "title": "2 CFR 200.510 — Financial statements",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.510.md"
+  },
+  {
+   "id": "2-cfr-200.511",
+   "title": "2 CFR 200.511 — Audit findings follow-up",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.511.md"
+  },
+  {
+   "id": "2-cfr-200.514",
+   "title": "2 CFR 200.514 — Standards and scope of audit",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.514.md"
+  },
+  {
+   "id": "2-cfr-200.516",
+   "title": "2 CFR 200.516 — Audit findings",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.516.md"
+  },
+  {
+   "id": "2-cfr-200.521",
+   "title": "2 CFR 200.521 — Management decisions",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.521.md"
+  },
+  {
+   "id": "2-cfr-200.53",
+   "title": "2 CFR 200.53 — Improper payment",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.53.md"
+  },
+  {
+   "id": "2-cfr-200.62",
+   "title": "2 CFR 200.62 — Internal control over compliance requirements for Federal awards",
+   "doc_type": "federal_instrument",
+   "path": "instruments/2-cfr-200.62.md"
+  },
   {
    "id": "2-cfr-200",
    "title": "Uniform Administrative Requirements, Cost Principles, and Audit Requirements for Federal Awards",
@@ -35,5 +209,306 @@
    "path": "instruments/pl-115-224-perkins.md"
   }
  ],
- "edges": []
+ "edges": [
+  {
+   "from": "2-cfr-200.1",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.1",
+   "type": "supersedes",
+   "to": "2-cfr-200.53"
+  },
+  {
+   "from": "2-cfr-200.1",
+   "type": "supersedes",
+   "to": "2-cfr-200.62"
+  },
+  {
+   "from": "2-cfr-200.302",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.303",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.305",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.311",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.313",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.317",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.328",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.331",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.332",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.333",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.339",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.343",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.400",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.403",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.404",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.413",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.430",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.439",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.459",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.501",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.508",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.510",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.511",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.514",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.516",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.521",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.53",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200.62",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.303"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.332"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.302"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.331"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.400"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.404"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.1"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.516"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.328"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.403"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.317"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.430"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.313"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.511"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.305"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.311"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.339"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.413"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.501"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.514"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.521"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.333"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.343"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.439"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.459"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.508"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.510"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.53"
+  },
+  {
+   "from": "2-cfr-200",
+   "type": "related",
+   "to": "2-cfr-200.62"
+  }
+ ]
 }

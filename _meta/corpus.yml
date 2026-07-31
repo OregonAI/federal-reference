@@ -50,6 +50,11 @@ content_roots:
 plugins:
   citation_module: "src.citation_schemes"
   extra_schema_checks: []
+  # The 29 cited sections of 2 CFR 200 share the part's snapshot via `snapshot_id` instead of
+  # each storing its own copy. Coverage is len(full text) / len(slice), so without this every
+  # section would be measured against the whole 633k-character part and score ~1% — which is
+  # exactly how all 29 failed before it was registered.
+  snapshot_slice_module: "src.slicing:slice"
 
 # DECLARED EMPTY AND WIRED LATER, on purpose. The inbound direction is what matters here —
 # executive-regulatory-frameworks and oregon-audits declaring THIS corpus as their sibling,

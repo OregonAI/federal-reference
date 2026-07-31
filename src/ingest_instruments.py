@@ -174,6 +174,21 @@ def extract_pdf(path: Path) -> tuple[str, dict]:
 
 # ---------------------------------------------------------------- document
 
+def cited_section_ids() -> list[str]:
+    """Document ids for the sections split out of 2 CFR 200, in citation order.
+
+    Read from _meta/cited-sections.yml -- the same committed list split_cfr_sections.py
+    works from -- so the part's edges and the section documents cannot disagree about which
+    sections exist.
+    """
+    path = ROOT / "_meta" / "cited-sections.yml"
+    if not path.is_file():
+        return []
+    doc = yaml.safe_load(path.read_text()) or {}
+    return [f"2-cfr-200.{e['section'].split('.', 1)[1]}"
+            for key in ("current", "removed") for e in (doc.get(key) or [])]
+
+
 def build(src: dict, text: str, sha: str, stats: dict, version: str | None) -> str:
     rid = src["id"]
     fm = {
@@ -203,6 +218,16 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None) -> s
         # federal_instrument is in VERBATIM_REQUIRED, so this is not a free choice — the
         # doc_type IS the assertion that we may reproduce, and CI then requires that we did.
         "content_mode": "verbatim",
+        # The graph is OUTBOUND-ONLY: framework.graph() indexes edges by e["from"] and never
+        # builds a reverse index, so graph_neighbors("2-cfr-200") lists the sections split out
+        # of it only if the PART carries the edges as well. A section -> part edge alone would
+        # leave the part a dead end -- you could walk up from § 200.303 but never find it by
+        # starting at the part it lives in.
+        #
+        # If a listed section has no document yet (split_cfr_sections.py not run), frontmatter
+        # validation fails with "does not resolve to any document". That is deliberate: a loud
+        # dangling edge beats a part that quietly claims no sections.
+        **({"relationships": {"related": cited_section_ids()}} if rid == "2-cfr-200" else {}),
         "maintainer": "@morficflux",
         # Written EMPTY on purpose; a human sets them at PR approval. An ingester that
         # stamps a verification it did not perform is worse than a blank.
