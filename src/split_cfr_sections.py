@@ -122,7 +122,13 @@ def build(sec: str, head: str, body: str, meta: dict, sha: str,
         "corpus": "federal-reference",
         "jurisdiction": "us",
         "id": doc_id,
-        "title": f"2 CFR {sec} — {subject(head)}",
+        # THE TITLE CARRIES THE SUPERSESSION, and that is load-bearing rather than cosmetic.
+        # A sibling corpus resolves into this one through `corpus-index.json`, whose rows are
+        # [title, doc_type, path] -- no `status`, no `version`. So an audit resolving
+        # `2 CFR 200.53` gets back a title and nothing else, and without the marker it reads
+        # as current law. Frontmatter `status: superseded` is invisible across that boundary.
+        "title": (f"2 CFR {sec} — {subject(head)}" if live else
+                  f"2 CFR {sec} — {subject(head)} (SUPERSEDED {meta['removed_on']})"),
         "doc_type": "federal_instrument",
         "citation": f"2 CFR {sec}",
         "authority_level": "federal",

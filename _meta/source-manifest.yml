@@ -89,7 +89,7 @@ sources:
     sha256: ""
     notes: "4.44 MB PDF. Oregon cites 5.6, 5.9.4 and 6.0 — none current, none held."
 
-  - id: "pl-113-128-wioa"
+  - id: "pl-113-128"
     url: "https://www.govinfo.gov/content/pkg/PLAW-113publ128/pdf/PLAW-113publ128.pdf"
     format: "pdf"
     instrument_kind: "public_law"
@@ -103,7 +103,7 @@ sources:
     sha256: ""
     notes: "895 KB PDF from govinfo."
 
-  - id: "pl-115-224-perkins"
+  - id: "pl-115-224"
     url: "https://www.govinfo.gov/content/pkg/PLAW-115publ224/pdf/PLAW-115publ224.pdf"
     format: "pdf"
     instrument_kind: "public_law"

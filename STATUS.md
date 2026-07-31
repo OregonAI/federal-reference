@@ -52,6 +52,6 @@ Generated 2026-07-30. Non-authoritative; see DISCLAIMER.md.
 | 2-cfr-200 | federal_instrument | never |
 | cjis-sp-6-1 | federal_instrument | never |
 | irs-pub-1075 | federal_instrument | never |
-| pl-113-128-wioa | federal_instrument | never |
-| pl-115-224-perkins | federal_instrument | never |
+| pl-113-128 | federal_instrument | never |
+| pl-115-224 | federal_instrument | never |
 

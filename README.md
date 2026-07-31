@@ -22,9 +22,9 @@ Archetype: **document**. MCP interface: contract v1.
 | `2-cfr-200` | Uniform Guidance — 180 sections, 12 appendices |
 | `2-cfr-200.NNN` | the **29 sections Oregon actually cites**, individually addressable |
 | `cjis-sp-6-1` | CJIS Security Policy 6.1 — 473 pages |
-| `pl-113-128-wioa` | Workforce Innovation and Opportunity Act — 298 pages |
+| `pl-113-128` | Workforce Innovation and Opportunity Act — 298 pages |
 | `irs-pub-1075` | Tax Information Security Guidelines, rev. 11-2021 — 216 pages |
-| `pl-115-224-perkins` | Perkins V — 61 pages |
+| `pl-115-224` | Perkins V — 61 pages |
 
 **Nothing points here yet.** Citation schemes (Stage 3) and the sibling declarations in
 `executive-regulatory-frameworks` and `oregon-audits` (Stage 4) are what make this corpus

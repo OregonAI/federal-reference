@@ -95,9 +95,32 @@ def main() -> int:
           "u.s. code" in note.lower(), note[:80])
 
     ids, _ = resolve("Pub. L. 113-128")
-    check("a held public law resolves", ids == ["pl-113-128-wioa"], f"got {ids}")
+    check("a held public law resolves", ids == ["pl-113-128"], f"got {ids}")
     ids, _ = resolve("Pub. L. 99-474")
     check("an unheld public law does not resolve", not ids, f"resolved to {ids}")
+
+    # --- every id must be DERIVABLE from its own citation -------------------------------
+    #
+    # A sibling corpus resolves into this one by exact id lookup against corpus-index.json.
+    # So if a document's id cannot be produced from the citation a reader would write, that
+    # document is unreachable from every other corpus on the platform -- silently, because
+    # nothing here fails.
+    #
+    # That is not hypothetical: the public laws shipped as `pl-113-128-wioa`, whose `-wioa`
+    # slug no sibling can guess from "Pub. L. 113-128". This is the general form of that bug,
+    # so the next one is caught at the source rather than after it is depended on.
+    # src/federal_ids.py is PURE — it derives ids from the citation string alone, knowing
+    # nothing about what is held. That non-circularity is the whole point: this corpus's own
+    # schemes build their lookup from the held ids and so can always find them, which is
+    # precisely why the `-wioa` slug survived until a sibling needed it.
+    import src.citation_schemes as schemes
+    from src.federal_ids import candidates
+    for doc_id, fm in sorted(schemes.HELD.items()):
+        cite = fm.get("citation")
+        if not cite:
+            continue
+        check(f"{doc_id} is derivable from {cite!r} by a sibling",
+              doc_id in candidates(cite), f"sibling would derive {candidates(cite)}")
 
     print()
     if fails:
