@@ -20,3 +20,8 @@ _meta/.cache/
 # and repo_state() collapses to a constant, so content changes are never picked up — silently,
 # which is the worst way for a corpus to be wrong. The Dockerfile header says the same thing;
 # it is repeated here because this is the file where someone would try to remove it.
+
+# Mounted at runtime from the host, not copied. The artifact is built out of band on a GPU
+# machine; a git-clone build cannot see it anyway (gitignored), and COPYing it would put
+# hundreds of MB of vectors into an image that reads them from a bind mount.
+_meta/embeddings/
