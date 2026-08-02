@@ -28,6 +28,14 @@ import yaml
 
 from corpus_toolkit.mcp.framework import register_scheme
 
+import sys as _sys
+_sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+# The compound-citation regexes live in federal_ids.py — the parity-locked cross-corpus
+# contract file — and are IMPORTED, not copied: the sibling side already expanded lists
+# and ranges while this corpus's own resolver did not (federal-reference#12), and a
+# second copy here would be a fourth thing to keep byte-identical.
+from federal_ids import LIST_SEC, MAX_RANGE, RANGE  # noqa: E402
+
 INSTRUMENTS = pathlib.Path(__file__).resolve().parent.parent / "instruments"
 PART_ID = "2-cfr-200"
 
@@ -110,7 +118,34 @@ CFR_RE = (r"(?i)(?P<title>\d{1,2})\s*C\.?\s?F\.?\s?R\.?\s*(?:Part\s+)?§{0,2}\s*
 
 
 def _cfr(m, nodes=None):
+    """Resolve the anchor section, then every list/range continuation in the SAME
+    citation — "2 CFR 200.302, 200.303" and "200.331 through 200.333" are one citation
+    naming several sections, and answering only the first silently dropped documents
+    this corpus holds (federal-reference#12; the sibling-side federal_ids.candidates()
+    fixed this long ago, so the two sides disagreed about the same string)."""
     title, part, sec = m.group("title"), m.group("part"), m.group("sec")
+    cands, note = _cfr_one(title, part, sec)
+    if (title, part) != ("2", "200") or sec is None:
+        return cands, note
+    secs, notes = [sec], ([note] if note else [])
+    text = m.string
+    rm = RANGE.search(text)
+    if rm:
+        lo, hi = int(rm.group(1)), int(rm.group(2))
+        if lo < hi and hi - lo <= MAX_RANGE:
+            secs.extend(str(n) for n in range(lo, hi + 1) if str(n) not in secs)
+    for extra in LIST_SEC.findall(text):
+        if extra not in secs:
+            secs.append(extra)
+    for s in secs[1:]:
+        c2, n2 = _cfr_one(title, part, s)
+        cands.extend(i for i in c2 if i not in cands)
+        if n2:
+            notes.append(f"§ 200.{s}: {n2}" if len(secs) > 1 else n2)
+    return cands, ("; ".join(notes) or None)
+
+
+def _cfr_one(title, part, sec):
 
     if (title, part) != ("2", "200"):
         return [], (
