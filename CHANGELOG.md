@@ -6,6 +6,15 @@ Repo-curation dates only — official effective dates live in frontmatter.
 
 ## [Unreleased]
 
+### Fixed
+- 2026-08-02 — `llms.txt` was still the template stub (#10): the `## Contents`
+  section carried the placeholder comment with zero entries, the preamble
+  claimed third-party materials are "summarized with links" when every document
+  here is `content_mode: verbatim`, and the description line ended in a stray
+  `..`. Contents now indexes `instruments/`, the cited-sections derivation, the
+  source manifest, and the authority graph; the preamble states the verbatim
+  reality. (The CHANGELOG half of #10 was resolved by earlier entries.)
+
 ### Added
 - 2026-08-03 — Section anchors for the big PDF instruments: WIOA (157), Perkins V
   (29), IRS Pub 1075 (69) — `### ` prefixes on the documents' own heading lines,
