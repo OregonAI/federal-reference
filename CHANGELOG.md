@@ -6,6 +6,22 @@ Repo-curation dates only — official effective dates live in frontmatter.
 
 ## [Unreleased]
 
+### Added
+- 2026-08-03 — Section anchors for the big PDF instruments: WIOA (157), Perkins V
+  (29), IRS Pub 1075 (69) — `### ` prefixes on the documents' own heading lines,
+  in both snapshot and body, adding no words (check_extraction still passes
+  token-for-token). With toolkit v1.21.0 these serve as navigable subsections:
+  get_document lists them and `part='SEC. 188.'` returns one section of a 900 KB
+  statute alone. CJIS deferred with the reason recorded (two incompatible
+  numbering systems; incorporated-standards reproduction question). Section
+  DOCUMENTS were deliberately not minted: zero of ~300 Oregon mentions are
+  section-shaped (2 CFR 200's split answered the opposite measurement); the
+  demand trigger is recorded in scan_cited_sections.py.
+- 2026-08-03 — `federal-act-name` citation scheme: bare `WIOA` / `Perkins V` /
+  full act names (previously resolving to NOTHING) now resolve to their
+  documents with a navigation note; `Title N` qualifiers return the title's
+  section range, derived from the anchors, never hand-maintained.
+
 ### Fixed
 
 - `as_of` and `retrieved` are now taken from the source rather than the wall clock

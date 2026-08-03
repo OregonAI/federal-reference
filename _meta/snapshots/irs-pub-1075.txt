@@ -337,7 +337,7 @@ PS-6: Access Agreements ______________________________________________________ 1
 PS-7: External Personnel Security _______________________________________________ 159
 PS-8: Personnel Sanctions _____________________________________________________ 159
 PS-9: Position Descriptions _____________________________________________________ 159
-4.15 PERSONALLY IDENTIFIABLE INFORMATION PROCESSING AND TRANSPARENCY
+### 4.15 PERSONALLY IDENTIFIABLE INFORMATION PROCESSING AND TRANSPARENCY
 _______________________________________________________________________160
 PT-1: Personally Identifiable Information Processing and Transparency Policy and
 Procedures___________________________________________________________________ 160
@@ -1126,8 +1126,8 @@ A disciplinary action includes an admonishment, written reprimand, or suspension
 Personnel Sanction
 A disciplinary or adverse action for individuals failing to comply with established information security
 policies and procedures constitutes a personnel sanction.
-1.0 FEDERAL TAX INFORMATION, REVIEWS and OTHER REQUIREMENTS
-1.1 General
+### 1.0 FEDERAL TAX INFORMATION, REVIEWS and OTHER REQUIREMENTS
+### 1.1 General
 IRC § 6103 is a confidentiality statute and generally prohibits the disclosure of FTI (see Exhibit 1, IRC §
 6103(a) and (b), for general rules and definitions). Exceptions to the general rule authorize disclosure of
 FTI to certain federal, state, and local agencies. Generally, these disclosures are made by the IRS in
@@ -1154,7 +1154,7 @@ advance notice to IRS Safeguards (see Section 2.E.6 Notification Reporting Requi
 1.9.4, Disclosing FTI to Contractors or Sub-Contractors.)
 Agencies must exercise care in outlining their safeguard program. Reports that lack clarity or sufficient
 information will be returned to the submitting agency for additional documentation.
-1.2 Authorized Use of FTI
+### 1.2 Authorized Use of FTI
 Any agency that receives FTI for an authorized use may not use that information in any manner or for any
 purpose not consistent with that authorized use. If an agency needs FTI for a different authorized use
 under a different provision of IRC § 6103, a separate request must be sent to IRS Disclosure.
@@ -1163,7 +1163,7 @@ disclosures to the agency and imposition of civil or criminal penalties on the r
 The Office of Safeguards validates that an agency’s “need and use” of FTI conforms with the governing
 provisions allowing the disclosure of FTI. The agency’s SSR must describe the purpose(s) for which FTI
 is collected, used, maintained and shared.
-1.3 Secure Data Transfer
+### 1.3 Secure Data Transfer
 The IRS established a Secure Data Transfer (SDT) program to provide encrypted electronic transmission
 of FTI between the IRS and trading partners. For support with establishing an IRS SDT account, please
 submit an SDT Customer Support Request. Complete information on establishing an SDT account is
@@ -1176,7 +1176,7 @@ Only the following types of documents will be accepted via SDT:
 •	 Excel Document (.xls or.xlsx)
 •	 Zipped File (.zip)
 Contact the SafeguardReports@irs.gov mailbox for specific details on how to submit information via SDT.
-1.4 State Tax Agency Limitations
+### 1.4 State Tax Agency Limitations
 FTI may be obtained per IRC § 6103(d) by state tax agencies only to the extent the information is needed
 for and is reasonably expected to be used for state tax administration. An agency’s records must include
 some account of the result of its use of FTI (e.g., disposition of closed cases and summary of revenues
@@ -1202,7 +1202,7 @@ detailing the methodology used and data to be used by the contractor or sub-cont
 Safeguards and Statistics of Income functions will review the information provided to confirm that
 adequate safeguarding protocols are in place and that the modeling methodology to be used to remove
 taxpayer identifying information is appropriate.
-1.5 Coordinating Safeguards within an Agency
+### 1.5 Coordinating Safeguards within an Agency
 Because of the diverse purposes that authorized disclosures may be made to an agency and the division
 of responsibilities among different components of an agency, FTI may be received and used by several
 quasi-independent units within the agency’s organizational structure. Where there is such a dispersal of
@@ -1213,7 +1213,7 @@ compliance with the agency safeguard standards and procedures.
 The selected official(s), or point(s) of contact (POC(s)) must also be responsible for ensuring that internal
 inspections are conducted, submission of required safeguard reports to the IRS, properly reporting any
 data breach incidents, disclosure awareness training and for any necessary liaison with the IRS.
-1.6 Safeguard Reviews
+### 1.6 Safeguard Reviews
 A safeguard review is an on-site, remote, or a combination of both (hybrid) evaluation of the use of FTI
 and the measures employed by the receiving agency and its agents (where authorized) to protect the
 data.
@@ -1233,7 +1233,7 @@ of the Fiscal Service or another agency (see Federal Tax Information). Safeguard
 to determine the adequacy of safeguards as opposed to evaluating an agency’s programs. Several
 factors will be considered when determining the need for a review, the type of review, and the frequenc y
 of which a review will be conducted.
-1.6.1 Before the Review
+### 1.6.1 Before the Review
 The IRS initiates the review by communication with an agency point of contact (POC) as reported by the
 agency in the SSR. The preliminary discussion will be followed by a formal engagement letter to the
 agency head, which provides official notification of the planned safeguard review .
@@ -1254,7 +1254,7 @@ contractors from other locations such as consolidated data centers. Additionally
 contractors, sub-contractors, off-site locations, etc. may be needed to obtain additional information in
 determining the review scope. Requests for additional information and clarification to include automated
 scanning procedures will be discussed after the PSE call(s) and a proposed scope will be provided.
-1.6.2 During the Review
+### 1.6.2 During the Review
 The review process validates the accuracy of the SSR and conformance with the current version of
 Publication 1075 requirements and National Institute of Standards and Technology (NIST) Special
 Publication 800-53. At the opening conference, review procedures will be communicated, followed by a
@@ -1276,7 +1276,7 @@ The agency POC will be advised the of critical issues and findings as the review
 will be held with the POC to go over the Preliminary Findings Report (PFR) before the closing conference.
 The closing conference is held upon completion of the agency’s review, where the PFR is issued to
 provide the agency an overview of the findings identified during the review.
-1.6.3 After the Review
+### 1.6.3 After the Review
 An SRR and CAP will be issued within 45 days of the closing conference to document the review findings.
 Requests for corrections to the SRR must be emailed to the SafeguardReports@irs.gov mailbox. The
 Office of Safeguards will respond with an acknowledgement and a determination.
@@ -1308,9 +1308,9 @@ open findings will be handled as part of the upcoming on-site or remote Safeguar
 Each CAP submission must include an explanation and/or evidence of actions already taken or planned
 to resolve all outstanding findings. The agency must submit an actual or planned implementation date for
 each outstanding finding.
-1.7 Termination of FTI
-1.7.1 Agency Request
-1.7.1.1 Termination Documentation
+### 1.7 Termination of FTI
+### 1.7.1 Agency Request
+### 1.7.1.1 Termination Documentation
 When an agency no longer requires FTI, notify Safeguards at SafeguardReports@irs.gov by providing the
 following:
 1.	 Copies of notifications to all agencies from which FTI is received, that FTI will no longer be
@@ -1320,7 +1320,7 @@ requested, and
 Once documentation is reviewed, the Office of Safeguards will send an acknowledgement of the agency’s
 termination, instructions on Safeguard reporting and on-site review obligations. Instructions for
 reinstatement will be included in the acknowledgement letter.
-1.7.1.2 Archiving FTI Procedure
+### 1.7.1.2 Archiving FTI Procedure
 This section is for agencies terminating receipt of FTI but required by statute to retain FTI for designated
 periods. If residual FTI is required to be retained by statute for a designated period (e.g., 5 or 10 years),
 then agencies must:
@@ -1331,7 +1331,7 @@ with Publication 1075 security standards
 •	 Continue to be subject to periodic Safeguard Reviews
 •	 Submit a letter from Head of Agency certifying that all residual FTI has been destroyed when the
 retention period has ended
-1.7.2 FTI Suspension, Termination and Administrative Review
+### 1.7.2 FTI Suspension, Termination and Administrative Review
 The IRS may terminate or suspend disclosure of return and return information to any authorized recipient
 under 6103(p)(4), if the IRS determines that:
 1.	 The authorized recipient (or agency) has allowed an unauthorized inspection or disclosure of FTI
@@ -1344,9 +1344,9 @@ Prior to terminating FTI, the IRS will notify the authorized recipient in writin
 disclosures if it is deemed that federal tax administration would be seriously impaired.
 Agencies in receipt of the termination or suspension letter may appeal the determination as outlined in
 Exhibit 3, USC Title 26, CFR § 301.6103(p)(7)-1.
-1.8 Reporting Improper Inspections or Disclosures
-1.8.1 Terms
-1.8.1.1 Data Incident
+### 1.8 Reporting Improper Inspections or Disclosures
+### 1.8.1 Terms
+### 1.8.1.1 Data Incident
 A data incident is an occurrence that (1) actually or imminently jeopardizes, without lawful authority, the
 integrity, confidentiality or availability of information or an information system; or (2) constitutes a violation
 or imminent threat of violation of law, security policies, security procedures or acceptable use policies.
@@ -1356,7 +1356,7 @@ document that includes FTI, or the inadvertent disclosure of FTI, is known as a 
 Breach definition below. Often, an occurrence may be first identified as an incident, but later identified as
 a data breach once it is determined that the incident involves FTI. This is often the case with a lost or
 stolen laptop or electronic storage device.
-1.8.1.2 Data Breach
+### 1.8.1.2 Data Breach
 A data breach is a type of incident involving a loss, theft, or inadvertent disclosure of FTI. A data breach is
 defined as the loss of control, compromise, unauthorized disclosure, unauthorized acquisition, or any
 similar occurrence where:
@@ -1377,7 +1377,7 @@ Some common examples of a data breach include:
 • A user with authorized access to FTI sells it for personal gain or disseminates it.
 • An IT system that maintains FTI is accessed by a malicious actor.
 • FTI is posted inadvertently on a public website.
-1.8.2 General
+### 1.8.2 General
 A written policy must be established and distributed that covers incident management. The policy must
 clearly state the actions that will be taken for the improper inspection or disclosure of FTI. Upon
 discovering a possible improper inspection or disclosure of FTI, including breaches and incidents, by a
@@ -1410,7 +1410,7 @@ accesses or disclosures. If no FTI is involved, then there is no need to report 
 he Office of
 Safeguards or TIGTA. If the agency c annot show FTI was not involved within that 24-hour period, then
 the spill will need to be reported to the Office of Safeguards and TIGTA.
-1.8.3 Office of Safeguards Notification Process
+### 1.8.3 Office of Safeguards Notification Process
 Concurrent to notifying TIGTA, the agency must notify the Office of Safeguards by email to Safeguards
 mailbox, safeguardreports@irs.gov. To notify the Office of Safeguards, the agency must document the
 specifics of the incident or breach known at that time into a data incident report, including but not limited
@@ -1435,7 +1435,7 @@ completeness of  the data incident  report. Additional  information must be prov
 Safeguards as soon as it  is available.
 The agency will cooperate with TIGTA  and Office of  Safeguards investigators, providing data and access
 as needed to determine the facts and circumstances  of the incident.
-1.8.4 Incident Response Procedures
+### 1.8.4 Incident Response Procedures
 In the event of an unauthorized disclosure or data breach, the agency must contact TIGTA and the IRS
 immediately. Both TIGTA and the IRS must be contacted within 24 hours of the discovery of the
 disclosure or breach. The agency must not wait to conduct an internal investigation to determine if FTI
@@ -1459,7 +1459,7 @@ incident response effectiveness and document the results. See NIST Control IR-3,
 Testing.
 The agency must track and document system security and privacy incidents. See NIST Control IR-5,
 Incident Monitoring.
-1.8.5 Incident Response Notification to Impacted Individuals
+### 1.8.5 Incident Response Notification to Impacted Individuals
 The agency must provide written notification to a taxpayer whose FTI was subject to unauthorized access
 or disclosure when a disciplinary or adverse action is proposed against the agency employee responsible.
 The required written notification to the taxpayer must include the date of the unauthorized inspection or
@@ -1467,8 +1467,8 @@ disclosure and the rights of the taxpayer under IRC § 7431.
 The agency must confirm to the Office of Safeguards when the required written notification to the taxpayer
 is completed. In addition, the agency must inform the Office of Safeguards of any pending media releases,
 including sharing a draft of the release, prior to distribution.
-1.9 Disclosure to Other Persons
-1.9.1 General
+### 1.9 Disclosure to Other Persons
+### 1.9.1 General
 Disclosure of FTI is prohibited unless authorized by statute. Agencies with access to FTI are not allowed
 to make further disclosures of that information to their agents, contractor, or sub-contractor unless
 authorized by statute. See NIST Control AC-21, Information Sharing.
@@ -1478,7 +1478,7 @@ language of Exhibit 7). For additional requirements on contracts, see Exhibit 6,
 Notification Procedures.
 Absent specific language in the IRC or where the IRC is silent in authorizing an agency to make further
 disclosures, the IRS’s position is that further disclosures are unauthorized.
-1.9.2 Authorized Disclosure Precautions
+### 1.9.2 Authorized Disclosure Precautions
 When disclosure of FTI is authorized, the agency must take certain precautions prior to redisclosure to a
 contractor or sub-contractor, namely:
 •	 Has the IRS been given sufficient notice prior to releasing FTI to a contractor or sub- contractor?
@@ -1492,7 +1492,7 @@ Notification process and reported on the next annual SSR.
 An agency may not contract for the disclosure of FTI that is not authorized by IRC § 6103. Only contracts
 for services that require access to FTI to perform their duties under the contract are required to comply
 with these standards.
-1.9.3 External Personnel Security
+### 1.9.3 External Personnel Security
 An external provider refers to organizations other than the agency operating or acquiring the system.
 External providers include, for example, contractors or sub-contractors and other organizations providing
 system development, information technology services, outsourced applications, testing/assessment
@@ -1500,7 +1500,7 @@ services and network and security management. Agencies must include personnel se
 in contracts. External providers may have personnel working at agency facilities with credentials, badges
 or system privileges. Notifications of external personnel changes ensure appropriate termination of
 privileges and credentials. See NIST Control PS-7, External Personnel Security.
-1.9.4 Disclosing FTI to Contractors or Sub-Contractors
+### 1.9.4 Disclosing FTI to Contractors or Sub-Contractors
 The agency must notify the Office of Safeguards prior to re-disclosing FTI to contractors or sub-
 contractors. The agency must notify and obtain written approval from the Office of Safeguards prior to re-
 disclosing FTI to sub-contractors (when the agency’s contractor uses or desires to re-disclose FTI to
@@ -1541,7 +1541,7 @@ contractor, or other agent is in compliance with the above requirements. This ce
 included as part of the report required under IRC § 6103(p)(4)(E).
 • Agency requirements for this new legislation will be issued prior to implementation in the form of
 an Interim Guidance memorandum.
-1.9.5 Re-Disclosure Agreements
+### 1.9.5 Re-Disclosure Agreements
 When required regulatory prerequisite steps are satisfied and where appropriate, under the authority of
 IRC § 6103(p)(2)(B), the IRS may execute an agreement with an agency that authorizes the re-disclosure
 of FTI to another entity. These agreements are negotiated and approved by IRS Disclosure w ith
@@ -1559,8 +1559,8 @@ list of all executed agreements annually in the SSR. When requested by the Offic
 agencies must provide a copy of all re-disclosure agreements within 30 days. An electronic copy must be
 sent to the Office of Safeguards via SDT. If SDT is not available, the agreement s may be emailed to the
 SafeguardReports@irs.gov mailbox.
-1.10 Return Information in Statistical Reports
-1.10.1 General
+### 1.10 Return Information in Statistical Reports
+### 1.10.1 General
 IRC § 6103 authorizes the disclosure of FTI to specific federal agencies for use in statistical reports , tax
 administration purposes and certain other purposes specified in IRC § 6103(j). Statistical reports may
 only be released in a form that cannot be associated with, or otherwise identify, directly or indirectly, a
@@ -1580,14 +1580,14 @@ than 20 returns cannot be shown. Finally, individual returns that represent a la
 the total of a particular cell must be excluded from the data.
 •	 Tabulations that would pertain to specifically identified taxpayers or that would tend to identify a
 particular taxpayer, either directly or indirectly, may not be released.
-1.10.2 Making a Request under IRC § 6103(j)
+### 1.10.2 Making a Request under IRC § 6103(j)
 Federal agencies seeking statistical information from the IRS must make their requests under IRC
 § 6103(j). The requests must be addressed to:
 Director, Statistics of Income Division
 Internal Revenue Service, OS:P:S
 1111 Constitution Avenue, NW
 Washington, D.C. 20224
-1.10.3 State Tax Agency Statistical Analysis
+### 1.10.3 State Tax Agency Statistical Analysis
 State tax agencies must provide written notification and obtain IRS approval prior to performing tax
 modeling, revenue estimation or other statistical activities involving FTI. The agency must demonstrate
 that the activity is required for tax administration purposes. The agency must adhere to the following
@@ -1606,7 +1606,7 @@ If the agency requires the use of a contractor to conduct tax modeling, revenue 
 statistical activities, 45 -day notification requirements apply (see Section 1.9.4, Disclosing FTI to
 Contractors).
 2 Refer to https://www.irs.gov/privacy-disclosure/irs-freedom-of-information for contact information.
-2.0 PHYSICAL SECURITY REQUIREMENTS
+### 2.0 PHYSICAL SECURITY REQUIREMENTS
 2.A Recordkeeping Requirement – IRC § 6103(p)(4)(A)
 2.A.1 General
 Federal, state and local agencies, bodies, commissions and agents authorized under IRC § 6103 to
@@ -1939,7 +1939,7 @@ responsibilities require access (see Exhibit 2, USC Title 26, IRC § 6103(p)(4) 
 Unauthorized Disclosure). To assist with this requirement, FTI must be clearly labeled and handled in
 such a manner that it does not become misplaced or available to unauthorized personnel. Additionally,
 warning banners advising of safeguarding requirements must be used for computer screens (see Section
-4.14 Program Management (PM) and Exhibit 8, Warning Banner Examples).
+### 4.14 Program Management (PM) and Exhibit 8, Warning Banner Examples).
 Auditing controls, with the capability to generate records, to detect browsing within all systems that
 receive, process, store, access, protect and/or transmit FTI (i.e., TDS, case management systems, etc.)
 must be implemented. See NIST Sections AU-6 Audit Review, Analysis and Reporting, AU-7, Audit
@@ -3082,8 +3082,8 @@ If the agency has legal authority to disclose FTI to a disposal contractor or su
 one that is National Association for Information Destruction (NAID) certified, the agency will not be
 required to complete an internal inspection every 18 months of that facility. However, the agency must
 annually validate and maintain the most recent copy of the NAID certification.
-3.0 CYBERSECURITY REQUIREMENTS
-3.1 General
+### 3.0 CYBERSECURITY REQUIREMENTS
+### 3.1 General
 This section details the information technology (IT) security and privacy requirements agencies must meet
 to adequately protect FTI under their administrative control. While the Office of Safeguards has the
 responsibility to ensure the protection of FTI, it is the responsibility of the agency to implement effective
@@ -3095,7 +3095,7 @@ disseminate information. This includes computers, hardware, software, and commun
 policies and procedures for their use. Selected controls are defined using guidelines specified in the latest
 version of NIST SP 800-53, Security and Privacy Controls for Information Systems and Organizations ,
 and in IRS directives.
-3.2 Assessment Process
+### 3.2 Assessment Process
 The Office of Safeguards will assess agency compliance with the security and privacy requirements
 identified in this publication as part of the annual reporting and review processes. The IT assessment will
 include a review of the agency's FTI inventory. All IT systems and supporting components receiving,
@@ -3133,8 +3133,8 @@ Privacy Control Testing
 Cybersecurity Reviewer manual test methods will include interviews and
 examination of documentation and onscreen configuration settings.
 Please see Section 1.6.2, During the Review for information on the review process.
-3.3 Technology-Specific Requirements
-3.3.1 Cloud Computing
+### 3.3 Technology-Specific Requirements
+### 3.3.1 Cloud Computing
 To use a cloud computing model to receive, process, store, access, protect and/or transmit FTI, the
 agency must comply with all requirements in this publication. The following mandatory requirements are
 in effect for using cloud services to receive, process, store, access, protect and/or transmit FTI:
@@ -3195,7 +3195,7 @@ described in Section 3.2, Table 8, Assessment Methodologies.
 Additional cloud computing guidance is available on the Office of Safeguards website .
 To determine if your agency is utilizing a cloud please use the following Cloud Decision Tree
 Note: https://www.irs.gov/pub/irs-utl/cloud-decision-tree.pdf
-3.3.2 Email Communications
+### 3.3.2 Email Communications
 If the agency determines FTI is not permitted to be included in email, a written policy must be established
 and distributed to:
 a. Prohibit FTI in email transmissions; and
@@ -3217,7 +3217,7 @@ d.	 Email transmissions containing FTI must be encrypted using the latest FIPS 1
 mechanism.
 e.	 Malware protection must be implemented at one or more points within the email delivery process
 to protect against viruses, worms and other forms of malware.
-3.3.3 Facsimile and Facsimile Devices
+### 3.3.3 Facsimile and Facsimile Devices
 If the agency determines FTI is not permitted to be included in fax communications, a written policy must
 be established and distributed to:
 a.	 Prohibit FTI in fax communications; and
@@ -3238,13 +3238,13 @@ secured. At a minimum:
 a.	 When applicable, encrypt information or be connected to a secure network
 b.	 Securely configure multifunction devices (MFD) used to receive or transmit fax communications
 If digital fax servers are used, they should be hardened like other servers containing FTI .
-3.3.4 Mobile Devices
+### 3.3.4 Mobile Devices
 To use FTI in a mobile device environment, the agency must implement a centralized mobile device
 management (MDM) solution to authenticate and manage the configuration of agency-owned and
 personally owned mobile devices prior to allowing access to the internal network. Further guidance of the
 configuration of mobile device solutions can be found on the Office of Safeguards website.
 See also AC-19: Access Control for Mobile Devices.
-3.3.5 Multifunction Devices (MFDs) and High-Volume Printers (HVPs)
+### 3.3.5 Multifunction Devices (MFDs) and High-Volume Printers (HVPs)
 If the agency determines FTI is not permitted to be printed, a written policy must be established and
 distributed to:
 a.	 Prohibit FTI from being printed
@@ -3257,7 +3257,7 @@ printers, high-volume printers)
 c.	 Require adequate labeling and protection of all printed FTI
 Additionally, the agency must ensure MFDs and HVPs are configured securely and included in the
 agency's FTI inventory.
-3.3.6 Network Boundary and Infrastructure
+### 3.3.6 Network Boundary and Infrastructure
 Agencies must implement boundary protection devices throughout their system architecture, including
 routers, firewalls, switches, and intrusion detection systems to protect FTI and FTI systems. The agency’s
 managed interfaces employing boundary protection must deny network traffic by default and allow
@@ -3271,7 +3271,7 @@ network (WLAN) infrastructure that complies with the Institute of Electrical and
 All networking devices responsible for protecting the FTI environment or used to access the FTI
 environment must be included in the agency's FTI inventory.
 Additional network protection requirements are available on the Office of Safeguards website .
-3.3.7 Virtual Desktop Infrastructure
+### 3.3.7 Virtual Desktop Infrastructure
 A virtual desktop infrastructure (VDI) provides users access to enterprise resources, including a virtual
 desktop from locations both internal to and external to the agency’s networks. In a VDI environment, a
 user can access FTI by connecting to a virtual workstation via a vendor-specific agent, connection client,
@@ -3280,7 +3280,7 @@ environments is the only manner in which agencies may authorize their users to l
 owned devices to access and/or manage information systems that receive, process, store, access,
 protect and/or transmit FTI.
 See AC-20, Use of External Systems and the IRS Office of Safeguards website for more information.
-3.3.8 Public-Facing Systems
+### 3.3.8 Public-Facing Systems
 FTI is considered nonpublic information and may never be posted or shared on an unauthent icated
 publicly accessible system (e.g., public website). Agencies may have business needs to provide FTI to its
 individual constituents, customers, clients and/or stakeholders using interactive applications. Examples of
@@ -3320,7 +3320,7 @@ required.
 FAL2: There is a need to use federated identities to leverage sufficient encryption such that the
 agency is 1) the only party capable of decrypting the assertion from the third-party identity
 provider and 2) the identity provider cryptographically signs the assertion.
-4.0 NIST 800-53 SECURITY AND PRIVACY CONTROLS
+### 4.0 NIST 800-53 SECURITY AND PRIVACY CONTROLS
 Section 4.0, NIST SP 800-53 Control Requirements, provides the security and privacy control
 requirements that relate to protecting FTI. Selected controls are based on the moderate security baseline
 defined by NIST and have been tailored based on the integration of privacy control requirements and
@@ -3328,7 +3328,7 @@ those controls required to protect the confidentiality of FTI.
 Where applicable, the Office of Safeguards has included NIST control enhancement s, IRS and Treasury
 defined requirements to protect the confidentiality of FTI. NIST control enhancements are identified with a
 CE designation. IRS and Treasury defined requirements are identified as IRS-Defined.
-4.1 ACCESS CONTROL
+### 4.1 ACCESS CONTROL
 AC-1 Access Control Policy and Procedures
 a.	 Develop, document, and disseminate to designated agency personnel:
 1.	 An agency or organization-level access control policy that:
@@ -3688,7 +3688,7 @@ a publicly accessible system.
 AC-23: Data Mining Protection
 Employ agency-defined data mining prevention and detection techniques for agency -defined data storage
 objects to detect and protect against unauthorized data mining.
-4.2 AWARENESS AND TRAINING
+### 4.2 AWARENESS AND TRAINING
 AT-1: Awareness and Training Policy and Procedures
 a.	 Develop, document, and disseminate to designated agency officials:
 1.	 An agency or organization-level security and privacy and awareness and training policy
@@ -3784,7 +3784,7 @@ b.	 Retain individual training records for a period of five (5) years.
 AT-6: Training Feedback
 Provide feedback on organizational training results to the following personnel: Agency Senior
 Management and Agency Disclosure Personnel on an annual basis.
-4.3 AUDIT AND ACCOUNTABILITY
+### 4.3 AUDIT AND ACCOUNTABILITY
 AU-1: Audit and Accountability Policy and Procedures
 a.	 Develop, document, and disseminate to designated agency officials:
 1.	 An agency or organization-level audit and accountability policy that:
@@ -3942,7 +3942,7 @@ Control Enhancements:
 (CE-1) Identity Preservation: Preserve the identity of individuals in cross-organizational audit trails.
 (CE-2) Sharing of Audit Information: Provide cross-organizational audit information to agency-defined
 organizations based on agency-defined cross-organizational sharing agreements.
-4.4 ASSESSMENT, AUTHORIZATION AND MONITORING
+### 4.4 ASSESSMENT, AUTHORIZATION AND MONITORING
 CA-1: Assessment, Authorization and Monitoring Policy and Procedures
 a.	 Develop, document, and disseminate to designated agency personnel
 1. A security and privacy assessment, authorization, and monitoring policy that:
@@ -4097,7 +4097,7 @@ d.	 Review annually the continued need for each internal connection.
 Control Enhancements:
 (CE-1) Compliance Checks: Perform security and privacy compliance checks on constituent system
 components prior to the establishment of the internal connection.
-4.5 CONFIGURATION MANAGEMENT
+### 4.5 CONFIGURATION MANAGEMENT
 CM-1: Configuration Management Policy and Procedures
 a.	 Develop, document, and disseminate to designated agency officials:
 1.	 An agency or organization-level configuration management policy that:
@@ -4344,7 +4344,7 @@ CM-14: Signed Components
 Prevent the installation of agency-defined software and firmware components without verification that the
 component has been digitally signed using a certificate that is recognized and approved by the
 organization.
-4.6 CONTINGENCY PLANNING
+### 4.6 CONTINGENCY PLANNING
 The focus of contingency planning controls is on the protection of FTI stored in backup media or used at
 alternative facilities and not focused on the availability of data.
 CP-1: Contingency Planning Policy and Procedures
@@ -4477,7 +4477,7 @@ Control Enhancements:
 Supplemental Guidance: Transaction-based systems include, for example, database management
 systems and transaction processing systems. Mechanisms supporting transaction recovery include, for
 example, transaction rollback and transaction journaling.
-4.7 IDENTIFICATION AND AUTHENTICATION
+### 4.7 IDENTIFICATION AND AUTHENTICATION
 IA-1: Identification and Authentication Policy and Procedures
 a.	 Develop, document, and disseminate to designated agency officials:
 1. An agency or organization-level identification and authentication policy that:
@@ -4741,7 +4741,7 @@ include a physical or a digital address. A home address is an example of a physi
 addresses and telephone numbers are examples of digital addresses.
 See Section 3.3.8, Public-Facing Systems, for additional information regarding multifactor requirements
 and solutions.
-4.8 INCIDENT RESPONSE
+### 4.8 INCIDENT RESPONSE
 Reference Section 1.8.4 I ncident Response f or specific instructions on incident response requirements
 where FTI is involved.
 IR-1: Incident Response Policy and Procedures
@@ -4918,7 +4918,7 @@ f.	 Identifying other systems or system components that may have been subsequent
 and
 Performing the following additional actions: Report incident information to the appropriate special g.
 agent-in-charge, TIGTA and the IRS Office of Safeguards.
-4.9 MAINTENANCE
+### 4.9 MAINTENANCE
 MA-1: System Maintenance Policy and Procedures
 a.	 Develop, document, and disseminate to designated agency officials:
 1.	 An agency or organization-level system maintenance policy that:
@@ -5029,7 +5029,7 @@ Obtain maintenance support and/or spare parts for security-critical information 
 key information technology components within the Recovery Time Objective/Recovery Point Objective
 (RTO/RPO) timelines and Maximum Tolerable Downtime (MTD) parameters agreed upon in the
 information systems Information System Contingency Plan (ISCP).
-4.10 MEDIA PROTECTION
+### 4.10 MEDIA PROTECTION
 Information system media is defined to include both digital and non-digital media.
 MP-1: Media Protection Policy and Procedures
 a.	 Develop, document, and disseminate to designated agency officials:
@@ -5115,7 +5115,7 @@ a.	 That the connection of non-agency portable storage devices is disallowed; an
 b.	 Technical controls are implemented to enforce the policy (e.g., Implement data loss prevention
 software to limit the use of removable media to known devices, blacklist usb-storage, prevent the
 mounting of USB storage, Deny All Access to All Removable Storage Classes).
-4.11 PHYSICAL AND ENVIRONMENTAL PROTECTION
+### 4.11 PHYSICAL AND ENVIRONMENTAL PROTECTION
 PE-1: Physical and Environmental Policy and Procedures
 a.	 Develop, document, and disseminate to designated agency officials:
 1.	 An agency or organization-level physical and environmental protection policy that:
@@ -5224,7 +5224,7 @@ readily available alternate locations during contingency operations. Organizatio
 sets of controls for specific alternate work sites or types of sites depending on the work -related activities
 conducted at those sites. This control supports the contingency planning activities of organizations.
 Reference Section 2.B.7, Alternate Work Site, for additional requirements.
-4.12 PLANNING
+### 4.12 PLANNING
 PL-1: Planning Policy and Procedures
 a.	 Develop, document, and disseminate to designated agency officials:
 1.	 An agency or organization-level planning policy that:
@@ -5344,7 +5344,7 @@ in-depth approach that:
 a.	 Allocates system communication and other relevant controls to information systems processing,
 storing, and transmitting FTI; and
 b.	 Ensures that the allocated controls operate in a coordinated and mutually reinforcing manner.
-4.13 PROGRAM MANAGEMENT
+### 4.13 PROGRAM MANAGEMENT
 PM-1: Information Security Program Plan
 a.	 Develop and disseminate an organization-wide information security program plan that:
 1.	 Provides an overview of the requirements for the security program and a description of
@@ -5565,7 +5565,7 @@ security and privacy management processes with strategic, operational, and budge
 processes; and
 b.	 Establish a Risk Executive (function) to view and analyze risk from an organizatio n-wide
 perspective and ensure management of risk is consistent across the organization.
-4.14 PERSONNEL SECURITY
+### 4.14 PERSONNEL SECURITY
 PS-1: Personnel Security Policy and Procedures
 a.	 Develop, document, and disseminate to designated agency officials:
 1.	 An agency or organization-level personnel security policy that:
@@ -5641,7 +5641,7 @@ is initiated, identifying the individual sanctioned and the reason for the sanct
 PS-9: Position Descriptions
 Incorporate security and privacy roles and responsibilities into organizational position
 descriptions.
-4.15  PERSONALLY IDENTIFIABLE  INFORMATION  PROCESSING AND
+### 4.15  PERSONALLY IDENTIFIABLE  INFORMATION  PROCESSING AND
 TRANSPARENCY
 PT-1: Personally Identifiable Information Processing and Transparency Policy
 and Procedures
@@ -5664,7 +5664,7 @@ PT-2: Authority to Process Personally Identifiable Information
 a.	 Determine and document the IRC § 6103 section that permits the receipt of personally identifiable
 information; and
 b.	 Restrict the access of personally identifiable information to only that which is authorized.
-4.16 RISK ASSESSMENT
+### 4.16 RISK ASSESSMENT
 RA-1: Risk Assessment Policy and Procedures
 d.	 Develop, document, and disseminate to designated agency officials:
 1.	 An agency or organization-level risk assessment policy that:
@@ -5767,7 +5767,7 @@ reporting requirements imposed on, ten or more individuals, other than agencies,
 instrumentalities, or employees of the federal government.
 Supplemental Guidance: A privacy impact assessment must be conducted specifically for new systems
 used to process, store, or transmit FTI.
-4.17 SYSTEM AND SERVICES ACQUISITION
+### 4.17 SYSTEM AND SERVICES ACQUISITION
 SA-1: System and Services Acquisition Policy and Procedures
 a.	 Develop, document, and disseminate to designated agency officials:
 1.	 An agency or organization-level system and services acquisition policy that:
@@ -6021,7 +6021,7 @@ where newer technologies are not available or where the systems are so isolated 
 replacement components is not an option. Systems that no longer receive security patches or product
 updates may receive critical findings during Safeguards reviews. For more information on unsupported
 system components, see the Office of Safeguards website.
-4.18 SYSTEM AND COMMUNICATIONS PROTECTION
+### 4.18 SYSTEM AND COMMUNICATIONS PROTECTION
 SC-1: System and Communications Protection Policy and Procedures
 a.	 Develop, document, and disseminate to designated agency officials:
 1. An agency or organization-level system and communications protection policy that:
@@ -6307,7 +6307,7 @@ Control Enhancements:
 a.	 Compare the internal system clocks daily with an agency-defined authoritative time source; and
 b.	 Synchronize the internal system clocks to the authoritative time source when the time difference
 is greater than agency-defined time period.
-4.19 SYSTEM AND INFORMATION INTEGRITY
+### 4.19 SYSTEM AND INFORMATION INTEGRITY
 SI-1: System and Information Integrity Policy and Procedures
 a.	 Develop, document, and disseminate to designated agency officials:
 1.	 An agency or organization-level system and information integrity policy that:
@@ -6547,7 +6547,7 @@ executable regions of memory or in memory locations that are prohibited. Securit
 to protect memory include, for example, data execution prevention and address space layout
 randomization. Data execution prevention safeguards can either be hardware- enforced or software-
 enforced with hardware enforcement providing the greater strength of mechanism.
-4.20 SUPPLY CHAIN RISK MANAGEMENT
+### 4.20 SUPPLY CHAIN RISK MANAGEMENT
 SR-1: Supply Chain Risk Management Policy and Procedures
 a.	 Develop, document, and disseminate to designated agency officials:
 1.	 An agency or organization-level supply chain risk management policy that:

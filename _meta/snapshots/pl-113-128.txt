@@ -241,7 +241,7 @@ Subtitle B—Amendments to Other Laws
 Sec. 511. Repeal of the Workforce Investment Act of 1998.
 Sec. 512. Conforming amendments.
 Sec. 513. References.
-SEC. 2. PURPOSES.
+### SEC. 2. PURPOSES.
 The purposes of this Act are the following:
 (1) To increase, for individuals in the United States,
 particularly those individuals with barriers to employment,
@@ -279,7 +279,7 @@ as a result, improve the quality of the workforce, reduce welfare
 dependency, increase economic self-sufficiency, meet the skill
 requirements of employers, and enhance the productivity and
 competitiveness of the Nation.
-SEC. 3. DEFINITIONS.
+### SEC. 3. DEFINITIONS.
 In this Act, and the core program provisions that are not
 in this Act, except as otherwise expressly provided:
 (1) A DMINISTRATIVE COSTS .—The term ‘‘administrative
@@ -957,7 +957,7 @@ TITLE I—WORKFORCE DEVELOPMENT
 ACTIVITIES
 Subtitle A—System Alignment
 CHAPTER 1—STATE PROVISIONS
-SEC. 101. STATE WORKFORCE DEVELOPMENT BOARDS.
+### SEC. 101. STATE WORKFORCE DEVELOPMENT BOARDS.
 (a) I N GENERAL.—The Governor of a State shall establish a
 State workforce development board to carry out the functions
 described in subsection (d).
@@ -1235,7 +1235,7 @@ State board.
 IMITATION ON RATE .—The director and staff described
 in paragraph (1) shall be subject to the limitations on the
 payment of salary and bonuses described in section 194(15).
-SEC. 102. UNIFIED STATE PLAN.
+### SEC. 102. UNIFIED STATE PLAN.
 (a) P LAN.—For a State to be eligible to receive allotments
 for the core programs, the Governor shall submit to the Secretary
 of Labor for the approval process described under subsection (c)(2),
@@ -1603,7 +1603,7 @@ a process for approving and may approve unified State plans
 that meet the requirements of this section and are submitted
 to cover periods commencing prior to the second full program
 year described in paragraph (1)(A).
-SEC. 103. COMBINED STATE PLAN.
+### SEC. 103. COMBINED STATE PLAN.
 (a) IN GENERAL.—
 (1) AUTHORITY TO SUBMIT PLAN .—A State may develop and
 submit to the appropriate Secretaries a combined State plan
@@ -1746,7 +1746,7 @@ tion requirements for such program or activity, exercises
 administrative authority over the program or activity under
 that Federal law.
 CHAPTER 2—LOCAL PROVISIONS
-SEC. 106. WORKFORCE DEVELOPMENT AREAS.
+### SEC. 106. WORKFORCE DEVELOPMENT AREAS.
 (a) REGIONS.—
 (1) I DENTIFICATION.—Before the second full program year
 after the date of enactment of this Act, in order for a State
@@ -1960,7 +1960,7 @@ VerDate Mar 15 2010 14:06 Jul 28, 2014 Jkt 039139 PO 00128 Frm 00031 Fmt 6580 Sf
 128 STAT. 1456 PUBLIC LAW 113–128—JULY 22, 2014
 the requirements of the provision involved, gross negligence,
 or failure to comply with accepted standards of administration.
-SEC. 107. LOCAL WORKFORCE DEVELOPMENT BOARDS.
+### SEC. 107. LOCAL WORKFORCE DEVELOPMENT BOARDS.
 (a) ESTABLISHMENT.—Except as provided in subsection (c)(2)(A),
 there shall be established, and certified by the Governor of the
 State, a local workforce development board in each local area of
@@ -2665,7 +2665,7 @@ resented by such organizations).
 EFERENCES.—A reference in this Act or a core program
 provision to a local board, shall include a reference to such
 an entity.
-SEC. 108. LOCAL PLAN.
+### SEC. 108. LOCAL PLAN.
 (a) I N GENERAL.—Each local board shall develop and submit
 to the Governor a comprehensive 4-year local plan, in partnership
 29 USC 3123.
@@ -2936,7 +2936,7 @@ failing to provide for alignment of the core programs to support
 the strategy identified in the State plan in accordance with
 section 102(b)(1)(E).
 CHAPTER 3—BOARD PROVISIONS
-SEC. 111. FUNDING OF STATE AND LOCAL BOARDS.
+### SEC. 111. FUNDING OF STATE AND LOCAL BOARDS.
 (a) S TATE BOARDS.—In funding a State board under this sub-
 title, a State—
 (1) shall use funds available as described in section
@@ -2953,7 +2953,7 @@ title, the chief elected official and local board for the local area—
 that the chief elected official and local board determine are
 appropriate and available for that use.
 CHAPTER 4—PERFORMANCE ACCOUNTABILITY
-SEC. 116. PERFORMANCE ACCOUNTABILITY SYSTEM.
+### SEC. 116. PERFORMANCE ACCOUNTABILITY SYSTEM.
 (a) P URPOSE.—The purpose of this section is to establish
 performance accountability measures that apply across the core
 programs to assess the effectiveness of States and local areas (for
@@ -3612,7 +3612,7 @@ Subtitle B—Workforce Investment
 Activities and Providers
 CHAPTER 1—WORKFORCE INVESTMENT ACTIVITIES
 AND PROVIDERS
-SEC. 121. ESTABLISHMENT OF ONE-STOP DELIVERY SYSTEMS.
+### SEC. 121. ESTABLISHMENT OF ONE-STOP DELIVERY SYSTEMS.
 (a) IN GENERAL.—Consistent with an approved State plan, the
 local board for a local area, with the agreement of the chief elected
 official for the local area, shall—
@@ -4316,7 +4316,7 @@ to facilitate the determination, for purposes of the memorandum
 of understanding, of an appropriate allocation of the funds
 and noncash resources in local areas, consistent with the
 requirements of section 101(d)(6)(C).
-SEC. 122. IDENTIFICATION OF ELIGIBLE PROVIDERS OF TRAINING
+### SEC. 122. IDENTIFICATION OF ELIGIBLE PROVIDERS OF TRAINING
 SERVICES.
 (a) ELIGIBILITY.—
 (1) I N GENERAL .—Except as provided in subsection (h),
@@ -4663,7 +4663,7 @@ VerDate Mar 15 2010 14:06 Jul 28, 2014 Jkt 039139 PO 00128 Frm 00073 Fmt 6580 Sf
 128 STAT. 1498 PUBLIC LAW 113–128—JULY 22, 2014
 until December 31, 2015, or until such earlier date as the Governor
 determines to be appropriate.
-SEC. 123. ELIGIBLE PROVIDERS OF YOUTH WORKFORCE INVESTMENT
+### SEC. 123. ELIGIBLE PROVIDERS OF YOUTH WORKFORCE INVESTMENT
 ACTIVITIES.
 (a) IN GENERAL.—From the funds allocated under section 128(b)
 to a local area, the local board for such area shall award grants
@@ -4685,7 +4685,7 @@ grants and contracts to be awarded on a competitive basis under
 subsection (a).
 CHAPTER 2—YOUTH WORKFORCE INVESTMENT
 ACTIVITIES
-SEC. 126. GENERAL AUTHORIZATION.
+### SEC. 126. GENERAL AUTHORIZATION.
 The Secretary shall make an allotment under section
 127(b)(1)(C) to each State that meets the requirements of section
 102 or 103 and a grant under section 127(b)(1)(B) to each outlying
@@ -4694,7 +4694,7 @@ the State or outlying area, and to enable the State or outlying
 area to assist local areas, for the purpose of providing workforce
 investment activities for eligible youth in the State or outlying
 area and in the local areas.
-SEC. 127. STATE ALLOTMENTS.
+### SEC. 127. STATE ALLOTMENTS.
 (a) IN GENERAL.—The Secretary shall—
 (1) for each fiscal year for which the amount appropriated
 under section 136(a) exceeds $925,000,000, reserve 4 percent
@@ -4950,7 +4950,7 @@ ernor shall further prescribe equitable procedures for making
 funds available from the State and local areas in the event
 that a State is required to make funds available for reallotment
 under this subsection.
-SEC. 128. WITHIN STATE ALLOCATIONS.
+### SEC. 128. WITHIN STATE ALLOCATIONS.
 (a) RESERVATIONS FOR STATEWIDE ACTIVITIES.—
 (1) I N GENERAL .—The Governor shall reserve not more
 than 15 percent of each of the amounts allotted to the State
@@ -5092,7 +5092,7 @@ eligible local area means a local area that does not have an
 amount available for reallocation under paragraph (2) for the
 program year for which the determination under paragraph
 (2) is made.
-SEC. 129. USE OF FUNDS FOR YOUTH WORKFORCE INVESTMENT
+### SEC. 129. USE OF FUNDS FOR YOUTH WORKFORCE INVESTMENT
 ACTIVITIES.
 (a) YOUTH PARTICIPANT ELIGIBILITY.—
 (1) ELIGIBILITY.—
@@ -5503,7 +5503,7 @@ ance to participants in the form of mentoring, tutoring, and
 other activities.
 CHAPTER 3—ADULT AND DISLOCATED WORKER
 EMPLOYMENT AND TRAINING ACTIVITIES
-SEC. 131. GENERAL AUTHORIZATION.
+### SEC. 131. GENERAL AUTHORIZATION.
 The Secretary shall make allotments under paragraphs (1)(B)
 and (2)(B) of section 132(b) to each State that meets the require-
 ments of section 102 or 103 and grants under paragraphs (1)(A)
@@ -5513,7 +5513,7 @@ area, and to enable the State or outlying area to assist local areas,
 for the purpose of providing workforce investment activities for
 adults, and dislocated workers, in the State or outlying area and
 in the local areas.
-SEC. 132. STATE ALLOTMENTS.
+### SEC. 132. STATE ALLOTMENTS.
 (a) IN GENERAL.—The Secretary shall—
 (1) make allotments and grants from the amount appro-
 priated under section 136(b) for a fiscal year in accordance
@@ -5841,7 +5841,7 @@ ernor shall further prescribe equitable procedures for making
 funds available from the State and local areas in the event
 that a State is required to make funds available for reallotment
 under this subsection.
-SEC. 133. WITHIN STATE ALLOCATIONS.
+### SEC. 133. WITHIN STATE ALLOCATIONS.
 (a) RESERVATIONS FOR STATE ACTIVITIES.—
 (1) S TATEWIDE WORKFORCE INVESTMENT ACTIVITIES .—The
 Governor shall make the reservation required under section
@@ -6089,7 +6089,7 @@ activities, a local area that does not have an amount of
 such funds available for reallocation under paragraph (2)
 for the program year for which the determination under
 paragraph (2) is made.
-SEC. 134. USE OF FUNDS FOR EMPLOYMENT AND TRAINING ACTIVI-
+### SEC. 134. USE OF FUNDS FOR EMPLOYMENT AND TRAINING ACTIVI-
 TIES.
 (a) STATEWIDE EMPLOYMENT AND TRAINING ACTIVITIES.—
 (1) IN GENERAL.—Funds reserved by a Governor—
@@ -7143,7 +7143,7 @@ that lead to entry into and retention in unsubsidized
 employment.
 CHAPTER 4—GENERAL WORKFORCE INVESTMENT
 PROVISIONS
-SEC. 136. AUTHORIZATION OF APPROPRIATIONS.
+### SEC. 136. AUTHORIZATION OF APPROPRIATIONS.
 (a) Y OUTH WORKFORCE INVESTMENT ACTIVITIES.—There are
 authorized to be appropriated to carry out the activities described
 in section 127(a), $820,430,000 for fiscal year 2015, $883,800,000
@@ -7165,7 +7165,7 @@ year 2015, $1,316,880,000 for fiscal year 2016, $1,344,205,000 for
 fiscal year 2017, $1,374,019,000 for fiscal year 2018, $1,406,322,000
 for fiscal year 2019, and $1,436,137,000 for fiscal year 2020.
 Subtitle C—Job Corps
-SEC. 141. PURPOSES.
+### SEC. 141. PURPOSES.
 The purposes of this subtitle are—
 (1) to maintain a national Job Corps program, carried
 out in partnership with States and communities, to—
@@ -7194,7 +7194,7 @@ activities described in this subtitle; and
 (4) to prescribe various other powers, duties, and respon-
 sibilities incident to the operation and continuing development
 of the Job Corps.
-SEC. 142. DEFINITIONS.
+### SEC. 142. DEFINITIONS.
 In this subtitle:
 (1) A PPLICABLE LOCAL BOARD .—The term ‘‘applicable local
 board’’ means a local board—
@@ -7243,9 +7243,9 @@ described in this subtitle to a Job Corps center.
 29 USC 3192.
 VerDate Mar 15 2010 14:32 Aug 04, 2014 Jkt 039139 PO 00128 Frm 00114 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL128.113 PUBL128dkrause on DSKHT7XVN1PROD with PUBLAWS
 128 STAT. 1539 PUBLIC LAW 113–128—JULY 22, 2014
-SEC. 143. ESTABLISHMENT.
+### SEC. 143. ESTABLISHMENT.
 There shall be within the Department of Labor a ‘‘Job Corps’’.
-SEC. 144. INDIVIDUALS ELIGIBLE FOR THE JOB CORPS.
+### SEC. 144. INDIVIDUALS ELIGIBLE FOR THE JOB CORPS.
 (a) I N GENERAL.—To be eligible to become an enrollee, an
 individual shall be—
 (1) not less than age 16 and not more than age 21 on
@@ -7283,7 +7283,7 @@ because the military income earned by such individual within
 the 6-month period prior to the individual’s application for
 Job Corps prevents the individual from meeting such require-
 ment.
-SEC. 145. RECRUITMENT, SCREENING, SELECTION, AND ASSIGNMENT
+### SEC. 145. RECRUITMENT, SCREENING, SELECTION, AND ASSIGNMENT
 OF ENROLLEES.
 (a) STANDARDS AND PROCEDURES.—
 (1) I N GENERAL .—The Secretary shall prescribe specific
@@ -7449,7 +7449,7 @@ center other than the center closest to the home that offers
 the career and technical education and training desired by
 the enrollee pursuant to paragraph (1) if the parent or guardian
 of the enrollee objects to the assignment.
-SEC. 146. ENROLLMENT.
+### SEC. 146. ENROLLMENT.
 (a) R ELATIONSHIP BETWEEN ENROLLMENT AND MILITARY
 OBLIGATIONS.—Enrollment in the Job Corps shall not relieve any
 individual of obligations under the Military Selective Service Act
@@ -7472,7 +7472,7 @@ gram, who would be granted an enrollment extension in the
 Job Corps for the amount of time equal to the period of national
 service; or
 (4) as the Secretary may authorize in a special case.
-SEC. 147. JOB CORPS CENTERS.
+### SEC. 147. JOB CORPS CENTERS.
 (a) OPERATORS AND SERVICE PROVIDERS.—
 (1) ELIGIBLE ENTITIES.—
 (A) O PERATORS.—The Secretary shall enter into an
@@ -7783,7 +7783,7 @@ and
 laws and regulations, including that the contractor is not
 under suspension or debarred from eligibility for Federal
 contracts.
-SEC. 148. PROGRAM ACTIVITIES.
+### SEC. 148. PROGRAM ACTIVITIES.
 (a) ACTIVITIES PROVIDED BY JOB CORPS CENTERS.—
 (1) I N GENERAL .—Each Job Corps center shall provide
 enrollees with an intensive, well organized, and fully supervised
@@ -7871,7 +7871,7 @@ HILD CARE.—The Secretary shall, to the extent practicable,
 provide child care at or near Job Corps centers, for individuals
 who require child care for their children in order to participate
 in the Job Corps.
-SEC. 149. COUNSELING AND JOB PLACEMENT.
+### SEC. 149. COUNSELING AND JOB PLACEMENT.
 (a) A SSESSMENT AND COUNSELING.—The Secretary shall
 arrange for assessment and counseling for each enrollee at regular
 intervals to measure progress in the academic and career and
@@ -7903,7 +7903,7 @@ in this subtitle are met.
 (d) SERVICES TO FORMER ENROLLEES.—The Secretary may pro-
 vide such services as the Secretary determines to be appropriate
 under this subtitle to former enrollees.
-SEC. 150. SUPPORT.
+### SEC. 150. SUPPORT.
 (a) P ERSONAL ALLOWANCES.—The Secretary may provide
 enrollees assigned to Job Corps centers with such personal allow-
 ances as the Secretary may determine to be necessary or appro-
@@ -7917,7 +7917,7 @@ ment of recognized postsecondary credentials.
 (c) T
 RANSITION SUPPORT.—The Secretary may arrange for the
 provision of 3 months of employment services for former enrollees.
-SEC. 151. OPERATIONS.
+### SEC. 151. OPERATIONS.
 (a) O PERATING PLAN.—The provisions of the contract between
 the Secretary and an entity selected to operate a Job Corps center
 shall, at a minimum, serve as an operating plan for the Job Corps
@@ -7931,7 +7931,7 @@ may require, which shall be considered part of the operating plan.
 VAILABILITY.—The Secretary shall make the operating plan
 described in subsections (a) and (b), excluding any proprietary
 information, available to the public.
-SEC. 152. STANDARDS OF CONDUCT.
+### SEC. 152. STANDARDS OF CONDUCT.
 (a) P ROVISION AND ENFORCEMENT.—The Secretary shall pro-
 vide, and directors of Job Corps centers shall stringently enforce,
 standards of conduct within the centers. Such standards of conduct
@@ -7983,7 +7983,7 @@ graph (A).
 PPEAL.—A disciplinary measure taken by a director under
 this section shall be subject to expeditious appeal in accordance
 with procedures established by the Secretary.
-SEC. 153. COMMUNITY PARTICIPATION.
+### SEC. 153. COMMUNITY PARTICIPATION.
 (a) B USINESS AND COMMUNITY PARTICIPATION.—The director
 of each Job Corps center shall ensure the establishment and
 development of the mutually beneficial business and community
@@ -8030,7 +8030,7 @@ Time period.
 29 USC 3203.
 VerDate Mar 15 2010 14:32 Aug 04, 2014 Jkt 039139 PO 00128 Frm 00126 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL128.113 PUBL128dkrause on DSKHT7XVN1PROD with PUBLAWS
 128 STAT. 1551 PUBLIC LAW 113–128—JULY 22, 2014
-SEC. 154. WORKFORCE COUNCILS.
+### SEC. 154. WORKFORCE COUNCILS.
 (a) IN GENERAL.—Each Job Corps center shall have a workforce
 council, appointed by the director of the center, in accordance with
 procedures established by the Secretary.
@@ -8101,7 +8101,7 @@ VerDate Mar 15 2010 14:32 Aug 04, 2014 Jkt 039139 PO 00128 Frm 00127 Fmt 6580 Sf
 center that is not yet operating shall carry out the responsibilities
 described in subsection (c) at least 3 months prior to the date
 on which the center accepts the first enrollee at the center.
-SEC. 155. ADVISORY COMMITTEES.
+### SEC. 155. ADVISORY COMMITTEES.
 The Secretary may establish and use advisory committees in
 connection with the operation of the Job Corps program, and the
 operation of Job Corps centers, whenever the Secretary determines
@@ -8110,7 +8110,7 @@ basis would be of substantial benefit in identifying and overcoming
 problems, in planning program or center development, or in
 strengthening relationships between the Job Corps and agencies,
 institutions, or groups engaged in related activities.
-SEC. 156. EXPERIMENTAL PROJECTS AND TECHNICAL ASSISTANCE.
+### SEC. 156. EXPERIMENTAL PROJECTS AND TECHNICAL ASSISTANCE.
 (a) P ROJECTS.—The Secretary may carry out experimental,
 research, or demonstration projects relating to carrying out the
 Job Corps program. The Secretary may waive any provisions of
@@ -8140,7 +8140,7 @@ including financial management procedures; and
 (2) assisting entities, including entities not currently oper-
 ating a Job Corps center, in developing the additional selection
 factors information described in section 147(a)(3).
-SEC. 157. APPLICATION OF PROVISIONS OF FEDERAL LAW.
+### SEC. 157. APPLICATION OF PROVISIONS OF FEDERAL LAW.
 (a) ENROLLEES NOT CONSIDERED TO BE FEDERAL EMPLOYEES.—
 (1) IN GENERAL .—Except as otherwise provided in this sub-
 section and in section 8143(a) of title 5, United States Code,
@@ -8193,7 +8193,7 @@ the performance of agreements made by the Secretary for the sup-
 port of the Job Corps shall not be counted in computing strength
 under any law limiting the strength of such services or in computing
 the percentage authorized by law for any grade in such services.
-SEC. 158. SPECIAL PROVISIONS.
+### SEC. 158. SPECIAL PROVISIONS.
 (a) ENROLLMENT.—The Secretary shall ensure that women and
 men have an equal opportunity to participate in the Job Corps
 program, consistent with section 145.
@@ -8257,7 +8257,7 @@ of law, if the Administrator of General Services sells a Job Corps
 center facility, the Administrator shall transfer the proceeds from
 the sale to the Secretary, who shall use the proceeds to carry
 out the Job Corps program.
-SEC. 159. MANAGEMENT INFORMATION.
+### SEC. 159. MANAGEMENT INFORMATION.
 (a) FINANCIAL MANAGEMENT INFORMATION SYSTEM.—
 (1) IN GENERAL .—The Secretary shall establish procedures
 to ensure that each operator, and each service provider, main-
@@ -8503,7 +8503,7 @@ VerDate Mar 15 2010 14:32 Aug 04, 2014 Jkt 039139 PO 00128 Frm 00133 Fmt 6580 Sf
 in which such center is located is notified within a reasonable
 period of time in advance of any final decision to close the
 center.
-SEC. 160. GENERAL PROVISIONS.
+### SEC. 160. GENERAL PROVISIONS.
 The Secretary is authorized to—
 (1) disseminate, with regard to the provisions of section
 3204 of title 39, United States Code, data and information
@@ -8540,7 +8540,7 @@ under the jurisdiction of the General Services Adminis-
 tration) of the intention of the Secretary to make the
 expenditure, and the reasons and justifications for the
 expenditure.
-SEC. 161. JOB CORPS OVERSIGHT AND REPORTING.
+### SEC. 161. JOB CORPS OVERSIGHT AND REPORTING.
 (a) TEMPORARY FINANCIAL REPORTING.—
 (1) I N GENERAL .—During the periods described in para-
 graphs (2) and (3)(B), the Secretary shall prepare and submit
@@ -8617,7 +8617,7 @@ sions of the Senate; and
 (4) the Subcommittee on Labor, Health and Human Serv-
 ices, Education, and Related Agencies of the Committee of
 Appropriations of the Senate.
-SEC. 162. AUTHORIZATION OF APPROPRIATIONS.
+### SEC. 162. AUTHORIZATION OF APPROPRIATIONS.
 There are authorized to be appropriated to carry out this sub-
 title—
 29 USC 3212.
@@ -8634,7 +8634,7 @@ VerDate Mar 15 2010 14:32 Aug 04, 2014 Jkt 039139 PO 00128 Frm 00135 Fmt 6580 Sf
 (5) $1,942,064,000 for fiscal year 2019; and
 (6) $1,983,236,000 for fiscal year 2020.
 Subtitle D—National Programs
-SEC. 166. NATIVE AMERICAN PROGRAMS.
+### SEC. 166. NATIVE AMERICAN PROGRAMS.
 (a) PURPOSE.—
 (1) IN GENERAL .—The purpose of this section is to support
 employment and training activities for Indian, Alaska Native,
@@ -8921,7 +8921,7 @@ ized to be appropriated to carry out this subsection—
 (D) $518,000 for fiscal year 2018;
 (E) $530,000 for fiscal year 2019; and
 (F) $542,000 for fiscal year 2020.
-SEC. 167. MIGRANT AND SEASONAL FARMWORKER PROGRAMS.
+### SEC. 167. MIGRANT AND SEASONAL FARMWORKER PROGRAMS.
 (a) I N GENERAL.—Every 4 years, the Secretary shall, on a
 competitive basis, make grants to, or enter into contracts with,
 eligible entities to carry out the activities described in subsection
@@ -9076,7 +9076,7 @@ or underemployment; and
 ciency; and
 (B) a dependent of the person described in subpara-
 graph (A).
-SEC. 168. TECHNICAL ASSISTANCE.
+### SEC. 168. TECHNICAL ASSISTANCE.
 (a) GENERAL TECHNICAL ASSISTANCE.—
 (1) I N GENERAL .—The Secretary shall ensure that the
 Department has sufficient capacity to, and does, provide, coordi-
@@ -9163,7 +9163,7 @@ promising and proven practices and identify knowledge gaps;
 and
 (3) commission research under section 169(b) to address
 knowledge gaps identified under paragraph (2).
-SEC. 169. EVALUATIONS AND RESEARCH.
+### SEC. 169. EVALUATIONS AND RESEARCH.
 (a) EVALUATIONS.—
 (1) E VALUATIONS OF PROGRAMS AND ACTIVITIES CARRIED
 OUT UNDER THIS TITLE .—
@@ -9506,7 +9506,7 @@ locations, assisting dislocated farmers, assisting dislocated fisher-
 men, and promoting public works. Such projects shall be adminis-
 tered by the Secretary, acting through the Assistant Secretary
 for Employment and Training.
-SEC. 170. NATIONAL DISLOCATED WORKER GRANTS.
+### SEC. 170. NATIONAL DISLOCATED WORKER GRANTS.
 (a) DEFINITIONS.—In this section:
 (1) E MERGENCY OR DISASTER .—The term ‘‘emergency or
 disaster’’ means—
@@ -9717,7 +9717,7 @@ that is liable under Federal law, for any costs incurred by
 the United States under subsection (b)(1)(B) or this subsection,
 including the responsibility to provide reimbursement for such
 costs to the United States.
-SEC. 171. YOUTHBUILD PROGRAM.
+### SEC. 171. YOUTHBUILD PROGRAM.
 (a) STATEMENT OF PURPOSE.—The purposes of this section are—
 (1) to enable disadvantaged youth to obtain the education
 and employment skills necessary to achieve economic self-suffi-
@@ -10264,7 +10264,7 @@ to be appropriated to carry out this section—
 (4) $87,147,000 for fiscal year 2018;
 (5) $89,196,000 for fiscal year 2019; and
 (6) $91,087,000 for fiscal year 2020.
-SEC. 172. AUTHORIZATION OF APPROPRIATIONS.
+### SEC. 172. AUTHORIZATION OF APPROPRIATIONS.
 (a) N ATIVE AMERICAN PROGRAMS.—There are authorized to be
 appropriated to carry out section 166 (not including subsection
 (k) of such section)—
@@ -10321,7 +10321,7 @@ as in effect on such day, until all of such funds are expended.
 VerDate Mar 15 2010 14:32 Aug 04, 2014 Jkt 039139 PO 00128 Frm 00161 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL128.113 PUBL128dkrause on DSKHT7XVN1PROD with PUBLAWS
 128 STAT. 1586 PUBLIC LAW 113–128—JULY 22, 2014
 Subtitle E—Administration
-SEC. 181. REQUIREMENTS AND RESTRICTIONS.
+### SEC. 181. REQUIREMENTS AND RESTRICTIONS.
 (a) BENEFITS.—
 (1) WAGES.—
 (A) IN GENERAL .—Individuals in on-the-job training or
@@ -10556,7 +10556,7 @@ UBGRANT AUTHORITY.—A recipient of grant funds under
 this title shall have the authority to enter into subgrants in order
 to carry out the grant, subject to such conditions as the Secretary
 may establish.
-SEC. 182. PROMPT ALLOCATION OF FUNDS.
+### SEC. 182. PROMPT ALLOCATION OF FUNDS.
 (a) ALLOTMENTS BASED ON LATEST AVAILABLE DATA.—All allot-
 ments to States and grants to outlying areas under this title shall
 be based on the latest available data and estimates satisfactory
@@ -10602,7 +10602,7 @@ under section 128, and funds shall be made available under section
 funds are made available to the Governor involved, under section
 127 or 132 (as the case may be), or 7 days after the date the
 local plan for the area is approved, whichever is later.
-SEC. 183. MONITORING.
+### SEC. 183. MONITORING.
 (a) I N GENERAL.—The Secretary is authorized to monitor all
 recipients of financial assistance under this title to determine
 whether the recipients are complying with the provisions of this
@@ -10625,7 +10625,7 @@ the provisions of section 9 of the Federal Trade Commission Act
 production of documents) apply to the Secretary, in the same
 manner and to the same extent as the provisions apply to the
 Federal Trade Commission.
-SEC. 184. FISCAL CONTROLS; SANCTIONS.
+### SEC. 184. FISCAL CONTROLS; SANCTIONS.
 (a) ESTABLISHMENT OF FISCAL CONTROLS BY STATES.—
 (1) I N GENERAL .—Each State shall establish such fiscal
 control and fund accounting procedures as may be necessary
@@ -10886,7 +10886,7 @@ or the aggrieved individual, or both.
 EMEDIES.—The remedies described in this section shall
 not be considered to be the exclusive remedies available for viola-
 tions described in this section.
-SEC. 185. REPORTS; RECORDKEEPING; INVESTIGATIONS.
+### SEC. 185. REPORTS; RECORDKEEPING; INVESTIGATIONS.
 (a) RECIPIENT RECORDKEEPING AND REPORTS.—
 (1) IN GENERAL .—Recipients of funds under this title shall
 keep records that are sufficient to permit the preparation of
@@ -11062,7 +11062,7 @@ OST CATEGORIES.—In requiring entities to maintain records
 of costs by cost category under this title, the Secretary shall require
 only that the costs be categorized as administrative or programmatic
 costs.
-SEC. 186. ADMINISTRATIVE ADJUDICATION.
+### SEC. 186. ADMINISTRATIVE ADJUDICATION.
 (a) I N GENERAL.—Whenever any applicant for financial assist-
 ance under this title is dissatisfied because the Secretary has made
 a determination not to award financial assistance in whole or in
@@ -11097,7 +11097,7 @@ decision of the Secretary at the end of the 180-day period.
 (d) A
 DDITIONAL REQUIREMENT.—The provisions of section 187
 shall apply to any final action of the Secretary under this section.
-SEC. 187. JUDICIAL REVIEW.
+### SEC. 187. JUDICIAL REVIEW.
 (a) REVIEW.—
 (1) P ETITION.—With respect to any final order by the Sec-
 retary under section 186 by which the Secretary awards,
@@ -11133,7 +11133,7 @@ of the Secretary in whole or in part. The judgment of the court
 regarding the order shall be final, subject to certiorari review by
 the Supreme Court as provided in section 1254(1) of title 28, United
 States Code.
-SEC. 188. NONDISCRIMINATION.
+### SEC. 188. NONDISCRIMINATION.
 (a) IN GENERAL.—
 (1) F EDERAL FINANCIAL ASSISTANCE .—For the purpose of
 applying the prohibitions against discrimination on the basis
@@ -11232,7 +11232,7 @@ discrimination and procedures for enforcement that are consistent
 with the Acts referred to in subsection (a)(1), as well as procedures
 to ensure that complaints filed under this section and such Acts
 are processed in a manner that avoids duplication of effort.
-SEC. 189. SECRETARIAL ADMINISTRATIVE AUTHORITIES AND RESPON-
+### SEC. 189. SECRETARIAL ADMINISTRATIVE AUTHORITIES AND RESPON-
 SIBILITIES.
 (a) IN GENERAL.—In accordance with chapter 5 of title 5, United
 States Code, the Secretary may prescribe rules and regulations
@@ -11469,7 +11469,7 @@ dite the determination regarding the provision of that
 waiver, for another State or local area if such waiver is
 in accordance with the approved State or local plan, as
 appropriate.
-SEC. 190. WORKFORCE FLEXIBILITY PLANS.
+### SEC. 190. WORKFORCE FLEXIBILITY PLANS.
 (a) P LANS.—A State may submit to the Secretary, and the
 Secretary may approve, a workforce flexibility plan under which
 the State is authorized to waive, in accordance with the plan—
@@ -11532,7 +11532,7 @@ shall provide to all interested parties and to the general public
 adequate notice of and a reasonable opportunity for comment on
 the waiver requests proposed to be implemented pursuant to such
 plan.
-SEC. 191. STATE LEGISLATIVE AUTHORITY.
+### SEC. 191. STATE LEGISLATIVE AUTHORITY.
 (a) A UTHORITY OF STATE LEGISLATURE.—Nothing in this title
 shall be interpreted to preclude the enactment of State legislation
 providing for the implementation, consistent with the provisions
@@ -11552,7 +11552,7 @@ be enhanced by compacts and cooperative agreements between
 States, the consent of Congress is given to States to enter into
 such compacts and agreements to facilitate such compliance, subject
 to the approval of the Secretary.
-SEC. 192. TRANSFER OF FEDERAL EQUITY IN STATE EMPLOYMENT
+### SEC. 192. TRANSFER OF FEDERAL EQUITY IN STATE EMPLOYMENT
 SECURITY AGENCY REAL PROPERTY TO THE STATES.
 (a) TRANSFER OF FEDERAL EQUITY.—Notwithstanding any other
 provision of law, any Federal equity acquired in real property
@@ -11576,7 +11576,7 @@ under this Act, title III of the Social Security Act, or the Wagner-
 Peyser Act to amortize the costs of real property that is purchased
 by any State on or after the date of enactment of the Revised
 Continuing Appropriations Resolution, 2007.
-SEC. 193. CONTINUATION OF STATE ACTIVITIES AND POLICIES.
+### SEC. 193. CONTINUATION OF STATE ACTIVITIES AND POLICIES.
 (a) I N GENERAL.—Notwithstanding any other provision of this
 title, the Secretary may not deny approval of a State plan for
 a covered State, or an application of a covered State for financial
@@ -11640,7 +11640,7 @@ sistent State laws’’ means State laws, not inconsistent with
 the Job Training Partnership Act or any other applicable Fed-
 eral law, that took effect on September 1, 1993, September
 1, 1995, and September 1, 1997.
-SEC. 194. GENERAL PROGRAM REQUIREMENTS.
+### SEC. 194. GENERAL PROGRAM REQUIREMENTS.
 Except as otherwise provided in this title, the following condi-
 tions apply to all programs under this title:
 (1) Each program under this title shall provide employment
@@ -11767,7 +11767,7 @@ factors including the relative cost of living in the State, the
 compensation levels for comparable State or local government
 employees, and the size of the organizations that administer
 the Federal programs involved.
-SEC. 195. RESTRICTIONS ON LOBBYING ACTIVITIES.
+### SEC. 195. RESTRICTIONS ON LOBBYING ACTIVITIES.
 (a) PUBLICITY RESTRICTIONS.—
 (1) I N GENERAL .—No funds provided under this Act shall
 be used for—
@@ -11816,10 +11816,10 @@ tive processes within the executive branch of that govern-
 ment.
 TITLE II—ADULT EDUCATION AND
 LITERACY
-SEC. 201. SHORT TITLE.
+### SEC. 201. SHORT TITLE.
 This title may be cited as the ‘‘Adult Education and Family
 Literacy Act’’.
-SEC. 202. PURPOSE.
+### SEC. 202. PURPOSE.
 It is the purpose of this title to create a partnership among
 the Federal Government, States, and localities to provide, on a
 voluntary basis, adult education and literacy activities, in order
@@ -11853,7 +11853,7 @@ skills in English; and
 (B) acquiring an understanding of the American system
 of Government, individual freedom, and the responsibilities
 of citizenship.
-SEC. 203. DEFINITIONS.
+### SEC. 203. DEFINITIONS.
 In this title:
 (1) ADULT EDUCATION .—The term ‘‘adult education’’ means
 academic instruction and education services below the postsec-
@@ -12024,7 +12024,7 @@ utilizing resources, using information, working with others,
 understanding systems, and obtaining skills necessary for
 successful transition into and completion of postsecondary edu-
 cation or training, or employment.
-SEC. 204. HOME SCHOOLS.
+### SEC. 204. HOME SCHOOLS.
 Nothing in this title shall be construed to affect home schools,
 whether a home school is treated as a home school or a private
 school under State law, or to compel a parent or family member
@@ -12033,7 +12033,7 @@ VerDate Mar 15 2010 14:32 Aug 04, 2014 Jkt 039139 PO 00128 Frm 00187 Fmt 6580 Sf
 128 STAT. 1612 PUBLIC LAW 113–128—JULY 22, 2014
 engaged in home schooling to participate in adult education and
 literacy activities.
-SEC. 205. RULE OF CONSTRUCTION REGARDING POSTSECONDARY
+### SEC. 205. RULE OF CONSTRUCTION REGARDING POSTSECONDARY
 TRANSITION AND CONCURRENT ENROLLMENT ACTIVI-
 TIES.
 Nothing in this title shall be construed to prohibit or discourage
@@ -12041,14 +12041,14 @@ the use of funds provided under this title for adult education and
 literacy activities that help eligible individuals transition to postsec-
 ondary education and training or employment, or for concurrent
 enrollment activities.
-SEC. 206. AUTHORIZATION OF APPROPRIATIONS.
+### SEC. 206. AUTHORIZATION OF APPROPRIATIONS.
 There are authorized to be appropriated to carry out this title
 $577,667,000 for fiscal year 2015, $622,286,000 for fiscal year 2016,
 $635,198,000 for fiscal year 2017, $649,287,000 for fiscal year 2018,
 $664,552,000 for fiscal year 2019, and $678,640,000 for fiscal year
 2020.
 Subtitle A—Federal Provisions
-SEC. 211. RESERVATION OF FUNDS; GRANTS TO ELIGIBLE AGENCIES;
+### SEC. 211. RESERVATION OF FUNDS; GRANTS TO ELIGIBLE AGENCIES;
 ALLOTMENTS.
 (a) RESERVATION OF FUNDS.—From the sum appropriated under
 section 206 for a fiscal year, the Secretary—
@@ -12158,12 +12158,12 @@ Territories.
 Definition.
 VerDate Mar 15 2010 14:32 Aug 04, 2014 Jkt 039139 PO 00128 Frm 00189 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL128.113 PUBL128dkrause on DSKHT7XVN1PROD with PUBLAWS
 128 STAT. 1614 PUBLIC LAW 113–128—JULY 22, 2014
-SEC. 212. PERFORMANCE ACCOUNTABILITY SYSTEM.
+### SEC. 212. PERFORMANCE ACCOUNTABILITY SYSTEM.
 Programs and activities authorized in this title are subject
 to the performance accountability provisions described in section
 116.
 Subtitle B—State Provisions
-SEC. 221. STATE ADMINISTRATION.
+### SEC. 221. STATE ADMINISTRATION.
 Each eligible agency shall be responsible for the State or out-
 lying area administration of activities under this title, including—
 (1) the development, implementation, and monitoring of
@@ -12176,7 +12176,7 @@ this title; and
 (3) coordination and nonduplication with other Federal and
 State education, training, corrections, public housing, and social
 service programs.
-SEC. 222. STATE DISTRIBUTION OF FUNDS; MATCHING REQUIREMENT.
+### SEC. 222. STATE DISTRIBUTION OF FUNDS; MATCHING REQUIREMENT.
 (a) S TATE DISTRIBUTION OF FUNDS.—Each eligible agency
 receiving a grant under section 211(b) for a fiscal year—
 (1) shall use not less than 82.5 percent of the grant funds
@@ -12218,7 +12218,7 @@ pose of this title.
 29 USC 3292.
 VerDate Mar 15 2010 14:32 Aug 04, 2014 Jkt 039139 PO 00128 Frm 00190 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL128.113 PUBL128dkrause on DSKHT7XVN1PROD with PUBLAWS
 128 STAT. 1615 PUBLIC LAW 113–128—JULY 22, 2014
-SEC. 223. STATE LEADERSHIP ACTIVITIES.
+### SEC. 223. STATE LEADERSHIP ACTIVITIES.
 (a) ACTIVITIES.—
 (1) REQUIRED.—Each eligible agency shall use funds made
 available under section 222(a)(2) for the following adult edu-
@@ -12344,12 +12344,12 @@ outlying area interpretation of a Federal statute, regulation, or
 guideline), the State or outlying area shall identify, to eligible
 providers, the rule or policy as being imposed by the State or
 outlying area.
-SEC. 224. STATE PLAN.
+### SEC. 224. STATE PLAN.
 Each State desiring to receive funds under this title for any
 fiscal year shall submit and have approved a unified State plan
 in accordance with section 102 or a combined State plan in accord-
 ance with section 103.
-SEC. 225. PROGRAMS FOR CORRECTIONS EDUCATION AND OTHER
+### SEC. 225. PROGRAMS FOR CORRECTIONS EDUCATION AND OTHER
 INSTITUTIONALIZED INDIVIDUALS.
 (a) P ROGRAM AUTHORIZED.—From funds made available under
 section 222(a)(1) for a fiscal year, each eligible agency shall carry
@@ -12404,7 +12404,7 @@ any criminal offense.
 VerDate Mar 15 2010 14:32 Aug 04, 2014 Jkt 039139 PO 00128 Frm 00193 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL128.113 PUBL128dkrause on DSKHT7XVN1PROD with PUBLAWS
 128 STAT. 1618 PUBLIC LAW 113–128—JULY 22, 2014
 Subtitle C—Local Provisions
-SEC. 231. GRANTS AND CONTRACTS FOR ELIGIBLE PROVIDERS.
+### SEC. 231. GRANTS AND CONTRACTS FOR ELIGIBLE PROVIDERS.
 (a) GRANTS AND CONTRACTS.—From grant funds made available
 under section 222(a)(1), each eligible agency shall award multiyear
 grants or contracts, on a competitive basis, to eligible providers
@@ -12521,7 +12521,7 @@ is located have a demonstrated need for additional English
 language acquisition programs and civics education programs.
 VerDate Mar 15 2010 14:32 Aug 04, 2014 Jkt 039139 PO 00128 Frm 00195 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL128.113 PUBL128dkrause on DSKHT7XVN1PROD with PUBLAWS
 128 STAT. 1620 PUBLIC LAW 113–128—JULY 22, 2014
-SEC. 232. LOCAL APPLICATION.
+### SEC. 232. LOCAL APPLICATION.
 Each eligible provider desiring a grant or contract from an
 eligible agency shall submit an application to the eligible agency
 containing such information and assurances as the eligible agency
@@ -12548,7 +12548,7 @@ services in a manner that meets the needs of eligible individ-
 uals; and
 (7) information that addresses the considerations described
 under section 231(e), as applicable.
-SEC. 233. LOCAL ADMINISTRATIVE COST LIMITS.
+### SEC. 233. LOCAL ADMINISTRATIVE COST LIMITS.
 (a) IN GENERAL.—Subject to subsection (b), of the amount that
 is made available under this title to an eligible provider—
 (1) not less than 95 percent shall be expended for carrying
@@ -12565,7 +12565,7 @@ described in subsection (a)(2), the eligible provider shall negotiate
 with the eligible agency in order to determine an adequate level
 of funds to be used for noninstructional purposes.
 Subtitle D—General Provisions
-SEC. 241. ADMINISTRATIVE PROVISIONS.
+### SEC. 241. ADMINISTRATIVE PROVISIONS.
 (a) S UPPLEMENT NOT SUPPLANT.—Funds made available for
 adult education and literacy activities under this title shall supple-
 ment and not supplant other State or local public funds expended
@@ -12626,7 +12626,7 @@ agency. If the Secretary grants a waiver under the preceding
 sentence for a fiscal year, the level of effort required under
 paragraph (1) shall not be reduced in the subsequent fiscal
 year because of the waiver.
-SEC. 242. NATIONAL LEADERSHIP ACTIVITIES.
+### SEC. 242. NATIONAL LEADERSHIP ACTIVITIES.
 (a) I N GENERAL.—The Secretary shall establish and carry out
 a program of national leadership activities to enhance the quality
 and outcomes of adult education and literacy activities and pro-
@@ -12755,7 +12755,7 @@ case of programs carried out in correctional institutions,
 has an effect on recidivism; and
 (G) other activities designed to enhance the quality
 of adult education and literacy activities nationwide.
-SEC. 243. INTEGRATED ENGLISH LITERACY AND CIVICS EDUCATION.
+### SEC. 243. INTEGRATED ENGLISH LITERACY AND CIVICS EDUCATION.
 (a) I N GENERAL.—From funds made available under section
 211(a)(2) for each fiscal year, the Secretary shall award grants
 to States, from allotments under subsection (b), for integrated
@@ -12802,10 +12802,10 @@ Pensions of the Senate and make available to the public, a report
 on the activities carried out under this section.
 TITLE III—AMENDMENTS TO THE
 WAGNER-PEYSER ACT
-SEC. 301. EMPLOYMENT SERVICE OFFICES.
+### SEC. 301. EMPLOYMENT SERVICE OFFICES.
 Section 1 of the Wagner-Peyser Act (29 U.S.C. 49) is amended
 by inserting ‘‘service’’ before ‘‘offices’’.
-SEC. 302. DEFINITIONS.
+### SEC. 302. DEFINITIONS.
 Section 2 of the Wagner-Peyser Act (29 U.S.C. 49a) is
 amended—
 (1) by striking paragraph (1) and inserting the following:
@@ -12836,7 +12836,7 @@ office of a State agency; and
 ‘‘(7) except in section 15, the term ‘State agency’, used
 without further description, means an agency designated or
 authorized under section 4.’’.
-SEC. 303. FEDERAL AND STATE EMPLOYMENT SERVICE OFFICES.
+### SEC. 303. FEDERAL AND STATE EMPLOYMENT SERVICE OFFICES.
 (a) COORDINATION.—Section 3(a) of the Wagner-Peyser Act (29
 U.S.C. 49b(a)) is amended by striking ‘‘services’’ and inserting
 ‘‘service offices’’.
@@ -12880,7 +12880,7 @@ mines to be appropriate.’’.
 Consultation.
 VerDate Mar 15 2010 15:00 Aug 07, 2014 Jkt 039139 PO 00128 Frm 00201 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL128.113 PUBL128dkrause on DSKHT7XVN1PROD with PUBLAWS
 128 STAT. 1626 PUBLIC LAW 113–128—JULY 22, 2014
-SEC. 304. ALLOTMENT OF SUMS.
+### SEC. 304. ALLOTMENT OF SUMS.
 Section 6 of the Wagner-Peyser Act (29 U.S.C. 49e) is
 amended—
 (1) in subsection (a), by striking ‘‘amounts appropriated
@@ -12900,7 +12900,7 @@ for allotments under this section’’; and
 (C) by adding at the end the following: ‘‘For purposes
 of this paragraph, the term ‘State’ does not include Guam
 or the Virgin Islands.’’.
-SEC. 305. USE OF SUMS.
+### SEC. 305. USE OF SUMS.
 (a) I MPROVED COORDINATION.—Section 7(a)(1) of the Wagner-
 Peyser Act (29 U.S.C. 49f(a)(1)) is amended by inserting ‘‘, including
 unemployment insurance claimants,’’ after ‘‘seekers’’.
@@ -12955,7 +12955,7 @@ ONFORMING AMENDMENT.—Section 7(e) of the Wagner-
 Peyser Act (29 U.S.C. 49f(e)) is amended by striking ‘‘labor employ-
 ment statistics’’ and inserting ‘‘workforce and labor market informa-
 tion’’.
-SEC. 306. STATE PLAN.
+### SEC. 306. STATE PLAN.
 Section 8 of the Wagner-Peyser Act (29 U.S.C. 49g) is amended
 to read as follows:
 ‘‘SEC. 8. Any State desiring to receive assistance under section
@@ -12963,14 +12963,14 @@ to read as follows:
 and the Secretary of Education, a State plan in accordance with
 section 102 or 103 of the Workforce Innovation and Opportunity
 Act.’’.
-SEC. 307. PERFORMANCE MEASURES.
+### SEC. 307. PERFORMANCE MEASURES.
 Section 13(a) of the Wagner-Peyser Act (29 U.S.C. 49l(a)) is
 amended to read as follows:
 ‘‘(a) The activities carried out pursuant to section 7 shall be
 subject to the performance accountability measures that are based
 on indicators described in section 116(b)(2)(A)(i) of the Workforce
 Innovation and Opportunity Act.’’.
-SEC. 308. WORKFORCE AND LABOR MARKET INFORMATION SYSTEM.
+### SEC. 308. WORKFORCE AND LABOR MARKET INFORMATION SYSTEM.
 (a) HEADING.—The section heading for section 15 of the Wagner-
 Peyser Act (29 U.S.C. 49l–2) is amended by striking ‘‘EMPLOYMENT
 STATISTICS’’ and inserting ‘‘ WORKFORCE AND LABOR MARKET
@@ -13219,13 +13219,13 @@ and $70,667,000 for fiscal year 2020’’.
 TITLE IV—AMENDMENTS TO THE
 REHABILITATION ACT OF 1973
 Subtitle A—Introductory Provisions
-SEC. 401. REFERENCES.
+### SEC. 401. REFERENCES.
 Except as otherwise specifically provided, whenever in this
 title an amendment or repeal is expressed in terms of an amend-
 ment to, or repeal of, a provision, the amendment or repeal shall
 be considered to be made to a provision of the Rehabilitation Act
 of 1973 (29 U.S.C. 701 et seq.).
-SEC. 402. FINDINGS, PURPOSE, POLICY.
+### SEC. 402. FINDINGS, PURPOSE, POLICY.
 (a) F INDINGS.—Section 2(a) (29 U.S.C. 701(a)) is amended—
 (1) in paragraph (4), by striking ‘‘workforce investment
 systems under title I of the Workforce Investment Act of 1998’’
@@ -13272,7 +13272,7 @@ transitioning from receipt of special education services under
 the Individuals with Disabilities Education Act (20 U.S.C. 1400
 et seq.) and receipt of services under section 504 of this Act
 have opportunities for postsecondary success.’’.
-SEC. 403. REHABILITATION SERVICES ADMINISTRATION.
+### SEC. 403. REHABILITATION SERVICES ADMINISTRATION.
 Section 3 (29 U.S.C. 702) is amended—
 (1) in subsection (a)—
 (A) in the first sentence, by inserting ‘‘in the Depart-
@@ -13287,7 +13287,7 @@ chapter 2 of title VII.’’; and
 and
 (2) in subsection (b), by inserting ‘‘of Education’’ after ‘‘Sec-
 retary’’.
-SEC. 404. DEFINITIONS.
+### SEC. 404. DEFINITIONS.
 Section 7 (29 U.S.C. 705) is amended—
 (1) in paragraph (2)(B)—
 (A) in clause (iii), by striking ‘‘and’’ at the end;
@@ -13573,7 +13573,7 @@ means an individual with a disability who—
 ‘‘(B) Y
 OUTH WITH DISABILITIES .—The term ‘youth with
 disabilities’ means more than 1 youth with a disability.’’.
-SEC. 405. ADMINISTRATION OF THE ACT.
+### SEC. 405. ADMINISTRATION OF THE ACT.
 (a) P ROMULGATION.—Section 8(a)(2) (29 U.S.C. 706(a)(2)) is
 amended by inserting ‘‘of Education’’ after ‘‘Secretary’’.
 (b) PRIVACY.—Section 11 (29 U.S.C. 708) is amended—
@@ -13652,7 +13652,7 @@ has authority to carry out; and
 through (d), a reference in those subsections to ‘this Act’ means
 a provision of this Act that the Secretary of Health and Human
 Services has authority to carry out.’’.
-SEC. 406. REPORTS.
+### SEC. 406. REPORTS.
 Section 13 (29 U.S.C. 710) is amended—
 (1) in section (c)—
 (A) by striking ‘‘(c)’’ and inserting ‘‘(c)(1)’’; and
@@ -13666,7 +13666,7 @@ in this section is made publicly available in a timely manner,
 including through electronic means, in order to inform the public
 about the administration and performance of programs under this
 Act.’’.
-SEC. 407. EVALUATION AND INFORMATION.
+### SEC. 407. EVALUATION AND INFORMATION.
 (a) E VALUATION.—Section 14 (29 U.S.C. 711) is amended—
 (1) by inserting ‘‘of Education’’ after ‘‘Secretary’’ each place
 it appears;
@@ -13712,10 +13712,10 @@ investment boards’’ and inserting ‘‘State workforce develop-
 ment boards’’; and
 (2) in subsection (b), by striking ‘‘Secretary’’ and inserting
 ‘‘Secretary of Education’’.
-SEC. 408. CARRYOVER.
+### SEC. 408. CARRYOVER.
 Section 19(a)(1) (29 U.S.C. 716(a)(1)) is amended by striking
 ‘‘part B of title VI’’ and inserting ‘‘title VI’’.
-SEC. 409. TRADITIONALLY UNDERSERVED POPULATIONS.
+### SEC. 409. TRADITIONALLY UNDERSERVED POPULATIONS.
 Section 21 (29 U.S.C. 718) is amended—
 (1) in subsection (a)—
 (A) in paragraph (1)—
@@ -13759,7 +13759,7 @@ Research’’; and
 Living, and Rehabilitation Research’’.
 Subtitle B—Vocational Rehabilitation
 Services
-SEC. 411. DECLARATION OF POLICY; AUTHORIZATION OF APPROPRIA-
+### SEC. 411. DECLARATION OF POLICY; AUTHORIZATION OF APPROPRIA-
 TIONS.
 (a) F INDINGS; P URPOSE; P OLICY.—Section 100(a) (29 U.S.C.
 720(a)) is amended—
@@ -13795,7 +13795,7 @@ VerDate Mar 15 2010 15:00 Aug 07, 2014 Jkt 039139 PO 00128 Frm 00216 Fmt 6580 Sf
 128 STAT. 1641 PUBLIC LAW 113–128—JULY 22, 2014
 necessary for fiscal years 1999 through 2003’’ and inserting
 ‘‘$3,302,053,000 for each of the fiscal years 2015 through 2020’’.
-SEC. 412. STATE PLANS.
+### SEC. 412. STATE PLANS.
 (a) P LAN REQUIREMENTS.—Section 101(a) (29 U.S.C. 721(a))
 is amended—
 (1) in paragraph (1)—
@@ -14286,7 +14286,7 @@ or any other agency to provide or pay for any transition services
 that are also considered special education or related services and
 that are necessary for ensuring a free appropriate public education
 to children with disabilities within the State involved.’’.
-SEC. 413. ELIGIBILITY AND INDIVIDUALIZED PLAN FOR EMPLOYMENT.
+### SEC. 413. ELIGIBILITY AND INDIVIDUALIZED PLAN FOR EMPLOYMENT.
 (a) ELIGIBILITY.—Section 102(a) (29 U.S.C. 722(a)) is amended—
 (1) in paragraph (1)—
 (A) in subparagraph (A), by striking ‘‘is an’’ and
@@ -14490,7 +14490,7 @@ the applicant’s or eligible individual’s vocational rehabilita-
 tion services under this title.’’; and
 (B) in subparagraph (B), by striking ‘‘in laws’’ and
 inserting ‘‘about Federal laws’’.
-SEC. 414. VOCATIONAL REHABILITATION SERVICES.
+### SEC. 414. VOCATIONAL REHABILITATION SERVICES.
 Section 103 (29 U.S.C. 723) is amended—
 (1) in subsection (a)—
 (A) in paragraph (13), by striking ‘‘workforce invest-
@@ -14578,7 +14578,7 @@ ignated State unit from providing similar support to individuals
 with disabilities within the State who are eligible to receive
 support under this title and who are not served under this
 paragraph.’’.
-SEC. 415. STATE REHABILITATION COUNCIL.
+### SEC. 415. STATE REHABILITATION COUNCIL.
 Section 105 (29 U.S.C. 725) is amended—
 (1) in subsection (b)(1)(A)—
 (A) by striking clause (ix) and inserting the following:
@@ -14598,7 +14598,7 @@ all that follows and inserting ‘‘Service Act (42 U.S.C. 300x–
 3(a)) and the State workforce development board, and with
 the activities of entities carrying out programs under the
 Assistive Technology Act of 1998 (29 U.S.C. 3001 et seq.);’’.
-SEC. 416. EVALUATION STANDARDS AND PERFORMANCE INDICATORS.
+### SEC. 416. EVALUATION STANDARDS AND PERFORMANCE INDICATORS.
 Section 106 (29 U.S.C. 726) is amended—
 (1) by striking subsection (a) and inserting the following:
 ‘‘(a) IN GENERAL.—
@@ -14619,7 +14619,7 @@ inserting ‘‘on a biannual basis, review the program improve-
 ment efforts of the State and, if the State has not improved
 its performance to acceptable levels, as determined by the
 Commissioner, direct the State’’.
-SEC. 417. MONITORING AND REVIEW.
+### SEC. 417. MONITORING AND REVIEW.
 (a) I N GENERAL.—Section 107 (29 U.S.C. 727) is amended—
 (1) in subsection (a)—
 (A) in paragraph (3)(E), by inserting before the period
@@ -14671,7 +14671,7 @@ to postsecondary life.’’.
 ECHNICAL AMENDMENT.—Section 108(a) (29 U.S.C. 728(a))
 is amended by striking ‘‘part B of title VI’’ and inserting ‘‘title
 VI’’.
-SEC. 418. TRAINING AND SERVICES FOR EMPLOYERS.
+### SEC. 418. TRAINING AND SERVICES FOR EMPLOYERS.
 Section 109 (29 U.S.C. 728a) is amended to read as follows:
 ‘‘SEC. 109. TRAINING AND SERVICES FOR EMPLOYERS.
 ‘‘A State may expend payments received under section 111
@@ -14707,7 +14707,7 @@ or who are applicants for such services; and
 ‘‘(4) assisting employers with utilizing available financial
 support for hiring or accommodating individuals with disabil-
 ities.’’.
-SEC. 419. STATE ALLOTMENTS.
+### SEC. 419. STATE ALLOTMENTS.
 Section 110 (29 U.S.C. 730) is amended—
 (1) in subsection (a)(1), by striking ‘‘Subject to the provi-
 sions of subsection (c)’’ and inserting ‘‘Subject to the provisions
@@ -14728,7 +14728,7 @@ services.
 ‘‘(2) Such reserved funds shall not be used to pay for the
 administrative costs of providing pre-employment transition serv-
 ices.’’.
-SEC. 420. PAYMENTS TO STATES.
+### SEC. 420. PAYMENTS TO STATES.
 Section 111(a)(2)(B) (29 U.S.C. 731(a)(2)(B)) is amended—
 (1) by striking ‘‘For fiscal year 1994 and each fiscal year
 thereafter, the’’ and inserting ‘‘The’’;
@@ -14736,7 +14736,7 @@ thereafter, the’’ and inserting ‘‘The’’;
 ‘‘this title for any previous’’; and
 (3) by striking ‘‘year preceding the previous’’ and inserting
 ‘‘year preceding that previous’’.
-SEC. 421. CLIENT ASSISTANCE PROGRAM.
+### SEC. 421. CLIENT ASSISTANCE PROGRAM.
 Section 112 (29 U.S.C. 732) is amended—
 (1) in subsection (a), in the first sentence, by inserting
 ‘‘including under sections 113 and 511,’’ after ‘‘all available
@@ -14781,7 +14781,7 @@ provisions of this section—
 ‘‘(4) $13,488,000 for fiscal year 2018;
 ‘‘(5) $13,805,000 for fiscal year 2019; and
 ‘‘(6) $14,098,000 for fiscal year 2020.’’.
-SEC. 422. PRE-EMPLOYMENT TRANSITION SERVICES.
+### SEC. 422. PRE-EMPLOYMENT TRANSITION SERVICES.
 Part B of title I (29 U.S.C. 730 et seq.) is further amended
 by adding at the end the following:
 ‘‘SEC. 113. PROVISION OF PRE-EMPLOYMENT TRANSITION SERVICES.
@@ -14882,7 +14882,7 @@ UPPORT.—In carrying out this section, States shall address
 the transition needs of all students with disabilities, including
 such students with physical, sensory, intellectual, and mental
 health disabilities.’’.
-SEC. 423. AMERICAN INDIAN VOCATIONAL REHABILITATION SERVICES.
+### SEC. 423. AMERICAN INDIAN VOCATIONAL REHABILITATION SERVICES.
 Section 121 (29 U.S.C. 741) is amended—
 (1) in subsection (a), in the first sentence, by inserting
 before the period the following: ‘‘(referred to in this section
@@ -14941,13 +14941,13 @@ for peer review of applications by panels that include persons who
 are not government employees and who have experience in the
 operation of vocational rehabilitation services programs under this
 section.’’.
-SEC. 424. VOCATIONAL REHABILITATION SERVICES CLIENT INFORMA-
+### SEC. 424. VOCATIONAL REHABILITATION SERVICES CLIENT INFORMA-
 TION.
 Section 131(a)(2) (29 U.S.C. 751(a)(2)) is amended by striking
 ‘‘title I of the Workforce Investment Act of 1998’’ and inserting
 ‘‘title I of the Workforce Innovation and Opportunity Act’’.
 Subtitle C—Research and Training
-SEC. 431. PURPOSE.
+### SEC. 431. PURPOSE.
 Section 200 (29 U.S.C. 760) is amended—
 (1) in paragraph (1), by inserting ‘‘technical assistance,’’
 after ‘‘training,’’;
@@ -14976,7 +14976,7 @@ by striking the period and inserting ‘‘; and’’; and
 ‘‘(8) identify effective strategies for supporting the employ-
 ment of individuals with disabilities in competitive integrated
 employment.’’.
-SEC. 432. AUTHORIZATION OF APPROPRIATIONS.
+### SEC. 432. AUTHORIZATION OF APPROPRIATIONS.
 Section 201 (29 U.S.C. 761) is amended to read as follows:
 ‘‘SEC. 201. AUTHORIZATION OF APPROPRIATIONS.
 ‘‘There are authorized to be appropriated to carry out this
@@ -14987,7 +14987,7 @@ for fiscal year 2020.’’.
 Peer review.
 VerDate Mar 15 2010 15:00 Aug 07, 2014 Jkt 039139 PO 00128 Frm 00236 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL128.113 PUBL128dkrause on DSKHT7XVN1PROD with PUBLAWS
 128 STAT. 1661 PUBLIC LAW 113–128—JULY 22, 2014
-SEC. 433. NATIONAL INSTITUTE ON DISABILITY, INDEPENDENT LIVING,
+### SEC. 433. NATIONAL INSTITUTE ON DISABILITY, INDEPENDENT LIVING,
 AND REHABILITATION RESEARCH.
 Section 202 (29 U.S.C. 762) is amended—
 (1) in the section heading, by inserting ‘‘, INDEPENDENT
@@ -15179,7 +15179,7 @@ and enforcement measures.
 ‘‘(2) As part of the annual report required under subsection
 (l), the Secretary shall describe each action taken by the Secretary
 under paragraph (1) and the outcomes of such action.’’.
-SEC. 434. INTERAGENCY COMMITTEE.
+### SEC. 434. INTERAGENCY COMMITTEE.
 Section 203 (29 U.S.C. 763) is amended—
 (1) in subsection (a)—
 (A) in paragraph (1)—
@@ -15290,7 +15290,7 @@ attaining maximum self-sufficiency and function by individuals
 with disabilities, including research on assistive technology and
 universal design, employment, education, health and wellness,
 and community integration and participation.’’.
-SEC. 435. RESEARCH AND OTHER COVERED ACTIVITIES.
+### SEC. 435. RESEARCH AND OTHER COVERED ACTIVITIES.
 Section 204 (29 U.S.C. 764) is amended—
 (1) in subsection (a)—
 (A) in paragraph (1)—
@@ -15599,7 +15599,7 @@ out a covered activity under this section, the application shall
 also include a dissemination plan, containing strategies for dissemi-
 nating educational materials, research results, or findings, conclu-
 sions, and recommendations, resulting from the covered activity.’’.
-SEC. 436. DISABILITY, INDEPENDENT LIVING, AND REHABILITATION
+### SEC. 436. DISABILITY, INDEPENDENT LIVING, AND REHABILITATION
 RESEARCH ADVISORY COUNCIL.
 Section 205 (29 U.S.C. 765) is amended—
 (1) in the section heading, by inserting ‘‘DISABILITY, INDE-
@@ -15628,7 +15628,7 @@ representatives. At least one-half of the members shall be individ-
 uals with disabilities or the individuals’ representatives.’’; and
 (4) in subsection (g), by striking ‘‘Department of Education’’
 and inserting ‘‘Department of Health and Human Services’’.
-SEC. 437. DEFINITION OF COVERED SCHOOL.
+### SEC. 437. DEFINITION OF COVERED SCHOOL.
 Title II (29 U.S.C. 760 et seq.) is amended by adding at the
 end the following:
 ‘‘SEC. 206. DEFINITION OF COVERED SCHOOL.
@@ -15641,7 +15641,7 @@ VerDate Mar 15 2010 15:00 Aug 07, 2014 Jkt 039139 PO 00128 Frm 00247 Fmt 6580 Sf
 128 STAT. 1672 PUBLIC LAW 113–128—JULY 22, 2014
 Subtitle D—Professional Development and
 Special Projects and Demonstration
-SEC. 441. PURPOSE; TRAINING.
+### SEC. 441. PURPOSE; TRAINING.
 (a) P URPOSE.—Section 301(a) (29 U.S.C. 771(a)) is amended—
 (1) in paragraph (2), by inserting ‘‘and’’ after the semicolon;
 (2) by striking paragraphs (3) and (4);
@@ -15704,7 +15704,7 @@ and inserting ‘‘$33,657,000 for fiscal year 2015, $36,257,000
 for fiscal year 2016, $37,009,000 for fiscal year 2017,
 $37,830,000 for fiscal year 2018, $38,719,000 for fiscal year
 2019, and $39,540,000 for fiscal year 2020.’’.
-SEC. 442. DEMONSTRATION, TRAINING, AND TECHNICAL ASSISTANCE
+### SEC. 442. DEMONSTRATION, TRAINING, AND TECHNICAL ASSISTANCE
 PROGRAMS.
 Section 303 (29 U.S.C. 773) is amended—
 (1) in subsection (b)—
@@ -15770,14 +15770,14 @@ carrying out this section there are authorized to be appropriated
 $5,796,000 for fiscal year 2015, $6,244,000 for fiscal year 2016,
 $6,373,000 for fiscal year 2017, $6,515,000 for fiscal year 2018,
 $6,668,000 for fiscal year 2019, and $6,809,000 for fiscal year 2020.’’.
-SEC. 443. MIGRANT AND SEASONAL FARMWORKERS; RECREATIONAL
+### SEC. 443. MIGRANT AND SEASONAL FARMWORKERS; RECREATIONAL
 PROGRAMS.
 The Rehabilitation Act of 1973 (29 U.S.C. 701 et seq.) is
 amended—
 (1) by striking sections 304 and 305;
 (2) by redesignating section 306 as section 304.
 Subtitle E—National Council on Disability
-SEC. 451. ESTABLISHMENT.
+### SEC. 451. ESTABLISHMENT.
 Section 400 (29 U.S.C. 780) is amended—
 (1) in subsection (a)(1)—
 (A) by redesignating subparagraph (C) as subpara-
@@ -15836,14 +15836,14 @@ ities’’;
 follows and inserting a period; and
 (3) in subsection (d), by striking ‘‘Eight’’ and inserting
 ‘‘Five’’.
-SEC. 452. REPORT.
+### SEC. 452. REPORT.
 Section 401 (29 U.S.C. 781) is amended—
 (1) in paragraphs (1) and (3) of subsection (a), by striking
 ‘‘National Institute on Disability and Rehabilitation Research’’
 and inserting ‘‘National Institute on Disability, Independent
 Living, and Rehabilitation Research’’; and
 (2) by striking subsection (c).
-SEC. 453. AUTHORIZATION OF APPROPRIATIONS.
+### SEC. 453. AUTHORIZATION OF APPROPRIATIONS.
 Section 405 (29 U.S.C. 785) is amended by striking ‘‘such sums
 as may be necessary for each of the fiscal years 1999 through
 2003.’’ and inserting ‘‘$3,186,000 for fiscal year 2015, $3,432,000
@@ -15851,7 +15851,7 @@ for fiscal year 2016, $3,503,000 for fiscal year 2017, $3,581,000
 for fiscal year 2018, $3,665,000 for fiscal year 2019, and $3,743,000
 for fiscal year 2020.’’.
 Subtitle F—Rights and Advocacy
-SEC. 456. INTERAGENCY COMMITTEE, BOARD, AND COUNCIL.
+### SEC. 456. INTERAGENCY COMMITTEE, BOARD, AND COUNCIL.
 (a) I NTERAGENCY COMMITTEE.—Section 501 (29 U.S.C. 791) is
 amended—
 (1) by striking subsection (f); and
@@ -15872,7 +15872,7 @@ inserting ‘‘career and technical education’’. VerDate Mar 15 2010 15:00 
 (d) INTERAGENCY DISABILITY COORDINATING COUNCIL.—Section
 507(a) (29 U.S.C. 794c(a)) is amended by inserting ‘‘the Chairperson
 of the National Council on Disability,’’ before ‘‘and such other’’.
-SEC. 457. PROTECTION AND ADVOCACY OF INDIVIDUAL RIGHTS.
+### SEC. 457. PROTECTION AND ADVOCACY OF INDIVIDUAL RIGHTS.
 Section 509 (29 U.S.C. 794e) is amended—
 (1) in subsection (c)(1)(A), by inserting ‘‘a grant, contract,
 or cooperative agreement for’’ before ‘‘training’’;
@@ -15887,7 +15887,7 @@ and inserting ‘‘$17,650,000 for fiscal year 2015, $19,013,000
 for fiscal year 2016, $19,408,000 for fiscal year 2017,
 $19,838,000 for fiscal year 2018, $20,305,000 for fiscal year
 2019, and $20,735,000 for fiscal year 2020.’’.
-SEC. 458. LIMITATIONS ON USE OF SUBMINIMUM WAGE.
+### SEC. 458. LIMITATIONS ON USE OF SUBMINIMUM WAGE.
 (a) I N GENERAL.—Title V (29 U.S.C. 791 et seq.) is amended
 by adding at the end the following:
 ‘‘SEC. 511. LIMITATIONS ON USE OF SUBMINIMUM WAGE.
@@ -16092,7 +16092,7 @@ the date of enactment of the Workforce Innovation and Opportunity
 Act.
 Subtitle G—Employment Opportunities for
 Individuals With Disabilities
-SEC. 461. EMPLOYMENT OPPORTUNITIES FOR INDIVIDUALS WITH
+### SEC. 461. EMPLOYMENT OPPORTUNITIES FOR INDIVIDUALS WITH
 DISABILITIES.
 Title VI (29 U.S.C. 795 et seq.) is amended—
 (1) by striking part A;
@@ -16453,14 +16453,14 @@ and Centers for Independent Living
 CHAPTER 1—INDIVIDUALS WITH SIGNIFICANT
 DISABILITIES
 Subchapter A—General Provisions
-SEC. 471. PURPOSE.
+### SEC. 471. PURPOSE.
 Section 701 (29 U.S.C. 796) is amended, in paragraph (3)—
 (1) by striking ‘‘part B of title VI’’ and inserting ‘‘title
 VI’’; and
 (2) by inserting before the period the following: ‘‘, with
 the goal of improving the independence of individuals with
 disabilities’’.
-SEC. 472. ADMINISTRATION OF THE INDEPENDENT LIVING PROGRAM.
+### SEC. 472. ADMINISTRATION OF THE INDEPENDENT LIVING PROGRAM.
 Title VII (29 U.S.C. 796 et seq.) is amended by inserting after
 section 701 the following:
 ‘‘SEC. 701A. ADMINISTRATION OF THE INDEPENDENT LIVING PRO-
@@ -16482,7 +16482,7 @@ cient resources (including designating at least 1 individual from
 the Office of General Counsel who is knowledgeable about inde-
 pendent living services) to provide technical assistance and support
 to, and oversight of, the programs funded under this chapter.’’.
-SEC. 473. DEFINITIONS.
+### SEC. 473. DEFINITIONS.
 Section 702 (29 U.S.C. 796a) is amended—
 (1) in paragraph (1)—
 (A) in the matter before subparagraph (A), by inserting
@@ -16504,7 +16504,7 @@ VerDate Mar 15 2010 15:00 Aug 07, 2014 Jkt 039139 PO 00128 Frm 00261 Fmt 6580 Sf
 ‘‘(1) ADMINISTRATOR.—The term ‘Administrator’ means the
 Administrator of the Administration for Community Living of
 the Department of Health and Human Services.’’.
-SEC. 474. STATE PLAN.
+### SEC. 474. STATE PLAN.
 Section 704 (29 U.S.C. 796c) is amended—
 (1) in subsection (a)—
 (A) in paragraph (1)—
@@ -16593,7 +16593,7 @@ ROMOTING FULL ACCESS TO COMMUNITY LIFE.—The plan
 shall describe how the State will provide independent living services
 described in section 7(18) that promote full access to community
 life for individuals with significant disabilities.’’.
-SEC. 475. STATEWIDE INDEPENDENT LIVING COUNCIL.
+### SEC. 475. STATEWIDE INDEPENDENT LIVING COUNCIL.
 Section 705 (29 U.S.C. 796d) is amended—
 (1) in subsection (a), by inserting ‘‘and maintain’’ after
 ‘‘shall establish’’;
@@ -16757,7 +16757,7 @@ able in a timely manner, including through electronic means,
 in order to inform the public about the administration and
 performance of programs under this Act.’’.
 Subchapter B—Independent Living Services
-SEC. 476. ADMINISTRATION.
+### SEC. 476. ADMINISTRATION.
 (a) A LLOTMENTS.—Section 711 (29 U.S.C. 796e) is amended—
 (1) in subsection (a)—
 (A) in paragraph (1)(A)—
@@ -16843,7 +16843,7 @@ $25,156,000 for fiscal year 2017, $25,714,000 for fiscal year 2018,
 $26,319,000 for fiscal year 2019, and $26,877,000 for fiscal year
 2020.’’.
 Subchapter C—Centers for Independent Living
-SEC. 481. PROGRAM AUTHORIZATION.
+### SEC. 481. PROGRAM AUTHORIZATION.
 Section 721 (29 U.S.C. 796f) is amended—
 (1) in subsection (a)—
 (A) by striking ‘‘1999’’ and inserting ‘‘2015’’;
@@ -16889,7 +16889,7 @@ inserting ‘‘cooperative agreement’’;
 it appears and inserting ‘‘Administrator’’; and
 (5) in subsection (d), by striking ‘‘Commissioner’’ each place
 it appears and inserting ‘‘Administrator’’.
-SEC. 482. CENTERS.
+### SEC. 482. CENTERS.
 (a) C ENTERS IN STATES IN WHICH FEDERAL FUNDING EXCEEDS
 STATE FUNDING.—Section 722 (29 U.S.C. 796f–1) is amended—
 (1) in subsections (a), (b), and (c), by striking ‘‘Commis-
@@ -16955,7 +16955,7 @@ tunity Act’’; and
 (C) by striking ‘‘1994’’ and inserting ‘‘2015’’; and
 (2) by striking ‘‘Commissioner’’ each place it appears and
 inserting ‘‘Administrator’’.
-SEC. 483. STANDARDS AND ASSURANCES.
+### SEC. 483. STANDARDS AND ASSURANCES.
 Section 725 (29 U.S.C. 796f–4) is amended—
 (1) in subsection (b)(1)(D)—
 (A) by striking ‘‘access of’’ and inserting ‘‘access for’’;
@@ -16964,7 +16964,7 @@ and
 their communities,’’; and
 (2) in subsection (c), by striking ‘‘Commissioner’’ each place
 it appears and inserting ‘‘Administrator’’.
-SEC. 484. AUTHORIZATION OF APPROPRIATIONS.
+### SEC. 484. AUTHORIZATION OF APPROPRIATIONS.
 Section 727 (29 U.S.C. 796f–6) is amended by striking ‘‘such
 sums as may be necessary for each of the fiscal years 1999 through
 2003.’’ and inserting ‘‘$78,305,000 for fiscal year 2015, $84,353,000
@@ -16973,7 +16973,7 @@ for fiscal year 2018, $90,083,000 for fiscal year 2019, and
 $91,992,000 for fiscal year 2020.’’.
 CHAPTER 2—INDEPENDENT LIVING SERVICES FOR
 OLDER INDIVIDUALS WHO ARE BLIND
-SEC. 486. INDEPENDENT LIVING SERVICES FOR OLDER INDIVIDUALS
+### SEC. 486. INDEPENDENT LIVING SERVICES FOR OLDER INDIVIDUALS
 WHO ARE BLIND.
 Chapter 2 of title VII (29 U.S.C. 796j et seq.) is amended
 by inserting after section 751 the following:
@@ -17006,7 +17006,7 @@ sioner may require. The Commissioner shall provide for peer review
 of applications by panels that include persons who are not govern-
 ment employees and who have experience in the provision of serv-
 ices to older individuals who are blind.’’.
-SEC. 487. PROGRAM OF GRANTS.
+### SEC. 487. PROGRAM OF GRANTS.
 Section 752 (29 U.S.C. 796k) is amended—
 (1) by striking subsection (h);
 (2) by redesignating subsections (i) and (j) as subsections
@@ -17034,7 +17034,7 @@ reserved under section 751A,’’ after ‘‘section 753’’;
 under section 751A,’’ after ‘‘section 753’’; and
 (C) in paragraph (4)(B)(i), by striking ‘‘subsection (i)’’
 and inserting ‘‘subsection (h)’’.
-SEC. 488. INDEPENDENT LIVING SERVICES FOR OLDER INDIVIDUALS
+### SEC. 488. INDEPENDENT LIVING SERVICES FOR OLDER INDIVIDUALS
 WHO ARE BLIND AUTHORIZATION OF APPROPRIATIONS.
 Section 753 (29 U.S.C. 796l) is amended by striking ‘‘such
 sums as may be necessary for each of the fiscal years 1999 through
@@ -17047,7 +17047,7 @@ Survey.
 VerDate Mar 15 2010 15:00 Aug 07, 2014 Jkt 039139 PO 00128 Frm 00270 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL128.113 PUBL128dkrause on DSKHT7XVN1PROD with PUBLAWS
 128 STAT. 1695 PUBLIC LAW 113–128—JULY 22, 2014
 Subtitle I—General Provisions
-SEC. 491. TRANSFER OF FUNCTIONS REGARDING INDEPENDENT
+### SEC. 491. TRANSFER OF FUNCTIONS REGARDING INDEPENDENT
 LIVING TO DEPARTMENT OF HEALTH AND HUMAN SERV-
 ICES, AND SAVINGS PROVISIONS.
 (a) DEFINITIONS.—For purposes of this section, unless otherwise
@@ -17324,7 +17324,7 @@ Administrator of the Administration for Community
 Living’’; and
 (B) in subsection (c)(5), by striking ‘‘Education’’ and
 inserting ‘‘Health and Human Services’’.
-SEC. 492. TABLE OF CONTENTS.
+### SEC. 492. TABLE OF CONTENTS.
 The table of contents in section 1(b) is amended—
 (1) by striking the item relating to section 109 and inserting
 the following:
@@ -17382,7 +17382,7 @@ the following:
 ‘‘Sec. 751A. Training and technical assistance.’’.
 TITLE V—GENERAL PROVISIONS
 Subtitle A—Workforce Investment
-SEC. 501. PRIVACY.
+### SEC. 501. PRIVACY.
 (a) S ECTION 444 OF THE GENERAL EDUCATION PROVISIONS
 ACT.—Nothing in this Act (including the amendments made by
 this Act) shall be construed to supersede the privacy protections
@@ -17402,7 +17402,7 @@ grams under subtitles C and D of title I, or the amendments
 made by title IV (as the case may be), or to carry out program
 management activities consistent with title I or the amend-
 ments made by title IV (as the case may be).
-SEC. 502. BUY-AMERICAN REQUIREMENTS.
+### SEC. 502. BUY-AMERICAN REQUIREMENTS.
 (a) COMPLIANCE WITH BUY AMERICAN ACT.—None of the funds
 made available under title I or II or under the Wagner-Peyser
 Act (29 U.S.C. 49 et seq.) may be expended by an entity unless
@@ -17444,7 +17444,7 @@ to the debarment, suspension, and ineligibility procedures described
 in sections 9.400 through 9.409 of title 48, Code of Federal Regula-
 tions, as such sections were in effect on August 7, 1998, or pursuant
 to any successor regulations.
-SEC. 503. TRANSITION PROVISIONS.
+### SEC. 503. TRANSITION PROVISIONS.
 (a) W ORKFORCE DEVELOPMENT SYSTEMS AND INVESTMENT
 ACTIVITIES.—The Secretary of Labor and the Secretary of Education
 shall take such actions as the Secretaries determine to be appro-
@@ -17520,14 +17520,14 @@ paragraph (1) and not less than 50 percent of any amount
 used to carry out activities authorized under paragraph (1)
 shall be made available to local entities for the purposes of
 the activities described in such paragraph.
-SEC. 504. REDUCTION OF REPORTING BURDENS AND REQUIREMENTS.
+### SEC. 504. REDUCTION OF REPORTING BURDENS AND REQUIREMENTS.
 In order to simplify reporting requirements and reduce
 reporting burdens, the Secretary of Labor, the Secretary of Edu-
 cation, and the Secretary of Health and Human Services shall
 establish procedures and criteria under which a State board and
 local board may reduce reporting burdens and requirements under
 this Act (including the amendments made by this Act).
-SEC. 505. REPORT ON DATA CAPABILITY OF FEDERAL AND STATE
+### SEC. 505. REPORT ON DATA CAPABILITY OF FEDERAL AND STATE
 DATABASES AND DATA EXCHANGE AGREEMENTS.
 (a) IN GENERAL.—The Comptroller General of the United States
 shall prepare and submit an interim report and a final report
@@ -17601,7 +17601,7 @@ INAL REPORT .—Not later than 18 months after the
 date of enactment of this Act, the Comptroller General shall
 prepare and submit to Congress the final report required under
 this section.
-SEC. 506. EFFECTIVE DATES.
+### SEC. 506. EFFECTIVE DATES.
 (a) I N GENERAL.—Except as otherwise provided in this Act,
 this Act, including the amendments made by this Act, shall take
 29 USC 3101
@@ -17694,14 +17694,14 @@ ISABILITY PROVISIONS.—Except as otherwise provided in
 title IV of this Act, title IV, and the amendments made by title
 IV, shall take effect on the date of enactment of this Act.
 Subtitle B—Amendments to Other Laws
-SEC. 511. REPEAL OF THE WORKFORCE INVESTMENT ACT OF 1998.
+### SEC. 511. REPEAL OF THE WORKFORCE INVESTMENT ACT OF 1998.
 (a) W ORKFORCE INVESTMENT ACT OF 1998.—The Workforce
 Investment Act of 1998 (29 U.S.C. 2801 et seq.) is repealed.
 (b) G RANTS TO STATES FOR WORKPLACE AND COMMUNITY
 TRANSITION TRAINING FOR INCARCERATED INDIVIDUALS.—Section
 821 of the Higher Education Amendments of 1998 (20 U.S.C. 1151)
 is repealed.
-SEC. 512. CONFORMING AMENDMENTS.
+### SEC. 512. CONFORMING AMENDMENTS.
 (a) AMERICAN COMPETITIVENESS AND WORKFORCE IMPROVEMENT
 ACT OF 1998.—Section 414(c)(3)(C) of the American Competitiveness
 and Workforce Improvement Act of 1998 (29 U.S.C. 2916a(3)(C))
@@ -18725,7 +18725,7 @@ activities under section 134(a)(2)(A) of the Workforce Investment
 Act of 1998,’’ and inserting ‘‘the State or entity designated by
 the State to carry out rapid response activities under section
 134(a)(2)(A) of the Workforce Innovation and Opportunity Act,’’.
-SEC. 513. REFERENCES.
+### SEC. 513. REFERENCES.
 (a) W ORKFORCE INVESTMENT ACT OF 1998 R EFERENCES.—
 Except as otherwise specified, a reference in a Federal law to
 a provision of the Workforce Investment Act of 1998 (29 U.S.C.

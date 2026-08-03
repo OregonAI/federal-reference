@@ -20,6 +20,14 @@ Oregon's own audits pointing at nothing, and quietly resolving them to current t
 answer a compliance question with law that was not in force. Both are classified here from
 eCFR's own version record -- `removed: true` plus an amendment date -- and carried into the
 corpus as superseded documents holding their last-in-force text.
+
+STANDING TRIGGER FOR THE OTHER BIG INSTRUMENTS (recorded 2026-08-03): WIOA,
+Perkins V, CJIS and Pub 1075 were measured at ZERO section-shaped citations,
+so they got `### ` anchors (src/anchor_sections.py) instead of section
+documents. The day a scan like this one finds section-shaped citations to any
+of them in the citing corpora, that instrument graduates to the demand-driven
+split exactly as cited-sections.yml did for 2 CFR 200 — same pipeline, same
+review gate. Anchors first, documents when demanded.
 """
 from __future__ import annotations
 
