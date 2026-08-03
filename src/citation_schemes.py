@@ -296,6 +296,65 @@ def _cjis(m, nodes=None):
 register_scheme("cjis-policy", CJIS_RE, resolver=_cjis)
 
 
+# --------------------------------------------------------------------------- Act names
+#
+# Bare act names are how Oregon actually cites the big statutes — measured 2026-08-03:
+# ~100 `WIOA` mentions, 23 `Perkins V`, ZERO section-shaped forms in either citing
+# corpus, and until this scheme existed the bare names resolved to NOTHING ("no
+# citation scheme recognized this format"). The resolution is the whole document plus
+# a note that teaches the caller the navigation the anchors now support; `Title N`
+# qualifiers (11 real occurrences for WIOA) narrow the note to that title's section
+# range, derived from the document's own ### anchors — never hand-maintained.
+
+_ACTS = {
+    "pl-113-128": r"WIOA|Workforce\s+Innovation\s+and\s+Opportunity\s+Act",
+    "pl-115-224": (r"Perkins\s+V|Carl\s+D\.?\s+Perkins\s+Career\s+and\s+Technical\s+"
+                   r"Education\s+Act"),
+}
+_ROMAN = {1: "I", 2: "II", 3: "III", 4: "IV", 5: "V", 6: "VI", 7: "VII"}
+
+
+def _act_sections(doc_id: str) -> list[int]:
+    path = INSTRUMENTS / f"{doc_id}.md"
+    if not path.is_file():
+        return []
+    return [int(m.group(1)) for m in
+            re.finditer(r"^### SEC\. (\d+)\.", path.read_text(encoding="utf-8"), re.M)]
+
+
+def _act(m, nodes=None):
+    for doc_id, pat in _ACTS.items():
+        if re.fullmatch(pat, m.group("act"), re.I):
+            break
+    else:
+        return []
+    secs = _act_sections(doc_id)
+    title_num = m.group("title")
+    if title_num:
+        n = {v: k for k, v in _ROMAN.items()}.get(title_num.upper())
+        in_title = sorted(s for s in secs if n and s // 100 == n)
+        if in_title:
+            note = (f"Title {title_num.upper()} spans SEC. {in_title[0]}–"
+                    f"{in_title[-1]} ({len(in_title)} sections). The document is "
+                    f"large — pass part='SEC. {in_title[0]}.' (or any section "
+                    f"heading) to get_document rather than fetching the whole body.")
+        else:
+            note = (f"no sections numbered for Title {title_num.upper()} were found "
+                    f"among the document's anchors — the title may use non-standard "
+                    f"numbering; the document itself is returned.")
+        return [doc_id], note
+    if secs:
+        return [doc_id], (f"the act's {len(secs)} sections are individually "
+                          f"servable: get_document lists them under `subsections`, "
+                          f"and part='SEC. NNN.' returns one section alone.")
+    return [doc_id]
+
+
+ACT_RE = (r"(?:the\s+)?(?P<act>" + "|".join(_ACTS.values()) + r")"
+          r"(?:\s*,?\s*Title\s+(?P<title>[IVXivx]+))?")
+register_scheme("federal-act-name", ACT_RE, resolver=_act)
+
+
 # --------------------------------------------------------------------------- U.S. Code
 # `42 U.S.C. 1396`, `29 USC § 3101`.
 #

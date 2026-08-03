@@ -8,7 +8,7 @@ the United States of America in Congress assembled,
 SECTION 1. SHORT TITLE.
 This Act may be cited as the ‘‘Strengthening Career and Tech-
 nical Education for the 21st Century Act’’.
-SEC. 2. TABLE OF CONTENTS.
+### SEC. 2. TABLE OF CONTENTS.
 The table of contents for this Act is as follows:
 Sec. 1. Short title.
 Sec. 2. Table of contents.
@@ -62,17 +62,17 @@ VerDate Sep 11 2014 12:55 Aug 27, 2019 Jkt 089139 PO 00224 Frm 00001 Fmt 6580 Sf
 132 STAT. 1564 PUBLIC LAW 115–224—JULY 31, 2018
 Sec. 302. Amendments to the Elementary and Secondary Education Act of 1965.
 Sec. 303. Amendment to the Workforce Innovation and Opportunity Act.
-SEC. 3. REFERENCES.
+### SEC. 3. REFERENCES.
 Except as otherwise expressly provided, whenever in this Act
 an amendment or repeal is expressed in terms of an amendment
 to, or repeal of, a section or other provision, the reference shall
 be considered to be made to a section or other provision of the
 Carl D. Perkins Career and Technical Education Act of 2006 (20
 U.S.C. 2301 et seq.).
-SEC. 4. EFFECTIVE DATE.
+### SEC. 4. EFFECTIVE DATE.
 This Act, and the amendments made by this Act, shall take
 effect beginning on July 1, 2019.
-SEC. 5. TABLE OF CONTENTS OF THE CARL D. PERKINS CAREER AND
+### SEC. 5. TABLE OF CONTENTS OF THE CARL D. PERKINS CAREER AND
 TECHNICAL EDUCATION ACT OF 2006.
 Section 1(b) is amended to read as follows:
 ‘‘(b) TABLE OF CONTENTS.—The table of contents for this Act
@@ -132,7 +132,7 @@ VerDate Sep 11 2014 12:55 Aug 27, 2019 Jkt 089139 PO 00224 Frm 00002 Fmt 6580 Sf
 nesses.
 ‘‘Sec. 223. State administrative costs.
 ‘‘Sec. 224. Student assistance and other Federal programs.’’.
-SEC. 6. PURPOSE.
+### SEC. 6. PURPOSE.
 Section 2 (20 U.S.C. 2301) is amended—
 (1) in the matter preceding paragraph (1)—
 (A) by striking ‘‘academic and career and technical
@@ -156,7 +156,7 @@ including individuals with disabilities, individuals from
 economically disadvantaged families, out-of-workforce individ-
 uals, youth who are in, or have aged out of, the foster care
 system, and homeless individuals.’’.
-SEC. 7. DEFINITIONS.
+### SEC. 7. DEFINITIONS.
 Section 3 (20 U.S.C. 2302) is amended—
 (1) by striking paragraphs (10), (16), (23), (24), (25), (26),
 and (32);
@@ -697,7 +697,7 @@ practicable, or simulated environments at an educational
 institution that foster in-depth, firsthand engagement with the
 tasks required in a given career field, that are aligned to
 curriculum and instruction.’’.
-SEC. 8. TRANSITION PROVISIONS.
+### SEC. 8. TRANSITION PROVISIONS.
 Section 4 (20 U.S.C. 2303) is amended—
 (1) by striking ‘‘the Secretary determines to be appropriate’’
 and inserting ‘‘are necessary’’;
@@ -706,7 +706,7 @@ cation Improvement Act of 2006’’ each place it appears and
 inserting ‘‘Strengthening Career and Technical Education for
 the 21st Century Act’’; and
 (3) by striking ‘‘1998’’ and inserting ‘‘2006’’.
-SEC. 9. PROHIBITIONS.
+### SEC. 9. PROHIBITIONS.
 Section 8 (20 U.S.C. 2306a) is amended—
 (1) in subsection (a), by striking ‘‘Federal Government to
 mandate,’’ and all that follows through the period at the end
@@ -806,7 +806,7 @@ period in such notice and in the Federal Register; and
 ‘‘(C) conduct immediately thereafter regional meetings
 to review such proposed regulation before issuing any final
 regulation.’’.
-SEC. 10. AUTHORIZATION OF APPROPRIATIONS.
+### SEC. 10. AUTHORIZATION OF APPROPRIATIONS.
 Section 9 (20 U.S.C. 2307) is amended to read as follows:
 ‘‘SEC. 9. AUTHORIZATION OF APPROPRIATIONS.
 ‘‘There are authorized to be appropriated to carry out this
@@ -820,7 +820,7 @@ Act (other than sections 114 and 117)—
 TITLE I—CAREER AND TECHNICAL EDU-
 CATION ASSISTANCE TO THE STATES
 PART A—ALLOTMENT AND ALLOCATION
-SEC. 110. RESERVATIONS AND STATE ALLOTMENT.
+### SEC. 110. RESERVATIONS AND STATE ALLOTMENT.
 Section 111 (20 U.S.C. 2321) is amended to read as follows:
 ‘‘SEC. 111. RESERVATIONS AND STATE ALLOTMENT.
 ‘‘(a) RESERVATIONS AND STATE ALLOTMENT.—
@@ -977,7 +977,7 @@ EFINITION OF STATE.—For the purpose of this section,
 the term ‘State’ means each of the several States of the United
 States, the District of Columbia, the Commonwealth of Puerto Rico,
 and the United States Virgin Islands.’’.
-SEC. 111. WITHIN STATE ALLOCATION.
+### SEC. 111. WITHIN STATE ALLOCATION.
 Section 112 (20 U.S.C. 2322) is amended—
 (1) in subsection (a)—
 Time period.
@@ -1028,7 +1028,7 @@ individuals for nontraditional fields; or
 adoption of programs of study or career pathways aligned
 with State-identified high-skill, high-wage, or in-demand
 occupations or industries.’’.
-SEC. 112. ACCOUNTABILITY.
+### SEC. 112. ACCOUNTABILITY.
 Section 113 (20 U.S.C. 2323) is amended—
 (1) in subsection (b)—
 (A) in the subsection heading, by inserting ‘‘D ETER-
@@ -1555,7 +1555,7 @@ and uniform, and to the extent practicable, provided
 in a language that students, parents, and educators
 can understand.’’; and
 (2) by striking subsection (c).
-SEC. 113. NATIONAL ACTIVITIES.
+### SEC. 113. NATIONAL ACTIVITIES.
 Section 114 (20 U.S.C. 2324) is amended—
 (1) in subsection (a)(1)—
 (A) by striking ‘‘The Secretary shall’’ the first place
@@ -2145,14 +2145,14 @@ to be appropriated to carry out this section—
 ‘‘(4) $7,976,915 for fiscal year 2022;
 ‘‘(5) $8,088,592 for fiscal year 2023; and
 ‘‘(6) $8,201,832 for fiscal year 2024.’’.
-SEC. 114. ASSISTANCE FOR THE OUTLYING AREAS.
+### SEC. 114. ASSISTANCE FOR THE OUTLYING AREAS.
 Section 115 (20 U.S.C. 2325) is amended—
 (1) in subsection (a)(3), by striking ‘‘subject to subsection
 (d)’’ and inserting ‘‘subject to subsection (b)’’;
 (2) by striking subsections (b) and (c); and
 (3) by redesignating subsection (d) as subsection (b). VerDate Sep 11 2014 12:55 Aug 27, 2019 Jkt 089139 PO 00224 Frm 00035 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL224.115 PUBL224
 132 STAT. 1598 PUBLIC LAW 115–224—JULY 31, 2018
-SEC. 115. NATIVE AMERICAN PROGRAMS.
+### SEC. 115. NATIVE AMERICAN PROGRAMS.
 Section 116 (20 U.S.C. 2326) is amended—
 (1) in subsection (a)—
 (A) in paragraph (1), in the paragraph heading, by
@@ -2226,7 +2226,7 @@ term appears and inserting ‘‘Tribe’’;
 ‘‘Tribe’’; and
 (7) in subsection (g), by striking ‘‘tribe’’ each place the
 term appears and inserting ‘‘Tribe’’.
-SEC. 116. TRIBALLY CONTROLLED POSTSECONDARY CAREER AND
+### SEC. 116. TRIBALLY CONTROLLED POSTSECONDARY CAREER AND
 TECHNICAL INSTITUTIONS.
 Section 117 (20 U.S.C. 2327) is amended—
 (1) in subsection (a)(2), by striking ‘‘(25 U.S.C. 640a et
@@ -2252,10 +2252,10 @@ to be appropriated to carry out this section—
 ‘‘(4) $10,178,333 for fiscal year 2022;
 ‘‘(5) $10,320,829 for fiscal year 2023; and
 ‘‘(6) $10,465,321 for fiscal year 2024.’’.
-SEC. 117. OCCUPATIONAL AND EMPLOYMENT INFORMATION.
+### SEC. 117. OCCUPATIONAL AND EMPLOYMENT INFORMATION.
 Section 118 (20 U.S.C. 2328) is repealed.
 PART B—STATE PROVISIONS
-SEC. 121. STATE ADMINISTRATION.
+### SEC. 121. STATE ADMINISTRATION.
 Section 121(a)(2) (20 U.S.C. 2341(a)(2)) is amended by striking
 ‘‘parents’’ and all that follows through the end of the paragraph
 and inserting ‘‘teachers, faculty, specialized instructional support
@@ -2269,7 +2269,7 @@ nity organizations;’’.
 Repeal.
 VerDate Sep 11 2014 12:55 Aug 27, 2019 Jkt 089139 PO 00224 Frm 00037 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL224.115 PUBL224
 132 STAT. 1600 PUBLIC LAW 115–224—JULY 31, 2018
-SEC. 122. STATE PLAN.
+### SEC. 122. STATE PLAN.
 Section 122 (20 U.S.C. 2342) is amended—
 (1) in subsection (a)—
 (A) in paragraph (1)—
@@ -2676,7 +2676,7 @@ mination; and
 after making the determination and providing the informa-
 tion described in subparagraph (A), and giving the eligible
 agency notice and an opportunity for a hearing.’’.
-SEC. 123. IMPROVEMENT PLANS.
+### SEC. 123. IMPROVEMENT PLANS.
 Section 123 (20 U.S.C. 2343) is amended—
 (1) in subsection (a)—
 (A) in paragraph (1)—
@@ -2765,7 +2765,7 @@ VerDate Sep 11 2014 12:55 Aug 27, 2019 Jkt 089139 PO 00224 Frm 00045 Fmt 6580 Sf
 ‘‘(6) ADJUSTMENTS PROHIBITED .—An eligible recipient shall
 not be eligible to adjust performance levels while executing
 an improvement plan under this section.’’.
-SEC. 124. STATE LEADERSHIP ACTIVITIES.
+### SEC. 124. STATE LEADERSHIP ACTIVITIES.
 Section 124 (20 U.S.C. 2344) is amended—
 (1) in subsection (a), by striking ‘‘shall conduct State leader-
 ship activities.’’ and inserting ‘‘shall—
@@ -2996,7 +2996,7 @@ Assessments.
 VerDate Sep 11 2014 12:55 Aug 27, 2019 Jkt 089139 PO 00224 Frm 00049 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL224.115 PUBL224
 132 STAT. 1612 PUBLIC LAW 115–224—JULY 31, 2018
 PART C—LOCAL PROVISIONS
-SEC. 131. DISTRIBUTION OF FUNDS TO SECONDARY EDUCATION PRO-
+### SEC. 131. DISTRIBUTION OF FUNDS TO SECONDARY EDUCATION PRO-
 GRAMS.
 Section 131 (20 U.S.C. 2351) is amended—
 (1) in subsection (a)(3)(B), by striking ‘‘Bureau of Indian
@@ -3007,11 +3007,11 @@ of study’’ after ‘‘technical education programs’’;
 after ‘‘technical education programs’’; and
 (4) in subsection (h), by striking ‘‘Bureau of Indian Affairs’’
 and inserting ‘‘Bureau of Indian Education’’.
-SEC. 132. SPECIAL RULES FOR CAREER AND TECHNICAL EDUCATION.
+### SEC. 132. SPECIAL RULES FOR CAREER AND TECHNICAL EDUCATION.
 Section 133 (20 U.S.C. 2353) is amended by inserting ‘‘or pro-
 grams of study’’ after ‘‘career and technical education programs’’
 each place the term appears.
-SEC. 133. LOCAL APPLICATION FOR CAREER AND TECHNICAL EDU-
+### SEC. 133. LOCAL APPLICATION FOR CAREER AND TECHNICAL EDU-
 CATION PROGRAMS.
 Section 134 (20 U.S.C. 2354) is amended—
 (1) in the section heading, by striking ‘‘ LOCAL PLAN ’’ and
@@ -3242,7 +3242,7 @@ current technology and equipment;
 learning; and
 ‘‘(4) ensure funding under this part is used in a coordinated
 manner with other local resources.’’.
-SEC. 134. LOCAL USES OF FUNDS.
+### SEC. 134. LOCAL USES OF FUNDS.
 Section 135 (20 U.S.C. 2355) is amended to read as follows:
 ‘‘SEC. 135. LOCAL USES OF FUNDS.
 ‘‘(a) GENERAL AUTHORITY.—Each eligible recipient that receives
@@ -3476,7 +3476,7 @@ Assessment.
 VerDate Sep 11 2014 12:55 Aug 27, 2019 Jkt 089139 PO 00224 Frm 00057 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL224.115 PUBL224
 132 STAT. 1620 PUBLIC LAW 115–224—JULY 31, 2018
 TITLE II—GENERAL PROVISIONS
-SEC. 201. FEDERAL AND STATE ADMINISTRATIVE PROVISIONS.
+### SEC. 201. FEDERAL AND STATE ADMINISTRATIVE PROVISIONS.
 (a) IN GENERAL.—The Act (20 U.S.C. 2301 et seq.) is amended—
 (1) in section 311—
 (A) in subsection (a), by striking ‘‘and tech prep pro-
@@ -3640,7 +3640,7 @@ ONFORMING AMENDMENT.—Section 8(a) (20 U.S.C.
 ‘‘211(b), and 223’’.
 TITLE III—AMENDMENTS TO OTHER
 LAWS
-SEC. 301. AMENDMENTS TO THE WAGNER-PEYSER ACT.
+### SEC. 301. AMENDMENTS TO THE WAGNER-PEYSER ACT.
 Section 15(e)(2) of the Wagner-Peyser Act (29 U.S.C. 49l–2(e)(2))
 is amended—
 (1) by striking subparagraph (B) and inserting the fol-
@@ -3681,7 +3681,7 @@ eligible agency (defined in section 3 of the Carl D. Perkins
 Career and Technical Education Act of 2006 (20 U.S.C.
 2302)), the data and information described in subpara-
 graphs (A) and (B) of subsection (a)(1).’’.
-SEC. 302. AMENDMENTS TO THE ELEMENTARY AND SECONDARY EDU-
+### SEC. 302. AMENDMENTS TO THE ELEMENTARY AND SECONDARY EDU-
 CATION ACT OF 1965.
 (1) Section 1111(h)(1)(C)(xiv) of the Elementary and Sec-
 ondary Education Act of 1965 (20 U.S.C. 6311(h)(1)(C)(xiv))
@@ -3702,7 +3702,7 @@ toring’’.
 (3) Section 6304(a)(3)(K) of the Elementary and Secondary
 Education Act of 1965 (20 U.S.C. 7544(a)(3)(K)) is amended
 by striking ‘‘tech-prep,’’.
-SEC. 303. AMENDMENT TO THE WORKFORCE INNOVATION AND OPPOR-
+### SEC. 303. AMENDMENT TO THE WORKFORCE INNOVATION AND OPPOR-
 TUNITY ACT.
 Section 134(c)(2)(A)(vii) of the Workforce Innovation and Oppor-
 tunity Act (29 U.S.C. 3174(c)(2)(A)(vii)) is amended by striking
