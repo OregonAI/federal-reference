@@ -16,7 +16,7 @@
 #              text in force when a citing rule was written. Invisible, that comparison is
 #              impossible rather than merely inconvenient — and getting it wrong here means
 #              answering a compliance question with law that postdates the question.
-corpus-toolkit[mcp,semantic] @ git+https://github.com/OregonAI/corpus-toolkit@v1.21.0
+corpus-toolkit[mcp,semantic] @ git+https://github.com/OregonAI/corpus-toolkit@v1.24.0
 pyyaml
 
 # PINNED EXACTLY, and the exactness is load-bearing rather than tidiness.
