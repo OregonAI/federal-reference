@@ -6,6 +6,18 @@ Repo-curation dates only — official effective dates live in frontmatter.
 
 ## [Unreleased]
 
+### Added
+- 2026-08-11 — `CONTEXT.md` and `docs/adr/0001`–`0005`. Domain vocabulary and five
+  load-bearing decisions that were previously recorded only in docstrings and manifest
+  notes: current-text-only storage, per-document copyright determination, demand-driven
+  section splitting, the no-codified-U.S.-Code boundary, and the hand-authored manifest.
+  Nothing here is a new decision — each ADR cites where the decision already lived. Written
+  because the decisions were being re-derived from source comments during triage, and
+  ADR-0004 is now under active challenge with nowhere to record the challenge. `CONTEXT.md`
+  also names two things the code knew but had not named: the mention-vs-authority-claim
+  distinction, and the acronym collisions (ORS chapter numbers vs CFR parts, CISA, SNAP,
+  NIST) that have each produced a wrong measurement.
+
 ### Fixed
 - 2026-08-02 — `llms.txt` was still the template stub (#10): the `## Contents`
   section carried the placeholder comment with zero entries, the preamble
