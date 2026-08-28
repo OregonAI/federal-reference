@@ -21,6 +21,7 @@ for #33.
 """
 from __future__ import annotations
 
+import collections
 import pathlib
 import sys
 import tempfile
@@ -62,15 +63,47 @@ def main() -> int:
           not sec200_re.findall(text_37_only) and not part200_re.search(text_37_only),
           f"sec={sec200_re.findall(text_37_only)!r}")
 
-    # The disambiguation guard: a bare short form with NO full citation anywhere in the file
-    # must not be counted -- this is the ORS-collision guard from ADR-0003, and #27's own
-    # triage found it is not marginal for every part (45 CFR 164 collides with ORS chapter
-    # 164, the MORE common meaning of a bare `164.NNN`). Proven here for the general
-    # mechanism, independent of which part.
-    text_bare_only = "See §37.72 for the notice requirement."
-    hits = short_re.findall(text_bare_only) if part_re.search(text_bare_only) else []
-    check("a bare short form with no full citation in the file is not licensed",
-          hits == [], f"got {hits}")
+    # The disambiguation guard, exercised through scanner.scan() ITSELF -- not by
+    # re-implementing its gating logic inline, which would test two regexes and never the
+    # production guard. AC5's own fixture: ORS chapter 164 (theft and burglary) collides with
+    # 45 CFR 164 (the HIPAA Privacy Rule), and #27's triage on this issue measured the
+    # collision as the MAJORITY case for a bare `164.NNN` in Oregon material -- ORS 164.377
+    # (computer crime) and ORS 164.140 (criminal possession), the two sections named there.
+    sec45_re, short45_re, part45_re = scanner.patterns(45, 164)
+    with tempfile.TemporaryDirectory() as td:
+        root = pathlib.Path(td)
+
+        ors_only = (root / "ors-only.md")
+        ors_only.write_text(
+            "This policy addresses computer crime under ORS chapter 164. See ORS 164.377 "
+            "(Computer Crime) and ORS 164.140 (Criminal possession). A related provision, "
+            "§164.377(5), governs unauthorized computer use, and §164.140(4) must "
+            "be reviewed before granting system access. Nothing here concerns HIPAA.\n",
+            encoding="utf-8")
+        counts_ors: collections.Counter = collections.Counter()
+        sources_ors: dict[str, set] = collections.defaultdict(set)
+        scanner.scan(root, "fixture", sec45_re, short45_re, part45_re, counts_ors, sources_ors)
+        check("ORS chapter 164 collision: a file citing ORS 164 throughout and never "
+              "mentioning 45 CFR contributes zero counts (AC5)",
+              not counts_ors, f"got {dict(counts_ors)}")
+        ors_only.unlink()
+
+        # Positive control -- proves the assertion above is testing the guard and not just an
+        # empty scan. A file that DOES carry the full 45 CFR 164 citation still licenses its
+        # own bare short forms, the case the guard exists to allow.
+        hipaa = (root / "hipaa.md")
+        hipaa.write_text(
+            "Covered entities must comply with 45 CFR 164.512(j) before disclosing PHI in "
+            "administrative proceedings. See also §164.512(i) for law-enforcement "
+            "disclosures.\n",
+            encoding="utf-8")
+        counts_hipaa: collections.Counter = collections.Counter()
+        sources_hipaa: dict[str, set] = collections.defaultdict(set)
+        scanner.scan(root, "fixture", sec45_re, short45_re, part45_re,
+                     counts_hipaa, sources_hipaa)
+        check("...but a file that DOES carry the full 45 CFR 164 citation still licenses "
+              "its own bare short forms",
+              counts_hipaa == {"512": 2}, f"got {dict(counts_hipaa)}")
 
     # --- slicing.slice(): DOC_ID pattern generalized from a literal 2-cfr-200 -------------
     raw37 = "### 37.72 Notice.\nsection 72 text\n### 37.73 Recordkeeping.\nsection 73 text\n"

@@ -7,6 +7,83 @@ Repo-curation dates only — official effective dates live in frontmatter.
 ## [Unreleased]
 
 ### Fixed
+- 2026-08-28 — Address code review of #34 (`git diff 3961413f22d25192816cd0d450d52e7e78adb8c3
+  ...HEAD`). Three HARD findings, all confirmed to reproduce before their fix and quoted below.
+
+  `split_cfr_sections.py`'s `run_part()` crashed on the FIRST real second part. A part with no
+  removed sections gets a bare `removed:` key from `scan_cited_sections.py`, which YAML loads
+  as `None`, and `run_part()` iterated it unguarded. Reproduced end to end: scanned the real
+  citing corpora for 6 CFR 37 (`--title 6 --part 37` → 8 current, 0 removed, matching the
+  §37.11/§37.3 ranking the issue predicted), built a synthetic 6-cfr-37 snapshot + manifest
+  entry + part document, and ran the splitter against it — `TypeError: 'NoneType' object is
+  not iterable` at the `for entry in cited["removed"]` line. `cited["current"]`/`cited["removed"]`
+  are now normalized with `cited.get(key) or []` right after load, the same guard
+  `ingest_instruments.cited_section_ids()` already used one file over; the same repro now
+  writes 8 correct section documents, each carrying `issuing_body: Department of Homeland
+  Security`.
+
+  AC5 ("a test covers the short-form disambiguation guard using the ORS chapter 164 collision
+  as its fixture") was unmet, and worse: `check_section_split.py`'s assertion re-implemented
+  the guard's gating logic inline instead of calling `scan()`, so it tested two regexes and
+  never the production code. Confirmed by mutation: removing the guard from `scan()` entirely
+  (`hits = hits + short_re.findall(text)`, unconditional) left the assertion printing `ok` and
+  every gate green. The assertion now builds the exact fixture AC5 asks for — a temp file
+  citing ORS 164.377 (computer crime) and ORS 164.140 (criminal possession), the two sections
+  #27's own triage named, with bare `§164.NNN` references and no "45 CFR" anywhere — and calls
+  `scanner.scan()` on it directly, asserting zero counts; a positive-control fixture (a file
+  that DOES carry "45 CFR 164") proves the assertion isn't vacuously trivial. Confirmed to
+  fail against the mutated guard and pass against the real one.
+
+  The committed `_meta/cited-sections/2-cfr-200.yml` had been `git mv`'d (100% similarity) but
+  never regenerated, so its own "Regenerate with:" line printed a command missing
+  `--title`/`--part` and its comment still said "the committed 2026 part snapshot". Confirmed
+  by running the printed command verbatim (argparse exit 2) and then regenerating for real
+  with `--title 2 --part 200`: the section list and both removed entries (200.53, 200.62)
+  reproduce with identical eCFR evidence; the only deltas are the two header lines plus
+  genuine corpus growth since the last scan (scanned_files 75555→76701, and 200.333's citation
+  count 2→3, which `split_cfr_sections.py --part-id 2-cfr-200` then propagated to
+  `instruments/2-cfr-200.333.md`'s "Cited by Oregon material" line — its only change).
+  `scan_cited_sections.py` now exposes the static, scan-independent header lines
+  (`static_header()`, `CURRENT_COMMENT`, `REMOVED_COMMENT`) as a single source of truth
+  instead of duplicated string literals, and `split_cfr_sections.py --check` compares a
+  committed file's header against them for its own part id, offline, every PR — the "generated
+  file with no step in the `generated` job" gap the review named as contributing cause, closed
+  without adding a new CI step (the existing `--check` step now covers it). Confirmed the new
+  check fails against the pre-regeneration header and passes against the regenerated one.
+
+  AC3 ("re-running the splitter for 2 CFR 200 reproduces all existing section documents
+  byte-identically") was flagged HARD as unmet-but-undecided: 43 documents changed, disclosed
+  and argued in this file and the splitter's own docstring, but the review asked for an
+  explicit accept/renegotiate decision rather than a green `--check` standing in for one.
+  Decision recorded on #34: accepted as documented — every frontmatter field and the `## Full
+  text` payload are unchanged (`check_extraction.py` token-for-token), and the two prose
+  deltas are a direct, intended consequence of removing the same two hardcodes this branch
+  exists to remove.
+
+  Three JUDGEMENT findings fixed alongside. `sections_from()`'s heading regex was missing its
+  leading `\b`, so a short part number could match inside a longer one — part "1" matched
+  "§ 21.5" at "1.5" (confirmed by direct regex test); harmless for 200/37/35/99, not harmless
+  once the part number is an input. The `target_doc` derivation (which document a recorded
+  consolidation's `into` section lands in) was written three times with a DIFFERENT fallback
+  in each copy — now one `_target_doc(part_id, consolidation, default)` helper, the fallback
+  argument making the divergence visible instead of implicit. `discover_part_ids()` globbed
+  every `*.yml` in `_meta/cited-sections/` and handed it straight to an unguarded 2-tuple
+  unpack; a stray file there (confirmed with a `README.yml` fixture) crashed CI with a bare
+  `ValueError` traceback instead of this file's usual named error — now filtered by shape with
+  a named refusal.
+
+  Two JUDGEMENT findings filed rather than fixed here, per this repo's own standard: #57 —
+  `CONSOLIDATIONS` is looked up once per PART and applied to every removed section regardless
+  of that section's own `removed_on`, so a section removed by one amendment could be
+  attributed to a different one's recorded target (not reachable with today's single-date
+  data, but the same shape of latent hardcode #34 exists to remove); #58 — `run_part()`'s
+  historical-snapshot fetch reaches the network and writes to disk even under `--check`,
+  which should be a pure read-and-compare step.
+
+  Gates re-run clean: `split_cfr_sections.py --check`, `anchor_sections.py --check`,
+  `build_graph.py --check`, `check_citations.py` (138 assertions), `check_extraction.py`
+  (5/5 documents, token-for-token), `check_section_split.py`, `check_issuing_body.py`.
+
 - 2026-08-27 — Generalized the demand-driven CFR section split beyond 2 CFR 200 (#34), the
   last of the three hardcodes this branch removes (#33 for issuing_body, #35 for citation
   resolution). Four files assumed there was exactly one part:

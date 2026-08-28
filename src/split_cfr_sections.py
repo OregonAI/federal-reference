@@ -103,7 +103,14 @@ def sections_from(raw: bytes, part: str) -> dict[str, tuple[str, str]]:
             continue
         head_el = el.find("HEAD")
         head = _flatten(head_el) if head_el is not None else (el.get("N") or "")
-        m = re.search(rf"{p}\.(\d+)\b", head or "")
+        # \b on BOTH ends. Missing the leading boundary let a short part number match inside
+        # a longer one -- part "1" matched "§ 21.5" at "1.5", yielding the wrong key "1.5".
+        # Harmless for part 200 (why this shipped) and for 37/35/99, but this generalization's
+        # whole point is that the part number is now an input, so it stops being harmless the
+        # day a one- or two-digit part is processed. scan_cited_sections.patterns() already
+        # anchors both ends; sections_from() and subject() (^-anchored, so safe already) were
+        # the odd pair out.
+        m = re.search(rf"\b{p}\.(\d+)\b", head or "")
         if not m:
             continue
         body = [f"### {head}"]
@@ -203,6 +210,22 @@ def hist_retrieved(part_id: str, hist_xml: pathlib.Path, fetched: bool,
     return time.strftime("%Y-%m-%d", time.localtime(hist_xml.stat().st_mtime))
 
 
+def _target_doc(part_id: str, consolidation: dict | None, default: str | None) -> str | None:
+    """The document id a recorded consolidation's `into` section lands in, or `default` when
+    no consolidation is recorded for this part.
+
+    Pulled out because this exact expression was written three times with a DIFFERENT
+    `default` in each copy (None in build() and run_part()'s current-section loop, `part_id`
+    in run_part()'s removed-section loop) -- the divergence is load-bearing (it decides
+    whether an unrecorded consolidation yields `superseded_by: null` or `superseded_by:
+    <part_id>`), so a reader had to diff three near-identical lines to learn the rule instead
+    of reading one parameter.
+    """
+    if consolidation and consolidation.get("into"):
+        return f"{part_id}.{consolidation['into'].split('.', 1)[-1]}"
+    return default
+
+
 def _removal_clause(consolidation: dict | None, target_doc: str | None) -> str:
     """The clause naming WHAT happened to a removed section's content, generalized from the
     single hardcoded 'when the definitions in Subpart A were consolidated into § 200.1'.
@@ -227,8 +250,7 @@ def build(ctx: PartCtx, sec: str, head: str, body: str, meta: dict, sha: str,
     doc_id = f"{ctx.part_id}.{sec.split('.', 1)[1]}"
     citation = f"{ctx.title} CFR {sec}"
     subj = subject(head, ctx.part)
-    target_doc = (f"{ctx.part_id}.{consolidation['into'].split('.', 1)[-1]}"
-                  if consolidation and consolidation.get("into") else None)
+    target_doc = _target_doc(ctx.part_id, consolidation, None)
     fm = {
         "schema_version": 1,
         "corpus": "federal-reference",
@@ -313,16 +335,32 @@ def build(ctx: PartCtx, sec: str, head: str, body: str, meta: dict, sha: str,
     return "\n".join(parts)
 
 
+PART_ID_RE = re.compile(r"^\d+-cfr-\d+$")
+
+
 def discover_part_ids() -> list[str]:
+    """Every committed `<title>-cfr-<part>.yml` stem in _meta/cited-sections/.
+
+    Filtered by shape, not just glob("*.yml") -- a stray file there (a README, an editor
+    backup) used to reach run_part()'s `part_id.split("-cfr-", 1)` unpack and crash CI with a
+    bare ValueError traceback instead of the named error every other failure in this file
+    produces.
+    """
     if not CITED_DIR.is_dir():
         return []
-    return sorted(p.stem for p in CITED_DIR.glob("*.yml"))
+    stems = sorted(p.stem for p in CITED_DIR.glob("*.yml"))
+    bad = [s for s in stems if not PART_ID_RE.match(s)]
+    if bad:
+        raise SystemExit(
+            f"error: {CITED_DIR.relative_to(ROOT)}/ contains file(s) that are not a "
+            f"<title>-cfr-<part>.yml part id: {', '.join(bad)}")
+    return stems
 
 
 def run_part(part_id: str, args: argparse.Namespace) -> int:
     """Process one CFR part end to end. Returns 0 on success, 1 on any failure."""
     from corpus_toolkit.repo import hash_snapshot
-    from scan_cited_sections import ecfr_versions
+    from scan_cited_sections import CURRENT_COMMENT, REMOVED_COMMENT, ecfr_versions, static_header
 
     title, part = part_id.split("-cfr-", 1)
 
@@ -331,7 +369,32 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
         print(f"error: {cited_path} missing — run src/scan_cited_sections.py first",
               file=sys.stderr)
         return 1
-    cited = yaml.safe_load(cited_path.read_text())
+    cited_raw_lines = cited_path.read_text(encoding="utf-8").splitlines()
+    cited = yaml.safe_load("\n".join(cited_raw_lines))
+    # A part with no removed (or, in principle, no current) sections gets a bare `removed:`
+    # key in the generated YAML, which loads as None rather than []. 7 of the 8 queued
+    # instruments have zero removed sections -- 2 CFR 200 is the one part whose two removals
+    # hid this. Same guard ingest_instruments.cited_section_ids() already uses one file over.
+    cited["current"] = cited.get("current") or []
+    cited["removed"] = cited.get("removed") or []
+
+    # HEADER STALENESS, checked without re-running the scan (which needs the sibling repos CI
+    # cannot reach -- see scan_cited_sections.py's module docstring). A committed cited-sections
+    # file was once `git mv`'d without being regenerated: its own "Regenerate with:" line kept
+    # advertising a command missing --title/--part, and its "current" comment named a specific
+    # year. Neither is scan-derived, so both can be checked against the CURRENT generator here,
+    # every PR, with no network call.
+    header_mismatch = None
+    if args.check:
+        expected_top = static_header(int(title), int(part))
+        if cited_raw_lines[:len(expected_top)] != expected_top:
+            header_mismatch = "the top comment block (regenerate command / CI-cannot-reach note)"
+        elif CURRENT_COMMENT not in cited_raw_lines:
+            header_mismatch = "the 'current:' comment line"
+        elif "removed:" in cited_raw_lines:
+            ridx = cited_raw_lines.index("removed:")
+            if cited_raw_lines[ridx - len(REMOVED_COMMENT):ridx] != REMOVED_COMMENT:
+                header_mismatch = "the 'removed:' comment block"
 
     part_xml = SNAPSHOTS / f"{part_id}.xml"
     if not part_xml.is_file():
@@ -439,8 +502,7 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
         # A removed section's target lands HERE, among the current sections, if this section
         # IS that consolidation's `into` -- computed from the shared record, not hardcoded to
         # any one section number.
-        target_doc = (f"{part_id}.{consolidation['into'].split('.', 1)[-1]}"
-                      if consolidation and consolidation.get("into") else None)
+        target_doc = _target_doc(part_id, consolidation, None)
         supersedes = None
         if target_doc and out.name == f"{target_doc}.md":
             ids = [f"{part_id}.{e['section'].split('.', 1)[1]}"
@@ -465,8 +527,7 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
             return 1
         head, body = hsecs[sec]
         hist_sha = hash_snapshot(hist.hist_id, "xml", SNAPSHOTS)
-        target_doc = (f"{part_id}.{consolidation['into'].split('.', 1)[-1]}"
-                      if consolidation and consolidation.get("into") else part_id)
+        target_doc = _target_doc(part_id, consolidation, part_id)
         out = INSTRUMENTS / f"{part_id}.{sec.split('.', 1)[1]}.md"
         emit(out, build(ctx, sec, head, body, entry, hist_sha, entry["removed_on"], target_doc,
                          hist=hist, consolidation=consolidation))
@@ -480,13 +541,20 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
                     for e in cited["current"] + cited["removed"]}
         orphans = sorted(p.name for p in INSTRUMENTS.glob(f"{part_id}.*.md")
                          if p.name not in expected)
-        if stale or orphans:
+        if stale or orphans or header_mismatch:
             for n in stale:
                 print(f"  STALE    {n}", file=sys.stderr)
             for n in orphans:
                 print(f"  ORPHAN   {n} — not in {cited_path.relative_to(ROOT)}", file=sys.stderr)
-            print(f"\nRe-run: python3 src/split_cfr_sections.py --part-id {part_id}",
-                  file=sys.stderr)
+            if header_mismatch:
+                print(f"  STALE HEADER  {cited_path.relative_to(ROOT)} — {header_mismatch} does "
+                      f"not match what src/scan_cited_sections.py writes for {title} CFR {part} "
+                      f"today", file=sys.stderr)
+                print(f"\nRe-run: python3 src/scan_cited_sections.py --erf ../oregon-policy-repo "
+                      f"--audits ../oregon-audits --title {title} --part {part}", file=sys.stderr)
+            if stale or orphans:
+                print(f"\nRe-run: python3 src/split_cfr_sections.py --part-id {part_id}",
+                      file=sys.stderr)
             return 1
         print(f"  {written} section documents are current")
         return 0
