@@ -553,6 +553,22 @@ def main() -> int:
     for src in sources:
         rid, fmt = src["id"], src["format"]
         try:
+            # VALIDATED BEFORE ANY SIDE EFFECT, not just before the document is written.
+            # resolve_issuing_body() needs nothing from the fetch -- for `cfr_part` it reads
+            # only `src["issuing_body"]`, already in hand from the manifest -- so calling it
+            # here means a manifest entry missing its issuer fails before this run touches
+            # disk at all. Moved here after a `--only` run against a synthetic incomplete
+            # entry left `_meta/snapshots/<id>.txt` written and `_meta/source-manifest.yml`'s
+            # sha256 line edited despite the ValueError, because both used to happen inside
+            # this same try block but ABOVE the `build()` call that is resolve_issuing_body's
+            # only other caller. That half-ingested state (manifest entry now looks hashed
+            # and current, snapshot text present, no document) is exactly the shape
+            # check_extraction.py does not expect: `docs[sid][0][1]` assumes every manifest
+            # source with a committed raw snapshot owns at least one document, and crashes
+            # with an unhandled KeyError instead of reporting a clean FAIL — filed as #53
+            # rather than fixed here, since check_extraction.py is a different review
+            # surface and the underlying fragility is general, not specific to this path.
+            resolve_issuing_body(src)
             snap = SNAPSHOTS / f"{rid}.{fmt}"
             fresh = not snap.is_file() or args.refetch
             raw = fetch(src["url"], snap, args.refetch)

@@ -7,6 +7,39 @@ Repo-curation dates only — official effective dates live in frontmatter.
 ## [Unreleased]
 
 ### Fixed
+- 2026-08-27 — Follow-up to the `issuing_body` fix below, from review of #33
+  (`git diff 75db04f4...HEAD`). The commit landed a real, minimal fix but left AC7
+  ("any defect discovered and not fixed here is filed as its own issue") unmet: the
+  identical OMB literal in `split_cfr_sections.py` (frontmatter + prose, both unconditional)
+  was recorded only as a comment on #34, whose body lists `issuing_body` under Out of
+  scope — exactly the mitigation AGENTS.md rules out by name. Filed as its own issue, #52,
+  and #34's Out-of-scope line and acceptance criteria corrected to point at it rather than
+  disclaim it, since #34's own AC1 (6 CFR 37, DHS's) would otherwise reproduce #33's bug at
+  the section-document layer the moment the splitter is parameterized. `ingest_instruments.py`
+  also reordered: `resolve_issuing_body()` is now called before any side effect, not only
+  before `build()`, because a manifest entry missing its issuer used to still get its raw
+  text snapshot written and its manifest `sha256` line recorded before the `ValueError` fired
+  — reproduced directly (`_meta/snapshots/<id>.txt` written, 5,280 bytes; manifest sha256
+  line edited) and confirmed it crashes `check_extraction.py` with an unhandled `KeyError`
+  instead of a clean `FAIL` (filed separately as #53, since that fragility is general, not
+  specific to this path, and is a different review surface). The manifest's `issuing_body`
+  authoring note modeled abbreviated examples ("DOJ", "HHS/SAMHSA") against a corpus where
+  every issuer today is spelled out in full — corrected, and the convention stated
+  explicitly, so the five queued ingests (#21, #26, #27, #37, #41) do not each hand-fill it
+  inconsistently; the duplicate copy of that note inline on the 2-cfr-200 entry now points at
+  the top-of-file note instead of restating it. Added `src/check_issuing_body.py`
+  (wired into the `generated` CI job): the only prior evidence for the fix was 2 CFR 200
+  regenerating byte-identically, which is a no-regression check on the FIRST part and reads
+  the same whether the bug is fixed or not — nothing exercised a SECOND part through
+  `resolve_issuing_body()` at all, since `ingest_instruments.py` runs in no workflow. The new
+  check asserts a synthetic DOJ fixture resolves independently of an OMB fixture, that a
+  missing issuer raises naming the entry, and is confirmed to fail when the old per-kind
+  dict behavior is reintroduced. CONTRIBUTING.md's `Assisted-by:` trailer, missing from
+  3dd6b4b (the #33 commit — not amended; declined per this task's explicit instruction not
+  to rewrite that commit), is applied to this commit and filed as #54: the convention has
+  no CI enforcement, so it will keep being missed silently otherwise.
+
+### Fixed
 - 2026-08-27 — `issuing_body` for `cfr_part` was a dict literal keyed on `instrument_kind`,
   so every CFR part was stamped `"Office of Management and Budget"` regardless of which
   agency actually issued it — correct for 2 CFR 200, wrong the moment a second part

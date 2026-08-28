@@ -118,6 +118,14 @@ jobs:
       # assertions, each confirmed to fail when the behaviour it guards is removed.
       - name: Citation resolution must refuse what it cannot answer
         run: python3 src/check_citations.py
+      # resolve_issuing_body() dispatches `cfr_part` to a per-source manifest read instead of
+      # a per-kind constant (#33), specifically so a second part is not stamped with the
+      # first's issuer. Nothing else exercises a SECOND part through it: ingest_instruments.py
+      # runs in no workflow, and #33's own evidence (2 CFR 200 regenerating byte-identically)
+      # is a no-regression check on the FIRST part, which reads the same whether the bug is
+      # fixed or not. This is the one gate that actually proves the second part.
+      - name: A second cfr_part must not inherit the first part's issuer
+        run: python3 src/check_issuing_body.py
       # corpus-verify-provenance CANNOT catch extraction loss: source_sha256 hashes the
       # committed .txt, and that .txt is written by the extractor from the same string that
       # goes into the document, so the whole chain compares the extractor against itself.
