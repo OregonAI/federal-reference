@@ -105,6 +105,45 @@ def main() -> int:
     ids, note = resolve("29 CFR 1910.147")
     check("a different CFR part does not resolve to 2 CFR 200",
           "2-cfr-200" not in ids, f"resolved to {ids}")
+    check("the refusal names what IS held instead of a generic miss",
+          "2 cfr 200" in note.lower(), note[:120])
+
+    # --- #35: a SECOND held cfr_part must resolve, not just the first ---------------------
+    #
+    # _cfr_one used to gate on a literal ("2", "200") -- so even a part sitting right there in
+    # HELD, fully loaded from its own document's frontmatter, was reported "not held". Proven
+    # with a fixture rather than a real second part, per #35's own AC ("must not depend on any
+    # queued ingest having landed"): HELD is the module's own dynamic map (see its docstring --
+    # "read from the documents, not hard-coded"), so writing directly into it and calling
+    # _cfr_one (the per-citation entry point #35 names as the key interface) exercises exactly
+    # the seam a real ingest would. Restored immediately after, so no other assertion in this
+    # file sees the fixture.
+    import src.citation_schemes as schemes
+    _saved_held = dict(schemes.HELD)
+    try:
+        schemes.HELD["6-cfr-37"] = {
+            "id": "6-cfr-37", "citation": "6 CFR 37", "instrument_kind": "cfr_part",
+            "as_of": "2026-01-01",
+        }
+        schemes.HELD["6-cfr-37.71"] = {
+            "id": "6-cfr-37.71", "citation": "6 CFR 37.71", "instrument_kind": "cfr_section",
+            "as_of": "2026-01-01",
+        }
+        ids, note = schemes._cfr_one("6", "37", None)
+        check("a held second part resolves to its own document, not refused",
+              ids == ["6-cfr-37"], f"got {ids}, note={note!r}")
+        ids, note = schemes._cfr_one("6", "37", "71")
+        check("a held section of a held second part resolves to its own document",
+              ids == ["6-cfr-37.71"], f"got {ids}, note={note!r}")
+        ids, note = schemes._cfr_one("6", "99", None)
+        check("an unheld part still refuses",
+              not ids, f"got {ids}")
+        check("the refusal names the held second part, not just 2 CFR 200",
+              "6 cfr 37" in note.lower(), note[:200])
+    finally:
+        schemes.HELD.clear()
+        schemes.HELD.update(_saved_held)
+
     ids, note = resolve("42 U.S.C. 1396")
     check("a U.S. Code section never resolves to a public law",
           not any(i.startswith("pl-") for i in ids), f"resolved to {ids}")

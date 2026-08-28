@@ -7,6 +7,31 @@ Repo-curation dates only — official effective dates live in frontmatter.
 ## [Unreleased]
 
 ### Fixed
+- 2026-08-27 — The CFR citation resolver (`_cfr_one` in `src/citation_schemes.py`) compared
+  every citation's `(title, part)` against a literal `("2", "200")` and refused everything
+  else with "this corpus holds 2 CFR 200 ... and does not hold {title} CFR {part}" — a claim
+  about corpus contents made without consulting corpus contents (#35). A newly ingested part
+  would sit in `HELD`, loaded from its own document's frontmatter exactly like 2 CFR 200 is,
+  and still be reported not held: "could not check" reported as "is not there" in the field a
+  consumer trusts most. Reproduced with a fixture per #35's own AC ("must not depend on any
+  queued ingest having landed"): a synthetic 6 CFR 37 part-and-section pair written directly
+  into `HELD` and resolved through `_cfr_one`, confirmed to fail against the old literal
+  before the fix and pass after. Held-ness is now read from `HELD` for any `(title, part)`,
+  the refusal for a genuinely unheld part now lists what IS held instead of hardcoding
+  2 CFR 200, and the four section-level cases (split document, unsplit-but-current, never
+  existed, removed/superseded) generalize per part — section-heading matching and the
+  former-vs-current snapshot diff are computed per part id rather than once at import for
+  2 CFR 200 alone. The one piece of section history that cannot be derived from a snapshot
+  diff — WHERE a consolidated section's content went — stays hand-recorded per part
+  (`_CONSOLIDATIONS`), so 2 CFR 200's "consolidated into § 200.1" note is unchanged and a
+  part with no such record gets a true, less specific note instead of an invented one.
+  `_cfr()`'s multi-section range/list expansion stays gated to 2 CFR 200 only, because it
+  depends on `federal_ids.py`'s `RANGE`/`LIST_SEC` patterns, which are hardcoded to a literal
+  `200.` and are a parity-locked cross-corpus contract file — generalizing those is a larger,
+  coordinated cross-repo change, filed separately as #55 rather than folded in here.
+  `check_citations.py` gained the fixture assertions above, wired into the existing
+  `generated` CI step it already runs in.
+
 - 2026-08-27 — Follow-up to the `issuing_body` fix below, from review of #33
   (`git diff 75db04f4...HEAD`). The commit landed a real, minimal fix but left AC7
   ("any defect discovered and not fixed here is filed as its own issue") unmet: the

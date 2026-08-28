@@ -21,6 +21,7 @@ declaring it as their sibling (Stage 4). It does not resolve back down.
 """
 from __future__ import annotations
 
+import functools
 import pathlib
 import re
 
@@ -65,19 +66,50 @@ def _held() -> dict[str, dict]:
 HELD = _held()
 
 
-def _section_numbers(text: str) -> frozenset[str]:
-    """Section numbers appearing as `### § 200.NNN` headings in an extracted part text."""
-    return frozenset(re.findall(r"^### §*\s*200\.(\d+)\b", text, re.M))
+def _section_numbers(text: str, part: str) -> frozenset[str]:
+    """Section numbers appearing as `### § {part}.NNN` headings in an extracted part text."""
+    return frozenset(re.findall(rf"^### §*\s*{re.escape(part)}\.(\d+)\b", text, re.M))
 
 
-# Which sections the part ACTUALLY contains, current and as of the day before the 2021-02-22
-# consolidation. Without these, a citation to a section that does not exist gets told to go
-# find a heading that is not there — a confidently false instruction, and the kind of
-# plausible-sounding wrong answer this corpus is built to refuse.
+# Which sections a part ACTUALLY contains, current and as of its last snapshot before a known
+# amendment. Without these, a citation to a section that does not exist gets told to go find a
+# heading that is not there — a confidently false instruction, and the kind of plausible-
+# sounding wrong answer this corpus is built to refuse.
+#
+# COMPUTED PER PART, ON DEMAND, FROM WHAT IS HELD — not a module-level pair of constants for
+# "the" part. #35: the whole file used to assume there was only ever one part; these two used
+# to be computed once at import for PART_ID alone, so a second ingested part had no section
+# data at all and fell through to "not held" before it even reached this logic. Cached because
+# each is a disk read and a citation to the same part is resolved many times in one run.
 _SNAPSHOTS = INSTRUMENTS.parent / "_meta" / "snapshots"
-_PART_SECTIONS = _section_numbers((INSTRUMENTS / f"{PART_ID}.md").read_text(encoding="utf-8"))
-_FORMER_SECTIONS = _section_numbers(
-    (_SNAPSHOTS / f"{PART_ID}-2021-02-21.txt").read_text(encoding="utf-8")) - _PART_SECTIONS
+
+
+@functools.lru_cache(maxsize=None)
+def _current_section_numbers(base: str, part: str) -> frozenset[str]:
+    path = INSTRUMENTS / f"{base}.md"
+    if not path.is_file():
+        return frozenset()
+    return _section_numbers(path.read_text(encoding="utf-8"), part)
+
+
+@functools.lru_cache(maxsize=None)
+def _former_section_numbers(base: str, part: str) -> frozenset[str]:
+    """Section numbers seen in any DATED snapshot of this part (e.g. `2-cfr-200-2021-02-21.txt`)
+    that are not in the current text. Most parts have no such snapshot and correctly come back
+    empty — that is an absence of history, not a gap in this function."""
+    out: set[str] = set()
+    for snap in sorted(_SNAPSHOTS.glob(f"{base}-*.txt")):
+        out |= _section_numbers(snap.read_text(encoding="utf-8"), part)
+    return frozenset(out) - _current_section_numbers(base, part)
+
+
+# The one fact about a removed-and-consolidated section that a snapshot diff cannot supply:
+# WHERE its content went. That is knowledge about the amendment itself, not something present
+# in the text, so it is hand-recorded per held part rather than derived. Absent for any part
+# without an entry here, which produces a true, less specific note instead of a guess.
+_CONSOLIDATIONS = {
+    PART_ID: {"date": "2021-02-22", "into": "200.1"},
+}
 
 
 def _version_of(doc_id: str) -> str | None:
@@ -125,7 +157,11 @@ def _cfr(m, nodes=None):
     fixed this long ago, so the two sides disagreed about the same string)."""
     title, part, sec = m.group("title"), m.group("part"), m.group("sec")
     cands, note = _cfr_one(title, part, sec)
-    if (title, part) != ("2", "200") or sec is None:
+    # RANGE/LIST_SEC (federal_ids.py) match literal "200." text — that file is a parity-locked
+    # cross-corpus contract (see its own docstring), copied verbatim into sibling corpora, so
+    # generalizing multi-section expansion to another part is a different and larger change
+    # than this file's held-ness gate below. Filed as #55 rather than done here.
+    if f"{title}-cfr-{part}" != PART_ID or sec is None:
         return cands, note
     secs, notes = [sec], ([note] if note else [])
     text = m.string
@@ -145,50 +181,78 @@ def _cfr(m, nodes=None):
     return cands, ("; ".join(notes) or None)
 
 
-def _cfr_one(title, part, sec):
+def _held_cfr_parts() -> dict[str, dict]:
+    """{'title-cfr-part': frontmatter} for every cfr_part document actually held.
 
-    if (title, part) != ("2", "200"):
+    Filtered straight out of HELD — itself read from the documents at import, not a literal
+    (see `_held()`) — so a newly ingested part becomes resolvable, and an unheld one is
+    correctly refused BY NAME, without editing this file. #35: this used to be a comparison
+    against a literal ("2", "200"), so a part sitting right there in HELD, loaded from its own
+    document's frontmatter, was reported "not held" anyway.
+    """
+    return {doc_id: fm for doc_id, fm in HELD.items() if fm.get("instrument_kind") == "cfr_part"}
+
+
+def _cfr_one(title, part, sec):
+    base = f"{title}-cfr-{part}"
+    part_fm = HELD.get(base)
+
+    if part_fm is None or part_fm.get("instrument_kind") != "cfr_part":
+        held = _held_cfr_parts()
+        listing = ", ".join(sorted(fm.get("citation", k) for k, fm in held.items()))
         return [], (
-            f"this corpus holds 2 CFR 200 (the Uniform Guidance) and does not hold "
-            f"{title} CFR {part}. The citation is well-formed — it is simply outside what "
-            f"has been ingested.")
+            f"this corpus does not hold {title} CFR {part}. It holds "
+            f"{listing or 'no CFR parts'}. The citation is well-formed — it is simply "
+            f"outside what has been ingested.")
 
     if sec is None:
-        return [PART_ID], None
+        return [base], None
 
-    doc = f"{PART_ID}.{sec}"
+    doc = f"{base}.{sec}"
     fm = HELD.get(doc)
 
     if fm is None:
-        if sec in _PART_SECTIONS:
+        if sec in _current_section_numbers(base, part):
             # The section IS inside the part we hold; it just was not split out, because only
             # the sections Oregon cites are. Returning the part is a TRUE answer, but it is a
             # different document from the one asked for, so it is labelled rather than
             # silently substituted.
-            return [PART_ID], (
-                f"§ 200.{sec} is not held as its own document — only the sections Oregon "
-                f"cites are split out. Returning 2 CFR 200, the part that contains it; look "
-                f"for the `### § 200.{sec}` heading in its full text.")
+            return [base], (
+                f"§ {part}.{sec} is not held as its own document — only the sections Oregon "
+                f"cites are split out. Returning {title} CFR {part}, the part that contains "
+                f"it; look for the `### § {part}.{sec}` heading in its full text.")
 
         # Not in the current part at all. Telling the caller to go find a heading that is not
         # there would be a confidently false instruction, so say what is actually true — and
-        # if it was in force before the 2021-02-22 consolidation, say that, because for this
-        # corpus's audit citations that is usually the real explanation.
-        if sec in _FORMER_SECTIONS:
+        # if a dated snapshot shows it existed before a known amendment, say what that
+        # amendment did, because for this corpus's audit citations that is usually the real
+        # explanation.
+        if sec in _former_section_numbers(base, part):
+            consolidation = _CONSOLIDATIONS.get(base)
+            if consolidation:
+                target = consolidation["into"]
+                return [], (
+                    f"§ {part}.{sec} is NOT in the current {title} CFR {part}. It existed "
+                    f"until the {consolidation['date']} amendment, which consolidated "
+                    f"Subpart A's definitions into § {target}. It is not held individually "
+                    f"— only the removed sections Oregon material actually cites are, as "
+                    f"their own superseded documents. For the current treatment see "
+                    f"{base}.{target.split('.', 1)[-1]}.")
+            # No recorded consolidation target for this part: still true and specific about
+            # what changed, without inventing where the content went.
             return [], (
-                f"§ 200.{sec} is NOT in the current 2 CFR 200. It existed until the "
-                f"2021-02-22 amendment, which consolidated Subpart A's definitions into "
-                f"§ 200.1. It is not held individually — only § 200.53 and § 200.62 are, "
-                f"because those are the removed sections Oregon material actually cites. "
-                f"For the current treatment see 2-cfr-200.1.")
+                f"§ {part}.{sec} is NOT in the current {title} CFR {part}. It appears in an "
+                f"earlier snapshot of this part but not the current text, and is not held "
+                f"individually. Check whether a superseded document for it exists, or "
+                f"whether the citing rule predates {part_fm.get('as_of')}.")
         return [], (
-            f"there is no § 200.{sec} in 2 CFR 200 as of {HELD[PART_ID].get('as_of')}, and "
-            f"none in the 2021-02-21 text either. Check the citation — it may name a "
-            f"different title or part.")
+            f"there is no § {part}.{sec} in {title} CFR {part} as of "
+            f"{part_fm.get('as_of')}. Check the citation — it may name a different title or "
+            f"part.")
 
     if fm.get("status") == "superseded":
         return [doc], (
-            f"§ 200.{sec} was REMOVED from the CFR on {fm.get('amended_on')}. What is "
+            f"§ {part}.{sec} was REMOVED from the CFR on {fm.get('amended_on')}. What is "
             f"returned is its LAST-IN-FORCE text (as of {fm.get('as_of')}), held because "
             f"Oregon material still cites it. It is NOT current law — the current treatment "
             f"is in {fm.get('superseded_by')}, and the two may differ.")
