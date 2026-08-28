@@ -6,6 +6,19 @@ Repo-curation dates only — official effective dates live in frontmatter.
 
 ## [Unreleased]
 
+### Fixed
+- 2026-08-27 — `issuing_body` for `cfr_part` was a dict literal keyed on `instrument_kind`,
+  so every CFR part was stamped `"Office of Management and Budget"` regardless of which
+  agency actually issued it — correct for 2 CFR 200, wrong the moment a second part
+  (42 CFR 2 is HHS/SAMHSA's, 28 CFR 35 is DOJ's) is ingested (#33). `resolve_issuing_body()`
+  now reads the value from the source's own manifest entry for `cfr_part` — data a reviewer
+  can see and check at PR time — and raises, naming the offending entry, when a `cfr_part`
+  omits it; the other three kinds (`irs_publication`, `fbi_policy`, `public_law`) are
+  genuinely constant per kind and stay table-driven. 2 CFR 200's manifest entry now declares
+  `issuing_body: "Office of Management and Budget"` explicitly; its regenerated document
+  is byte-identical to the one this replaces (verified: `diff` against the pre-change copy
+  exits 0).
+
 ### Added
 - 2026-08-11 — `CONTEXT.md` and `docs/adr/0001`–`0005`. Domain vocabulary and five
   load-bearing decisions that were previously recorded only in docstrings and manifest

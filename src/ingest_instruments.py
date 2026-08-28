@@ -47,6 +47,46 @@ UA = ("OregonAI-corpus-bot/0.1 (+https://github.com/OregonAI/federal-reference; 
 # a citation to one revision must never resolve to another's text.
 IRS_REV = re.compile(r"\(\s*Rev\.?\s*(\d{1,2}[-/]\d{4})\s*\)", re.I)
 
+# These three kinds really are constant per kind: every IRS publication comes from the IRS,
+# every CJIS policy from the FBI's CJIS Division, every public law from Congress. `cfr_part`
+# is deliberately NOT in this table — see resolve_issuing_body().
+ISSUING_BODY_BY_KIND = {
+    "irs_publication": "Internal Revenue Service",
+    "fbi_policy": "Federal Bureau of Investigation, CJIS Division",
+    "public_law": "United States Congress",
+}
+
+
+def resolve_issuing_body(src: dict) -> str:
+    """The federal agency that issued this instrument.
+
+    For every OTHER instrument_kind, the issuer is a property of the KIND: an IRS
+    publication is always from the IRS. A CFR part is different — Title 2 Part 200 is
+    OMB's, but Title 28 Part 35 is DOJ's and Title 42 Part 2 is HHS/SAMHSA's. Keying
+    `cfr_part` off the kind (as this used to) stamps whichever part was ingested first onto
+    every part ingested after it, which is a false attribution in a corpus whose purpose is
+    letting a reader check who said what.
+
+    So for `cfr_part` the issuer is read from the source's OWN manifest entry — data a
+    reviewer can see and check at PR time, alongside `citation`, `title`,
+    `reproduction_basis` — never inferred from the kind, the URL, or a previous document.
+
+    RAISES rather than defaulting when a cfr_part entry has no declared issuer. A missing
+    issuer means the manifest entry is not ready to publish; guessing OMB again (or writing
+    an empty string) is exactly the silent default that produced this bug in the first
+    place.
+    """
+    kind = src["instrument_kind"]
+    if kind == "cfr_part":
+        body = src.get("issuing_body")
+        if not body:
+            raise ValueError(
+                f"{src['id']!r} is a cfr_part with no issuing_body declared in "
+                f"{MANIFEST.name} — the issuing agency is a fact about this specific part "
+                "and must be stated, not assumed")
+        return body
+    return ISSUING_BODY_BY_KIND[kind]
+
 
 def cfr_amended_on(url: str) -> str:
     """The date THIS PART was last amended, from eCFR's per-section version record.
@@ -396,10 +436,7 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
                      if src["instrument_kind"] == "irs_publication" and version
                      else src["citation"]),
         "authority_level": "federal",
-        "issuing_body": {"cfr_part": "Office of Management and Budget",
-                         "irs_publication": "Internal Revenue Service",
-                         "fbi_policy": "Federal Bureau of Investigation, CJIS Division",
-                         "public_law": "United States Congress"}[src["instrument_kind"]],
+        "issuing_body": resolve_issuing_body(src),
         "instrument_kind": src["instrument_kind"],
         "version": version,
         "as_of": as_of,
