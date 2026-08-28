@@ -7,6 +7,92 @@ Repo-curation dates only — official effective dates live in frontmatter.
 ## [Unreleased]
 
 ### Fixed
+- 2026-08-27 — Follow-up to the CFR resolver fix below, from review of #35
+  (`git diff acd8622f8995be193f4bde9123555093b1e86477...HEAD`). Two HARD findings, both
+  confirmed to reproduce before the fix and quoted below, and neither latent — one live in
+  the committed fixture, one reachable the moment a document's frontmatter `id` diverges
+  from its filename.
+
+  The generalized consolidation note fabricated a fact for any part other than 2 CFR 200:
+  `_CONSOLIDATIONS` recorded only `date` and `into`, but the message asserted WHAT was
+  consolidated — "Subpart A's definitions" — hardcoded from 2 CFR 200 into a now-per-part
+  sentence. Reproduced: giving a synthetic 6 CFR 37 a `_CONSOLIDATIONS` entry with no
+  `scope` key produced "...which consolidated Subpart A's definitions into § 37.5" — a fact
+  nothing recorded about 6 CFR 37. `_CONSOLIDATIONS` entries now carry a `scope` (2 CFR
+  200's is "Subpart A's definitions", the only part that record was ever true for); the
+  clause is only interpolated when a `scope` is actually recorded, and a part with an entry
+  but no `scope` gets the same true, less specific note as a part with no entry at all.
+
+  AC5 — "a check exists that the resolver's 'does not hold' claims agree with the corpus
+  index" — was unmet: the committed fixture asserted one synthetic part by hand but nothing
+  compared resolver output against the index generally. `check_citations.py` now walks
+  every part `_held_cfr_parts()` says is held and asserts each resolves to itself, run
+  against both the real corpus and the fixture's synthetic second part, through the module
+  the framework actually serves from (see below) — confirmed to fail (6 assertions) when
+  `_cfr_one`'s held-check is reverted to a `(title, part)` literal comparison.
+
+  Two JUDGEMENT findings fixed alongside: the fixture wrote its state into
+  `src.citation_schemes`, a plain import distinct in `sys.modules` from the
+  corpus-root-hashed alias `CorpusFramework` actually registers (`corpus_toolkit/plugins.py`
+  namespaces it precisely so sibling corpora sharing the `src.citations` convention do not
+  collide) — confirmed distinct (`sys.modules` holds two objects for one file) and that
+  patching only the plain import left `fw.resolve_citation("6 CFR 37")` still refusing.
+  Fixture assertions now patch the module `CorpusFramework` actually loaded, located via the
+  same alias formula `_collect_schemes` uses. The fixture also proved only the split-section
+  case (case 1) for a second part; extended to exercise all four section cases — including a
+  second `_CONSOLIDATIONS` entry with no `scope`, the exact shape that reproduced the
+  fabrication above — each confirmed to fail when its guarded behaviour is reverted.
+
+  One more HARD finding, not in the fixture but reproduced directly: `_current_section_numbers`
+  converted a loud import-time failure into a silent `frozenset()` on a missing part document.
+  Reproduced: a `HELD` entry for a `cfr_part` with no matching `instruments/*.md` file made
+  `_cfr_one("9", "1", "5")` answer "there is no § 1.5 in 9 CFR 1" — a confident claim about
+  contents made without being able to consult them, on a part being simultaneously served,
+  exactly the class #35 exists to close, one field over. Unreachable today (every `HELD` id
+  currently matches its filename) but not exercised by anything before this. Now raises,
+  naming the mismatched id and path; `check_citations.py` gained a fixture for it, confirmed
+  to fail (silently returns rather than raising) when the guard is reverted.
+
+  Two further true-but-cosmetic-looking findings, both real: the "never existed" refusal
+  had dropped the clause that distinguishes it from "removed" — restored, naming the
+  snapshot date(s) actually consulted (diffed old vs. new output on `2 CFR 200.9999`:
+  "...as of 2026-07-29" now reads "...as of 2026-07-29, and none in the 2021-02-21 text
+  either", matching pre-#35 wording). And `_former_section_numbers`'s docstring promised
+  "any DATED snapshot" while its glob (`{base}-*.txt`) would silently absorb a same-prefix
+  non-snapshot file (`2-cfr-200-draft.txt`) into the historical union — now filtered through
+  a `-\d{4}-\d{2}-\d{2}\.txt$` pattern; confirmed a synthetic `-draft.txt` snapshot is now
+  excluded where it previously would not have been.
+
+  `_current_section_numbers`/`_former_section_numbers` also dropped their redundant `part`
+  parameter — `part` is always `base.split("-cfr-", 1)[1]`, so the pair could disagree with
+  nothing to catch it; now derived from `base` alone. `check_citations.py`'s duplicated
+  mid-function `import src.citation_schemes` was reduced from two to one — NOT hoisted to
+  module scope as the review suggested: verified that breaks the script outright
+  (`ModuleNotFoundError: No module named 'src'`), because it is invoked as
+  `python3 src/check_citations.py`, which puts only `src/`'s own directory on `sys.path[0]`;
+  the repo root only reaches `sys.path` as a side effect of `CorpusFramework.__init__`
+  loading the citation module, which runs after any top-level import would already have
+  failed.
+
+  Declined: routing every fixture assertion through `fw.resolve_citation()` rather than
+  calling `_cfr_one` on the located served module directly. That path additionally requires
+  `self.backend.exists(id)` or a graph node, both reading the REAL `instruments/` and
+  `_meta/graph.json` — faking those for a synthetic part is mocking framework internals this
+  file does not own, disproportionate to what the finding asked for; the module-identity fix
+  above closes the actual gap (state written into the module the framework serves from).
+
+  Filed as its own issue rather than fixed here: #56 — `instrument_kind` (the field
+  `_held_cfr_parts()` gates held-ness on) is free-text in `_meta/corpus.yml`'s
+  `extra_document_fields`, with no enum enforcement anywhere in `corpus_toolkit`'s schema
+  layer (verified: no such mechanism exists). A held part whose `instrument_kind` is spelled
+  differently from the literal `"cfr_part"` would be refused by name while being served, and
+  nothing added here — including the new AC5 loop — can catch it, because the loop only ever
+  sees documents `_held_cfr_parts()`'s own filter already agrees are held.
+
+  Gates re-run clean: `split_cfr_sections.py --check`, `anchor_sections.py --check`,
+  `build_graph.py --check`, `check_citations.py` (138 assertions, up from 129),
+  `check_extraction.py` (5/5 documents, token-for-token).
+
 - 2026-08-27 — The CFR citation resolver (`_cfr_one` in `src/citation_schemes.py`) compared
   every citation's `(title, part)` against a literal `("2", "200")` and refused everything
   else with "this corpus holds 2 CFR 200 ... and does not hold {title} CFR {part}" — a claim

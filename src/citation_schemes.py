@@ -84,31 +84,77 @@ def _section_numbers(text: str, part: str) -> frozenset[str]:
 _SNAPSHOTS = INSTRUMENTS.parent / "_meta" / "snapshots"
 
 
+_SNAPSHOT_DATE_RE = re.compile(r"-(\d{4}-\d{2}-\d{2})\.txt$")
+
+
 @functools.lru_cache(maxsize=None)
-def _current_section_numbers(base: str, part: str) -> frozenset[str]:
+def _current_section_numbers(base: str) -> frozenset[str]:
+    """`base` is `{title}-cfr-{part}`; `part` is derived from it rather than taken as a
+    second parameter, so a mismatched pair (`_current_section_numbers("2-cfr-200")` called
+    with a `part` that disagrees with `base`) cannot exist as a class of bug.
+
+    A missing document here is NOT an empty part — every `base` this is called with came
+    from `_held_cfr_parts()`, i.e. HELD already says this id IS a held cfr_part, loaded by
+    globbing `instruments/*.md` and keying on each document's own frontmatter `id` (see
+    `_held()`). If `instruments/{base}.md` does not exist, the index and the instruments
+    directory disagree — an id whose document was named differently on disk, say — and
+    that is exactly the confident-false-refusal class #35 exists to close, one field over:
+    swallowing it here would make `_cfr_one` tell a caller "there is no § X.Y" about a part
+    it is simultaneously serving. Raise loudly instead; `_held()` already treats an empty
+    HELD the same way, for the same reason (see its docstring)."""
     path = INSTRUMENTS / f"{base}.md"
     if not path.is_file():
-        return frozenset()
+        raise RuntimeError(
+            f"citation schemes: {base!r} is held as a cfr_part in HELD but {path} does not "
+            f"exist. The index and the instruments directory disagree about this part's "
+            f"document — resolving section citations against it would silently produce "
+            f"'there is no such section', a confident answer with nothing behind it.")
+    part = base.split("-cfr-", 1)[1]
     return _section_numbers(path.read_text(encoding="utf-8"), part)
 
 
 @functools.lru_cache(maxsize=None)
-def _former_section_numbers(base: str, part: str) -> frozenset[str]:
+def _former_section_numbers(base: str) -> frozenset[str]:
     """Section numbers seen in any DATED snapshot of this part (e.g. `2-cfr-200-2021-02-21.txt`)
     that are not in the current text. Most parts have no such snapshot and correctly come back
-    empty — that is an absence of history, not a gap in this function."""
+    empty — that is an absence of history, not a gap in this function.
+
+    The glob is `{base}-*.txt`, which would also match a same-prefix file that is not a
+    dated snapshot at all (`2-cfr-200-draft.txt`); filtered through `_SNAPSHOT_DATE_RE` so
+    the code actually enforces the "DATED" this docstring promises, rather than relying on
+    nothing else ever being dropped in `_meta/snapshots/` with a matching prefix."""
+    part = base.split("-cfr-", 1)[1]
     out: set[str] = set()
     for snap in sorted(_SNAPSHOTS.glob(f"{base}-*.txt")):
+        if not _SNAPSHOT_DATE_RE.search(snap.name):
+            continue
         out |= _section_numbers(snap.read_text(encoding="utf-8"), part)
-    return frozenset(out) - _current_section_numbers(base, part)
+    return frozenset(out) - _current_section_numbers(base)
 
 
-# The one fact about a removed-and-consolidated section that a snapshot diff cannot supply:
-# WHERE its content went. That is knowledge about the amendment itself, not something present
-# in the text, so it is hand-recorded per held part rather than derived. Absent for any part
-# without an entry here, which produces a true, less specific note instead of a guess.
+def _snapshot_dates(base: str) -> list[str]:
+    """Dates of every snapshot actually consulted for `base` by `_former_section_numbers`,
+    for a refusal message to name — so "there is no such section" can say WHICH texts were
+    checked instead of just asserting it."""
+    dates = []
+    for snap in sorted(_SNAPSHOTS.glob(f"{base}-*.txt")):
+        m = _SNAPSHOT_DATE_RE.search(snap.name)
+        if m:
+            dates.append(m.group(1))
+    return dates
+
+
+# The facts about a removed-and-consolidated section that a snapshot diff cannot supply:
+# WHERE its content went, and WHAT moved there. Both are knowledge about the amendment
+# itself, not something present in the text, so both are hand-recorded per held part rather
+# than derived. `scope` describes what was consolidated (a fact about THIS part's amendment,
+# never assumed from another part's) — required precisely because #35 generalized this note
+# from "the" part to any part: leaving `scope` out of the record while still asserting one in
+# the message would have kept it true for 2 CFR 200 by accident and invented it for every
+# other part given an entry here. Absent for any part without an entry here, which produces a
+# true, less specific note instead of a guess.
 _CONSOLIDATIONS = {
-    PART_ID: {"date": "2021-02-22", "into": "200.1"},
+    PART_ID: {"date": "2021-02-22", "into": "200.1", "scope": "Subpart A's definitions"},
 }
 
 
@@ -212,7 +258,7 @@ def _cfr_one(title, part, sec):
     fm = HELD.get(doc)
 
     if fm is None:
-        if sec in _current_section_numbers(base, part):
+        if sec in _current_section_numbers(base):
             # The section IS inside the part we hold; it just was not split out, because only
             # the sections Oregon cites are. Returning the part is a TRUE answer, but it is a
             # different document from the one asked for, so it is labelled rather than
@@ -227,28 +273,34 @@ def _cfr_one(title, part, sec):
         # if a dated snapshot shows it existed before a known amendment, say what that
         # amendment did, because for this corpus's audit citations that is usually the real
         # explanation.
-        if sec in _former_section_numbers(base, part):
+        if sec in _former_section_numbers(base):
             consolidation = _CONSOLIDATIONS.get(base)
-            if consolidation:
+            if consolidation and consolidation.get("scope"):
                 target = consolidation["into"]
                 return [], (
                     f"§ {part}.{sec} is NOT in the current {title} CFR {part}. It existed "
                     f"until the {consolidation['date']} amendment, which consolidated "
-                    f"Subpart A's definitions into § {target}. It is not held individually "
+                    f"{consolidation['scope']} into § {target}. It is not held individually "
                     f"— only the removed sections Oregon material actually cites are, as "
                     f"their own superseded documents. For the current treatment see "
                     f"{base}.{target.split('.', 1)[-1]}.")
-            # No recorded consolidation target for this part: still true and specific about
-            # what changed, without inventing where the content went.
+            # No recorded consolidation scope for this part: still true and specific about
+            # what changed, without inventing where or what the content went.
             return [], (
                 f"§ {part}.{sec} is NOT in the current {title} CFR {part}. It appears in an "
                 f"earlier snapshot of this part but not the current text, and is not held "
                 f"individually. Check whether a superseded document for it exists, or "
                 f"whether the citing rule predates {part_fm.get('as_of')}.")
+        dates = _snapshot_dates(base)
+        also = ""
+        if dates:
+            texts = "text" if len(dates) == 1 else "texts"
+            joined = dates[0] if len(dates) == 1 else f"{', '.join(dates[:-1])} or {dates[-1]}"
+            also = f", and none in the {joined} {texts} either"
         return [], (
             f"there is no § {part}.{sec} in {title} CFR {part} as of "
-            f"{part_fm.get('as_of')}. Check the citation — it may name a different title or "
-            f"part.")
+            f"{part_fm.get('as_of')}{also}. Check the citation — it may name a different "
+            f"title or part.")
 
     if fm.get("status") == "superseded":
         return [doc], (
