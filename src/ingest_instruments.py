@@ -346,18 +346,27 @@ def extract_pdf(path: Path) -> tuple[str, dict]:
 
 # ---------------------------------------------------------------- document
 
-def cited_section_ids() -> list[str]:
-    """Document ids for the sections split out of 2 CFR 200, in citation order.
+def cited_section_ids(part_id: str) -> list[str]:
+    """Document ids for the sections split out of `part_id` (e.g. `2-cfr-200`), in citation
+    order.
 
-    Read from _meta/cited-sections.yml -- the same committed list split_cfr_sections.py
-    works from -- so the part's edges and the section documents cannot disagree about which
-    sections exist.
+    Read from _meta/cited-sections/<part_id>.yml -- the same committed per-part list
+    split_cfr_sections.py works from -- so the part's edges and the section documents cannot
+    disagree about which sections exist.
+
+    #34: this used to read one hardcoded file (_meta/cited-sections.yml) and prefix every id
+    with the literal "2-cfr-200." -- correct for the one part that existed, and silently
+    wrong for any other: a second part's cited-sections file lived at a path this function
+    never looked at, so ITS part document would publish `relationships: {}` -- indistinguishable
+    from a part Oregon genuinely cites nothing from, for the wrong reason. Absence of a file
+    for `part_id` still returns [] -- a part not yet run through src/scan_cited_sections.py
+    correctly has no known cited sections yet, which is not an error.
     """
-    path = ROOT / "_meta" / "cited-sections.yml"
+    path = ROOT / "_meta" / "cited-sections" / f"{part_id}.yml"
     if not path.is_file():
         return []
     doc = yaml.safe_load(path.read_text()) or {}
-    return [f"2-cfr-200.{e['section'].split('.', 1)[1]}"
+    return [f"{part_id}.{e['section'].split('.', 1)[1]}"
             for key in ("current", "removed") for e in (doc.get(key) or [])]
 
 
@@ -470,7 +479,14 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
         # If a listed section has no document yet (split_cfr_sections.py not run), frontmatter
         # validation fails with "does not resolve to any document". That is deliberate: a loud
         # dangling edge beats a part that quietly claims no sections.
-        **({"relationships": {"related": cited_section_ids()}} if rid == "2-cfr-200" else {}),
+        #
+        # #34: gated on `rid == "2-cfr-200"` -- a literal id -- before. Every other cfr_part
+        # ingested silently got NO relationships block at all, indistinguishable from a part
+        # genuinely cited at zero sections, which is the same "wrong answer that looks like a
+        # right one" #33 was about one field over. Gated on the KIND now, so it applies to
+        # whichever part is being built, the same fix #33 made for issuing_body.
+        **({"relationships": {"related": cited_section_ids(rid)}}
+           if src["instrument_kind"] == "cfr_part" else {}),
         "maintainer": "@morficflux",
         # Written EMPTY on purpose; a human sets them at PR approval. An ingester that
         # stamps a verification it did not perform is worse than a blank.

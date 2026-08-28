@@ -4,26 +4,35 @@ Registered as `plugins.snapshot_slice_module` in _meta/corpus.yml. The toolkit c
 `slice(doc_id, snapshot_id, raw_text) -> str` and measures full-text coverage against what
 comes back; the default implementation is the identity function.
 
-WHY THIS CORPUS NEEDS IT. The 29 cited sections of 2 CFR 200 are cut from one snapshot and
-share it via `snapshot_id`, rather than each re-fetching and storing its own copy — one
-source of truth on disk, so a section cannot drift from the part it came from. But coverage
-is `len(document full text) / len(slice)`, so with the default identity slice every section
-is measured against all 633,000 characters of the part and scores ~1%. All 29 failed exactly
-that way before this existed.
+WHY THIS CORPUS NEEDS IT. Sections cited out of a CFR part are cut from the part's one
+snapshot and share it via `snapshot_id`, rather than each re-fetching and storing its own
+copy — one source of truth on disk, so a section cannot drift from the part it came from.
+But coverage is `len(document full text) / len(slice)`, so with the default identity slice
+every section is measured against the WHOLE part and scores near 0%. All 29 of 2 CFR 200's
+failed exactly that way before this existed.
+
+#34: `SECTION_ID` used to be a literal pattern matching only `2-cfr-200.NNN`, true only of the
+one part this corpus held when this file was written. That is not a dormant hardcode — it is
+a live bug for every part ingested since: a second part's section document (`6-cfr-37.72`,
+say) fails to match, falls through to `return raw_text` (the identity default), and coverage
+is measured against the whole part again — the exact ~1% failure this file's own docstring
+says it exists to prevent, silently reintroduced one id format over. Generalized to any
+`{title}-cfr-{part}.{section}`.
 
 The failure to notice is the inverse one: a slicer that returns something too SMALL makes
 coverage look complete no matter what the document contains. So `_section` returns the span
 between one `### ` heading and the next — the same boundary the splitter cut on — and raises
 rather than falling back to the whole text when it cannot find the heading. A slice that
-silently widens to the full part would turn this check back into the 1% it was, and a slice
-that silently narrows would turn it into a rubber stamp.
+silently widens to the full part would turn this check back into the near-0% it was, and a
+slice that silently narrows would turn it into a rubber stamp.
 """
 from __future__ import annotations
 
 import re
 
-# `2-cfr-200.303` -> section `200.303`; the bare part id must NOT match.
-SECTION_ID = re.compile(r"^2-cfr-200\.(\d+)$")
+# `2-cfr-200.303` -> part `200`, section `303`; `6-cfr-37.72` -> part `37`, section `72`.
+# The bare part id (no trailing `.NNN`) must NOT match -- it owns its whole snapshot.
+DOC_ID = re.compile(r"^\d{1,2}-cfr-(\d{1,4})\.(\d+)$")
 
 
 def _section(raw_text: str, sec: str) -> str:
@@ -42,8 +51,9 @@ def _section(raw_text: str, sec: str) -> str:
 
 
 def slice(doc_id: str, snapshot_id: str, raw_text: str) -> str:  # noqa: A001
-    m = SECTION_ID.match(doc_id or "")
+    m = DOC_ID.match(doc_id or "")
     if not m:
         # The part itself, and every non-CFR instrument, owns its whole snapshot.
         return raw_text
-    return _section(raw_text, f"200.{m.group(1)}")
+    part, sec = m.group(1), m.group(2)
+    return _section(raw_text, f"{part}.{sec}")

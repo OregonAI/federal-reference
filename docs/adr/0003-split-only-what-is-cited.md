@@ -2,7 +2,7 @@
 
 **Status:** Accepted. Recorded here 2026-08-11 from the docstrings in
 `src/scan_cited_sections.py` and `src/split_cfr_sections.py`, and from
-`_meta/cited-sections.yml`.
+`_meta/cited-sections.yml` (since #34, one file per part under `_meta/cited-sections/`).
 
 ## Context
 
@@ -49,3 +49,8 @@ chapter 200 too. This guard must be re-derived for every instrument, not inherit
 The standing trigger — that any instrument measured with section-shaped citations graduates
 to this treatment — currently cannot fire, because the pipeline is hardcoded to
 2 CFR 200. That gap is tracked as an issue, not a change to this decision.
+
+**Update (#34):** the pipeline is generalized — `scan_cited_sections.py` takes `--title` and
+`--part`, `split_cfr_sections.py` processes any part with a committed cited-sections file, and
+the demand-driven trigger (measured citations, not part size) is unchanged; this note records
+that the gap above is closed, not a change to the decision itself.

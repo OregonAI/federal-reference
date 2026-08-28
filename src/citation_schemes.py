@@ -147,15 +147,12 @@ def _snapshot_dates(base: str) -> list[str]:
 # The facts about a removed-and-consolidated section that a snapshot diff cannot supply:
 # WHERE its content went, and WHAT moved there. Both are knowledge about the amendment
 # itself, not something present in the text, so both are hand-recorded per held part rather
-# than derived. `scope` describes what was consolidated (a fact about THIS part's amendment,
-# never assumed from another part's) — required precisely because #35 generalized this note
-# from "the" part to any part: leaving `scope` out of the record while still asserting one in
-# the message would have kept it true for 2 CFR 200 by accident and invented it for every
-# other part given an entry here. Absent for any part without an entry here, which produces a
-# true, less specific note instead of a guess.
-_CONSOLIDATIONS = {
-    PART_ID: {"date": "2021-02-22", "into": "200.1", "scope": "Subpart A's definitions"},
-}
+# than derived. #34: this used to be a dict literal defined here alone; src/split_cfr_sections.py
+# needs the identical fact (its removed-section document says the same thing in prose) and
+# had its OWN separate hardcode of it, which is exactly the shape of bug #33 was -- one place
+# fixed, an identical literal one file over left to reproduce it. Now imported from
+# src/cfr_consolidations.py, the one place either caller can drift from is itself.
+from cfr_consolidations import CONSOLIDATIONS as _CONSOLIDATIONS  # noqa: E402
 
 
 def _version_of(doc_id: str) -> str | None:

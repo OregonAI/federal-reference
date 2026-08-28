@@ -105,12 +105,21 @@ jobs:
         run: python3 src/build_graph.py --check
       - name: STATUS.md must be current
         run: corpus-generate-status --config _meta/corpus.yml --output STATUS.md --check
-      # _meta/cited-sections.yml says "GENERATED -- do not hand-edit" and the 38 section
-      # documents are generated from it, but nothing compared them: edit either side and CI
-      # stayed green. --check also reports ORPHANs, so a hand-added section document or one
-      # left behind by a dropped citation is caught too.
+      # Every _meta/cited-sections/<part>.yml says "GENERATED -- do not hand-edit" and its
+      # section documents are generated from it, but nothing compared them: edit either side
+      # and CI stayed green. --check also reports ORPHANs, so a hand-added section document
+      # or one left behind by a dropped citation is caught too. #34: with no --part-id this
+      # now checks EVERY part with a committed cited-sections file, not only 2 CFR 200.
       - name: Split CFR sections must match the citation list
         run: python3 src/split_cfr_sections.py --check
+      # split_cfr_sections.py --check above is a no-regression check on the FIRST part (2 CFR
+      # 200) -- it reads the same whether the splitter, the scanner's regexes, and the
+      # provenance slicer still assume there is only one part, because 2 CFR 200 is that one
+      # part either way. #34's queued second instrument (6 CFR 37) is not ingested yet, so
+      # this is the gate that actually proves a SECOND part, the same reason
+      # check_issuing_body.py exists below for #33.
+      - name: A second cfr_part must split, slice, and link independently of the first
+        run: python3 src/check_section_split.py
       # Every other check here verifies documents are well-formed. This one verifies the
       # server does not give a CONFIDENT WRONG ANSWER — CJIS 6.1 returned for a 5.9.4
       # citation, current text returned for a superseded section, a public law returned for

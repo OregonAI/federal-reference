@@ -7,6 +7,57 @@ Repo-curation dates only — official effective dates live in frontmatter.
 ## [Unreleased]
 
 ### Fixed
+- 2026-08-27 — Generalized the demand-driven CFR section split beyond 2 CFR 200 (#34), the
+  last of the three hardcodes this branch removes (#33 for issuing_body, #35 for citation
+  resolution). Four files assumed there was exactly one part:
+
+  `src/scan_cited_sections.py`'s citation regexes and eCFR version lookup took `--title` and
+  `--part` instead of the literal `2`/`200`, and its output moved from one committed file to
+  one per part (`_meta/cited-sections/<title>-cfr-<part>.yml`) — a second part's cited
+  sections used to have no file to live in at all.
+
+  `src/split_cfr_sections.py`'s part id, fetch URL, section-number regex, and
+  heading-stripping regex were all module-level constants true only of 2 CFR 200; all four
+  are now derived from `--part-id` (or discovered from every committed cited-sections file).
+  Historical (removed-section) snapshots are now fetched per DISTINCT removal date rather
+  than one hardcoded date for the whole part, and the `supersedes` back-edge on a
+  consolidation target is computed from the removed entries actually pointing at it instead
+  of a literal pair of section numbers. Two more hardcodes travelled alongside these and are
+  fixed here, both flagged by #33's own review: `issuing_body` was the literal "Office of
+  Management and Budget" in this file too (fixed for `ingest_instruments.py` by #33, not
+  here) and now reads the part's own manifest entry; the removed-section note's "consolidated
+  into" claim was a second, independently-worded hardcode of the same fact #35 already
+  recorded once in `citation_schemes.py` — both callers now read one shared record
+  (`src/cfr_consolidations.py`), so they cannot describe an amendment two different ways.
+  Regenerating 2 CFR 200 is NOT byte-identical as a result: two prose sentences ("- Part: 2
+  CFR 200 (Uniform Guidance)" and the consolidation clause) now read from the manifest/shared
+  record instead of a literal, and both are still true. Every field is unchanged.
+
+  `src/slicing.py`'s `SECTION_ID` pattern matched only `2-cfr-200.NNN`, so a second part's
+  section document fell through to the identity slice and had its provenance coverage
+  measured against the WHOLE part — the exact near-0% failure this file's own docstring says
+  it exists to prevent, live for any part ingested since it was written, not merely latent.
+  Generalized to any `{title}-cfr-{part}.{section}`.
+
+  `src/ingest_instruments.py`'s `cited_section_ids()` read one hardcoded file and prefixed
+  every id with the literal `"2-cfr-200."`; its call site gated on `rid == "2-cfr-200"`
+  rather than `instrument_kind == "cfr_part"` — so a second part's document would silently
+  publish `relationships: {}`, indistinguishable from a part genuinely cited at zero
+  sections. Both now read/gate per part.
+
+  All four are proven against a SYNTHETIC second part (6 CFR 37) in the new
+  `src/check_section_split.py`, wired into the `generated` CI job — the same reason
+  `check_issuing_body.py` exists for #33: regenerating 2 CFR 200 (`split_cfr_sections.py
+  --check`, above) is a no-regression check on the FIRST part, which passes the same whether
+  these files still assume one part or not, since 2 CFR 200 is that one part either way, and
+  #34's own queued second instrument is not ingested yet. Confirmed
+  every new assertion fails against the pre-fix code (`git stash` of the five changed
+  modules; `scan_cited_sections.patterns` does not exist at all, `split_cfr_sections --check`
+  cannot find the migrated cited-sections file).
+
+  `_meta/cited-sections.yml` moved to `_meta/cited-sections/2-cfr-200.yml`; README.md and
+  ADR-0003 updated to match.
+
 - 2026-08-27 — Follow-up to the CFR resolver fix below, from review of #35
   (`git diff acd8622f8995be193f4bde9123555093b1e86477...HEAD`). Two HARD findings, both
   confirmed to reproduce before the fix and quoted below, and neither latent — one live in
