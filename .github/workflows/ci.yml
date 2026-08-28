@@ -105,12 +105,21 @@ jobs:
         run: python3 src/build_graph.py --check
       - name: STATUS.md must be current
         run: corpus-generate-status --config _meta/corpus.yml --output STATUS.md --check
-      # _meta/cited-sections.yml says "GENERATED -- do not hand-edit" and the 38 section
-      # documents are generated from it, but nothing compared them: edit either side and CI
-      # stayed green. --check also reports ORPHANs, so a hand-added section document or one
-      # left behind by a dropped citation is caught too.
+      # Every _meta/cited-sections/<part>.yml says "GENERATED -- do not hand-edit" and its
+      # section documents are generated from it, but nothing compared them: edit either side
+      # and CI stayed green. --check also reports ORPHANs, so a hand-added section document
+      # or one left behind by a dropped citation is caught too. #34: with no --part-id this
+      # now checks EVERY part with a committed cited-sections file, not only 2 CFR 200.
       - name: Split CFR sections must match the citation list
         run: python3 src/split_cfr_sections.py --check
+      # split_cfr_sections.py --check above is a no-regression check on the FIRST part (2 CFR
+      # 200) -- it reads the same whether the splitter, the scanner's regexes, and the
+      # provenance slicer still assume there is only one part, because 2 CFR 200 is that one
+      # part either way. #34's queued second instrument (6 CFR 37) is not ingested yet, so
+      # this is the gate that actually proves a SECOND part, the same reason
+      # check_issuing_body.py exists below for #33.
+      - name: A second cfr_part must split, slice, and link independently of the first
+        run: python3 src/check_section_split.py
       # Every other check here verifies documents are well-formed. This one verifies the
       # server does not give a CONFIDENT WRONG ANSWER — CJIS 6.1 returned for a 5.9.4
       # citation, current text returned for a superseded section, a public law returned for
@@ -118,6 +127,14 @@ jobs:
       # assertions, each confirmed to fail when the behaviour it guards is removed.
       - name: Citation resolution must refuse what it cannot answer
         run: python3 src/check_citations.py
+      # resolve_issuing_body() dispatches `cfr_part` to a per-source manifest read instead of
+      # a per-kind constant (#33), specifically so a second part is not stamped with the
+      # first's issuer. Nothing else exercises a SECOND part through it: ingest_instruments.py
+      # runs in no workflow, and #33's own evidence (2 CFR 200 regenerating byte-identically)
+      # is a no-regression check on the FIRST part, which reads the same whether the bug is
+      # fixed or not. This is the one gate that actually proves the second part.
+      - name: A second cfr_part must not inherit the first part's issuer
+        run: python3 src/check_issuing_body.py
       # corpus-verify-provenance CANNOT catch extraction loss: source_sha256 hashes the
       # committed .txt, and that .txt is written by the extractor from the same string that
       # goes into the document, so the whole chain compares the extractor against itself.

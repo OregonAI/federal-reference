@@ -27,6 +27,17 @@ note: |
   usual: the eCFR URL ends in `?part=200`, so an inferred format would be html, and drift
   detection would run an HTML-to-text converter over XML and report a change every run.
 
+  `issuing_body` is REQUIRED on every `cfr_part` entry — the promulgating agency, SPELLED OUT
+  in full, matching every issuer already in this file ("Office of Management and Budget", not
+  "OMB"; "Internal Revenue Service", not "IRS"): e.g. "Department of Justice" for 28 CFR 35 or
+  "Department of Health and Human Services / Substance Abuse and Mental Health Services
+  Administration" for 42 CFR 2, not "DOJ" or "HHS/SAMHSA". This field is served over MCP as
+  provenance a reader may cite; nothing normalizes or expands an abbreviation downstream, so
+  an abbreviated entry here is a permanent inconsistency, not a display shortcut. It is a fact
+  about the SPECIFIC part, not the kind: OMB issues 2 CFR 200 but not every CFR part, so it
+  cannot be inferred from `instrument_kind` the way it can for the other three kinds.
+  ingest_instruments.py fails loudly, naming the entry, if a cfr_part omits it. See #33.
+
 index: "https://www.ecfr.gov/"
 recheck: quarterly
 
@@ -37,6 +48,9 @@ sources:
     instrument_kind: "cfr_part"
     citation: "2 CFR 200"
     title: "Uniform Administrative Requirements, Cost Principles, and Audit Requirements for Federal Awards"
+    # issuing_body: required per cfr_part, spelled out in full -- see the `note:` at the top
+    # of this file for the convention and why. See #33.
+    issuing_body: "Office of Management and Budget"
     signal: "audited"
     why: >
       The Uniform Guidance. Governs every federal grant Oregon receives. Cited 180 times in

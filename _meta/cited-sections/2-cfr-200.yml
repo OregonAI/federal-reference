@@ -2,15 +2,15 @@
 #
 # Which sections of 2 CFR 200 get their own document, and why each one is here.
 # Regenerate with:
-#   python3 src/scan_cited_sections.py --erf ../oregon-policy-repo --audits ../oregon-audits
+#   python3 src/scan_cited_sections.py --erf ../oregon-policy-repo --audits ../oregon-audits --title 2 --part 200
 #
 # Committed rather than computed during the build because CI cannot reach the sibling
 # repositories this is derived from; a build-time scan would find zero and split nothing.
 
-scanned_files: 75555
-total_citations: 256
+scanned_files: 76701
+total_citations: 257
 
-# Sections still in force. Text comes from the committed 2026 part snapshot.
+# Sections still in force. Text comes from the committed current part snapshot.
 current:
   - section: "200.303"
     citations: 63
@@ -66,15 +66,15 @@ current:
   - section: "200.313"
     citations: 3
     cited_in: ["audits"]
+  - section: "200.333"
+    citations: 3
+    cited_in: ["audits", "erf"]
   - section: "200.501"
     citations: 3
     cited_in: ["audits", "erf"]
   - section: "200.311"
     citations: 2
     cited_in: ["audits"]
-  - section: "200.333"
-    citations: 2
-    cited_in: ["audits", "erf"]
   - section: "200.338"
     citations: 2
     cited_in: ["erf"]

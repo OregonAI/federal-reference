@@ -42,13 +42,15 @@ small, and the 15 are rules whose stated legal basis previously resolved to noth
 and miss every one of those. The split list is derived, not chosen:
 
 ```
-python3 src/scan_cited_sections.py --erf ../oregon-policy-repo --audits ../oregon-audits
+python3 src/scan_cited_sections.py --erf ../oregon-policy-repo --audits ../oregon-audits \
+    --title 2 --part 200
 python3 src/split_cfr_sections.py
 ```
 
-The result is committed to `_meta/cited-sections.yml` because CI cannot reach the sibling
-repositories — a build-time scan would find nothing there and split nothing, silently.
-`--check` on the splitter keeps that file and the 38 documents from drifting apart.
+The result is committed to `_meta/cited-sections/<title>-cfr-<part>.yml` (one file per part)
+because CI cannot reach the sibling repositories — a build-time scan would find nothing there
+and split nothing, silently. `--check` on the splitter, run with no `--part-id`, keeps every
+committed part's cited-sections file and section documents from drifting apart.
 
 The scan counts the **short form** (`§200.414`) as well as the full one, but only in files
 that also carry a full `2 CFR 200` citation to establish which part is meant. Requiring the

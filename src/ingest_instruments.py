@@ -47,6 +47,46 @@ UA = ("OregonAI-corpus-bot/0.1 (+https://github.com/OregonAI/federal-reference; 
 # a citation to one revision must never resolve to another's text.
 IRS_REV = re.compile(r"\(\s*Rev\.?\s*(\d{1,2}[-/]\d{4})\s*\)", re.I)
 
+# These three kinds really are constant per kind: every IRS publication comes from the IRS,
+# every CJIS policy from the FBI's CJIS Division, every public law from Congress. `cfr_part`
+# is deliberately NOT in this table — see resolve_issuing_body().
+ISSUING_BODY_BY_KIND = {
+    "irs_publication": "Internal Revenue Service",
+    "fbi_policy": "Federal Bureau of Investigation, CJIS Division",
+    "public_law": "United States Congress",
+}
+
+
+def resolve_issuing_body(src: dict) -> str:
+    """The federal agency that issued this instrument.
+
+    For every OTHER instrument_kind, the issuer is a property of the KIND: an IRS
+    publication is always from the IRS. A CFR part is different — Title 2 Part 200 is
+    OMB's, but Title 28 Part 35 is DOJ's and Title 42 Part 2 is HHS/SAMHSA's. Keying
+    `cfr_part` off the kind (as this used to) stamps whichever part was ingested first onto
+    every part ingested after it, which is a false attribution in a corpus whose purpose is
+    letting a reader check who said what.
+
+    So for `cfr_part` the issuer is read from the source's OWN manifest entry — data a
+    reviewer can see and check at PR time, alongside `citation`, `title`,
+    `reproduction_basis` — never inferred from the kind, the URL, or a previous document.
+
+    RAISES rather than defaulting when a cfr_part entry has no declared issuer. A missing
+    issuer means the manifest entry is not ready to publish; guessing OMB again (or writing
+    an empty string) is exactly the silent default that produced this bug in the first
+    place.
+    """
+    kind = src["instrument_kind"]
+    if kind == "cfr_part":
+        body = src.get("issuing_body")
+        if not body:
+            raise ValueError(
+                f"{src['id']!r} is a cfr_part with no issuing_body declared in "
+                f"{MANIFEST.name} — the issuing agency is a fact about this specific part "
+                "and must be stated, not assumed")
+        return body
+    return ISSUING_BODY_BY_KIND[kind]
+
 
 def cfr_amended_on(url: str) -> str:
     """The date THIS PART was last amended, from eCFR's per-section version record.
@@ -306,18 +346,27 @@ def extract_pdf(path: Path) -> tuple[str, dict]:
 
 # ---------------------------------------------------------------- document
 
-def cited_section_ids() -> list[str]:
-    """Document ids for the sections split out of 2 CFR 200, in citation order.
+def cited_section_ids(part_id: str) -> list[str]:
+    """Document ids for the sections split out of `part_id` (e.g. `2-cfr-200`), in citation
+    order.
 
-    Read from _meta/cited-sections.yml -- the same committed list split_cfr_sections.py
-    works from -- so the part's edges and the section documents cannot disagree about which
-    sections exist.
+    Read from _meta/cited-sections/<part_id>.yml -- the same committed per-part list
+    split_cfr_sections.py works from -- so the part's edges and the section documents cannot
+    disagree about which sections exist.
+
+    #34: this used to read one hardcoded file (_meta/cited-sections.yml) and prefix every id
+    with the literal "2-cfr-200." -- correct for the one part that existed, and silently
+    wrong for any other: a second part's cited-sections file lived at a path this function
+    never looked at, so ITS part document would publish `relationships: {}` -- indistinguishable
+    from a part Oregon genuinely cites nothing from, for the wrong reason. Absence of a file
+    for `part_id` still returns [] -- a part not yet run through src/scan_cited_sections.py
+    correctly has no known cited sections yet, which is not an error.
     """
-    path = ROOT / "_meta" / "cited-sections.yml"
+    path = ROOT / "_meta" / "cited-sections" / f"{part_id}.yml"
     if not path.is_file():
         return []
     doc = yaml.safe_load(path.read_text()) or {}
-    return [f"2-cfr-200.{e['section'].split('.', 1)[1]}"
+    return [f"{part_id}.{e['section'].split('.', 1)[1]}"
             for key in ("current", "removed") for e in (doc.get(key) or [])]
 
 
@@ -396,10 +445,7 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
                      if src["instrument_kind"] == "irs_publication" and version
                      else src["citation"]),
         "authority_level": "federal",
-        "issuing_body": {"cfr_part": "Office of Management and Budget",
-                         "irs_publication": "Internal Revenue Service",
-                         "fbi_policy": "Federal Bureau of Investigation, CJIS Division",
-                         "public_law": "United States Congress"}[src["instrument_kind"]],
+        "issuing_body": resolve_issuing_body(src),
         "instrument_kind": src["instrument_kind"],
         "version": version,
         "as_of": as_of,
@@ -433,7 +479,14 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
         # If a listed section has no document yet (split_cfr_sections.py not run), frontmatter
         # validation fails with "does not resolve to any document". That is deliberate: a loud
         # dangling edge beats a part that quietly claims no sections.
-        **({"relationships": {"related": cited_section_ids()}} if rid == "2-cfr-200" else {}),
+        #
+        # #34: gated on `rid == "2-cfr-200"` -- a literal id -- before. Every other cfr_part
+        # ingested silently got NO relationships block at all, indistinguishable from a part
+        # genuinely cited at zero sections, which is the same "wrong answer that looks like a
+        # right one" #33 was about one field over. Gated on the KIND now, so it applies to
+        # whichever part is being built, the same fix #33 made for issuing_body.
+        **({"relationships": {"related": cited_section_ids(rid)}}
+           if src["instrument_kind"] == "cfr_part" else {}),
         "maintainer": "@morficflux",
         # Written EMPTY on purpose; a human sets them at PR approval. An ingester that
         # stamps a verification it did not perform is worse than a blank.
@@ -516,6 +569,22 @@ def main() -> int:
     for src in sources:
         rid, fmt = src["id"], src["format"]
         try:
+            # VALIDATED BEFORE ANY SIDE EFFECT, not just before the document is written.
+            # resolve_issuing_body() needs nothing from the fetch -- for `cfr_part` it reads
+            # only `src["issuing_body"]`, already in hand from the manifest -- so calling it
+            # here means a manifest entry missing its issuer fails before this run touches
+            # disk at all. Moved here after a `--only` run against a synthetic incomplete
+            # entry left `_meta/snapshots/<id>.txt` written and `_meta/source-manifest.yml`'s
+            # sha256 line edited despite the ValueError, because both used to happen inside
+            # this same try block but ABOVE the `build()` call that is resolve_issuing_body's
+            # only other caller. That half-ingested state (manifest entry now looks hashed
+            # and current, snapshot text present, no document) is exactly the shape
+            # check_extraction.py does not expect: `docs[sid][0][1]` assumes every manifest
+            # source with a committed raw snapshot owns at least one document, and crashes
+            # with an unhandled KeyError instead of reporting a clean FAIL — filed as #53
+            # rather than fixed here, since check_extraction.py is a different review
+            # surface and the underlying fragility is general, not specific to this path.
+            resolve_issuing_body(src)
             snap = SNAPSHOTS / f"{rid}.{fmt}"
             fresh = not snap.is_file() or args.refetch
             raw = fetch(src["url"], snap, args.refetch)
