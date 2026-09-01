@@ -18,6 +18,7 @@ Network-dependent, so it belongs in the scheduled job rather than a per-PR gate.
 """
 from __future__ import annotations
 
+import gzip
 import sys
 import urllib.error
 import urllib.request
@@ -41,10 +42,17 @@ def main() -> int:
           f"documents")
     bad = []
     for url, ids in sorted(urls.items()):
-        req = urllib.request.Request(url, headers={"User-Agent": UA}, method="GET")
+        # eCFR's /full/ endpoint 406s a request with no Accept-Encoding ("This endpoint
+        # requires response compression") -- the same defect ingest_instruments.fetch()
+        # was fixed for (#66). Sent here too so this gate reports a real reachability
+        # failure, not one this corpus's own request shape manufactures.
+        req = urllib.request.Request(
+            url, headers={"User-Agent": UA, "Accept-Encoding": "gzip"}, method="GET")
         try:
             with urllib.request.urlopen(req, timeout=90) as r:
                 code = r.status
+                if r.headers.get("Content-Encoding", "").lower() == "gzip":
+                    gzip.decompress(r.read())  # confirms the body actually decodes
         except urllib.error.HTTPError as e:
             code = e.code
         except Exception as e:                       # noqa: BLE001 — reported, not raised

@@ -1,7 +1,7 @@
 {
  "corpus": "federal-reference",
- "n_nodes": 43,
- "n_edges": 78,
+ "n_nodes": 112,
+ "n_edges": 214,
  "n_edges_external": 0,
  "nodes": [
   {
@@ -276,6 +276,489 @@
    "doc_type": "federal_instrument",
    "status": "current",
    "path": "instruments/2-cfr-200.md"
+  },
+  {
+   "id": "34-cfr-300.101",
+   "title": "34 CFR 300.101 — Free appropriate public education (FAPE)",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.101.md"
+  },
+  {
+   "id": "34-cfr-300.102",
+   "title": "34 CFR 300.102 — Limitation—exception to FAPE for certain ages",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.102.md"
+  },
+  {
+   "id": "34-cfr-300.105",
+   "title": "34 CFR 300.105 — Assistive technology",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.105.md"
+  },
+  {
+   "id": "34-cfr-300.106",
+   "title": "34 CFR 300.106 — Extended school year services",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.106.md"
+  },
+  {
+   "id": "34-cfr-300.107",
+   "title": "34 CFR 300.107 — Nonacademic services",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.107.md"
+  },
+  {
+   "id": "34-cfr-300.111",
+   "title": "34 CFR 300.111 — Child find",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.111.md"
+  },
+  {
+   "id": "34-cfr-300.114",
+   "title": "34 CFR 300.114 — LRE requirements",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.114.md"
+  },
+  {
+   "id": "34-cfr-300.115",
+   "title": "34 CFR 300.115 — Continuum of alternative placements",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.115.md"
+  },
+  {
+   "id": "34-cfr-300.116",
+   "title": "34 CFR 300.116 — Placements",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.116.md"
+  },
+  {
+   "id": "34-cfr-300.117",
+   "title": "34 CFR 300.117 — Nonacademic settings",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.117.md"
+  },
+  {
+   "id": "34-cfr-300.124",
+   "title": "34 CFR 300.124 — Transition of children from the Part C program to preschool programs",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.124.md"
+  },
+  {
+   "id": "34-cfr-300.131",
+   "title": "34 CFR 300.131 — Child find for parentally-placed private school children with disabilities",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.131.md"
+  },
+  {
+   "id": "34-cfr-300.132",
+   "title": "34 CFR 300.132 — Provision of services for parentally-placed private school children with disabilities—basic requirement",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.132.md"
+  },
+  {
+   "id": "34-cfr-300.133",
+   "title": "34 CFR 300.133 — Expenditures",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.133.md"
+  },
+  {
+   "id": "34-cfr-300.134",
+   "title": "34 CFR 300.134 — Consultation",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.134.md"
+  },
+  {
+   "id": "34-cfr-300.135",
+   "title": "34 CFR 300.135 — Written affirmation",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.135.md"
+  },
+  {
+   "id": "34-cfr-300.136",
+   "title": "34 CFR 300.136 — Compliance",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.136.md"
+  },
+  {
+   "id": "34-cfr-300.137",
+   "title": "34 CFR 300.137 — Equitable services determined",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.137.md"
+  },
+  {
+   "id": "34-cfr-300.140",
+   "title": "34 CFR 300.140 — Due process complaints and State complaints",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.140.md"
+  },
+  {
+   "id": "34-cfr-300.141",
+   "title": "34 CFR 300.141 — Requirement that funds not benefit a private school",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.141.md"
+  },
+  {
+   "id": "34-cfr-300.142",
+   "title": "34 CFR 300.142 — Use of personnel",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.142.md"
+  },
+  {
+   "id": "34-cfr-300.143",
+   "title": "34 CFR 300.143 — Separate classes prohibited",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.143.md"
+  },
+  {
+   "id": "34-cfr-300.144",
+   "title": "34 CFR 300.144 — Property, equipment, and supplies",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.144.md"
+  },
+  {
+   "id": "34-cfr-300.148",
+   "title": "34 CFR 300.148 — Placement of children by parents when FAPE is at issue",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.148.md"
+  },
+  {
+   "id": "34-cfr-300.151",
+   "title": "34 CFR 300.151 — Adoption of State complaint procedures",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.151.md"
+  },
+  {
+   "id": "34-cfr-300.154",
+   "title": "34 CFR 300.154 — Methods of ensuring services",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.154.md"
+  },
+  {
+   "id": "34-cfr-300.172",
+   "title": "34 CFR 300.172 — Access to instructional materials",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.172.md"
+  },
+  {
+   "id": "34-cfr-300.209",
+   "title": "34 CFR 300.209 — Treatment of charter schools and their students",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.209.md"
+  },
+  {
+   "id": "34-cfr-300.300",
+   "title": "34 CFR 300.300 — Parental consent",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.300.md"
+  },
+  {
+   "id": "34-cfr-300.301",
+   "title": "34 CFR 300.301 — Initial evaluations",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.301.md"
+  },
+  {
+   "id": "34-cfr-300.304",
+   "title": "34 CFR 300.304 — Evaluation procedures",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.304.md"
+  },
+  {
+   "id": "34-cfr-300.305",
+   "title": "34 CFR 300.305 — Additional requirements for evaluations and reevaluations",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.305.md"
+  },
+  {
+   "id": "34-cfr-300.306",
+   "title": "34 CFR 300.306 — Determination of eligibility",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.306.md"
+  },
+  {
+   "id": "34-cfr-300.320",
+   "title": "34 CFR 300.320 — Definition of individualized education program",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.320.md"
+  },
+  {
+   "id": "34-cfr-300.322",
+   "title": "34 CFR 300.322 — Parent participation",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.322.md"
+  },
+  {
+   "id": "34-cfr-300.323",
+   "title": "34 CFR 300.323 — When IEPs must be in effect",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.323.md"
+  },
+  {
+   "id": "34-cfr-300.324",
+   "title": "34 CFR 300.324 — Development, review, and revision of IEP",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.324.md"
+  },
+  {
+   "id": "34-cfr-300.325",
+   "title": "34 CFR 300.325 — Private school placements by public agencies",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.325.md"
+  },
+  {
+   "id": "34-cfr-300.34",
+   "title": "34 CFR 300.34 — Related services",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.34.md"
+  },
+  {
+   "id": "34-cfr-300.39",
+   "title": "34 CFR 300.39 — Special education",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.39.md"
+  },
+  {
+   "id": "34-cfr-300.5",
+   "title": "34 CFR 300.5 — Assistive technology device",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.5.md"
+  },
+  {
+   "id": "34-cfr-300.500",
+   "title": "34 CFR 300.500 — Responsibility of SEA and other public agencies",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.500.md"
+  },
+  {
+   "id": "34-cfr-300.501",
+   "title": "34 CFR 300.501 — Opportunity to examine records; parent participation in meetings",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.501.md"
+  },
+  {
+   "id": "34-cfr-300.502",
+   "title": "34 CFR 300.502 — Independent educational evaluation",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.502.md"
+  },
+  {
+   "id": "34-cfr-300.503",
+   "title": "34 CFR 300.503 — Prior notice by the public agency; content of notice",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.503.md"
+  },
+  {
+   "id": "34-cfr-300.504",
+   "title": "34 CFR 300.504 — Procedural safeguards notice",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.504.md"
+  },
+  {
+   "id": "34-cfr-300.506",
+   "title": "34 CFR 300.506 — Mediation",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.506.md"
+  },
+  {
+   "id": "34-cfr-300.507",
+   "title": "34 CFR 300.507 — Filing a due process complaint",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.507.md"
+  },
+  {
+   "id": "34-cfr-300.508",
+   "title": "34 CFR 300.508 — Due process complaint",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.508.md"
+  },
+  {
+   "id": "34-cfr-300.510",
+   "title": "34 CFR 300.510 — Resolution process",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.510.md"
+  },
+  {
+   "id": "34-cfr-300.511",
+   "title": "34 CFR 300.511 — Impartial due process hearing",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.511.md"
+  },
+  {
+   "id": "34-cfr-300.512",
+   "title": "34 CFR 300.512 — Hearing rights",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.512.md"
+  },
+  {
+   "id": "34-cfr-300.513",
+   "title": "34 CFR 300.513 — Hearing decisions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.513.md"
+  },
+  {
+   "id": "34-cfr-300.519",
+   "title": "34 CFR 300.519 — Surrogate parents",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.519.md"
+  },
+  {
+   "id": "34-cfr-300.520",
+   "title": "34 CFR 300.520 — Transfer of parental rights at age of majority",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.520.md"
+  },
+  {
+   "id": "34-cfr-300.530",
+   "title": "34 CFR 300.530 — Authority of school personnel",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.530.md"
+  },
+  {
+   "id": "34-cfr-300.532",
+   "title": "34 CFR 300.532 — Appeal",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.532.md"
+  },
+  {
+   "id": "34-cfr-300.534",
+   "title": "34 CFR 300.534 — Protections for children not determined eligible for special education and related services",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.534.md"
+  },
+  {
+   "id": "34-cfr-300.600",
+   "title": "34 CFR 300.600 — State monitoring and enforcement",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.600.md"
+  },
+  {
+   "id": "34-cfr-300.610",
+   "title": "34 CFR 300.610 — Confidentiality",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.610.md"
+  },
+  {
+   "id": "34-cfr-300.614",
+   "title": "34 CFR 300.614 — Record of access",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.614.md"
+  },
+  {
+   "id": "34-cfr-300.616",
+   "title": "34 CFR 300.616 — List of types and locations of information",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.616.md"
+  },
+  {
+   "id": "34-cfr-300.622",
+   "title": "34 CFR 300.622 — Consent",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.622.md"
+  },
+  {
+   "id": "34-cfr-300.627",
+   "title": "34 CFR 300.627 — Department use of personally identifiable information",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.627.md"
+  },
+  {
+   "id": "34-cfr-300.647",
+   "title": "34 CFR 300.647 — Determining significant disproportionality",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.647.md"
+  },
+  {
+   "id": "34-cfr-300.7",
+   "title": "34 CFR 300.7 — Charter school",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.7.md"
+  },
+  {
+   "id": "34-cfr-300.8",
+   "title": "34 CFR 300.8 — Child with a disability",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.8.md"
+  },
+  {
+   "id": "34-cfr-300.9",
+   "title": "34 CFR 300.9 — Consent",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.9.md"
+  },
+  {
+   "id": "34-cfr-300",
+   "title": "Assistance to States for the Education of Children With Disabilities",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-300.md"
   },
   {
    "id": "cjis-sp-6-1",
@@ -696,6 +1179,686 @@
    "from": "2-cfr-200",
    "type": "related",
    "to": "2-cfr-200.62"
+  },
+  {
+   "from": "34-cfr-300.101",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.102",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.105",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.106",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.107",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.111",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.114",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.115",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.116",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.117",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.124",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.131",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.132",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.133",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.134",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.135",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.136",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.137",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.140",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.141",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.142",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.143",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.144",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.148",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.151",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.154",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.172",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.209",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.300",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.301",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.304",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.305",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.306",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.320",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.322",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.323",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.324",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.325",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.34",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.39",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.5",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.500",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.501",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.502",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.503",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.504",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.506",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.507",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.508",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.510",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.511",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.512",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.513",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.519",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.520",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.530",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.532",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.534",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.600",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.610",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.614",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.616",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.622",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.627",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.647",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.7",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.8",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300.9",
+   "type": "related",
+   "to": "34-cfr-300"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.8"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.504"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.154"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.530"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.622"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.9"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.34"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.101"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.133"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.300"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.306"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.324"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.501"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.520"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.320"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.5"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.132"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.137"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.148"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.151"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.322"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.323"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.502"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.503"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.512"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.519"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.532"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.647"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.600"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.610"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.39"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.102"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.105"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.106"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.107"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.111"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.114"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.115"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.116"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.117"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.124"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.131"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.134"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.135"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.136"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.140"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.141"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.142"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.143"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.144"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.172"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.209"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.301"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.304"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.305"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.325"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.500"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.506"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.507"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.508"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.510"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.511"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.513"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.534"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.614"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.616"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.7"
+  },
+  {
+   "from": "34-cfr-300",
+   "type": "related",
+   "to": "34-cfr-300.627"
   }
  ]
 }

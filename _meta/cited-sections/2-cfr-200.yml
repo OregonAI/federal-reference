@@ -8,26 +8,23 @@
 # repositories this is derived from; a build-time scan would find zero and split nothing.
 
 scanned_files: 82309
-total_citations: 257
+total_citations: 231
 
 # Sections still in force. Text comes from the committed current part snapshot.
 current:
   - section: "200.303"
-    citations: 63
+    citations: 58
     cited_in: ["audits"]
   - section: "200.332"
-    citations: 34
+    citations: 28
     cited_in: ["audits", "erf"]
   - section: "200.331"
-    citations: 20
+    citations: 14
     cited_in: ["audits", "erf"]
   - section: "200.302"
-    citations: 13
+    citations: 12
     cited_in: ["audits"]
   - section: "200.414"
-    citations: 10
-    cited_in: ["audits", "erf"]
-  - section: "200.511"
     citations: 10
     cited_in: ["audits", "erf"]
   - section: "200.514"
@@ -45,14 +42,14 @@ current:
   - section: "200.1"
     citations: 7
     cited_in: ["audits", "erf"]
+  - section: "200.511"
+    citations: 7
+    cited_in: ["audits", "erf"]
   - section: "200.328"
-    citations: 6
+    citations: 5
     cited_in: ["audits"]
   - section: "200.403"
     citations: 5
-    cited_in: ["audits"]
-  - section: "200.305"
-    citations: 4
     cited_in: ["audits"]
   - section: "200.317"
     citations: 4
@@ -72,6 +69,9 @@ current:
   - section: "200.501"
     citations: 3
     cited_in: ["audits", "erf"]
+  - section: "200.305"
+    citations: 2
+    cited_in: ["audits"]
   - section: "200.311"
     citations: 2
     cited_in: ["audits"]
@@ -84,15 +84,9 @@ current:
   - section: "200.413"
     citations: 2
     cited_in: ["audits"]
-  - section: "200.459"
-    citations: 2
-    cited_in: ["audits"]
   - section: "200.507"
     citations: 2
     cited_in: ["erf"]
-  - section: "200.508"
-    citations: 2
-    cited_in: ["audits"]
   - section: "200.510"
     citations: 2
     cited_in: ["audits", "erf"]
@@ -108,12 +102,18 @@ current:
   - section: "200.439"
     citations: 1
     cited_in: ["audits"]
+  - section: "200.459"
+    citations: 1
+    cited_in: ["audits"]
   - section: "200.502"
     citations: 1
     cited_in: ["erf"]
   - section: "200.504"
     citations: 1
     cited_in: ["erf"]
+  - section: "200.508"
+    citations: 1
+    cited_in: ["audits"]
   - section: "200.512"
     citations: 1
     cited_in: ["erf"]
@@ -136,3 +136,10 @@ removed:
     cited_in: ["audits"]
     removed_on: "2021-02-22"
     name_when_in_force: "§ 200.62 Internal control over compliance requirements for Federal awards."
+
+# NO eCFR version record at all -- not current, not a recorded removal. Most likely a
+# pre-recodification section number eCFR's versioner never tracked (see this part's own
+# SOURCE line for its recodification date) that an Oregon citation was never updated
+# past. Cannot be split: there is no snapshot to cut a document from. A real citation
+# pointing at nothing, named rather than silently dropped -- see ADR-0003.
+unresolvable:

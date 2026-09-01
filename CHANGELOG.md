@@ -6,7 +6,95 @@ Repo-curation dates only — official effective dates live in frontmatter.
 
 ## [Unreleased]
 
+### Added
+- 2026-08-31 — Ingest 34 CFR 300, the IDEA Part B (special education) regulations
+  (#66) — the first instrument chosen by `_meta/ingest-queue.yml` (#63) rather than by
+  curation: rank 1 of 574 unheld CFR parts at 105 authority claims and 129 mentions, three
+  times the next-ranked part and never named in any of #22–#25's hand-picked candidates.
+  Manifest entry added to `_meta/source-manifest.yml` (`issuing_body: "Department of
+  Education"`, `signal: "authority"`) per ADR-0005. `scan_cited_sections.py --title 34
+  --part 300` found 244 section-shaped citations across 69 distinct sections; 68 graduated
+  to their own document per ADR-0003, sharing the part's snapshot via `snapshot_id`. One
+  citation, `34 CFR 300.344`, has NO eCFR version record at all — not current, not a
+  recorded removal — almost certainly a pre-2006 section number left over from before this
+  part's own SOURCE recodification (71 FR 46753, Aug. 14, 2006) that OAR 581-015-2210 was
+  never updated past. Named rather than silently dropped in a new `unresolvable:` bucket
+  (see the "Fixed" entry below); not split, since there is no snapshot to cut a document
+  from without fabricating text. Zero sections were removed. Citations concentrate in two
+  subparts rather than one: Subpart B (State Eligibility, 27 sections cited, 75 citations)
+  and Subpart E (Procedural Safeguards, 17 sections, 68 citations) together account for 59%
+  of the 242 current-section citations; Subparts G and H (funding/allotment, preschool
+  grants) drew zero. `_meta/ingest-queue.yml` regenerated: 34 CFR 300 left the queue,
+  `held_parts` 1 → 2, `total_authority_claims_held` 15 → 120 (15 + 105).
+
+  **Not fixed, reported precisely per #66's own instruction to surface rather than work
+  around any place the generalized pipeline still assumes 2 CFR 200:** `_cfr()` in
+  `src/citation_schemes.py` only expands a multi-section citation ("34 CFR 300.344, 300.321,
+  300.324") into all its members when the part is literally `2-cfr-200` (`PART_ID`) — a gate
+  filed as #55 during #35, before any second part was held. `34 CFR 300.344, 300.321,
+  300.324(a)(3) & (b)(3)` is exactly this shape and is the stated authority for OAR
+  581-015-2210; resolving it today returns nothing, because `_cfr_one()` fails on the first,
+  unresolvable member (`300.344`, see above) and the gate prevents falling through to try
+  `300.321`/`300.324`, both of which this change holds as their own documents. #55's own
+  "what would fix it" already names the reason this PR does not: `RANGE`/`LIST_SEC` live in
+  `src/federal_ids.py`, a parity-locked cross-corpus contract file copied verbatim into
+  sibling repos, so generalizing the expansion is a coordinated multi-repo change and not
+  this ingest's file. Filed as a fact against #55 rather than reopened, since #55 already
+  states this precisely; not routed around in `_cfr()` here.
+
+  Copyright determined per ADR-0002, not assumed from "federal, therefore reproducible":
+  `reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S.
+  government"`, the same basis already checked and recorded for 2 CFR 200 — the CFR itself
+  carries no separate distribution restriction independent of that determination.
+
+  Gates re-run clean: `anchor_sections.py --check`, `build_graph.py --check`,
+  `build_site.py`, `check_citations.py`, `check_extraction.py` (6/6 documents),
+  `check_issuing_body.py`, `check_section_split.py`, `split_cfr_sections.py --check`,
+  `scan_cited_sections.py --erf . --audits . --check`, `check_ingest_queue.py`,
+  `corpus-validate-frontmatter` and `corpus-verify-provenance` (112/112 documents).
+  `check_source_urls.py` now passes too: it was hitting the same 406 as the fetch bug below,
+  from the identical cause (no `Accept-Encoding` header on the same eCFR endpoint), so the
+  fix is the same fix — see the "Fixed" entry.
+
 ### Fixed
+- 2026-08-31 — eCFR's `/full/<date>/title-N.xml` endpoint now rejects a request with no
+  `Accept-Encoding` header (`406 Not Acceptable: This endpoint requires response
+  compression`), which surfaced the moment #66 needed a REAL fetch — `ingest_instruments.py
+  --only 34-cfr-300` failed outright, and 2 CFR 200's identical code path had gone
+  untested since its snapshot was already cached. `ingest_instruments.fetch()` now sends
+  `Accept-Encoding: gzip` and decompresses the response by hand (`urllib` never does this on
+  its own even when a request declares it can accept a compressed body).
+  `split_cfr_sections.py`'s historical-snapshot fetch hit the same endpoint shape with the
+  same bug; it now calls the fixed `fetch()` instead of a second raw `urlopen()`, so the fix
+  lives in one place. `src/check_source_urls.py` sends its own independent request and had
+  the identical gap, so it was failing this fetch too, not just the two pre-existing 2 CFR
+  200 URLs main already fails on — now sends the same `Accept-Encoding: gzip` header and
+  decompresses the same way. Confirmed: `ingest_instruments.py --only 34-cfr-300` now
+  succeeds, `check_extraction.py` passes for the resulting document, and
+  `check_source_urls.py` now exits 0 (0 of 111 source URLs unreachable, was 3).
+
+  `scan_cited_sections.py` treated a section citation with NO eCFR version record at all
+  (distinct from a RECORDED removal) as a hard failure (`return 1`), which blocked #66 from
+  producing `_meta/cited-sections/34-cfr-300.yml` at all once `34 CFR 300.344` turned up
+  with no record. Added a third `unresolvable:` bucket alongside `current:`/`removed:`,
+  written to the committed YAML and printed as a named warning rather than crashing the
+  scan — never split into a document, since there is no snapshot to cut one from.
+  `split_cfr_sections.py --check`'s header-staleness check verified the `current:`/
+  `removed:` comment blocks but not this new one, so a file regenerated before the
+  `unresolvable:` key existed (`_meta/cited-sections/2-cfr-200.yml`, untouched by #66 until
+  now) passed `--check` while silently missing it; the check now verifies the
+  `unresolvable:` block too, and `2-cfr-200.yml` is regenerated to carry it (0 entries —
+  none of 2 CFR 200's cited sections are unresolvable, only removed or current).
+
+  `scan()` counted the same citation twice whenever it was written `34 CFR § 300.NNN`:
+  `section_re` already permits the `§`, so `short_re` then re-matched the identical span a
+  second time as a "bare short form." Fixed to skip a short-form hit whose span falls inside
+  a full-citation match. This was already live for 2 CFR 200 (26 double counts across 9
+  sections) and is not new to this change, but it sits in a file #66 already edits, so fixed
+  here rather than filed: `total_citations` for 34 CFR 300 moves 255 → 244 (`2-cfr-200.yml`:
+  257 → 231), and both cited-sections files and every section document whose stated
+  "Cited by Oregon material" count changed have been regenerated to match.
+
 - 2026-08-31 — Address code review of #63 (the derived ingest queue). Four HARD findings,
   each confirmed to reproduce before its fix.
 
