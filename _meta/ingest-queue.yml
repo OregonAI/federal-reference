@@ -44,8 +44,8 @@
 catalog_targets_total: 1358
 scanned_targets: 575
 held_parts: 2
-audit_only_parts: 13
-unheld_parts: 586
+audit_only_parts: 11
+unheld_parts: 584
 total_authority_claims_all_parts: 651
 total_authority_claims_held: 120
 # Denominator for "we hold the top N": how many of the claims below a maintainer
@@ -293,6 +293,11 @@ queue:
     authority_claims: 2
     mentions: 2
     cited_in: ["erf"]
+  - part_id: "45-cfr-155"
+    citation: "45 CFR 155"
+    authority_claims: 1
+    mentions: 117
+    cited_in: ["audits", "erf"]
   - part_id: "42-cfr-438"
     citation: "42 CFR 438"
     authority_claims: 1
@@ -313,11 +318,6 @@ queue:
     authority_claims: 1
     mentions: 31
     cited_in: ["audits", "erf"]
-  - part_id: "45-cfr-155"
-    citation: "45 CFR 155"
-    authority_claims: 1
-    mentions: 25
-    cited_in: ["erf"]
   - part_id: "45-cfr-156"
     citation: "45 CFR 156"
     authority_claims: 1
@@ -1078,6 +1078,11 @@ queue:
     authority_claims: 0
     mentions: 5
     cited_in: ["erf"]
+  - part_id: "2-cfr-180"
+    citation: "2 CFR 180"
+    authority_claims: 0
+    mentions: 5
+    cited_in: ["audits"]
   - part_id: "21-cfr-1020"
     citation: "21 CFR 1020"
     authority_claims: 0
@@ -1168,11 +1173,6 @@ queue:
     authority_claims: 0
     mentions: 4
     cited_in: ["erf"]
-  - part_id: "2-cfr-180"
-    citation: "2 CFR 180"
-    authority_claims: 0
-    mentions: 4
-    cited_in: ["audits"]
   - part_id: "20-cfr-1002"
     citation: "20 CFR 1002"
     authority_claims: 0
@@ -2098,16 +2098,6 @@ queue:
     authority_claims: 0
     mentions: 1
     cited_in: ["erf"]
-  - part_id: "2-cfr-303"
-    citation: "2 CFR 303"
-    authority_claims: 0
-    mentions: 1
-    cited_in: ["audits"]
-  - part_id: "2-cfr-331"
-    citation: "2 CFR 331"
-    authority_claims: 0
-    mentions: 1
-    cited_in: ["audits"]
   - part_id: "20-cfr-422"
     citation: "20 CFR 422"
     authority_claims: 0

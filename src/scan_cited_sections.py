@@ -81,7 +81,7 @@ either field, `_meta/templates/document.md`, and its `legal_authority` value is 
 list `[]` the template ships with. So an audit report can never produce an authority claim,
 and this mode's ranking -- by claim -- is unaffected either way; there is no decision to
 weigh here, only a measurement to trust. But an audit report is full of body-text CFR-part
-MENTIONS ERF's catalog never sees. #64 measured 13 CFR parts Oregon's audits cite by number
+MENTIONS ERF's catalog never sees. #64 measured 11 CFR parts Oregon's audits cite by number
 that ERF's catalog cites nowhere at all -- invisible in the queue at any rank -- plus
 catalog parts undercounted by a wide margin. `scan_audit_mentions()` below closes that gap
 with its OWN general CFR-part regex: the per-part-mode `patterns()` above is anchored to a
@@ -284,14 +284,41 @@ def parse_cfr_citation(citation: str) -> tuple[str, str] | None:
 # for "7 CFR 1c" / "8 CFR 274a") rather than inventing a new one. CFR only -- this mode
 # never ranks USC citations, the same exclusion parse_cfr_citation() already applies to
 # ERF's catalog.
+#
+# Code review of #64: the committed `Part` literal was case-sensitive while every other
+# token here is punctuation/space-tolerant, so lowercase "45 CFR part 155" -- Oregon
+# audits' SECOND-most-cited part, 92 occurrences -- matched nothing at all. `[Pp]art` alone
+# over-corrects: `2020-02.md` has the OCR-broken "45 CFR part 1 55", which a bare
+# case-insensitive fix turns into a spurious `45-cfr-1`. `(?! \d)` refuses a part number
+# immediately followed by a single space and another digit, which is exactly that split
+# and nothing else measured across the corpus -- confirmed by diffing every match against
+# the unguarded pattern (one row removed: `45-cfr-1`, one mention removed from `45-cfr-98`,
+# the "45 CFR Part 98\n9 The CCDBG..." line-number artifact this guard correctly leaves
+# alone because a newline is not a plain space).
+#
+# `(?!\s?\([a-z]\))` refuses a part number immediately followed by a lowercase-letter
+# subsection marker -- "2 CFR 331(d)", "2 CFR 303(a)" -- because CFR grammar only attaches
+# `(a)`/`(d)` to a SECTION citation (`200.331(d)`), never to a bare part; both are
+# `reports/`'s own dropped-"200."  typos (`2021-13.md`, `2024-14.md`; the second document
+# writes the same citation in full elsewhere as "2 CFR § 200.303"), confirmed the only two
+# matches in the whole corpus this shape reaches. Narrowing the pattern, not filtering the
+# row afterward, keeps `rank_targets()` unable to receive a false match in the first place.
 AUDIT_CFR_RE = re.compile(
-    r"\b(\d{1,2})\s+C\.?\s?F\.?\s?R\.?\s*(?:Part\s+|§+\s*)?(\d+[A-Za-z]?)\b")
+    r"\b(\d{1,2})\s+C\.?\s?F\.?\s?R\.?\s*(?:[Pp]art\s+|§+\s*)?(\d+[A-Za-z]?)\b"
+    r"(?! \d)(?!\s?\([a-z]\))")
 
 
 def scan_audit_mentions(audits: pathlib.Path) -> tuple[collections.Counter, int]:
     """({(title, part): count}, files scanned) -- body-text CFR-part mentions found
-    directly in `audits`. #64: oregon-audits carries no legal_authority/
-    statutes_implemented concept at all (measured: one file out of 255,
+    directly in `audits`'s `reports/` -- the corpus's own documents, not the repository
+    that carries them. #64 code review: an unqualified `audits.rglob("*.md")` walk also
+    matched AGENTS.md, CHANGELOG.md, README.md, STATUS.md, CONTRIBUTING.md, DISCLAIMER.md
+    and the .github/ and docs/agents/ templates -- 12 non-report files, none of which
+    carried a CFR-part mention today (measured), but nothing stopped one from doing so
+    tomorrow. Every one of the 253 real reports lives under `reports/`; scoping the walk
+    there mirrors ERF's own `content_files()` fix for the identical bug (its comment: "a
+    step that reports success while doing nothing" -- #158 there). oregon-audits carries no
+    legal_authority/statutes_implemented concept at all (measured: one file out of 255,
     `_meta/templates/document.md`, and its value is the empty list the template ships
     with -- see the module docstring), so this can only ever grow a part's `mentions`,
     never its `authority_claims`, and never change the claims-ranking a maintainer already
@@ -299,7 +326,7 @@ def scan_audit_mentions(audits: pathlib.Path) -> tuple[collections.Counter, int]
     reason (see that function's docstring)."""
     counts: collections.Counter = collections.Counter()
     n = 0
-    for path in sorted(audits.rglob("*.md")):
+    for path in sorted((audits / "reports").rglob("*.md")):
         s = str(path)
         if any(p in s for p in SKIP_PARTS):
             continue
@@ -543,6 +570,24 @@ def discover_main(args: argparse.Namespace) -> int:
     print(f"  scanned {audit_files:>5} files in {args.audits}  (audits): "
           f"{len(audit_mentions)} distinct CFR part(s), "
           f"{sum(audit_mentions.values())} mention(s)")
+    if audit_files == 0 or sum(audit_mentions.values()) == 0:
+        # Code review of #64: --audits passed `is_dir()` above (an empty directory, or one
+        # whose reports/ carries files but no CFR-shaped citation, both do) and the scan
+        # below proceeded with an empty audit_mentions -- silently overwriting the
+        # committed queue with an audits-blind one. The reviewer's own reproduction against
+        # the then-committed 586-row queue: an empty --audits directory dropped it to 573
+        # rows -- every audit-only row and every merged audit mention gone -- exit 0, and
+        # the mutilated file then PASSING --check, since --check only verifies
+        # self-consistency, not agreement with a fresh scan. The ERF side already refuses
+        # this shape of failure via `catalog_path.is_file()` above; this is the identical
+        # refusal for the audits side, for the identical reason: a real oregon-audits
+        # checkout always has CFR-part mentions (472 measured across 242 reports), so
+        # finding none is a broken --audits path, not a legitimate corpus state, and must
+        # never be an automatic reason to touch `QUEUE_OUT` (see the unheld_n == 0 refusal
+        # below, and write_queue()'s own docstring).
+        print(f"error: no CFR-part mentions found under {args.audits}/reports -- check "
+              f"the --audits path", file=sys.stderr)
+        return 1
 
     held = held_cfr_parts()
     print(f"  {len(held)} CFR part(s) already held")

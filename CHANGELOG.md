@@ -7,6 +7,80 @@ Repo-curation dates only — official effective dates live in frontmatter.
 ## [Unreleased]
 
 ### Added
+- 2026-09-01 — Scan `oregon-audits` itself in part-discovery mode (#64), not just ERF's
+  catalog. `--audits` was required on the CLI since #63 but never read; ranking and every
+  `mentions` count came from ERF's catalog alone, which never sees `oregon-audits` at all.
+  `scan_audit_mentions()` walks the corpus with its own general CFR-part regex
+  (`AUDIT_CFR_RE`, mirroring the shape of ERF's own `FED` pattern) and merges additively
+  into a catalog row's `mentions`; a part audits cite that the catalog never does becomes a
+  new zero-claim row (`authority_claims` stays 0 throughout — audits carry no
+  `legal_authority`/`statutes_implemented` concept, measured across all 255 documents in a
+  real checkout, so ranking-by-claim is unaffected). Every row's `cited_in` now names which
+  source(s) — `"erf"`, `"audits"` — contributed its `mentions`. `_meta/ingest-queue.yml`
+  regenerated with two new fields (`cited_in`, `audit_only_parts`) and `check_ingest_queue.py`
+  and `check_queue()`'s `--check` extended to verify both.
+
+  Immediately followed by its own code review, both addressed in this same commit rather
+  than filed, since fixing them was cheap in the file the review was already reading:
+
+  `AUDIT_CFR_RE`'s `Part` literal was case-sensitive while every other token in it is
+  punctuation/space-tolerant, so lowercase `part` — as in "45 CFR part 155", oregon-audits'
+  SECOND-most-cited part — matched nothing. Confirmed: the committed (pre-fix) regex found
+  45 distinct parts / 380 mentions across the corpus; `45-cfr-155` was entirely absent from
+  the resulting 13 audit-only rows despite 92 real occurrences. A bare case-insensitive
+  `[Pp]art` over-corrects, though: it turns an OCR-broken "45 CFR part 1 55"
+  (`reports/2020-02.md`) into a spurious `45-cfr-1` row. Fixed with a narrower pattern, not
+  a post-hoc filter: `[Pp]art` plus a negative lookahead refusing a part number immediately
+  followed by a single space and another digit (that exact OCR split, and nothing else
+  matched across the corpus) and another refusing a part number immediately followed by a
+  lowercase-letter subsection marker like `(d)`/`(a)` — CFR grammar only attaches those to a
+  SECTION citation (`200.331(d)`), never a bare part, and the only two matches this shape
+  reaches corpus-wide are two audits' own dropped-"200." typos (`2 CFR 331(d)` in
+  `reports/2021-13.md`, `2 CFR 303(a)` in `reports/2024-14.md`, the latter writing the same
+  citation in full elsewhere as "2 CFR § 200.303") that the unfixed regex had faithfully
+  turned into two more of the 13 audit-only rows. Net: `audit_only_parts` 13 → 11,
+  `45-cfr-155` now correctly merged (`mentions: 117` = 25 erf + 92 audits,
+  `cited_in: ["audits", "erf"]`, rank 53 → 49), `unheld_parts` 586 → 584.
+
+  `scan_audit_mentions()` walked `audits.rglob("*.md")` from the repository root, so it
+  measured the oregon-audits REPOSITORY, not its corpus — AGENTS.md, CHANGELOG.md,
+  README.md, STATUS.md and the `.github/`/`docs/agents/` templates (12 non-report files)
+  all got counted as "files scanned" alongside the 242 real reports under `reports/`. None
+  of the 12 carried a CFR-part mention today (measured), so no live number was wrong, but
+  ERF's own `scan_external_citations.py` already hit and fixed the identical bug (its
+  comment: "how committing an ADR turned this gate red for nine days", #158 there). Scoped
+  the walk to `audits / "reports"`.
+
+  Pointing `--audits` at an empty directory, or one whose `reports/` carries files but no
+  CFR-shaped citation, passed `is_dir()` and proceeded to silently overwrite the committed
+  queue with an audits-blind one — reproduced against the then-committed 586-row queue: an
+  empty `--audits` directory dropped it to 573 rows, every audit-only row and every merged
+  audit mention gone, exit 0, and the mutilated file then PASSING `--check` (which only
+  verifies self-consistency, not agreement with a fresh scan). The ERF side of the same
+  function already refuses this shape of failure (`catalog_path.is_file()`); `discover_main()`
+  now refuses identically when the audits scan finds zero files or zero mentions, before
+  `write_queue()` ever runs — confirmed against all three broken-path shapes (empty
+  directory, one file with no CFR citation, nonexistent path): each now exits 1 with the
+  committed queue's md5 unchanged.
+
+  `check_ingest_queue.py`'s synthetic audits fixture updated to exercise all of the above —
+  a lowercase "part", the truncated-citation false match, and a file outside `reports/` —
+  against the real corpus's own citation shapes rather than the regex read in isolation.
+
+  Two findings filed rather than fixed here, both needing a schema decision this diff's own
+  scope doesn't cover: a merged row's `mentions` sums the erf/audits split and discards it,
+  so `--check` cannot notice a `cited_in` corruption that erases one source's contribution
+  (demonstrated: hand-erasing `"audits"` from a merged row's `cited_in` still passes
+  `--check` clean) — federal-reference#69. `catalog_targets_total` is the only one of eight
+  declared summary numbers `--check` cannot catch a hand-edit of in either direction
+  (pre-existing since #63, not new to this branch) — federal-reference#70.
+
+  Gates re-run clean: `anchor_sections.py --check`, `build_graph.py --check`,
+  `build_site.py`, `check_citations.py`, `check_extraction.py`, `check_issuing_body.py`,
+  `check_ingest_queue.py`, `check_section_split.py`, `check_source_urls.py`,
+  `refresh_source_hashes.py`, `split_cfr_sections.py --check`, `scan_cited_sections.py
+  --erf . --audits . --check`.
+
 - 2026-08-31 — Ingest 34 CFR 300, the IDEA Part B (special education) regulations
   (#66) — the first instrument chosen by `_meta/ingest-queue.yml` (#63) rather than by
   curation: rank 1 of 574 unheld CFR parts at 105 authority claims and 129 mentions, three

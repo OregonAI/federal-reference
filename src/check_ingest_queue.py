@@ -198,15 +198,24 @@ def main() -> int:
     # own measurement found in real audit reports, not the regex read in isolation.
     with tempfile.TemporaryDirectory() as td:
         audits = pathlib.Path(td)
-        (audits / "a.md").write_text(
+        (audits / "reports").mkdir()
+        (audits / "reports" / "a.md").write_text(
             "Subject to 2 CFR 200 and, later in the same finding, 2 C.F.R. § 200 "
-            "again. Also 7 CFR Part 273.\n", encoding="utf-8")
-        (audits / "b.md").write_text(
+            "again. Also 7 CFR Part 273. Lowercase 'part' too: 45 CFR part 155.\n",
+            encoding="utf-8")
+        (audits / "reports" / "b.md").write_text(
             "A letter-suffixed part: 7 CFR 1c. And a title-only false alarm: CFR 200 "
-            "(no title digits) should not match.\n", encoding="utf-8")
-        (audits / "_meta").mkdir()
-        (audits / "_meta" / "excluded.md").write_text(
+            "(no title digits) should not match. A truncated section citation, "
+            "2 CFR 331(d), should not mint a false part either.\n", encoding="utf-8")
+        (audits / "reports" / "_meta").mkdir()
+        (audits / "reports" / "_meta" / "excluded.md").write_text(
             "45 CFR 265 should never be counted -- _meta is excluded.\n", encoding="utf-8")
+        # Code review of #64: a repository-root file is not a corpus document -- a bare
+        # `audits.rglob("*.md")` used to count this. Real oregon-audits AGENTS.md/
+        # CHANGELOG.md/README.md/etc. carry no CFR mention today, but nothing enforced
+        # that; this one does, and must never be counted.
+        (audits / "CHANGELOG.md").write_text(
+            "24 CFR 576 changed in this release.\n", encoding="utf-8")
 
         audit_counts, audit_files = scanner.scan_audit_mentions(audits)
         check("scan_audit_mentions() counts a plain full citation",
@@ -219,8 +228,18 @@ def main() -> int:
               ("", "200") not in audit_counts, f"got {dict(audit_counts)}")
         check("_meta/ is excluded from the audit scan, same SKIP_PARTS as scan()",
               ("45", "265") not in audit_counts, f"got {dict(audit_counts)}")
+        check("a repository file outside reports/ is never scanned (#64 review: "
+              "measures the corpus, not the repository)",
+              ("24", "576") not in audit_counts, f"got {dict(audit_counts)}")
+        check("'Part' is matched case-insensitively (#64 review: '45 CFR part 155' "
+              "used to match nothing at all)",
+              audit_counts[("45", "155")] == 1, f"got {audit_counts[('45', '155')]}")
+        check("a part number immediately followed by a lowercase-letter subsection "
+              "marker is refused, not counted as a bare part (#64 review: '2 CFR "
+              "331(d)' is a truncated section citation, not a real part)",
+              ("2", "331") not in audit_counts, f"got {dict(audit_counts)}")
         check("scan_audit_mentions() counts files the same way scan() does (SKIP_PARTS "
-              "excludes _meta, so 2 files, not 3)",
+              "excludes _meta, so 2 files, not 3), scoped to reports/ only",
               audit_files == 2, f"got {audit_files}")
 
     print()
