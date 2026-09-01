@@ -59,8 +59,13 @@ jobs:
   #
   # What this corpus commits, and what covers it:
   #
-  #   _meta/graph.json   src/build_graph.py         this job, every PR
-  #   STATUS.md          corpus-generate-status     this job, every PR
+  #   _meta/graph.json        src/build_graph.py               this job, every PR
+  #   STATUS.md               corpus-generate-status           this job, every PR
+  #   _meta/ingest-queue.yml  src/scan_cited_sections.py        this job, every PR
+  #                           (--check only; the scan itself needs the sibling ERF
+  #                           checkout CI cannot reach -- see that script's own docstring
+  #                           and check_queue()'s, and check_ingest_queue.py below for the
+  #                           synthetic-fixture proof that the ranking algorithm is sound)
   #
   # STATUS.md is also regenerated and committed by the weekly `drift` job in
   # scheduled.yml. That is a repair, not a gate: between Mondays a PR can merge a
@@ -120,6 +125,28 @@ jobs:
       # check_issuing_body.py exists below for #33.
       - name: A second cfr_part must split, slice, and link independently of the first
         run: python3 src/check_section_split.py
+      # #63: _meta/ingest-queue.yml says "GENERATED -- do not hand-edit" the same way
+      # _meta/cited-sections/<part>.yml does, and was completely ungated before this line
+      # existed. THIS DOES NOT RE-RANK FROM ERF's real catalog -- that needs a sibling
+      # checkout CI does not have (see scan_cited_sections.py's module docstring). What it
+      # verifies here: the committed file's header is current, its `queue:` is correctly
+      # sorted and internally consistent with its own declared totals, and -- the one fact
+      # checkable without a sibling checkout -- no part it lists as unheld is actually held
+      # in THIS corpus's instruments/ right now. See check_queue()'s own docstring for the
+      # full scope decision and why a fuller re-derivation stays a developer-machine step.
+      # --erf/--audits are required flags on the CLI shared with the scanning modes above,
+      # but --check reads neither path (see check_queue()'s docstring) -- `.` is a
+      # placeholder that satisfies `is_dir()`, not a real sibling checkout.
+      - name: Ingest queue must match its own header and this corpus's held parts
+        run: python3 src/scan_cited_sections.py --erf . --audits . --check
+      # The check above proves the COMMITTED file hasn't rotted; it does not exercise the
+      # RANKING ALGORITHM itself (claims-desc sort, mentions carried without being dropped
+      # at zero claims, held-part exclusion) against more than the one fixed real answer.
+      # This is that proof, against a synthetic catalog and a synthetic instruments/ --
+      # the same reason check_section_split.py exists for the splitter (#34) and
+      # check_issuing_body.py exists below for the issuer resolver (#33).
+      - name: Part-discovery ranking must sort by claim and exclude held parts
+        run: python3 src/check_ingest_queue.py
       # Every other check here verifies documents are well-formed. This one verifies the
       # server does not give a CONFIDENT WRONG ANSWER — CJIS 6.1 returned for a 5.9.4
       # citation, current text returned for a superseded section, a public law returned for
