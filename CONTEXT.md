@@ -74,6 +74,23 @@ no version field. A version that is not in the id cannot be seen by a sibling.
 **Current text** — what this corpus holds: the instrument as it stands now, not as it
 stood when a citing rule was written. See ADR-0001 for the sharp edge this creates.
 
+**Codified section** — one section of the U.S. Code, held because an Oregon rule claims it
+as authority (ADR-0006). Held as *current text* like a CFR section, with one addition: a
+`currency` field carrying OLRC's own stamp, "current through Pub. L. N". The version is
+deliberately NOT in the id — see ADR-0006 for why this is an exception to *version is
+identity* rather than a violation of it.
+_Avoid_: Statute, U.S.C. entry, public law — the first two are vague about codified versus
+enacted, and a **public law** is a different document this corpus also holds. The codified
+section and the enacted text diverge as later acts amend the code, and neither is ever
+served in answer to a citation naming the other.
+
+**Partial hold** — the permanent condition of this corpus with respect to the U.S. Code: it
+holds *some sections*, and the count moves. There is no state in which it holds the Code. A
+refusal, a coverage claim or a count in prose that reads as "we hold the U.S. Code" is wrong
+on the day it is written, not merely at risk of going stale.
+_Avoid_: Coverage, completeness — both invite a percentage against a denominator nobody has
+measured; what is held is a list, and the honest statement names its length
+
 **Superseded** — a document holding text that was in force and no longer is, retained
 because Oregon cited it. Carries `superseded_by`. Distinct from *removed* (gone from the
 CFR) and from *stale* (our copy is behind upstream, which is a defect, not a state).
