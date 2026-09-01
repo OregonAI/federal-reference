@@ -7,6 +7,71 @@ Repo-curation dates only — official effective dates live in frontmatter.
 ## [Unreleased]
 
 ### Fixed
+- 2026-08-31 — Address code review of #63 (the derived ingest queue). Four HARD findings,
+  each confirmed to reproduce before its fix.
+
+  `discover_main()`'s zero-unheld-parts refusal wrote the queue first and then
+  `unlink(missing_ok=True)`'d the committed `_meta/ingest-queue.yml` — an error path
+  destroying a reviewed artifact as a side effect. Reproduced: pointed `--erf` at a
+  synthetic catalog with `targets: []`; the script printed its refusal to stderr, exited 1,
+  and the committed file was gone (`ls` → no such file). `write_queue()` is now split into a
+  pure `build_queue_lines()` (computes, touches no path) and `write_queue(lines)` (the only
+  place `QUEUE_OUT` is written); `discover_main()` calls the former, checks `unheld_n == 0`,
+  and returns before the latter ever runs. Confirmed fixed with the same repro: the
+  committed file's md5 is now identical before and after a zero-target run.
+  `check_ingest_queue.py` gained a real assertion for this ("zero is a refusal" — #63's own
+  Testing Decisions named this required and nothing exercised it) calling
+  `build_queue_lines()` directly on an all-held fixture catalog and checking `unheld_n == 0`
+  — and its comment falsely claiming `write_queue()`/`discover_main()` were "exercised
+  below" (they were called nowhere in the file) is now accurate.
+
+  `check_queue()`'s `--check` never verified `total_authority_claims_all_parts` or
+  `total_authority_claims_held` against anything — only `total_authority_claims_unheld`,
+  `unheld_parts`, and `scanned_targets` were checked. Confirmed by hand-corrupting each of
+  the two unchecked fields in turn and re-running `--check`: both passed silently
+  ("574 entries internally consistent"). `check_queue()` now asserts
+  `total_authority_claims_all_parts == total_authority_claims_held +
+  total_authority_claims_unheld` against the committed file's own declared numbers (the one
+  fact checkable without a sibling checkout); re-run against both corruptions, both now
+  fail with the exact arithmetic that's wrong.
+
+  The header's "Regenerate with:" command named `--erf ../oregon-policy-repo`, a path that
+  does not exist and never has in this checkout (`ls ../oregon-policy-repo` → no such
+  directory; the real sibling is `../executive-regulatory-frameworks`, confirmed by its own
+  `git remote -v`). Fixed in `scan_cited_sections.py` (module docstring, `static_header()`,
+  `queue_header()`, and `check_queue()`'s re-run hint) and regenerated both committed
+  artifacts that carry the printed command (`_meta/ingest-queue.yml` and
+  `_meta/cited-sections/2-cfr-200.yml`, the latter changing only its two header lines — same
+  257 citations, 38 sections, 2 removed, confirming the path was the only thing stale).
+  `split_cfr_sections.py` and `README.md` carry the same stale path in files this change
+  does not otherwise touch; left alone rather than chased, since fixing them needs no
+  regeneration and widens this diff for no behavior change (`split_cfr_sections.py`'s is an
+  unchecked stderr hint; `README.md`'s is untested prose).
+
+  Alongside: `scanned_targets` (575) silently reported only the CFR-shaped subset of ERF's
+  catalog (1358 targets total — 783 USC citations and named instruments discarded with no
+  field naming the discard). Added `catalog_targets_total`, checked against `scanned_targets`
+  by `--check` (the subset can never exceed the whole), and a header comment clarifying that
+  `held_parts` similarly counts held parts only among the CFR-shaped catalog subset, not
+  every CFR part this corpus holds.
+
+  One HARD finding filed rather than fixed here, per this repo's own standard (needs a
+  scope decision, and fixing it would grow this diff past what one review should cover):
+  `--audits` is a required CLI flag in part-discovery mode but its content is never scanned
+  — only ERF's catalog is read. Measured directly against the real `oregon-audits` checkout:
+  380 CFR-part mentions across 45 distinct parts, 13 of them (2 CFR 170, 45 CFR 265, 45 CFR
+  264, ...) absent from ERF's catalog and therefore absent from the queue entirely, and
+  several catalog parts undercounted on `mentions` by up to 9x (45 CFR 75: queue says 3,
+  audits alone carry 28). Does not change the ranking of what to ingest next — audits carry
+  no `legal_authority`, so no part's `authority_claims` are affected — but degrades story 3's
+  visibility promise for audit-only-cited parts. Filed as federal-reference#64.
+
+  Gates re-run clean: `anchor_sections.py --check`, `build_graph.py --check`,
+  `build_site.py`, `check_citations.py` (138 assertions), `check_extraction.py` (5/5
+  documents), `check_issuing_body.py`, `check_section_split.py`, `split_cfr_sections.py
+  --check`, `scan_cited_sections.py --erf . --audits . --check`, `check_ingest_queue.py`
+  (15 assertions).
+
 - 2026-08-28 — Address code review of #34 (`git diff 3961413f22d25192816cd0d450d52e7e78adb8c3
   ...HEAD`). Three HARD findings, all confirmed to reproduce before their fix and quoted below.
 

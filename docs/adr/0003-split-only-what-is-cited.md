@@ -54,3 +54,13 @@ to this treatment — currently cannot fire, because the pipeline is hardcoded t
 `--part`, `split_cfr_sections.py` processes any part with a committed cited-sections file, and
 the demand-driven trigger (measured citations, not part size) is unchanged; this note records
 that the gap above is closed, not a change to the decision itself.
+
+**Update (#63):** the same demand-driven logic is applied one level up, at the PART. `--title`
+and `--part` become optional on `scan_cited_sections.py`: passing neither switches it to a
+part-discovery mode that ranks unheld CFR parts by authority claim (mentions carried
+alongside) and writes `_meta/ingest-queue.yml`, committed for the identical reason
+`_meta/cited-sections/<part>.yml` is. Which *part* to hold was previously curated by hand in
+issues #22–#25; #63's own measurement found none of those four candidates carried a single
+authority claim, while the largest unheld part (34 CFR 300, 105 claims) appeared in none of
+them. "Anchors first, documents when demanded" now governs the choice of part as well as the
+choice of section within one — this is not a change to the decision, only its scope.
