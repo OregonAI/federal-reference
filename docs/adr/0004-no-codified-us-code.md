@@ -1,7 +1,12 @@
 # ADR-0004 — Hold enacted public laws, not the codified U.S. Code
 
-**Status:** Accepted, and under active challenge. Recorded here 2026-08-11 from the
-`usc-section` scheme in `src/citation_schemes.py`.
+**Status:** **Superseded by [ADR-0006](0006-hold-cited-us-code-sections.md)** (2026-08-31),
+which holds the U.S. Code sections Oregon cites, section by section, on demand. Recorded here
+2026-08-11 from the `usc-section` scheme in `src/citation_schemes.py`; accepted, then under
+active challenge, until the challenge below was resolved.
+
+**What survives the supersession:** the rule that a U.S.C. section is never mapped onto a
+public law. ADR-0006 widens what may be HELD; it does not license aliasing what is not.
 
 ## Context
 
