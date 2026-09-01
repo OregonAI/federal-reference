@@ -24,6 +24,7 @@ and the check is exact rather than approximate.
 from __future__ import annotations
 
 import argparse
+import gzip
 import json
 import re
 import sys
@@ -178,10 +179,23 @@ def write_manifest_hash(rid: str, sha: str) -> bool:
 
 
 def fetch(url: str, dest: Path, refetch: bool) -> bytes:
+    """Fetch `url`, caching the DECOMPRESSED bytes at `dest`.
+
+    eCFR's `/full/<date>/title-N.xml` endpoint started rejecting requests with
+    `406 Not Acceptable: This endpoint requires response compression` some time after
+    2 CFR 200 was first ingested (its snapshot was already cached, so `fetch()` never
+    re-hit the network for it and the break was silent until 34 CFR 300, the first part
+    ingested since, needed a real fetch). `urllib` never decompresses on its own even when
+    a request declares it can accept a compressed body, so both halves are needed: send
+    `Accept-Encoding`, then undo it by hand if the response says it used it.
+    """
     if dest.is_file() and not refetch:
         return dest.read_bytes()
-    req = urllib.request.Request(url, headers={"User-Agent": UA})
-    raw = urllib.request.urlopen(req, timeout=300).read()
+    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept-Encoding": "gzip"})
+    resp = urllib.request.urlopen(req, timeout=300)
+    raw = resp.read()
+    if resp.headers.get("Content-Encoding", "").lower() == "gzip":
+        raw = gzip.decompress(raw)
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_bytes(raw)
     return raw

@@ -57,14 +57,13 @@ import pathlib
 import re
 import sys
 import time
-import urllib.request
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 
 import yaml
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from ingest_instruments import _flatten, resolve_issuing_body  # noqa: E402  (same extraction)
+from ingest_instruments import _flatten, fetch, resolve_issuing_body  # noqa: E402  (same extraction)
 from cfr_consolidations import CONSOLIDATIONS  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -360,7 +359,8 @@ def discover_part_ids() -> list[str]:
 def run_part(part_id: str, args: argparse.Namespace) -> int:
     """Process one CFR part end to end. Returns 0 on success, 1 on any failure."""
     from corpus_toolkit.repo import hash_snapshot
-    from scan_cited_sections import CURRENT_COMMENT, REMOVED_COMMENT, ecfr_versions, static_header
+    from scan_cited_sections import (CURRENT_COMMENT, REMOVED_COMMENT, UNRESOLVABLE_COMMENT,
+                                      ecfr_versions, static_header)
 
     title, part = part_id.split("-cfr-", 1)
 
@@ -377,6 +377,7 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
     # hid this. Same guard ingest_instruments.cited_section_ids() already uses one file over.
     cited["current"] = cited.get("current") or []
     cited["removed"] = cited.get("removed") or []
+    cited["unresolvable"] = cited.get("unresolvable") or []
 
     # HEADER STALENESS, checked without re-running the scan (which needs the sibling repos CI
     # cannot reach -- see scan_cited_sections.py's module docstring). A committed cited-sections
@@ -395,6 +396,18 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
             ridx = cited_raw_lines.index("removed:")
             if cited_raw_lines[ridx - len(REMOVED_COMMENT):ridx] != REMOVED_COMMENT:
                 header_mismatch = "the 'removed:' comment block"
+        # The generator has written an `unresolvable:` block unconditionally since #66 (see
+        # scan_cited_sections.py) -- a file regenerated before that key existed, or hand-moved
+        # the way the header-staleness check above was written to catch, would otherwise pass
+        # `--check` while missing it entirely, which is exactly the drift this whole block
+        # exists to catch one field over.
+        if header_mismatch is None:
+            if "unresolvable:" not in cited_raw_lines:
+                header_mismatch = "the 'unresolvable:' key (missing entirely)"
+            else:
+                uidx = cited_raw_lines.index("unresolvable:")
+                if cited_raw_lines[uidx - len(UNRESOLVABLE_COMMENT):uidx] != UNRESOLVABLE_COMMENT:
+                    header_mismatch = "the 'unresolvable:' comment block"
 
     part_xml = SNAPSHOTS / f"{part_id}.xml"
     if not part_xml.is_file():
@@ -453,7 +466,10 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
         fetched = args.refetch or not hist_xml.is_file()
         if fetched:
             print(f"  fetching {last_in_force} point-in-time snapshot …")
-            hist_xml.write_bytes(urllib.request.urlopen(url, timeout=300).read())
+            # Same call ingest_instruments.fetch() makes for the current snapshot -- reused
+            # here rather than a second urlopen so the eCFR-compression fix (both endpoints
+            # are the same `/full/` shape) lives in one place, not two.
+            fetch(url, hist_xml, refetch=True)
         retrieved = hist_retrieved(part_id, hist_xml, fetched,
                                     [e["section"].split(".", 1)[1] for e in entries])
         hsecs = sections_from(hist_xml.read_bytes(), part)

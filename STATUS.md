@@ -1,22 +1,22 @@
 # STATUS — Federal Reference — instruments Oregon must comply with
 
-Generated 2026-07-31. Non-authoritative; see DISCLAIMER.md.
+Generated 2026-08-31. Non-authoritative; see DISCLAIMER.md.
 
 ## Documents by type
 
 | doc_type | count |
 |---|---|
-| federal_instrument | 43 |
+| federal_instrument | 112 |
 
-**Total: 43**
+**Total: 112**
 
 ## Source manifest
 
-5 declared source(s) across 1 group(s) in `source-manifest.yml`.
+6 declared source(s) across 1 group(s) in `source-manifest.yml`.
 
 ## Freshness (reverify every 90 days)
 
-43 of 43 document(s) overdue for re-verification.
+112 of 112 document(s) overdue for re-verification.
 
 | id | doc_type | last_verified |
 |---|---|---|
@@ -59,8 +59,16 @@ Generated 2026-07-31. Non-authoritative; see DISCLAIMER.md.
 | 2-cfr-200.53 | federal_instrument | never |
 | 2-cfr-200.62 | federal_instrument | never |
 | 2-cfr-200 | federal_instrument | never |
-| cjis-sp-6-1 | federal_instrument | never |
-| irs-pub-1075-11-2021 | federal_instrument | never |
-| pl-113-128 | federal_instrument | never |
-| pl-115-224 | federal_instrument | never |
+| 34-cfr-300.101 | federal_instrument | never |
+| 34-cfr-300.102 | federal_instrument | never |
+| 34-cfr-300.105 | federal_instrument | never |
+| 34-cfr-300.106 | federal_instrument | never |
+| 34-cfr-300.107 | federal_instrument | never |
+| 34-cfr-300.111 | federal_instrument | never |
+| 34-cfr-300.114 | federal_instrument | never |
+| 34-cfr-300.115 | federal_instrument | never |
+| 34-cfr-300.116 | federal_instrument | never |
+| 34-cfr-300.117 | federal_instrument | never |
+| 34-cfr-300.124 | federal_instrument | never |
+| … | *62 more* | |
 

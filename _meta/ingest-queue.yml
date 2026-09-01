@@ -31,19 +31,15 @@
 
 catalog_targets_total: 1358
 scanned_targets: 575
-held_parts: 1
-unheld_parts: 574
+held_parts: 2
+unheld_parts: 573
 total_authority_claims_all_parts: 651
-total_authority_claims_held: 15
+total_authority_claims_held: 120
 # Denominator for "we hold the top N": how many of the claims below a maintainer
 # would account for by ingesting the first N entries of `queue:`.
-total_authority_claims_unheld: 636
+total_authority_claims_unheld: 531
 
 queue:
-  - part_id: "34-cfr-300"
-    citation: "34 CFR 300"
-    authority_claims: 105
-    mentions: 129
   - part_id: "7-cfr-273"
     citation: "7 CFR 273"
     authority_claims: 33

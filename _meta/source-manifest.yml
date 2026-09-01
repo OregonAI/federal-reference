@@ -66,6 +66,34 @@ sources:
       "whatever is current when you happen to fetch". Sections are ## anchors in the part
       document; the 29 Oregon actually cites become their own documents in Stage 1b.
 
+  - id: "34-cfr-300"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-28/title-34.xml?part=300"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "34 CFR 300"
+    title: "Assistance to States for the Education of Children With Disabilities"
+    issuing_body: "Department of Education"
+    signal: "authority"
+    why: >
+      IDEA Part B — special education. `_meta/ingest-queue.yml` ranks 574 unheld CFR parts
+      by Oregon authority claim; this is rank 1 at 105 authority claims and 129 mentions,
+      three times the next-ranked part (7 CFR 273 at 33 claims) and the largest unheld part
+      in the corpus by a wide margin. #63's own measurement found none of the four parts
+      curated by hand in #22 through #25 carried a single authority claim, while this part
+      appeared in none of them — the first ingest chosen by measurement rather than by
+      curation. issuing_body is the Department of Education, not the Office of Management
+      and Budget: #33 exists because that field was hardcoded to OMB, and this is the first
+      part ingested since that fix that proves a cfr_part entry states its own issuer.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+    sha256: "60a6d170bfd53bc68ebb38286d34245977e886dd3662fc33f7c8a20995e36d6b"
+    notes: >
+      288 sections, 8 subparts, 6 appendices. Title 34 last amended 2026-07-24; this part's
+      own last amendment is 2017-08-10 (read from the part's own version record, not the
+      title's -- see ingest_instruments.py's cfr_amended_on() docstring for why the two
+      differ). eCFR is a point-in-time API, so this URL pins the as-of date explicitly.
+      Sections Oregon actually cites become their own documents per ADR-0003, derived by
+      src/scan_cited_sections.py --title 34 --part 300.
+
   - id: "irs-pub-1075"
     url: "https://www.irs.gov/pub/irs-pdf/p1075.pdf"
     format: "pdf"

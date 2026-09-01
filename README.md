@@ -19,12 +19,14 @@ Archetype: **document**. MCP interface: contract v1.
 Six tools: `resolve_citation`, `get_document`, `search_corpus`, `graph_neighbors`,
 `authority_chain`, `corpus_overview`.
 
-## Status: **43 documents** — 5 instruments and 38 CFR sections
+## Status: **112 documents** — 6 instruments and 106 CFR sections
 
 | | |
 |---|---|
 | `2-cfr-200` | Uniform Guidance — 180 sections, 12 appendices |
 | `2-cfr-200.NNN` | the **38 sections Oregon actually cites**, individually addressable |
+| `34-cfr-300` | IDEA Part B (special education) — 288 sections, 8 subparts, 6 appendices |
+| `34-cfr-300.NNN` | the **68 sections Oregon actually cites**, individually addressable |
 | `cjis-sp-6-1` | CJIS Security Policy 6.1 — 473 pages |
 | `pl-113-128` | Workforce Innovation and Opportunity Act — 298 pages |
 | `irs-pub-1075-11-2021` | Tax Information Security Guidelines — 216 pages |
@@ -32,17 +34,20 @@ Six tools: `resolve_citation`, `get_document`, `search_corpus`, `graph_neighbors
 
 **Both siblings now point here.** `executive-regulatory-frameworks` and `oregon-audits`
 declare this corpus and resolve federal citations into it. Of the audits' 393 federal
-citation occurrences, 181 (46%) land here; of ERF's 916 federal authority claims, 15 do —
-small, and the 15 are rules whose stated legal basis previously resolved to nothing.
+citation occurrences, 181 (46%) land here; of ERF's 916 federal authority claims, 120 do —
+15 from 2 CFR 200, 105 from 34 CFR 300 — rules whose stated legal basis previously resolved
+to nothing.
 
 ### Why the sections are split out
 
 **85% of the Uniform Guidance citations Oregon makes are section-level** — 256 of 300, with
 § 200.303 alone accounting for 58. A corpus holding only the part would answer `2 CFR 200`
-and miss every one of those. The split list is derived, not chosen:
+and miss every one of those. `scan_cited_sections.py` found the same shape in IDEA Part B —
+244 section-shaped citations across 69 distinct sections of `34 CFR 300`, 68 of which
+graduated to their own document. The split list is derived, not chosen:
 
 ```
-python3 src/scan_cited_sections.py --erf ../oregon-policy-repo --audits ../oregon-audits \
+python3 src/scan_cited_sections.py --erf ../executive-regulatory-frameworks --audits ../oregon-audits \
     --title 2 --part 200
 python3 src/split_cfr_sections.py
 ```

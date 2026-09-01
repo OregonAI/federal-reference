@@ -141,10 +141,18 @@ def scan(root: pathlib.Path, label: str, section_re, short_re, part_re, counts, 
             continue
         n += 1
         text = path.read_text(errors="ignore")
-        hits = section_re.findall(text)
+        full_matches = list(section_re.finditer(text))
+        hits = [m.group(1) for m in full_matches]
         if hits or part_re.search(text):
-            # The short form only counts once this file has established the part.
-            hits = hits + short_re.findall(text)
+            # The short form only counts once this file has established the part. A
+            # short-form hit whose span falls INSIDE a full-citation match is the same
+            # occurrence counted twice -- section_re optionally allows the `§`, so
+            # "34 CFR § 300.8" satisfies both regexes at the same position. Keep only
+            # short-form hits that are not already covered by a full match.
+            full_spans = [m.span() for m in full_matches]
+            for m in short_re.finditer(text):
+                if not any(lo <= m.start() and m.end() <= hi for lo, hi in full_spans):
+                    hits.append(m.group(1))
         for sec in hits:
             counts[sec] += 1
             sources[sec].add(label)
@@ -190,6 +198,20 @@ REMOVED_COMMENT = [
     "# LAST-IN-FORCE text from a point-in-time snapshot, marked superseded. Resolving one",
     "# of these to current text would answer with law that was not in force when it was",
     "# cited -- a wrong answer wearing a right answer's clothes.",
+]
+# A section citation with NO eCFR version record at all -- distinct from `removed`, which
+# HAS a record (`removed: true` plus an amendment date). No record means eCFR's versioner
+# never tracked this identifier under this part, which happens when a part was recodified
+# wholesale (34 CFR 300's own SOURCE line: "71 FR 46753, Aug. 14, 2006" -- a full-part
+# renumbering) and an Oregon citation was never updated past the old numbering. There is no
+# snapshot to slice a document from without fabricating text AGENTS.md forbids, so these are
+# named here -- a real Oregon citation pointing at nothing -- and never split.
+UNRESOLVABLE_COMMENT = [
+    "# NO eCFR version record at all -- not current, not a recorded removal. Most likely a",
+    "# pre-recodification section number eCFR's versioner never tracked (see this part's own",
+    "# SOURCE line for its recodification date) that an Oregon citation was never updated",
+    "# past. Cannot be split: there is no snapshot to cut a document from. A real citation",
+    "# pointing at nothing, named rather than silently dropped -- see ADR-0003.",
 ]
 
 
@@ -605,16 +627,17 @@ def main() -> int:
     vers = ecfr_versions(args.title, args.part)
     print(f"  eCFR version record: {len(vers)} sections")
 
-    current, removed = [], []
+    current, removed, unresolvable = [], [], []
     for sec, n in sorted(counts.items(), key=lambda kv: (-kv[1], int(kv[0]))):
         rec = vers.get(f"{part_prefix}.{sec}")
         entry = {"section": f"{part_prefix}.{sec}", "citations": n,
                  "cited_in": sorted(sources[sec])}
         if rec is None:
-            print(f"error: {part_prefix}.{sec} has no eCFR version record at all",
-                  file=sys.stderr)
-            return 1
-        if rec.get("removed"):
+            print(f"warning: {part_prefix}.{sec} has no eCFR version record at all -- "
+                  f"a real citation pointing at nothing, named in the unresolvable: "
+                  f"section rather than dropped", file=sys.stderr)
+            unresolvable.append(entry)
+        elif rec.get("removed"):
             entry["removed_on"] = rec["amendment_date"]
             entry["name_when_in_force"] = " ".join(str(rec.get("name") or "").split())
             removed.append(entry)
@@ -641,10 +664,19 @@ def main() -> int:
                   f"    cited_in: [{', '.join(q(c) for c in e['cited_in'])}]",
                   f"    removed_on: {q(e['removed_on'])}",
                   f"    name_when_in_force: {q(e['name_when_in_force'])}"]
+    lines += [""] + UNRESOLVABLE_COMMENT + ["unresolvable:"]
+    for e in unresolvable:
+        lines += [f"  - section: {q(e['section'])}",
+                  f"    citations: {e['citations']}",
+                  f"    cited_in: [{', '.join(q(c) for c in e['cited_in'])}]"]
     out.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print(f"  wrote {out.relative_to(ROOT)}: {len(current)} current, {len(removed)} removed")
+    print(f"  wrote {out.relative_to(ROOT)}: {len(current)} current, {len(removed)} removed, "
+          f"{len(unresolvable)} unresolvable")
     for e in removed:
         print(f"      removed {e['section']} on {e['removed_on']} ({e['citations']} citations)")
+    for e in unresolvable:
+        print(f"      unresolvable {e['section']} -- no eCFR version record "
+              f"({e['citations']} citations, in {', '.join(e['cited_in'])})")
     return 0
 
 
