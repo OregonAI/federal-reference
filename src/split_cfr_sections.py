@@ -209,6 +209,30 @@ def hist_retrieved(part_id: str, hist_xml: pathlib.Path, fetched: bool,
     return time.strftime("%Y-%m-%d", time.localtime(hist_xml.stat().st_mtime))
 
 
+def committed_amended_on(part_id: str, sec: str) -> str | None:
+    """`amended_on` already committed for SEC's document -- what --check trusts instead of
+    eCFR's versions endpoint (see the `vers` assignment in run_part()).
+
+    ecfr_versions() is a live network call with nothing committed to compare against -- unlike
+    the historical snapshot (which has a `.xml`/`.txt` file on disk) or the cited-sections file
+    (which has its own committed YAML), there is no local anchor for "is this section's
+    amendment date still accurate upstream." #58 found this the same way it found the
+    historical-snapshot fetch: --check must not reach the network, and where it genuinely
+    cannot answer without doing so, it trusts what is already on disk rather than guessing
+    `None`, which would make every current section's document read as stale for a field
+    --check has no offline way to verify in the first place. Same "recover a previously
+    published field from a committed document" shape as hist_retrieved().
+    """
+    doc = INSTRUMENTS / f"{part_id}.{sec.split('.', 1)[1]}.md"
+    if not doc.is_file():
+        return None
+    try:
+        fm = yaml.safe_load(doc.read_text(encoding="utf-8").split("---")[1])
+    except (IndexError, yaml.YAMLError):
+        return None
+    return (fm or {}).get("amended_on")
+
+
 def _target_doc(part_id: str, consolidation: dict | None, default: str | None) -> str | None:
     """The document id a recorded consolidation's `into` section lands in, or `default` when
     no consolidation is recorded for this part.
@@ -441,7 +465,12 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
           f"part snapshot")
 
     part_sha = hash_snapshot(part_id, "xml", SNAPSHOTS)
-    vers = ecfr_versions(int(title), int(part))
+    # #58: ecfr_versions() is a live fetch of eCFR's versions endpoint, with no committed file
+    # behind it -- reaching it unconditionally is the same "verify or fetch" ambiguity #58
+    # names, one call earlier than the historical-snapshot fetch this issue was filed against.
+    # --check skips it; committed_amended_on() (used below, per section) is the offline
+    # substitute.
+    vers = {} if args.check else ecfr_versions(int(title), int(part))
     consolidation = CONSOLIDATIONS.get(part_id)
 
     # --- historical snapshots, ONE PER DISTINCT removal date -----------------------------
@@ -453,40 +482,6 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
     by_date: dict[str, list[dict]] = {}
     for entry in cited["removed"]:
         by_date.setdefault(entry["removed_on"], []).append(entry)
-
-    hist_by_date: dict[str, HistCtx] = {}
-    hist_secs: dict[str, dict[str, tuple[str, str]]] = {}
-    for removed_on, entries in sorted(by_date.items()):
-        last_in_force = (datetime.date.fromisoformat(removed_on)
-                          - datetime.timedelta(days=1)).isoformat()
-        hist_id = f"{part_id}-{last_in_force}"
-        hist_xml = SNAPSHOTS / f"{hist_id}.xml"
-        url = (f"https://www.ecfr.gov/api/versioner/v1/full/{last_in_force}"
-               f"/title-{title}.xml?part={part}")
-        fetched = args.refetch or not hist_xml.is_file()
-        if fetched:
-            print(f"  fetching {last_in_force} point-in-time snapshot …")
-            # Same call ingest_instruments.fetch() makes for the current snapshot -- reused
-            # here rather than a second urlopen so the eCFR-compression fix (both endpoints
-            # are the same `/full/` shape) lives in one place, not two.
-            fetch(url, hist_xml, refetch=True)
-        retrieved = hist_retrieved(part_id, hist_xml, fetched,
-                                    [e["section"].split(".", 1)[1] for e in entries])
-        hsecs = sections_from(hist_xml.read_bytes(), part)
-        print(f"  {last_in_force} snapshot: {len(hsecs)} sections")
-
-        # The historical .txt is what provenance matches the superseded sections against, so
-        # it must be the SAME extraction the documents were cut from, not a re-derivation.
-        hist_text = re.sub(
-            r"\n{3,}", "\n\n",
-            "\n\n".join(hsecs[k][1] for k in sorted(hsecs, key=lambda s: int(s.split(".")[1])))
-        ).strip()
-        (SNAPSHOTS / f"{hist_id}.txt").write_text(hist_text, encoding="utf-8")
-
-        hist_by_date[removed_on] = HistCtx(hist_id=hist_id, hist_url=url,
-                                            hist_retrieved=retrieved,
-                                            last_in_force=last_in_force)
-        hist_secs[removed_on] = hsecs
 
     stale: list[str] = []
 
@@ -505,6 +500,62 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
         else:
             path.write_text(text, encoding="utf-8")
 
+    # --- historical snapshots, ONE PER DISTINCT removal date, --check NEVER FETCHES ONE ----
+    # #58: this loop used to fetch and write unconditionally, so a `--check` run over a part
+    # whose historical snapshot was missing (or `--refetch` combined with `--check`, rejected
+    # in main() before this ever runs) reached the network and mutated the working tree from a
+    # step whose job is verification. `--check` now refuses instead: a missing snapshot is
+    # reported the same way a stale document or an orphan is, and the .txt derivation below
+    # goes through `emit()` like every other generated file, so nothing under `--check` writes.
+    hist_by_date: dict[str, HistCtx] = {}
+    hist_secs: dict[str, dict[str, tuple[str, str]]] = {}
+    missing_hist: dict[str, str] = {}   # removed_on -> the snapshot path --check could not read
+    for removed_on, entries in sorted(by_date.items()):
+        last_in_force = (datetime.date.fromisoformat(removed_on)
+                          - datetime.timedelta(days=1)).isoformat()
+        hist_id = f"{part_id}-{last_in_force}"
+        hist_xml = SNAPSHOTS / f"{hist_id}.xml"
+        url = (f"https://www.ecfr.gov/api/versioner/v1/full/{last_in_force}"
+               f"/title-{title}.xml?part={part}")
+        if not hist_xml.is_file():
+            if args.check:
+                missing_hist[removed_on] = str(hist_xml.relative_to(ROOT))
+                continue
+            print(f"  fetching {last_in_force} point-in-time snapshot …")
+            # Same call ingest_instruments.fetch() makes for the current snapshot -- reused
+            # here rather than a second urlopen so the eCFR-compression fix (both endpoints
+            # are the same `/full/` shape) lives in one place, not two.
+            fetch(url, hist_xml, refetch=True)
+            fetched = True
+        elif args.refetch:
+            # Unreachable under --check: main() rejects --check+--refetch outright, since
+            # "re-fetch, but verify only" is not a coherent request. The branch stays explicit
+            # here rather than trusting that a caller several stack frames away enforced it.
+            print(f"  re-fetching {last_in_force} point-in-time snapshot …")
+            fetch(url, hist_xml, refetch=True)
+            fetched = True
+        else:
+            fetched = False
+        retrieved = hist_retrieved(part_id, hist_xml, fetched,
+                                    [e["section"].split(".", 1)[1] for e in entries])
+        hsecs = sections_from(hist_xml.read_bytes(), part)
+        print(f"  {last_in_force} snapshot: {len(hsecs)} sections")
+
+        # The historical .txt is what provenance matches the superseded sections against, so
+        # it must be the SAME extraction the documents were cut from, not a re-derivation.
+        # Routed through emit() so --check compares it instead of writing it -- it used to
+        # write unconditionally, the other half of #58.
+        hist_text = re.sub(
+            r"\n{3,}", "\n\n",
+            "\n\n".join(hsecs[k][1] for k in sorted(hsecs, key=lambda s: int(s.split(".")[1])))
+        ).strip()
+        emit(SNAPSHOTS / f"{hist_id}.txt", hist_text)
+
+        hist_by_date[removed_on] = HistCtx(hist_id=hist_id, hist_url=url,
+                                            hist_retrieved=retrieved,
+                                            last_in_force=last_in_force)
+        hist_secs[removed_on] = hsecs
+
     written = 0
     for entry in cited["current"]:
         sec = entry["section"]
@@ -513,7 +564,8 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
                   file=sys.stderr)
             return 1
         head, body = current[sec]
-        amended = (vers.get(sec) or {}).get("amendment_date")
+        amended = (committed_amended_on(part_id, sec) if args.check
+                   else (vers.get(sec) or {}).get("amendment_date"))
         out = INSTRUMENTS / f"{part_id}.{sec.split('.', 1)[1]}.md"
         # A removed section's target lands HERE, among the current sections, if this section
         # IS that consolidation's `into` -- computed from the shared record, not hardcoded to
@@ -521,8 +573,14 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
         target_doc = _target_doc(part_id, consolidation, None)
         supersedes = None
         if target_doc and out.name == f"{target_doc}.md":
+            # #57: the record is only TRUE of removed sections from the amendment its own
+            # `date` names. `by_date.values()` (every removal, from every amendment) used to
+            # be swept in here unconditionally -- a section removed by a LATER amendment would
+            # gain a `supersedes` back-edge to an earlier consolidation it had nothing to do
+            # with. `by_date.get(consolidation["date"], [])` is exactly the removed entries
+            # that amendment actually produced.
             ids = [f"{part_id}.{e['section'].split('.', 1)[1]}"
-                   for entries in by_date.values() for e in entries]
+                   for e in by_date.get(consolidation["date"], [])] if consolidation else []
             supersedes = ids or None
         emit(out, build(ctx, sec, head, body, entry, part_sha, amended, None,
                          supersedes=supersedes))
@@ -531,6 +589,11 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
     for entry in cited["removed"]:
         sec = entry["section"]
         removed_on = entry["removed_on"]
+        if removed_on in missing_hist:
+            # #58: --check only. The snapshot this removed section would be cut from was not
+            # committed, and --check refuses to fetch it -- reported once below, not per
+            # section; nothing to build here without the bytes.
+            continue
         hist = hist_by_date[removed_on]
         hsecs = hist_secs[removed_on]
         if sec in current:
@@ -543,10 +606,17 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
             return 1
         head, body = hsecs[sec]
         hist_sha = hash_snapshot(hist.hist_id, "xml", SNAPSHOTS)
-        target_doc = _target_doc(part_id, consolidation, part_id)
+        # #57: this removed section only gets the shared record's `into`/`scope` when the
+        # record's OWN `date` is the amendment that actually removed IT -- not any consolidation
+        # recorded anywhere for the part. A mismatch falls back to `entry_consolidation=None`,
+        # the same generic "no successor section is recorded here" clause a part with no
+        # record at all already gets from _removal_clause().
+        entry_consolidation = (consolidation if consolidation
+                                and consolidation.get("date") == removed_on else None)
+        target_doc = _target_doc(part_id, entry_consolidation, part_id)
         out = INSTRUMENTS / f"{part_id}.{sec.split('.', 1)[1]}.md"
         emit(out, build(ctx, sec, head, body, entry, hist_sha, entry["removed_on"], target_doc,
-                         hist=hist, consolidation=consolidation))
+                         hist=hist, consolidation=entry_consolidation))
         written += 1
         print(f"    {sec} superseded -> {target_doc}  ({entry['citations']} citations)")
 
@@ -557,18 +627,21 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
                     for e in cited["current"] + cited["removed"]}
         orphans = sorted(p.name for p in INSTRUMENTS.glob(f"{part_id}.*.md")
                          if p.name not in expected)
-        if stale or orphans or header_mismatch:
+        if stale or orphans or header_mismatch or missing_hist:
             for n in stale:
                 print(f"  STALE    {n}", file=sys.stderr)
             for n in orphans:
                 print(f"  ORPHAN   {n} — not in {cited_path.relative_to(ROOT)}", file=sys.stderr)
+            for removed_on, path in sorted(missing_hist.items()):
+                print(f"  MISSING SNAPSHOT  {path} — needed for the section(s) removed "
+                      f"{removed_on}; --check does not fetch it", file=sys.stderr)
             if header_mismatch:
                 print(f"  STALE HEADER  {cited_path.relative_to(ROOT)} — {header_mismatch} does "
                       f"not match what src/scan_cited_sections.py writes for {title} CFR {part} "
                       f"today", file=sys.stderr)
                 print(f"\nRe-run: python3 src/scan_cited_sections.py --erf ../oregon-policy-repo "
                       f"--audits ../oregon-audits --title {title} --part {part}", file=sys.stderr)
-            if stale or orphans:
+            if stale or orphans or missing_hist:
                 print(f"\nRe-run: python3 src/split_cfr_sections.py --part-id {part_id}",
                       file=sys.stderr)
             return 1
@@ -589,6 +662,14 @@ def main() -> int:
     ap.add_argument("--check", action="store_true",
                     help="verify the committed section documents match what this would write")
     args = ap.parse_args()
+
+    if args.check and args.refetch:
+        # #58: --check is a read-only, offline verification step -- "re-fetch, but only
+        # verify" is not a coherent request, so refuse it outright rather than defining what
+        # it would mean.
+        print("error: --check and --refetch are mutually exclusive -- --check verifies what "
+              "is already committed and never fetches", file=sys.stderr)
+        return 1
 
     part_ids = [args.part_id] if args.part_id else discover_part_ids()
     if not part_ids:
