@@ -7,6 +7,63 @@ Repo-curation dates only — official effective dates live in frontmatter.
 ## [Unreleased]
 
 ### Fixed
+- 2026-09-01 — `split_cfr_sections.py --check` could reach the network and mutate the working
+  tree (#58). Two call sites in `run_part()` did the same thing, one layer under the other:
+  the historical-snapshot fetch/write for a removed section whose `_meta/snapshots/<id>.xml`
+  was not yet committed (`urlopen` + `hist_xml.write` + an unconditional `.txt` write of the
+  re-derived text), and `ecfr_versions()` — a live fetch of eCFR's versions endpoint, called
+  unconditionally for every part to compute each current section's `amended_on`, found while
+  proving the first fix (a fully offline `--check` run crashed inside it). Neither call
+  branched on `args.check` before reaching the network. `--check` now refuses instead of
+  fetching: a missing historical snapshot is reported as `MISSING SNAPSHOT` (the same
+  STALE/ORPHAN/STALE-HEADER shape the rest of `--check` already uses) rather than fetched,
+  the historical `.txt` derivation is routed through the same `emit()` every other generated
+  file already uses instead of writing unconditionally, and `ecfr_versions()` is skipped
+  entirely under `--check` — `amended_on` is instead read back from the section's own
+  already-committed document (`committed_amended_on()`, the same "trust what is on disk"
+  shape `hist_retrieved()` already uses one field over). `--check --refetch` together is
+  rejected outright in `main()` as the nonsensical request it is, rather than defining what
+  it would mean. Proved with the network genuinely unreachable (`urlopen` monkeypatched to
+  raise) and the working tree made read-only (`chmod`, real `_meta`/`instruments`
+  directories): the real corpus (`2-cfr-200`, `34-cfr-300`) still passes `--check` cleanly,
+  0 files touched; a synthetic second part with an uncommitted historical snapshot refuses
+  cleanly (`rc=1`, `MISSING SNAPSHOT` printed), 0 files written, 0 files mutated, 0 network
+  calls, in both cases. Known limit, not closed here: `committed_amended_on()` reads a current
+  section's `amended_on` back from the same document `--check` diffs against, so a
+  hand-edited `amended_on` on an already-committed document round-trips undetected -- #73.
+- 2026-09-01 — A per-part `CONSOLIDATIONS` record was attributed to every removed section in
+  the part regardless of which amendment actually removed it (#57). `run_part()` groups
+  removed sections `by_date` (their own `removed_on`, generalized by #34 for a part whose
+  removals span more than one amendment) but looked up `CONSOLIDATIONS.get(part_id)` once and
+  passed the same record — and, for the `supersedes` back-edge, *every* removed section from
+  *every* date — to `build()` regardless of the record's own `date` field. Not reachable with
+  today's data (2 CFR 200's two removed sections and its one consolidation record share the
+  same date, 2021-02-22 — confirmed: both the frontmatter `supersedes` on `2-cfr-200.1.md`
+  and the "consolidated into" prose on `2-cfr-200.53.md`/`.62.md` are identical before and
+  after this fix, 2/2 removed sections attributed both times), but a section removed by a
+  *different* amendment than the one the record describes would fabricate which amendment
+  moved what. `run_part()` now compares each removed entry's own `removed_on` against
+  `consolidation["date"]` before attributing the record to it (and filters the `supersedes`
+  sweep to `by_date.get(consolidation["date"], [])`, not every date); a mismatch falls back
+  to the generic "no successor section is recorded here" clause `_removal_clause()` already
+  gives a part with no record at all. Proved with a synthetic record dated 2021-02-22 and a
+  removal dated 2024-05-01: before the fix, the section's prose read "...when Subpart A's
+  definitions were consolidated into [§ 1.1]..." — a real amendment's record attached to a
+  removal it did not describe; after, "...and no successor section is recorded here." A
+  matching-date control (same record, a 2021-02-22 removal) still gets the record's own
+  scope/target, confirming no regression on the case #34 already covered.
+- 2026-09-01 — Verified #52 (`issuing_body` hardcoded to OMB in `split_cfr_sections.py`, the
+  same bug #33 fixed for the part document) is already closed by #34's own generalization
+  (`resolve_issuing_body(src)` off the part's manifest entry, not a literal) — #52 was filed
+  against a pre-#34 commit and never closed. Measured rather than assumed: all 69 committed
+  `34-cfr-300.*.md` documents (68 sections + the part document, the Department of
+  Education's IDEA Part B, landed by #66 — a real second, non-OMB part) declare
+  `issuing_body: Department of Education`; none declare `issuing_body: OMB` or any OMB
+  variant (34 of the 69 do mention "Office of Management and Budget" in body text, but only
+  as the Paperwork Reduction Act control-number notices those sections carry verbatim from
+  the CFR itself — unrelated to `issuing_body`, and expected). Satisfies #52's own acceptance
+  criterion of verification against a real second part now that one is ingested. No code or
+  document change was needed for this one; closed with this measurement as evidence.
 - 2026-09-01 — Two gaps in `_meta/ingest-queue.yml` and its `--check`, both found by the
   code review of #64's oregon-audits scan (#69, #70).
 

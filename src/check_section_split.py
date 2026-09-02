@@ -21,6 +21,7 @@ for #33.
 """
 from __future__ import annotations
 
+import argparse
 import collections
 import pathlib
 import sys
@@ -251,12 +252,172 @@ def main() -> int:
         ingest_instruments.ROOT = saved_root
         tmp.cleanup()
 
+    # --- split_cfr_sections.run_part(): END TO END, not just build()'s per-section pieces ----
+    # #58's read-only/offline `--check` contract and #57's date-scoped consolidation
+    # attribution both live in run_part() itself -- the network refusal, the by_date
+    # grouping, and the KeyError-safety of `by_date.get(consolidation.get("date"), [])`
+    # (found by this same review) are none of them reachable through build() alone, which
+    # every check above this one calls directly, bypassing run_part() entirely. Synthetic
+    # second part, module globals monkeypatched and restored, same shape as the
+    # ingest_instruments.ROOT swap above, one file over.
+    saved_globals = {name: getattr(splitter, name)
+                      for name in ("ROOT", "SNAPSHOTS", "INSTRUMENTS", "CITED_DIR", "MANIFEST")}
+    saved_ecfr_versions = scanner.ecfr_versions
+    tmp2 = tempfile.TemporaryDirectory()
+    try:
+        root2 = pathlib.Path(tmp2.name)
+        (root2 / "_meta" / "snapshots").mkdir(parents=True)
+        (root2 / "_meta" / "cited-sections").mkdir(parents=True)
+        (root2 / "instruments").mkdir(parents=True)
+        splitter.ROOT = root2
+        splitter.SNAPSHOTS = root2 / "_meta" / "snapshots"
+        splitter.INSTRUMENTS = root2 / "instruments"
+        splitter.CITED_DIR = root2 / "_meta" / "cited-sections"
+        splitter.MANIFEST = root2 / "_meta" / "source-manifest.yml"
+        # run_part() imports ecfr_versions FROM scan_cited_sections at call time (a local
+        # import inside the function body), so patching the module attribute here -- not the
+        # name `scanner.ecfr_versions` some earlier `from` import already bound -- is what
+        # keeps every run below off the network without touching scan_cited_sections.py
+        # itself, which is out of scope for this repo's split-side fixes.
+        scanner.ecfr_versions = lambda title, part: {}
+
+        part_id2 = "6-cfr-38"
+        splitter.MANIFEST.write_text(yaml.safe_dump({"sources": [
+            {"id": part_id2, "title": "Nondiscrimination Fixture Act II",
+             "citation": "6 CFR 38", "instrument_kind": "cfr_part",
+             "issuing_body": "Department of Justice",
+             "url": "https://example.invalid/title-6/part-38.xml", "format": "xml",
+             "reproduction_basis": "17 U.S.C. § 105"}]}), encoding="utf-8")
+        (splitter.INSTRUMENTS / f"{part_id2}.md").write_text(
+            "---\nas_of: '2026-01-01'\nretrieved: '2026-01-02'\n---\n\n## Full text\n",
+            encoding="utf-8")
+
+        part_xml2 = (
+            b'<PART><SECTION TYPE="SECTION" N="38.10"><HEAD>&#167; 38.10 Current rule.</HEAD>'
+            b'<P>Agencies shall comply.</P></SECTION></PART>'
+        )
+        (splitter.SNAPSHOTS / f"{part_id2}.xml").write_bytes(part_xml2)
+        secs2 = splitter.sections_from(part_xml2, "38")
+        (splitter.SNAPSHOTS / f"{part_id2}.txt").write_text(secs2["38.10"][1], encoding="utf-8")
+
+        def write_cited(current, removed):
+            # Mirrors scan_cited_sections.main()'s own line-building exactly (read, not
+            # reimplemented from scratch) so --check's header-staleness comparison, which
+            # diffs against `static_header()`/`CURRENT_COMMENT`/etc. verbatim, sees a file
+            # shaped the way the real generator writes one.
+            lines = scanner.static_header(6, 38) + [
+                "", "scanned_files: 1", "total_citations: 1", "",
+                scanner.CURRENT_COMMENT, "current:",
+            ]
+            for e in current:
+                lines += [f"  - section: {scanner.q(e['section'])}",
+                          f"    citations: {e['citations']}",
+                          f"    cited_in: [{', '.join(scanner.q(c) for c in e['cited_in'])}]"]
+            lines += [""] + scanner.REMOVED_COMMENT + ["removed:"]
+            for e in removed:
+                lines += [f"  - section: {scanner.q(e['section'])}",
+                          f"    citations: {e['citations']}",
+                          f"    cited_in: [{', '.join(scanner.q(c) for c in e['cited_in'])}]",
+                          f"    removed_on: {scanner.q(e['removed_on'])}",
+                          f"    name_when_in_force: {scanner.q(e['name_when_in_force'])}"]
+            lines += [""] + scanner.UNRESOLVABLE_COMMENT + ["unresolvable:"]
+            (splitter.CITED_DIR / f"{part_id2}.yml").write_text(
+                "\n".join(lines) + "\n", encoding="utf-8")
+
+        write_cited(
+            current=[{"section": "38.10", "citations": 1, "cited_in": ["audits"]}],
+            removed=[{"section": "38.99", "citations": 1, "cited_in": ["erf"],
+                      "removed_on": "2024-05-01", "name_when_in_force": "Old rule."}])
+
+        # #58, END TO END: --check over a part whose removed section's historical snapshot was
+        # never committed must refuse, not fetch -- and nothing gets created anywhere under
+        # root2 while refusing.
+        before = sorted(str(p.relative_to(root2)) for p in root2.rglob("*") if p.is_file())
+        rc_check = splitter.run_part(
+            part_id2, argparse.Namespace(check=True, refetch=False))
+        after = sorted(str(p.relative_to(root2)) for p in root2.rglob("*") if p.is_file())
+        check("run_part() --check over a part missing its removed section's historical "
+              "snapshot refuses (rc=1) rather than fetching it",
+              rc_check == 1, f"got rc={rc_check}")
+        check("...and creates NOTHING on disk while doing so",
+              before == after, f"before={before}\n         after={after}")
+
+        # #57, END TO END, plus the KeyError this review found one line over: a
+        # CONSOLIDATIONS record whose own `date` does not match this removed section's
+        # `removed_on` must not attribute its scope/target -- and a record with NO `date`
+        # key at all (legal per cfr_consolidations.py's own docstring, which requires only
+        # `scope`) must not crash run_part() either.
+        saved_cons = dict(CONSOLIDATIONS)
+        try:
+            hist_id2 = f"{part_id2}-2024-04-30"
+            hist_xml2 = (
+                b'<PART><SECTION TYPE="SECTION" N="38.99"><HEAD>&#167; 38.99 Old rule.</HEAD>'
+                b'<P>Superseded text.</P></SECTION></PART>'
+            )
+            (splitter.SNAPSHOTS / f"{hist_id2}.xml").write_bytes(hist_xml2)
+            args_write = argparse.Namespace(check=False, refetch=False)
+
+            CONSOLIDATIONS.clear()
+            CONSOLIDATIONS[part_id2] = {"date": "2099-01-01", "into": "38.10",
+                                         "scope": "Subpart Z's fixture procedures"}
+            rc_mismatch = splitter.run_part(part_id2, args_write)
+            removed_doc2 = (splitter.INSTRUMENTS / f"{part_id2}.99.md").read_text(
+                encoding="utf-8")
+            check("run_part() end to end: a consolidation record dated DIFFERENTLY than the "
+                  "removal it would attach to does not fabricate the attribution (#57)",
+                  rc_mismatch == 0 and "Subpart Z" not in removed_doc2
+                  and "no successor section is recorded here" in removed_doc2,
+                  f"rc={rc_mismatch}, doc={removed_doc2!r}")
+
+            # Positive control -- same shape, matching date: the record DOES apply. Proves
+            # the mismatch case above is testing the date comparison, not a broken code path.
+            CONSOLIDATIONS.clear()
+            CONSOLIDATIONS[part_id2] = {"date": "2024-05-01", "into": "38.10",
+                                         "scope": "Subpart Z's fixture procedures"}
+            rc_match = splitter.run_part(part_id2, args_write)
+            removed_doc3 = (splitter.INSTRUMENTS / f"{part_id2}.99.md").read_text(
+                encoding="utf-8")
+            current_doc2 = (splitter.INSTRUMENTS / f"{part_id2}.10.md").read_text(
+                encoding="utf-8")
+            check("...and a MATCHING date does attribute it",
+                  rc_match == 0 and "Subpart Z's fixture procedures were consolidated into "
+                  "[§ 38.10]" in removed_doc3,
+                  f"rc={rc_match}, doc={removed_doc3!r}")
+            fm2 = yaml.safe_load(current_doc2.split("---")[1])
+            got_supersedes = (fm2.get("relationships") or {}).get("supersedes")
+            check("...and the target section's own document gets the `supersedes` back-edge",
+                  got_supersedes == [f"{part_id2}.99"], f"got {got_supersedes}")
+
+            # The KeyError this review found: `into`/`scope` with no `date` key must not
+            # crash run_part() -- it used to subscript `consolidation["date"]` unguarded.
+            CONSOLIDATIONS.clear()
+            CONSOLIDATIONS[part_id2] = {"into": "38.10",
+                                         "scope": "Subpart Z's fixture procedures"}
+            nodate_exc = None
+            try:
+                rc_nodate = splitter.run_part(part_id2, args_write)
+            except Exception as exc:  # noqa: BLE001 -- proving THIS does not raise, whatever it is
+                rc_nodate, nodate_exc = None, exc
+            check("a consolidation record with no `date` key does not crash run_part() "
+                  "(KeyError, found by this review)",
+                  nodate_exc is None and rc_nodate == 0,
+                  f"raised {nodate_exc!r}" if nodate_exc else f"rc={rc_nodate}")
+        finally:
+            CONSOLIDATIONS.clear()
+            CONSOLIDATIONS.update(saved_cons)
+    finally:
+        for name, val in saved_globals.items():
+            setattr(splitter, name, val)
+        scanner.ecfr_versions = saved_ecfr_versions
+        tmp2.cleanup()
+
     print()
     if fails:
         print(f"FAILED: {len(fails)} assertion(s): {'; '.join(fails)}", file=sys.stderr)
         return 1
     print("A second cfr_part splits, slices, and links correctly -- none of it inherited from "
-          "2 CFR 200.")
+          "2 CFR 200. run_part() end to end: --check stays offline/read-only (#58) and "
+          "consolidation attribution stays date-scoped without crashing (#57).")
     return 0
 
 
