@@ -125,18 +125,31 @@ def main() -> int:
     check("a merged row's cited_in names both sources, sorted",
           by_id.get("9-cfr-71", {}).get("cited_in") == ["audits", "erf"],
           f"got {by_id.get('9-cfr-71', {}).get('cited_in')}")
+    # #69: mentions alone throws away the erf/audits split once a row merges both sources
+    # (9 CFR 71: 10 erf + 3 audits = 13) -- mentions_erf/mentions_audits carry the two
+    # addends the merge above only checked the SUM of.
+    check("a merged row's mentions_erf/mentions_audits carry the split mentions sums, "
+          "not just their total (#69)",
+          by_id.get("9-cfr-71", {}).get("mentions_erf") == 10
+          and by_id.get("9-cfr-71", {}).get("mentions_audits") == 3,
+          f"got {by_id.get('9-cfr-71')}")
     check("a HELD part cited only in audits (9 CFR 5, held) never reaches the queue -- "
           "held-ness is checked for audit-only rows exactly like catalog rows (#64)",
           "9-cfr-5" not in by_id, f"got {sorted(by_id)}")
     check("a part cited ONLY in audits, absent from the catalog entirely, becomes a new "
-          "row at authority_claims: 0 (#64, the 42 CFR Part 2 shape)",
+          "row at authority_claims: 0 (#64, the 42 CFR Part 2 shape), all its mentions "
+          "attributed to audits (#69)",
           by_id.get("9-cfr-40") == {"part_id": "9-cfr-40", "citation": "9 CFR 40",
                                      "title": "9", "part": "40", "authority_claims": 0,
-                                     "mentions": 6, "cited_in": ["audits"]},
+                                     "mentions": 6, "mentions_erf": 0, "mentions_audits": 6,
+                                     "cited_in": ["audits"]},
           f"got {by_id.get('9-cfr-40')}")
-    check("a catalog row audits never mention still carries erf-only cited_in",
-          by_id.get("9-cfr-90", {}).get("cited_in") == ["erf"],
-          f"got {by_id.get('9-cfr-90', {}).get('cited_in')}")
+    check("a catalog row audits never mention still carries erf-only cited_in, and its "
+          "mentions are all attributed to erf (#69)",
+          by_id.get("9-cfr-90", {}).get("cited_in") == ["erf"]
+          and by_id.get("9-cfr-90", {}).get("mentions_erf") == 15
+          and by_id.get("9-cfr-90", {}).get("mentions_audits") == 0,
+          f"got {by_id.get('9-cfr-90')}")
 
     # --- "zero is a refusal, not a queue" (#63 Testing Decisions) --------------------------
     # build_queue_lines() is the PURE function discover_main() calls before deciding whether
@@ -241,6 +254,113 @@ def main() -> int:
         check("scan_audit_mentions() counts files the same way scan() does (SKIP_PARTS "
               "excludes _meta, so 2 files, not 3), scoped to reports/ only",
               audit_files == 2, f"got {audit_files}")
+
+    # --- check_queue() (#69 / #70): the COMMITTED-file gate itself, against a synthetic ----
+    # queue file in a temp dir -- QUEUE_OUT is monkeypatched to it for the duration of this
+    # block, so this can never corrupt the real committed _meta/ingest-queue.yml. Builds one
+    # hand-written, internally-correct file with a single-source row and a merged
+    # (erf+audits) row, confirms --check passes it, then corrupts one field -- or cited_in
+    # itself -- at a time and confirms --check catches every one. This is the reproduction
+    # both issues' own review demonstrated (a hand-edit passing silently), turned into a
+    # standing regression instead of a one-time manual check.
+    with tempfile.TemporaryDirectory() as td:
+        fixture_queue = pathlib.Path(td) / "ingest-queue.yml"
+        header = scanner.queue_header()
+        body = [
+            "",
+            "catalog_targets_total: 7",
+            "catalog_non_cfr_targets: 5",
+            "scanned_targets: 2",
+            "held_parts: 0",
+            "audit_only_parts: 0",
+            "unheld_parts: 2",
+            "total_authority_claims_all_parts: 1",
+            "total_authority_claims_held: 0",
+            "total_authority_claims_unheld: 1",
+            "",
+            "queue:",
+            '  - part_id: "1-cfr-9999"',
+            '    citation: "1 CFR 9999"',
+            "    authority_claims: 1",
+            "    mentions: 2",
+            "    mentions_erf: 2",
+            "    mentions_audits: 0",
+            '    cited_in: ["erf"]',
+            '  - part_id: "2-cfr-8888"',
+            '    citation: "2 CFR 8888"',
+            "    authority_claims: 0",
+            "    mentions: 15",
+            "    mentions_erf: 8",
+            "    mentions_audits: 7",
+            '    cited_in: ["audits", "erf"]',
+        ]
+        base_lines = header + body
+
+        def run_check(lines: list[str]) -> int:
+            fixture_queue.write_text("\n".join(lines) + "\n", encoding="utf-8")
+            return scanner.check_queue()
+
+        real_queue_out = scanner.QUEUE_OUT
+        scanner.QUEUE_OUT = fixture_queue
+        try:
+            check("a hand-built, internally-correct fixture file passes --check",
+                  run_check(base_lines) == 0, "expected exit 0")
+
+            # #70's own reproduction: catalog_targets_total edited UPWARD used to pass (the
+            # old check was a one-directional `<`) -- now caught in both directions, the
+            # same as every other declared number here.
+            up = list(base_lines)
+            up[up.index("catalog_targets_total: 7")] = "catalog_targets_total: 8"
+            check("catalog_targets_total hand-edited UPWARD fails --check (#70's own "
+                  "reproduction, previously silent)", run_check(up) == 1, "expected exit 1")
+            down = list(base_lines)
+            down[down.index("catalog_targets_total: 7")] = "catalog_targets_total: 6"
+            check("catalog_targets_total hand-edited DOWNWARD fails --check",
+                  run_check(down) == 1, "expected exit 1")
+            noncfr = list(base_lines)
+            noncfr[noncfr.index("catalog_non_cfr_targets: 5")] = \
+                "catalog_non_cfr_targets: 4"
+            check("catalog_non_cfr_targets hand-edited fails --check too -- the new field "
+                  "that reconciles catalog_targets_total is itself checked, not merely "
+                  "used to check the other one (#70)",
+                  run_check(noncfr) == 1, "expected exit 1")
+
+            # #70 PROVE IT: a brand-new declared summary number, added with no equation
+            # naming it, must fail --check STRUCTURALLY -- by enumeration -- not because its
+            # own value happens to be wrong. Its value (0) is trivially self-consistent, so
+            # the only thing that can be failing it is the coverage scan itself.
+            synthetic = list(base_lines)
+            idx = synthetic.index("total_authority_claims_unheld: 1")
+            synthetic.insert(idx + 1, "synthetic_unrelated_number: 0")
+            check("a brand-new declared summary number with no --check equation fails the "
+                  "gate on that fact alone (#70 PROVE IT), even though its own value is "
+                  "internally harmless -- the structural half of the fix, not a name-by-"
+                  "name comparison that would miss it",
+                  run_check(synthetic) == 1, "expected exit 1")
+
+            # #69's own reproduction: cited_in hand-edited to erase a source's contribution
+            # while that source's mentions_* stays in place used to pass --check silently
+            # (replacing ["audits", "erf"] with ["erf"] on a merged row). Now caught.
+            drop_audits = list(base_lines)
+            i = drop_audits.index('    cited_in: ["audits", "erf"]')
+            drop_audits[i] = '    cited_in: ["erf"]'
+            check("cited_in hand-edited to erase a source while mentions_audits stays "
+                  "nonzero fails --check (#69's own reproduction, previously silent)",
+                  run_check(drop_audits) == 1, "expected exit 1")
+
+            bad_erf = list(base_lines)
+            i = bad_erf.index("    mentions_erf: 8")
+            bad_erf[i] = "    mentions_erf: 9"
+            check("mentions_erf hand-edited so mentions_erf + mentions_audits != mentions "
+                  "fails --check (#69)", run_check(bad_erf) == 1, "expected exit 1")
+
+            bad_audits = list(base_lines)
+            i = bad_audits.index("    mentions_audits: 7")
+            bad_audits[i] = "    mentions_audits: 6"
+            check("mentions_audits hand-edited so the split no longer sums to mentions "
+                  "fails --check (#69)", run_check(bad_audits) == 1, "expected exit 1")
+        finally:
+            scanner.QUEUE_OUT = real_queue_out
 
     print()
     if fails:
