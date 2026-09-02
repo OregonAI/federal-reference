@@ -43,21 +43,16 @@
 
 catalog_targets_total: 1358
 scanned_targets: 575
-held_parts: 41
+held_parts: 42
 audit_only_parts: 7
-unheld_parts: 541
+unheld_parts: 540
 total_authority_claims_all_parts: 651
-total_authority_claims_held: 592
+total_authority_claims_held: 599
 # Denominator for "we hold the top N": how many of the claims below a maintainer
 # would account for by ingesting the first N entries of `queue:`.
-total_authority_claims_unheld: 59
+total_authority_claims_unheld: 52
 
 queue:
-  - part_id: "7-cfr-280"
-    citation: "7 CFR 280"
-    authority_claims: 7
-    mentions: 7
-    cited_in: ["erf"]
   - part_id: "17-cfr-227"
     citation: "17 CFR 227"
     authority_claims: 3

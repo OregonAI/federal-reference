@@ -1,7 +1,7 @@
 {
  "corpus": "federal-reference",
- "n_nodes": 420,
- "n_edges": 603,
+ "n_nodes": 422,
+ "n_edges": 605,
  "n_edges_external": 0,
  "nodes": [
   {
@@ -2211,58 +2211,58 @@
   },
   {
    "id": "45-cfr-75.303",
-   "title": "45 CFR 75.303 — Internal controls",
+   "title": "45 CFR 75.303 — Internal controls (SUPERSEDED 2025-10-01)",
    "doc_type": "federal_instrument",
-   "status": "current",
+   "status": "superseded",
    "path": "instruments/45-cfr-75.303.md"
   },
   {
    "id": "45-cfr-75.342",
-   "title": "45 CFR 75.342 — Monitoring and reporting program performance",
+   "title": "45 CFR 75.342 — Monitoring and reporting program performance (SUPERSEDED 2025-10-01)",
    "doc_type": "federal_instrument",
-   "status": "current",
+   "status": "superseded",
    "path": "instruments/45-cfr-75.342.md"
   },
   {
    "id": "45-cfr-75.351",
-   "title": "45 CFR 75.351 — Subrecipient and contractor determinations",
+   "title": "45 CFR 75.351 — Subrecipient and contractor determinations (SUPERSEDED 2025-10-01)",
    "doc_type": "federal_instrument",
-   "status": "current",
+   "status": "superseded",
    "path": "instruments/45-cfr-75.351.md"
   },
   {
    "id": "45-cfr-75.352",
-   "title": "45 CFR 75.352 — Requirements for pass-through entities",
+   "title": "45 CFR 75.352 — Requirements for pass-through entities (SUPERSEDED 2025-10-01)",
    "doc_type": "federal_instrument",
-   "status": "current",
+   "status": "superseded",
    "path": "instruments/45-cfr-75.352.md"
   },
   {
    "id": "45-cfr-75.403",
-   "title": "45 CFR 75.403 — Factors affecting allowability of costs",
+   "title": "45 CFR 75.403 — Factors affecting allowability of costs (SUPERSEDED 2025-10-01)",
    "doc_type": "federal_instrument",
-   "status": "current",
+   "status": "superseded",
    "path": "instruments/45-cfr-75.403.md"
   },
   {
    "id": "45-cfr-75.404",
-   "title": "45 CFR 75.404 — Reasonable costs",
+   "title": "45 CFR 75.404 — Reasonable costs (SUPERSEDED 2025-10-01)",
    "doc_type": "federal_instrument",
-   "status": "current",
+   "status": "superseded",
    "path": "instruments/45-cfr-75.404.md"
   },
   {
    "id": "45-cfr-75.430",
-   "title": "45 CFR 75.430 — Compensation—personal services",
+   "title": "45 CFR 75.430 — Compensation—personal services (SUPERSEDED 2025-10-01)",
    "doc_type": "federal_instrument",
-   "status": "current",
+   "status": "superseded",
    "path": "instruments/45-cfr-75.430.md"
   },
   {
    "id": "45-cfr-75",
-   "title": "Uniform Administrative Requirements, Cost Principles, and Audit Requirements for HHS Awards",
+   "title": "Uniform Administrative Requirements, Cost Principles, and Audit Requirements for HHS Awards (SUPERSEDED 2025-10-01)",
    "doc_type": "federal_instrument",
-   "status": "current",
+   "status": "superseded",
    "path": "instruments/45-cfr-75.md"
   },
   {
@@ -2915,6 +2915,20 @@
    "doc_type": "federal_instrument",
    "status": "current",
    "path": "instruments/7-cfr-273.md"
+  },
+  {
+   "id": "7-cfr-280.1",
+   "title": "7 CFR 280.1 — Interim disaster procedures",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-280.1.md"
+  },
+  {
+   "id": "7-cfr-280",
+   "title": "Emergency Food Assistance for Victims of Disasters",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-280.md"
   },
   {
    "id": "cjis-sp-6-1",
@@ -5307,6 +5321,11 @@
    "to": "45-cfr-75"
   },
   {
+   "from": "45-cfr-75",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
    "from": "45-cfr-84.4",
    "type": "related",
    "to": "45-cfr-84"
@@ -5960,6 +5979,11 @@
    "from": "7-cfr-273.9",
    "type": "related",
    "to": "7-cfr-273"
+  },
+  {
+   "from": "7-cfr-280.1",
+   "type": "related",
+   "to": "7-cfr-280"
   }
  ]
 }

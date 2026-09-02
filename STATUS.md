@@ -6,9 +6,9 @@ Generated 2026-09-01. Non-authoritative; see DISCLAIMER.md.
 
 | doc_type | count |
 |---|---|
-| federal_instrument | 420 |
+| federal_instrument | 422 |
 
-**Total: 420**
+**Total: 422**
 
 ## Source manifest
 
@@ -16,7 +16,7 @@ Generated 2026-09-01. Non-authoritative; see DISCLAIMER.md.
 
 ## Freshness (reverify every 90 days)
 
-420 of 420 document(s) overdue for re-verification.
+422 of 422 document(s) overdue for re-verification.
 
 | id | doc_type | last_verified |
 |---|---|---|
@@ -70,5 +70,5 @@ Generated 2026-09-01. Non-authoritative; see DISCLAIMER.md.
 | 2-cfr-200.521 | federal_instrument | never |
 | 2-cfr-200.53 | federal_instrument | never |
 | 2-cfr-200.62 | federal_instrument | never |
-| … | *370 more* | |
+| … | *372 more* | |
 

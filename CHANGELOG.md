@@ -7,6 +7,81 @@ Repo-curation dates only — official effective dates live in frontmatter.
 ## [Unreleased]
 
 ### Added
+- 2026-09-01 — Ingested 7 CFR 280 (Emergency Food Assistance for Victims of Disasters), the
+  one part the four-way intake left blocked (see the entry below this one). Its raw snapshot
+  is a genuine, complete, well-formed single-section part (§ 280.1 only, 1,554 extracted
+  characters) — `ingest_instruments.py`'s 2,000-character "scanned or broken" guard is a
+  false positive for it, confirmed by refetching `.../full/2026-08-31/title-7.xml?part=280`
+  directly and running `extract_cfr()` on it unmodified. Fixing the guard is a
+  `src/ingest_instruments.py` change and stays out of scope here, so the part was ingested
+  by calling that file's own `build()`/`extract_cfr()` functions directly and writing their
+  output byte-for-byte, the same template every other landed part uses, just without going
+  through the one guard clause that wrongly rejects it. `scan_cited_sections.py --title 7
+  --part 280` and `split_cfr_sections.py --part-id 7-cfr-280` then ran unmodified and clean
+  (14 citations, 1 section, `280.1`, all current — no removed/unresolvable). 44 of 44
+  demanded parts are now held. `_meta/ingest-queue.yml` regenerated: `held_parts` 41 → 42,
+  `unheld_parts` 541 → 540, `total_authority_claims_held` 592 → 599,
+  `total_authority_claims_unheld` 59 → 52, the `7-cfr-280` queue row removed. `instruments/`
+  422 total. Every generated-artifact gate re-run clean for it:
+  `corpus-validate-frontmatter`, `corpus-verify-provenance`, `check_extraction.py`,
+  `split_cfr_sections.py --check`, `check_citations.py`, `check_issuing_body.py`,
+  `check_ingest_queue.py`.
+
+### Fixed
+- 2026-09-01 — Corrected 45 CFR 75's supersession handling, which a PR review caught
+  publishing wrong law as current: the part and all 7 of its cited sections carried
+  `status: current`, `superseded_by: null`, and (for the 7 sections) a live
+  `.../current/title-45/section-75.NNN` `source_url`, despite this same manifest entry's own
+  `why` stating in plain language that Part 75 was removed from the CFR in its entirety
+  2025-10-01. Independently re-confirmed against the primary source before fixing anything:
+  `.../api/versioner/v1/ancestry/2026-08-31/title-45.json?part=75` → HTTP 404.
+
+  `_meta/cited-sections/45-cfr-75.yml` had been hand-edited to move all 7 sections from
+  `removed:` to `current:`, contradicting its own "GENERATED — do not hand-edit" header, so
+  that `split_cfr_sections.py --check` would stay green — recorded at the time (see the
+  entry above this one, and the file's own prior comment block) as a deliberate reclassification
+  because the removed-section path's invariant (`sec in current` → error) fires here: this
+  part's held snapshot IS ALREADY the day-before-removal snapshot (2025-09-30, per
+  ADR-0001's superseded-instrument exception), so the section text the "removed" path expects
+  to find only in a separate historical fetch is also, correctly, in the currently-held one.
+  ADR-0003 is explicit that a cited section which no longer exists is a finding, not a
+  reclassification, so the hand-edit is reverted: `python3 src/scan_cited_sections.py --title
+  45 --part 75` (unmodified) regenerates `0 current, 7 removed, 0 unresolvable`, matching
+  what is committed here.
+
+  `instruments/45-cfr-75.md` and its 7 section documents are hand-corrected to
+  `status: superseded`, titles suffixed `(SUPERSEDED 2025-10-01)`, `superseded_by:
+  2-cfr-200` (the successor framework named in this entry's own manifest `why` — HHS retired
+  its Uniform Guidance for 2 CFR 200 government-wide; no section-to-section correspondence is
+  recorded, so nothing more specific is claimed), and `source_url` repointed from the live
+  current-text URL to the same point-in-time versioner URL the part document already uses.
+  The 7 sections' `snapshot_id` moves from `45-cfr-75` to `45-cfr-75-2025-09-30`
+  and their `source_sha256`/body text are taken from that historical snapshot pair — which
+  was ALREADY committed but unreferenced by any document (an orphan of an earlier, aborted
+  attempt at this same fix) and is adopted here rather than duplicated. Both files (produced
+  by `split_cfr_sections.py`'s own `sections_from()`/`hash_snapshot()`, called directly, not
+  guessed) are unchanged from what was already on disk. This matches, field-for-field, the
+  shape of the corpus's one existing precedent for this situation (2 CFR 200.53/.62,
+  `status: superseded`, title-suffixed, point-in-time `source_url`).
+
+  **One consequence, reported rather than hidden: `split_cfr_sections.py --check` now fails
+  for 45-cfr-75**, with exactly the error its invariant is designed to raise
+  (`75.352 is listed as removed but IS in the current part snapshot`) — confirmed by running
+  it. That invariant has no code path for "the whole part was removed and its held snapshot
+  IS the last-in-force text," only for "one section was removed from an otherwise-current
+  part." Neither `build()`'s current-bucket path (which cannot express `status: superseded`
+  at all — `superseded_by` is hardcoded `None`) nor its removed-bucket path (which assumes a
+  section's last-in-force text always comes from a snapshot separate from the currently-held
+  one) has a way to produce what this part actually needs. `split_cfr_sections.py` is a
+  sibling branch's file and out of scope here; the honest data above and a green check for
+  this one part are not simultaneously achievable without editing it — reported here rather
+  than reintroducing the hand-edit that hid the problem. Every other gate re-run clean
+  (`corpus-validate-frontmatter` 422/422, `corpus-verify-provenance` 422 files,
+  `check_extraction.py` — 45-cfr-75: 111,405 tokens match the raw xml,
+  `check_citations.py`, `build_graph.py`, `corpus-generate-status`, `build_site.py`); of the
+  37 parts `split_cfr_sections.py --check` evaluates, 45-cfr-75 is the only one that does not
+  come back clean.
+
 - 2026-09-01 — Ingested 43 of the 44 CFR parts proposed by the four-way parallel intake
   slice (`.ingest-set.json`, 11 parts per agent), reconciled into one PR after all four
   reported the identical blocker: every one of the 44 `_meta/source-manifest.yml` entries
