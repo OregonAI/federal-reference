@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<DIV5 N="1520" TYPE="PART" VOLUME="9" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-49/part-1520&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;49 CFR Part 1520&amp;quot;}">
+<HEAD>PART 1520&#x2014;PROTECTION OF SENSITIVE SECURITY INFORMATION
+</HEAD>
+<AUTH>
+<HED>Authority:</HED><PSPACE>46 U.S.C. 70102-70106, 70117; 49 U.S.C. 114, 40113, 44901-44907, 44913-44914, 44916-44918, 44935-44936, 44942, 46105.
+</PSPACE></AUTH>
+<SOURCE>
+<HED>Source:</HED><PSPACE>69 FR 28082, May 18, 2004, unless otherwise noted.
+</PSPACE></SOURCE>
+<DIV8 N="1520.1" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-1520.1&quot;,&quot;citation&quot;:&quot;49 CFR 1520.1&quot;}">
+<HEAD>&#xA7; 1520.1 Scope.</HEAD>
+<P>(a) <I>Applicability.</I> This part governs the maintenance, safeguarding, and disclosure of records and information that TSA has determined to be Sensitive Security Information, as defined in &#xA7; 1520.5. This part does not apply to the maintenance, safeguarding, or disclosure of classified national security information, as defined by Executive Order 12968, or to other sensitive unclassified information that is not SSI, but that nonetheless may be exempt from public disclosure under the Freedom of Information Act. In addition, in the case of information that has been designated as critical infrastructure information under section 214 of the Homeland Security Act, the receipt, maintenance, or disclosure of such information by a Federal agency or employee is governed by section 214 and any implementing regulations, not by this part.</P>
+<P>(b) <I>Delegation.</I> The authority of TSA and the Coast Guard under this part may be further delegated within TSA and the Coast Guard, respectively.</P>
+</DIV8>
+
+<DIV8 N="1520.3" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-1520.3&quot;,&quot;citation&quot;:&quot;49 CFR 1520.3&quot;}">
+<HEAD>&#xA7; 1520.3 Terms used in this part.</HEAD>
+<P>In addition to the terms in &#xA7; 1500.3 of this chapter, the following terms apply in this part:</P>
+<P><I>Administrator</I> means the Under Secretary of Transportation for Security referred to in 49 U.S.C. 114(b), or his or her designee.</P>
+<P><I>Coast Guard</I> means the United States Coast Guard.</P>
+<P><I>Covered person</I> means any organization, entity, individual, or other person described in &#xA7; 1520.7. In the case of an individual, <I>covered person</I> includes any individual applying for employment in a position that would be a covered person, or in training for such a position, regardless of whether that individual is receiving a wage, salary, or other form of payment. <I>Covered person</I> includes a person applying for certification or other form of approval that, if granted, would make the person a covered person described in &#xA7; 1520.7.</P>
+<P><I>Federal Flight Deck Officer</I> means a pilot participating in the Federal Flight Deck Officer Program under 49 U.S.C. 44921 and implementing regulations.</P>
+<P><I>Maritime facility</I> means any facility as defined in 33 CFR part 101.</P>
+<P><I>Rail secure area</I> means &#x201C;rail secure area&#x201D; as defined in 49 CFR 1580.3.</P>
+<P><I>Railroad carrier</I> means &#x201C;railroad carrier&#x201D; as defined in 49 U.S.C. 20102(2).</P>
+<P><I>Security contingency plan</I> means a plan detailing response procedures to address a transportation security incident, threat assessment, or specific threat against transportation, including details of preparation, response, mitigation, recovery, and reconstitution procedures, continuity of government, continuity of transportation operations, and crisis management.</P>
+<P><I>Security screening</I> means evaluating a person or property to determine whether either poses a threat to security.</P>
+<P><I>SSI</I> means sensitive security information, as described in &#xA7; 1520.5.</P>
+<P><I>Threat image projection system</I> means an evaluation tool that involves periodic presentation of fictional threat images to operators and is used in connection with x-ray or explosives detection systems equipment.</P>
+<P><I>TSA</I> means the Transportation Security Administration.</P>
+<CITA TYPE="N">[69 FR 28082, May 18, 2004, as amended at 70 FR 41599, July 19, 2005; 73 FR 72172, Nov. 26, 2008; 74 FR 47695, Sept. 16, 2009; 85 FR 16499, Mar. 23, 2020]
+</CITA>
+</DIV8>
+
+<DIV8 N="1520.5" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-1520.5&quot;,&quot;citation&quot;:&quot;49 CFR 1520.5&quot;}">
+<HEAD>&#xA7; 1520.5 Sensitive security information.</HEAD>
+<P>(a) <I>In general.</I> In accordance with 49 U.S.C. 114(s), SSI is information obtained or developed in the conduct of security activities, including research and development, the disclosure of which TSA has determined would&#x2014;</P>
+<P>(1) Constitute an unwarranted invasion of privacy (including, but not limited to, information contained in any personnel, medical, or similar file);</P>
+<P>(2) Reveal trade secrets or privileged or confidential information obtained from any person; or</P>
+<P>(3) Be detrimental to the security of transportation.</P>
+<P>(b) <I>Information constituting SSI.</I> Except as otherwise provided in writing by TSA in the interest of public safety or in furtherance of transportation security, the following information, and records containing such information, constitute SSI:</P>
+<P>(1) <I>Security programs, security plans, and contingency plans.</I> Any security program, security plan, or security contingency plan issued, established, required, received, or approved by DHS or DOT, including any comments, instructions, or implementing guidance, including&#x2014;</P>
+<P>(i) Any aircraft operator, airport operator, fixed base operator, or air cargo security program, or security contingency plan under this chapter;</P>
+<P>(ii) Any vessel, maritime facility, or port area security plan required or directed under Federal law;</P>
+<P>(iii) Any national or area security plan prepared under 46 U.S.C. 70103;</P>
+<P>(iv) Any security incident response plan established under 46 U.S.C. 70104, and</P>
+<P>(v) Any security program or plan required under subchapter D of this title.</P>
+<P>(2) <I>Security Directives.</I> Any Security Directive or order&#x2014;</P>
+<P>(i) Issued by TSA under 49 CFR 1542.303, 1544.305, 1548.19, or other authority;</P>
+<P>(ii) Issued by the Coast Guard under the Maritime Transportation Security Act, 33 CFR part 6, or 33 U.S.C. 1221 <I>et seq.</I> related to maritime security; or</P>
+<P>(iii) Any comments, instructions, and implementing guidance pertaining thereto.</P>
+<P>(3) <I>Information Circulars.</I> Any notice issued by DHS or DOT regarding a threat to aviation or maritime transportation, including any&#x2014;</P>
+<P>(i) Information circular issued by TSA under 49 CFR 1542.303, 1544.305, 1548.19, or other authority; and</P>
+<P>(ii) Navigation or Vessel Inspection Circular issued by the Coast Guard related to maritime security.</P>
+<P>(4) <I>Performance specifications.</I> Any performance specification and any description of a test object or test procedure, for&#x2014;</P>
+<P>(i) Any device used by the Federal Government or any other person pursuant to any aviation or maritime transportation security requirements of Federal law for the detection of any person, and any weapon, explosive, incendiary, or destructive device, item, or substance; and</P>
+<P>(ii) Any communications equipment used by the Federal government or any other person in carrying out or complying with any aviation or maritime transportation security requirements of Federal law.</P>
+<P>(5) <I>Vulnerability assessments.</I> Any vulnerability assessment directed, created, held, funded, or approved by the DOT, DHS, or that will be provided to DOT or DHS in support of a Federal security program.</P>
+<P>(6) <I>Security inspection or investigative information.</I>
+(i) Details of any aviation, maritime, or surface transportation inspection, or any investigation or an alleged violation of aviation, maritime, or surface transportation security requirements of Federal law, that could reveal a security vulnerability, including the identity of the Federal special agent or other Federal employee who conducted the inspection or investigation, and including any recommendations concerning the inspection or investigation.</P>
+<P>(ii) In the case of inspections or investigations performed by TSA, this includes the following information as to events that occurred within 12 months of the date of release of the information: the name of the airport where a violation occurred, the airport identifier in the case number, a description of the violation, the regulation allegedly violated, and the identity of any aircraft operator in connection with specific locations or specific security procedures. Such information will be released after the relevant 12-month period, except that TSA will not release the specific gate or other location on an airport where an event occurred, regardless of the amount of time that has passed since its occurrence. During the period within 12 months of the date of release of the information, TSA may release summaries of an aircraft operator's, but not an airport operator's, total security violations in a specified time range without identifying specific violations or locations. Summaries may include total enforcement actions, total proposed civil penalty amounts, number of cases opened, number of cases referred to TSA or FAA counsel for legal enforcement action, and number of cases closed.</P>
+<P>(7) <I>Threat information.</I> Any information held by the Federal government concerning threats against transportation or transportation systems and sources and methods used to gather or develop threat information, including threats against cyber infrastructure.</P>
+<P>(8) <I>Security measures.</I> Specific details of aviation, maritime, or surface transportation security measures, both operational and technical, whether applied directly by the Federal government or another person, including the following:</P>
+<P>(i) Security measures or protocols recommended by the Federal government;</P>
+<P>(ii) Information concerning the deployments, numbers, and operations of Coast Guard personnel engaged in maritime security duties and Federal Air Marshals, to the extent it is not classified national security information; and</P>
+<P>(iii) Information concerning the deployments and operations of Federal Flight Deck Officers, and numbers of Federal Flight Deck Officers aggregated by aircraft operator.</P>
+<P>(iv) Any armed security officer procedures issued by TSA under 49 CFR part 1562.</P>
+<P>(9) <I>Security screening information.</I> The following information regarding security screening under aviation or maritime transportation security requirements of Federal law:</P>
+<P>(i) Any procedures, including selection criteria and any comments, instructions, and implementing guidance pertaining thereto, for screening of persons, accessible property, checked baggage, U.S. mail, stores, and cargo, that is conducted by the Federal government or any other authorized person.</P>
+<P>(ii) Information and sources of information used by a passenger or property screening program or system, including an automated screening system.</P>
+<P>(iii) Detailed information about the locations at which particular screening methods or equipment are used, only if determined by TSA to be SSI.</P>
+<P>(iv) Any security screener test and scores of such tests.</P>
+<P>(v) Performance or testing data from security equipment or screening systems.</P>
+<P>(vi) Any electronic image shown on any screening equipment monitor, including threat images and descriptions of threat images for threat image projection systems.</P>
+<P>(10) <I>Security training materials.</I> Records created or obtained for the purpose of training persons employed by, contracted with, or acting for the Federal government or another person to carry out aviation, maritime, or surface transportation security measures required or recommended by DHS or DOT.</P>
+<P>(11) <I>Identifying information of certain transportation security personnel.</I> (i) Lists of the names or other identifying information that identify persons as&#x2014;</P>
+<P>(A) Having unescorted access to a secure area of an airport, a rail secure area, or a secure or restricted area of a maritime facility, port area, or vessel;</P>
+<P>(B) Holding a position as a security screener employed by or under contract with the Federal government pursuant to aviation or maritime transportation security requirements of Federal law, where such lists are aggregated by airport;</P>
+<P>(C) Holding a position with the Coast Guard responsible for conducting vulnerability assessments, security boardings, or engaged in operations to enforce maritime security requirements or conduct force protection;</P>
+<P>(D) Holding a position as a Federal Air Marshal; or</P>
+<P>(ii) The name or other identifying information that identifies a person as a current, former, or applicant for Federal Flight Deck Officer.</P>
+<P>(12) <I>Critical transportation infrastructure asset information.</I> Any list identifying systems or assets, whether physical or virtual, so vital to the aviation, maritime, or surface transportation that the incapacity or destruction of such assets would have a debilitating impact on transportation security, if the list is&#x2014;</P>
+<P>(i) Prepared by DHS or DOT; or</P>
+<P>(ii) Prepared by a State or local government agency and submitted by the agency to DHS or DOT.</P>
+<P>(13) <I>Systems security information.</I> Any information involving the security of operational or administrative data systems operated by the Federal government that have been identified by the DOT or DHS as critical to aviation or maritime transportation safety or security, including automated information security procedures and systems, security inspections, and vulnerability information concerning those systems.</P>
+<P>(14) <I>Confidential business information.</I> (i) Solicited or unsolicited proposals received by DHS or DOT, and negotiations arising therefrom, to perform work pursuant to a grant, contract, cooperative agreement, or other transaction, but only to the extent that the subject matter of the proposal relates to aviation or maritime transportation security measures;</P>
+<P>(ii) Trade secret information, including information required or requested by regulation or Security Directive, obtained by DHS or DOT in carrying out aviation or maritime transportation security responsibilities; and</P>
+<P>(iii) Commercial or financial information, including information required or requested by regulation or Security Directive, obtained by DHS or DOT in carrying out aviation or maritime transportation security responsibilities, but only if the source of the information does not customarily disclose it to the public.</P>
+<P>(15) <I>Research and development.</I> Information obtained or developed in the conduct of research related to aviation, maritime, or surface transportation, where such research is approved, accepted, funded, recommended, or directed by DHS or DOT, including research results.</P>
+<P>(16) <I>Other information.</I> Any information not otherwise described in this section that TSA determines is SSI under 49 U.S.C. 114(s) or that the Secretary of DOT determines is SSI under 49 U.S.C. 40119. Upon the request of another Federal agency, TSA or the Secretary of DOT may designate as SSI information not otherwise described in this section.</P>
+<P>(c) <I>Loss of SSI designation.</I> TSA or the Coast Guard may determine in writing that information or records described in paragraph (b) of this section do not constitute SSI because they no longer meet the criteria set forth in paragraph (a) of this section.</P>
+<CITA TYPE="N">[69 FR 28082, May 18, 2004, as amended at 70 FR 41599, July 19, 2005; 71 FR 30507, May 26, 2006; 73 FR 72172, Nov. 26, 2008; 74 FR 47695, Sept. 16, 2009; 85 FR 16499, Mar. 23, 2020]
+</CITA>
+</DIV8>
+
+<DIV8 N="1520.7" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-1520.7&quot;,&quot;citation&quot;:&quot;49 CFR 1520.7&quot;}">
+<HEAD>&#xA7; 1520.7 Covered persons.</HEAD>
+<P>Persons subject to the requirements of part 1520 are:</P>
+<P>(a) Each airport operator, aircraft operator, and fixed base operator subject to the requirements of subchapter C of this chapter, and each armed security officer under subpart B of part 1562.</P>
+<P>(b) Each indirect air carrier (IAC), as described in 49 CFR part 1548; and each certified cargo screening facility and its personnel, as described in 49 CFR part 1549.</P>
+<P>(c) Each owner, charterer, or operator of a vessel, including foreign vessel owners, charterers, and operators, required to have a security plan under Federal or International law.</P>
+<P>(d) Each owner or operator of a maritime facility required to have a security plan under the Maritime Transportation Security Act, (Pub.L. 107-295), 46 U.S.C. 70101 <I>et seq.,</I> 33 CFR part 6, or 33 U.S.C. 1221 <I>et seq.</I></P>
+<P>(e) Each person performing the function of a computer reservation system or global distribution system for airline passenger information.</P>
+<P>(f) Each person participating in a national or area security committee established under 46 U.S.C. 70112, or a port security committee.</P>
+<P>(g) Each industry trade association that represents covered persons and has entered into a non-disclosure agreement with the DHS or DOT.</P>
+<P>(h) DHS and DOT.</P>
+<P>(i) Each person conducting research and development activities that relate to aviation or maritime transportation security and are approved, accepted, funded, recommended, or directed by DHS or DOT.</P>
+<P>(j) Each person who has access to SSI, as specified in &#xA7; 1520.11.</P>
+<P>(k) Each person employed by, contracted to, or acting for a covered person, including a grantee of DHS or DOT, and including a person formerly in such position.</P>
+<P>(l) Each person for which a vulnerability assessment has been directed, created, held, funded, or approved by the DOT, DHS, or that has prepared a vulnerability assessment that will be provided to DOT or DHS in support of a Federal security program.</P>
+<P>(m) Each person receiving SSI under &#xA7; 1520.15(d) or (e).</P>
+<P>(n) Each owner/operator of maritime or surface transportation subject to the requirements of subchapter D of this chapter.</P>
+<CITA TYPE="N">[69 FR 28082, May 18, 2004, as amended at 70 FR 41600, July 19, 2005; 73 FR 72173, Nov. 26, 2008; 74 FR 47695, Sept. 16, 2009; 76 FR 51867, Aug. 18, 2011; 85 FR 16499, Mar. 23, 2020]
+</CITA>
+</DIV8>
+
+<DIV8 N="1520.9" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-1520.9&quot;,&quot;citation&quot;:&quot;49 CFR 1520.9&quot;}">
+<HEAD>&#xA7; 1520.9 Restrictions on the disclosure of SSI.</HEAD>
+<P>(a) <I>Duty to protect information.</I> A covered person must&#x2014;</P>
+<P>(1) Take reasonable steps to safeguard SSI in that person's possession or control from unauthorized disclosure. When a person is not in physical possession of SSI, the person must store it a secure container, such as a locked desk or file cabinet or in a locked room.</P>
+<P>(2) Disclose, or otherwise provide access to, SSI only to covered persons who have a need to know, unless otherwise authorized in writing by TSA, the Coast Guard, or the Secretary of DOT.</P>
+<P>(3) Refer requests by other persons for SSI to TSA or the applicable component or agency within DOT or DHS.</P>
+<P>(4) Mark SSI as specified in &#xA7; 1520.13.</P>
+<P>(5) Dispose of SSI as specified in &#xA7; 1520.19.</P>
+<P>(b) <I>Unmarked SSI.</I> If a covered person receives a record containing SSI that is not marked as specified in &#xA7; 1520.13, the covered person must&#x2014;</P>
+<P>(1) Mark the record as specified in &#xA7; 1520.13; and</P>
+<P>(2) Inform the sender of the record that the record must be marked as specified in &#xA7; 1520.13.</P>
+<P>(c) <I>Duty to report unauthorized disclosure.</I> When a covered person becomes aware that SSI has been released to unauthorized persons, the covered person must promptly inform TSA or the applicable DOT or DHS component or agency.</P>
+<P>(d) <I>Additional Requirements for Critical Infrastructure Information.</I> In the case of information that is both SSI and has been designated as critical infrastructure information under section 214 of the Homeland Security Act, any covered person who is a Federal employee in possession of such information must comply with the disclosure restrictions and other requirements applicable to such information under section 214 and any implementing regulations.</P>
+</DIV8>
+
+<DIV8 N="1520.11" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-1520.11&quot;,&quot;citation&quot;:&quot;49 CFR 1520.11&quot;}">
+<HEAD>&#xA7; 1520.11 Persons with a need to know.</HEAD>
+<P>(a) <I>In general.</I> A person has a need to know SSI in each of the following circumstances:</P>
+<P>(1) When the person requires access to specific SSI to carry out transportation security activities approved, accepted, funded, recommended, or directed by DHS or DOT.</P>
+<P>(2) When the person is in training to carry out transportation security activities approved, accepted, funded, recommended, or directed by DHS or DOT.</P>
+<P>(3) When the information is necessary for the person to supervise or otherwise manage individuals carrying out transportation security activities approved, accepted, funded, recommended, or directed by the DHS or DOT.</P>
+<P>(4) When the person needs the information to provide technical or legal advice to a covered person regarding transportation security requirements of Federal law.</P>
+<P>(5) When the person needs the information to represent a covered person in connection with any judicial or administrative proceeding regarding those requirements.</P>
+<P>(b) <I>Federal, State, local, or tribal government employees, contractors, and grantees.</I> (1) A Federal, State, local, or tribal government employee has a need to know SSI if access to the information is necessary for performance of the employee's official duties, on behalf or in defense of the interests of the Federal, State, local, or tribal government.</P>
+<P>(2) A person acting in the performance of a contract with or grant from a Federal, State, local, or tribal government agency has a need to know SSI if access to the information is necessary to performance of the contract or grant.</P>
+<P>(c) <I>Background check.</I> TSA or Coast Guard may make an individual's access to the SSI contingent upon satisfactory completion of a security background check or other procedures and requirements for safeguarding SSI that are satisfactory to TSA or the Coast Guard.</P>
+<P>(d) <I>Need to know further limited by the DHS or DOT.</I> For some specific SSI, DHS or DOT may make a finding that only specific persons or classes of persons have a need to know.</P>
+<CITA TYPE="N">[69 FR 28082, May 18, 2004, as amended at 70 FR 1382, Jan. 7, 2005; 73 FR 72173, Nov. 26, 2008]
+</CITA>
+</DIV8>
+
+<DIV8 N="1520.13" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-1520.13&quot;,&quot;citation&quot;:&quot;49 CFR 1520.13&quot;}">
+<HEAD>&#xA7; 1520.13 Marking SSI.</HEAD>
+<P>(a) <I>Marking of paper records.</I> In the case of paper records containing SSI, a covered person must mark the record by placing the protective marking conspicuously on the top, and the distribution limitation statement on the bottom, of&#x2014;</P>
+<P>(1) The outside of any front and back cover, including a binder cover or folder, if the document has a front and back cover;</P>
+<P>(2) Any title page; and</P>
+<P>(3) Each page of the document.</P>
+<P>(b) <I>Protective marking.</I> The protective marking is: SENSITIVE SECURITY INFORMATION.</P>
+<P>(c) <I>Distribution limitation statement.</I> The distribution limitation statement is:</P>
+<EXTRACT>
+<FP><I>WARNING:</I> This record contains Sensitive Security Information that is controlled under 49 CFR parts 15 and 1520. No part of this record may be disclosed to persons without a &#x201C;need to know&#x201D;, as defined in 49 CFR parts 15 and 1520, except with the written permission of the Administrator of the Transportation Security Administration or the Secretary of Transportation. Unauthorized release may result in civil penalty or other action. For U.S. government agencies, public disclosure is governed by 5 U.S.C. 552 and 49 CFR parts 15 and 1520.</FP></EXTRACT>
+<P>(d) <I>Other types of records.</I> In the case of non-paper records that contain SSI, including motion picture films, videotape recordings, audio recording, and electronic and magnetic records, a covered person must clearly and conspicuously mark the records with the protective marking and the distribution limitation statement such that the viewer or listener is reasonably likely to see or hear them when obtaining access to the contents of the record.</P>
+</DIV8>
+
+<DIV8 N="1520.15" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-1520.15&quot;,&quot;citation&quot;:&quot;49 CFR 1520.15&quot;}">
+<HEAD>&#xA7; 1520.15 SSI disclosed by TSA or the Coast Guard.</HEAD>
+<P>(a) <I>In general.</I> Except as otherwise provided in this section, and notwithstanding the Freedom of Information Act (5 U.S.C. 552), the Privacy Act (5 U.S.C. 552a), and other laws, records containing SSI are not available for public inspection or copying, nor does TSA or the Coast Guard release such records to persons without a need to know.</P>
+<P>(b) <I>Disclosure under the Freedom of Information Act and the Privacy Act.</I> If a record contains both SSI and information that is not SSI, TSA or the Coast Guard, on a proper Freedom of Information Act or Privacy Act request, may disclose the record with the SSI redacted, provided the record is not otherwise exempt from disclosure under the Freedom of Information Act or Privacy Act.</P>
+<P>(c) <I>Disclosures to committees of Congress and the General Accounting Office.</I> Nothing in this part precludes TSA or the Coast Guard from disclosing SSI to a committee of Congress authorized to have the information or to the Comptroller General, or to any authorized representative of the Comptroller General.</P>
+<P>(d) <I>Disclosure in enforcement proceedings</I>&#x2014;(1) <I>In general.</I> TSA or the Coast Guard may provide SSI to a person in the context of an administrative enforcement proceeding when, in the sole discretion of TSA or the Coast Guard, as appropriate, access to the SSI is necessary for the person to prepare a response to allegations contained in a legal enforcement action document issued by TSA or the Coast Guard.</P>
+<P>(2) <I>Security background check.</I> Prior to providing SSI to a person under paragraph (d)(1) of this section, TSA or the Coast Guard may require the individual or, in the case of an entity, the individuals representing the entity, and their counsel, to undergo and satisfy, in the judgment of TSA or the Coast Guard, a security background check.</P>
+<P>(e) <I>Other conditional disclosure.</I> TSA may authorize a conditional disclosure of specific records or information that constitute SSI upon the written determination by TSA that disclosure of such records or information, subject to such limitations and restrictions as TSA may prescribe, would not be detrimental to transportation security.</P>
+<P>(f) <I>Obligation to protect information.</I> When an individual receives SSI pursuant to paragraph (d) or (e) of this section that individual becomes a covered person under &#xA7; 1520.7 and is subject to the obligations of a covered person under this part.</P>
+<P>(g) <I>No release under FOIA.</I> When TSA discloses SSI pursuant to paragraphs (b) through (e) of this section, TSA makes the disclosure for the sole purpose described in that paragraph. Such disclosure is not a public release of information under the Freedom of Information Act.</P>
+<P>(h) <I>Disclosure of Critical Infrastructure Information.</I> Disclosure of information that is both SSI and has been designated as critical infrastructure information under section 214 of the Homeland Security Act is governed solely by the requirements of section 214 and any implementing regulations.</P>
+</DIV8>
+
+<DIV8 N="1520.17" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-1520.17&quot;,&quot;citation&quot;:&quot;49 CFR 1520.17&quot;}">
+<HEAD>&#xA7; 1520.17 Consequences of unauthorized disclosure of SSI.</HEAD>
+<P>Violation of this part is grounds for a civil penalty and other enforcement or corrective action by DHS, and appropriate personnel actions for Federal employees. Corrective action may include issuance of an order requiring retrieval of SSI to remedy unauthorized disclosure or an order to cease future unauthorized disclosure.</P>
+</DIV8>
+
+<DIV8 N="1520.19" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-1520.19&quot;,&quot;citation&quot;:&quot;49 CFR 1520.19&quot;}">
+<HEAD>&#xA7; 1520.19 Destruction of SSI.</HEAD>
+<P>(a) <I>DHS.</I> Subject to the requirements of the Federal Records Act (5 U.S.C. 105), including the duty to preserve records containing documentation of a Federal agency's policies, decisions, and essential transactions, DHS destroys SSI when no longer needed to carry out the agency's function.</P>
+<P>(b) <I>Other covered persons</I>&#x2014;(1) <I>In general.</I> A covered person must destroy SSI completely to preclude recognition or reconstruction of the information when the covered person no longer needs the SSI to carry out transportation security measures.</P>
+<P>(2) <I>Exception.</I> Paragraph (b)(1) of this section does not require a State or local government agency to destroy information that the agency is required to preserve under State or local law.</P>
+</DIV8>
+
+</DIV5>

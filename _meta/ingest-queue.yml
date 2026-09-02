@@ -43,196 +43,21 @@
 
 catalog_targets_total: 1358
 scanned_targets: 575
-held_parts: 2
-audit_only_parts: 11
-unheld_parts: 584
+held_parts: 41
+audit_only_parts: 7
+unheld_parts: 541
 total_authority_claims_all_parts: 651
-total_authority_claims_held: 120
+total_authority_claims_held: 592
 # Denominator for "we hold the top N": how many of the claims below a maintainer
 # would account for by ingesting the first N entries of `queue:`.
-total_authority_claims_unheld: 531
+total_authority_claims_unheld: 59
 
 queue:
-  - part_id: "7-cfr-273"
-    citation: "7 CFR 273"
-    authority_claims: 33
-    mentions: 57
-    cited_in: ["erf"]
-  - part_id: "34-cfr-99"
-    citation: "34 CFR 99"
-    authority_claims: 27
-    mentions: 39
-    cited_in: ["erf"]
-  - part_id: "34-cfr-303"
-    citation: "34 CFR 303"
-    authority_claims: 20
-    mentions: 28
-    cited_in: ["erf"]
-  - part_id: "49-cfr-1520"
-    citation: "49 CFR 1520"
-    authority_claims: 19
-    mentions: 21
-    cited_in: ["erf"]
-  - part_id: "49-cfr-15"
-    citation: "49 CFR 15"
-    authority_claims: 19
-    mentions: 20
-    cited_in: ["erf"]
-  - part_id: "45-cfr-260"
-    citation: "45 CFR 260"
-    authority_claims: 17
-    mentions: 22
-    cited_in: ["erf"]
-  - part_id: "42-cfr-435"
-    citation: "42 CFR 435"
-    authority_claims: 16
-    mentions: 69
-    cited_in: ["audits", "erf"]
-  - part_id: "17-cfr-230"
-    citation: "17 CFR 230"
-    authority_claims: 16
-    mentions: 32
-    cited_in: ["erf"]
-  - part_id: "45-cfr-400"
-    citation: "45 CFR 400"
-    authority_claims: 16
-    mentions: 17
-    cited_in: ["audits", "erf"]
-  - part_id: "49-cfr-674"
-    citation: "49 CFR 674"
-    authority_claims: 16
-    mentions: 17
-    cited_in: ["erf"]
-  - part_id: "49-cfr-670"
-    citation: "49 CFR 670"
-    authority_claims: 16
-    mentions: 16
-    cited_in: ["erf"]
-  - part_id: "49-cfr-671"
-    citation: "49 CFR 671"
-    authority_claims: 16
-    mentions: 16
-    cited_in: ["erf"]
-  - part_id: "49-cfr-672"
-    citation: "49 CFR 672"
-    authority_claims: 16
-    mentions: 16
-    cited_in: ["erf"]
-  - part_id: "49-cfr-673"
-    citation: "49 CFR 673"
-    authority_claims: 16
-    mentions: 16
-    cited_in: ["erf"]
-  - part_id: "7-cfr-210"
-    citation: "7 CFR 210"
-    authority_claims: 15
-    mentions: 26
-    cited_in: ["erf"]
-  - part_id: "28-cfr-23"
-    citation: "28 CFR 23"
-    authority_claims: 15
-    mentions: 16
-    cited_in: ["erf"]
-  - part_id: "24-cfr-576"
-    citation: "24 CFR 576"
-    authority_claims: 14
-    mentions: 31
-    cited_in: ["audits", "erf"]
-  - part_id: "49-cfr-580"
-    citation: "49 CFR 580"
-    authority_claims: 14
-    mentions: 15
-    cited_in: ["erf"]
-  - part_id: "49-cfr-383"
-    citation: "49 CFR 383"
-    authority_claims: 13
-    mentions: 24
-    cited_in: ["erf"]
-  - part_id: "6-cfr-37"
-    citation: "6 CFR 37"
-    authority_claims: 12
-    mentions: 25
-    cited_in: ["erf"]
-  - part_id: "7-cfr-220"
-    citation: "7 CFR 220"
-    authority_claims: 12
-    mentions: 20
-    cited_in: ["erf"]
-  - part_id: "7-cfr-226"
-    citation: "7 CFR 226"
-    authority_claims: 12
-    mentions: 19
-    cited_in: ["erf"]
-  - part_id: "45-cfr-84"
-    citation: "45 CFR 84"
-    authority_claims: 11
-    mentions: 29
-    cited_in: ["erf"]
-  - part_id: "7-cfr-225"
-    citation: "7 CFR 225"
-    authority_claims: 10
-    mentions: 17
-    cited_in: ["erf"]
-  - part_id: "28-cfr-35"
-    citation: "28 CFR 35"
-    authority_claims: 9
-    mentions: 23
-    cited_in: ["erf"]
-  - part_id: "42-cfr-600"
-    citation: "42 CFR 600"
-    authority_claims: 9
-    mentions: 15
-    cited_in: ["audits", "erf"]
-  - part_id: "42-cfr-433"
-    citation: "42 CFR 433"
-    authority_claims: 8
-    mentions: 36
-    cited_in: ["audits", "erf"]
-  - part_id: "45-cfr-261"
-    citation: "45 CFR 261"
-    authority_claims: 8
-    mentions: 31
-    cited_in: ["audits", "erf"]
-  - part_id: "10-cfr-440"
-    citation: "10 CFR 440"
-    authority_claims: 8
-    mentions: 11
-    cited_in: ["erf"]
-  - part_id: "7-cfr-250"
-    citation: "7 CFR 250"
-    authority_claims: 8
-    mentions: 10
-    cited_in: ["erf"]
-  - part_id: "42-cfr-440"
-    citation: "42 CFR 440"
-    authority_claims: 7
-    mentions: 21
-    cited_in: ["erf"]
-  - part_id: "23-cfr-645"
-    citation: "23 CFR 645"
-    authority_claims: 7
-    mentions: 7
-    cited_in: ["erf"]
   - part_id: "7-cfr-280"
     citation: "7 CFR 280"
     authority_claims: 7
     mentions: 7
     cited_in: ["erf"]
-  - part_id: "7-cfr-248"
-    citation: "7 CFR 248"
-    authority_claims: 6
-    mentions: 15
-    cited_in: ["erf"]
-  - part_id: "7-cfr-249"
-    citation: "7 CFR 249"
-    authority_claims: 6
-    mentions: 14
-    cited_in: ["erf"]
-  - part_id: "45-cfr-98"
-    citation: "45 CFR 98"
-    authority_claims: 3
-    mentions: 16
-    cited_in: ["audits", "erf"]
   - part_id: "17-cfr-227"
     citation: "17 CFR 227"
     authority_claims: 3
@@ -293,11 +118,6 @@ queue:
     authority_claims: 2
     mentions: 2
     cited_in: ["erf"]
-  - part_id: "45-cfr-155"
-    citation: "45 CFR 155"
-    authority_claims: 1
-    mentions: 117
-    cited_in: ["audits", "erf"]
   - part_id: "42-cfr-438"
     citation: "42 CFR 438"
     authority_claims: 1
@@ -310,11 +130,6 @@ queue:
     cited_in: ["audits", "erf"]
   - part_id: "42-cfr-431"
     citation: "42 CFR 431"
-    authority_claims: 1
-    mentions: 31
-    cited_in: ["audits", "erf"]
-  - part_id: "45-cfr-75"
-    citation: "45 CFR 75"
     authority_claims: 1
     mentions: 31
     cited_in: ["audits", "erf"]
@@ -477,11 +292,6 @@ queue:
     citation: "34 CFR 361"
     authority_claims: 0
     mentions: 82
-    cited_in: ["audits", "erf"]
-  - part_id: "42-cfr-455"
-    citation: "42 CFR 455"
-    authority_claims: 0
-    mentions: 79
     cited_in: ["audits", "erf"]
   - part_id: "40-cfr-261"
     citation: "40 CFR 261"
@@ -688,11 +498,6 @@ queue:
     authority_claims: 0
     mentions: 19
     cited_in: ["erf"]
-  - part_id: "42-cfr-447"
-    citation: "42 CFR 447"
-    authority_claims: 0
-    mentions: 19
-    cited_in: ["audits", "erf"]
   - part_id: "24-cfr-3280"
     citation: "24 CFR 3280"
     authority_claims: 0
@@ -743,11 +548,6 @@ queue:
     authority_claims: 0
     mentions: 15
     cited_in: ["erf"]
-  - part_id: "2-cfr-170"
-    citation: "2 CFR 170"
-    authority_claims: 0
-    mentions: 14
-    cited_in: ["audits"]
   - part_id: "21-cfr-1314"
     citation: "21 CFR 1314"
     authority_claims: 0
@@ -898,11 +698,6 @@ queue:
     authority_claims: 0
     mentions: 8
     cited_in: ["erf"]
-  - part_id: "45-cfr-265"
-    citation: "45 CFR 265"
-    authority_claims: 0
-    mentions: 8
-    cited_in: ["audits"]
   - part_id: "49-cfr-40"
     citation: "49 CFR 40"
     authority_claims: 0
@@ -958,11 +753,6 @@ queue:
     authority_claims: 0
     mentions: 7
     cited_in: ["erf"]
-  - part_id: "45-cfr-264"
-    citation: "45 CFR 264"
-    authority_claims: 0
-    mentions: 7
-    cited_in: ["audits"]
   - part_id: "45-cfr-303"
     citation: "45 CFR 303"
     authority_claims: 0
@@ -1078,11 +868,6 @@ queue:
     authority_claims: 0
     mentions: 5
     cited_in: ["erf"]
-  - part_id: "2-cfr-180"
-    citation: "2 CFR 180"
-    authority_claims: 0
-    mentions: 5
-    cited_in: ["audits"]
   - part_id: "21-cfr-1020"
     citation: "21 CFR 1020"
     authority_claims: 0

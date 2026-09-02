@@ -163,3 +163,591 @@ sources:
     reproduction_basis: "17 U.S.C. § 105 — text of a federal statute"
     sha256: "542c91a3362955667bfefc42a6792ef011ded34972fb89303740bb79814d508c"
     notes: "328 KB PDF from govinfo."
+
+  - id: "45-cfr-155"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-45.xml?part=155"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "45 CFR 155"
+    title: "Exchange Establishment Standards and Other Related Standards Under the Affordable Care Act"
+    issuing_body: "Department of Health and Human Services"
+    signal: "audited"
+    why: >
+      76 audit citations in Oregon's single audits against only 1 authority claim (117
+      mentions across ERF) -- the compliance signal a claim ranking would not have
+      surfaced.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "7-cfr-273"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-7.xml?part=273"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "7 CFR 273"
+    title: "Certification of Eligible Households"
+    issuing_body: "Department of Agriculture / Food and Nutrition Administration"
+    signal: "authority"
+    why: >
+      33 authority claims and 57 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "42-cfr-435"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-13/title-42.xml?part=435"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "42 CFR 435"
+    title: "Eligibility in the States, District of Columbia, the Northern Mariana Islands, and American Samoa"
+    issuing_body: "Department of Health and Human Services / Centers for Medicare & Medicaid Services"
+    signal: "authority+audited"
+    why: >
+      16 authority claims and 14 audit citations (69 mentions across ERF) -- appears on
+      both signals.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "45-cfr-75"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2025-09-30/title-45.xml?part=75"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "45 CFR 75"
+    title: "Uniform Administrative Requirements, Cost Principles, and Audit Requirements for HHS Awards"
+    issuing_body: "Department of Health and Human Services"
+    signal: "audited"
+    why: >
+      28 audit citations in Oregon's single audits against only 1 authority claim (31
+      mentions across ERF) -- the compliance signal a claim ranking would not have
+      surfaced. Part 75 was removed from the CFR effective 2025-10-01 -- HHS retired its
+      own Uniform Guidance and adopted 2 CFR 200 government-wide, with HHS-specific
+      modifications relocated to 2 CFR 300 (not yet in this manifest). Oregon's single
+      audits cite Part 75 against awards made before that date, so the 28 audit
+      citations are real and current, but the instrument they cite is not. The URL below
+      is the last point-in-time snapshot before removal (2025-09-30), not a current-text
+      URL -- flagged here per ADR-0001's superseded-instrument exception rather than let
+      a current-dated URL 404 or silently resolve to 2 CFR 200 instead.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "34-cfr-99"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-34.xml?part=99"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "34 CFR 99"
+    title: "Family Educational Rights and Privacy"
+    issuing_body: "Department of Education"
+    signal: "authority"
+    why: >
+      27 authority claims and 39 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "42-cfr-455"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-13/title-42.xml?part=455"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "42 CFR 455"
+    title: "Program Integrity: Medicaid"
+    issuing_body: "Department of Health and Human Services / Centers for Medicare & Medicaid Services"
+    signal: "audited"
+    why: >
+      23 audit citations in Oregon's single audits against no authority claims (79
+      mentions across ERF) -- the compliance signal a claim ranking would not have
+      surfaced.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "34-cfr-303"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-34.xml?part=303"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "34 CFR 303"
+    title: "Early Intervention Program for Infants and Toddlers with Disabilities"
+    issuing_body: "Department of Education / Office of Special Education and Rehabilitative Services"
+    signal: "authority"
+    why: >
+      20 authority claims and 28 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "49-cfr-1520"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-49.xml?part=1520"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "49 CFR 1520"
+    title: "Protection of Sensitive Security Information"
+    issuing_body: "Department of Homeland Security / Transportation Security Administration"
+    signal: "authority"
+    why: >
+      19 authority claims and 21 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "49-cfr-15"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-49.xml?part=15"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "49 CFR 15"
+    title: "Protection of Sensitive Security Information"
+    issuing_body: "Department of Transportation"
+    signal: "authority"
+    why: >
+      19 authority claims and 20 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "24-cfr-576"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-20/title-24.xml?part=576"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "24 CFR 576"
+    title: "Emergency Solutions Grants Program"
+    issuing_body: "Department of Housing and Urban Development / Office of the Assistant Secretary for Community Planning and Development"
+    signal: "authority+audited"
+    why: >
+      14 authority claims and 5 audit citations (31 mentions across ERF) -- appears on
+      both signals.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "45-cfr-261"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-45.xml?part=261"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "45 CFR 261"
+    title: "Ensuring That Recipients Work"
+    issuing_body: "Department of Health and Human Services / Administration for Children and Families / Office of Family Assistance"
+    signal: "authority+audited"
+    why: >
+      8 authority claims and 10 audit citations (31 mentions across ERF) -- appears on
+      both signals.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "45-cfr-260"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-45.xml?part=260"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "45 CFR 260"
+    title: "General Temporary Assistance for Needy Families (TANF) Provisions"
+    issuing_body: "Department of Health and Human Services / Administration for Children and Families / Office of Family Assistance"
+    signal: "authority"
+    why: >
+      17 authority claims and 22 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "45-cfr-400"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-45.xml?part=400"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "45 CFR 400"
+    title: "Refugee Resettlement Program"
+    issuing_body: "Department of Health and Human Services / Administration for Children and Families / Office of Refugee Resettlement"
+    signal: "authority"
+    why: >
+      16 authority claims and 17 mentions across ERF; only 1 audit citation. Reached by
+      the authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "17-cfr-230"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-17/title-17.xml?part=230"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "17 CFR 230"
+    title: "General Rules and Regulations, Securities Act of 1933"
+    issuing_body: "Securities and Exchange Commission"
+    signal: "authority"
+    why: >
+      16 authority claims and 32 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "49-cfr-674"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-49.xml?part=674"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "49 CFR 674"
+    title: "State Safety Oversight"
+    issuing_body: "Department of Transportation / Federal Transit Administration"
+    signal: "authority"
+    why: >
+      16 authority claims and 17 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "49-cfr-670"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-49.xml?part=670"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "49 CFR 670"
+    title: "Public Transportation Safety Program"
+    issuing_body: "Department of Transportation / Federal Transit Administration"
+    signal: "authority"
+    why: >
+      16 authority claims and 16 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "49-cfr-671"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-49.xml?part=671"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "49 CFR 671"
+    title: "Rail Transit Roadway Worker Protection"
+    issuing_body: "Department of Transportation / Federal Transit Administration"
+    signal: "authority"
+    why: >
+      16 authority claims and 16 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "49-cfr-672"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-49.xml?part=672"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "49 CFR 672"
+    title: "Public Transportation Safety Certification Training Program"
+    issuing_body: "Department of Transportation / Federal Transit Administration"
+    signal: "authority"
+    why: >
+      16 authority claims and 16 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "49-cfr-673"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-49.xml?part=673"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "49 CFR 673"
+    title: "Public Transportation Agency Safety Plans"
+    issuing_body: "Department of Transportation / Federal Transit Administration"
+    signal: "authority"
+    why: >
+      16 authority claims and 16 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "7-cfr-210"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-7.xml?part=210"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "7 CFR 210"
+    title: "National School Lunch Program"
+    issuing_body: "Department of Agriculture / Food and Nutrition Administration"
+    signal: "authority"
+    why: >
+      15 authority claims and 26 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "28-cfr-23"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-28.xml?part=23"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "28 CFR 23"
+    title: "Criminal Intelligence Systems Operating Policies"
+    issuing_body: "Department of Justice"
+    signal: "authority"
+    why: >
+      15 authority claims and 16 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "49-cfr-580"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-49.xml?part=580"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "49 CFR 580"
+    title: "Odometer Disclosure Requirements"
+    issuing_body: "Department of Transportation / National Highway Traffic Safety Administration"
+    signal: "authority"
+    why: >
+      14 authority claims and 15 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "42-cfr-433"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-13/title-42.xml?part=433"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "42 CFR 433"
+    title: "State Fiscal Administration"
+    issuing_body: "Department of Health and Human Services / Centers for Medicare & Medicaid Services"
+    signal: "authority+audited"
+    why: >
+      8 authority claims and 6 audit citations (36 mentions across ERF) -- appears on
+      both signals.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "49-cfr-383"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-49.xml?part=383"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "49 CFR 383"
+    title: "Commercial Driver's License Standards; Requirements and Penalties"
+    issuing_body: "Department of Transportation / Federal Motor Carrier Safety Administration"
+    signal: "authority"
+    why: >
+      13 authority claims and 24 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "2-cfr-170"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-2.xml?part=170"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "2 CFR 170"
+    title: "Reporting Subaward and Executive Compensation Information"
+    issuing_body: "Office of Management and Budget"
+    signal: "audited"
+    why: >
+      13 audit citations in Oregon's single audits against no authority claims (14
+      mentions across ERF) -- the compliance signal a claim ranking would not have
+      surfaced.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "6-cfr-37"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-07-06/title-6.xml?part=37"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "6 CFR 37"
+    title: "Real ID Driver's Licenses and Identification Cards"
+    issuing_body: "Department of Homeland Security"
+    signal: "authority"
+    why: >
+      12 authority claims and 25 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "7-cfr-220"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-7.xml?part=220"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "7 CFR 220"
+    title: "School Breakfast Program"
+    issuing_body: "Department of Agriculture / Food and Nutrition Administration"
+    signal: "authority"
+    why: >
+      12 authority claims and 20 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "7-cfr-226"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-7.xml?part=226"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "7 CFR 226"
+    title: "Child and Adult Care Food Program"
+    issuing_body: "Department of Agriculture / Food and Nutrition Administration"
+    signal: "authority"
+    why: >
+      12 authority claims and 19 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "45-cfr-84"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-45.xml?part=84"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "45 CFR 84"
+    title: "Nondiscrimination on the Basis of Disability in Programs or Activities Receiving Federal Financial Assistance"
+    issuing_body: "Department of Health and Human Services"
+    signal: "authority"
+    why: >
+      11 authority claims and 29 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "45-cfr-98"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-45.xml?part=98"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "45 CFR 98"
+    title: "Child Care and Development Fund"
+    issuing_body: "Department of Health and Human Services"
+    signal: "audited"
+    why: >
+      8 audit citations in Oregon's single audits against only 3 authority claims (16
+      mentions across ERF) -- the compliance signal a claim ranking would not have
+      surfaced.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "7-cfr-225"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-7.xml?part=225"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "7 CFR 225"
+    title: "Summer Food Service Program"
+    issuing_body: "Department of Agriculture / Food and Nutrition Administration"
+    signal: "authority"
+    why: >
+      10 authority claims and 17 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "42-cfr-600"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-13/title-42.xml?part=600"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "42 CFR 600"
+    title: "Administration, Eligibility, Essential Health Benefits, Performance Standards, Service Delivery Requirements, Premium and Cost Sharing, Allotments, and Reconcilation"
+    issuing_body: "Department of Health and Human Services / Centers for Medicare & Medicaid Services"
+    signal: "authority"
+    why: >
+      9 authority claims and 15 mentions across ERF; only 1 audit citation. Reached by
+      the authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "28-cfr-35"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-28.xml?part=35"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "28 CFR 35"
+    title: "Nondiscrimination on the Basis of Disability in State and Local Government Services"
+    issuing_body: "Department of Justice"
+    signal: "authority"
+    why: >
+      9 authority claims and 23 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "10-cfr-440"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-26/title-10.xml?part=440"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "10 CFR 440"
+    title: "Weatherization Assistance for Low-Income Persons"
+    issuing_body: "Department of Energy"
+    signal: "authority"
+    why: >
+      8 authority claims and 11 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "7-cfr-250"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-7.xml?part=250"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "7 CFR 250"
+    title: "Donation of Foods for Use in the United States, Its Territories and Possessions and Areas Under Its Jurisdiction"
+    issuing_body: "Department of Agriculture / Food and Nutrition Administration"
+    signal: "authority"
+    why: >
+      8 authority claims and 10 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "45-cfr-265"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-45.xml?part=265"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "45 CFR 265"
+    title: "Data Collection and Reporting Requirements"
+    issuing_body: "Department of Health and Human Services / Administration for Children and Families / Office of Family Assistance"
+    signal: "audited"
+    why: >
+      8 audit citations in Oregon's single audits against no authority claims (8
+      mentions across ERF) -- the compliance signal a claim ranking would not have
+      surfaced.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "42-cfr-440"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-13/title-42.xml?part=440"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "42 CFR 440"
+    title: "Services: General Provisions"
+    issuing_body: "Department of Health and Human Services / Centers for Medicare & Medicaid Services"
+    signal: "authority"
+    why: >
+      7 authority claims and 21 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "23-cfr-645"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-07-13/title-23.xml?part=645"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "23 CFR 645"
+    title: "Utilities"
+    issuing_body: "Department of Transportation / Federal Highway Administration"
+    signal: "authority"
+    why: >
+      7 authority claims and 7 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "7-cfr-280"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-7.xml?part=280"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "7 CFR 280"
+    title: "Emergency Food Assistance for Victims of Disasters"
+    issuing_body: "Department of Agriculture / Food and Nutrition Administration"
+    signal: "authority"
+    why: >
+      7 authority claims and 7 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "42-cfr-447"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-13/title-42.xml?part=447"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "42 CFR 447"
+    title: "Payments for Services"
+    issuing_body: "Department of Health and Human Services / Centers for Medicare & Medicaid Services"
+    signal: "audited"
+    why: >
+      7 audit citations in Oregon's single audits against no authority claims (19
+      mentions across ERF) -- the compliance signal a claim ranking would not have
+      surfaced.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "45-cfr-264"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-45.xml?part=264"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "45 CFR 264"
+    title: "Other Accountability Provisions"
+    issuing_body: "Department of Health and Human Services / Administration for Children and Families / Office of Family Assistance"
+    signal: "audited"
+    why: >
+      7 audit citations in Oregon's single audits against no authority claims (7
+      mentions across ERF) -- the compliance signal a claim ranking would not have
+      surfaced.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "7-cfr-248"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-7.xml?part=248"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "7 CFR 248"
+    title: "WIC Farmers' Market Nutrition Program (FMNP)"
+    issuing_body: "Department of Agriculture / Food and Nutrition Administration"
+    signal: "authority"
+    why: >
+      6 authority claims and 15 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "7-cfr-249"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-7.xml?part=249"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "7 CFR 249"
+    title: "Senior Farmers' Market Nutrition Program (SFMNP)"
+    issuing_body: "Department of Agriculture / Food and Nutrition Administration"
+    signal: "authority"
+    why: >
+      6 authority claims and 14 mentions across ERF; no audit citations. Reached by the
+      authority signal alone.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "2-cfr-180"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-2.xml?part=180"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "2 CFR 180"
+    title: "OMB Guidelines to Agencies on Government-Wide Debarment and Suspension (Nonprocurement)"
+    issuing_body: "Office of Management and Budget"
+    signal: "audited"
+    why: >
+      5 audit citations in Oregon's single audits against no authority claims (5
+      mentions across ERF) -- the compliance signal a claim ranking would not have
+      surfaced.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"

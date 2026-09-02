@@ -1,0 +1,842 @@
+<?xml version="1.0"?>
+<DIV5 N="455" TYPE="PART" VOLUME="4" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-42/part-455&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;42 CFR Part 455&amp;quot;}">
+<HEAD>PART 455&#x2014;PROGRAM INTEGRITY: MEDICAID
+</HEAD>
+<AUTH>
+<HED>Authority:</HED><PSPACE>42 U.S.C. 1302.
+</PSPACE></AUTH>
+<SOURCE>
+<HED>Source:</HED><PSPACE>43 FR 45262, Sept. 29, 1978, unless otherwise noted.
+</PSPACE></SOURCE>
+<DIV8 N="455.1" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.1&quot;,&quot;citation&quot;:&quot;42 CFR 455.1&quot;}">
+<HEAD>&#xA7; 455.1 Basis and scope.</HEAD>
+<P>This part sets forth requirements for a State fraud detection and investigation program, and for disclosure of information on ownership and control.</P>
+<P>(a) Under the authority of sections 1902(a)(4), 1903(i)(2), and 1909 of the Social Security Act, Subpart A provides State plan requirements for the identification, investigation, and referral of suspected fraud and abuse cases. In addition, the subpart requires that the State&#x2014;</P>
+<P>(1) Report fraud and abuse information to the Department; and</P>
+<P>(2) Have a method to verify whether services reimbursed by Medicaid were actually furnished to beneficiaries.</P>
+<P>(b) Subpart B implements sections 1124, 1126, 1902(a)(36), 1903(i)(2), and 1903(n) of the Act. It requires that providers and fiscal agents must agree to disclose ownership and control information to the Medicaid State agency.</P>
+<P>(c) Subpart C implements section 1936 of the Act. It establishes the Medicaid Integrity Program under which the Secretary will promote the integrity of the program by entering into contracts with eligible entities to carry out the activities of subpart C.</P>
+<CITA TYPE="N">[51 FR 34787, Sept. 30, 1986, as amended at 72 FR 67655, Nov. 30, 2007]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.2" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.2&quot;,&quot;citation&quot;:&quot;42 CFR 455.2&quot;}">
+<HEAD>&#xA7; 455.2 Definitions.</HEAD>
+<P>As used in this part unless the context indicates otherwise&#x2014;</P>
+<P><I>Abuse</I> means provider practices that are inconsistent with sound fiscal, business, or medical practices, and result in an unnecessary cost to the Medicaid program, or in reimbursement for services that are not medically necessary or that fail to meet professionally recognized standards for health care. It also includes beneficiary practices that result in unnecessary cost to the Medicaid program.</P>
+<P><I>Conviction</I> or <I>Convicted</I> means that a judgment of conviction has been entered by a Federal, State, or local court, regardless of whether an appeal from that judgment is pending.</P>
+<P><I>Credible allegation of fraud.</I> A credible allegation of fraud may be an allegation, which has been verified by the State, from any source, including but not limited to the following:</P>
+<P>(1) Fraud hotline tips verified by further evidence.</P>
+<P>(2) Claims data mining.</P>
+<P>(3) Patterns identified through provider audits, civil false claims cases, and law enforcement investigations. Allegations are considered to be credible when they have indicia of reliability and the State Medicaid agency has reviewed all allegations, facts, and evidence carefully and acts judiciously on a case-by-case basis.</P>
+<P><I>Exclusion</I> means that items or services furnished by a specific provider who has defrauded or abused the Medicaid program will not be reimbursed under Medicaid.</P>
+<P><I>Fraud</I> means an intentional deception or misrepresentation made by a person with the knowledge that the deception could result in some unauthorized benefit to himself or some other person. It includes any act that constitutes fraud under applicable Federal or State law.</P>
+<P><I>Fraud hotline tip.</I> A fraud hotline tip is a complaint or other communications that are submitted through a fraud reporting phone number or a website intended for the same purpose, such as the Federal Government's HHS OIG Hotline or a health plan's fraud hotline.</P>
+<P><I>Furnished</I> refers to items and services provided directly by, or under the direct supervision of, or ordered by, a practitioner or other individual (either as an employee or in his or her own capacity), a provider, or other supplier of services. (For purposes of denial of reimbursement within this part, it does not refer to services ordered by one party but billed for and provided by or under the supervision of another.)</P>
+<P><I>Practitioner</I> means a physician or other individual licensed under State law to practice his or her profession.</P>
+<P><I>Suspension</I> means that items or services furnished by a specified provider who has been convicted of a program-related offense in a Federal, State, or local court will not be reimbursed under Medicaid.</P>
+<CITA TYPE="N">[48 FR 3755, Jan. 27, 1983, as amended at 50 FR 37375, Sept. 13, 1985; 51 FR 34788, Sept. 30, 1986; 76 FR 5965, Feb. 2, 2011; 86 FR 6131, Jan. 19, 2021]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.3" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.3&quot;,&quot;citation&quot;:&quot;42 CFR 455.3&quot;}">
+<HEAD>&#xA7; 455.3 Other applicable regulations.</HEAD>
+<P>Part 1002 of this title sets forth the following:</P>
+<P>(a) State plan requirements for excluding providers for fraud and abuse, and suspending practitioners convicted of program-related crimes.</P>
+<P>(b) The limitations on FFP for services furnished by excluded providers or suspended practitioners.</P>
+<P>(c) The requirements and procedures for reinstatement after exclusion or suspension.</P>
+<P>(d) Requirements for the establishment and operation of State Medicaid fraud control units and the rates of FFP for their fraud control activities.</P>
+<CITA TYPE="N">[51 FR 34788, Sept. 30, 1986]
+</CITA>
+</DIV8>
+
+<DIV6 N="A" TYPE="SUBPART" VOLUME="4" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-42/part-455/subpart-A&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;42 CFR Part 455 Subpart A&amp;quot;}">
+<HEAD>Subpart A&#x2014;Medicaid Agency Fraud Detection and Investigation Program</HEAD>
+<DIV8 N="455.12" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.12&quot;,&quot;citation&quot;:&quot;42 CFR 455.12&quot;}">
+<HEAD>&#xA7; 455.12 State plan requirement.</HEAD>
+<P>A State plan must meet the requirements of &#xA7;&#xA7; 455.13 through 455.23.</P>
+<CITA TYPE="N">[52 FR 48817, Dec. 28, 1987]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.13" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.13&quot;,&quot;citation&quot;:&quot;42 CFR 455.13&quot;}">
+<HEAD>&#xA7; 455.13 Methods for identification, investigation, and referral.</HEAD>
+<P>The Medicaid agency must have&#x2014;</P>
+<P>(a) Methods and criteria for identifying suspected fraud cases;</P>
+<P>(b) Methods for investigating these cases that&#x2014;</P>
+<P>(1) Do not infringe on the legal rights of persons involved; and</P>
+<P>(2) Afford due process of law; and</P>
+<P>(c) Procedures, developed in cooperation with State legal authorities, for referring suspected fraud cases to law enforcement officials.</P>
+<CITA TYPE="N">[43 FR 45262, Sept. 29, 1978, as amended at 48 FR 3755, Jan. 27, 1983]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.14" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.14&quot;,&quot;citation&quot;:&quot;42 CFR 455.14&quot;}">
+<HEAD>&#xA7; 455.14 Preliminary investigation.</HEAD>
+<P>If the agency receives a complaint of Medicaid fraud or abuse from any source or identifies any questionable practices, it must conduct a preliminary investigation to determine whether there is sufficient basis to warrant a full investigation.</P>
+<CITA TYPE="N">[48 FR 3756, Jan. 27, 1983]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.15" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.15&quot;,&quot;citation&quot;:&quot;42 CFR 455.15&quot;}">
+<HEAD>&#xA7; 455.15 Full investigation.</HEAD>
+<P>If the findings of a preliminary investigation give the agency reason to believe that an incident of fraud or abuse has occurred in the Medicaid program, the agency must take the following action, as appropriate:</P>
+<P>(a) If a provider is suspected of fraud or abuse, the agency must&#x2014;</P>
+<P>(1) In States with a State Medicaid fraud control unit certified under subpart C of part 1002 of this title, refer the case to the unit under the terms of its agreement with the unit entered into under &#xA7; 1002.309 of this title; or</P>
+<P>(2) In States with no certified Medicaid fraud control unit, or in cases where no referral to the State Medicaid fraud control unit is required under paragraph (a)(1) of this section, conduct a full investigation or refer the case to the appropriate law enforcement agency.</P>
+<P>(b) If there is reason to believe that a beneficiary has defrauded the Medicaid program, the agency must refer the case to an appropriate law enforcement agency.</P>
+<P>(c) If there is reason to believe that a beneficiary has abused the Medicaid program, the agency must conduct a full investigation of the abuse.</P>
+<CITA TYPE="N">[48 FR 3756, Jan. 27, 1983, as amended at 51 FR 34788, Sept. 30, 1986]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.16" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.16&quot;,&quot;citation&quot;:&quot;42 CFR 455.16&quot;}">
+<HEAD>&#xA7; 455.16 Resolution of full investigation.</HEAD>
+<P>A full investigation must continue until&#x2014;</P>
+<P>(a) Appropriate legal action is initiated;</P>
+<P>(b) The case is closed or dropped because of insufficient evidence to support the allegations of fraud or abuse; or</P>
+<P>(c) The matter is resolved between the agency and the provider or beneficiary. This resolution may include but is not limited to&#x2014;</P>
+<P>(1) Sending a warning letter to the provider or beneficiary, giving notice that continuation of the activity in question will result in further action;</P>
+<P>(2) Suspending or terminating the provider from participation in the Medicaid program;</P>
+<P>(3) Seeking recovery of payments made to the provider; or</P>
+<P>(4) Imposing other sanctions provided under the State plan.</P>
+<CITA TYPE="N">[43 FR 45262, Sept. 29, 1978, as amended at 48 FR 3756, Jan. 27, 1983]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.17" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.17&quot;,&quot;citation&quot;:&quot;42 CFR 455.17&quot;}">
+<HEAD>&#xA7; 455.17 Reporting requirements.</HEAD>
+<P>The agency must report the following fraud or abuse information to the appropriate Department officials at intervals prescribed in instructions.</P>
+<P>(a) The number of complaints of fraud and abuse made to the agency that warrant preliminary investigation.</P>
+<P>(b) For each case of suspected provider fraud and abuse that warrants a full investigation&#x2014;</P>
+<P>(1) The provider's name and number;</P>
+<P>(2) The source of the complaint;</P>
+<P>(3) The type of provider;</P>
+<P>(4) The nature of the complaint;</P>
+<P>(5) The approximate range of dollars involved; and</P>
+<P>(6) The legal and administrative disposition of the case, including actions taken by law enforcement officials to whom the case has been referred.</P>
+<APPRO TYPE="N">(Approved by the Office of Management and Budget under control number 0938-0076)
+</APPRO>
+<CITA TYPE="N">[43 FR 45262, Sept. 29, 1978, as amended at 48 FR 3756, Jan. 27, 1983]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.18" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.18&quot;,&quot;citation&quot;:&quot;42 CFR 455.18&quot;}">
+<HEAD>&#xA7; 455.18 Provider's statements on claims forms.</HEAD>
+<P>(a) Except as provided in &#xA7; 455.19, the agency must provide that all provider claims forms be imprinted in boldface type with the following statements, or with alternate wording that is approved by the Regional CMS Administrator:</P>
+<P>(1) &#x201C;This is to certify that the foregoing information is true, accurate, and complete.&#x201D;</P>
+<P>(2) &#x201C;I understand that payment of this claim will be from Federal and State funds, and that any falsification, or concealment of a material fact, may be prosecuted under Federal and State laws.&#x201D;</P>
+<P>(b) The statements may be printed above the claimant's signature or, if they are printed on the reverse of the form, a reference to the statements must appear immediately preceding the claimant's signature.</P>
+</DIV8>
+
+<DIV8 N="455.19" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.19&quot;,&quot;citation&quot;:&quot;42 CFR 455.19&quot;}">
+<HEAD>&#xA7; 455.19 Provider's statement on check.</HEAD>
+<P>As an alternative to the statements required in &#xA7; 455.18, the agency may print the following wording above the claimant's endorsement on the reverse of checks or warrants payable to each provider: &#x201C;I understand in endorsing or depositing this check that payment will be from Federal and State funds and that any falsification, or concealment of a material fact, may be prosecuted under Federal and State laws.&#x201D;</P>
+</DIV8>
+
+<DIV8 N="455.20" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.20&quot;,&quot;citation&quot;:&quot;42 CFR 455.20&quot;}">
+<HEAD>&#xA7; 455.20 Beneficiary verification procedure.</HEAD>
+<P>(a) The agency must have a method for verifying with beneficiaries whether services billed by providers were received.</P>
+<P>(b) In States receiving Federal matching funds for a mechanized claims processing and information retrieval system under part 433, subpart C, of this subchapter, the agency must provide prompt written notice as required by &#xA7; 433.116 (e) and (f).</P>
+<CITA TYPE="N">[48 FR 3756, Jan. 27, 1983, as amended at 56 FR 8854, Mar. 1, 1991]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.21" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.21&quot;,&quot;citation&quot;:&quot;42 CFR 455.21&quot;}">
+<HEAD>&#xA7; 455.21 Cooperation with State Medicaid fraud control units.</HEAD>
+<P>In a State with a Medicaid fraud control unit established and certified under subpart C of this part,</P>
+<P>(a) The agency must&#x2014;</P>
+<P>(1) Refer all cases of suspected provider fraud to the unit;</P>
+<P>(2) If the unit determines that it may be useful in carrying out the unit's responsibilities, promptly comply with a request from the unit for&#x2014;</P>
+<P>(i) Access to, and free copies of, any records or information kept by the agency or its contractors;</P>
+<P>(ii) Computerized data stored by the agency or its contractors. These data must be supplied without charge and in the form requested by the unit; and</P>
+<P>(iii) Access to any information kept by providers to which the agency is authorized access by section 1902(a)(27) of the Act and &#xA7; 431.107 of this subchapter. In using this information, the unit must protect the privacy rights of beneficiaries; and</P>
+<P>(3) On referral from the unit, initiate any available administrative or judicial action to recover improper payments to a provider.</P>
+<P>(b) The agency need not comply with specific requirements under this subpart that are the same as the responsibilities placed on the unit under subpart D of this part.</P>
+<P>(c) The agency must enter into a written agreement with the unit under which:</P>
+<P>(1) The agency will agree to comply with all requirements of &#xA7; 455.21(a);</P>
+<P>(2) The unit will agree to comply with the requirements of &#xA7; 1007.11(c) of this title; and</P>
+<P>(3) The agency and the unit will agree to&#x2014;</P>
+<P>(i) Establish a practice of regular meetings or communication between the two entities;</P>
+<P>(ii) Establish procedures for how they will coordinate their efforts;</P>
+<P>(iii) Establish procedures for &#xA7;&#xA7; 1007.9(e) through 1007.9(h) of this title;</P>
+<P>(iv) Establish procedures by which the unit will receive referrals of potential fraud from managed care organizations, if applicable, either directly or through the agency, as required at &#xA7; 438.608(a)(7) of this title; and</P>
+<P>(v) Review and, as necessary, update the agreement no less frequently than every five (5) years to ensure that the agreement reflects current law and practice.</P>
+<CITA TYPE="N">[43 FR 45262, Sept. 29, 1978, as amended at 84 FR 10713, Mar. 22, 2019]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.23" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.23&quot;,&quot;citation&quot;:&quot;42 CFR 455.23&quot;}">
+<HEAD>&#xA7; 455.23 Suspension of payments in cases of fraud.</HEAD>
+<P>(a) <I>Basis for suspension.</I> (1) The State Medicaid agency must suspend all Medicaid payments to a provider after the agency determines there is a credible allegation of fraud for which an investigation is pending under the Medicaid program against an individual or entity unless the agency has good cause to not suspend payments or to suspend payment only in part.</P>
+<P>(2) The State Medicaid agency may suspend payments without first notifying the provider of its intention to suspend such payments.</P>
+<P>(3) A provider may request, and must be granted, administrative review where State law so requires.</P>
+<P>(b) <I>Notice of suspension.</I> (1) The State agency must send notice of its suspension of program payments within the following timeframes:</P>
+<P>(i) Five days of taking such action unless requested in writing by a law enforcement agency to temporarily withhold such notice.</P>
+<P>(ii) Thirty days if requested by law enforcement in writing to delay sending such notice, which request for delay may be renewed in writing up to twice and in no event may exceed 90 days.</P>
+<P>(2) The notice must include or address all of the following:</P>
+<P>(i) State that payments are being suspended in accordance with this provision.</P>
+<P>(ii) Set forth the general allegations as to the nature of the suspension action, but need not disclose any specific information concerning an ongoing investigation.</P>
+<P>(iii) State that the suspension is for a temporary period, as stated in paragraph (c) of this section, and cite the circumstances under which the suspension will be terminated.</P>
+<P>(iv) Specify, when applicable, to which type or types of Medicaid claims or business units of a provider suspension is effective.</P>
+<P>(v) Inform the provider of the right to submit written evidence for consideration by State Medicaid Agency.</P>
+<P>(vi) Set forth the applicable State administrative appeals process and corresponding citations to State law.</P>
+<P>(c) <I>Duration of suspension.</I> (1) All suspension of payment actions under this section will be temporary and will not continue after either of the following:</P>
+<P>(i) The agency or the prosecuting authorities determine that there is insufficient evidence of fraud by the provider.</P>
+<P>(ii) Legal proceedings related to the provider's alleged fraud are completed.</P>
+<P>(2) A State must document in writing the termination of a suspension including, where applicable and appropriate, any appeal rights available to a provider.</P>
+<P>(d) <I>Referrals to the Medicaid fraud control unit.</I> (1) Whenever a State Medicaid agency investigation leads to the initiation of a payment suspension in whole or part, the State Medicaid Agency must make a fraud referral to either of the following:</P>
+<P>(i) To a Medicaid fraud control unit established and certified under part 1007 of this title; or</P>
+<P>(ii) In States with no certified Medicaid fraud control unit, to an appropriate law enforcement agency.</P>
+<P>(2) The fraud referral made under paragraph (d)(1) of this section must meet all of the following requirements:</P>
+<P>(i) Be made in writing and provided to the Medicaid fraud control unit not later than the next business day after the suspension is enacted.</P>
+<P>(ii) Conform to fraud referral performance standards issued by the Secretary.</P>
+<P>(3)(i) If the Medicaid fraud control unit or other law enforcement agency accepts the fraud referral for investigation, the payment suspension may be continued until such time as the investigation and any associated enforcement proceedings are completed.</P>
+<P>(ii) On a quarterly basis, the State must request a certification from the Medicaid fraud control unit or other law enforcement agency that any matter accepted on the basis of a referral continues to be under investigation thus warranting continuation of the suspension.</P>
+<P>(4) If the Medicaid fraud control unit or other law enforcement agency declines to accept the fraud referral for investigation the payment suspension must be discontinued unless the State Medicaid agency has alternative Federal or State authority by which it may impose a suspension or makes a fraud referral to another law enforcement agency. In that situation, the provisions of paragraph (d)(3) of this section apply equally to that referral as well.</P>
+<P>(5) A State's decision to exercise the good cause exceptions in paragraphs (e) or (f) of this section not to suspend payments or to suspend payments only in part does not relieve the State of the obligation to refer any credible allegation of fraud as provided in paragraph (d)(1) of this section.</P>
+<P>(e) <I>Good cause not to suspend payments.</I> A State may find that good cause exists not to suspend payments, or not to continue a payment suspension previously imposed, to an individual or entity against which there is an investigation of a credible allegation of fraud if any of the following are applicable:</P>
+<P>(1) Law enforcement officials have specifically requested that a payment suspension not be imposed because such a payment suspension may compromise or jeopardize an investigation.</P>
+<P>(2) Other available remedies implemented by the State more effectively or quickly protect Medicaid funds.</P>
+<P>(3) The State determines, based upon the submission of written evidence by the individual or entity that is the subject of the payment suspension, that the suspension should be removed.</P>
+<P>(4) beneficiary access to items or services would be jeopardized by a payment suspension because of either of the following:</P>
+<P>(i) An individual or entity is the sole community physician or the sole source of essential specialized services in a community.</P>
+<P>(ii) The individual or entity serves a large number of beneficiaries within a HRSA-designated medically underserved area.</P>
+<P>(5) Law enforcement declines to certify that a matter continues to be under investigation per the requirements of paragraph (d)(3) of this section.</P>
+<P>(6) The State determines that payment suspension is not in the best interests of the Medicaid program.</P>
+<P>(f) <I>Good cause to suspend payment only in part.</I> A State may find that good cause exists to suspend payments in part, or to convert a payment suspension previously imposed in whole to one only in part, to an individual or entity against which there is an investigation of a credible allegation of fraud if any of the following are applicable:</P>
+<P>(1) beneficiary access to items or services would be jeopardized by a payment suspension in whole or part because of either of the following:</P>
+<P>(i) An individual or entity is the sole community physician or the sole source of essential specialized services in a community.</P>
+<P>(ii) The individual or entity serves a large number of beneficiaries within a HRSA-designated medically underserved area.</P>
+<P>(2) The State determines, based upon the submission of written evidence by the individual or entity that is the subject of a whole payment suspension, that such suspension should be imposed only in part.</P>
+<P>(3)(i) The credible allegation focuses solely and definitively on only a specific type of claim or arises from only a specific business unit of a provider; and</P>
+<P>(ii) The State determines and documents in writing that a payment suspension in part would effectively ensure that potentially fraudulent claims were not continuing to be paid.</P>
+<P>(4) Law enforcement declines to certify that a matter continues to be under investigation per the requirements of paragraph (d)(3) of this section.</P>
+<P>(5) The State determines that payment suspension only in part is in the best interests of the Medicaid program.</P>
+<P>(g) <I>Documentation and record retention.</I> State Medicaid agencies must meet the following requirements:</P>
+<P>(1) Maintain for a minimum of 5 years from the date of issuance all materials documenting the life cycle of a payment suspension that was imposed in whole or part, including the following:</P>
+<P>(i) All notices of suspension of payment in whole or part.</P>
+<P>(ii) All fraud referrals to the Medicaid fraud control unit or other law enforcement agency.</P>
+<P>(iii) All quarterly certifications of continuing investigation status by law enforcement.</P>
+<P>(iv) All notices documenting the termination of a suspension.</P>
+<P>(2)(i) Maintain for a minimum of 5 years from the date of issuance all materials documenting each instance where a payment suspension was not imposed, imposed only in part, or discontinued for good cause.</P>
+<P>(ii) This type of documentation must include, at a minimum, detailed information on the basis for the existence of the good cause not to suspend payments, to suspend payments only in part, or to discontinue a payment suspension and, where applicable, must specify how long the State anticipates such good cause will exist.</P>
+<P>(3) Annually report to the Secretary summary information on each of following:</P>
+<P>(i) Suspension of payment, including the nature of the suspected fraud, the basis for suspension, and the outcome of the suspension.</P>
+<P>(ii) Situation in which the State determined good cause existed to not suspend payments, to suspend payments only in part, or to discontinue a payment suspension as described in this section, including describing the nature of the suspected fraud and the nature of the good cause.</P>
+<CITA TYPE="N">[76 FR 5966, Feb. 2, 2011]
+</CITA>
+</DIV8>
+
+</DIV6>
+<DIV6 N="B" TYPE="SUBPART" VOLUME="4" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-42/part-455/subpart-B&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;42 CFR Part 455 Subpart B&amp;quot;}">
+<HEAD>Subpart B&#x2014;Disclosure of Information by Providers and Fiscal Agents</HEAD>
+<SOURCE>
+<HED>Source:</HED><PSPACE>44 FR 41644, July 17, 1979, unless otherwise noted.
+</PSPACE></SOURCE>
+<DIV8 N="455.100" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.100&quot;,&quot;citation&quot;:&quot;42 CFR 455.100&quot;}">
+<HEAD>&#xA7; 455.100 Purpose.</HEAD>
+<P>This subpart implements sections 1124, 1126, 1902(a)(38), 1903(i)(2), and 1903(n) of the Social Security Act. It sets forth State plan requirements regarding&#x2014;</P>
+<P>(a) Disclosure by providers and fiscal agents of ownership and control information; and</P>
+<P>(b) Disclosure of information on a provider's owners and other persons convicted of criminal offenses against Medicare, Medicaid, or the title XX services program.</P>
+<FP>The subpart also specifies conditions under which the Administrator will deny Federal financial participation for services furnished by providers or fiscal agents who fail to comply with the disclosure requirements.
+</FP>
+</DIV8>
+
+<DIV8 N="455.101" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.101&quot;,&quot;citation&quot;:&quot;42 CFR 455.101&quot;}">
+<HEAD>&#xA7; 455.101 Definitions.</HEAD>
+<P><I>Additional disclosable party</I> means, with respect to a nursing facility defined in section 1919(a) of the Act, any person or entity who&#x2014;</P>
+<P>(1) Exercises operational, financial, or managerial control over the facility or a part thereof, or provides policies or procedures for any of the operations of the facility, or provides financial or cash management services to the facility;</P>
+<P>(2) Leases or subleases real property to the facility, or owns a whole or part interest equal to or exceeding 5 percent of the total value of such real property; or</P>
+<P>(3) Provides management or administrative services, management or clinical consulting services, or accounting or financial services to the facility.</P>
+<P><I>Affiliation</I> means, for purposes of applying &#xA7; 455.107, any of the following:</P>
+<P>(1) A 5 percent or greater direct or indirect ownership interest that an individual or entity has in another organization.</P>
+<P>(2) A general or limited partnership interest (regardless of the percentage) that an individual or entity has in another organization.</P>
+<P>(3) An interest in which an individual or entity exercises operational or managerial control over, or directly or indirectly conducts, the day-to-day operations of another organization (including, for purposes of this paragraph (3), sole proprietorships), either under contract or through some other arrangement, regardless of whether or not the managing individual or entity is a W-2 employee of the organization.</P>
+<P>(4) An interest in which an individual is acting as an officer or director of a corporation.</P>
+<P>(5) Any payment assignment relationship under &#xA7; 447.10(g) of this chapter.</P>
+<P><I>Agent</I> means any person who has been delegated the authority to obligate or act on behalf of a provider.</P>
+<P><I>Disclosable event</I> means, for purposes of &#xA7; 455.107, any of the following:</P>
+<P>(1) Currently has an uncollected debt to Medicare, Medicaid, or CHIP, regardless of&#x2014;</P>
+<P>(i) The amount of the debt;</P>
+<P>(ii) Whether the debt is currently being repaid (for example, as part of a repayment plan); or</P>
+<P>(iii) Whether the debt is currently being appealed;</P>
+<P>(2) Has been or is subject to a payment suspension under a federal health care program (as that latter term is defined in section 1128B(f) of the Act), regardless of when the payment suspension occurred or was imposed;</P>
+<P>(3) Has been or is excluded by the OIG from participation in Medicare, Medicaid, or CHIP, regardless of whether the exclusion is currently being appealed or when the exclusion occurred or was imposed; or</P>
+<P>(4) Has had its Medicare, Medicaid, or CHIP enrollment denied, revoked or terminated, regardless of&#x2014;</P>
+<P>(i) The reason for the denial, revocation, or termination;</P>
+<P>(ii) Whether the denial, revocation, or termination is currently being appealed; or</P>
+<P>(iii) When the denial, revocation, or termination occurred or was imposed.</P>
+<P><I>Disclosing entity</I> means a Medicaid provider (other than an individual practitioner or group of practitioners), or a fiscal agent.</P>
+<P><I>Other disclosing entity</I> means any other Medicaid disclosing entity and any entity that does not participate in Medicaid, but is required to disclose certain ownership and control information because of participation in any of the programs established under title V, XVIII, or XX of the Act. This includes:</P>
+<P>(a) Any hospital, skilled nursing facility, home health agency, independent clinical laboratory, renal disease facility, rural health clinic, or health maintenance organization that participates in Medicare (title XVIII);</P>
+<P>(b) Any Medicare intermediary or carrier; and</P>
+<P>(c) Any entity (other than an individual practitioner or group of practitioners) that furnishes, or arranges for the furnishing of, health-related services for which it claims payment under any plan or program established under title V or title XX of the Act.</P>
+<P><I>Fiscal agent</I> means a contractor that processes or pays vendor claims on behalf of the Medicaid agency.</P>
+<P><I>Group of practitioners</I> means two or more health care practitioners who practice their profession at a common location (whether or not they share common facilities, common supporting staff, or common equipment).</P>
+<P><I>Health insuring organization (HIO)</I> has the meaning specified in &#xA7; 438.2.</P>
+<P><I>Indirect ownership interest</I> means an ownership interest in an entity that has an ownership interest in the disclosing entity. This term includes an ownership interest in any entity that has an indirect ownership interest in the disclosing entity.</P>
+<P><I>Managed care entity (MCE)</I> means managed care organizations (MCOs), PIHPs, PAHPs, PCCMs, and HIOs.</P>
+<P><I>Managing employee</I> means&#x2014;</P>
+<P>(1) A general manager, business manager, administrator, director, or other individual who exercises operational or managerial control over, or who directly or indirectly conducts, the day-to-day operation of an institution, organization, or agency, either under contract or through some other arrangement, whether or not the individual is a W-2 employee of the institution, organization, or agency; or</P>
+<P>(2) With respect to the additional requirements at &#xA7; 455.104(e) for a nursing facility defined in section 1919(a) of the Act, an individual, including a general manager, business manager, administrator, director, or consultant, who directly or indirectly manages, advises, or supervises any element of the practices, finances, or operations of the facility.</P>
+<P><I>Organizational structure</I> means, with respect to a nursing facility defined in section 1919(a) of the Act, in the case of any of the following:</P>
+<P>(1) <I>A corporation.</I> The officers, directors, and shareholders of the corporation who have an ownership interest in the corporation which is equal to or exceeds 5 percent.</P>
+<P>(2) <I>A limited liability company.</I> The members and managers of the limited liability company including, as applicable, what percentage each member and manager has of the ownership interest in the limited liability company.</P>
+<P>(3) <I>A general partnership.</I> The partners of the general partnership.</P>
+<P>(4) <I>A limited partnership.</I> The general partners and any limited partners of the limited partnership who have an ownership interest in the limited partnership which is equal to or exceeds 10 percent.</P>
+<P>(5) <I>A trust.</I> The trustees of the trust.</P>
+<P>(6) <I>An individual.</I> Contact information for the individual.</P>
+<P><I>Ownership interest</I> means the possession of equity in the capital, the stock, or the profits of the disclosing entity.</P>
+<P><I>Person with an ownership or control interest</I> means a person or corporation that&#x2014;</P>
+<P>(a) Has an ownership interest totaling 5 percent or more in a disclosing entity;</P>
+<P>(b) Has an indirect ownership interest equal to 5 percent or more in a disclosing entity;</P>
+<P>(c) Has a combination of direct and indirect ownership interests equal to 5 percent or more in a disclosing entity;</P>
+<P>(d) Owns an interest of 5 percent or more in any mortgage, deed of trust, note, or other obligation secured by the disclosing entity if that interest equals at least 5 percent of the value of the property or assets of the disclosing entity;</P>
+<P>(e) Is an officer or director of a disclosing entity that is organized as a corporation; or</P>
+<P>(f) Is a partner in a disclosing entity that is organized as a partnership.</P>
+<P><I>Prepaid ambulatory health plan (PAHP)</I> has the meaning specified in &#xA7; 438.2.</P>
+<P><I>Prepaid inpatient health plan (PIHP)</I> has the meaning specified in &#xA7; 438.2.</P>
+<P><I>Primary care case manager (PCCM)</I> has the meaning specified in &#xA7; 438.2.</P>
+<P><I>Significant business transaction</I> means any business transaction or series of transactions that, during any one fiscal year, exceed the lesser of $25,000 and 5 percent of a provider's total operating expenses.</P>
+<P><I>Subcontractor</I> means&#x2014;</P>
+<P>(a) An individual, agency, or organization to which a disclosing entity has contracted or delegated some of its management functions or responsibilities of providing medical care to its patients; or</P>
+<P>(b) An individual, agency, or organization with which a fiscal agent has entered into a contract, agreement, purchase order, or lease (or leases of real property) to obtain space, supplies, equipment, or services provided under the Medicaid agreement.</P>
+<P><I>Supplier</I> means an individual, agency, or organization from which a provider purchases goods and services used in carrying out its responsibilities under Medicaid (e.g., a commercial laundry, a manufacturer of hospital beds, or a pharmaceutical firm).</P>
+<P><I>Termination</I> means&#x2014;</P>
+<P>(1) For a&#x2014;</P>
+<P>(i) Medicaid or CHIP provider, a State Medicaid program or CHIP has taken an action to revoke the provider's billing privileges, and the provider has exhausted all applicable appeal rights or the timeline for appeal has expired; and</P>
+<P>(ii) Medicare provider, supplier or eligible professional, the Medicare program has revoked the provider or supplier's billing privileges, and the provider has exhausted all applicable appeal rights or the timeline for appeal has expired.</P>
+<P>(2)(i) In all three programs, there is no expectation on the part of the provider or supplier or the State or Medicare program that the revocation is temporary.</P>
+<P>(ii) The provider, supplier, or eligible professional will be required to reenroll with the applicable program if they wish billing privileges to be reinstated.</P>
+<P>(3) The requirement for termination applies in cases where providers, suppliers, or eligible professionals were terminated or had their billing privileges revoked for cause which may include, but is not limited to&#x2014;</P>
+<P>(i) Fraud;</P>
+<P>(ii) Integrity; or</P>
+<P>(iii) Quality.</P>
+<P><I>Wholly owned supplier</I> means a supplier whose total ownership interest is held by a provider or by a person, persons, or other entity with an ownership or control interest in a provider.</P>
+<CITA TYPE="N">[44 FR 41644, July 17, 1979, as amended at 51 FR 34788, Sept. 30, 1986; 76 FR 5967, Feb. 2, 2011; 84 FR 47856, Sept. 10, 2019; 88 FR 80168, Nov. 17, 2023]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.102" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.102&quot;,&quot;citation&quot;:&quot;42 CFR 455.102&quot;}">
+<HEAD>&#xA7; 455.102 Determination of ownership or control percentages.</HEAD>
+<P>(a) <I>Indirect ownership interest.</I> The amount of indirect ownership interest is determined by multiplying the percentages of ownership in each entity. For example, if A owns 10 percent of the stock in a corporation which owns 80 percent of the stock of the disclosing entity, A's interest equates to an 8 percent indirect ownership interest in the disclosing entity and must be reported. Conversely, if B owns 80 percent of the stock of a corporation which owns 5 percent of the stock of the disclosing entity, B's interest equates to a 4 percent indirect ownership interest in the disclosing entity and need not be reported.</P>
+<P>(b) <I>Person with an ownership or control interest.</I> In order to determine percentage of ownership, mortgage, deed of trust, note, or other obligation, the percentage of interest owned in the obligation is multiplied by the percentage of the disclosing entity's assets used to secure the obligation. For example, if A owns 10 percent of a note secured by 60 percent of the provider's assets, A's interest in the provider's assets equates to 6 percent and must be reported. Conversely, if B owns 40 percent of a note secured by 10 percent of the provider's assets, B's interest in the provider's assets equates to 4 percent and need not be reported.</P>
+</DIV8>
+
+<DIV8 N="455.103" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.103&quot;,&quot;citation&quot;:&quot;42 CFR 455.103&quot;}">
+<HEAD>&#xA7; 455.103 State plan requirement.</HEAD>
+<P>A State plan must provide that the requirements of &#xA7;&#xA7; 455.104 through 455.107 are met.</P>
+<CITA TYPE="N">[84 FR 47856, Sept. 10, 2019]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.104" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.104&quot;,&quot;citation&quot;:&quot;42 CFR 455.104&quot;}">
+<HEAD>&#xA7; 455.104 Disclosure by Medicaid providers and fiscal agents: Information on ownership and control.</HEAD>
+<P>(a) <I>Who must provide disclosures.</I> The Medicaid agency must obtain disclosures from disclosing entities, fiscal agents, and managed care entities.</P>
+<P>(b) <I>What disclosures must be provided.</I> The Medicaid agency must require that disclosing entities, fiscal agents, and managed care entities provide the following disclosures:</P>
+<P>(1)(i) The name and address of any person (individual or corporation) with an ownership or control interest in the disclosing entity, fiscal agent, or managed care entity. The address for corporate entities must include as applicable primary business address, every business location, and P.O. Box address.</P>
+<P>(ii) Date of birth and Social Security Number (in the case of an individual).</P>
+<P>(iii) Other tax identification number (in the case of a corporation) with an ownership or control interest in the disclosing entity (or fiscal agent or managed care entity) or in any subcontractor in which the disclosing entity (or fiscal agent or managed care entity) has a 5 percent or more interest.</P>
+<P>(2) Whether the person (individual or corporation) with an ownership or control interest in the disclosing entity (or fiscal agent or managed care entity) is related to another person with ownership or control interest in the disclosing entity as a spouse, parent, child, or sibling; or whether the person (individual or corporation) with an ownership or control interest in any subcontractor in which the disclosing entity (or fiscal agent or managed care entity) has a 5 percent or more interest is related to another person with ownership or control interest in the disclosing entity as a spouse, parent, child, or sibling.</P>
+<P>(3) The name of any other disclosing entity (or fiscal agent or managed care entity) in which an owner of the disclosing entity (or fiscal agent or managed care entity) has an ownership or control interest.</P>
+<P>(4) The name, address, date of birth, and Social Security Number of any managing employee of the disclosing entity (or fiscal agent or managed care entity).</P>
+<P>(c) <I>When the disclosures must be provided</I>&#x2014;(1) <I>Disclosures from providers or disclosing entities.</I> Disclosure from any provider or disclosing entity is due at any of the following times:</P>
+<P>(i) Upon the provider or disclosing entity submitting the provider application.</P>
+<P>(ii) Upon the provider or disclosing entity executing the provider agreement.</P>
+<P>(iii) Upon request of the Medicaid agency during the re-validation of enrollment process under &#xA7; 455.414.</P>
+<P>(iv) Within 35 days after any change in ownership of the disclosing entity.</P>
+<P>(2) <I>Disclosures from fiscal agents.</I> Disclosures from fiscal agents are due at any of the following times:</P>
+<P>(i) Upon the fiscal agent submitting the proposal in accordance with the State's procurement process.</P>
+<P>(ii) Upon the fiscal agent executing the contract with the State.</P>
+<P>(iii) Upon renewal or extension of the contract.</P>
+<P>(iv) Within 35 days after any change in ownership of the fiscal agent.</P>
+<P>(3) <I>Disclosures from managed care entities.</I> Disclosures from managed care entities (MCOs, PIHPs, PAHPs, and HIOs), except PCCMs are due at any of the following times:</P>
+<P>(i) Upon the managed care entity submitting the proposal in accordance with the State's procurement process.</P>
+<P>(ii) Upon the managed care entity executing the contract with the State.</P>
+<P>(iii) Upon renewal or extension of the contract.</P>
+<P>(iv) Within 35 days after any change in ownership of the managed care entity.</P>
+<P>(4) <I>Disclosures from PCCMs.</I> PCCMs will comply with disclosure requirements under paragraph (c)(1) of this section.</P>
+<P>(d) <I>To whom must the disclosures be provided.</I> All disclosures must be provided to the Medicaid agency.</P>
+<P>(e) <I>Nursing facilities.</I> (1) In addition to all other applicable reporting requirements in this subpart, a nursing facility (as defined in section 1919(a) of the Act) must disclose upon initial enrollment and revalidation the following information:</P>
+<P>(i) Each member of the governing body of the facility, including the name, title, and period of service for each such member.</P>
+<P>(ii) Each person or entity who is an officer, director, member, partner, trustee, or managing employee (as defined in &#xA7; 455.101) of the facility, including the name, title, and period of service of each such person or entity.</P>
+<P>(iii) Each person or entity who is an additional disclosable party of the facility (as defined in &#xA7; 455.101).</P>
+<P>(iv) The organizational structure (as defined in &#xA7; 455.101) of each additional disclosable party of the facility and a description of the relationship of each such additional disclosable party to the facility and to one another.</P>
+<P>(2) The State need not require the facility to disclose the same information described in this paragraph (e) more than once on the same enrollment application submission.</P>
+<P>(f) <I>Consequences for failure to provide required disclosures.</I> Federal financial participation (FFP) is not available in payments made to a disclosing entity that fails to disclose ownership or control information as required by this section.</P>
+<CITA TYPE="N">[76 FR 5967, Feb. 2, 2011, as amended at 88 FR 80169, Nov. 17, 2023]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.105" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.105&quot;,&quot;citation&quot;:&quot;42 CFR 455.105&quot;}">
+<HEAD>&#xA7; 455.105 Disclosure by providers: Information related to business transactions.</HEAD>
+<P>(a) <I>Provider agreements.</I> A Medicaid agency must enter into an agreement with each provider under which the provider agrees to furnish to it or to the Secretary on request, information related to business transactions in accordance with paragraph (b) of this section.</P>
+<P>(b) <I>Information that must be submitted.</I> A provider must submit, within 35 days of the date on a request by the Secretary or the Medicaid agency, full and complete information about&#x2014;</P>
+<P>(1) The ownership of any subcontractor with whom the provider has had business transactions totaling more than $25,000 during the 12-month period ending on the date of the request; and</P>
+<P>(2) Any significant business transactions between the provider and any wholly owned supplier, or between the provider and any subcontractor, during the 5-year period ending on the date of the request.</P>
+<P>(c) <I>Denial of Federal financial participation (FFP).</I> (1) FFP is not available in expenditures for services furnished by providers who fail to comply with a request made by the Secretary or the Medicaid agency under paragraph (b) of this section or under &#xA7; 420.205 of this chapter (Medicare requirements for disclosure).</P>
+<P>(2) FFP will be denied in expenditures for services furnished during the period beginning on the day following the date the information was due to the Secretary or the Medicaid agency and ending on the day before the date on which the information was supplied.</P>
+</DIV8>
+
+<DIV8 N="455.106" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.106&quot;,&quot;citation&quot;:&quot;42 CFR 455.106&quot;}">
+<HEAD>&#xA7; 455.106 Disclosure by providers: Information on persons convicted of crimes.</HEAD>
+<P>(a) <I>Information that must be disclosed.</I> Before the Medicaid agency enters into or renews a provider agreement, or at any time upon written request by the Medicaid agency, the provider must disclose to the Medicaid agency the identity of any person who:</P>
+<P>(1) Has ownership or control interest in the provider, or is an agent or managing employee of the provider; and</P>
+<P>(2) Has been convicted of a criminal offense related to that person's involvement in any program under Medicare, Medicaid, or the title XX services program since the inception of those programs.</P>
+<P>(b) <I>Notification to Inspector General.</I> (1) The Medicaid agency must notify the Inspector General of the Department of any disclosures made under paragraph (a) of this section within 20 working days from the date it receives the information.</P>
+<P>(2) The agency must also promptly notify the Inspector General of the Department of any action it takes on the provider's application for participation in the program.</P>
+<P>(c) <I>Denial or termination of provider participation.</I> (1) The Medicaid agency may refuse to enter into or renew an agreement with a provider if any person who has an ownership or control interest in the provider, or who is an agent or managing employee of the provider, has been convicted of a criminal offense related to that person's involvement in any program established under Medicare, Medicaid or the title XX Services Program.</P>
+<P>(2) The Medicaid agency may refuse to enter into or may terminate a provider agreement if it determines that the provider did not fully and accurately make any disclosure required under paragraph (a) of this section.</P>
+</DIV8>
+
+<DIV8 N="455.107" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.107&quot;,&quot;citation&quot;:&quot;42 CFR 455.107&quot;}">
+<HEAD>&#xA7; 455.107 Disclosure of affiliations.</HEAD>
+<P>(a) <I>Definitions.</I> For purposes of this section only, the following terms apply to the definition of disclosable event in &#xA7; 455.101:</P>
+<P>(1) &#x201C;Uncollected debt&#x201D; only applies to the following:</P>
+<P>(i) Medicare, Medicaid, or CHIP overpayments for which CMS or the State has sent notice of the debt to the affiliated provider or supplier.</P>
+<P>(ii) Civil money penalties imposed under this title.</P>
+<P>(iii) Assessments imposed under this title.</P>
+<P>(2) &#x201C;Revoked,&#x201D; &#x201C;Revocation,&#x201D; &#x201C;Terminated,&#x201D; and &#x201C;Termination&#x201D; include situations where the affiliated provider or supplier voluntarily terminated its Medicare, Medicaid, or CHIP enrollment to avoid a potential revocation or termination.</P>
+<P>(b) <I>General.</I> (1)(i) <I>Selection of option.</I> A State, in consultation with CMS, must select one of the two options identified in paragraph (b)(2) of this section for requiring the disclosure of affiliation information.</P>
+<P>(ii) <I>Change of selection.</I> A State may, in consultation with CMS, change its selection after it has been made from the option in paragraph (b)(2)(ii) of this section to that in paragraph (b)(2)(i) of this section.</P>
+<P>(2)(i) <I>First option.</I> In a State that has selected the option in this paragraph (b)(2)(i), a provider that is not enrolled in Medicare but is initially enrolling in Medicaid or CHIP (or is revalidating its Medicaid or CHIP enrollment information) must disclose any and all affiliations that it or any of its owning or managing employees or organizations (consistent with the terms &#x201C;person with an ownership or control interest&#x201D; and &#x201C;managing employee&#x201D; as defined in &#xA7; 455.101) has or, within the previous 5 years, had with a currently or formerly enrolled Medicare, Medicaid, or CHIP provider or supplier that has a disclosable event (as defined in &#xA7; 455.101).</P>
+<P>(ii) <I>Second option.</I> In a State that has selected the option in this paragraph (b)(2)(ii), and upon request by the State, a provider that is not enrolled in Medicare but is initially enrolling in Medicaid or CHIP (or is revalidating its Medicaid or CHIP enrollment information) must disclose any and all affiliations that it or any of its owning or managing employees or organizations (consistent with the terms &#x201C;person with an ownership or control interest&#x201D; and &#x201C;managing employee&#x201D; as defined in &#xA7; 455.101) has or, within the previous 5 years, had with a currently or formerly enrolled Medicare, Medicaid, or CHIP provider or supplier that has a disclosable event (as defined in &#xA7; 455.101). The State will request such disclosures when it, in consultation with CMS, has determined that the initially enrolling or revalidating provider may have at least one such affiliation.</P>
+<P>(c) <I>Information.</I> The initially enrolling or revalidating provider must disclose the following information about each affiliation:</P>
+<P>(1) General identifying information about the affiliated provider or supplier, which includes the following:</P>
+<P>(i) Legal name as reported to the Internal Revenue Service or the Social Security Administration (if the affiliated provider or supplier is an individual).</P>
+<P>(ii) &#x201C;Doing business as&#x201D; name (if applicable).</P>
+<P>(iii) Tax identification number.</P>
+<P>(iv) National Provider Identifier (NPI).</P>
+<P>(2) Reason for disclosing the affiliated provider or supplier.</P>
+<P>(3) Specific data regarding the affiliation relationship, including the following:</P>
+<P>(i) Length of the relationship.</P>
+<P>(ii) Type of relationship.</P>
+<P>(iii) Degree of affiliation.</P>
+<P>(4) If the affiliation has ended, the reason for the termination.</P>
+<P>(d) <I>Mechanism.</I> The information described in paragraphs (b) and (c) of this section must be furnished to the State in a manner prescribed by the State in consultation with the Secretary.</P>
+<P>(e) <I>Denial or termination.</I> The failure of the provider to fully and completely report the information required in this section when the provider knew or should reasonably have known of this information may result in, as applicable, the denial of the provider's initial enrollment application or the termination of the provider's enrollment in Medicaid or CHIP.</P>
+<P>(f) <I>Undue risk.</I> Upon receipt of the information described in paragraphs (b) and (c) of this section, the State, in consultation with CMS, determines whether any of the disclosed affiliations poses an undue risk of fraud, waste, or abuse by considering the following factors:</P>
+<P>(1) The duration of the affiliation.</P>
+<P>(2) Whether the affiliation still exists and, if not, how long ago the affiliation ended.</P>
+<P>(3) The degree and extent of the affiliation.</P>
+<P>(4) If applicable, the reason for the termination of the affiliation.</P>
+<P>(5) Regarding the affiliated provider's or supplier's disclosable event under paragraph (b) of this section, all of the following:</P>
+<P>(i) The type of disclosable event.</P>
+<P>(ii) When the disclosable event occurred or was imposed.</P>
+<P>(iii) Whether the affiliation existed when the disclosable event occurred or was imposed.</P>
+<P>(iv) If the disclosable event is an uncollected debt&#x2014;</P>
+<P>(A) The amount of the debt;</P>
+<P>(B) Whether the affiliated provider or supplier is repaying the debt; and</P>
+<P>(C) To whom the debt is owed.</P>
+<P>(v) If a denial, revocation, termination, exclusion, or payment suspension is involved, the reason for the disclosable event.</P>
+<P>(6) Any other evidence that the State, in consultation with CMS, deems relevant to its determination.</P>
+<P>(g) <I>Determination of undue risk.</I> A determination by the State, in consultation with CMS, that a particular affiliation poses an undue risk of fraud, waste, or abuse will result in, as applicable, the denial of the provider's initial enrollment in Medicaid or CHIP or the termination of the provider's enrollment in Medicaid or CHIP.</P>
+<P>(h) <I>Undisclosed affiliations.</I> The State, in consultation with CMS, may apply paragraph (g) of this section to situations where a reportable affiliation (as described in paragraphs (b) and (c) of this section) poses an undue risk of fraud, waste, or abuse, but the provider has not yet disclosed or is not required at that time to disclose the affiliation to the State.</P>
+<CITA TYPE="N">[84 FR 47856, Sept. 10, 2019, as amended at 87 FR 70249, Nov. 18, 2022]
+</CITA>
+</DIV8>
+
+</DIV6>
+<DIV6 N="C" TYPE="SUBPART" VOLUME="4" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-42/part-455/subpart-C&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;42 CFR Part 455 Subpart C&amp;quot;}">
+<HEAD>Subpart C&#x2014;Medicaid Integrity Program</HEAD>
+<SOURCE>
+<HED>Source:</HED><PSPACE>72 FR 67655, Nov. 30, 2007, unless otherwise noted.
+</PSPACE></SOURCE>
+<DIV8 N="455.200" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.200&quot;,&quot;citation&quot;:&quot;42 CFR 455.200&quot;}">
+<HEAD>&#xA7; 455.200 Basis and scope.</HEAD>
+<P>(a) <I>Statutory basis.</I> This subpart implements section 1936 of the Social Security Act that establishes the Medicaid Integrity Program, under which the Secretary will promote the integrity of the program by entering into contracts with eligible entities to carry out the activities under this subpart C.</P>
+<P>(b) <I>Scope.</I> This subpart provides for the limitation on a contractor's liability to carry out a contract under the Medicaid Integrity Program and to carry out the Medicaid integrity audit program functions.</P>
+<CITA TYPE="N">[73 FR 55771, Sept. 26, 2008]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.202" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.202&quot;,&quot;citation&quot;:&quot;42 CFR 455.202&quot;}">
+<HEAD>&#xA7; 455.202 Limitation on contractor liability.</HEAD>
+<P>(a) A program contractor, a person, or an entity employed by, or having a fiduciary relationship with, or who furnishes professional services to a program contractor will not be held to have violated any criminal law and will not be held liable in any civil action, under any law of the United States or of any State (or political subdivision thereof), by reason of the performance of any duty, function, or activity required or authorized under this subpart or under a valid contract entered into under this subpart, provided due care was exercised in that performance and the contractor has a contract with CMS under this subpart.</P>
+<P>(b) CMS pays a contractor, a person, or an entity described in paragraph (a) of this section, or anyone who furnishes legal counsel or services to a contractor or person, a sum equal to the reasonable amount of the expenses, as determined by CMS, incurred in connection with the defense of a suit, action, or proceeding, if the following conditions are met:</P>
+<P>(1) The suit, action, or proceeding was brought against the contractor, person or entity by a third party and relates to the contractor's, person's or entity's performance of any duty, function, or activity under a contract entered into with CMS under this subpart.</P>
+<P>(2) The funds are available.</P>
+<P>(3) The expenses are otherwise allowable under the terms of the contract.</P>
+</DIV8>
+
+<DIV8 N="455.230" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.230&quot;,&quot;citation&quot;:&quot;42 CFR 455.230&quot;}">
+<HEAD>&#xA7; 455.230 Eligibility requirements.</HEAD>
+<P>CMS may enter into a contract with an entity to perform the activities described at &#xA7; 455.232, if it meets the following conditions:</P>
+<P>(a) The entity has demonstrated capability to carry out the activities described below.</P>
+<P>(b) In carrying out such activities, the entity agrees to cooperate with the Inspector General of the Department of Health and Human Services, the Attorney General, and other law enforcement agencies, as appropriate, in the investigation and deterrence of fraud and abuse in relation to Title XIX of the Social Security Act and in other cases arising out of such activities.</P>
+<P>(c) Maintains an appropriate written code of conduct and compliance policies that include, without limitation, an enforced policy on employee conflicts of interest.</P>
+<P>(d) The entity complies with such conflict of interest standards as are generally applicable to Federal acquisition and procurement.</P>
+<P>(e) The entity meets such other requirements the Secretary may impose.</P>
+<CITA TYPE="N">[73 FR 55771, Sept. 26, 2008]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.232" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.232&quot;,&quot;citation&quot;:&quot;42 CFR 455.232&quot;}">
+<HEAD>&#xA7; 455.232 Medicaid integrity audit program contractor functions.</HEAD>
+<P>The contract between CMS and a Medicaid integrity audit program contractor specifies the functions the contractor will perform. The contract may include any or all of the following functions:</P>
+<P>(a) Review of the actions of individuals or entities furnishing items or services (whether on a fee-for-service, risk, or other basis) for which payment may be made under a State Plan approved under title XIX of the Act (or under any waiver of such plan approved under section 1115 of the Act) to determine whether fraud, waste, or abuse has occurred, is likely to occur, or whether such actions have the potential for resulting in an expenditure of funds under title XIX in a manner which is not intended under the provisions of title XIX.</P>
+<P>(b) Auditing of claims for payment for items or services furnished, or administrative services rendered, under a State Plan under title XIX to ensure proper payments were made. This includes: cost reports, consulting contracts, and risk contracts under section 1903(m) of the Act.</P>
+<P>(c) Identifying if overpayments have been made to individuals or entities receiving Federal funds under title XIX.</P>
+<P>(d) Educating providers of service, managed care entities, beneficiaries, and other individuals with respect to payment integrity and quality of care.</P>
+<CITA TYPE="N">[73 FR 55771, Sept. 26, 2008]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.234" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.234&quot;,&quot;citation&quot;:&quot;42 CFR 455.234&quot;}">
+<HEAD>&#xA7; 455.234 Awarding of a contract.</HEAD>
+<P>(a) CMS awards and administers Medicaid integrity audit program contracts in accordance with acquisition regulations set forth at 48 CFR chapters 1 and 3, this subpart, and all other applicable laws and regulations. These competitive procedures and requirements for awarding Medicaid integrity audit program contracts are to be used as follows:</P>
+<P>(1) When entering into new contracts under this section.</P>
+<P>(2) At any other time considered appropriate by the Secretary.</P>
+<P>(b) An entity is eligible to be awarded a Medicaid integrity audit program contract only if meets the eligibility requirements established in &#xA7; 455.202, 48 CFR chapter 3, and all other applicable laws and requirements.</P>
+<CITA TYPE="N">[73 FR 55771, Sept. 26, 2008]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.236" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.236&quot;,&quot;citation&quot;:&quot;42 CFR 455.236&quot;}">
+<HEAD>&#xA7; 455.236 Renewal of a contract.</HEAD>
+<P>(a) CMS specifies the initial contract term in the Medicaid integrity audit program contract. CMS may, but is not required to, renew a Medicaid integrity audit program contract without regard to any provision of law requiring competition if the contractor has met or exceeded the performance requirements established in the current contract.</P>
+<P>(b) CMS may renew a Medicaid integrity audit program contract without competition if all of the following conditions are met:</P>
+<P>(1) The Medicaid integrity audit program contractor continues to meet the requirements established in this subpart.</P>
+<P>(2) The Medicaid integrity audit program contractor meets or exceeds the performance requirements established in its current contract.</P>
+<P>(3) It is in the best interest of the government.</P>
+<P>(c) If CMS does not renew a contract, the contract will end in accordance with its terms. The contractor will not have a right to a hearing or judicial review regarding CMS's renewal or non-renewal decision.</P>
+<CITA TYPE="N">[73 FR 55771, Sept. 26, 2008]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.238" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.238&quot;,&quot;citation&quot;:&quot;42 CFR 455.238&quot;}">
+<HEAD>&#xA7; 455.238 Conflict of interest.</HEAD>
+<P>(a) Offerors for Medicaid integrity audit program contracts, and Medicaid integrity audit program contractors, are subject to the following requirements:</P>
+<P>(1) The conflict of interest standards and requirements of the Federal Acquisition Regulation organizational conflict of interest guidance, found under 48 CFR subpart 9.5.</P>
+<P>(2) The standards and requirements that are contained in each individual contract awarded to perform activities described under section 1936 of the Act.</P>
+<P>(b) Post-award conflicts of interest: CMS considers that a post-award conflict of interest has developed if, during the term of the contract, one of the following occurs:</P>
+<P>(1) The contractor or any of its employees, agents, or subcontractors received, solicited, or arranged to receive any fee, compensation, gift (defined at 5 CFR 2635.203(b)), payment of expenses, offer of employment, or any other thing of value from any entity that is reviewed, audited, investigated, or contacted during the normal course of performing activities under the Medicaid integrity audit program contract.</P>
+<P>(2) CMS determines that the contractor's activities are creating a conflict of interest.</P>
+<P>(c) If CMS determines that a conflict of interest exists during the term of the contract, among other actions, CMS may:</P>
+<P>(1) Not renew the contract for an additional term.</P>
+<P>(2) Modify the contract.</P>
+<P>(3) Terminate the contract.</P>
+<CITA TYPE="N">[73 FR 55771, Sept. 26, 2008]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.240" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.240&quot;,&quot;citation&quot;:&quot;42 CFR 455.240&quot;}">
+<HEAD>&#xA7; 455.240 Conflict of interest resolution.</HEAD>
+<P>(a) Review Board: CMS may establish a Conflicts of Interest Review Board to assist in resolving organizational conflicts of interest.</P>
+<P>(b) Resolution: Resolution of an organizational conflict of interest is a determination by the contracting officer that:</P>
+<P>(1) The conflict is mitigated.</P>
+<P>(2) The conflict precludes award of a contract to the offeror.</P>
+<P>(3) The conflict requires that CMS modify an existing contract.</P>
+<P>(4) The conflict requires that CMS terminate an existing contract.</P>
+<P>(5) It is in the best interest of the government to contract with the offeror or contractor even though the conflict of interest exists and a request for waiver is approved in accordance with 48 CFR 9.503.</P>
+<CITA TYPE="N">[73 FR 55771, Sept. 26, 2008]
+</CITA>
+</DIV8>
+
+</DIV6>
+<DIV6 N="D" TYPE="SUBPART" VOLUME="4" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-42/part-455/subpart-D&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;42 CFR Part 455 Subpart D&amp;quot;}">
+<HEAD>Subpart D&#x2014;Independent Certified Audit of State Disproportionate Share Hospital Payment Adjustments</HEAD>
+<SOURCE>
+<HED>Source:</HED><PSPACE>73 FR 77951, Dec. 19, 2008, unless otherwise noted.
+</PSPACE></SOURCE>
+<DIV8 N="455.300" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.300&quot;,&quot;citation&quot;:&quot;42 CFR 455.300&quot;}">
+<HEAD>&#xA7; 455.300 Purpose.</HEAD>
+<P>This subpart implements Section 1923(j)(2) of the Act.</P>
+</DIV8>
+
+<DIV8 N="455.301" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.301&quot;,&quot;citation&quot;:&quot;42 CFR 455.301&quot;}">
+<HEAD>&#xA7; 455.301 Definitions.</HEAD>
+<P>For the purposes of this subpart&#x2014;</P>
+<P><I>Independent certified audit</I> means an audit that is conducted by an auditor that operates independently from the Medicaid agency or subject hospitals and is eligible to perform the DSH audit. Certification means that the independent auditor engaged by the State reviews the criteria of the Federal audit regulation and completes the verification, calculations and report under the professional rules and generally accepted standards of audit practice. This certification includes a review of the State's audit protocol to ensure that the Federal regulation is satisfied, an opinion for each verification detailed in the regulation, a determination of whether or not the State made DSH payments that exceeded any hospital's hospital-specific DSH limit in the Medicaid State plan rate year under audit, and a quantification of the financial impact of each audit finding on a hospital-specific basis. The certification also identifies any data issues or other caveats or deficiencies that the auditor identified as impacting the results of the audit.</P>
+<P><I>Medicaid State Plan Rate Year</I> means the 12-month period defined by a State's approved Medicaid State plan in which the State estimates eligible uncompensated care costs and determines corresponding disproportionate share hospital payments as well as all other Medicaid payment rates. The period usually corresponds with the State's fiscal year or the Federal fiscal year but can correspond to any 12-month period defined by the State as the Medicaid State plan rate year.</P>
+<CITA TYPE="N">[73 FR 77951, Dec. 19, 2008, as amended at 89 FR 13947, Feb. 23, 2024]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.304" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.304&quot;,&quot;citation&quot;:&quot;42 CFR 455.304&quot;}">
+<HEAD>&#xA7; 455.304 Condition for Federal financial participation (FFP).</HEAD>
+<P>(a) <I>General rule.</I> (1) The State must submit an independent certified audit to CMS for each completed Medicaid State plan rate year, consistent with the requirements in this subpart, to receive Federal payments under Section 1903(a)(1) of the Act based on State expenditures for disproportionate share hospital (DSH) payments for Medicaid State plan rate years subsequent to the date the audit is due, except as provided in paragraph (e) of this section.</P>
+<P>(2) FFP is not available in expenditures for DSH payments that are found in the independent certified audit to exceed the hospital-specific eligible uncompensated care cost limit, except as provided in paragraph (e) of this section.</P>
+<P>(b) <I>Timing.</I> For Medicaid State plan rate years 2005 and 2006, a State must submit to CMS an independent certified audit report no later than the last day of calendar year 2009. Each subsequent audit beginning with Medicaid State plan rate year 2007 must be completed by the last day of the Federal fiscal year ending three years from the end of the Medicaid State plan rate year under audit. Completed audit reports must be submitted to CMS no later than 90 days after completion. Post-audit adjustments based on claims for the Medicaid State plan rate year paid subsequent to the audit date, if any, must be submitted in the quarter the claim was paid.</P>
+<P>(c) <I>Documentation.</I> In order to complete the independent certified audit, States must use the following data sources:</P>
+<P>(1) Approved Medicaid State plan for the Medicaid State plan rate year under audit.</P>
+<P>(2) Payment and utilization information from the State's Medicaid Management Information System.</P>
+<P>(3) The Medicare 2552-96 hospital cost report(s) applicable to the Medicaid State plan rate year under audit. If the Medicare 2552-96 is superseded by an alternate Medicare developed cost reporting tool during an audit year, that tool must be used for the Medicaid State plan rate year under audit.</P>
+<P>(4) Audited hospital financial statements and hospital accounting records.</P>
+<P>(d) <I>Specific requirements.</I> The independent certified audit report must verify the following:</P>
+<P>(1) <I>Verification 1.</I> Each hospital that qualifies for a DSH payment in the State is allowed to retain that payment so that the payment is available to offset its uncompensated care costs for furnishing inpatient hospital and outpatient hospital services during the Medicaid State plan rate year to Medicaid individuals as determined in accordance with &#xA7; 447.295(d) of this chapter, and individuals with no source of third-party coverage for the services, in order to reflect the total amount of claimed DSH expenditures.</P>
+<P>(2) <I>Verification 2:</I> DSH payments made to each qualifying hospital comply with the hospital-specific DSH payment limit. For each audited Medicaid State plan rate year, the DSH payments made in that audited Medicaid State plan rate year must be measured against the actual uncompensated care cost in that same audited Medicaid State plan rate year.</P>
+<P>(3) <I>Verification 3.</I> Only uncompensated care costs of furnishing inpatient and outpatient hospital services to Medicaid individuals as determined in accordance with &#xA7; 447.295(d) of this chapter, and individuals with no third-party coverage for the inpatient and outpatient hospital services they received are eligible for inclusion in the calculation of the hospital-specific disproportionate share limit payment limit, as described in section 1923(g)(1)(A) of the Act.</P>
+<P>(4) <I>Verification 4.</I> For purposes of this hospital-specific limit calculation, any Medicaid payments (including regular Medicaid fee-for-service rate payments, supplemental/enhanced Medicaid payments, and Medicaid managed care organization payments) made to a disproportionate share hospital for furnishing inpatient hospital and outpatient hospital services to Medicaid individuals as determined in accordance with &#xA7; 447.295(d) of this chapter, which are in excess of the Medicaid incurred costs of such services, are applied against the uncompensated care costs of furnishing inpatient hospital and outpatient hospital services to individuals with no source of third-party coverage for such services.</P>
+<P>(5) <I>Verification 5:</I> Any information and records of all of its inpatient and outpatient hospital service costs under the Medicaid program; claimed expenditures under the Medicaid program; uninsured inpatient and outpatient hospital service costs in determining payment adjustments under this Section; and any payments made on behalf of the uninsured from payment adjustments under this Section has been separately documented and retained by the State.</P>
+<P>(6) <I>Verification 6.</I> The information specified in paragraph (d)(5) of this section includes a description of the methodology for calculating each hospital's payment limit under section 1923(g)(1) of the Act. Included in the description of the methodology, the audit report must specify how the State defines incurred inpatient hospital and outpatient hospital costs for furnishing inpatient hospital and outpatient hospital services to Medicaid individuals as determined in accordance with &#xA7; 447.295(d) of this chapter, and individuals with no source of third-party coverage for the inpatient hospital and outpatient hospital services they received.</P>
+<P>(e) <I>Transition Provisions:</I> To ensure a period for developing and refining reporting and auditing techniques, findings of State reports and audits for Medicaid State Plan years 2005-2010 will not be given weight except to the extent that the findings draw into question the reasonableness of State uncompensated care cost estimates used for calculations of prospective DSH payments for Medicaid State plan year 2011 and thereafter.</P>
+<CITA TYPE="N">[73 FR 77951, Dec. 19, 2008, as amended at 89 FR 13947, Feb. 23, 2024]
+</CITA>
+</DIV8>
+
+</DIV6>
+<DIV6 N="E" TYPE="SUBPART" VOLUME="4" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-42/part-455/subpart-E&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;42 CFR Part 455 Subpart E&amp;quot;}">
+<HEAD>Subpart E&#x2014;Provider Screening and Enrollment</HEAD>
+<SOURCE>
+<HED>Source:</HED><PSPACE>76 FR 5968, Feb. 2, 2011, unless otherwise noted.
+</PSPACE></SOURCE>
+<DIV8 N="455.400" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.400&quot;,&quot;citation&quot;:&quot;42 CFR 455.400&quot;}">
+<HEAD>&#xA7; 455.400 Purpose.</HEAD>
+<P>This subpart implements sections 1866(j), 1902(a)(39), 1902(a)(77), and 1902(a)(78) of the Act. It sets forth State plan requirements regarding the following:</P>
+<P>(a) Provider screening and enrollment requirements.</P>
+<P>(b) Fees associated with provider screening.</P>
+<P>(c) Temporary moratoria on enrollment of providers.</P>
+</DIV8>
+
+<DIV8 N="455.405" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.405&quot;,&quot;citation&quot;:&quot;42 CFR 455.405&quot;}">
+<HEAD>&#xA7; 455.405 State plan requirements.</HEAD>
+<P>A State plan must provide that the requirements of &#xA7; 455.410 through &#xA7; 455.450 and &#xA7; 455.470 are met.</P>
+</DIV8>
+
+<DIV8 N="455.410" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.410&quot;,&quot;citation&quot;:&quot;42 CFR 455.410&quot;}">
+<HEAD>&#xA7; 455.410 Enrollment and screening of providers.</HEAD>
+<P>(a) The State Medicaid agency must require all enrolled providers to be screened under to this subpart.</P>
+<P>(b) The State Medicaid agency must require all ordering or referring physicians or other professionals providing services under the State plan or under a waiver of the plan to be enrolled as participating providers.</P>
+<P>(c) The State Medicaid agency may rely on the results of the provider screening performed by any of the following:</P>
+<P>(1) Medicare contractors.</P>
+<P>(2) Medicaid agencies or Children's Health Insurance Programs of other States.</P>
+<P>(d) The State Medicaid agency must allow enrollment of all Medicare-enrolled providers and suppliers for purposes of processing claims to determine Medicare cost-sharing (as defined in section 1905(p)(3) of the Act) if the providers or suppliers meet all Federal Medicaid enrollment requirements, including, but not limited to, all applicable provisions of 42 CFR part 455, subparts B and E. This paragraph (d) applies even if the Medicare-enrolled provider or supplier is of a type not recognized by the State Medicaid Agency.</P>
+<CITA TYPE="N">[76 FR 5968, Feb. 2, 2011, as amended at 86 FR 45521, Aug. 13, 2021]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.412" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.412&quot;,&quot;citation&quot;:&quot;42 CFR 455.412&quot;}">
+<HEAD>&#xA7; 455.412 Verification of provider licenses.</HEAD>
+<P>The State Medicaid agency must&#x2014;</P>
+<P>(a) Have a method for verifying that any provider purporting to be licensed in accordance with the laws of any State is licensed by such State.</P>
+<P>(b) Confirm that the provider's license has not expired and that there are no current limitations on the provider's license.</P>
+</DIV8>
+
+<DIV8 N="455.414" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.414&quot;,&quot;citation&quot;:&quot;42 CFR 455.414&quot;}">
+<HEAD>&#xA7; 455.414 Revalidation of enrollment.</HEAD>
+<P>The State Medicaid agency must revalidate the enrollment of all providers regardless of provider type at least every 5 years.</P>
+</DIV8>
+
+<DIV8 N="455.416" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.416&quot;,&quot;citation&quot;:&quot;42 CFR 455.416&quot;}">
+<HEAD>&#xA7; 455.416 Termination or denial of enrollment.</HEAD>
+<P>The State Medicaid agency&#x2014;</P>
+<P>(a) Must terminate the enrollment of any provider where any person with a 5 percent or greater direct or indirect ownership interest in the provider did not submit timely and accurate information and cooperate with any screening methods required under this subpart.</P>
+<P>(b) Must deny enrollment or terminate the enrollment of any provider where any person with a 5 percent or greater direct or indirect ownership interest in the provider has been convicted of a criminal offense related to that person's involvement with the Medicare, Medicaid, or title XXI program in the last 10 years, unless the State Medicaid agency determines that denial or termination of enrollment is not in the best interests of the Medicaid program and the State Medicaid agency documents that determination in writing.</P>
+<P>(c) Must deny enrollment or terminate the enrollment of any provider that is terminated on or after January 1, 2011, under title XVIII of the Act or under the Medicaid program or CHIP of any other State, and is currently included in the termination database under &#xA7; 455.417.</P>
+<P>(d) Must terminate the provider's enrollment or deny enrollment of the provider if the provider or a person with an ownership or control interest or who is an agent or managing employee of the provider fails to submit timely or accurate information, unless the State Medicaid agency determines that termination or denial of enrollment is not in the best interests of the Medicaid program and the State Medicaid agency documents that determination in writing.</P>
+<P>(e) Must terminate or deny enrollment if the provider, or any person with a 5 percent or greater direct or indirect ownership interest in the provider, fails to submit sets of fingerprints in a form and manner to be determined by the Medicaid agency within 30 days of a CMS or a State Medicaid agency request, unless the State Medicaid agency determines that termination or denial of enrollment is not in the best interests of the Medicaid program and the State Medicaid agency documents that determination in writing.</P>
+<P>(f) Must terminate or deny enrollment if the provider fails to permit access to provider locations for any site visits under &#xA7; 455.432, unless the State Medicaid agency determines that termination or denial of enrollment is not in the best interests of the Medicaid program and the State Medicaid agency documents that determination in writing.</P>
+<P>(g) May terminate or deny the provider's enrollment if CMS or the State Medicaid agency&#x2014;</P>
+<P>(1) Determines that the provider has falsified any information provided on the application; or</P>
+<P>(2) Cannot verify the identity of any provider applicant.</P>
+<CITA TYPE="N">[73 FR 77951, Dec. 19, 2008, as amended at 88 FR 79552, Nov. 16, 2023; 90 FR 55619, Dec. 2, 2025]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.417" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.417&quot;,&quot;citation&quot;:&quot;42 CFR 455.417&quot;}">
+<HEAD>&#xA7; 455.417 Termination periods and termination database periods.</HEAD>
+<P>(a)(1) Subject to paragraph (c) of this section, a provider remains in the termination notification database referenced in section 1902(ll) of the Act for a period that is the lesser of:</P>
+<P>(i) The length of the termination period imposed by the State that initially terminated the provider or the reenrollment bar (as described in &#xA7; 424.535(c) of this chapter) imposed by the Medicare program in the case of a Medicare revocation; or</P>
+<P>(ii) 10 years (for those Medicaid or CHIP terminations that are greater than 10 years).</P>
+<P>(2) All other State Medicaid agencies or CHIPs must terminate or deny the provider from their respective programs (pursuant to &#xA7; 455.416(c)) for at least the same length of time as the termination database period described in paragraph (a)(1) of this section.</P>
+<P>(b)(1) Nothing in paragraph (a) of this section prohibits:</P>
+<P>(i) The initially terminating State from imposing a termination period of greater than 10 years consistent with that State's laws, or</P>
+<P>(ii) Another State from terminating the provider, based on the original State's termination, for a period:</P>
+<P>(A) Of greater than 10 years; or</P>
+<P>(B) That is otherwise longer than that imposed by the initially terminating State.</P>
+<P>(2) The period established under paragraph (b)(1)(ii) of this section must be no shorter than the period in which the provider is to be included in the termination database under paragraph (a) of this section.</P>
+<P>(c)(1) If the initially terminating State agency or the Medicare program reinstates the provider prior to the end of the termination period originally imposed by the initially terminating State agency or Medicare, CMS removes the provider from the termination database after the reinstatement has been reported to CMS.</P>
+<P>(2) If the provider is removed from the database pursuant to paragraph (c)(1), CMS may immediately reinclude the provider in the database (with no interval between the 2 periods) if a basis for doing so exists under part 455 or 424 of this chapter.</P>
+<P>(d) For purposes of this section only, terminations under &#xA7; 455.416(c) are not considered &#x201C;for cause&#x201D; terminations and therefore need not be reported to CMS for inclusion in the termination database.</P>
+<CITA TYPE="N">[88 FR 79552, Nov. 16, 2023]
+</CITA>
+</DIV8>
+
+<DIV8 N="455.420" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.420&quot;,&quot;citation&quot;:&quot;42 CFR 455.420&quot;}">
+<HEAD>&#xA7; 455.420 Reactivation of provider enrollment.</HEAD>
+<P>After deactivation of a provider enrollment number for any reason, before the provider's enrollment may be reactivated, the State Medicaid agency must re-screen the provider and require payment of associated provider application fees under &#xA7; 455.460.</P>
+</DIV8>
+
+<DIV8 N="455.422" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.422&quot;,&quot;citation&quot;:&quot;42 CFR 455.422&quot;}">
+<HEAD>&#xA7; 455.422 Appeal rights.</HEAD>
+<P>The State Medicaid agency must give providers terminated or denied under &#xA7; 455.416 any appeal rights available under procedures established by State law or regulations.</P>
+</DIV8>
+
+<DIV8 N="455.432" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.432&quot;,&quot;citation&quot;:&quot;42 CFR 455.432&quot;}">
+<HEAD>&#xA7; 455.432 Site visits.</HEAD>
+<P>The State Medicaid agency&#x2014;</P>
+<P>(a) Must conduct pre-enrollment and post-enrollment site visits of providers who are designated as &#x201C;moderate&#x201D; or &#x201C;high&#x201D; categorical risks to the Medicaid program. The purpose of the site visit will be to verify that the information submitted to the State Medicaid agency is accurate and to determine compliance with Federal and State enrollment requirements.</P>
+<P>(b) Must require any enrolled provider to permit CMS, its agents, its designated contractors, or the State Medicaid agency to conduct unannounced on-site inspections of any and all provider locations.</P>
+</DIV8>
+
+<DIV8 N="455.434" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.434&quot;,&quot;citation&quot;:&quot;42 CFR 455.434&quot;}">
+<HEAD>&#xA7; 455.434 Criminal background checks.</HEAD>
+<P>The State Medicaid agency&#x2014;</P>
+<P>(a) As a condition of enrollment, must require providers to consent to criminal background checks including fingerprinting when required to do so under State law or by the level of screening based on risk of fraud, waste or abuse as determined for that category of provider.</P>
+<P>(b) Must establish categorical risk levels for providers and provider categories who pose an increased financial risk of fraud, waste or abuse to the Medicaid program.</P>
+<P>(1) Upon the State Medicaid agency determining that a provider, or a person with a 5 percent or more direct or indirect ownership interest in the provider, meets the State Medicaid agency's criteria hereunder for criminal background checks as a &#x201C;high&#x201D; risk to the Medicaid program, the State Medicaid agency will require that each such provider or person submit fingerprints.</P>
+<P>(2) The State Medicaid agency must require a provider, or any person with a 5 percent or more direct or indirect ownership interest in the provider, to submit a set of fingerprints, in a form and manner to be determined by the State Medicaid agency, within 30 days upon request from CMS or the State Medicaid agency.</P>
+</DIV8>
+
+<DIV8 N="455.436" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.436&quot;,&quot;citation&quot;:&quot;42 CFR 455.436&quot;}">
+<HEAD>&#xA7; 455.436 Federal database checks.</HEAD>
+<P>The State Medicaid agency must do all of the following:</P>
+<P>(a) Confirm the identity and determine the exclusion status of providers and any person with an ownership or control interest or who is an agent or managing employee of the provider through routine checks of Federal databases.</P>
+<P>(b) Check the Social Security Administration's Death Master File, the National Plan and Provider Enumeration System (NPPES), the List of Excluded Individuals/Entities (LEIE), the Excluded Parties List System (EPLS), and any such other databases as the Secretary may prescribe.</P>
+<P>(c)(1) Consult appropriate databases to confirm identity upon enrollment and reenrollment; and</P>
+<P>(2) Check the LEIE and EPLS no less frequently than monthly.</P>
+</DIV8>
+
+<DIV8 N="455.440" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.440&quot;,&quot;citation&quot;:&quot;42 CFR 455.440&quot;}">
+<HEAD>&#xA7; 455.440 National Provider Identifier.</HEAD>
+<P>The State Medicaid agency must require all claims for payment for items and services that were ordered or referred to contain the National Provider Identifier (NPI) of the physician or other professional who ordered or referred such items or services.</P>
+</DIV8>
+
+<DIV8 N="455.450" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.450&quot;,&quot;citation&quot;:&quot;42 CFR 455.450&quot;}">
+<HEAD>&#xA7; 455.450 Screening levels for Medicaid providers.</HEAD>
+<P>A State Medicaid agency must screen all initial applications, including applications for a new practice location, and any applications received in response to a re-enrollment or revalidation of enrollment request based on a categorical risk level of &#x201C;limited,&#x201D; &#x201C;moderate,&#x201D; or &#x201C;high.&#x201D; If a provider could fit within more than one risk level described in this section, the highest level of screening is applicable.</P>
+<P>(a) <I>Screening for providers designated as limited categorical risk.</I> When the State Medicaid agency designates a provider as a limited categorical risk, the State Medicaid agency must do all of the following:</P>
+<P>(1) Verify that a provider meets any applicable Federal regulations, or State requirements for the provider type prior to making an enrollment determination.</P>
+<P>(2) Conduct license verifications, including State licensure verifications in States other than where the provider is enrolling, in accordance with &#xA7; 455.412.</P>
+<P>(3) Conduct database checks on a pre- and post-enrollment basis to ensure that providers continue to meet the enrollment criteria for their provider type, in accordance with &#xA7; 455.436.</P>
+<P>(b) <I>Screening for providers designated as moderate categorical risk.</I> When the State Medicaid agency designates a provider as a &#x201C;moderate&#x201D; categorical risk, a State Medicaid agency must do both of the following:</P>
+<P>(1) Perform the &#x201C;limited&#x201D; screening requirements described in paragraph (a) of this section.</P>
+<P>(2) Conduct on-site visits in accordance with &#xA7; 455.432.</P>
+<P>(c) <I>Screening for providers designated as high categorical risk.</I> When the State Medicaid agency designates a provider as a &#x201C;high&#x201D; categorical risk, a State Medicaid agency must do both of the following:</P>
+<P>(1) Perform the &#x201C;limited&#x201D; and &#x201C;moderate&#x201D; screening requirements described in paragraphs (a) and (b) of this section.</P>
+<P>(2)(i) Conduct a criminal background check; and</P>
+<P>(ii) Require the submission of a set of fingerprints in accordance with &#xA7; 455.434.</P>
+<P>(d) <I>Denial or termination of enrollment.</I> A provider, or any person with 5 percent or greater direct or indirect ownership in the provider, who is required by the State Medicaid agency or CMS to submit a set of fingerprints and fails to do so may have its&#x2014;</P>
+<P>(1) Application denied under &#xA7; 455.434; or</P>
+<P>(2) Enrollment terminated under &#xA7; 455.416.</P>
+<P>(e) <I>Adjustment of risk level.</I> The State agency must adjust the categorical risk level from &#x201C;limited&#x201D; or &#x201C;moderate&#x201D; to &#x201C;high&#x201D; when any of the following occurs:</P>
+<P>(1) The State Medicaid agency imposes a payment suspension on a provider based on credible allegation of fraud, waste or abuse, the provider has an existing Medicaid overpayment, or the provider has been excluded by the OIG or another State's Medicaid program within the previous 10 years.</P>
+<P>(2) The State Medicaid agency or CMS in the previous 6 months lifted a temporary moratorium for the particular provider type and a provider that was prevented from enrolling based on the moratorium applies for enrollment as a provider at any time within 6 months from the date the moratorium was lifted.</P>
+</DIV8>
+
+<DIV8 N="455.452" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.452&quot;,&quot;citation&quot;:&quot;42 CFR 455.452&quot;}">
+<HEAD>&#xA7; 455.452 Other State screening methods.</HEAD>
+<P>Nothing in this subpart must restrict the State Medicaid agency from establishing provider screening methods in addition to or more stringent than those required by this subpart.</P>
+</DIV8>
+
+<DIV8 N="455.460" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.460&quot;,&quot;citation&quot;:&quot;42 CFR 455.460&quot;}">
+<HEAD>&#xA7; 455.460 Application fee.</HEAD>
+<P>(a) Beginning on or after March 25, 2011, States must collect the applicable application fee prior to executing a provider agreement from a prospective or re-enrolling provider other than either of the following:</P>
+<P>(1) Individual physicians or nonphysician practitioners.</P>
+<P>(2)(i) Providers who are enrolled in either of the following:</P>
+<P>(A) Title XVIII of the Act.</P>
+<P>(B) Another State's title XIX or XXI plan.</P>
+<P>(ii) Providers that have paid the applicable application fee to&#x2014;</P>
+<P>(A) A Medicare contractor; or</P>
+<P>(B) Another State.</P>
+<P>(b) If the fees collected by a State agency in accordance with paragraph (a) of this section exceed the cost of the screening program, the State agency must return that portion of the fees to the Federal government.</P>
+</DIV8>
+
+<DIV8 N="455.470" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.470&quot;,&quot;citation&quot;:&quot;42 CFR 455.470&quot;}">
+<HEAD>&#xA7; 455.470 Temporary moratoria.</HEAD>
+<P>(a)(1) The Secretary consults with any affected State Medicaid agency regarding imposition of temporary moratoria on enrollment of new providers or provider types prior to imposition of the moratoria, in accordance with &#xA7; 424.570 of this chapter.</P>
+<P>(2) The State Medicaid agency will impose temporary moratoria on enrollment of new providers or provider types identified by the Secretary as posing an increased risk to the Medicaid program.</P>
+<P>(3)(i) The State Medicaid agency is not required to impose such a moratorium if the State Medicaid agency determines that imposition of a temporary moratorium would adversely affect beneficiaries' access to medical assistance.</P>
+<P>(ii) If a State Medicaid agency makes such a determination, the State Medicaid agency must notify the Secretary in writing.</P>
+<P>(b)(1) A State Medicaid agency may impose temporary moratoria on enrollment of new providers, or impose numerical caps or other limits that the State Medicaid agency identifies as having a significant potential for fraud, waste, or abuse and that the Secretary has identified as being at high risk for fraud, waste, or abuse.</P>
+<P>(2) Before implementing the moratoria, caps, or other limits, the State Medicaid agency must determine that its action would not adversely impact beneficiaries' access to medical assistance.</P>
+<P>(3) The State Medicaid agency must notify the Secretary in writing in the event the State Medicaid agency seeks to impose such moratoria, including all details of the moratoria; and obtain the Secretary's concurrence with imposition of the moratoria.</P>
+<P>(c)(1) The State Medicaid agency must impose the moratorium for an initial period of 6 months.</P>
+<P>(2) If the State Medicaid agency determines that it is necessary, the State Medicaid agency may extend the moratorium in 6-month increments.</P>
+<P>(3) Each time, the State Medicaid agency must document in writing the necessity for extending the moratorium.</P>
+</DIV8>
+
+</DIV6>
+<DIV6 N="F" TYPE="SUBPART" VOLUME="4" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-42/part-455/subpart-F&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;42 CFR Part 455 Subpart F&amp;quot;}">
+<HEAD>Subpart F&#x2014;Medicaid Recovery Audit Contractors Program</HEAD>
+<SOURCE>
+<HED>Source:</HED><PSPACE>76 FR 57843, Sept. 16, 2011, unless otherwise noted.
+</PSPACE></SOURCE>
+<DIV8 N="455.500" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.500&quot;,&quot;citation&quot;:&quot;42 CFR 455.500&quot;}">
+<HEAD>&#xA7; 455.500 Purpose.</HEAD>
+<P>This subpart implements section 1902(a)(42)(B) of the Act that establishes the Medicaid Recovery Audit Contractor (RAC) program.</P>
+</DIV8>
+
+<DIV8 N="455.502" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.502&quot;,&quot;citation&quot;:&quot;42 CFR 455.502&quot;}">
+<HEAD>&#xA7; 455.502 Establishment of program.</HEAD>
+<P>(a) The Medicaid Recovery Audit Contractor program (Medicaid RAC program) is established as a measure for States to promote the integrity of the Medicaid program.</P>
+<P>(b) States must enter into contracts, consistent with State law and in accordance with this section, with one or more eligible Medicaid RACs to carry out the activities described in &#xA7; 455.506 of this subpart.</P>
+<P>(c) States must comply with reporting requirements describing the effectiveness of their Medicaid RAC programs as specified by CMS.</P>
+</DIV8>
+
+<DIV8 N="455.504" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.504&quot;,&quot;citation&quot;:&quot;42 CFR 455.504&quot;}">
+<HEAD>&#xA7; 455.504 Definitions.</HEAD>
+<P>As used in this subpart&#x2014;</P>
+<P><I>Medicaid RAC program</I> means a recovery audit contractor program administered by a State to identify overpayments and underpayments and recoup overpayments.</P>
+<P><I>Medicare RAC program</I> means a recovery audit contractor program administered by CMS to identify underpayments and overpayments and recoup overpayments, established under the authority of section 1893(h) of the Act.</P>
+</DIV8>
+
+<DIV8 N="455.506" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.506&quot;,&quot;citation&quot;:&quot;42 CFR 455.506&quot;}">
+<HEAD>&#xA7; 455.506 Activities to be conducted by Medicaid RACs and States.</HEAD>
+<P>(a) Medicaid RACs will review claims submitted by providers of items and services or other individuals furnishing items and services for which payment has been made under section 1902(a) of the Act or under any waiver of the State Plan to identify underpayments and overpayments and recoup overpayments for the States.</P>
+<P>(1) States may exclude Medicaid managed care claims from review by Medicaid RACs.</P>
+<P>(b) States may coordinate with Medicaid RACs regarding the recoupment of overpayments.</P>
+<P>(c) States must coordinate the recovery audit efforts of their RACs with other auditing entities.</P>
+<P>(d) States must make referrals of suspected fraud and/or abuse, as defined in 42 CFR 455.2, to the MFCU or other appropriate law enforcement agency.</P>
+<P>(e) States must set limits on the number and frequency of medical records to be reviewed by the RACs, subject to requests for exception from RACs to States.</P>
+</DIV8>
+
+<DIV8 N="455.508" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.508&quot;,&quot;citation&quot;:&quot;42 CFR 455.508&quot;}">
+<HEAD>&#xA7; 455.508 Eligibility requirements for Medicaid RACs.</HEAD>
+<P>An entity that wishes to perform the functions of a Medicaid RAC must enter into a contract with a State to carry out any of the activities described in &#xA7; 455.506 under the following conditions:</P>
+<P>(a) The entity must demonstrate to a State that it has the technical capability to carry out the activities described in &#xA7; 455.506 of this subpart. Evaluation of technical capability must include the employment of trained medical professionals, as defined by the State, who are in good standing with the relevant State licensing authorities, where applicable, to review Medicaid claims.</P>
+<P>(b) The entity must hire a minimum of 1.0 FTE Contractor Medical Director who is a Doctor of Medicine or Doctor of Osteopathy in good standing with the relevant State licensing authorities and has relevant work and educational experience. A State may seek to be excepted, in accordance with &#xA7; 455.516, from requiring its RAC to hire a minimum of 1.0 FTE Contractor Medical Director by submitting to CMS a written request for CMS review and approval.</P>
+<P>(c) The entity must hire certified coders unless the State determines that certified coders are not required for the effective review of Medicaid claims.</P>
+<P>(d) The entity must work with the State to develop an education and outreach program, which includes notification to providers of audit policies and protocols.</P>
+<P>(e) The entity must provide minimum customer service measures including:</P>
+<P>(1) Providing a toll-free customer service telephone number in all correspondence sent to providers and staffing the toll-free number during normal business hours from 8:00 a.m. to 4:30 p.m. in the applicable time zone.</P>
+<P>(2) Compiling and maintaining provider approved addresses and points of contact.</P>
+<P>(3) Mandatory acceptance of provider submissions of electronic medical records on CD/DVD or via facsimile at the providers' request.</P>
+<P>(4) Notifying providers of overpayment findings within 60 calendar days.</P>
+<P>(f) The entity must not review claims that are older than 3 years from the date of the claim, unless it receives approval from the State.</P>
+<P>(g) The entity should not audit claims that have already been audited or that are currently being audited by another entity.</P>
+<P>(h) The entity must refer suspected cases of fraud and/or abuse to the State in a timely manner, as defined by the State.</P>
+<P>(i) The entity meets other requirements as the State may require.</P>
+</DIV8>
+
+<DIV8 N="455.510" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.510&quot;,&quot;citation&quot;:&quot;42 CFR 455.510&quot;}">
+<HEAD>&#xA7; 455.510 Payments to RACs.</HEAD>
+<P>(a) <I>General.</I> Fees paid to RACs must be made only from amounts recovered.</P>
+<P>(b) <I>Overpayments.</I> States must determine the contingency fee rate to be paid to Medicaid RACs for the identification and recovery of Medicaid provider overpayments.</P>
+<P>(1) The contingency fees paid to Medicaid RACs must be based on a percentage of the overpayment recovered.</P>
+<P>(2) States must determine at what stage in the Medicaid RAC audit process, after an overpayment has been recovered, Medicaid RACs will receive contingency fee payments.</P>
+<P>(3) If a provider appeals a Medicaid RAC overpayment determination and the determination is reversed, at any level, then the Medicaid RAC must return the contingency fees associated with that payment within a reasonable timeframe, as prescribed by the State.</P>
+<P>(4) Except as provided in paragraph (5) of this section, the contingency fee may not exceed that of the highest Medicare RAC, as specified by CMS in the <E T="04">Federal Register,</E> unless the State submits, and CMS approves, a waiver of the specified maximum rate. If a State does not obtain a waiver of the specified maximum rate, any amount exceeding the specified maximum rate is not eligible for FFP, either from the collected overpayment amounts, or in the form of any other administrative or medical assistance claimed expenditure.</P>
+<P>(5) CMS will review and consider, on a case-by-case basis, a State's well-justified request that CMS provide FFP in paying a Medicaid RAC(s) a contingency fee in excess of the then-highest contingency fee paid to a Medicare RAC.</P>
+<P>(c) <I>Underpayments.</I> (1) States must determine the fee paid to a Medicaid RAC to identify underpayments.</P>
+<P>(2) States must adequately incentivize the detection of underpayments.</P>
+<P>(3) States must notify providers of underpayments that are identified by the RACs.</P>
+</DIV8>
+
+<DIV8 N="455.512" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.512&quot;,&quot;citation&quot;:&quot;42 CFR 455.512&quot;}">
+<HEAD>&#xA7; 455.512 Medicaid RAC provider appeals.</HEAD>
+<P>States must provide appeal rights under State law or administrative procedures to Medicaid providers that seek review of an adverse Medicaid RAC determination.</P>
+</DIV8>
+
+<DIV8 N="455.514" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.514&quot;,&quot;citation&quot;:&quot;42 CFR 455.514&quot;}">
+<HEAD>&#xA7; 455.514 Federal share of State expense of the Medicaid RAC program.</HEAD>
+<P>(a) Funds expended by States for the operation and maintenance of a Medicaid RAC program, not including fees paid to RACs, are considered necessary for the proper and efficient administration of the States' plan or waivers of the plan.</P>
+<P>(b) FFP is available to States for administrative costs of operation and maintenance of Medicaid RACs subject to CMS' reporting requirements.</P>
+</DIV8>
+
+<DIV8 N="455.516" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.516&quot;,&quot;citation&quot;:&quot;42 CFR 455.516&quot;}">
+<HEAD>&#xA7; 455.516 Exceptions from Medicaid RAC programs.</HEAD>
+<P>A State may seek to be excepted from some or all Medicaid RAC contracting requirements by submitting to CMS a written justification for the request for CMS review and approval through the State Plan amendment process.</P>
+</DIV8>
+
+<DIV8 N="455.518" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-42/section-455.518&quot;,&quot;citation&quot;:&quot;42 CFR 455.518&quot;}">
+<HEAD>&#xA7; 455.518 Applicability to the territories.</HEAD>
+<P>The aforementioned provisions in &#xA7; 455.500 through &#xA7; 455.516 of this subpart are applicable to Guam, Puerto Rico, U.S. Virgin Islands, American Samoa, and the Commonwealth of the Northern Mariana Islands.</P>
+<SECAUTH TYPE="N">(Authority: Catalog of Federal Domestic Assistance Program No. 93.778, Medical Assistance Program)
+</SECAUTH>
+</DIV8>
+
+</DIV6>
+</DIV5>

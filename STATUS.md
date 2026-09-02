@@ -1,25 +1,37 @@
 # STATUS — Federal Reference — instruments Oregon must comply with
 
-Generated 2026-08-31. Non-authoritative; see DISCLAIMER.md.
+Generated 2026-09-01. Non-authoritative; see DISCLAIMER.md.
 
 ## Documents by type
 
 | doc_type | count |
 |---|---|
-| federal_instrument | 112 |
+| federal_instrument | 420 |
 
-**Total: 112**
+**Total: 420**
 
 ## Source manifest
 
-6 declared source(s) across 1 group(s) in `source-manifest.yml`.
+50 declared source(s) across 1 group(s) in `source-manifest.yml`.
 
 ## Freshness (reverify every 90 days)
 
-112 of 112 document(s) overdue for re-verification.
+420 of 420 document(s) overdue for re-verification.
 
 | id | doc_type | last_verified |
 |---|---|---|
+| 10-cfr-440 | federal_instrument | never |
+| 17-cfr-230.251 | federal_instrument | never |
+| 17-cfr-230.405 | federal_instrument | never |
+| 17-cfr-230.504 | federal_instrument | never |
+| 17-cfr-230.506 | federal_instrument | never |
+| 17-cfr-230.701 | federal_instrument | never |
+| 17-cfr-230 | federal_instrument | never |
+| 2-cfr-170 | federal_instrument | never |
+| 2-cfr-180.220 | federal_instrument | never |
+| 2-cfr-180.300 | federal_instrument | never |
+| 2-cfr-180.305 | federal_instrument | never |
+| 2-cfr-180 | federal_instrument | never |
 | 2-cfr-200.1 | federal_instrument | never |
 | 2-cfr-200.207 | federal_instrument | never |
 | 2-cfr-200.302 | federal_instrument | never |
@@ -58,17 +70,5 @@ Generated 2026-08-31. Non-authoritative; see DISCLAIMER.md.
 | 2-cfr-200.521 | federal_instrument | never |
 | 2-cfr-200.53 | federal_instrument | never |
 | 2-cfr-200.62 | federal_instrument | never |
-| 2-cfr-200 | federal_instrument | never |
-| 34-cfr-300.101 | federal_instrument | never |
-| 34-cfr-300.102 | federal_instrument | never |
-| 34-cfr-300.105 | federal_instrument | never |
-| 34-cfr-300.106 | federal_instrument | never |
-| 34-cfr-300.107 | federal_instrument | never |
-| 34-cfr-300.111 | federal_instrument | never |
-| 34-cfr-300.114 | federal_instrument | never |
-| 34-cfr-300.115 | federal_instrument | never |
-| 34-cfr-300.116 | federal_instrument | never |
-| 34-cfr-300.117 | federal_instrument | never |
-| 34-cfr-300.124 | federal_instrument | never |
-| … | *62 more* | |
+| … | *370 more* | |
 

@@ -1,0 +1,300 @@
+<?xml version="1.0"?>
+<DIV5 N="671" TYPE="PART" VOLUME="7" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-49/part-671&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;49 CFR Part 671&amp;quot;}">
+<HEAD>PART 671&#x2014;RAIL TRANSIT ROADWAY WORKER PROTECTION
+</HEAD>
+<AUTH>
+<HED>Authority:</HED><PSPACE>49 U.S.C. 5329, 49 CFR 1.91.
+</PSPACE></AUTH>
+<SOURCE>
+<HED>Source:</HED><PSPACE>89 FR 87220, Oct. 31, 2024, unless otherwise noted.
+</PSPACE></SOURCE>
+<DIV6 N="A" TYPE="SUBPART" VOLUME="7" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-49/part-671/subpart-A&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;49 CFR Part 671 Subpart A&amp;quot;}">
+<HEAD>Subpart A&#x2014;General</HEAD>
+<DIV8 N="671.1" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-671.1&quot;,&quot;citation&quot;:&quot;49 CFR 671.1&quot;}">
+<HEAD>&#xA7; 671.1 Purpose and Applicability.</HEAD>
+<P>(a) The purpose of this part is to set forth the applicability of the rail transit Roadway Worker Protection (RWP) regulation.</P>
+<P>(b) This part applies to rail transit agencies (RTA) that receive Federal financial assistance authorized under 49 U.S.C. chapter 53; and to State Safety Oversight Agencies (SSOA) that oversee the safety of rail fixed guideway public transportation systems. This part does not apply to rail systems that are subject to the safety oversight of the Federal Railroad Administration (FRA).</P>
+<P>(c) This part applies to transit workers who access any rail fixed guideway public transportation systems in the performance of work.</P>
+<P>(d) An RTA must coordinate with an SSOA to establish an SSOA-approved RWP program that meets the requirements of this part, within one calendar year from the effective date of this rule.</P>
+</DIV8>
+
+<DIV8 N="671.3" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-671.3&quot;,&quot;citation&quot;:&quot;49 CFR 671.3&quot;}">
+<HEAD>&#xA7; 671.3 Policy.</HEAD>
+<P>(a) This part establishes minimum safety standards for rail transit Roadway Worker Protection (RWP) to ensure the safe operation of public transportation systems and to prevent safety events, fatalities, and injuries to transit workers who may access the roadway in the performance of work. Each RTA and SSOA may prescribe additional or more stringent operating rules, safety rules, and other special instructions that are consistent with this part.</P>
+<P>(b) The Federal Transit Administration (FTA) has adopted the principles and methods of Safety Management Systems (SMS) as the basis for enhancing the safety of public transportation in the United States. Activities conducted to carry out these RWP safety standards must be integrated into the RTA's SMS, including the Safety Risk Management (SRM) process, specified in &#xA7; 673.25 of this chapter, and the Safety Assurance process, specified in &#xA7; 673.27 of this chapter.</P>
+</DIV8>
+
+<DIV8 N="671.5" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-671.5&quot;,&quot;citation&quot;:&quot;49 CFR 671.5&quot;}">
+<HEAD>&#xA7; 671.5 Definitions.</HEAD>
+<P>As used in this part:</P>
+<P><I>Accountable Executive</I> means a single identifiable person who has ultimate responsibility for carrying out the Public Transportation Agency Safety Plan of a transit agency; responsibility for carrying out the transit agency's Transit Asset Management Plan; and control or direction over the human and capital resources needed to develop and maintain both the transit agency's Public Transportation Agency Safety Plan, in accordance with 49 U.S.C. 5329(d), and the transit agency's Transit Asset Management Plan in accordance with 49 U.S.C. 5326.</P>
+<P><I>Ample time</I> means the time necessary for a roadway worker to be clear of the track zone or in a place of safety 15 seconds before a rail transit vehicle moving at the maximum authorized speed on that track could arrive at the location of the roadway worker.</P>
+<P><I>Equivalent entity</I> means an entity that carries out duties similar to that of a Board of Directors, for a recipient or subrecipient of FTA funds under 49 U.S.C. chapter 53, including sufficient authority to review and approve a recipient or subrecipient's Public Transportation Agency Safety Plan.</P>
+<P><I>Equivalent protection</I> means alternative designs, materials, or methods that the RTA can demonstrate to the SSOA will provide equal or greater safety for roadway workers than the means specified in this part.</P>
+<P><I>Flag person</I> means a roadway worker designated to direct or restrict the movement of rail transit vehicles or equipment past a point on a track to provide on-track safety for roadway workers, while engaged solely in performing that function.</P>
+<P><I>Foul time protection</I> is a method of establishing working limits in which a roadway worker is notified by the control center that no rail transit vehicles will be authorized to operate within a specific segment of track until the roadway worker reports clear of the track.</P>
+<P><I>Fouling a track</I> means the placement of an individual or an item of equipment in such proximity to a track that the individual or equipment could be struck by a moving rail transit vehicle or on-track equipment, typically within four feet of the outside rail on both sides of any track.</P>
+<P><I>Individual rail transit vehicle detection</I> means a process by which a lone worker acquires on-track safety by visually detecting approaching rail transit vehicles or equipment and leaving the track in ample time.</P>
+<P><I>Job safety briefing</I> means a meeting addressing the requirements of this part that is conducted prior to commencing work by the Roadway Worker in Charge, typically at the job site, to notify roadway workers or other transit workers about the hazards related to the work to be performed and the protections to eliminate or protect against those hazards. Alternatively, briefings can be conducted virtually for those individuals who are working remotely on the job site.</P>
+<P><I>Lone worker</I> means an individual roadway worker who is not afforded on-track safety by another roadway worker, who is not a member of a roadway work group, and who is not engaged in a common task with another roadway worker.</P>
+<P><I>Maximum authorized speed</I> means the highest speed permitted for the movement of rail transit vehicles established by the rail transit vehicle control system, service schedule, and operating rules. This speed is used when calculating ample time.</P>
+<P><I>Minor tasks</I> mean those tasks performed without the use of tools during the execution of which a roadway worker or other transit worker can hear and visually assess their surroundings at least every five (5) seconds for approaching rail transit vehicles and that can be performed without violating ample time.</P>
+<P><I>Near-miss</I> means a narrowly avoided safety event.</P>
+<P><I>On-track safety</I> means a state of freedom from the danger of being struck by a moving rail transit vehicle or other equipment, and other on-track hazards, as provided by operating and safety rules that govern track occupancy by roadway workers, other transit workers, rail transit vehicles, and on-track equipment.</P>
+<P><I>Place of safety</I> means a space an individual or individuals can safely occupy outside the track zone, sufficiently clear of any rail transit vehicle, including any on-track equipment, moving on any track.</P>
+<P><I>Qualified</I> means a status attained by a roadway worker or other transit worker who has successfully completed required training (including refresher training) for, has demonstrated proficiency in, and is authorized by the RTA to perform the duties of a particular position or function.</P>
+<P><I>Rail fixed guideway public transportation system</I> means any fixed guideway system, or any such system in engineering or construction, that uses rail, is operated for public transportation, is within the jurisdiction of a State, and is not subject to the jurisdiction of the Federal Railroad Administration. These include but are not limited to rapid rail, heavy rail, light rail, monorail, trolley, inclined plane, funicular, and automated guideway.</P>
+<P><I>Rail transit agency (RTA)</I> means any entity that provides services on a rail fixed guideway public transportation system.</P>
+<P><I>Rail transit vehicle</I> means any rolling stock used on a rail fixed guideway public transportation system, including but not limited to passenger and maintenance vehicles.</P>
+<P><I>Rail transit vehicle approach warning</I> means a method of establishing on-track safety by warning roadway workers of the approach of rail transit vehicles in ample time for them to move to or remain in a place of safety in accordance with the requirements of this part.</P>
+<P><I>Redundant protection</I> means at least one additional protection beyond individual rail transit vehicle detection to ensure on-track safety for roadway workers. Redundant protections may be procedural, physical, or both.</P>
+<P><I>Roadway</I> means land on which rail transit tracks and support infrastructure have been constructed to support the movement of rail transit vehicles.</P>
+<P><I>Roadway maintenance machine</I> means a device which is used on or near rail transit track for maintenance, repair, construction or inspection of track, bridges, roadway, signal, communications, or electric traction systems. Roadway maintenance machines may have road or rail wheels or may be stationary.</P>
+<P><I>Roadway worker</I> means a transit worker whose duties involve inspection, construction, maintenance, repairs, or providing on-track safety such as flag persons and watchpersons on or near the roadway or right-of-way or with the potential of fouling track.</P>
+<P><I>Roadway work group</I> means two or more roadway workers organized to work together on a common task.</P>
+<P><I>Roadway worker in charge</I> means a roadway worker who is qualified under this part to establish on-track safety.</P>
+<P><I>Roadway Worker Protection (RWP)</I> means the polices, processes, and procedures implemented by an RTA to prevent safety events for transit workers who must access the roadway in the performance of their work.</P>
+<P><I>RWP manual</I> means the entire set of the RTA's on-track safety rules and instructions maintained together, including operating rules and other procedures concerning on-track safety protection and on-track safety measures, designed to prevent roadway workers from being struck by rail transit vehicles or other on-track equipment.</P>
+<P><I>Safety event</I> means an unexpected outcome resulting in injury or death; damage to or loss of the facilities, equipment, rolling stock, or infrastructure of a public transportation system; or damage to the environment.</P>
+<P><I>Sight distance</I> means the length of roadway visible ahead for a roadway worker.</P>
+<P><I>State Safety Oversight Agency (SSOA)</I> means an agency established by a State that meets the requirements and performs the functions specified by 49 U.S.C. 5329(e) and (k) and 49 CFR part 674.</P>
+<P><I>Track access guide</I> means a document that describes the physical characteristics of the RTA's track system, including track areas with close or no clearance, curves with blind spots or restricted sight lines, areas with loud noise, and potential environmental conditions that require additional consideration in establishing on-track safety.</P>
+<P><I>Track zone</I> means an area identified by the RTA where a person or equipment could be struck by the widest equipment that could occupy the track.</P>
+<P><I>Transit worker</I> means any employee, contractor, or volunteer working on behalf of the RTA or SSOA.</P>
+<P><I>Transit Worker Safety Reporting Program</I> means the process required under &#xA7; 673.23(b) that allows transit workers to report safety concerns, including transit worker assaults, near-misses, and unsafe acts and conditions to senior management, provides protections for transit workers who report safety conditions to senior management, and describes transit worker behaviors that may result in disciplinary action.</P>
+<P><I>Watchperson</I> means a roadway worker qualified to provide warning to roadway workers of approaching rail transit vehicles or track equipment whose sole duty is to look out for approaching rail transit vehicles and track equipment and provide at least 15 seconds advanced warning plus time to clear based on the maximum authorized track speed for the work location to transit workers before the arrival of rail transit vehicles.</P>
+<P><I>Working limits</I> means a segment of track with explicit boundaries upon which rail transit vehicles and on-track equipment may move only as authorized by the roadway worker having control over that defined segment of track.</P>
+<P><I>Work zone</I> means the immediate area where work is being performed within the track zone.</P>
+</DIV8>
+
+</DIV6>
+<DIV6 N="B" TYPE="SUBPART" VOLUME="7" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-49/part-671/subpart-B&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;49 CFR Part 671 Subpart B&amp;quot;}">
+<HEAD>Subpart B&#x2014;Roadway Worker Protection (RWP) Program and Manual</HEAD>
+<DIV8 N="671.11" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-671.11&quot;,&quot;citation&quot;:&quot;49 CFR 671.11&quot;}">
+<HEAD>&#xA7; 671.11 RWP program.</HEAD>
+<P>(a) Each RTA must adopt and implement an approved RWP program to improve transit worker safety that is consistent with Federal and State safety requirements and meets the minimum requirements of this part.</P>
+<P>(b) The RWP program must include:</P>
+<P>(1) An RWP manual as described in &#xA7; 671.13; and</P>
+<P>(2) All of the RWP program elements described in Subpart D of this part.</P>
+<P>(c) Each RTA must submit its RWP manual and subsequent updates to its SSOA for review and approval as described in &#xA7; 671.25.</P>
+</DIV8>
+
+<DIV8 N="671.13" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-671.13&quot;,&quot;citation&quot;:&quot;49 CFR 671.13&quot;}">
+<HEAD>&#xA7; 671.13 RWP manual.</HEAD>
+<P>(a) Each RTA must establish and maintain a separate, dedicated manual documenting its RWP program.</P>
+<P>(b) The RWP manual must include the terminology, abbreviations, and acronyms used to describe the RWP program activities and requirements.</P>
+<P>(c) The RWP manual must document:</P>
+<P>(1) All elements of the RWP program in Subpart D of this part.</P>
+<P>(2) A definition of RTA and transit worker responsibilities as described in Subpart C&#x2014;Responsibilities.</P>
+<P>(3) Training, qualification, and supervision required for transit workers to access the track zone, by labor category or type of work performed.</P>
+<P>(4) Processes and procedures, including any use of roadway workers to provide adequate on-track safety, for all transit workers who may access the track zone in the performance of their work, including safety and oversight personnel. Procedures for SSOA personnel to access the roadway must conform with the SSOA's risk-based inspection program.</P>
+<P>(d) The RWP manual must include or incorporate by reference a track access guide to support on-track safety. The track access guide must be based on a physical survey of the track geometry and condition of the transit system and include, at a minimum:</P>
+<P>(1) Locations with limited, close, or no clearance, including locations (such as alcoves, recessed spaces, or other designated places or areas of refuge or safety) with size or access limitations.</P>
+<P>(2) Locations subject to increased rail vehicle or on-track equipment braking requirements or reduced rail transit vehicle operator visibility due to precipitation or other weather conditions.</P>
+<P>(3) Curves with no or limited visibility.</P>
+<P>(4) Locations with limited or no visibility due to obstructions or topography.</P>
+<P>(5) All portals with restricted views.</P>
+<P>(6) Locations with heavy outside noise or other environmental conditions that impact on-track safety.</P>
+<P>(7) Any other locations with access considerations.</P>
+<P>(e) Following initial approval of the RWP manual by its SSOA, not less than every two years, the RTA must review and update its RWP manual to reflect current conditions and lessons learned in implementing the RWP program and information provided by the SSOA and FTA.</P>
+<P>(f) The RTA must update its RWP manual and track access guide as necessary and as soon as practicable upon any change to the system that conflicts with any element of either document.</P>
+<P>(g) The RWP manual must be distributed to all transit workers who access the roadway and redistributed after each revision.</P>
+</DIV8>
+
+</DIV6>
+<DIV6 N="C" TYPE="SUBPART" VOLUME="7" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-49/part-671/subpart-C&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;49 CFR Part 671 Subpart C&amp;quot;}">
+<HEAD>Subpart C&#x2014;Responsibilities</HEAD>
+<DIV8 N="671.21" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-671.21&quot;,&quot;citation&quot;:&quot;49 CFR 671.21&quot;}">
+<HEAD>&#xA7; 671.21 Rail transit agency.</HEAD>
+<P>(a) <I>In General.</I> Each RTA must establish procedures to:</P>
+<P>(1) Provide ample time and determine the appropriate sight distance based on maximum authorized track speeds.</P>
+<P>(2) Ensure that individual rail transit vehicle detection is never used as the only form of protection in the track zone.</P>
+<P>(3) Provide job safety briefings to all transit workers who must enter a track zone to perform work.</P>
+<P>(4) Provide job safety briefings to all transit workers whenever a rule violation is observed.</P>
+<P>(5) Provide transit workers with the right to challenge and refuse in good faith any assignment based on on-track safety concerns and resolve such challenges and refusals promptly and equitably.</P>
+<P>(6) Require the reporting of unsafe acts, unsafe conditions, and near-misses on the roadway as part of the Transit Worker Safety Reporting Program and described in &#xA7; 673.23(b) of this chapter.</P>
+<P>(7) Ensure all transit workers who must enter a track zone to perform work understand, are qualified in, and comply with the RWP program.</P>
+<P>(8) Provide an escort, as needed, to support individuals that are not RWP certified and do not fall into the categories of roadway worker, transit worker, or emergency personnel if they must enter a track zone.</P>
+<P>(b) <I>Equipment and protections.</I> Each RTA must establish the requirements for on-track safety, including:</P>
+<P>(1) Equipment that transit workers must have to access the roadway or a track zone by labor category, including personal protective equipment such as high-reflection vests, safety shoes, and hard hats.</P>
+<P>(2) Credentials (<I>e.g.,</I> badge, wristband, RWP card) for transit workers to enter the roadway or track zone by labor category and how to display them so they are visible.</P>
+<P>(3) Protections for emergency response personnel who must access the roadway or the track zone.</P>
+<P>(4) Protections for multiple roadway work groups within a common work area in a track zone.</P>
+</DIV8>
+
+<DIV8 N="671.23" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-671.23&quot;,&quot;citation&quot;:&quot;49 CFR 671.23&quot;}">
+<HEAD>&#xA7; 671.23 Transit worker.</HEAD>
+<P>(a) <I>RWP program.</I> Each transit worker must follow the requirements of the RTA's RWP program by position and labor category.</P>
+<P>(b) <I>Fouling the track.</I> A transit worker may only foul the track once they have received appropriate permissions and redundant protections have been established as specified in the RWP manual.</P>
+<P>(c) <I>Acknowledgement of protections providing on-track safety.</I> A transit worker must understand and acknowledge in writing the protections providing on-track safety measures for their specific task before accessing the roadway or track zone.</P>
+<P>(d) <I>Refusal to foul the track.</I> A transit worker may refuse to foul the track if the transit worker makes a good faith determination that that they believe any assignment is unsafe or would violate the RTA's RWP program.</P>
+<P>(e) <I>Reporting.</I> A transit worker must report unsafe acts and conditions and near-misses related to the RWP program as part of the RTA's Transit Worker Safety Reporting Program.</P>
+</DIV8>
+
+<DIV8 N="671.25" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-671.25&quot;,&quot;citation&quot;:&quot;49 CFR 671.25&quot;}">
+<HEAD>&#xA7; 671.25 State safety oversight agency.</HEAD>
+<P>(a) <I>Review and approve RWP program elements.</I> The SSOA must review and approve the RWP manual and any subsequent updates for each RTA within its jurisdiction:</P>
+<P>(1) The SSOA must coordinate with the RTA on the initial review and approval of the RWP program elements so that the RWP program is established and approved within one calendar year from December 2, 2024, and</P>
+<P>(2) The SSOA must submit the current approved RWP program for each RTA in its jurisdiction to FTA annually with the annual report required by 49 CFR 674.39.</P>
+<P>(b) <I>RWP program oversight.</I> The SSOA must update its program standard to explain the role of the SSOA in overseeing an RTA's execution of its RWP program.</P>
+<P>(c) <I>Annual RWP program audit.</I> (1) The SSOA must conduct an annual audit of the RTA's compliance with its RWP program, including all required RWP program elements, for each RTA that it oversees. This review may be conducted in conjunction with the review and approval of the RTA's Public Transportation Agency Safety Plan or any other review or audit.</P>
+<P>(2) The SSOA must issue a report with any findings and recommendations arising from the audit, which must include, at minimum:</P>
+<P>(i) An analysis of the effectiveness of the RWP program, including, at a minimum, a review of:</P>
+<P>(A) All RWP-related events over the period covered by the audit;</P>
+<P>(B) All RWP-related reports made to the Transit Worker Safety Reporting Program over the period covered by the audit;</P>
+<P>(C) All documentation of instances where a transit worker(s) challenged and refused in good faith any assignment based on on-track safety concerns and documentation of the resolution for any such instance during the period covered by the audit;</P>
+<P>(D) An assessment of the adequacy of the track access guide, including whether the guide reflects current track geometry and conditions;</P>
+<P>(E) A review of training and qualification records for transit workers who must enter a track zone to perform work;</P>
+<P>(F) A representative sample of written job safety briefing confirmations as described in &#xA7; 671.33; and</P>
+<P>(G) The compliance monitoring program described in &#xA7; 671.43.</P>
+<P>(ii) Recommendations for improvements, if necessary or appropriate.</P>
+<P>(iii) Corrective action plan(s), if necessary or appropriate, must be developed and executed consistent with requirements established in part 674.</P>
+<P>(3) The RTA must be given an opportunity to comment on any findings and recommendations.</P>
+<CITA TYPE="N">[89 FR 87220, Oct. 31, 2024, as amended at 91 FR 33656, June 4, 2026]
+</CITA>
+</DIV8>
+
+</DIV6>
+<DIV6 N="D" TYPE="SUBPART" VOLUME="7" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-49/part-671/subpart-D&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;49 CFR Part 671 Subpart D&amp;quot;}">
+<HEAD>Subpart D&#x2014;Required RWP Program Elements</HEAD>
+<DIV8 N="671.31" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-671.31&quot;,&quot;citation&quot;:&quot;49 CFR 671.31&quot;}">
+<HEAD>&#xA7; 671.31 Roadway worker in charge requirements.</HEAD>
+<P>(a) <I>On-track safety and supervision.</I> The RTA must designate one roadway worker in charge for each roadway work group whose duties require fouling a track.</P>
+<P>(1) The roadway worker in charge must be qualified under the RTA's training and qualification program as specified in &#xA7; 671.41.</P>
+<P>(2) The roadway worker in charge may be designated generally or may be designated specifically for a particular work situation.</P>
+<P>(3) The roadway worker in charge is responsible for the on-track safety for all members of the roadway work group.</P>
+<P>(4) The roadway worker in charge must serve only the function of maintaining on-track safety for all members of the roadway work group and perform no other unrelated job function while designated for duty.</P>
+<P>(5) For multiple roadway work groups within common working limits, the RTA may designate a single roadway worker in charge for the entire working limit. If a single roadway worker in charge is designated over multiple roadway work groups within a working limit, each work group must be accompanied by an employee qualified to the level of a roadway worker in charge, as specified in &#xA7; 671.41, who shall be responsible for direct communication with the roadway worker in charge.</P>
+<P>(b) <I>Communication.</I> The RTA must ensure that the roadway worker in charge provides a job safety briefing to all roadway workers before any member of a roadway work group fouls a track, following the requirements specified in &#xA7; 671.33.</P>
+<P>(1) The roadway worker in charge must provide a job safety briefing to all members of the roadway work group before any on-track safety procedures change during the work period, whenever on-track safety conditions change, or immediately following an observed violation of on-track safety procedures, before work in the track zone may continue.</P>
+<P>(2) In the event of an emergency, the roadway worker in charge must warn each roadway worker to immediately leave the roadway and not return until on-track safety is re-established, and a job safety briefing is completed.</P>
+</DIV8>
+
+<DIV8 N="671.33" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-671.33&quot;,&quot;citation&quot;:&quot;49 CFR 671.33&quot;}">
+<HEAD>&#xA7; 671.33 Job safety briefing policies.</HEAD>
+<P>(a) <I>General.</I> The RTA must ensure the roadway worker in charge provides any roadway worker who must foul a track with a job safety briefing prior to fouling the track, every time the roadway worker fouls the track.</P>
+<P>(b) <I>Elements.</I> The job safety briefing must include, at a minimum, the following, as appropriate:</P>
+<P>(1) A discussion of the nature of the work to be performed and the characteristics of the work, including work plans for multiple roadway worker groups within a single work area;</P>
+<P>(2) Working limits;</P>
+<P>(3) The hazards involved in performing the work. For RTAs with electrified systems, this discussion must include the status of power and hazards explicitly related to the electrified system;</P>
+<P>(4) Information on how on-track safety is to be provided for each track identified to be fouled; identification and location of key personnel, such as a watchperson and the roadway worker in charge; and information on what should be done in the event of an emergency;</P>
+<P>(5) Instructions for each on-track safety procedure to be followed, including appropriate flags and proper flag placement;</P>
+<P>(6) Communication roles and responsibilities for all transit workers involved in the work;</P>
+<P>(7) Safety information about any adjacent track, defined as track next to or adjoining the track zone where on-track safety has been established, and identification of roadway maintenance machines or on-track equipment that will foul such tracks;</P>
+<P>(8) Information on the accessibility of the roadway worker in charge, including emergency contact information, and alternative procedures in the event the roadway worker in charge is no longer accessible to members of the roadway work group;</P>
+<P>(9) Required personal protective equipment;</P>
+<P>(10) Designated place(s) of safety of a sufficient size to accommodate all roadway workers within the work area; and</P>
+<P>(11) The means for determining ample time.</P>
+<P>(c) <I>Confirmation and written acknowledgement.</I> A job safety briefing is complete only after:</P>
+<P>(1) The roadway worker in charge confirms that each roadway worker understands the on-track safety procedures and instructions;</P>
+<P>(2) Each roadway worker acknowledges in writing the briefing and the requirement to use the required personal protective equipment; and</P>
+<P>(3) The roadway worker in charge confirms in writing that they have received written acknowledgement of the briefing from each worker.</P>
+<P>(d) <I>Follow-up briefings.</I> If after the initial job safety briefing there is any change in the scope of work or roadway work group, or on-track safety conditions change, or a violation of on-track safety is observed, a follow-up job safety briefing must be conducted.</P>
+</DIV8>
+
+<DIV8 N="671.35" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-671.35&quot;,&quot;citation&quot;:&quot;49 CFR 671.35&quot;}">
+<HEAD>&#xA7; 671.35 Lone worker.</HEAD>
+<P>(a) <I>On-track safety and supervision.</I> The RTA may authorize lone workers to perform limited duties that require fouling a track.</P>
+<P>(1) The lone worker must be qualified as a roadway worker in charge and lone worker under the RTA's training and qualification program as specified in &#xA7; 671.41.</P>
+<P>(2) The lone worker may perform routine inspection or minor tasks and move from one location to another. The lone worker may not use power tools and may only access locations have defined in the track access guide as appropriate for lone workers, <I>i.e.,</I> no loud noises, no restricted clearances, etc.</P>
+<P>(3) The lone worker may not use individual rail transit vehicle detection, where the lone worker is solely responsible for seeing approaching trains and clearing the track before the trains arrive, as the only form of on-track safety.</P>
+<P>(b) <I>Communication.</I> Each lone worker must communicate prior to fouling the track with a supervisor or another designated employee to receive an on-track safety job briefing consisting of the elements in &#xA7; 671.33(b), including a discussion of their planned work activities and the procedures that they intend to use to establish on-track safety. The lone worker must acknowledge and document the job safety briefing in writing consistent with &#xA7; 671.33(c).</P>
+</DIV8>
+
+<DIV8 N="671.37" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-671.37&quot;,&quot;citation&quot;:&quot;49 CFR 671.37&quot;}">
+<HEAD>&#xA7; 671.37 Good faith safety challenge.</HEAD>
+<P>(a) <I>Written procedure.</I> Each RTA must document its procedures that provide to every roadway worker the right to challenge and refuse in good faith any assignment they believe is unsafe or would violate the RTA's RWP program.</P>
+<P>(b) <I>Prompt and equitable resolution.</I> The written procedure must include methods or processes to achieve prompt and equitable resolution of any challenges and refusals made.</P>
+<P>(c) <I>Requirements.</I> The written procedure must include a requirement that the roadway worker provide a description of the safety concern regarding on-track safety and that the roadway work group must remain clear of the roadway or track zone until the challenge and refusal is resolved.</P>
+</DIV8>
+
+<DIV8 N="671.39" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-671.39&quot;,&quot;citation&quot;:&quot;49 CFR 671.39&quot;}">
+<HEAD>&#xA7; 671.39 Risk-based redundant protections.</HEAD>
+<P>(a) <I>General requirements.</I> (1) Each RTA must identify and provide redundant protections for each category of work roadway workers perform on the roadway or track.</P>
+<P>(2) Each RTA must establish redundant protections to ensure on-track safety for multiple roadway work groups within a common work area.</P>
+<P>(b) <I>Safety risk assessment to determine redundant protections.</I> Each RTA must assess the risk associated with transit workers accessing the roadway using the methods and processes established under &#xA7; 673.25(c) of this chapter. The RTA must use the methods and processes established under &#xA7; 673.25(d) of this chapter to establish redundant protections for each category of work performed by roadway workers on the rail transit system and must include lone workers.</P>
+<P>(1) The safety risk assessment must be consistent with the RTA's Agency Safety Plan (ASP) and the SSOA's program standard.</P>
+<P>(2) The safety risk assessment may be supplemented by engineering assessments, inputs from the safety assurance process established under &#xA7; 673.27 of this chapter, the results of safety event investigations, and other SRM strategies or approaches.</P>
+<P>(3) The RTA must review and update the safety risk assessment at least every two years to include current conditions and lessons learned from safety events, actions taken to address reports of unsafe acts and conditions, and near-misses, and results from compliance monitoring regarding the effectiveness of the redundant protections.</P>
+<P>(4) The SSOA may also identify and require the RTA to implement alternate redundant protections based on the RTA's unique operating characteristics and capabilities.</P>
+<P>(c) <I>Categories of work requiring redundant protections.</I> Redundant protections must be identified for roadway workers performing different categories of work on the roadway and within track zones, which may include but are not limited to categories such as:</P>
+<P>(1) Roadway workers moving from one track zone location to another;</P>
+<P>(2) Roadway workers performing minor tasks;</P>
+<P>(3) Roadway workers conducting visual inspections;</P>
+<P>(4) Roadway workers using hand tools, machines, or equipment in conducting testing of track system components or non-visual inspections;</P>
+<P>(5) Roadway workers using hand tools, machines, or equipment in performing maintenance, construction, or repairs; and/or</P>
+<P>(6) Lone workers accessing the roadway or track zone or performing visual inspections or minor tasks.</P>
+<P>(d) <I>Types of redundant protections.</I> (1) Redundant protections may be procedural or physical.</P>
+<P>(i) Procedural protections alert rail transit vehicle operators to the presence of roadway workers and use radio communications, personnel, signage, or other means to direct rail transit vehicle movement.</P>
+<P>(ii) Physical protections physically control the movement of rail transit vehicles into or through a work zone.</P>
+<P>(2) Redundant protections may include but are not limited to:</P>
+<P>(i) Approaches consistent with the FRA rules governing redundant protections;</P>
+<P>(ii) Rail transit vehicle approach warning;</P>
+<P>(iii) Foul time;</P>
+<P>(iv) Exclusive track occupancy, defined as a method of establishing working limits, as part of on-track safety, in which movement authority of rail transit vehicles and other equipment is withheld by the control center or restricted by flag persons and provided by a roadway worker in charge;</P>
+<P>(v) Warning signs, flags, or lights;</P>
+<P>(vi) Flag persons;</P>
+<P>(vii) Lock outs from the rail transit vehicle control systems or lining and locking track switches or otherwise physically preventing entry and movement of rail transit vehicles;</P>
+<P>(viii) Secondary warning devices and alert systems;</P>
+<P>(ix) Shunt devices and portable trip stops to reduce the likelihood of rail transit vehicles from entering work zone with workers;</P>
+<P>(x) Restricting work to times when propulsion power is down with verification that track is out of service, and when barriers are placed that physically prevent rail transit vehicles, including on-track equipment, from entering the work zone;</P>
+<P>(xi) Use of walkways in tunnels and on elevated structures to reduce roadway worker time in the track zone; and</P>
+<P>(xii) Speed restrictions.</P>
+<P>(3) Redundant protections for lone workers must include, at a minimum, foul time or an equivalent protection approved by the SSOA.</P>
+</DIV8>
+
+<DIV8 N="671.41" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-671.41&quot;,&quot;citation&quot;:&quot;49 CFR 671.41&quot;}">
+<HEAD>&#xA7; 671.41 RWP training and qualification program.</HEAD>
+<P>(a) <I>General.</I> Each RTA must adopt an RWP training program.</P>
+<P>(1) The RWP training program must address all transit workers responsible for on-track safety, by position, including roadway workers, operations control center personnel, rail transit vehicle operators, operators of on-track equipment and roadway maintenance machines, and any others with a role in providing on-track safety or fouling a track for the performance of work.</P>
+<P>(2) The RWP training program must be completed for the relevant position before an RTA may assign a transit worker to perform the duties of a roadway worker, to oversee or supervise access to the track zone from the operations control center, or to operate vehicles, on-track equipment, and roadway maintenance machines on the rail transit system.</P>
+<P>(3) The RWP training program must address RWP hazard recognition and mitigation, and lessons learned through the results of compliance testing, near-miss reports, reports of unsafe acts or conditions, and feedback received on the training program.</P>
+<P>(4) The RWP training program must include initial and refresher training, by position. Refresher training must occur every two years at a minimum.</P>
+<P>(5) The RTA must review and update its RWP training program not less than every two years, to reflect lessons learned in implementing the RWP program and information provided by the SSOA and FTA. The RTA must provide an opportunity for roadway worker involvement in the RWP training program review and update process.</P>
+<P>(b) <I>Required elements.</I> The RWP training program must include interactive training with the opportunity to ask the RWP trainer questions and raise and discuss RWP issues.</P>
+<P>(1) Initial training must include experience in a representative field setting.</P>
+<P>(2) Initial and refresher training must include demonstrations and assessments to ensure the ability to comply with RWP instructions given by transit workers performing, or responsible for, on-track safety and RWP functions.</P>
+<P>(c) <I>Minimum contents for RWP training.</I> The RWP training program must address, as applicable, the following minimum contents:</P>
+<P>(1) How to interpret and use the RTA's RWP manual;</P>
+<P>(2) How to challenge and refuse assignments in good faith;</P>
+<P>(3) How to report unsafe acts, unsafe conditions, and near-misses after they occur, and the mandatory duty to make such reports;</P>
+<P>(4) Recognition of the track zone and understanding of the space around tracks within which on-track safety is required, including use of the track access guide;</P>
+<P>(5) The functions and responsibilities of all transit workers involved in on-track safety, by position;</P>
+<P>(6) Proper compliance with on-track safety instructions given by transit workers performing or responsible for on-track safety functions;</P>
+<P>(7) Signals and directions given by watchpersons, and the proper procedures upon receiving a rail transit vehicle approach warning from a watchperson;</P>
+<P>(8) The hazards associated with working on or near rail transit tracks to include traction power, if applicable;</P>
+<P>(9) Rules and procedures for redundant protections identified under &#xA7; 671.39 and how they are applied to RWP; and</P>
+<P>(10) Requirements for safely crossing rail transit tracks in yards and on the mainline.</P>
+<P>(d) <I>Specialized training and qualification for transit workers with additional responsibilities for on-track safety.</I> The RWP training program must include additional training for watchpersons, flag persons, lone workers, roadway workers in charge, and other transit workers with responsibilities for establishing, supervising, and monitoring on-track safety.</P>
+<P>(1) This training must cover the content and application of the additional RWP program requirements carried out by these positions and must address the relevant physical characteristics of the RTA's system where on-track safety may be established.</P>
+<P>(2) This training must include demonstrations and assessments to confirm the transit worker's ability to perform these additional responsibilities.</P>
+<P>(3) Refresher training on additional responsibilities for on-track safety, by position, must occur every two years at a minimum.</P>
+<P>(e) <I>Competency and qualification of training personnel.</I> Each RTA must ensure that transit workers providing RWP training are qualified and have active RWP certification at the RTA to provide effective RWP training, and at a minimum must consider the following:</P>
+<P>(1) A trainer's experience and knowledge of effective training techniques in the chosen learning environment;</P>
+<P>(2) A trainer's experience with the RTA RWP program;</P>
+<P>(3) A trainer's knowledge of the RTA RWP rules, operations, and operating environment, including applicable operating rules; and</P>
+<P>(4) A trainer's knowledge of the training requirements specified in this part.</P>
+<CITA TYPE="N">[89 FR 87220, Oct. 31, 2024, as amended at 91 FR 33656, June 4, 2026]
+</CITA>
+</DIV8>
+
+<DIV8 N="671.43" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-671.43&quot;,&quot;citation&quot;:&quot;49 CFR 671.43&quot;}">
+<HEAD>&#xA7; 671.43 RWP compliance monitoring program.</HEAD>
+<P>(a) <I>General.</I> Each RTA must adopt a program for monitoring its compliance with the requirements specified in its RWP program.</P>
+<P>(b) <I>Required elements.</I> The RWP compliance monitoring program must include inspections, observations, and audits, consistent with safety performance monitoring and measurement requirements in the RTA's ASP described in &#xA7; 673.27(b) of this chapter and the SSOA's program standard.</P>
+<P>(1) The RTA must provide quarterly reports to the SSOA documenting the RTA's compliance with and sufficiency of the RWP program.</P>
+<P>(2) The RTA must provide an annual briefing to the Accountable Executive and the Board of Directors, or equivalent entity, regarding the performance of the RWP program and any identified deficiencies requiring corrective action.</P>
+</DIV8>
+
+</DIV6>
+<DIV6 N="E" TYPE="SUBPART" VOLUME="7" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-49/part-671/subpart-E&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;49 CFR Part 671 Subpart E&amp;quot;}">
+<HEAD>Subpart E&#x2014;Recordkeeping</HEAD>
+<DIV8 N="671.51" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-49/section-671.51&quot;,&quot;citation&quot;:&quot;49 CFR 671.51&quot;}">
+<HEAD>&#xA7; 671.51 Recordkeeping.</HEAD>
+<P>(a) Each RTA must maintain the documents that set forth its RWP program; documents related to the implementation of the RWP program; and results from the procedures, processes, assessments, training, and activities specified in this part for the RWP program.</P>
+<P>(b) Each RTA must maintain records of its compliance with this requirement, including records of transit worker RWP training and refresher training, for a minimum of three years after they are created.</P>
+<P>(c) These documents must be made available upon request by the FTA or other Federal entity, or an SSOA having jurisdiction.</P>
+</DIV8>
+
+</DIV6>
+</DIV5>
