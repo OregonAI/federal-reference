@@ -222,6 +222,13 @@ def committed_amended_on(part_id: str, sec: str) -> str | None:
     `None`, which would make every current section's document read as stale for a field
     --check has no offline way to verify in the first place. Same "recover a previously
     published field from a committed document" shape as hist_retrieved().
+
+    THE KNOWN LIMIT OF "TRUSTS": trusting the document IS the document is not verifying it --
+    a hand-edited `amended_on` in an already-committed document now round-trips through this
+    function unchallenged, since it is read back from the very file `--check` then diffs
+    against. #73 tracks whether a genuinely independent offline anchor (a candidate: the part
+    snapshot's own `<CITA>` source notes) is worth building; this function is the honest
+    interim, not the fix.
     """
     doc = INSTRUMENTS / f"{part_id}.{sec.split('.', 1)[1]}.md"
     if not doc.is_file():
@@ -230,7 +237,13 @@ def committed_amended_on(part_id: str, sec: str) -> str | None:
         fm = yaml.safe_load(doc.read_text(encoding="utf-8").split("---")[1])
     except (IndexError, yaml.YAMLError):
         return None
-    return (fm or {}).get("amended_on")
+    # Frontmatter that parses but not to a mapping (a hand-mangled `---\nsome scalar\n---`)
+    # is exactly the malformed-document case this function exists to survive, same as a
+    # missing file or unparseable YAML above -- `isinstance` here rather than widening the
+    # `except`, which would also swallow an unrelated AttributeError from deeper in PyYAML.
+    if not isinstance(fm, dict):
+        return None
+    return fm.get("amended_on")
 
 
 def _target_doc(part_id: str, consolidation: dict | None, default: str | None) -> str | None:
@@ -577,10 +590,12 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
             # `date` names. `by_date.values()` (every removal, from every amendment) used to
             # be swept in here unconditionally -- a section removed by a LATER amendment would
             # gain a `supersedes` back-edge to an earlier consolidation it had nothing to do
-            # with. `by_date.get(consolidation["date"], [])` is exactly the removed entries
-            # that amendment actually produced.
+            # with. `by_date.get(consolidation.get("date"), [])` is exactly the removed entries
+            # that amendment actually produced -- `.get`, not `[...]`, because cfr_consolidations
+            # .py's own docstring requires `scope`, not `date`; a record with no `date` matches
+            # no `removed_on` and yields no supersedes edge instead of crashing run_part().
             ids = [f"{part_id}.{e['section'].split('.', 1)[1]}"
-                   for e in by_date.get(consolidation["date"], [])] if consolidation else []
+                   for e in by_date.get(consolidation.get("date"), [])] if consolidation else []
             supersedes = ids or None
         emit(out, build(ctx, sec, head, body, entry, part_sha, amended, None,
                          supersedes=supersedes))

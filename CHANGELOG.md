@@ -28,7 +28,9 @@ Repo-curation dates only — official effective dates live in frontmatter.
   directories): the real corpus (`2-cfr-200`, `34-cfr-300`) still passes `--check` cleanly,
   0 files touched; a synthetic second part with an uncommitted historical snapshot refuses
   cleanly (`rc=1`, `MISSING SNAPSHOT` printed), 0 files written, 0 files mutated, 0 network
-  calls, in both cases.
+  calls, in both cases. Known limit, not closed here: `committed_amended_on()` reads a current
+  section's `amended_on` back from the same document `--check` diffs against, so a
+  hand-edited `amended_on` on an already-committed document round-trips undetected -- #73.
 - 2026-09-01 — A per-part `CONSOLIDATIONS` record was attributed to every removed section in
   the part regardless of which amendment actually removed it (#57). `run_part()` groups
   removed sections `by_date` (their own `removed_on`, generalized by #34 for a part whose
@@ -56,7 +58,10 @@ Repo-curation dates only — official effective dates live in frontmatter.
   against a pre-#34 commit and never closed. Measured rather than assumed: all 69 committed
   `34-cfr-300.*.md` documents (68 sections + the part document, the Department of
   Education's IDEA Part B, landed by #66 — a real second, non-OMB part) declare
-  `issuing_body: Department of Education`; none say OMB. Satisfies #52's own acceptance
+  `issuing_body: Department of Education`; none declare `issuing_body: OMB` or any OMB
+  variant (34 of the 69 do mention "Office of Management and Budget" in body text, but only
+  as the Paperwork Reduction Act control-number notices those sections carry verbatim from
+  the CFR itself — unrelated to `issuing_body`, and expected). Satisfies #52's own acceptance
   criterion of verification against a real second part now that one is ingested. No code or
   document change was needed for this one; closed with this measurement as evidence.
 
