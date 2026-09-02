@@ -6,6 +6,141 @@ Repo-curation dates only — official effective dates live in frontmatter.
 
 ## [Unreleased]
 
+### Fixed
+- 2026-09-01 — `split_cfr_sections.py --check` could reach the network and mutate the working
+  tree (#58). Two call sites in `run_part()` did the same thing, one layer under the other:
+  the historical-snapshot fetch/write for a removed section whose `_meta/snapshots/<id>.xml`
+  was not yet committed (`urlopen` + `hist_xml.write` + an unconditional `.txt` write of the
+  re-derived text), and `ecfr_versions()` — a live fetch of eCFR's versions endpoint, called
+  unconditionally for every part to compute each current section's `amended_on`, found while
+  proving the first fix (a fully offline `--check` run crashed inside it). Neither call
+  branched on `args.check` before reaching the network. `--check` now refuses instead of
+  fetching: a missing historical snapshot is reported as `MISSING SNAPSHOT` (the same
+  STALE/ORPHAN/STALE-HEADER shape the rest of `--check` already uses) rather than fetched,
+  the historical `.txt` derivation is routed through the same `emit()` every other generated
+  file already uses instead of writing unconditionally, and `ecfr_versions()` is skipped
+  entirely under `--check` — `amended_on` is instead read back from the section's own
+  already-committed document (`committed_amended_on()`, the same "trust what is on disk"
+  shape `hist_retrieved()` already uses one field over). `--check --refetch` together is
+  rejected outright in `main()` as the nonsensical request it is, rather than defining what
+  it would mean. Proved with the network genuinely unreachable (`urlopen` monkeypatched to
+  raise) and the working tree made read-only (`chmod`, real `_meta`/`instruments`
+  directories): the real corpus (`2-cfr-200`, `34-cfr-300`) still passes `--check` cleanly,
+  0 files touched; a synthetic second part with an uncommitted historical snapshot refuses
+  cleanly (`rc=1`, `MISSING SNAPSHOT` printed), 0 files written, 0 files mutated, 0 network
+  calls, in both cases. Known limit, not closed here: `committed_amended_on()` reads a current
+  section's `amended_on` back from the same document `--check` diffs against, so a
+  hand-edited `amended_on` on an already-committed document round-trips undetected -- #73.
+- 2026-09-01 — A per-part `CONSOLIDATIONS` record was attributed to every removed section in
+  the part regardless of which amendment actually removed it (#57). `run_part()` groups
+  removed sections `by_date` (their own `removed_on`, generalized by #34 for a part whose
+  removals span more than one amendment) but looked up `CONSOLIDATIONS.get(part_id)` once and
+  passed the same record — and, for the `supersedes` back-edge, *every* removed section from
+  *every* date — to `build()` regardless of the record's own `date` field. Not reachable with
+  today's data (2 CFR 200's two removed sections and its one consolidation record share the
+  same date, 2021-02-22 — confirmed: both the frontmatter `supersedes` on `2-cfr-200.1.md`
+  and the "consolidated into" prose on `2-cfr-200.53.md`/`.62.md` are identical before and
+  after this fix, 2/2 removed sections attributed both times), but a section removed by a
+  *different* amendment than the one the record describes would fabricate which amendment
+  moved what. `run_part()` now compares each removed entry's own `removed_on` against
+  `consolidation["date"]` before attributing the record to it (and filters the `supersedes`
+  sweep to `by_date.get(consolidation["date"], [])`, not every date); a mismatch falls back
+  to the generic "no successor section is recorded here" clause `_removal_clause()` already
+  gives a part with no record at all. Proved with a synthetic record dated 2021-02-22 and a
+  removal dated 2024-05-01: before the fix, the section's prose read "...when Subpart A's
+  definitions were consolidated into [§ 1.1]..." — a real amendment's record attached to a
+  removal it did not describe; after, "...and no successor section is recorded here." A
+  matching-date control (same record, a 2021-02-22 removal) still gets the record's own
+  scope/target, confirming no regression on the case #34 already covered.
+- 2026-09-01 — Verified #52 (`issuing_body` hardcoded to OMB in `split_cfr_sections.py`, the
+  same bug #33 fixed for the part document) is already closed by #34's own generalization
+  (`resolve_issuing_body(src)` off the part's manifest entry, not a literal) — #52 was filed
+  against a pre-#34 commit and never closed. Measured rather than assumed: all 69 committed
+  `34-cfr-300.*.md` documents (68 sections + the part document, the Department of
+  Education's IDEA Part B, landed by #66 — a real second, non-OMB part) declare
+  `issuing_body: Department of Education`; none declare `issuing_body: OMB` or any OMB
+  variant (34 of the 69 do mention "Office of Management and Budget" in body text, but only
+  as the Paperwork Reduction Act control-number notices those sections carry verbatim from
+  the CFR itself — unrelated to `issuing_body`, and expected). Satisfies #52's own acceptance
+  criterion of verification against a real second part now that one is ingested. No code or
+  document change was needed for this one; closed with this measurement as evidence.
+- 2026-09-01 — Two gaps in `_meta/ingest-queue.yml` and its `--check`, both found by the
+  code review of #64's oregon-audits scan (#69, #70).
+
+  #69: a merged row's `mentions` was a single additive sum with the erf/audits split
+  discarded before it was ever written — `cited_in` recorded WHICH sources contributed but
+  not HOW MUCH each one did, so a reader deciding "auditors, not rules" for 45 CFR 98 (16
+  mentions) could not tell 8+8 from 15+1 without re-running the scan against a sibling
+  checkout. Demonstrated directly: replacing a committed `cited_in: ["audits", "erf"]` with
+  `["erf"]` on a merged row passed `--check` — `584 entries internally consistent`, exit 0.
+  Every row now also carries `mentions_erf` and `mentions_audits`, the two addends
+  `mentions` sums; `--check` verifies `mentions_erf + mentions_audits == mentions` and
+  reconciles both against `cited_in` in both directions (a nonzero split value with the
+  matching source absent from `cited_in`, or vice versa for `audits`, now fails). Confirmed
+  against the real committed file: hand-editing `cited_in` to drop `"audits"` from 45 CFR
+  98, or either of its `mentions_erf`/`mentions_audits` values alone, each now fails
+  `--check` — the identical corruptions the review demonstrated passing silently.
+
+  #70: `catalog_targets_total` was the only declared summary number `--check` did not
+  verify against another number in the file — a one-directional `catalog_total < scanned`
+  inequality that a hand-edit upward sailed through (`1358 -> 1359`, exit 0). #65's review
+  found two unverified summary numbers before this one; each was fixed by naming the one
+  field under review, which is exactly why a third kept happening. `catalog_non_cfr_targets`
+  (the non-CFR remainder of `catalog_targets_total` — USC citations, named instruments)
+  is now recorded so `catalog_targets_total == scanned_targets + catalog_non_cfr_targets`
+  can be checked like every other number here. To stop a fourth from landing unverified the
+  same way, `check_queue()`'s summary-number section is now a table of equations keyed by
+  the field name(s) each one verifies, followed by a scan of every top-level integer the
+  committed file actually declares against that table — a number added to
+  `build_queue_lines()` with no matching equation fails `--check` on that fact alone.
+  Proved with a synthetic `synthetic_new_number: 0` inserted into the real committed file:
+  internally harmless value, still fails — `declared summary number(s) with no --check
+  equation verifying them: ['synthetic_new_number']`.
+
+  `check_ingest_queue.py` gained a `check_queue()` fixture suite (a hand-built queue file in
+  a temp dir, `scanner.QUEUE_OUT` monkeypatched to it so the real committed file is never at
+  risk) exercising both reproductions above plus the PROVE IT step, as a standing regression
+  rather than a one-time manual check. `_meta/ingest-queue.yml` regenerated with the new
+  fields on all 584 rows and the new `catalog_non_cfr_targets: 783`.
+
+- 2026-09-01 — Two more gaps found by a code review of the #69/#70 change above, both
+  addressed in this same commit.
+
+  HARD: `discover_main()`'s zero-result refusal checked `unheld_n == 0`, but `unheld_n` is
+  `len(ranked)`, which already includes audit-only rows (#64) — a catalog with zero
+  CFR-shaped targets (wrong `--erf` path, or one that legitimately holds only USC/named
+  -instrument targets) still produced `unheld_n > 0` as long as `oregon-audits` cited
+  anything at all, which a real checkout always does. The refusal could never fire for a
+  broken `--erf` path; it silently overwrote the committed, reviewed queue with an
+  audits-only file instead. Reproduced against the real committed file with an md5 snapshot
+  before/after: a catalog with only non-CFR targets, an empty `targets: []`, and a catalog
+  listing only already-held parts all overwrote `_meta/ingest-queue.yml`, exit 0. Fixed by
+  refusing on `unheld_n - audit_only_n == 0` instead — the count that actually came from
+  ERF's catalog — so a broken or all-held catalog now refuses (exit 1, artifact untouched)
+  exactly as the existing error message already promised. Confirmed against all three
+  reproductions: refuse, exit 1, md5 unchanged.
+
+  #70's structural coverage scan (`isinstance(v, int)`) missed a new declared summary
+  number written as a float, a string, a list, or a mapping — narrower than "every top-level
+  integer the committed file declares" implies. Since this file's only legitimate top-level
+  fields are the declared summary numbers and `queue` itself, the type filter is gone
+  entirely: `declared = set(doc) - {"queue"}` now flags any new top-level field, whatever
+  shape its value takes, unless an equation names it. Confirmed with a synthetic
+  `held_fraction_of_scanned: 0.35` (float), a quoted string, a list, and a mapping each
+  inserted at file level: all four now fail `--check` the same way an unverified int does.
+
+  Declined: (1) the generated header's `mentions_erf + mentions_audits == mentions always;
+  cited_in names a source only where that source's own mentions_* is nonzero` is an
+  invariant `rank_targets()` does not actually enforce (a catalog row with `mentions: 0`
+  still gets `"erf"` in `cited_in`) — not false in the committed file today (every ERF
+  target has `mentions >= 1`), so left as a documented risk for the next catalog regen
+  rather than bundled into this fix; (2) the row-shape comment's "with the types it writes
+  them as" overstates `check_queue()`, which checks field presence, not type — a
+  hand-edited type change either crashes with a Python `TypeError` (still nonzero exit, just
+  not the `STALE` message the comment implies) or, for an int-to-float edit, passes
+  silently. Real but the lowest-severity of the four findings and a wording fix, not a
+  behavior gap in the artifact this change generates.
+
 ### Added
 - 2026-09-01 — Ingested 7 CFR 280 (Emergency Food Assistance for Victims of Disasters), the
   one part the four-way intake left blocked (see the entry below this one). Its raw snapshot

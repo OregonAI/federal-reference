@@ -211,6 +211,18 @@ def q(s: str) -> str:
     return json.dumps(str(s), ensure_ascii=False)
 
 
+def _display_path(p: pathlib.Path) -> pathlib.Path | str:
+    """`p` relative to ROOT for a friendly message, or `p` itself when it is not under
+    ROOT at all -- true for check_queue()'s own fixture tests (check_ingest_queue.py
+    monkeypatches QUEUE_OUT to a temp file so its --check corruption reproductions can
+    never touch the real committed artifact), where `.relative_to(ROOT)` would otherwise
+    raise ValueError instead of just printing the path."""
+    try:
+        return p.relative_to(ROOT)
+    except ValueError:
+        return p
+
+
 # The lines of a cited-sections YAML that depend ONLY on (title, part), never on a scan's
 # results -- pulled out so split_cfr_sections.py --check can verify a committed file's header
 # has not drifted from what THIS script would write for the same part, without re-running the
@@ -386,6 +398,14 @@ def rank_targets(targets: list[dict], held: set[tuple[str, str]],
     part cited only in audits (2 CFR 200) is excluded exactly like a held catalog part is,
     never reaching the queue. Every row's `cited_in` records which source(s) -- "erf",
     "audits" -- contributed its `mentions`.
+
+    #69: `mentions` alone throws away the split once two sources are merged -- a reader of
+    the committed file could not tell 45 CFR 98's 16 mentions were 8 erf + 8 audits from
+    `mentions: 16` and `cited_in: ["audits", "erf"]` alone. Each row also carries
+    `mentions_erf` and `mentions_audits` (the two addends `mentions` sums), so the split
+    survives into the committed artifact instead of existing only inside this function's
+    stack frame -- and so `--check` has two numbers to reconcile against `mentions` and
+    `cited_in`, not one it must take on faith.
     """
     audit_mentions = audit_mentions or {}
     rows = []
@@ -398,6 +418,7 @@ def rank_targets(targets: list[dict], held: set[tuple[str, str]],
         catalog_keys.add((title, part))
         if (title, part) in held:
             continue
+        erf_n = int(t.get("mentions", 0))
         audit_n = audit_mentions.get((title, part), 0)
         cited_in = ["erf"] + (["audits"] if audit_n else [])
         rows.append({
@@ -406,7 +427,9 @@ def rank_targets(targets: list[dict], held: set[tuple[str, str]],
             "title": title,
             "part": part,
             "authority_claims": int(t.get("authority_claims", 0)),
-            "mentions": int(t.get("mentions", 0)) + audit_n,
+            "mentions": erf_n + audit_n,
+            "mentions_erf": erf_n,
+            "mentions_audits": audit_n,
             "cited_in": sorted(cited_in),
         })
     # Audit-only parts: cited in oregon-audits but absent from ERF's catalog entirely.
@@ -421,6 +444,8 @@ def rank_targets(targets: list[dict], held: set[tuple[str, str]],
             "part": part,
             "authority_claims": 0,
             "mentions": audit_n,
+            "mentions_erf": 0,
+            "mentions_audits": audit_n,
             "cited_in": ["audits"],
         })
     rows.sort(key=lambda r: (-r["authority_claims"], -r["mentions"], r["part_id"]))
@@ -476,6 +501,12 @@ def queue_header() -> list[str]:
         "# audit_only_parts. Each row's `cited_in` names which source(s) (\"erf\", \"audits\")",
         "# contributed its `mentions`, so a reader can tell a part auditors discuss from one",
         "# a rule actually claims.",
+        "#",
+        "# #69: `mentions` is a SUM; `mentions_erf` and `mentions_audits` are the two addends",
+        "# it sums, carried alongside it on every row so the split a merged row's `mentions`",
+        "# would otherwise discard is visible without re-running this scan against a sibling",
+        "# checkout. mentions_erf + mentions_audits == mentions always; cited_in names a",
+        "# source only where that source's own mentions_* is nonzero.",
     ]
 
 
@@ -514,6 +545,12 @@ def build_queue_lines(catalog: dict, held: set[tuple[str, str]],
     lines = queue_header() + [
         "",
         f"catalog_targets_total: {len(targets)}",
+        "# #70: the non-CFR remainder of catalog_targets_total -- USC citations and named",
+        "# instruments (HIPAA, WIOA, ...) that parse_cfr_citation() correctly excludes from",
+        "# scanned_targets below. catalog_targets_total == scanned_targets +",
+        "# catalog_non_cfr_targets, checked by --check the same way every other declared",
+        "# number here is checked against a sibling number in this file.",
+        f"catalog_non_cfr_targets: {len(targets) - len(all_cfr)}",
         f"scanned_targets: {len(all_cfr)}",
         f"held_parts: {len(held_targets)}",
         f"audit_only_parts: {len(audit_only)}",
@@ -531,6 +568,8 @@ def build_queue_lines(catalog: dict, held: set[tuple[str, str]],
                   f"    citation: {q2(r['citation'])}",
                   f"    authority_claims: {r['authority_claims']}",
                   f"    mentions: {r['mentions']}",
+                  f"    mentions_erf: {r['mentions_erf']}",
+                  f"    mentions_audits: {r['mentions_audits']}",
                   f"    cited_in: [{', '.join(q(c) for c in r['cited_in'])}]"]
     return lines, len(ranked), len(all_cfr), len(audit_only)
 
@@ -583,8 +622,8 @@ def discover_main(args: argparse.Namespace) -> int:
         # refusal for the audits side, for the identical reason: a real oregon-audits
         # checkout always has CFR-part mentions (472 measured across 242 reports), so
         # finding none is a broken --audits path, not a legitimate corpus state, and must
-        # never be an automatic reason to touch `QUEUE_OUT` (see the unheld_n == 0 refusal
-        # below, and write_queue()'s own docstring).
+        # never be an automatic reason to touch `QUEUE_OUT` (see the catalog_unheld_n == 0
+        # refusal below, and write_queue()'s own docstring).
         print(f"error: no CFR-part mentions found under {args.audits}/reports -- check "
               f"the --audits path", file=sys.stderr)
         return 1
@@ -593,7 +632,17 @@ def discover_main(args: argparse.Namespace) -> int:
     print(f"  {len(held)} CFR part(s) already held")
 
     lines, unheld_n, total_n, audit_only_n = build_queue_lines(catalog, held, audit_mentions)
-    if unheld_n == 0:
+    # Code review of #71: `unheld_n` is `len(ranked)`, which INCLUDES audit-only rows (#64)
+    # -- a catalog with zero CFR-shaped targets (wrong --erf path, or a catalog that is
+    # legitimately all-USC/all-named-instrument) still produces `unheld_n > 0` as long as
+    # oregon-audits cites *anything*, which it always does (the audits-side refusal above
+    # already guarantees that). Checked on `unheld_n` alone, this refusal could never fire
+    # for a broken --erf path -- it would silently overwrite the committed, reviewed queue
+    # with an audits-only file instead. `catalog_unheld_n` is the count that actually came
+    # from ERF's catalog (unheld_n minus the audit-only rows folded into it), so a broken
+    # or all-held catalog reads as zero here exactly as the message below promises.
+    catalog_unheld_n = unheld_n - audit_only_n
+    if catalog_unheld_n == 0:
         # Matches the per-part mode's own refusal a few lines up: a scan that finds nothing
         # to rank is either a broken scan (wrong --erf path, stale catalog) or every CFR
         # part Oregon cites is already held, and the caller decides which -- this script
@@ -628,11 +677,19 @@ def check_queue() -> int:
     does, which is the identical failure this whole file's docstring calls out. So this
     checks what CI CAN honestly verify without a sibling checkout: the committed file's own
     internal consistency (including `cited_in` and `audit_only_parts`, #64's own additions
-    to that consistency, checked against the queue's own rows rather than a fresh audits
+    to that consistency, and `mentions_erf`/`mentions_audits`, #69's split of `mentions`
+    into its two addends, checked against the queue's own rows rather than a fresh audits
     scan), its header, and its agreement with the LOCAL instruments/ directory -- and says
     so in its own output, rather than silently verifying less than `--check` sounds like it
     does. Full re-derivation against a fresh scan stays the developer-machine step it
     already was.
+
+    EVERY DECLARED SUMMARY NUMBER, VERIFIED BY ENUMERATION (#70): the summary-number
+    section below is a table of equations naming the fields each one verifies, followed by
+    a scan of every top-level integer the committed file actually declares against that
+    table -- a number added to `build_queue_lines()` without a matching equation fails on
+    that fact alone. See the table's own comment for why (`catalog_targets_total` was the
+    third summary number in a row found unverified by a code review).
     """
     problems: list[str] = []
     if not QUEUE_OUT.is_file():
@@ -650,15 +707,17 @@ def check_queue() -> int:
     doc = yaml.safe_load(raw) or {}
     queue = doc.get("queue") or []
 
-    # Shape: every entry carries the five fields write_queue() writes, with the types it
+    # Shape: every entry carries the seven fields write_queue() writes, with the types it
     # writes them as -- a hand-edit that drops a field or changes a type is drift too.
     for i, e in enumerate(queue):
         missing = [k for k in ("part_id", "citation", "authority_claims", "mentions",
-                                "cited_in") if k not in e]
+                                "mentions_erf", "mentions_audits", "cited_in")
+                   if k not in e]
         if missing:
             problems.append(f"queue[{i}] ({e.get('part_id', '?')}) missing field(s): "
                              f"{', '.join(missing)}")
             continue
+        pid = e.get("part_id", "?")
         # cited_in (#64): the sources that contributed this row's `mentions` -- always a
         # non-empty, sorted subset of {"erf", "audits"}. A row with authority_claims > 0
         # can only have come from ERF's catalog, so "erf" must be in it.
@@ -666,13 +725,36 @@ def check_queue() -> int:
         if (not isinstance(cited, list) or not cited
                 or any(c not in ("erf", "audits") for c in cited)
                 or cited != sorted(cited)):
-            problems.append(f"queue[{i}] ({e.get('part_id', '?')}) cited_in is malformed: "
+            problems.append(f"queue[{i}] ({pid}) cited_in is malformed: "
                              f"{cited!r} (expected a sorted, non-empty subset of "
                              f"['erf', 'audits'])")
-        elif e.get("authority_claims", 0) and "erf" not in cited:
-            problems.append(f"queue[{i}] ({e.get('part_id', '?')}) has "
+            continue
+        if e.get("authority_claims", 0) and "erf" not in cited:
+            problems.append(f"queue[{i}] ({pid}) has "
                              f"authority_claims > 0 but cited_in {cited!r} does not "
                              f"include 'erf' -- audits never carry a claim (#64)")
+        # #69: mentions_erf/mentions_audits are the split `mentions` sums -- checked against
+        # `mentions` itself AND against `cited_in`, so a hand-edit to either number, or to
+        # cited_in alone (dropping a source while leaving its count in place, or the
+        # reverse), is caught. `scan_audit_mentions()` never stores a zero count (a
+        # (title, part) key only exists in its Counter once matched), so "audits" in
+        # cited_in and mentions_audits > 0 are exactly equivalent -- checked both ways. ERF's
+        # own per-target `mentions` can legitimately be 0 while the row still came from the
+        # catalog (authority_claims > 0, no body-text mention at all), so mentions_erf only
+        # gets the one-directional check: nonzero must be reflected in cited_in.
+        m_erf = e.get("mentions_erf", 0)
+        m_audits = e.get("mentions_audits", 0)
+        mentions = e.get("mentions", 0)
+        if m_erf + m_audits != mentions:
+            problems.append(f"queue[{i}] ({pid}) mentions_erf ({m_erf}) + "
+                             f"mentions_audits ({m_audits}) != mentions ({mentions})")
+        if m_erf and "erf" not in cited:
+            problems.append(f"queue[{i}] ({pid}) mentions_erf is {m_erf} but cited_in "
+                             f"{cited!r} does not include 'erf'")
+        if bool(m_audits) != ("audits" in cited):
+            problems.append(f"queue[{i}] ({pid}) mentions_audits ({m_audits}) and "
+                             f"cited_in {cited!r} disagree about whether audits "
+                             f"contributed")
 
     # Sort order: claims desc, mentions desc, part_id asc -- exactly rank_targets()'s key,
     # checked against the COMMITTED rows themselves rather than re-ranking from a live
@@ -698,54 +780,84 @@ def check_queue() -> int:
             problems.append(f"queue[{pid}] is listed as unheld but instruments/ now "
                              f"holds {key[0]} CFR {key[1]}")
 
-    # Declared summary numbers, checked against the queue's OWN rows -- self-consistency,
-    # not a re-scan.
-    unheld_parts = int(doc.get("unheld_parts", -1))
-    if unheld_parts != len(queue):
-        problems.append(f"unheld_parts: {unheld_parts} does not match {len(queue)} "
-                         f"queue entries")
-    claims_unheld = int(doc.get("total_authority_claims_unheld", -1))
-    summed = sum(int(e.get("authority_claims", 0)) for e in queue)
-    if claims_unheld != summed:
-        problems.append(f"total_authority_claims_unheld: {claims_unheld} does not match "
-                         f"the sum of queue entries' authority_claims ({summed})")
+    # Declared summary numbers, checked against the queue's OWN rows and against each
+    # other -- self-consistency, not a re-scan.
+    #
+    # #70: this used to be one `if` per field, named by hand -- and #65's review found two
+    # unverified fields that way, fixed one at a time, and #71's review found a THIRD
+    # (`catalog_targets_total`, checked only by a one-directional `<` that a hand-edit
+    # upward sailed through). Twice is a pattern: naming fields one at a time means the
+    # NEXT field `build_queue_lines()` starts writing is unverified by default, and stays
+    # that way until a reviewer happens to notice. So instead this is a table of equations,
+    # each one naming every declared field it touches, followed by a scan (below the table)
+    # of every summary number the committed file actually declares against that table: a
+    # number with no equation naming it fails --check on that fact alone, whether or not
+    # its value happens to be right today -- see the PROVE IT step in #70 for a synthetic
+    # field exercising exactly this path.
+    unheld_parts_actual = len(queue)
+    claims_unheld_actual = sum(int(e.get("authority_claims", 0)) for e in queue)
     # audit_only_parts (#64): rows whose cited_in is EXACTLY ["audits"] -- absent from
     # ERF's catalog entirely, so they sit outside scanned_targets (the catalog's own
-    # CFR-shaped subset) even though they are IN the queue. Checked against the queue's
-    # own rows, the same self-consistency style as every other number here.
+    # CFR-shaped subset) even though they are IN the queue.
     audit_only_actual = sum(1 for e in queue if e.get("cited_in") == ["audits"])
-    audit_only_declared = int(doc.get("audit_only_parts", -1))
-    if audit_only_declared != audit_only_actual:
-        problems.append(f"audit_only_parts: {audit_only_declared} does not match "
-                         f"{audit_only_actual} queue entries whose cited_in is exactly "
-                         f"['audits']")
 
-    scanned = int(doc.get("scanned_targets", -1))
-    held_n = int(doc.get("held_parts", -1))
-    if scanned != held_n + len(queue) - audit_only_actual:
-        problems.append(f"scanned_targets ({scanned}) does not equal "
-                         f"held_parts ({held_n}) + unheld_parts ({len(queue)}) - "
-                         f"audit_only_parts ({audit_only_actual})")
+    def d(key: str) -> int:
+        return int(doc.get(key, -1))
 
-    # The other two declared claim totals -- previously written but never verified, so a
-    # hand-edit to either one passed this gate silently. Checked the same way as
-    # total_authority_claims_unheld above: self-consistency against the OTHER declared
-    # numbers in this same file, not a re-scan.
-    claims_all = int(doc.get("total_authority_claims_all_parts", -1))
-    claims_held = int(doc.get("total_authority_claims_held", -1))
-    if claims_all != claims_held + claims_unheld:
-        problems.append(f"total_authority_claims_all_parts ({claims_all}) does not equal "
-                         f"total_authority_claims_held ({claims_held}) + "
-                         f"total_authority_claims_unheld ({claims_unheld})")
+    # (English description, whether it holds, every declared field name it verifies).
+    equations: list[tuple[str, bool, tuple[str, ...]]] = [
+        ("unheld_parts == the number of queue: entries",
+         d("unheld_parts") == unheld_parts_actual,
+         ("unheld_parts",)),
+        ("total_authority_claims_unheld == the sum of queue entries' authority_claims",
+         d("total_authority_claims_unheld") == claims_unheld_actual,
+         ("total_authority_claims_unheld",)),
+        ("audit_only_parts == the number of queue entries whose cited_in is exactly "
+         "['audits']",
+         d("audit_only_parts") == audit_only_actual,
+         ("audit_only_parts",)),
+        ("scanned_targets == held_parts + unheld_parts - audit_only_parts",
+         d("scanned_targets") == d("held_parts") + unheld_parts_actual - audit_only_actual,
+         ("scanned_targets", "held_parts")),
+        ("total_authority_claims_all_parts == total_authority_claims_held + "
+         "total_authority_claims_unheld",
+         d("total_authority_claims_all_parts")
+         == d("total_authority_claims_held") + claims_unheld_actual,
+         ("total_authority_claims_all_parts", "total_authority_claims_held")),
+        # #70: catalog_targets_total is the whole ERF catalog (CFR and non-CFR);
+        # scanned_targets is the CFR-shaped subset parse_cfr_citation() accepts.
+        # catalog_non_cfr_targets records the remainder build_queue_lines() filtered out
+        # (USC citations, named instruments like HIPAA/WIOA) so the two can be reconciled
+        # against each other, in both directions, the same as every other number here.
+        ("catalog_targets_total == scanned_targets + catalog_non_cfr_targets",
+         d("catalog_targets_total") == d("scanned_targets") + d("catalog_non_cfr_targets"),
+         ("catalog_targets_total", "catalog_non_cfr_targets")),
+    ]
+    for desc, ok, _fields in equations:
+        if not ok:
+            problems.append(f"{desc} does not hold")
 
-    # catalog_targets_total is the whole catalog (CFR and non-CFR); scanned_targets is the
-    # CFR-shaped subset build_queue_lines() actually ranks from. The subset can never
-    # exceed the whole it was filtered out of.
-    catalog_total = int(doc.get("catalog_targets_total", -1))
-    if catalog_total < scanned:
-        problems.append(f"catalog_targets_total ({catalog_total}) is less than "
-                         f"scanned_targets ({scanned}) -- the CFR-shaped subset cannot "
-                         f"exceed the catalog it was filtered from")
+    # THE STRUCTURAL HALF of #70's fix: every top-level field this file declares must be
+    # named by at least one equation above, whether or not that equation held. A summary
+    # number `build_queue_lines()` starts writing without a matching equation here is
+    # "declared but unverified" -- exactly `catalog_targets_total`'s shape of gap -- and
+    # this reports it on that basis alone, so the NEXT added number cannot repeat it
+    # silently.
+    #
+    # Code review of #71: this used to filter on `isinstance(v, int)`, so a new field
+    # written as a float, a quoted string, a list, or a mapping was invisible to it and
+    # passed --check silently -- narrower than a "declared but unverified" scan should be.
+    # There is no legitimate top-level field in this file besides the declared summary
+    # numbers and `queue` itself (already excluded), so the scan no longer filters by type
+    # at all: every top-level key is either named by an equation above or reported here,
+    # whatever shape its value takes.
+    covered = {name for _, _, fields in equations for name in fields}
+    declared = set(doc) - {"queue"}
+    unverified = sorted(declared - covered)
+    if unverified:
+        problems.append(f"declared summary number(s) with no --check equation verifying "
+                         f"them: {unverified} -- add an equation to check_queue()'s "
+                         f"`equations` table")
 
     if problems:
         for p in problems:
@@ -753,7 +865,7 @@ def check_queue() -> int:
         print(f"\nRe-run: python3 src/scan_cited_sections.py --erf ../executive-regulatory-frameworks "
               f"--audits ../oregon-audits", file=sys.stderr)
         return 1
-    print(f"  {QUEUE_OUT.relative_to(ROOT)}: header current, {len(queue)} entries "
+    print(f"  {_display_path(QUEUE_OUT)}: header current, {len(queue)} entries "
           f"internally consistent, none held")
     return 0
 
