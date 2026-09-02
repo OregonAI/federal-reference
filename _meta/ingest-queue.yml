@@ -40,8 +40,20 @@
 # audit_only_parts. Each row's `cited_in` names which source(s) ("erf", "audits")
 # contributed its `mentions`, so a reader can tell a part auditors discuss from one
 # a rule actually claims.
+#
+# #69: `mentions` is a SUM; `mentions_erf` and `mentions_audits` are the two addends
+# it sums, carried alongside it on every row so the split a merged row's `mentions`
+# would otherwise discard is visible without re-running this scan against a sibling
+# checkout. mentions_erf + mentions_audits == mentions always; cited_in names a
+# source only where that source's own mentions_* is nonzero.
 
 catalog_targets_total: 1358
+# #70: the non-CFR remainder of catalog_targets_total -- USC citations and named
+# instruments (HIPAA, WIOA, ...) that parse_cfr_citation() correctly excludes from
+# scanned_targets below. catalog_targets_total == scanned_targets +
+# catalog_non_cfr_targets, checked by --check the same way every other declared
+# number here is checked against a sibling number in this file.
+catalog_non_cfr_targets: 783
 scanned_targets: 575
 held_parts: 2
 audit_only_parts: 11
@@ -57,2919 +69,4087 @@ queue:
     citation: "7 CFR 273"
     authority_claims: 33
     mentions: 57
+    mentions_erf: 57
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "34-cfr-99"
     citation: "34 CFR 99"
     authority_claims: 27
     mentions: 39
+    mentions_erf: 39
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "34-cfr-303"
     citation: "34 CFR 303"
     authority_claims: 20
     mentions: 28
+    mentions_erf: 28
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-1520"
     citation: "49 CFR 1520"
     authority_claims: 19
     mentions: 21
+    mentions_erf: 21
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-15"
     citation: "49 CFR 15"
     authority_claims: 19
     mentions: 20
+    mentions_erf: 20
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-260"
     citation: "45 CFR 260"
     authority_claims: 17
     mentions: 22
+    mentions_erf: 22
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-435"
     citation: "42 CFR 435"
     authority_claims: 16
     mentions: 69
+    mentions_erf: 50
+    mentions_audits: 19
     cited_in: ["audits", "erf"]
   - part_id: "17-cfr-230"
     citation: "17 CFR 230"
     authority_claims: 16
     mentions: 32
+    mentions_erf: 32
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-400"
     citation: "45 CFR 400"
     authority_claims: 16
     mentions: 17
+    mentions_erf: 16
+    mentions_audits: 1
     cited_in: ["audits", "erf"]
   - part_id: "49-cfr-674"
     citation: "49 CFR 674"
     authority_claims: 16
     mentions: 17
+    mentions_erf: 17
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-670"
     citation: "49 CFR 670"
     authority_claims: 16
     mentions: 16
+    mentions_erf: 16
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-671"
     citation: "49 CFR 671"
     authority_claims: 16
     mentions: 16
+    mentions_erf: 16
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-672"
     citation: "49 CFR 672"
     authority_claims: 16
     mentions: 16
+    mentions_erf: 16
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-673"
     citation: "49 CFR 673"
     authority_claims: 16
     mentions: 16
+    mentions_erf: 16
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-210"
     citation: "7 CFR 210"
     authority_claims: 15
     mentions: 26
+    mentions_erf: 26
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "28-cfr-23"
     citation: "28 CFR 23"
     authority_claims: 15
     mentions: 16
+    mentions_erf: 16
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "24-cfr-576"
     citation: "24 CFR 576"
     authority_claims: 14
     mentions: 31
+    mentions_erf: 25
+    mentions_audits: 6
     cited_in: ["audits", "erf"]
   - part_id: "49-cfr-580"
     citation: "49 CFR 580"
     authority_claims: 14
     mentions: 15
+    mentions_erf: 15
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-383"
     citation: "49 CFR 383"
     authority_claims: 13
     mentions: 24
+    mentions_erf: 24
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "6-cfr-37"
     citation: "6 CFR 37"
     authority_claims: 12
     mentions: 25
+    mentions_erf: 25
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-220"
     citation: "7 CFR 220"
     authority_claims: 12
     mentions: 20
+    mentions_erf: 20
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-226"
     citation: "7 CFR 226"
     authority_claims: 12
     mentions: 19
+    mentions_erf: 19
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-84"
     citation: "45 CFR 84"
     authority_claims: 11
     mentions: 29
+    mentions_erf: 29
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-225"
     citation: "7 CFR 225"
     authority_claims: 10
     mentions: 17
+    mentions_erf: 17
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "28-cfr-35"
     citation: "28 CFR 35"
     authority_claims: 9
     mentions: 23
+    mentions_erf: 23
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-600"
     citation: "42 CFR 600"
     authority_claims: 9
     mentions: 15
+    mentions_erf: 14
+    mentions_audits: 1
     cited_in: ["audits", "erf"]
   - part_id: "42-cfr-433"
     citation: "42 CFR 433"
     authority_claims: 8
     mentions: 36
+    mentions_erf: 25
+    mentions_audits: 11
     cited_in: ["audits", "erf"]
   - part_id: "45-cfr-261"
     citation: "45 CFR 261"
     authority_claims: 8
     mentions: 31
+    mentions_erf: 21
+    mentions_audits: 10
     cited_in: ["audits", "erf"]
   - part_id: "10-cfr-440"
     citation: "10 CFR 440"
     authority_claims: 8
     mentions: 11
+    mentions_erf: 11
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-250"
     citation: "7 CFR 250"
     authority_claims: 8
     mentions: 10
+    mentions_erf: 10
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-440"
     citation: "42 CFR 440"
     authority_claims: 7
     mentions: 21
+    mentions_erf: 21
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "23-cfr-645"
     citation: "23 CFR 645"
     authority_claims: 7
     mentions: 7
+    mentions_erf: 7
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-280"
     citation: "7 CFR 280"
     authority_claims: 7
     mentions: 7
+    mentions_erf: 7
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-248"
     citation: "7 CFR 248"
     authority_claims: 6
     mentions: 15
+    mentions_erf: 15
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-249"
     citation: "7 CFR 249"
     authority_claims: 6
     mentions: 14
+    mentions_erf: 14
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-98"
     citation: "45 CFR 98"
     authority_claims: 3
     mentions: 16
+    mentions_erf: 8
+    mentions_audits: 8
     cited_in: ["audits", "erf"]
   - part_id: "17-cfr-227"
     citation: "17 CFR 227"
     authority_claims: 3
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-164"
     citation: "45 CFR 164"
     authority_claims: 2
     mentions: 106
+    mentions_erf: 106
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-571"
     citation: "49 CFR 571"
     authority_claims: 2
     mentions: 29
+    mentions_erf: 29
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-391"
     citation: "49 CFR 391"
     authority_claims: 2
     mentions: 17
+    mentions_erf: 17
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "24-cfr-5"
     citation: "24 CFR 5"
     authority_claims: 2
     mentions: 7
+    mentions_erf: 7
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "28-cfr-25"
     citation: "28 CFR 25"
     authority_claims: 2
     mentions: 5
+    mentions_erf: 5
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-263"
     citation: "45 CFR 263"
     authority_claims: 2
     mentions: 4
+    mentions_erf: 2
+    mentions_audits: 2
     cited_in: ["audits", "erf"]
   - part_id: "21-cfr-1143"
     citation: "21 CFR 1143"
     authority_claims: 2
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-274"
     citation: "7 CFR 274"
     authority_claims: 2
     mentions: 3
+    mentions_erf: 2
+    mentions_audits: 1
     cited_in: ["audits", "erf"]
   - part_id: "40-cfr-52"
     citation: "40 CFR 52"
     authority_claims: 2
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-400"
     citation: "42 CFR 400"
     authority_claims: 2
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-206"
     citation: "45 CFR 206"
     authority_claims: 2
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-155"
     citation: "45 CFR 155"
     authority_claims: 1
     mentions: 117
+    mentions_erf: 25
+    mentions_audits: 92
     cited_in: ["audits", "erf"]
   - part_id: "42-cfr-438"
     citation: "42 CFR 438"
     authority_claims: 1
     mentions: 90
+    mentions_erf: 87
+    mentions_audits: 3
     cited_in: ["audits", "erf"]
   - part_id: "42-cfr-441"
     citation: "42 CFR 441"
     authority_claims: 1
     mentions: 48
+    mentions_erf: 47
+    mentions_audits: 1
     cited_in: ["audits", "erf"]
   - part_id: "42-cfr-431"
     citation: "42 CFR 431"
     authority_claims: 1
     mentions: 31
+    mentions_erf: 28
+    mentions_audits: 3
     cited_in: ["audits", "erf"]
   - part_id: "45-cfr-75"
     citation: "45 CFR 75"
     authority_claims: 1
     mentions: 31
+    mentions_erf: 3
+    mentions_audits: 28
     cited_in: ["audits", "erf"]
   - part_id: "45-cfr-156"
     citation: "45 CFR 156"
     authority_claims: 1
     mentions: 21
+    mentions_erf: 21
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-382"
     citation: "49 CFR 382"
     authority_claims: 1
     mentions: 20
+    mentions_erf: 20
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "34-cfr-395"
     citation: "34 CFR 395"
     authority_claims: 1
     mentions: 18
+    mentions_erf: 18
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "29-cfr-825"
     citation: "29 CFR 825"
     authority_claims: 1
     mentions: 15
+    mentions_erf: 15
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-763"
     citation: "40 CFR 763"
     authority_claims: 1
     mentions: 11
+    mentions_erf: 11
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "20-cfr-416"
     citation: "20 CFR 416"
     authority_claims: 1
     mentions: 8
+    mentions_erf: 8
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "29-cfr-37"
     citation: "29 CFR 37"
     authority_claims: 1
     mentions: 6
+    mentions_erf: 6
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-305"
     citation: "45 CFR 305"
     authority_claims: 1
     mentions: 6
+    mentions_erf: 6
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "28-cfr-42"
     citation: "28 CFR 42"
     authority_claims: 1
     mentions: 5
+    mentions_erf: 5
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "24-cfr-266"
     citation: "24 CFR 266"
     authority_claims: 1
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-302"
     citation: "45 CFR 302"
     authority_claims: 1
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-245"
     citation: "7 CFR 245"
     authority_claims: 1
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "34-cfr-104"
     citation: "34 CFR 104"
     authority_claims: 1
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-380"
     citation: "49 CFR 380"
     authority_claims: 1
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-384"
     citation: "49 CFR 384"
     authority_claims: 1
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-392"
     citation: "49 CFR 392"
     authority_claims: 1
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-541"
     citation: "12 CFR 541"
     authority_claims: 1
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "25-cfr-35"
     citation: "25 CFR 35"
     authority_claims: 1
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "34-cfr-299"
     citation: "34 CFR 299"
     authority_claims: 1
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "34-cfr-301"
     citation: "34 CFR 301"
     authority_claims: 1
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "34-cfr-76"
     citation: "34 CFR 76"
     authority_claims: 1
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "38-cfr-3"
     citation: "38 CFR 3"
     authority_claims: 1
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-386"
     citation: "49 CFR 386"
     authority_claims: 1
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-272"
     citation: "7 CFR 272"
     authority_claims: 1
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "29-cfr-1910"
     citation: "29 CFR 1910"
     authority_claims: 0
     mentions: 310
+    mentions_erf: 310
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "29-cfr-1926"
     citation: "29 CFR 1926"
     authority_claims: 0
     mentions: 250
+    mentions_erf: 250
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-60"
     citation: "40 CFR 60"
     authority_claims: 0
     mentions: 245
+    mentions_erf: 245
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "29-cfr-1915"
     citation: "29 CFR 1915"
     authority_claims: 0
     mentions: 128
+    mentions_erf: 128
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-503"
     citation: "40 CFR 503"
     authority_claims: 0
     mentions: 112
+    mentions_erf: 112
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-482"
     citation: "42 CFR 482"
     authority_claims: 0
     mentions: 92
+    mentions_erf: 92
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-264"
     citation: "40 CFR 264"
     authority_claims: 0
     mentions: 85
+    mentions_erf: 85
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "34-cfr-361"
     citation: "34 CFR 361"
     authority_claims: 0
     mentions: 82
+    mentions_erf: 79
+    mentions_audits: 3
     cited_in: ["audits", "erf"]
   - part_id: "42-cfr-455"
     citation: "42 CFR 455"
     authority_claims: 0
     mentions: 79
+    mentions_erf: 55
+    mentions_audits: 24
     cited_in: ["audits", "erf"]
   - part_id: "40-cfr-261"
     citation: "40 CFR 261"
     authority_claims: 0
     mentions: 74
+    mentions_erf: 74
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-46"
     citation: "45 CFR 46"
     authority_claims: 0
     mentions: 73
+    mentions_erf: 73
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "29-cfr-1917"
     citation: "29 CFR 1917"
     authority_claims: 0
     mentions: 72
+    mentions_erf: 72
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-745"
     citation: "40 CFR 745"
     authority_claims: 0
     mentions: 72
+    mentions_erf: 72
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "29-cfr-1918"
     citation: "29 CFR 1918"
     authority_claims: 0
     mentions: 63
+    mentions_erf: 63
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-170"
     citation: "40 CFR 170"
     authority_claims: 0
     mentions: 60
+    mentions_erf: 60
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-226"
     citation: "12 CFR 226"
     authority_claims: 0
     mentions: 59
+    mentions_erf: 59
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-122"
     citation: "40 CFR 122"
     authority_claims: 0
     mentions: 58
+    mentions_erf: 58
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-160"
     citation: "45 CFR 160"
     authority_claims: 0
     mentions: 52
+    mentions_erf: 52
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-20"
     citation: "10 CFR 20"
     authority_claims: 0
     mentions: 51
+    mentions_erf: 51
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-11"
     citation: "42 CFR 11"
     authority_claims: 0
     mentions: 49
+    mentions_erf: 49
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-63"
     citation: "40 CFR 63"
     authority_claims: 0
     mentions: 43
+    mentions_erf: 43
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-2"
     citation: "42 CFR 2"
     authority_claims: 0
     mentions: 40
+    mentions_erf: 39
+    mentions_audits: 1
     cited_in: ["audits", "erf"]
   - part_id: "40-cfr-273"
     citation: "40 CFR 273"
     authority_claims: 0
     mentions: 39
+    mentions_erf: 39
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-71"
     citation: "10 CFR 71"
     authority_claims: 0
     mentions: 36
+    mentions_erf: 36
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-270"
     citation: "40 CFR 270"
     authority_claims: 0
     mentions: 35
+    mentions_erf: 35
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-98"
     citation: "40 CFR 98"
     authority_claims: 0
     mentions: 35
+    mentions_erf: 35
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-262"
     citation: "40 CFR 262"
     authority_claims: 0
     mentions: 34
+    mentions_erf: 34
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-1306"
     citation: "21 CFR 1306"
     authority_claims: 0
     mentions: 31
+    mentions_erf: 31
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "36-cfr-60"
     citation: "36 CFR 60"
     authority_claims: 0
     mentions: 30
+    mentions_erf: 30
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-280"
     citation: "40 CFR 280"
     authority_claims: 0
     mentions: 30
+    mentions_erf: 30
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-93"
     citation: "40 CFR 93"
     authority_claims: 0
     mentions: 30
+    mentions_erf: 30
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-32"
     citation: "10 CFR 32"
     authority_claims: 0
     mentions: 29
+    mentions_erf: 29
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-260"
     citation: "40 CFR 260"
     authority_claims: 0
     mentions: 29
+    mentions_erf: 29
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "15-cfr-930"
     citation: "15 CFR 930"
     authority_claims: 0
     mentions: 28
+    mentions_erf: 28
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-495"
     citation: "42 CFR 495"
     authority_claims: 0
     mentions: 28
+    mentions_erf: 28
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-1305"
     citation: "21 CFR 1305"
     authority_claims: 0
     mentions: 26
+    mentions_erf: 26
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-1317"
     citation: "21 CFR 1317"
     authority_claims: 0
     mentions: 26
+    mentions_erf: 26
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "26-cfr-1"
     citation: "26 CFR 1"
     authority_claims: 0
     mentions: 26
+    mentions_erf: 26
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-1304"
     citation: "21 CFR 1304"
     authority_claims: 0
     mentions: 25
+    mentions_erf: 25
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "24-cfr-92"
     citation: "24 CFR 92"
     authority_claims: 0
     mentions: 25
+    mentions_erf: 25
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-279"
     citation: "40 CFR 279"
     authority_claims: 0
     mentions: 24
+    mentions_erf: 24
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-30"
     citation: "10 CFR 30"
     authority_claims: 0
     mentions: 23
+    mentions_erf: 23
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "36-cfr-800"
     citation: "36 CFR 800"
     authority_claims: 0
     mentions: 23
+    mentions_erf: 23
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-483"
     citation: "42 CFR 483"
     authority_claims: 0
     mentions: 23
+    mentions_erf: 22
+    mentions_audits: 1
     cited_in: ["audits", "erf"]
   - part_id: "42-cfr-93"
     citation: "42 CFR 93"
     authority_claims: 0
     mentions: 22
+    mentions_erf: 22
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-202"
     citation: "12 CFR 202"
     authority_claims: 0
     mentions: 21
+    mentions_erf: 21
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-162"
     citation: "45 CFR 162"
     authority_claims: 0
     mentions: 21
+    mentions_erf: 21
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-131"
     citation: "40 CFR 131"
     authority_claims: 0
     mentions: 20
+    mentions_erf: 20
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-1301"
     citation: "21 CFR 1301"
     authority_claims: 0
     mentions: 19
+    mentions_erf: 19
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-265"
     citation: "40 CFR 265"
     authority_claims: 0
     mentions: 19
+    mentions_erf: 19
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-447"
     citation: "42 CFR 447"
     authority_claims: 0
     mentions: 19
+    mentions_erf: 12
+    mentions_audits: 7
     cited_in: ["audits", "erf"]
   - part_id: "24-cfr-3280"
     citation: "24 CFR 3280"
     authority_claims: 0
     mentions: 18
+    mentions_erf: 18
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-761"
     citation: "40 CFR 761"
     authority_claims: 0
     mentions: 18
+    mentions_erf: 18
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-489"
     citation: "42 CFR 489"
     authority_claims: 0
     mentions: 17
+    mentions_erf: 17
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-205"
     citation: "45 CFR 205"
     authority_claims: 0
     mentions: 17
+    mentions_erf: 16
+    mentions_audits: 1
     cited_in: ["audits", "erf"]
   - part_id: "40-cfr-258"
     citation: "40 CFR 258"
     authority_claims: 0
     mentions: 16
+    mentions_erf: 16
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-173"
     citation: "49 CFR 173"
     authority_claims: 0
     mentions: 16
+    mentions_erf: 16
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-455"
     citation: "10 CFR 455"
     authority_claims: 0
     mentions: 15
+    mentions_erf: 15
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-112"
     citation: "40 CFR 112"
     authority_claims: 0
     mentions: 15
+    mentions_erf: 15
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-124"
     citation: "40 CFR 124"
     authority_claims: 0
     mentions: 15
+    mentions_erf: 15
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-460"
     citation: "42 CFR 460"
     authority_claims: 0
     mentions: 15
+    mentions_erf: 15
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "2-cfr-170"
     citation: "2 CFR 170"
     authority_claims: 0
     mentions: 14
+    mentions_erf: 0
+    mentions_audits: 14
     cited_in: ["audits"]
   - part_id: "21-cfr-1314"
     citation: "21 CFR 1314"
     authority_claims: 0
     mentions: 14
+    mentions_erf: 14
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-493"
     citation: "42 CFR 493"
     authority_claims: 0
     mentions: 14
+    mentions_erf: 14
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-1308"
     citation: "21 CFR 1308"
     authority_claims: 0
     mentions: 13
+    mentions_erf: 13
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-1026"
     citation: "12 CFR 1026"
     authority_claims: 0
     mentions: 12
+    mentions_erf: 12
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "16-cfr-306"
     citation: "16 CFR 306"
     authority_claims: 0
     mentions: 12
+    mentions_erf: 12
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-136"
     citation: "40 CFR 136"
     authority_claims: 0
     mentions: 12
+    mentions_erf: 12
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-51"
     citation: "40 CFR 51"
     authority_claims: 0
     mentions: 12
+    mentions_erf: 12
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "46-cfr-25"
     citation: "46 CFR 25"
     authority_claims: 0
     mentions: 12
+    mentions_erf: 12
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "25-cfr-23"
     citation: "25 CFR 23"
     authority_claims: 0
     mentions: 11
+    mentions_erf: 11
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-266"
     citation: "40 CFR 266"
     authority_claims: 0
     mentions: 11
+    mentions_erf: 11
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "47-cfr-54"
     citation: "47 CFR 54"
     authority_claims: 0
     mentions: 11
+    mentions_erf: 11
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "16-cfr-1700"
     citation: "16 CFR 1700"
     authority_claims: 0
     mentions: 10
+    mentions_erf: 10
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "17-cfr-240"
     citation: "17 CFR 240"
     authority_claims: 0
     mentions: 10
+    mentions_erf: 10
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "20-cfr-404"
     citation: "20 CFR 404"
     authority_claims: 0
     mentions: 10
+    mentions_erf: 10
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-312"
     citation: "21 CFR 312"
     authority_claims: 0
     mentions: 10
+    mentions_erf: 10
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-416"
     citation: "42 CFR 416"
     authority_claims: 0
     mentions: 10
+    mentions_erf: 10
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-50"
     citation: "42 CFR 50"
     authority_claims: 0
     mentions: 10
+    mentions_erf: 10
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-146"
     citation: "45 CFR 146"
     authority_claims: 0
     mentions: 10
+    mentions_erf: 10
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-172"
     citation: "49 CFR 172"
     authority_claims: 0
     mentions: 10
+    mentions_erf: 10
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-73"
     citation: "10 CFR 73"
     authority_claims: 0
     mentions: 9
+    mentions_erf: 9
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-101"
     citation: "21 CFR 101"
     authority_claims: 0
     mentions: 9
+    mentions_erf: 9
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "27-cfr-9"
     citation: "27 CFR 9"
     authority_claims: 0
     mentions: 9
+    mentions_erf: 9
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "31-cfr-315"
     citation: "31 CFR 315"
     authority_claims: 0
     mentions: 9
+    mentions_erf: 9
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "31-cfr-353"
     citation: "31 CFR 353"
     authority_claims: 0
     mentions: 9
+    mentions_erf: 9
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "31-cfr-360"
     citation: "31 CFR 360"
     authority_claims: 0
     mentions: 9
+    mentions_erf: 9
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-141"
     citation: "40 CFR 141"
     authority_claims: 0
     mentions: 9
+    mentions_erf: 9
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-390"
     citation: "49 CFR 390"
     authority_claims: 0
     mentions: 9
+    mentions_erf: 9
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-301"
     citation: "7 CFR 301"
     authority_claims: 0
     mentions: 9
+    mentions_erf: 9
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "9-cfr-381"
     citation: "9 CFR 381"
     authority_claims: 0
     mentions: 9
+    mentions_erf: 9
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-418"
     citation: "42 CFR 418"
     authority_claims: 0
     mentions: 8
+    mentions_erf: 8
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-265"
     citation: "45 CFR 265"
     authority_claims: 0
     mentions: 8
+    mentions_erf: 0
+    mentions_audits: 8
     cited_in: ["audits"]
   - part_id: "49-cfr-40"
     citation: "49 CFR 40"
     authority_claims: 0
     mentions: 8
+    mentions_erf: 8
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-246"
     citation: "7 CFR 246"
     authority_claims: 0
     mentions: 8
+    mentions_erf: 8
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-211"
     citation: "10 CFR 211"
     authority_claims: 0
     mentions: 7
+    mentions_erf: 7
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-50"
     citation: "10 CFR 50"
     authority_claims: 0
     mentions: 7
+    mentions_erf: 7
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-1024"
     citation: "12 CFR 1024"
     authority_claims: 0
     mentions: 7
+    mentions_erf: 7
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-1300"
     citation: "21 CFR 1300"
     authority_claims: 0
     mentions: 7
+    mentions_erf: 7
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "24-cfr-3282"
     citation: "24 CFR 3282"
     authority_claims: 0
     mentions: 7
+    mentions_erf: 7
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-130"
     citation: "40 CFR 130"
     authority_claims: 0
     mentions: 7
+    mentions_erf: 7
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-268"
     citation: "40 CFR 268"
     authority_claims: 0
     mentions: 7
+    mentions_erf: 7
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-89"
     citation: "40 CFR 89"
     authority_claims: 0
     mentions: 7
+    mentions_erf: 7
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-1001"
     citation: "42 CFR 1001"
     authority_claims: 0
     mentions: 7
+    mentions_erf: 7
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-264"
     citation: "45 CFR 264"
     authority_claims: 0
     mentions: 7
+    mentions_erf: 0
+    mentions_audits: 7
     cited_in: ["audits"]
   - part_id: "45-cfr-303"
     citation: "45 CFR 303"
     authority_claims: 0
     mentions: 7
+    mentions_erf: 7
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-92"
     citation: "45 CFR 92"
     authority_claims: 0
     mentions: 7
+    mentions_erf: 6
+    mentions_audits: 1
     cited_in: ["audits", "erf"]
   - part_id: "10-cfr-61"
     citation: "10 CFR 61"
     authority_claims: 0
     mentions: 6
+    mentions_erf: 6
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-362"
     citation: "12 CFR 362"
     authority_claims: 0
     mentions: 6
+    mentions_erf: 6
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-117"
     citation: "21 CFR 117"
     authority_claims: 0
     mentions: 6
+    mentions_erf: 6
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "24-cfr-3500"
     citation: "24 CFR 3500"
     authority_claims: 0
     mentions: 6
+    mentions_erf: 6
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "29-cfr-29"
     citation: "29 CFR 29"
     authority_claims: 0
     mentions: 6
+    mentions_erf: 5
+    mentions_audits: 1
     cited_in: ["audits", "erf"]
   - part_id: "33-cfr-154"
     citation: "33 CFR 154"
     authority_claims: 0
     mentions: 6
+    mentions_erf: 6
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "36-cfr-61"
     citation: "36 CFR 61"
     authority_claims: 0
     mentions: 6
+    mentions_erf: 6
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-133"
     citation: "40 CFR 133"
     authority_claims: 0
     mentions: 6
+    mentions_erf: 6
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-61"
     citation: "40 CFR 61"
     authority_claims: 0
     mentions: 6
+    mentions_erf: 6
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-420"
     citation: "42 CFR 420"
     authority_claims: 0
     mentions: 6
+    mentions_erf: 6
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-424"
     citation: "42 CFR 424"
     authority_claims: 0
     mentions: 6
+    mentions_erf: 6
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-158"
     citation: "45 CFR 158"
     authority_claims: 0
     mentions: 6
+    mentions_erf: 6
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "46-cfr-180"
     citation: "46 CFR 180"
     authority_claims: 0
     mentions: 6
+    mentions_erf: 6
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-171"
     citation: "49 CFR 171"
     authority_claims: 0
     mentions: 6
+    mentions_erf: 6
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "9-cfr-86"
     citation: "9 CFR 86"
     authority_claims: 0
     mentions: 6
+    mentions_erf: 6
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-31"
     citation: "10 CFR 31"
     authority_claims: 0
     mentions: 5
+    mentions_erf: 5
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-72"
     citation: "10 CFR 72"
     authority_claims: 0
     mentions: 5
+    mentions_erf: 5
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-1008"
     citation: "12 CFR 1008"
     authority_claims: 0
     mentions: 5
+    mentions_erf: 5
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "14-cfr-135"
     citation: "14 CFR 135"
     authority_claims: 0
     mentions: 5
+    mentions_erf: 5
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "16-cfr-1701"
     citation: "16 CFR 1701"
     authority_claims: 0
     mentions: 5
+    mentions_erf: 5
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "16-cfr-1702"
     citation: "16 CFR 1702"
     authority_claims: 0
     mentions: 5
+    mentions_erf: 5
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "2-cfr-180"
     citation: "2 CFR 180"
     authority_claims: 0
     mentions: 5
+    mentions_erf: 0
+    mentions_audits: 5
     cited_in: ["audits"]
   - part_id: "21-cfr-1020"
     citation: "21 CFR 1020"
     authority_claims: 0
     mentions: 5
+    mentions_erf: 5
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-1040"
     citation: "21 CFR 1040"
     authority_claims: 0
     mentions: 5
+    mentions_erf: 5
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-50"
     citation: "21 CFR 50"
     authority_claims: 0
     mentions: 5
+    mentions_erf: 5
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "23-cfr-450"
     citation: "23 CFR 450"
     authority_claims: 0
     mentions: 5
+    mentions_erf: 5
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "29-cfr-1630"
     citation: "29 CFR 1630"
     authority_claims: 0
     mentions: 5
+    mentions_erf: 5
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-355"
     citation: "40 CFR 355"
     authority_claims: 0
     mentions: 5
+    mentions_erf: 5
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-136"
     citation: "42 CFR 136"
     authority_claims: 0
     mentions: 5
+    mentions_erf: 5
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-423"
     citation: "42 CFR 423"
     authority_claims: 0
     mentions: 5
+    mentions_erf: 5
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-484"
     citation: "42 CFR 484"
     authority_claims: 0
     mentions: 5
+    mentions_erf: 5
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-1356"
     citation: "45 CFR 1356"
     authority_claims: 0
     mentions: 5
+    mentions_erf: 2
+    mentions_audits: 3
     cited_in: ["audits", "erf"]
   - part_id: "45-cfr-170"
     citation: "45 CFR 170"
     authority_claims: 0
     mentions: 5
+    mentions_erf: 5
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "46-cfr-184"
     citation: "46 CFR 184"
     authority_claims: 0
     mentions: 5
+    mentions_erf: 5
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "50-cfr-21"
     citation: "50 CFR 21"
     authority_claims: 0
     mentions: 5
+    mentions_erf: 5
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-110"
     citation: "10 CFR 110"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-150"
     citation: "10 CFR 150"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-70"
     citation: "10 CFR 70"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "14-cfr-43"
     citation: "14 CFR 43"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "18-cfr-292"
     citation: "18 CFR 292"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "20-cfr-1002"
     citation: "20 CFR 1002"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-179"
     citation: "21 CFR 179"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "24-cfr-813"
     citation: "24 CFR 813"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "26-cfr-31"
     citation: "26 CFR 31"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "27-cfr-478"
     citation: "27 CFR 478"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "29-cfr-30"
     citation: "29 CFR 30"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-1039"
     citation: "40 CFR 1039"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-302"
     citation: "40 CFR 302"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-50"
     citation: "40 CFR 50"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-501"
     citation: "40 CFR 501"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-68"
     citation: "40 CFR 68"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-82"
     citation: "40 CFR 82"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-85"
     citation: "40 CFR 85"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "41-cfr-60"
     citation: "41 CFR 60"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-1002"
     citation: "42 CFR 1002"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-401"
     citation: "42 CFR 401"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-412"
     citation: "42 CFR 412"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-84"
     citation: "42 CFR 84"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-95"
     citation: "45 CFR 95"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 0
+    mentions_audits: 4
     cited_in: ["audits"]
   - part_id: "46-cfr-182"
     citation: "46 CFR 182"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "46-cfr-185"
     citation: "46 CFR 185"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "46-cfr-26"
     citation: "46 CFR 26"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "47-cfr-9"
     citation: "47 CFR 9"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-1542"
     citation: "49 CFR 1542"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-178"
     citation: "49 CFR 178"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "5-cfr-213"
     citation: "5 CFR 213"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "50-cfr-10"
     citation: "50 CFR 10"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 4
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-251"
     citation: "7 CFR 251"
     authority_claims: 0
     mentions: 4
+    mentions_erf: 3
+    mentions_audits: 1
     cited_in: ["audits", "erf"]
   - part_id: "14-cfr-1"
     citation: "14 CFR 1"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "14-cfr-21"
     citation: "14 CFR 21"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "16-cfr-453"
     citation: "16 CFR 453"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 1
+    mentions_audits: 2
     cited_in: ["audits", "erf"]
   - part_id: "2-cfr-225"
     citation: "2 CFR 225"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-1307"
     citation: "21 CFR 1307"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-892"
     citation: "21 CFR 892"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "24-cfr-91"
     citation: "24 CFR 91"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "24-cfr-94"
     citation: "24 CFR 94"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "28-cfr-115"
     citation: "28 CFR 115"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "31-cfr-205"
     citation: "31 CFR 205"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 1
+    mentions_audits: 2
     cited_in: ["audits", "erf"]
   - part_id: "31-cfr-285"
     citation: "31 CFR 285"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "33-cfr-151"
     citation: "33 CFR 151"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "33-cfr-83"
     citation: "33 CFR 83"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "34-cfr-363"
     citation: "34 CFR 363"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-1090"
     citation: "40 CFR 1090"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-263"
     citation: "40 CFR 263"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-35"
     citation: "40 CFR 35"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-370"
     citation: "40 CFR 370"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-6"
     citation: "40 CFR 6"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-62"
     citation: "40 CFR 62"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-86"
     citation: "40 CFR 86"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "41-cfr-101"
     citation: "41 CFR 101"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-403"
     citation: "42 CFR 403"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-413"
     citation: "42 CFR 413"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-422"
     citation: "42 CFR 422"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-457"
     citation: "42 CFR 457"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-488"
     citation: "42 CFR 488"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 2
+    mentions_audits: 1
     cited_in: ["audits", "erf"]
   - part_id: "42-cfr-71"
     citation: "42 CFR 71"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-8"
     citation: "42 CFR 8"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-147"
     citation: "45 CFR 147"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-76"
     citation: "45 CFR 76"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-96"
     citation: "45 CFR 96"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 1
+    mentions_audits: 2
     cited_in: ["audits", "erf"]
   - part_id: "47-cfr-20"
     citation: "47 CFR 20"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "47-cfr-8"
     citation: "47 CFR 8"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-1201"
     citation: "49 CFR 1201"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-1572"
     citation: "49 CFR 1572"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-26"
     citation: "49 CFR 26"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-385"
     citation: "49 CFR 385"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "50-cfr-80"
     citation: "50 CFR 80"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 1
+    mentions_audits: 2
     cited_in: ["audits", "erf"]
   - part_id: "7-cfr-51"
     citation: "7 CFR 51"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-65"
     citation: "7 CFR 65"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "8-cfr-214"
     citation: "8 CFR 214"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 3
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "8-cfr-274a"
     citation: "8 CFR 274a"
     authority_claims: 0
     mentions: 3
+    mentions_erf: 1
+    mentions_audits: 2
     cited_in: ["audits", "erf"]
   - part_id: "10-cfr-205"
     citation: "10 CFR 205"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-37"
     citation: "10 CFR 37"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-40"
     citation: "10 CFR 40"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-600"
     citation: "10 CFR 600"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-1022"
     citation: "12 CFR 1022"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-1266"
     citation: "12 CFR 1266"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-325"
     citation: "12 CFR 325"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-702"
     citation: "12 CFR 702"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-704"
     citation: "12 CFR 704"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "14-cfr-133"
     citation: "14 CFR 133"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "14-cfr-145"
     citation: "14 CFR 145"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "14-cfr-150"
     citation: "14 CFR 150"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "16-cfr-1207"
     citation: "16 CFR 1207"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "16-cfr-310"
     citation: "16 CFR 310"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "16-cfr-436"
     citation: "16 CFR 436"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "17-cfr-275"
     citation: "17 CFR 275"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-114"
     citation: "21 CFR 114"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-129"
     citation: "21 CFR 129"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-182"
     citation: "21 CFR 182"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-3"
     citation: "21 CFR 3"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-56"
     citation: "21 CFR 56"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-701"
     citation: "21 CFR 701"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-800"
     citation: "21 CFR 800"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-812"
     citation: "21 CFR 812"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-860"
     citation: "21 CFR 860"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "22-cfr-41"
     citation: "22 CFR 41"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "23-cfr-650"
     citation: "23 CFR 650"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "24-cfr-570"
     citation: "24 CFR 570"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "26-cfr-301"
     citation: "26 CFR 301"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "27-cfr-555"
     citation: "27 CFR 555"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "28-cfr-36"
     citation: "28 CFR 36"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "29-cfr-1928"
     citation: "29 CFR 1928"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "29-cfr-579"
     citation: "29 CFR 579"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "33-cfr-183"
     citation: "33 CFR 183"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "34-cfr-100"
     citation: "34 CFR 100"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "38-cfr-14"
     citation: "38 CFR 14"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "38-cfr-4"
     citation: "38 CFR 4"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "38-cfr-51"
     citation: "38 CFR 51"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 0
+    mentions_audits: 2
     cited_in: ["audits"]
   - part_id: "40-cfr-1033"
     citation: "40 CFR 1033"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-109"
     citation: "40 CFR 109"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-180"
     citation: "40 CFR 180"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-190"
     citation: "40 CFR 190"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-199"
     citation: "40 CFR 199"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-257"
     citation: "40 CFR 257"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-32"
     citation: "40 CFR 32"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-600"
     citation: "40 CFR 600"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-79"
     citation: "40 CFR 79"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-80"
     citation: "40 CFR 80"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-59"
     citation: "42 CFR 59"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-95"
     citation: "42 CFR 95"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 0
+    mentions_audits: 2
     cited_in: ["audits"]
   - part_id: "43-cfr-2070"
     citation: "43 CFR 2070"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-1321"
     citation: "45 CFR 1321"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 1
+    mentions_audits: 1
     cited_in: ["audits", "erf"]
   - part_id: "46-cfr-15"
     citation: "46 CFR 15"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "47-cfr-32"
     citation: "47 CFR 32"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "48-cfr-52"
     citation: "48 CFR 52"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-107"
     citation: "49 CFR 107"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-175"
     citation: "49 CFR 175"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-177"
     citation: "49 CFR 177"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-191"
     citation: "49 CFR 191"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-199"
     citation: "49 CFR 199"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-37"
     citation: "49 CFR 37"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-381"
     citation: "49 CFR 381"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-397"
     citation: "49 CFR 397"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "50-cfr-17"
     citation: "50 CFR 17"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-1260"
     citation: "7 CFR 1260"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-271"
     citation: "7 CFR 271"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-3560"
     citation: "7 CFR 3560"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-990"
     citation: "7 CFR 990"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "8-cfr-236"
     citation: "8 CFR 236"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "9-cfr-312"
     citation: "9 CFR 312"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "9-cfr-317"
     citation: "9 CFR 317"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "9-cfr-327"
     citation: "9 CFR 327"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "9-cfr-71"
     citation: "9 CFR 71"
     authority_claims: 0
     mentions: 2
+    mentions_erf: 2
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-1040"
     citation: "10 CFR 1040"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-121"
     citation: "10 CFR 121"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-21"
     citation: "10 CFR 21"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-212"
     citation: "10 CFR 212"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-35"
     citation: "10 CFR 35"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-430"
     citation: "10 CFR 430"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-445"
     citation: "10 CFR 445"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-490"
     citation: "10 CFR 490"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-51"
     citation: "10 CFR 51"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-745"
     citation: "10 CFR 745"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "11-cfr-8"
     citation: "11 CFR 8"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-1002"
     citation: "12 CFR 1002"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-1003"
     citation: "12 CFR 1003"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-1005"
     citation: "12 CFR 1005"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-1006"
     citation: "12 CFR 1006"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-1016"
     citation: "12 CFR 1016"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-205"
     citation: "12 CFR 205"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-211"
     citation: "12 CFR 211"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-213"
     citation: "12 CFR 213"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-215"
     citation: "12 CFR 215"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-347"
     citation: "12 CFR 347"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "12-cfr-37"
     citation: "12 CFR 37"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "13-cfr-304"
     citation: "13 CFR 304"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "14-cfr-103"
     citation: "14 CFR 103"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "14-cfr-105"
     citation: "14 CFR 105"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "14-cfr-1230"
     citation: "14 CFR 1230"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "15-cfr-27"
     citation: "15 CFR 27"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "16-cfr-1028"
     citation: "16 CFR 1028"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "16-cfr-1203"
     citation: "16 CFR 1203"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "16-cfr-1219"
     citation: "16 CFR 1219"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "16-cfr-1500"
     citation: "16 CFR 1500"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "16-cfr-1508"
     citation: "16 CFR 1508"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "16-cfr-1509"
     citation: "16 CFR 1509"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "16-cfr-238"
     citation: "16 CFR 238"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "16-cfr-425"
     citation: "16 CFR 425"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "16-cfr-455"
     citation: "16 CFR 455"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "17-cfr-249"
     citation: "17 CFR 249"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "17-cfr-279"
     citation: "17 CFR 279"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "18-cfr-11"
     citation: "18 CFR 11"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "18-cfr-2"
     citation: "18 CFR 2"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "19-cfr-201"
     citation: "19 CFR 201"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "20-cfr-422"
     citation: "20 CFR 422"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "20-cfr-604"
     citation: "20 CFR 604"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 0
+    mentions_audits: 1
     cited_in: ["audits"]
   - part_id: "20-cfr-655"
     citation: "20 CFR 655"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "20-cfr-683"
     citation: "20 CFR 683"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 0
+    mentions_audits: 1
     cited_in: ["audits"]
   - part_id: "21-cfr-1"
     citation: "21 CFR 1"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-1010"
     citation: "21 CFR 1010"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-103"
     citation: "21 CFR 103"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-11301"
     citation: "21 CFR 11301"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-123"
     citation: "21 CFR 123"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-1290"
     citation: "21 CFR 1290"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-1310"
     citation: "21 CFR 1310"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-172"
     citation: "21 CFR 172"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-207"
     citation: "21 CFR 207"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-320"
     citation: "21 CFR 320"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-330"
     citation: "21 CFR 330"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-500"
     citation: "21 CFR 500"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-501"
     citation: "21 CFR 501"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-556"
     citation: "21 CFR 556"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-600"
     citation: "21 CFR 600"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-606"
     citation: "21 CFR 606"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-7"
     citation: "21 CFR 7"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-700"
     citation: "21 CFR 700"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-801"
     citation: "21 CFR 801"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "21-cfr-803"
     citation: "21 CFR 803"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "22-cfr-225"
     citation: "22 CFR 225"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "22-cfr-96"
     citation: "22 CFR 96"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "22-cfr-97"
     citation: "22 CFR 97"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "23-cfr-23"
     citation: "23 CFR 23"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "23-cfr-301"
     citation: "23 CFR 301"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "23-cfr-420"
     citation: "23 CFR 420"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "23-cfr-470"
     citation: "23 CFR 470"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "23-cfr-635"
     citation: "23 CFR 635"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "23-cfr-771"
     citation: "23 CFR 771"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "24-cfr-201"
     citation: "24 CFR 201"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "24-cfr-24"
     citation: "24 CFR 24"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "24-cfr-35"
     citation: "24 CFR 35"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "24-cfr-578"
     citation: "24 CFR 578"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "24-cfr-60"
     citation: "24 CFR 60"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "24-cfr-8"
     citation: "24 CFR 8"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "24-cfr-84"
     citation: "24 CFR 84"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "24-cfr-85"
     citation: "24 CFR 85"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "24-cfr-982"
     citation: "24 CFR 982"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "25-cfr-170"
     citation: "25 CFR 170"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "26-cfr-1926"
     citation: "26 CFR 1926"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "26-cfr-2056"
     citation: "26 CFR 2056"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "26-cfr-41"
     citation: "26 CFR 41"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "27-cfr-4"
     citation: "27 CFR 4"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "28-cfr-16"
     citation: "28 CFR 16"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "28-cfr-38"
     citation: "28 CFR 38"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "28-cfr-46"
     citation: "28 CFR 46"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "28-cfr-500"
     citation: "28 CFR 500"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "28-cfr-54"
     citation: "28 CFR 54"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "28-cfr-553"
     citation: "28 CFR 553"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "29-cfr-1"
     citation: "29 CFR 1"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "29-cfr-1613"
     citation: "29 CFR 1613"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "29-cfr-1908"
     citation: "29 CFR 1908"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "29-cfr-1977"
     citation: "29 CFR 1977"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "29-cfr-2510"
     citation: "29 CFR 2510"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "29-cfr-525"
     citation: "29 CFR 525"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "29-cfr-553"
     citation: "29 CFR 553"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "29-cfr-785"
     citation: "29 CFR 785"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "30-cfr-11"
     citation: "30 CFR 11"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "31-cfr-100"
     citation: "31 CFR 100"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "32-cfr-219"
     citation: "32 CFR 219"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "33-cfr-156"
     citation: "33 CFR 156"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "33-cfr-2"
     citation: "33 CFR 2"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "33-cfr-66"
     citation: "33 CFR 66"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "33-cfr-86"
     citation: "33 CFR 86"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "34-cfr-106"
     citation: "34 CFR 106"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "34-cfr-30"
     citation: "34 CFR 30"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "34-cfr-370"
     citation: "34 CFR 370"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "34-cfr-600"
     citation: "34 CFR 600"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "34-cfr-682"
     citation: "34 CFR 682"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "34-cfr-685"
     citation: "34 CFR 685"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "34-cfr-75"
     citation: "34 CFR 75"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 0
+    mentions_audits: 1
     cited_in: ["audits"]
   - part_id: "34-cfr-80"
     citation: "34 CFR 80"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "34-cfr-97"
     citation: "34 CFR 97"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "36-cfr-1191"
     citation: "36 CFR 1191"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "36-cfr-1192"
     citation: "36 CFR 1192"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "36-cfr-200"
     citation: "36 CFR 200"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "36-cfr-261"
     citation: "36 CFR 261"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "36-cfr-296"
     citation: "36 CFR 296"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "36-cfr-59"
     citation: "36 CFR 59"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "36-cfr-79"
     citation: "36 CFR 79"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "38-cfr-16"
     citation: "38 CFR 16"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-110"
     citation: "40 CFR 110"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-1225"
     citation: "40 CFR 1225"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-123"
     citation: "40 CFR 123"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-143"
     citation: "40 CFR 143"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-144"
     citation: "40 CFR 144"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-152"
     citation: "40 CFR 152"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-192"
     citation: "40 CFR 192"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-205"
     citation: "40 CFR 205"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-26"
     citation: "40 CFR 26"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-281"
     citation: "40 CFR 281"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-40"
     citation: "40 CFR 40"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-403"
     citation: "40 CFR 403"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-420"
     citation: "40 CFR 420"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-423"
     citation: "40 CFR 423"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-430"
     citation: "40 CFR 430"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-70"
     citation: "40 CFR 70"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-72"
     citation: "40 CFR 72"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "41-cfr-102"
     citation: "41 CFR 102"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "41-cfr-447"
     citation: "41 CFR 447"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-156"
     citation: "42 CFR 156"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-23"
     citation: "42 CFR 23"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-3"
     citation: "42 CFR 3"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-405"
     citation: "42 CFR 405"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-406"
     citation: "42 CFR 406"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-442"
     citation: "42 CFR 442"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-456"
     citation: "42 CFR 456"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-494"
     citation: "42 CFR 494"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-582"
     citation: "42 CFR 582"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-660"
     citation: "42 CFR 660"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "42-cfr-73"
     citation: "42 CFR 73"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "43-cfr-10"
     citation: "43 CFR 10"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "44-cfr-206"
     citation: "44 CFR 206"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-1305"
     citation: "45 CFR 1305"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-152"
     citation: "45 CFR 152"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-171"
     citation: "45 CFR 171"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-2"
     citation: "45 CFR 2"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-401"
     citation: "45 CFR 401"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-410"
     citation: "45 CFR 410"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-690"
     citation: "45 CFR 690"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-74"
     citation: "45 CFR 74"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-800"
     citation: "45 CFR 800"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-87"
     citation: "45 CFR 87"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "45-cfr-94"
     citation: "45 CFR 94"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "46-cfr-130"
     citation: "46 CFR 130"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "46-cfr-160"
     citation: "46 CFR 160"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "46-cfr-181"
     citation: "46 CFR 181"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "46-cfr-28"
     citation: "46 CFR 28"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "47-cfr-1"
     citation: "47 CFR 1"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "47-cfr-11"
     citation: "47 CFR 11"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "47-cfr-64"
     citation: "47 CFR 64"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "47-cfr-80"
     citation: "47 CFR 80"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "48-cfr-32"
     citation: "48 CFR 32"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-1"
     citation: "49 CFR 1"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-11"
     citation: "49 CFR 11"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-174"
     citation: "49 CFR 174"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-176"
     citation: "49 CFR 176"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-190"
     citation: "49 CFR 190"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-23"
     citation: "49 CFR 23"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-260"
     citation: "49 CFR 260"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-370"
     citation: "49 CFR 370"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-38"
     citation: "49 CFR 38"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-395"
     citation: "49 CFR 395"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-563"
     citation: "49 CFR 563"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-565"
     citation: "49 CFR 565"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-579"
     citation: "49 CFR 579"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-581"
     citation: "49 CFR 581"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-661"
     citation: "49 CFR 661"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-7"
     citation: "49 CFR 7"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "5-cfr-84"
     citation: "5 CFR 84"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "50-cfr-22"
     citation: "50 CFR 22"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "50-cfr-661"
     citation: "50 CFR 661"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "50-cfr-85"
     citation: "50 CFR 85"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-1c"
     citation: "7 CFR 1c"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-201"
     citation: "7 CFR 201"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-205"
     citation: "7 CFR 205"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-247"
     citation: "7 CFR 247"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 0
+    mentions_audits: 1
     cited_in: ["audits"]
   - part_id: "7-cfr-278"
     citation: "7 CFR 278"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-360"
     citation: "7 CFR 360"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-362"
     citation: "7 CFR 362"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-53"
     citation: "7 CFR 53"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "7-cfr-97"
     citation: "7 CFR 97"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "8-cfr-274"
     citation: "8 CFR 274"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "9-cfr-1"
     citation: "9 CFR 1"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "9-cfr-112"
     citation: "9 CFR 112"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "9-cfr-113"
     citation: "9 CFR 113"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "9-cfr-321"
     citation: "9 CFR 321"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "9-cfr-331"
     citation: "9 CFR 331"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "9-cfr-352"
     citation: "9 CFR 352"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "9-cfr-354"
     citation: "9 CFR 354"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "9-cfr-54"
     citation: "9 CFR 54"
     authority_claims: 0
     mentions: 1
+    mentions_erf: 1
+    mentions_audits: 0
     cited_in: ["erf"]
