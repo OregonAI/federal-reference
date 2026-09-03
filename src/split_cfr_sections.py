@@ -29,6 +29,21 @@ the day BEFORE its removal date -- its last-in-force text -- with status `supers
 src/cfr_consolidations.py). Resolving one to current text would hand back law that was not in
 force when it was cited; dropping it would leave a real citation pointing at nothing.
 
+A WHOLE PART CAN ITSELF BE SUPERSEDED, and that is a different case from the one above with
+the same words in it. 45 CFR 75 was removed from the CFR in its entirety on 2025-10-01 -- eCFR
+404s for the part, not just its sections -- so this corpus pins the part at its last-in-force
+date, which makes `_meta/snapshots/45-cfr-75.xml` BYTE-IDENTICAL to
+`_meta/snapshots/45-cfr-75-2025-09-30.xml`. Every removed section is therefore in the "current"
+part snapshot by construction, and `sec in current` -- the contradiction that catches a bad
+removal list for a LIVE part -- carries no information at all. run_part() reads the part
+document's own `status: superseded` (part_facts()) and swaps which assertion is doing the work:
+the "removed but still in the current snapshot" test is skipped for a section that died with
+its part, and in its place a `current:` entry for ANY section of a wholly superseded part is an
+error, because a part that no longer exists has no sections in force. That converse gate is not
+decoration -- relaxing the first test without adding it is exactly the reverted edit that moved
+all 7 cited sections of 45 CFR 75 from `removed:` to `current:` and turned --check green by
+publishing removed federal law as current text.
+
 #34 GENERALIZED THIS FILE FROM 2 CFR 200 ALONE. Four things used to be module-level constants
 true only of that one part: the part id, the eCFR fetch URL, the section-number regex, and the
 heading-stripping regex. All four are now per-part -- computed from `--part-id` or discovered
@@ -64,7 +79,7 @@ import yaml
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from ingest_instruments import _flatten, fetch, resolve_issuing_body  # noqa: E402  (same extraction)
-from cfr_consolidations import CONSOLIDATIONS  # noqa: E402
+from cfr_consolidations import CONSOLIDATIONS, PART_REMOVALS  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SNAPSHOTS = ROOT / "_meta" / "snapshots"
@@ -167,16 +182,50 @@ class HistCtx:
     last_in_force: str
 
 
-def part_dates(part_id: str) -> tuple[str, str]:
-    """(as_of, retrieved) from the part document.
+@dataclass(frozen=True)
+class PartDoc:
+    """The part document's OWN frontmatter, as far as the sections split out of it need it.
 
     Inherited rather than restated. A section carries the SAME bytes as the part it was cut
     from, so a section claiming a different as_of than its part would be asserting two
     different dates for one piece of text -- and in a corpus where the whole argument is
     "the version is part of the identity", that is the last field to let drift.
+
+    `status`, `amended_on` and `superseded_by` come along for the same reason, and the first
+    two were already being parsed here and thrown away. A part whose own document says
+    `status: superseded` was removed from the CFR IN ITS ENTIRETY -- see `superseded` below.
     """
-    fm = yaml.safe_load((INSTRUMENTS / f"{part_id}.md").read_text().split("---")[1])
-    return str(fm["as_of"]), str(fm["retrieved"])
+    as_of: str
+    retrieved: str
+    status: str
+    amended_on: str | None
+    superseded_by: str | None
+
+    @property
+    def superseded(self) -> bool:
+        """The WHOLE PART is gone from the CFR, not two sections out of a live one.
+
+        45 CFR 75, removed 2025-10-01: eCFR 404s for the part, so this corpus pins it at its
+        last-in-force date and `_meta/snapshots/45-cfr-75.xml` is BYTE-IDENTICAL to
+        `_meta/snapshots/45-cfr-75-2025-09-30.xml`. Every question run_part() asks of "the
+        current part snapshot" is therefore a question about a historical one, and the answers
+        mean something different; see the two gates in run_part()'s section loops.
+        """
+        return self.status == "superseded"
+
+
+def part_facts(part_id: str) -> PartDoc:
+    """This part's PartDoc, read from the part document rather than declared a second time.
+
+    _meta/source-manifest.yml is hand-authored on purpose (ADR-0005) and says nothing about
+    supersession; the part document already states the whole fact, in fields a human accepted
+    at PR time. A manifest field for it would be one more copy of a fact already on disk.
+    """
+    fm = yaml.safe_load((INSTRUMENTS / f"{part_id}.md").read_text().split("---")[1]) or {}
+    return PartDoc(as_of=str(fm["as_of"]), retrieved=str(fm["retrieved"]),
+                   status=str(fm.get("status") or "current"),
+                   amended_on=(str(fm["amended_on"]) if fm.get("amended_on") else None),
+                   superseded_by=(str(fm["superseded_by"]) if fm.get("superseded_by") else None))
 
 
 def hist_retrieved(part_id: str, hist_xml: pathlib.Path, fetched: bool,
@@ -281,7 +330,11 @@ def _removal_clause(consolidation: dict | None, target_doc: str | None) -> str:
 def build(ctx: PartCtx, sec: str, head: str, body: str, meta: dict, sha: str,
           amended_on: str | None, superseded_by: str | None,
           hist: HistCtx | None = None, consolidation: dict | None = None,
-          supersedes: list[str] | None = None) -> str:
+          supersedes: list[str] | None = None, part_removal: dict | None = None) -> str:
+    """`part_removal` is set (possibly to an EMPTY dict) when this section was removed by the
+    amendment that removed the WHOLE PART -- `{}` meaning "wholly superseded, no `why`
+    recorded", which still earns the whole-part sentence, just without the reason clause. It
+    is None for the ordinary case: a section dropped from a part that still exists."""
     live = superseded_by is None
     doc_id = f"{ctx.part_id}.{sec.split('.', 1)[1]}"
     citation = f"{ctx.title} CFR {sec}"
@@ -350,15 +403,27 @@ def build(ctx: PartCtx, sec: str, head: str, body: str, meta: dict, sha: str,
             f"relying on it. This copy is CURRENT text, which is not necessarily the text in "
             f"force when a document citing it was written._\n")
     else:
-        clause = _removal_clause(consolidation, target_doc)
         drop_in_warning = (
             f", and do not treat § {consolidation['into']} as a drop-in replacement without "
             f"comparing them.\n"
             if consolidation and consolidation.get("into") else ".\n")
+        # A section removed on its own leads with WHERE its content went. A section that died
+        # with its whole part cannot: there is no surviving part to hold a successor section,
+        # so the honest lead is that the part itself is gone -- otherwise the reader is told
+        # "no successor section is recorded" and left to assume the rest of the part is fine.
+        if part_removal is not None:
+            why = part_removal.get("why")
+            lead = (f"It was removed from the CFR on **{meta['removed_on']}**. "
+                    f"{ctx.title} CFR {ctx.part} itself was removed from the CFR in its "
+                    f"entirety that same date"
+                    + (f", {why}" if why else "")
+                    + "; no specific section-to-section correspondence is recorded.")
+        else:
+            lead = (f"It was removed from the CFR on **{meta['removed_on']}**, "
+                    f"{_removal_clause(consolidation, target_doc)}.")
         parts.append(
-            f"\n> **This section no longer exists.** It was removed from the CFR on "
-            f"**{meta['removed_on']}**, {clause}. The text below is its **last-in-force** "
-            f"text, as of {hist.last_in_force}.\n>\n"
+            f"\n> **This section no longer exists.** {lead} The text below is its "
+            f"**last-in-force** text, as of {hist.last_in_force}.\n>\n"
             f"> It is held because Oregon material still cites it {cites} "
             f"time{'s' if cites != 1 else ''} — those citations were made for fiscal years "
             f"when this section was in force. **The current definition may differ.** Do not "
@@ -454,12 +519,13 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
 
     src = manifest_entry(part_id)
     issuing_body = resolve_issuing_body(src)
-    part_as_of, part_retrieved = part_dates(part_id)
+    pdoc = part_facts(part_id)
     current = sections_from(part_xml.read_bytes(), part)
     print(f"  part snapshot: {len(current)} sections")
 
     ctx = PartCtx(part_id=part_id, title=title, part=part, part_title=src["title"],
-                  issuing_body=issuing_body, part_as_of=part_as_of, part_retrieved=part_retrieved)
+                  issuing_body=issuing_body, part_as_of=pdoc.as_of,
+                  part_retrieved=pdoc.retrieved)
 
     part_txt = (SNAPSHOTS / f"{part_id}.txt").read_text(encoding="utf-8")
 
@@ -572,6 +638,23 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
     written = 0
     for entry in cited["current"]:
         sec = entry["section"]
+        # THE CONVERSE GATE, and the reason the removed-section relaxation below is not a
+        # hole. A part removed from the CFR in its entirety has NO sections in force, so a
+        # `current:` entry for one is a contradiction -- and because the pinned current
+        # snapshot is the last-in-force snapshot, the section really is sitting right there
+        # in `current`, so nothing else here would object. This is the exact shape of the
+        # wrong fix this repo already reverted: all 7 cited sections of 45 CFR 75 were
+        # hand-moved from `removed:` to `current:` in the GENERATED cited-sections file,
+        # which turned --check green by publishing removed federal law as current text.
+        if pdoc.superseded:
+            print(f"error: {sec} is listed as current but {part_id} was removed from the CFR "
+                  f"in its entirety (its part document is status: superseded) — a part that "
+                  f"no longer exists has no sections in force. Regenerate "
+                  f"{cited_path.relative_to(ROOT)} with src/scan_cited_sections.py rather "
+                  f"than editing it by hand.", file=sys.stderr)
+            return 1
+        # Unreachable for a superseded part (the gate above returns first) and unchanged for a
+        # live one, where `current` really is the current snapshot.
         if sec not in current:
             print(f"error: {sec} is listed as current but absent from the part snapshot",
                   file=sys.stderr)
@@ -611,13 +694,32 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
             continue
         hist = hist_by_date[removed_on]
         hsecs = hist_secs[removed_on]
-        if sec in current:
+        # Removed BY THE AMENDMENT THAT REMOVED THE WHOLE PART -- not merely "in a part that
+        # is now superseded". A section dropped from this part while it was still alive was
+        # removed on some earlier date, and everything below must treat it the ordinary way:
+        # its text is genuinely absent from the last-in-force snapshot, and the note must not
+        # claim the part went with it "that same date".
+        whole_part = pdoc.superseded and removed_on == pdoc.amended_on
+        # "Removed, yet still in the current snapshot" is a contradiction for a LIVE part --
+        # the 2 CFR 200 case, two sections dropped from a part that still exists. For a
+        # section that died with its whole part it is not a contradiction but a certainty:
+        # the current snapshot IS the last-in-force snapshot, identical bytes, so EVERY such
+        # section is in `current` by construction and the test carries no information at all.
+        # Skipping it softens nothing that gets published: this branch still cuts the text
+        # from the point-in-time snapshot below and still emits `status: superseded`. The
+        # information the test used to carry is supplied by the converse gate above.
+        if sec in current and not whole_part:
             print(f"error: {sec} is listed as removed but IS in the current part snapshot",
                   file=sys.stderr)
             return 1
         if sec not in hsecs:
-            print(f"error: {sec} absent from the {hist.last_in_force} snapshot too",
-                  file=sys.stderr)
+            # Unchanged in substance -- this is the assertion that there are BYTES to cut, and
+            # it means the same thing for either kind of part, so it needs no relaxation. Only
+            # the word "too" is conditional: it referred to the check just above, which does
+            # not run for a wholly superseded section, and a gate must not report a check it
+            # did not perform.
+            print(f"error: {sec} absent from the {hist.last_in_force} snapshot"
+                  f"{'' if whole_part else ' too'}", file=sys.stderr)
             return 1
         head, body = hsecs[sec]
         hist_sha = hash_snapshot(hist.hist_id, "xml", SNAPSHOTS)
@@ -628,10 +730,17 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
         # record at all already gets from _removal_clause().
         entry_consolidation = (consolidation if consolidation
                                 and consolidation.get("date") == removed_on else None)
-        target_doc = _target_doc(part_id, entry_consolidation, part_id)
+        # Where an unrecorded successor points. For a section dropped from a live part that
+        # is the part itself -- "the section is gone, the part it was in is where to look".
+        # For a section that died WITH its part, pointing at the part is a dead end: the part
+        # document is superseded too, and it already names its own successor. Inherited from
+        # there rather than recorded again per section.
+        default_target = (pdoc.superseded_by or part_id) if whole_part else part_id
+        target_doc = _target_doc(part_id, entry_consolidation, default_target)
         out = INSTRUMENTS / f"{part_id}.{sec.split('.', 1)[1]}.md"
         emit(out, build(ctx, sec, head, body, entry, hist_sha, entry["removed_on"], target_doc,
-                         hist=hist, consolidation=entry_consolidation))
+                         hist=hist, consolidation=entry_consolidation,
+                         part_removal=(PART_REMOVALS.get(part_id) or {}) if whole_part else None))
         written += 1
         print(f"    {sec} superseded -> {target_doc}  ({entry['citations']} citations)")
 
