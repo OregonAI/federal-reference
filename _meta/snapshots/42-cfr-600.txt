@@ -1,0 +1,519 @@
+### PART 600—ADMINISTRATION, ELIGIBILITY, ESSENTIAL HEALTH BENEFITS, PERFORMANCE STANDARDS, SERVICE DELIVERY REQUIREMENTS, PREMIUM AND COST SHARING, ALLOTMENTS, AND RECONCILATION
+
+Authority:42 U.S.C. 300gg, 1395, and 18051.
+
+Source:79 FR 14140, Mar. 12, 2014, unless otherwise noted.
+
+### Subpart A—General Provisions and Definitions
+
+### § 600.1 Scope.
+Section 1331 of the Affordable Care Act, provides for the establishment of the Basic Health Program (BHP) under which a State may enter into contracts for standard health plans providing at least essential health benefits to eligible individuals in lieu of offering such individuals the opportunity to enroll in coverage through an Affordable Insurance Exchange. States that elect to operate a BHP will receive federal funding based on the amount of the premium tax credit and cost-sharing reductions that would have been available if enrollees had obtained coverage through the Exchange.
+
+### § 600.5 Definitions and use of terms.
+For purposes of this part, the following definitions apply:
+Advance payments of the premium tax credit means payment of the tax credit authorized by 26 U.S.C. 36B and its implementing regulations, which are provided on an advance basis to an eligible individual enrolled in a QHP through an Exchange in accordance with sections 1402 and 1412 of the Affordable Care Act.
+Affordable Care Act is the Patient Protection and Affordable Care Act of 2010 (Pub. L. 111-148) as amended by the Health Care and Education Reconciliation Act of 2010 (Pub. L. 111-152).
+Basic Health Program (BHP) Blueprint is the operational plan that a State must submit to the Secretary of Health and Human Services (HHS) for certification to operate a BHP.
+Certification means authority to operate the program which is required for program operations but it does not create an obligation on the part of the State to implement a BHP.
+Code means the Internal Revenue Code of 1986.
+Cost sharing means any expenditure required by or on behalf of an enrollee with respect to covered health benefits; such term includes deductibles, coinsurance, copayments, or similar charges, but excludes premiums, balance billing amounts for non-network providers and spending for non-covered services.
+Eligible noncitizen has the meaning given in 45 CFR 155.20.
+Enrollee means an eligible individual who is enrolled in a standard health plan contracted to operate as part of a BHP.
+Essential health benefits means the benefits described under section 1302(b) of the Affordable Care Act, as determined in accordance with implementing regulations at 45 CFR 156.100 through 156.110 and 156.122 regarding prescription drugs.
+Family and family size is as defined at 26 CFR 1.36B-1(d).
+Federal fiscal year means the time period beginning October 1st and ending September 30th.
+Federal poverty level or FPL means the most recently published Federal poverty level, updated periodically in the Federal Register by the secretary of Health and Human Services under the authority of 42 U.S.C. 9902(2).
+Household income is as defined in 26 CFR 1.36B-1(e)(1) and is determined in the same way as it is for purposes of eligibility for coverage through the Exchange.
+Indian means any individual as defined in section 4 (d) of the Indian Self-Determination and Education Assistance Act (Pub. L 93-638).
+Interim certification is an approval status for the initial design of a state's Basic Health Program. It does not confer any permission to begin enrollment or seek federal funding.
+Lawfully present has the meaning given in 45 CFR 155.20.
+Minimum essential coverage has the meaning set forth at 26 CFR 1.5000A-2, including coverage recognized by the Secretary as minimum essential coverage pursuant to 26 CFR 1.5000A-2(f). Under that authority, the Secretary recognizes coverage through a BHP standard health plan as minimum essential coverage.
+Modified adjusted gross income is as defined in 26 CFR 1-36B-1(e)(2).
+Network of health care providers means an entity capable of meeting the provision and administration of standard health plan coverage, including but not limited to, the provision of benefits, administration of premiums and applicable cost sharing and execution of innovative features, such as care coordination and care management, and other requirements as specified under the Basic Health Program. Such entities may include but are not limited to: Accountable Care Organizations, Independent Physician Associations, or a large health system.
+Premium means any enrollment fee, premium, or other similar charge paid to the standard health plan offeror.
+Preventive health services and items includes those services and items specified in 45 CFR 147.130(a).
+Program year means a calendar year for which a standard health plan provides coverage for eligible BHP enrollees.
+Qualified health plan or QHP means a health plan that has in effect a certification that it meets the standards described in subpart C of 45 CFR part 156 issued or recognized by each Exchange through which such plan is offered in accordance with the process described in subpart K of 45 CFR part 156, except that such term must not include a qualified health plan which is a catastrophic plan described in 45 CFR 155.20.
+Reference plan is a synonym for the EHB base benchmark plan and is defined at 45 CFR 156.100.
+Regional compact means an agreement between two or more States to jointly procure and enter into contracts with standard health plan offeror(s) for the administration and provision of a standard health plan under the BHP to eligible individuals in such States.
+Residency is determined in accordance with 45 CFR 155.305(a)(3).
+Single streamlined application has the same meaning as application defined at 42 CFR 431.907(b)(1) of this chapter and 45 CFR 155.405(a) and (b).
+Standard health plan means a health benefits package, or product, that is provided by the standard health plan offeror.
+Standard health plan offeror means an entity that is eligible to enter into contracts with the State for the administration and provision of a standard health plan under the BHP.
+State means each of the 50 states and the District of Columbia as defined by section 1304 of the Act.
+[79 FR 14140, Mar. 12, 2014, as amended at 89 FR 39436, May 8, 2024; 91 FR 29864, May 20, 2026]
+
+### Subpart B—Establishment and Certification of State Basic Health Programs
+
+### § 600.100 Program description.
+A State Basic Health Program (BHP) is operated consistent with a BHP Blueprint that has been certified by the Secretary to meet the requirements of this part. The BHP Blueprint is developed by the State for certification by the Secretary in accordance with the processes described in this subpart.
+
+### § 600.105 Basis, scope, and applicability of subpart B.
+(a) Statutory basis. This subpart implements the following sections of the Act:
+(1) Section 1331(a)(1) which defines a Basic Health Program.
+(2) Section 1331(a)(2) which requires the Secretary to certify a Basic Health Program before it may become operational.
+(3) Section 1331(f) which requires Secretarial oversight through annual reviews.
+(b) Scope and applicability. (1) This subpart sets forth provisions governing the administration of the BHP, the general requirements for development of a BHP Blueprint required for certification, for program operations and for voluntary program termination.
+(2) This subpart applies to all States that submit a BHP Blueprint and request certification to operate a BHP.
+
+### § 600.110 BHP Blueprint.
+The BHP Blueprint is a comprehensive written document submitted by the State to the Secretary for certification of a BHP in the form and manner specified by HHS which will include an opportunity for states to submit a limited set of elements necessary for interim certification at the state option. The program must be administered in accordance with all aspects of section 1331 of the Affordable Care Act and other applicable law, this chapter, and the certified BHP Blueprint.
+(a) Content of a Blueprint. The Blueprint will establish compliance with applicable requirements by including a description, or if applicable, an assurance of the following:
+(1) The minimum benefits offered under a standard health plan that assures inclusion of essential health benefits as described in section 1302(b) of the Affordable Care Act, in accordance with § 600.405.
+(2) The competitive process, consistent with § 600.410, that the State will undertake to contract for the provision of standard health plans.
+(3) The standard contract requirements, consistent with § 600.415, that the State will incorporate in its standard health plan contracts.
+(4) The methods by which the State will enhance the availability of standard health plan coverage as described in § 600.420.
+(5) The methods by which the State will ensure and promote coordination with other insurance affordability programs as described in § 600.425.
+(6) The premium standards set forth in § 600.505.
+(7) The cost sharing imposed under the BHP, consistent with the standards described in § 600.510.
+(8) The disenrollment procedures and consequences for nonpayment of premiums consistent with § 600.525, respectively.
+(9) The standards, consistent with § 600.305 used to determine eligibility for the program.
+(10) The State's policies regarding enrollment, disenrollment and verification consistent with §§ 600.320 and 600.345, along with a plan to ensure coordination with and eliminate gaps in coverage for individuals transitioning to other insurance affordability programs.
+(11) The fiscal policies and accountability procedures, consistent with § 600.710.
+(12) The process by which BHP trust fund trustees shall be appointed, the qualifications and responsibilities of such trustees, and any arrangements to insure or indemnify such trustees against claims for breaches of their fiduciary responsibilities.
+(13) A description of how the State will ensure program integrity, including how it will address potential fraud, waste, and abuse and ensure consumer protections.
+(14) An operational assessment establishing operating agency readiness.
+(15) A transition plan if a state participating in 2015 plans to propose an alternative enrollment strategy for initial implementation consistent with § 600.145. Such a transition plan must include a plan for coordination of this initial implementation strategy with the Exchange operating in the state, and if beneficiaries will be transitioning from Medicaid, with the Medicaid agency.
+(b) Funding plan. (1) The BHP Blueprint must be accompanied by a funding plan that describes the enrollment and cost projections for the first 12 months of operation and the funding sources, if any, beyond the BHP trust fund.
+(2) The funding plan must demonstrate that Federal funds will only be used to reduce premiums and cost-sharing or to provide additional benefits.
+(c) Transparency. HHS shall make a State's BHP Blueprint available on line after it is submitted for certification, and will update the posted Blueprint to the extent that it is later revised by the state.
+
+### § 600.115 Development and submission of the BHP Blueprint.
+(a) State authority to submit the State Blueprint. A State BHP Blueprint must be signed by the State's Governor or by the official with delegated authority from the Governor to sign it. A State may choose to submit its BHP Blueprint in two parts: The first limited submission to secure interim certification and the second full submission to secure full certification.
+(b) State Basic Health Program officials. The State must identify in the BHP Blueprint the agency and officials within that agency, by position or title, who are responsible for program administration, operations, and financial oversight.
+(c) Opportunity for public comment. The State must provide an opportunity for public comment on the BHP Blueprint content described in § 600.110 before submission to the Secretary for certification.
+(1) The State must seek public comment on any significant subsequent revisions prior to submission of those revisions to the Secretary for certification. Significant revisions are those that alter core program operations required by § 600.145(f), as well as changes that alter the BHP standard health plan benefit package, or enrollment, disenrollment and verification policies.
+(2) The process of seeking public comment must include Federally recognized tribes as defined in the Federally Recognized Indian Tribe List Act of 1994, 25 U.S.C. 479a, located in the State.
+(d) Submission and timing. The BHP Blueprint must be submitted in a manner and format specified by HHS. States may not implement the BHP prior to receiving full certification. The date of implementation for this purpose is the first day enrollees would receive coverage under the BHP. Following the 2015 initial implementation year, a state implementing a BHP must coordinate implementation with open enrollment of the state's exchange.
+
+### § 600.120 Certification of a BHP Blueprint.
+(a) Effective date of certification. The effective date of either interim or full certification is the date of signature by the Secretary.
+(b) Payments for periods prior to certification. No payment may be made under this part for periods of BHP operation prior to the date of full certification.
+(c) Period in which a certified Blueprint remains in effect. The certified Blueprint remains in effect until:
+(1) The Blueprint is replaced by Secretarial certification of updated Blueprint containing revisions submitted by the State.
+(2) The State terminates the program consistent with § 600.140.
+(3) The Secretary makes a finding that the BHP Blueprint no longer meets the standards for certification based on findings in the annual review, or reports significant evidence of beneficiary harm, financial malfeasance, fraud, waste or abuse by the BHP agency or the State consistent with § 600.142.
+(d) Blueprint approval standards for certification. The Secretary will certify a BHP Blueprint provided it meets all of the following standards:
+(1) The Blueprint contains sufficient information for the Secretary to determine that the BHP will comply with the requirements of section 1331 of the Affordable Care Act and this part.
+(2) The BHP Blueprint demonstrates adequate planning for the integration of BHP with other insurance affordability programs in a manner that will permit a seamless, coordinated experience for a potentially eligible individual.
+(3) The Blueprint is a complete and comprehensive description of the BHP and its operations, demonstrating thorough planning and a concrete program design, without reserved decisions on operational features.
+
+### § 600.125 Revisions to a certified BHP Blueprint.
+(a) Submission of revisions. A State may seek to revise its certified Blueprint in whole or in part at any time through the submission of a revised Blueprint to HHS. A State must submit a revised Blueprint to HHS whenever necessary to reflect—
+(1) Changes in Federal law, regulations, policy interpretations, or court decisions that affect provisions in the certified Blueprint;
+(2) Significant changes that alter core program operations under 600.145(f) or the BHP benefit package; or
+(3) Changes to enrollment, disenrollment, and verification policies described in the certified Blueprint.
+(b) Submission and effective dates. The effective date of a revised Blueprint may not be earlier than the first day of the quarter in which an approvable revision is submitted to HHS. A revised Blueprint is deemed received when HHS receives an electronic copy of a cover letter signed by the Governor or Governor's designee and a copy of the currently approved Blueprint with proposed changes in track changes.
+(c) Timing of HHS review. (1) A revised Blueprint will be deemed approved unless HHS, within 90 calendar days after receipt of the revised Blueprint, sends the State—
+(i) Written notice of disapproval; or
+(ii) Written notice of additional information it needs in order to make a final determination.
+(2) If HHS requests additional information, the 90-day review period for HHS action on the revised Blueprint—
+(i) Stops on the day HHS sends a written request for additional information or the next business day if the request is sent on a Federal holiday or weekend; and
+(ii) Resumes on the next calendar day of the original 90-day review period after HHS receives a complete response from the State including all the requested additional information, unless the information is received after 5 p.m. eastern standard time on a day prior to a non-business day or any time on a non-business day, in which case the review period resumes on the following business day.
+(3) The 90-day review period cannot stop or end on a non-business day. If the 90th calendar day falls on a non-business day, HHS will consider the 90th day to be the next business day.
+(4) HHS may send written notice of its need for additional information as many times as necessary to obtain the complete information necessary to review the revised Blueprint.
+(5) HHS may disapprove a Blueprint that is not consistent with section 1331 of the ACA or the regulations set forth in this Part at any time during the review process, including when the 90-day review clock is stopped due to a request for additional information.
+(d) Continued operation. The State is responsible for continuing to operate under the terms of the existing certified Blueprint until and unless—
+(1) The State adopts a revised Blueprint by obtaining approval by HHS under this section;
+(2) The State follows the procedures described in § 600.140(a) for terminating a BHP;
+(3) The State follows the procedures described in § 600.140(b) for suspending a BHP;
+(4) The Secretary withdraws certification of a BHP under 600.142.
+(e) Withdrawal of a revised Blueprint. A State may withdraw a proposed Blueprint revision during HHS' review if the State has not yet implemented the proposed changes and provides written notice to HHS.
+(f) Reconsideration of decision. HHS will accept a State request for reconsideration of a decision not to certify a revised Blueprint and provide an impartial review against the standards for certification if requested.
+(g) Public health emergency. For the Public Health Emergency, as defined in § 400.200 of this chapter, the State may submit to the Secretary for review and certification a revised Blueprint, in the form and manner specified by HHS, that makes temporary significant changes to its BHP that are directly related to the Public Health Emergency and would increase enrollee access to coverage. Such revised Blueprints may have an effective date retroactive to the first day of the Public Health Emergency and through the last day of the Public Health Emergency, or a later date if requested by the State and certified by HHS. Such revised Blueprints are not subject to the public comment requirements under § 600.115(c).
+[88 FR 79553, Nov. 16, 2023]
+
+### § 600.130 Withdrawal of a BHP Blueprint prior to implementation.
+To the extent that a State has not enrolled eligible individuals into the BHP:
+(a) The State may submit a written request to stop any further consideration of a previously submitted BHP Blueprint, whether certified or not.
+(b) The written request must be signed by the governor, or the State official delegated to sign the BHP Blueprint by the governor.
+(c) HHS will respond with a written confirmation that the State has withdrawn the Blueprint.
+
+### § 600.135 Notice and timing of HHS action on an initial BHP Blueprint submission.
+(a) Timely response. HHS will act on all initial Blueprint certification requests in a timely manner.
+(b) Issues preventing certification. HHS will notify the State in writing of any impediments to certification that arise in reviewing a proposed BHP Blueprint.
+(c) Reconsideration of decision. HHS will accept a State request for reconsideration of a certification decision and provide an impartial review against the standards for certification if requested.
+[79 FR 14140, Mar. 12, 2014, as amended at 88 FR 79554, Nov. 16, 2023]
+
+### § 600.140 State termination of a BHP.
+A State that no longer wishes to operate a BHP may terminate or suspend its BHP.
+(a) If a State decides to terminate its BHP, the State must complete all of the following prior to the effective date of the termination or the indicated dates:
+(1) Submit written notice to the Secretary no later than 120 days prior to the proposed termination date accompanied by a proposed transition plan that describes procedures to assist consumers with transitioning to other insurance affordability programs.
+(2) Resolve concerns expressed by the Secretary and obtain approval by the Secretary of the transition plan.
+(3) Submit written notice to all participating standard health plan offerors, and enrollees that it intends to terminate the program at least 90 days prior to the termination date. The notices to enrollees must include information regarding the State's assessment of their eligibility for all other insurance affordability programs in the State. Notices must meet the accessibility and readability standards at 45 CFR 155.230(b).
+(4) Transmit all information provided as part of an application, and any information obtained or verified by the State or other agencies administering insurance affordability programs via secure electronic interface, promptly and without undue delay to the agency administering the Exchange and the Medicaid agency as appropriate.
+(5) Fulfill its contractual obligations to participating standard health plan offerors including the payment of all negotiated rates for participants, as well as plan oversight ensuring that participating standard health plan offerors fulfill their obligation to cover benefits for each enrollee.
+(6) Fulfill data reporting requirements to HHS.
+(7) Complete the annual financial reconciliation process with HHS to ensure full compliance with Federal financial obligations.
+(8) Refund any remaining balance in the BHP trust fund.
+(b) If a State decides to suspend its BHP, or to request an extension of a previously-approved suspension, the State must:
+(1) Submit to the Secretary a suspension application or a suspension extension application, as applicable. The suspension or suspension extension application must:
+(i) Demonstrate that the benefits BHP-eligible individuals will receive during the suspension are at least equal to the benefits provided under the certified BHP Blueprint in effect on the effective date of suspension;
+(ii) Demonstrate that the median actuarial value of the coverage provided to the BHP-eligible individuals during the suspension is no less than the median actuarial value of the coverage under the certified BHP Blueprint in effect on the effective date of suspension;
+(iii) Demonstrate that the premiums imposed on BHP-eligible individuals during the suspension are no higher than the premiums charged under the certified BHP Blueprint in effect on the effective date of suspension, except that premiums imposed during the suspension may be adjusted for inflation, as measured by the Consumer Price Index;
+(iv) Demonstrate that the eligibility criteria for coverage during the suspension is not more restrictive than the criteria described in § 600.305;
+(v) Describe the period, not to exceed 5 years, that the State intends to suspend its BHP or to extend a previously-approved suspension;
+(vi) Be submitted at least 9 months in advance of the proposed effective date of the suspension or extension, except States seeking to suspend a BHP in 2024 must submit an application within 30 days of the effective date of this provision; and
+(vii) Include an evaluation of the coverage provided to BHP eligible individuals during the suspension period, if the State is seeking an extension.
+(2) Resolve concerns expressed by HHS and obtain approval by the Secretary of the suspension or suspension extension application. Suspensions may not be in effect prior to approval by HHS, except for States seeking to suspend a BHP in 2024.
+(3) At least 90 days prior to the effective date of the suspension, provide written notice to all enrollees and participating standard health plan offerors that it intends to suspend the program, if the enrollees will experience a change in coverage, or standard health plan offerors will experience a change in the terms of coverage. The notices to enrollees must include information regarding the State's assessment of their eligibility for all other insurance affordability programs in the State. Notices must meet the accessibility and readability standards at 45 CFR 155.230(b).
+(4) Within 12 months of the suspension effective date, submit to HHS the data required by § 600.610 to complete the financial reconciliation process with HHS.
+(5) Submit the annual report required by § 600.170(a)(2), describing the balance of the trust fund, and any interest accrued on such amount.
+(6) Annually, remit to HHS any interest that has accrued on the balance of the BHP trust fund during the suspension period in the form and manner specified by HHS.
+(7) At least 9 months before the end of the suspension period described in paragraph (b)(1)(iv) of this section, or earlier date elected by the State, the State must submit to HHS a transition plan that describes how the State will reinstate its BHP consistent with the requirements of this part, or terminate the program in accordance with paragraph (a) of this section. The State must meet the noticing requirements of paragraph (b)(3) of this section prior to terminating or reinstating the BHP.
+(c) The Secretary may withdraw approval of the suspension plan, if the terms of paragraph (b) of this section are not met, if the State ends implementation of the alternative coverage program for any reason, or if HHS finds significant evidence of beneficiary harm, financial malfeasance, fraud, waste, or abuse by the BHP agency or the State consistent with § 600.142 of this part. If HHS withdraws the approved suspension plan, the State must reinstate its BHP under the terms of this part, or terminate the program under paragraph (a) of this section.
+(1) The Secretary may withdraw approval of a suspension under this section only after the Secretary provides the State with notice of the findings upon which the Secretary is basing the withdrawal; a reasonable period for the State to address the finding; and an opportunity for a hearing before issuing a final finding.
+(2) The Secretary must make every reasonable effort to work with the State to resolve proposed findings without withdrawing approval of a suspension and in the event of a decision to withdraw approval, will accept a request from the State for reconsideration.
+(3) The effective date of an HHS determination withdrawing approval of the suspension plan shall not be earlier than 120 days following issuance of a final finding under paragraph (d)(1) of this section.
+(4) Within 30 days following a final finding under paragraph (d)(1) of this section, the State must submit a transition plan to HHS.
+[79 FR 14140, Mar. 12, 2014, as amended at 88 FR 79554, Nov. 16, 2023]
+
+### § 600.142 HHS withdrawal of certification and termination of a BHP.
+(a) The Secretary may withdraw certification for a BHP Blueprint based on a finding that the BHP Blueprint no longer meets the standards for certification based on findings in the annual review, findings from a program review conducted in accordance with § 600.200 or from significant evidence of beneficiary harm, financial malfeasance, fraud, waste or abuse.
+(b) Withdrawal of certification for a BHP Blueprint shall occur only after the Secretary provides the State with notice of the proposed finding that the standards for certification are not met or evidence of harm or misconduct in program operations, a reasonable period for the State to address the finding (either by substantiating compliance with the standards for certification or submitting revisions to the Blueprint, or securing HHS approval of a corrective action plan), and an opportunity for a hearing before issuing a final finding.
+(c) The Secretary shall make every reasonable effort to resolve proposed findings without requiring withdrawal of BHP certification and in the event of a decision to withdraw certification, will accept a request from the State for reconsideration.
+(d) The effective date of an HHS determination withdrawing BHP certification shall not be earlier than 120 days following a final finding of noncompliance with the standards for certification.
+(e) Within 30 days following a final finding of noncompliance with the standards for certification, the State shall submit a transition plan that describes procedures to assist consumers with transitioning to other insurance affordability programs, and shall comply with the procedures described in § 600.140(a)(2) through (8).
+
+### § 600.145 State program administration and operation.
+(a) Program operation. The State must implement its BHP in accordance with:
+(1) The approved and fully certified State BHP Blueprint, any approved modifications to the State BHP Blueprint and the requirements of this chapter and applicable law; or
+(2) The approved suspension application described in § 600.140.
+(b) Eligibility. All persons have a right to apply for a determination of eligibility and, if eligible, to be enrolled into coverage that conforms to the regulations in this part.
+(c) Statewide program operation. A state choosing to operate a BHP must operate it statewide.
+(d) No caps on program enrollment. A State implementing a BHP must not be permitted to limit enrollment by setting an income level below the income standard prescribed in section 1331 of the Affordable Care Act, having a fixed enrollment cap or imposing waiting lists.
+(e) Transition plan. States implementing in 2015 may identify a transition period following initial implementation during which the state may propose alternative enrollment strategies for approval. The transition plan is required to be submitted as part of the state's BHP Blueprint consistent with § 600.110.
+(f) Core operations. A State operating a BHP must perform all of the following core operating functions:
+(1) Eligibility determinations as specified in § 600.320.
+(2) Eligibility and health services appeals as specified in 600.335.
+(3) Contracting with standard health plan offerors as specified in § 600.410.
+(4) Oversight and financial integrity including, but not limited to, operation of the Trust Fund specified at §§ 600.705 and 600.710, compliance with annual reporting at § 600.170, and providing data required by § 600.610 for Federal funding and reconciliation processes.
+(5) Consumer assistance as required in § 600.150.
+(6) Extending protections to American Indian/Alaska Natives specified at § 600.160, as well as comply with the Civil Rights and nondiscrimination provisions specified at § 600.165.
+(7) Data collection and reporting as necessary for efficient and effective operation of the program and as specified by HHS to support program oversight.
+(8) If necessary, program termination procedures at § 600.145.
+[79 FR 14140, Mar. 12, 2014, as amended at 88 FR 79555, Nov. 16, 2023]
+
+### § 600.150 Enrollment assistance and information requirements.
+(a) Information disclosure. (1) The State must make accurate, easily understood information available to potential applicants and enrollees about the BHP coverage option along with information about other insurance affordability programs.
+(2) The State must provide accessible information on coverage, including additional benefits that may be provided outside of the standard health plan coverage, any tiers of coverage it has built into the BHP, including who is eligible for each tier.
+(3) The State must require participating standard health plans to provide clear information on premiums; covered services including any limits on amount, duration and scope of those services; applicable cost-sharing using a standard format supplied by the State, and other data specified in, and in accordance with, 45 CFR 156.220.
+(4) The State must provide information in a manner consistent with 45 CFR 155.205(c).
+(5) The State must require participating standard health plans to make publicly available, and keep up to date (at least quarterly), the names and locations of currently participating providers.
+(b) [Reserved]
+
+### § 600.155 Tribal consultation.
+The State must consult with Indian tribes located in the State on the development and execution of the BHP Blueprint using the tribal consultation policy approved by the State Exchange.
+
+### § 600.160 Protections for American Indian and Alaska Natives.
+(a) Enrollment. Indians must be extended the same special enrollment status in BHP standard health plans as applicable to enrollment in a QHP through the Exchange under 45 CFR 155.420(d)(8). Indians will be allowed to enroll in, or change enrollment in, standard health plans one time per month.
+(b) Cost sharing. No cost sharing may be imposed on Indians under the standard health plan.
+(c) Payments to providers. Equal to the protection extended to Indian health providers providing services to Indians enrolled in a QHP in the individual market through an Exchange at 45 CFR 156.430(g), BHP offerors may not reduce the payment for services to Indian health providers by the amount of any cost-sharing that would be due from the Indian but for the prohibition in paragraph (b) of this section.
+(d) Requirement. Standard health plans must pay primary to health programs operated by the Indian Health Service, Indian tribes, tribal organizations, and urban Indian organizations for services that are covered by a standard health plan.
+
+### § 600.165 Nondiscrimination standards.
+(a) The State and standard health plans, must comply with all applicable civil rights statutes and requirements, including Title VI of the Civil Rights Act of 1964, Title II of the Americans with Disabilities Act of 1990, Section 504 of the Rehabilitation Act of 1973, the Age Discrimination Act of 1975, Section 1557 of the Affordable Care Act, and 45 CFR part 80, part 84, and part 91 and 28 CFR part 35.
+(b) The State must comply with the nondiscrimination provision at 45 CFR 155.120(c)(2).
+
+### § 600.170 Annual report content and timing.
+(a) Content. (1) The State that is operating a BHP must submit an annual report that includes any evidence of fraud, waste, or abuse on the part of participating providers, plans, or the State BHP agency known to the State, and a detailed data-driven review of compliance with the following:
+(i) Eligibility verification requirements for program participation as specified in § 600.345.
+(ii) Limitations on the use of Federal funds received by the BHP as specified in § 600.705.
+(iii) Requirements to collect quality and performance measures from all participating standard health plans focusing on quality of care and improved health outcomes as specified in sections 1311(c)(3) and (4) of the Affordable Care Act and as further described in § 600.415.
+(iv) Requirements specified by the Secretary at least 120 days prior to the date of the annual report as requiring further study to assess continued State compliance with Federal law, regulations and the terms of the State's certified Blueprint, based on a Federal review of the BHP pursuant to § 600.200, and/or a list of any outstanding recommendations from any audit or evaluation conducted by the HHS Office of Inspector General that have not been fully implemented, including a statement describing the status of implementation and why implementation is not complete.
+(2) A State that has suspended its BHP under § 600.140(b) of this part must submit an annual report that includes the following:
+(i) The balance of the BHP trust fund and any interest accrued on that balance;
+(ii) An assurance that the coverage provided to individuals who would be eligible for a BHP under § 600.305 of this part continues to meet the standards described in § 600.140(b)(1)(i), (ii), and (iii) of this part; and
+(iii) Any additional information specified by the Secretary at least 120 days prior to the date of the annual report.
+(b) Timing. The annual reports, in the format specified by the Secretary, are due 60 days after the end of each operational year. Information that may be required to secure the release of funding for the subsequent year may be requested in advance.
+[79 FR 14140, Mar. 12, 2014, as amended at 88 FR 79555, Nov. 16, 2023]
+
+### Subpart C—Federal Program Administration
+
+### § 600.200 Federal program compliance reviews and audits.
+(a) Federal compliance review of the State BHP. To determine whether the State is complying with the Federal requirements and the provisions of its BHP Blueprint, HHS may review, as needed, but no less frequently than annually, the compliance of the State BHP with applicable laws, regulations and interpretive guidance. This review may be based on the State's annual report submitted under § 600.170, or may be based on direct Federal review of State administration of the BHP Blueprint through analysis of the State's policies and procedures, reviews of agency operation, examination of samples of individual case records, and additional reports and/or data as determined by the Secretary.
+(b) Action on compliance review findings. The compliance review will identify the following action items:
+(1) Requirements that need further study or data to assess continued State compliance with Federal law, regulations and the terms of the State's certified Blueprint. Such findings must be addressed in the next State annual report due no more than 120 days after the date of the issuance of the Federal compliance review.
+(2) Requirements with which the State BHP does not appear to be in compliance that could be the basis for withdrawal of BHP certification. Such findings must be resolved by the State (either by substantiating compliance with the standards for certification or submitting revisions to the Blueprint). If not resolved, such action items can be the basis for a proposed finding for withdrawal of BHP certification.
+(3) Requirements with which the State BHP does not appear to be in compliance and are not a basis for withdrawal of BHP certification but require revision to the Blueprint must be resolved by the State. If not resolved, such action items can be the basis for denial of other Blueprint revisions.
+(4) Improper use of BHP trust fund resources. The State and the BHP trustees shall be given an opportunity to review and resolve concerns regarding improper use of BHP trust funds, including failure to use these funds as specified in § 600.705. As indicated in § 600.715(a) through (c), the state may do this either by substantiating the proper use of trust fund resources as specified in § 600.705(c) or by taking corrective action, which include changes to procedures to ensure proper use of trust fund resources, and restitution of improperly used resources to the trust fund.
+(c) The HHS Office of Inspector General (OIG) may periodically audit State operations and standard health plan practices as described in § 430.33 of this chapter. Final reports on those audits shall be transmitted to both the State and the Secretary for actions on findings. The State and the BHP trustees shall be given an opportunity to resolve concerns about improper use of BHP trust funds as indicated in § 600.715(a) through (c): either by substantiating the proper use of trust fund, or by taking corrective action that includes changes to procedures to ensure proper use of trust fund resources, and restitution of improperly used resources to the trust fund.
+
+### Subpart D—Eligibility and Enrollment
+
+### § 600.300 Basis, scope, and applicability.
+(a) Statutory basis. This subpart interprets and implements section 1331(e) of the Affordable Care Act, which sets forth eligibility standards for the BHP and prohibits eligible individuals from being treated as qualified individuals under section 1312 of the Affordable Care Act and enrolling in qualified health plans offered through the Exchange.
+(b) Scope and applicability. This subpart sets forth the requirements for all BHPs established under section 1331 of the Affordable Care Act regarding eligibility standards and application screening and enrollment procedures.
+
+### § 600.305 Eligible individuals.
+(a) Eligibility standards The State must determine individuals eligible to enroll in a standard health plan if they:
+(1) Are residents of the State.
+(2) Have household income which exceeds 133 percent but does not exceed 200 percent of the FPL for the applicable family size, or, in the case of an individual who is a lawfully present non-citizen, ineligible for Medicaid or CHIP due to such immigration status, whose household income is between zero and 200 percent of the FPL for the applicable family size.
+(3) Are not eligible to enroll in minimum essential coverage (other than a standard health plan). If an individual meets all other eligibility standards, and—
+(i) Is eligible for, or enrolled in, coverage that does not meet the definition of minimum essential coverage, including Medicaid that is not minimum essential coverage, the individual is eligible to enroll in a standard health plan without regard to eligibility or enrollment in Medicaid; or
+(ii) Is eligible for Employer Sponsored Insurance (ESI) that is unaffordable (as determined under section 36B(c)(2)(C) of the Internal Revenue Code), the individual is eligible to enroll in a standard health plan.
+(4) Are 64 years of age or younger.
+(5) Are either a citizen or lawfully present non-citizen.
+(6) Are not incarcerated, other than during a period pending disposition of charges.
+(b) Eligibility restrictions. With the exception of during an approved implementation period specified in a transition plan in accordance with § 600.145, the State may not impose conditions of eligibility other than those identified in this section, including, but not limited to, restrictions on eligibility based on geographic location or imposition of an enrollment cap or a waiting period for individuals previously eligible for or enrolled in other coverage.
+
+### § 600.310 Application.
+(a) Single streamlined application. The State must use the single streamlined application used by the State in accordance with § 435.907(b) of this chapter and 45 CFR 155.405(a) and (b).
+(b) Opportunity to apply and assistance with application. The terms of §§ 435.906, 435.907(g) and 435.908 of this chapter, requiring the State to provide individuals the opportunity to apply and receive assistance with an application in the Medicaid program, apply in the same manner to States in the administration of the BHP.
+(c) Authorized representatives. The State may choose to permit the use of an authorized representative designated by an applicant or beneficiary to assist with the individual's application, eligibility renewal and other ongoing communication with the BHP. If the State chooses this option, the State must follow the standards set forth at either 45 CFR 155.227 or 42 CFR 435.923.
+
+### § 600.315 Certified application counselors.
+The State may have a program to certify application counselors to assist individuals to apply for enrollment in the BHP and other insurance affordability programs. If the State chooses this option, the State must follow the procedures and standards for such a program set forth in the regulations at either 45 CFR 155.225 or 42 CFR 435.908.
+
+### § 600.320 Determination of eligibility for and enrollment in a standard health plan.
+(a) Determining eligibility to enroll in a standard health plan may be performed by a State or through delegation to a local governmental entity, including a governmental entity that determines eligibility for Medicaid or CHIP, and may be delegated by the State to an Exchange that is a government agency.
+(b) Timely determinations. The terms of § 435.912 of this chapter (relating to timely determinations of eligibility under the Medicaid program) apply to eligibility determinations for enrollment in a standard health plan exclusive of § 435.912(c)(3)(i) and (e)(3). The standards established by the State must be included in the BHP Blueprint.
+(c) Effective date of eligibility. The State must establish a uniform method of determining the effective date of eligibility for enrollment in a standard health plan which—
+(1) Follows the Exchange effective date standards at 45 CFR 155.420(b)(1);
+(2) Follows the Medicaid effective date standards at § 435.915 of this chapter exclusive of § 435.915(a);or
+(3) Follows an effective date of eligibility of the first day of the month following the month in which BHP eligibility is determined; or
+(4) Follows an effective date of eligibility standard established by the State and subject to HHS approval to ensure that the effective date is:
+(i) No later than the first day of the second month following the date that an individual has been determined BHP-eligible; and
+(ii) No more restrictive than paragraphs (c)(1) through (3) of this section.
+(d) Enrollment periods. The State must either offer enrollment and special enrollment periods no more restrictive than those required for an Exchange at 45 CFR 155.410 and 155.420 or follow the Medicaid process permitting continuous open enrollment throughout the year.
+[79 FR 14140, Mar. 12, 2014, as amended at 89 FR 26419, Apr. 15, 2024; 91 FR 33482, June 3, 2026]
+
+### § 600.330 Coordination with other insurance affordability programs.
+(a) Coordination. The State must establish eligibility and enrollment mechanisms and procedures to maximize coordination with the Exchange, Medicaid, and Children's Health Insurance Program (CHIP). The terms of 45 CFR 155.345(a) regarding the agreements between insurance affordability programs apply to a BHP. The State BHP agency must fulfill the requirements of § 435.1200(d), (e)(1)(ii), and (e)(3) of this chapter and, if applicable, paragraph (c) of this section for BHP eligible individuals.
+(b) Coordinated determinations of eligibility. The agency administering BHP must establish and maintain processes to make income eligibility determinations using modified adjusted gross income, and to ensure that applications received by the agency, to the extent warranted and permitted under delegations from other agencies administering insurance affordability programs, also result in eligibility assessments or determinations for those other programs. The BHP must also accept applications transferred from other agencies administering insurance affordability programs, and ensure that individuals assessed or determined eligible for BHP by such other agencies are afforded the opportunity to enroll in a standard health plan without undue delay. Individuals submitting applications to any of the aforementioned agencies must not be required to duplicate the submission of information.
+(c) Account transfers. The agency administering the BHP must participate in the secure exchange of information with agencies administering other insurance affordability programs, using the standards set forth under 45 CFR 155.345(h) regarding electronic account transfers.
+(d) Notification to referring agency. The terms in § 435.1200(d)(5) regarding the notification to other programs of the final determination of eligibility apply equally to States administering a BHP.
+(e) Notice of decision concerning eligibility. Every application for BHP shall result in a determination of eligibility or ineligibility, unless the application has been withdrawn, the applicant has died, or the applicant cannot be located. Written notices of eligibility determinations shall be provided and shall be coordinated with other insurance affordability programs and Medicaid. Electronic notices shall be provided to the extent consistent with § 435.918(b).
+(f) Accessibility. Eligibility notices must be written in plain language and be provided in a manner which ensures individuals with disabilities are provided with effective communication and takes steps to provide meaningful access to eligible individuals with limited English proficiency.
+[79 FR 14140, Mar. 12, 2014, as amended at 88 FR 79555, Nov. 16, 2023; 89 FR 22878, Apr. 2, 2024]
+
+### § 600.335 Appeals.
+(a) Notice of eligibility appeal rights. Eligibility determinations must include a notice of the right to appeal the determination, and instructions regarding how to file an appeal.
+(b) Appeals process. Individuals must be given the opportunity to appeal the following actions through the appeals rules of the State's Medicaid program, unless granted an exception under paragraph (c) of this section:
+(1) BHP eligibility determinations; and
+(2) Delay, denial, reduction, suspension, or termination of health services, in whole or in part, including a determination about the type or level of service, after individuals exhaust appeals or grievances through the BHP standard health plans.
+(c) Exception. Subject to HHS approval, a state may request to follow an appeals process for BHP eligibility determinations and health service matters that differs from the State's Medicaid program. In its request, the State must provide a clear description of the responsibilities and functions delegated to such an entity and ensure that:
+(1) The State has oversight of any entity delegated the authority to administer appeals;
+(2) The agency to which eligibility determinations or appeals decisions are delegated complies with all relevant Federal and State law, regulations and policies; and
+(3) The agency to which eligibility determinations or appeals decisions are delegated informs applicants and beneficiaries how they can directly contact and obtain information from the agency.
+(d) Accessibility. Notices must be provided and the appeals process must be conducted in a manner accessible to individuals with limited English proficiency and persons with disabilities.
+[79 FR 14140, Mar. 12, 2014, as amended at 88 FR 79555, Nov. 16, 2023]
+
+### § 600.340 Periodic redetermination and renewal of BHP eligibility.
+(a) Periodic review of eligibility. An individual is subject to periodic review of eligibility every 12 months unless the eligibility is redetermined sooner based on new information received and verified from enrollee reports or data sources. The State must require enrollees to report changes in circumstances, at least to the extent that they would be required to report such changes if enrolled in coverage through the Exchange, consistent with 45 CFR 155.330(b).
+(b) Renewal of coverage. If an enrollee remains eligible for coverage in the BHP, the enrollee will be afforded notice of a reasonable opportunity at least annually to change plans to the extent the BHP offers a choice of plans, and shall remain in the plan selected for the previous year unless such enrollee terminates coverage from the plan by selecting a new plan or withdrawing from a plan, or the plan is no longer available as a standard health plan in BHP. Enrollees in plans that are no longer available will be given a reasonable opportunity to select a new plan, and if they do not select a new plan will be enrolled in another plan pursuant to a methodology set forth in the State's Blueprint.
+(c) Procedures. The State shall choose to apply equally all the redetermination procedures described in either 45 CFR 155.335 or 42 CFR 435.916(a) in administering a BHP.
+(d) Verification. The State must verify information needed to redetermine and renew eligibility in accordance with § 600.345 and comply with the requirements set forth in § 600.330 relating to screening individuals for other insurance affordability programs and transmitting such individuals' electronic accounts and other relevant information to the other program, as appropriate.
+(e) Notice to enrollee. The State must provide an enrollee with an annual notice of redetermination of eligibility. The annual notice should include all current information used for the most recent eligibility determination. The enrollee is required to report any changes with respect to information listed within the notice within 30 days of the date of the notice. The State must verify information in accordance with § 600.345.
+(f) Continuous eligibility. The state is not required to redetermine eligibility of BHP enrollees more frequently than every 12 months, regardless of changes of circumstances, as long as the enrollees are under age 65, are not otherwise enrolled in minimum essential coverage and remain residents of the State.
+
+### § 600.345 Eligibility verification.
+(a) The State must verify the eligibility of an applicant or beneficiary for BHP consistent either with the standards and procedures set forth in—
+(1) Medicaid regulations at §§ 435.945 through 435.956 of this chapter; or
+(2) Exchange regulations at 45 CFR 155.315 and 155.320.
+(b) [Reserved]
+
+### § 600.350 Privacy and security of information.
+The State must comply with the standards and procedures set forth in 45 CFR 155.260(b) and (c) as are applicable to the operation of the BHP.
+
+### Subpart E—Standard Health Plan
+
+### § 600.400 Basis, scope, and applicability.
+(a) Statutory basis. This subpart implements sections 1331(b), (c), and (g) of the Affordable Care Act, which set forth provisions regarding the minimum coverage standards under BHP, as well as the delivery of such coverage, including the contracting process for standard health plan offerors participating in the BHP.
+(b) Scope and applicability. This subpart consists of provisions relating to all BHPs for the delivery of, at a minimum, the ten essential health benefits as described in section 1302(b) of the Affordable Care Act, the contracting process by which States must contract for the provision of standard health plans, the minimum requirements States must include in their standard health plan contracts, the minimum coverage standards provided by the standard health plan offeror, and other applicable requirements to enhance the coordination of the provision of standard health plan coverage.
+
+### § 600.405 Standard health plan coverage.
+(a) Essential Health Benefits (EHB). Standard health plan coverage must include, at a minimum, the essential health benefits as determined and specified under 45 CFR 156.110, and 45 CFR 156.122 regarding prescription drugs, except that States may select more than one base benchmark option from those codified at 45 CFR 156.100 for establishing essential health benefits for standard health plans. Additionally, States must comply with 45 CFR 156.122(a)(2) by requiring participating plans to submit their drug list to the State.
+(b) Additional required benefits. Where the standard health plan for BHP is subject to State insurance mandates, the State shall adopt the determination of the Exchange at 45 CFR 155.170(a)(3) in determining which benefits enacted after December 31, 2011 are in addition to EHB.
+(c) Periodic review. Essential health benefits must include any changes resulting from periodic reviews required by section 1302(b)(4)(G) of the Affordable Care Act. The provision of such essential health benefits must meet all the requirements of 45 CFR 156.115.
+(d) Non-discrimination in benefit design. The terms of 45 CFR 156.125 applies to standard health plans offered under the BHP.
+(e) Compliance. The State and standard health plans must comply with prohibitions on federal funding for abortion services at 45 CFR 156.280.
+
+### § 600.410 Competitive contracting process.
+(a) General requirement. In order to receive initial HHS certification as described in § 600.120, the State must assure in its BHP Blueprint that it complies with the requirements set forth in this section.
+(b) Contracting process. The State must:
+(1) Conduct the contracting process in a manner providing full and open competition consistent with the standards of 45 CFR 92.36(b) through (i);
+(2) Include a negotiation of the elements described in paragraph (d) of this section on a fair and adequate basis; and
+(3) Consider the additional elements described in paragraph (e) of this section.
+(c) Initial implementation exceptions. (1) If a State is not able to implement a competitive contracting process described in paragraph (b) of this section for program year 2015, the State must include a justification as to why it cannot meet the conditions in paragraph (b), as well as a description of the process it will use to enter into contracts for the provision of standard health plans under BHP.
+(2) The State must include a proposed timeline that implements a competitive contracting process, as described in paragraph (b) of this section, for program year 2016.
+(3) Initial implementation exceptions are subject to HHS approval consistent with the BHP Blueprint review process established in § 600.120, and may only be in effect for benefit year 2015.
+(d) Negotiation criteria. The State must assure that its competitive contracting process includes the negotiation of:
+(1) Premiums and cost sharing, consistent with the requirements at §§ 600.505 and 600.510(e);
+(2) Benefits, consistent with the requirements at § 600.405;
+(3) Inclusion of innovative features, such as:
+(i) Care coordination and care management for enrollees, with a particular focus on enrollees with chronic health conditions;
+(ii) Incentives for the use of preventive services; and
+(iii) Establishment of provider-patient relationships that maximize patient involvement in their health care decision-making, including the use of incentives for appropriate health care utilization and patient choice of provider.
+(e) Other considerations: The State shall also include in its competitive process criteria to ensure:
+(1) Consideration of health care needs of enrollees;
+(2) Local availability of, and access, to health care providers to ensure the appropriate number, mix and geographic distribution to meet the needs of the anticipated number of enrollees in the service area (including but not limited to services provided by essential community providers, as defined in 45 CFR 156.235) so that access to services is at least sufficient to meet the access standards applicable under 42 CFR part 438, subpart D, or 45 CFR 156.230 and 156.235;
+(3) Use of a managed care process, or a similar process to improve the quality, accessibility, appropriate utilization, and efficiency of services provided to enrollees;
+(4) Performance measures and standards focused on quality of care and improved health outcomes as specified in § 600.415;
+(5) Coordination between other health insurance affordability programs to ensure enrollee continuity of care as described in § 600.425; and
+(6) Measures to prevent, identify, and address fraud, waste and abuse and ensure consumer protections.
+(f) Discrimination. Nothing in the competitive process shall permit or encourage discrimination in enrollment based on pre-existing conditions or other health status-related factors.
+
+### § 600.415 Contracting qualifications and requirements.
+(a) Eligible offerors for standard health plan contracts. A State may enter into contracts for the administration and provision of standard health plans under the BHP with, but not limited to, the following entities:
+(1) Licensed health maintenance organization.
+(2) Licensed health insurance insurer.
+(3) Network of health care providers demonstrating capacity to meet the criteria set forth in § 600.410(d).
+(4) Non-licensed health maintenance organizations participating in Medicaid and/or CHIP.
+(b) General contract requirements. (1) A State contracting with eligible standard health plan offerors described in paragraph (a) of this section must include contract provisions addressing network adequacy, service provision and authorization, quality and performance, enrollment procedures, disenrollment procedures, noticing and appeals, provisions protecting the privacy and security of personally identifiable information, and other applicable contract requirements as determined by the Secretary to the extent that the service delivery model furthers the objectives of the program.
+(2) All contracts under this part must include provisions that define a sound and complete procurement contract, as required by 45 CFR 92.36(i).
+(3) To the extent that the standard health plan is health insurance coverage offered by a health insurance issuer, the contract must provide that the medical loss ratio is at least 85 percent.
+(c) Notification of State election. To receive HHS certification, the State must include in its BHP Blueprint the standard set of contract requirements described in paragraph (b) of this section that will be incorporated into its standard health plan contracts.
+
+### § 600.420 Enhanced availability of standard health plans.
+(a) Choice of standard health plans offerors. (1) The State must assure that standard health plans from at least two offerors are available to enrollees under BHP. This assurance shall be reflected in the BHP Blueprint, which if applicable, shall also include a description of how it will further ensure enrollee choice of standard health plans.
+(2) If a State is not able to assure choice of standard health plan offerors, the State may request an exception to the requirement set forth in paragraph (a)(1) of this section, which must include a justification as to why it cannot assure choice of standard health plan offeror as well as demonstrate that the State has reviewed its competitive contracting process to determine the following:
+(i) Whether all contract requirements and qualifications are required under the federal framework for BHP;
+(ii) Whether additional negotiating flexibility would be consistent with the minimum statutory requirements and available BHP funding: and
+(iii) Whether potential bidders have received sufficient information to encourage participation in the BHP competitive contracting process.
+(b) Use of regional compacts. (1) A State may enter into a joint procurement with other States to negotiate and contract with standard health plan offerors to administer and provide standard health plans statewide, or in geographically specific areas within the States, to BHP enrollees residing in the participating regional compact States.
+(2) A State electing the option described in paragraph (b)(1) of this section that also contracts for the provision of a geographically specific standard health plan must assure that enrollees, regardless of residency within the State, continue to have choice of at least two standard health plans.
+(3) A State electing the option described in paragraph (b)(1) of this section must include in its BHP Blueprint all of the following:
+(i) The other State(s) entering into the regional compact.
+(ii) The specific areas within the participating States that the standard health plans will operate, if applicable.
+(A) If the State contracts for the provision of a geographically specific standard health plan, the State must describe in its BHP Blueprint how it will assure that enrollees, regardless of location within the State, continue to have choice of at least two standard health plan offerors.
+(B) [Reserved]
+(iii) An assurance that the competitive contracting process used in the joint procurement of the standard health plans complies with the requirements set forth in § 600.410.
+(iv) Any variations that may occur as a result of regional differences between the participating states with respect to benefit packages, premiums and cost sharing, contracting requirements and other applicable elements as determined by HHS.
+
+### § 600.425 Coordination with other insurance affordability programs.
+A State must ensure coordination for the provision of health care services to promote enrollee continuity of care between Medicaid, CHIP, Exchange and any other state-administered health insurance programs. The State's BHP Blueprint must describe how it will ensure such coordination.
+
+### Subpart F—Enrollee Financial Responsibilities
+
+### § 600.500 Basis, scope, and applicability.
+(a) Statutory basis. This subpart implements section 1331(a) of the Affordable Care Act, which sets forth provisions regarding the establishment of the BHP and requirements regarding monthly premiums and cost sharing for enrollees.
+(b) Scope and applicability. This subpart consists of provisions relating to the imposition of monthly premiums and cost-sharing under all state BHPs.
+
+### § 600.505 Premiums.
+(a) Premium requirements. (1) For premiums imposed on enrollees, the State must assure that the monthly premium imposed on any enrollee does not exceed the monthly premium that the enrollee would have been required to pay had he or she enrolled in a plan with a premium equal to the premium of the applicable benchmark plan, as defined in 26 CFR 1.36B-3(f). The State must assure that when determining the amount of the enrollee's monthly premium, the State took into account reductions in the premium resulting from the premium tax credit that would have been paid on the enrollee's behalf.
+(2) This assurance must be reflected in the BHP Blueprint, which shall also include:
+(i) The group or groups of enrollees subject to premiums.
+(ii) The collection method and procedure for the payment of an enrollee's premium.
+(iii) The consequences for an enrollee or applicant who does not pay a premium.
+(b) [Reserved]
+
+### § 600.510 Cost-sharing.
+(a) Cost-sharing requirements. (1) For cost sharing imposed on enrollees, the State must assure the following:
+(i) The cost sharing imposed on enrollees meet the standards detailed in § 600.520(c).
+(ii) The establishment of an effective system to monitor and track the cost-sharing standards consistent with § 600.520(b) through (d).
+(2) This assurance must be reflected in the BHP Blueprint, which shall also include the group or groups of enrollees subject to the cost sharing.
+(b) Cost sharing for preventive health services. A State may not impose cost sharing with respect to the preventive health services or items, as defined in, and in accordance with 45 CFR 147.130.
+
+### § 600.515 Public schedule of enrollee premium and cost sharing.
+(a) The State must ensure that applicants and enrollees have access to information about all of the following, either upon request or through an Internet Web site:
+(1) The amount of and types of enrollee premiums and cost sharing for each standard health plan that would apply for individuals at different income levels.
+(2) The consequences for an applicant or an enrollee who does not pay a premium.
+(b) The information described in paragraph (a) of this section must be made available to applicants for standard health plan coverage and enrollees in such coverage, at the time of enrollment and reenrollment, after a redetermination of eligibility, when premiums, cost sharing, and annual limitations on cost sharing are revised, and upon request by the individual.
+
+### § 600.520 General cost-sharing protections.
+(a) Cost-sharing protections for lower income enrollees. The State may vary premiums and cost sharing based on household income only in a manner that does not favor enrollees with higher income over enrollees with lower income.
+(b) Cost-sharing protections to ensure enrollment of Indians. A State must ensure that standard health plans meet the standards in accordance with 45 CFR 156.420(b)(1) and (d).
+(c) Cost-sharing standards. A State must ensure that standard health plans meet:
+(1) The standards in accordance with 45 CFR 156.420(c) and (e); and
+(2) The cost-sharing reduction standards in accordance with 45 CFR 156.420(a)(1) for an enrollee with household income at or below 150 percent of the FPL, and 45 CFR 156.420(a)(2) for an enrollee with household income above 150 percent of the FPL.
+(3) The State must establish an effective system to monitor compliance with the cost-sharing reduction standards in paragraph (c) of this section, and the cost-sharing protections to ensure enrollment of Indians in paragraph (b) of this section to ensure that enrollees are not held responsible for such monitoring activity.
+(d) Acceptance of certain third party payments. States must ensure that standard health plans must accept premium and cost-sharing payments from the following third party entities on behalf of plan enrollees:
+(1) Ryan White HIV/AIDS Programs under title XXVI of the Public Health Service Act;
+(2) Indian tribes, tribal organizations or urban Indian organizations; and
+(3) State and federal government programs.
+
+### § 600.525 Disenrollment procedures and consequences for nonpayment of premiums.
+(a) Disenrollment procedures due to nonpayment of premium. (1) A State must assure that it is in compliance with the disenrollment procedures described in 45 CFR 155.430. This assurance must be reflected in the state's BHP Blueprint.
+(2) A State electing to enroll eligible individuals in accordance with 45 CFR 155.410 and 155.420 must comply with the premium grace period standards set forth in 45 CFR 156.270 for required premium payment prior to disenrollment.
+(3) A State electing to enroll eligible individuals throughout the year must provide an enrollee a 30-day grace period to pay any required premium prior to disenrollment.
+(b) Consequences of nonpayment of premium. (1) A State electing to enroll eligible individuals in accordance with 45 CFR 155.410 and 155.420 may not restrict reenrollment to BHP beyond the next open enrollment period.
+(2) A State electing to enroll eligible individuals throughout the year must comply with the reenrollment standards set forth in § 457.570(c) of this chapter.
+[79 FR 14140, Mar. 12, 2014, as amended at 89 FR 22878, Apr. 2, 2024]
+
+### Subpart G—Payment to States
+
+### § 600.600 Basis, scope, and applicability.
+(a) Statutory basis. This subpart implements section 1331(d)(1) and (3) of the Affordable Care Act regarding the transfer of Federal funds to a State's BHP trust fund and the Federal payment amount to a State for the provision of BHP.
+(b) Scope and applicability. This subpart consists of provisions relating to the methodology used to calculate the amount of payment to a state in a given Federal fiscal year for the provision of BHP and the process and procedures by which the Secretary establishes a State's BHP payment amount.
+
+### § 600.605 BHP payment methodology.
+(a) General calculation. The Federal payment for an eligible individual in a given Federal fiscal year is the sum of the premium tax credit component, as described in paragraph (a)(1) of this section, and the cost-sharing reduction component, as described in paragraph (a)(2) of this section.
+(1) Premium tax credit component. The premium tax credit component equals 95 percent of the premium tax credit for which the eligible individual would have qualified had he or she been enrolled in a qualified health plan through an Exchange in a given calendar year, adjusted by the relevant factors described in paragraph (b) of this section.
+(2) Cost-sharing reduction component. The cost-sharing reduction component equals 95 percent of the cost of the cost-sharing reductions for which the eligible individual would have qualified had he or she been enrolled in a qualified health plan through an Exchange in a given calendar year adjusted by the relevant factors described in paragraph (b) of this section.
+(b) Relevant factors in the payment methodology. In determining the premium tax credit and cost-sharing reduction components described in paragraph (a) of this section, the Secretary will consider the following factors to determine applicable adjustments:
+(1) Age of the enrollee;
+(2) Income of the enrollee;
+(3) Self-only or family coverage;
+(4) Geographic differences in average spending for health care across rating areas;
+(5) Health status of the enrollee for purposes of determining risk adjustment payments and reinsurance payments had the enrollee been enrolled in a qualified health plan through an Exchange;
+(6) Reconciliation of the premium tax credit or cost-sharing reductions had such reconciliation occurred if an enrollee had been enrolled in a qualified health plan through an Exchange;
+(7) Marketplace experience in other states with respect to Exchange participation and the effect of the premium tax credit and cost-sharing reductions provided to residents, particularly those residents with income below 200 percent of the FPL; and
+(8) Other factors affecting the development of the methodology as determined by the Secretary.
+(c) Annual adjustments to payment methodology. The Secretary will adjust the payment methodology on a prospective basis to adjust for any changes in the calculation of the premium tax credit and cost-sharing reduction components to the extent that necessary data is available for the Secretary to prospectively determine all relevant factors, as specified in paragraph (b) of this section.
+
+### § 600.610 Secretarial determination of BHP payment amount.
+(a) Proposed payment notice. (1) Beginning in FY 2015, the Secretary will determine and publish in a Federal Register document the BHP payment methodology for the next calendar year or, beginning in calendar year 2022, for multiple calendar years. Beginning in calendar year 2023—
+(i) In years in which the Secretary does not publish a new BHP methodology, the Secretary will update the values of factors needed to calculate the Federal BHP payments via sub regulatory guidance, as appropriate.
+(ii) In years that the Secretary publishes a revised payment methodology, the Secretary will publish a proposed BHP payment methodology upon receiving certification from the Chief Actuary of CMS.
+(2) A State may be required to submit data in accordance with the published proposed payment document in order for the Secretary to determine the State's payment rate as described in paragraph (b) of this section.
+(b) Final payment notice. (1) Beginning in calendar year 2023, in years that the Secretary publishes a revised payment methodology, the Secretary will determine and publish the final BHP payment methodology and BHP payment amounts in a Federal Register document.
+(2) Calculation of payment rates. State payment rates are determined by the Secretary using the final BHP payment methodology, data requested in the proposed payment notice described in paragraph (a) of this section, and, if needed, other applicable data as determined by the Secretary.
+(c) State specific aggregate BHP payment amounts—(1) Prospective aggregate payment amount. The Secretary will determine, on a quarterly basis, the prospective aggregate BHP payment amount by multiplying the payment rates described in paragraph (b) of this section by the projected number of enrollees. This calculation would be made for each category of enrollees based on enrollee characteristics and the other relevant factors considered when determining the payment methodology. The prospective aggregate BHP payment amount would be the sum of the payments determined for each category of enrollees for a State.
+(2) Retrospective adjustment to state specific aggregate payment amount for enrollment and errors. (i) Sixty days after the end of each fiscal year quarter, the Secretary will calculate a retrospective adjustment to the previous quarter's specific aggregate payment amount by multiplying the payment rates described in paragraph (b) of this section by actual enrollment for the respective quarter. This calculation would be made for each category of enrollees based on enrollee characteristics and the other relevant factors considered when determining the payment methodology. The adjusted BHP payment amount would be the sum of the payments determined for each category of enrollees for a State.
+(ii) Upon determination that a mathematical error occurred during the application or development of the BHP funding methodology, the Secretary will recalculate the state's BHP payment amount and make any necessary adjustments in accordance with paragraph (c)(2)(iv) of this section.
+(iii) To the extent that the final payment notice described in paragraph (b) of this section permits retrospective adjustments to the state's BHP payment amount (due to the lack of necessary data for the Secretary to prospectively determine the relevant factors comprising the premium tax credit and cost-sharing reductions components of the BHP funding methodology), the Secretary will recalculate the state's BHP payment amount and make any necessary adjustments in accordance with paragraph (c)(2)(iv) of this section.
+(iv) Any difference in the adjusted payment and the prospective aggregate payment amount will result in either:
+(A) A deposit of the difference amount into the State's BHP trust fund; or
+(B) A reduction in the upcoming quarter's prospective aggregate payment as described in paragraph (c)(1) of this section by the difference amount.
+[79 FR 14140, Mar. 12, 2014, as amended at 87 FR 77742, Dec. 20, 2022]
+
+### § 600.615 Deposit of Federal BHP payment.
+HHS will make quarterly deposits into the state's BHP trust fund based on the aggregate quarterly payment amounts described in § 600.610(c).
+
+### Subpart H—BHP Trust Fund
+
+### § 600.700 Basis, scope, and applicability.
+(a) Statutory basis. This subpart implements section 1331(d)(2) of the Affordable Care Act, which set forth provisions regarding BHP trust fund expenditures, fiscal policies and accountability standards and restitution to the BHP trust fund for unallowable expenditures.
+(b) Scope and applicability. This subpart sets forth a framework for BHP trust funds and accounting, establishing sound fiscal policies and accountability standards and procedures for the restitution of unallowable BHP trust fund expenditures.
+
+### § 600.705 BHP trust fund.
+(a) Establishment of BHP trust fund. (1) The State must establish a BHP trust fund with an independent entity, or in a segregated account within the State's fund structure.
+(2) The State must identify trustees responsible for oversight of the BHP trust fund.
+(3) Trustees must specify individuals with the power to authorize withdrawal of funds for allowable trust fund expenditures.
+(b) Non-Federal deposits. The State may deposit non-Federal funds, including such funds from enrollees, providers or other third parties for standard health plan coverage, into its BHP trust fund. Upon deposit, such funds will be considered BHP trust funds, must remain in the BHP trust fund and meet the standards described in paragraphs (c) and (d) of this section.
+(c) Allowable trust fund expenditures. BHP trust funds may only be used to:
+(1) Reduce premiums and cost sharing for eligible individuals enrolled in standard health plans under BHP; or
+(2) Provide additional benefits for eligible individuals enrolled in standard health plans as determined by the State.
+(d) Limitations. BHP trust funds may not be expended for any purpose other than those specified in paragraph (c) of this section. In addition, BHP trust funds may not be used for other purposes including but not limited to:
+(1) Determining the amount of non-Federal funds for the purposes of meeting matching or expenditure requirements for Federal funding;
+(2) Program administration of BHP or any other program;
+(3) Payment to providers not associated with BHP services or requirements; or
+(4) Coverage for individuals not eligible for BHP.
+(e) Year-to-year carryover of trust funds. A State may maintain a surplus, or reserve, of funds in its trust through the carryover of unexpended funds from year-to-year. Expenditures from this surplus must be made in accordance with paragraphs (b) and (c) of this section.
+
+### § 600.710 Fiscal policies and accountability.
+The BHP administering agency must assure the fiscal policies and accountability set forth in paragraphs (a) through (g) of this section. This assurance must be reflected in the BHP Blueprint.
+(a) Accounting records. Maintain an accounting system and supporting fiscal records to assure that the BHP trust funds are maintained and expended in accord with applicable Federal requirements, such as OMB Circulars A-87 and A-133.
+(b) Annual certification. Obtain an annual certification from the BHP trustees, the State's chief financial officer, or designee, certifying all of the following:
+(1) The State's BHP trust fund financial statements for the fiscal year.
+(2) The BHP trust funds are not being used as the non-Federal share for purposes of meeting any matching or expenditure requirement of any Federally-funded program.
+(3) The use of BHP trust funds is in accordance with Federal requirements consistent with those specified for the administration and provision of the program.
+(c) Independent audit. Conduct an independent audit of BHP trust fund expenditures, consistent with the standards set forth in chapter 3 of the Government Accountability Office's Government Auditing Standards, over a 3-year period to determine that the expenditures made during the 3-year period were allowable as described in § 600.705(b) and in accord with other applicable Federal requirements. The independent audit may be conducted as a sub-audit of the single state audit conducted in accordance with OMB Circular A-133, and must follow the cost accounting principles in OMB Circular A-87.
+(d) Annual reports. Publish annual reports on the use of funds, including a separate line item that tracks the use of funds described in § 600.705(e) to further reduce premiums and cost sharing, or for the provision of additional benefits within 10 days of approval by the trustees. If applicable for the reporting year, the annual report must also contain the findings for the audit conducted in accordance with paragraph (c) of this section.
+(e) Restitution. Establish and maintain BHP trust fund restitution procedures.
+(f) Record retention. Retain records for 3 years from date of submission of a final expenditure report.
+(g) Record retention related to audit findings. If any litigation, claim, financial management review, or audit is started before the expiration of the 3-year period, the records shall be retained until all litigation, claims or audit findings involving the records have been resolved and final action taken.
+
+### § 600.715 Corrective action, restitution, and disallowance of questioned BHP transactions.
+(a) Corrective action. When a question has been raised concerning the authority for BHP trust fund expenditures in an OIG report, other HHS compliance review, State audit or otherwise, the BHP trustees and the State shall review the issues and develop a written response no later than 60 days upon receipt of such a report, unless otherwise specified in the report, review or audit. To the extent determined necessary in that review, the BHP trustees and State shall implement changes to fiscal procedures to ensure proper use of trust fund resources.
+(b) Restitution. To the extent that the State and BHP trustees determine that BHP trust funds may not have been properly spent, they must ensure restitution to the BHP trust fund of the funds in question. Restitution may be made directly by the BHP trustees, by the State, or by a liable third party. The State or the BHP trustees may enter into indemnification agreements assigning liability for restitution of funds to the BHP trust fund.
+(c) Timing of restitution. Restitution to the BHP trust fund for any unallowable expenditure may occur in a lump sum amount, or in equal installment amounts. Restitution to the BHP trust fund cannot exceed a 2-year period from the date of the written response in accordance with paragraph (a) of this section.
+(d) HHS disallowance of improper BHP trust fund expenditures. The State shall return to HHS the amount of federal BHP funding that HHS has determined was expended for unauthorized purposes, when no provision has been made to restore the funding to the BHP trust fund in accordance with paragraph (b) of this section (unless the restitution does not comply with the timing conditions described in paragraphs (c) of this section). When HHS determines that federal BHP funding is not allowable, HHS will provide written notice to the state and BHP Trustees containing:
+(1) The date or dates of the improper expenditures from the BHP trust fund;
+(2) A brief written explanation of the basis for the determination that the expenditures were improper; and
+(3) Procedures for administrative reconsideration of the disallowance based on a final determination.
+(e) Administrative reconsideration of BHP trust fund disallowances. (1) BHP Trustees or the State may request reconsideration of a disallowance within 60 days after receipt of the disallowance notice described in paragraph (d)(1) of this section by submitting a written request for review, along with any relevant evidence, documentation, or explanation, to HHS.
+(2) After receipt of a reconsideration request, if the Secretary (or a designated hearing officer) determines that further proceedings would be warranted, the Secretary may issue a request for further information by a specific date, or may schedule a hearing to obtain further evidence or argument.
+(3) The Secretary, or designee, shall issue a final decision within 90 days after the later of the date of receipt of the reconsideration request or date of the last scheduled proceeding or submission.
+(f) Return of disallowed BHP funding. Disallowed federal BHP funding must be returned to HHS within 60 days after the later of the date of the disallowance notice or the final administrative reconsideration upholding the disallowance. Such repayment cannot be made from BHP trust funds, but must be made with other, non-Federal funds.

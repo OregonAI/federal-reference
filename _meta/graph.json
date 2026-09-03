@@ -1,9 +1,93 @@
 {
  "corpus": "federal-reference",
- "n_nodes": 112,
- "n_edges": 214,
+ "n_nodes": 422,
+ "n_edges": 605,
  "n_edges_external": 0,
  "nodes": [
+  {
+   "id": "10-cfr-440",
+   "title": "Weatherization Assistance for Low-Income Persons",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/10-cfr-440.md"
+  },
+  {
+   "id": "17-cfr-230.251",
+   "title": "17 CFR 230.251 — Scope of exemption",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/17-cfr-230.251.md"
+  },
+  {
+   "id": "17-cfr-230.405",
+   "title": "17 CFR 230.405 — Definitions of terms",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/17-cfr-230.405.md"
+  },
+  {
+   "id": "17-cfr-230.504",
+   "title": "17 CFR 230.504 — Exemption for limited offerings and sales of securities not exceeding $10,000,000",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/17-cfr-230.504.md"
+  },
+  {
+   "id": "17-cfr-230.506",
+   "title": "17 CFR 230.506 — Exemption for limited offers and sales without regard to dollar amount of offering",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/17-cfr-230.506.md"
+  },
+  {
+   "id": "17-cfr-230.701",
+   "title": "17 CFR 230.701 — Exemption for offers and sales of securities pursuant to certain compensatory benefit plans and contracts relating to compensation",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/17-cfr-230.701.md"
+  },
+  {
+   "id": "17-cfr-230",
+   "title": "General Rules and Regulations, Securities Act of 1933",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/17-cfr-230.md"
+  },
+  {
+   "id": "2-cfr-170",
+   "title": "Reporting Subaward and Executive Compensation Information",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/2-cfr-170.md"
+  },
+  {
+   "id": "2-cfr-180.220",
+   "title": "2 CFR 180.220 — Are any procurement contracts included as covered transactions?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/2-cfr-180.220.md"
+  },
+  {
+   "id": "2-cfr-180.300",
+   "title": "2 CFR 180.300 — What must I do before I enter into a covered transaction with another person at the next lower tier?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/2-cfr-180.300.md"
+  },
+  {
+   "id": "2-cfr-180.305",
+   "title": "2 CFR 180.305 — May I enter into a covered transaction with an excluded or disqualified person?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/2-cfr-180.305.md"
+  },
+  {
+   "id": "2-cfr-180",
+   "title": "OMB Guidelines to Agencies on Government-Wide Debarment and Suspension (Nonprocurement)",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/2-cfr-180.md"
+  },
   {
    "id": "2-cfr-200.1",
    "title": "2 CFR 200.1 — Definitions",
@@ -276,6 +360,146 @@
    "doc_type": "federal_instrument",
    "status": "current",
    "path": "instruments/2-cfr-200.md"
+  },
+  {
+   "id": "23-cfr-645.301",
+   "title": "23 CFR 645.301 — Purpose",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/23-cfr-645.301.md"
+  },
+  {
+   "id": "23-cfr-645",
+   "title": "Utilities",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/23-cfr-645.md"
+  },
+  {
+   "id": "24-cfr-576.100",
+   "title": "24 CFR 576.100 — General provisions and expenditure limits",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/24-cfr-576.100.md"
+  },
+  {
+   "id": "24-cfr-576.101",
+   "title": "24 CFR 576.101 — Street outreach component",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/24-cfr-576.101.md"
+  },
+  {
+   "id": "24-cfr-576.102",
+   "title": "24 CFR 576.102 — Emergency shelter component",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/24-cfr-576.102.md"
+  },
+  {
+   "id": "24-cfr-576.2",
+   "title": "24 CFR 576.2 — Definitions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/24-cfr-576.2.md"
+  },
+  {
+   "id": "24-cfr-576.400",
+   "title": "24 CFR 576.400 — Area-wide systems coordination requirements",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/24-cfr-576.400.md"
+  },
+  {
+   "id": "24-cfr-576",
+   "title": "Emergency Solutions Grants Program",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/24-cfr-576.md"
+  },
+  {
+   "id": "28-cfr-23.20",
+   "title": "28 CFR 23.20 — Operating principles",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/28-cfr-23.20.md"
+  },
+  {
+   "id": "28-cfr-23",
+   "title": "Criminal Intelligence Systems Operating Policies",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/28-cfr-23.md"
+  },
+  {
+   "id": "28-cfr-35.104",
+   "title": "28 CFR 35.104 — Definitions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/28-cfr-35.104.md"
+  },
+  {
+   "id": "28-cfr-35.106",
+   "title": "28 CFR 35.106 — Notice",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/28-cfr-35.106.md"
+  },
+  {
+   "id": "28-cfr-35.108",
+   "title": "28 CFR 35.108 — Definition of “disability.”",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/28-cfr-35.108.md"
+  },
+  {
+   "id": "28-cfr-35.130",
+   "title": "28 CFR 35.130 — General prohibitions against discrimination",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/28-cfr-35.130.md"
+  },
+  {
+   "id": "28-cfr-35.131",
+   "title": "28 CFR 35.131 — Illegal use of drugs",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/28-cfr-35.131.md"
+  },
+  {
+   "id": "28-cfr-35.136",
+   "title": "28 CFR 35.136 — Service animals",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/28-cfr-35.136.md"
+  },
+  {
+   "id": "28-cfr-35.150",
+   "title": "28 CFR 35.150 — Existing facilities",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/28-cfr-35.150.md"
+  },
+  {
+   "id": "28-cfr-35.151",
+   "title": "28 CFR 35.151 — New construction and alterations",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/28-cfr-35.151.md"
+  },
+  {
+   "id": "28-cfr-35.164",
+   "title": "28 CFR 35.164 — Duties",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/28-cfr-35.164.md"
+  },
+  {
+   "id": "28-cfr-35",
+   "title": "Nondiscrimination on the Basis of Disability in State and Local Government Services",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/28-cfr-35.md"
   },
   {
    "id": "34-cfr-300.101",
@@ -761,6 +985,1952 @@
    "path": "instruments/34-cfr-300.md"
   },
   {
+   "id": "34-cfr-303.117",
+   "title": "34 CFR 303.117 — Central directory",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.117.md"
+  },
+  {
+   "id": "34-cfr-303.120",
+   "title": "34 CFR 303.120 — Lead agency role in supervision, monitoring, funding, interagency coordination, and other responsibilities",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.120.md"
+  },
+  {
+   "id": "34-cfr-303.209",
+   "title": "34 CFR 303.209 — Transition to preschool and other programs",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.209.md"
+  },
+  {
+   "id": "34-cfr-303.24",
+   "title": "34 CFR 303.24 — Multidisciplinary",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.24.md"
+  },
+  {
+   "id": "34-cfr-303.25",
+   "title": "34 CFR 303.25 — Native language",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.25.md"
+  },
+  {
+   "id": "34-cfr-303.29",
+   "title": "34 CFR 303.29 — Personally identifiable information",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.29.md"
+  },
+  {
+   "id": "34-cfr-303.302",
+   "title": "34 CFR 303.302 — Comprehensive child find system",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.302.md"
+  },
+  {
+   "id": "34-cfr-303.303",
+   "title": "34 CFR 303.303 — Referral procedures",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.303.md"
+  },
+  {
+   "id": "34-cfr-303.310",
+   "title": "34 CFR 303.310 — Post-referral timeline (45 days)",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.310.md"
+  },
+  {
+   "id": "34-cfr-303.320",
+   "title": "34 CFR 303.320 — Screening procedures (optional)",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.320.md"
+  },
+  {
+   "id": "34-cfr-303.321",
+   "title": "34 CFR 303.321 — Evaluation of the child and assessment of the child and family",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.321.md"
+  },
+  {
+   "id": "34-cfr-303.34",
+   "title": "34 CFR 303.34 — Service coordination services (case management)",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.34.md"
+  },
+  {
+   "id": "34-cfr-303.344",
+   "title": "34 CFR 303.344 — Content of an IFSP",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.344.md"
+  },
+  {
+   "id": "34-cfr-303.4",
+   "title": "34 CFR 303.4 — Act",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.4.md"
+  },
+  {
+   "id": "34-cfr-303.400",
+   "title": "34 CFR 303.400 — General responsibility of lead agency for procedural safeguards",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.400.md"
+  },
+  {
+   "id": "34-cfr-303.401",
+   "title": "34 CFR 303.401 — Confidentiality and opportunity to examine records",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.401.md"
+  },
+  {
+   "id": "34-cfr-303.405",
+   "title": "34 CFR 303.405 — Access rights",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.405.md"
+  },
+  {
+   "id": "34-cfr-303.409",
+   "title": "34 CFR 303.409 — Fees for records",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.409.md"
+  },
+  {
+   "id": "34-cfr-303.414",
+   "title": "34 CFR 303.414 — Consent prior to disclosure or use",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.414.md"
+  },
+  {
+   "id": "34-cfr-303.420",
+   "title": "34 CFR 303.420 — Parental consent and ability to decline services",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.420.md"
+  },
+  {
+   "id": "34-cfr-303.430",
+   "title": "34 CFR 303.430 — State dispute resolution options",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.430.md"
+  },
+  {
+   "id": "34-cfr-303.431",
+   "title": "34 CFR 303.431 — Mediation",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.431.md"
+  },
+  {
+   "id": "34-cfr-303.521",
+   "title": "34 CFR 303.521 — System of payments and fees",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.521.md"
+  },
+  {
+   "id": "34-cfr-303.600",
+   "title": "34 CFR 303.600 — Establishment of Council",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.600.md"
+  },
+  {
+   "id": "34-cfr-303",
+   "title": "Early Intervention Program for Infants and Toddlers with Disabilities",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-303.md"
+  },
+  {
+   "id": "34-cfr-99.1",
+   "title": "34 CFR 99.1 — To which educational agencies or institutions do these regulations apply?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.1.md"
+  },
+  {
+   "id": "34-cfr-99.10",
+   "title": "34 CFR 99.10 — What rights exist for a parent or eligible student to inspect and review education records?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.10.md"
+  },
+  {
+   "id": "34-cfr-99.11",
+   "title": "34 CFR 99.11 — May an educational agency or institution charge a fee for copies of education records?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.11.md"
+  },
+  {
+   "id": "34-cfr-99.12",
+   "title": "34 CFR 99.12 — What limitations exist on the right to inspect and review records?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.12.md"
+  },
+  {
+   "id": "34-cfr-99.20",
+   "title": "34 CFR 99.20 — How can a parent or eligible student request amendment of the student's education records?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.20.md"
+  },
+  {
+   "id": "34-cfr-99.21",
+   "title": "34 CFR 99.21 — Under what conditions does a parent or eligible student have the right to a hearing?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.21.md"
+  },
+  {
+   "id": "34-cfr-99.22",
+   "title": "34 CFR 99.22 — What minimum requirements exist for the conduct of a hearing?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.22.md"
+  },
+  {
+   "id": "34-cfr-99.3",
+   "title": "34 CFR 99.3 — What definitions apply to these regulations?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.3.md"
+  },
+  {
+   "id": "34-cfr-99.30",
+   "title": "34 CFR 99.30 — Under what conditions is prior consent required to disclose information?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.30.md"
+  },
+  {
+   "id": "34-cfr-99.31",
+   "title": "34 CFR 99.31 — Under what conditions is prior consent not required to disclose information?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.31.md"
+  },
+  {
+   "id": "34-cfr-99.32",
+   "title": "34 CFR 99.32 — What recordkeeping requirements exist concerning requests and disclosures?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.32.md"
+  },
+  {
+   "id": "34-cfr-99.33",
+   "title": "34 CFR 99.33 — What limitations apply to the redisclosure of information?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.33.md"
+  },
+  {
+   "id": "34-cfr-99.34",
+   "title": "34 CFR 99.34 — What conditions apply to disclosure of information to other educational agencies or institutions?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.34.md"
+  },
+  {
+   "id": "34-cfr-99.35",
+   "title": "34 CFR 99.35 — What conditions apply to disclosure of information for Federal or State program purposes?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.35.md"
+  },
+  {
+   "id": "34-cfr-99.36",
+   "title": "34 CFR 99.36 — What conditions apply to disclosure of information in health and safety emergencies?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.36.md"
+  },
+  {
+   "id": "34-cfr-99.37",
+   "title": "34 CFR 99.37 — What conditions apply to disclosing directory information?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.37.md"
+  },
+  {
+   "id": "34-cfr-99.4",
+   "title": "34 CFR 99.4 — What are the rights of parents?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.4.md"
+  },
+  {
+   "id": "34-cfr-99.5",
+   "title": "34 CFR 99.5 — What are the rights of students?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.5.md"
+  },
+  {
+   "id": "34-cfr-99.6",
+   "title": "34 CFR 99.6 — [Reserved]",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.6.md"
+  },
+  {
+   "id": "34-cfr-99.63",
+   "title": "34 CFR 99.63 — Where are complaints filed?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.63.md"
+  },
+  {
+   "id": "34-cfr-99.64",
+   "title": "34 CFR 99.64 — What is the investigation procedure?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.64.md"
+  },
+  {
+   "id": "34-cfr-99.7",
+   "title": "34 CFR 99.7 — What must an educational agency or institution include in its annual notification?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.7.md"
+  },
+  {
+   "id": "34-cfr-99.8",
+   "title": "34 CFR 99.8 — What provisions apply to records of a law enforcement unit?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.8.md"
+  },
+  {
+   "id": "34-cfr-99",
+   "title": "Family Educational Rights and Privacy",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/34-cfr-99.md"
+  },
+  {
+   "id": "42-cfr-433.135",
+   "title": "42 CFR 433.135 — Basis and purpose",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-433.135.md"
+  },
+  {
+   "id": "42-cfr-433.138",
+   "title": "42 CFR 433.138 — Identifying liable third parties",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-433.138.md"
+  },
+  {
+   "id": "42-cfr-433.145",
+   "title": "42 CFR 433.145 — Assignment of rights to benefits—State plan requirements",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-433.145.md"
+  },
+  {
+   "id": "42-cfr-433.146",
+   "title": "42 CFR 433.146 — Rights assigned; assignment method",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-433.146.md"
+  },
+  {
+   "id": "42-cfr-433.147",
+   "title": "42 CFR 433.147 — Cooperation in establishing the identity of a child's parents and in obtaining medical support and payments and in identifying and providing information to assist in pursuing third parties who may be liable to pay",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-433.147.md"
+  },
+  {
+   "id": "42-cfr-433.312",
+   "title": "42 CFR 433.312 — Basic requirements for refunds",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-433.312.md"
+  },
+  {
+   "id": "42-cfr-433.32",
+   "title": "42 CFR 433.32 — Fiscal policies and accountability",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-433.32.md"
+  },
+  {
+   "id": "42-cfr-433.37",
+   "title": "42 CFR 433.37 — Reporting provider payments to Internal Revenue Service",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-433.37.md"
+  },
+  {
+   "id": "42-cfr-433.400",
+   "title": "42 CFR 433.400 — Continued enrollment for temporary FMAP increase",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-433.400.md"
+  },
+  {
+   "id": "42-cfr-433.51",
+   "title": "42 CFR 433.51 — Public Funds as the State share of financial participation",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-433.51.md"
+  },
+  {
+   "id": "42-cfr-433.52",
+   "title": "42 CFR 433.52 — General definitions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-433.52.md"
+  },
+  {
+   "id": "42-cfr-433.54",
+   "title": "42 CFR 433.54 — Bona fide donations",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-433.54.md"
+  },
+  {
+   "id": "42-cfr-433.56",
+   "title": "42 CFR 433.56 — Classes of health care services and providers defined",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-433.56.md"
+  },
+  {
+   "id": "42-cfr-433",
+   "title": "State Fiscal Administration",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-433.md"
+  },
+  {
+   "id": "42-cfr-435.10",
+   "title": "42 CFR 435.10 — State plan requirements",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.10.md"
+  },
+  {
+   "id": "42-cfr-435.1009",
+   "title": "42 CFR 435.1009 — Institutionalized individuals",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.1009.md"
+  },
+  {
+   "id": "42-cfr-435.1010",
+   "title": "42 CFR 435.1010 — Definitions relating to institutional status",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.1010.md"
+  },
+  {
+   "id": "42-cfr-435.110",
+   "title": "42 CFR 435.110 — Parents and other caretaker relatives",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.110.md"
+  },
+  {
+   "id": "42-cfr-435.1110",
+   "title": "42 CFR 435.1110 — Presumptive eligibility determined by hospitals",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.1110.md"
+  },
+  {
+   "id": "42-cfr-435.120",
+   "title": "42 CFR 435.120 — Individuals receiving SSI",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.120.md"
+  },
+  {
+   "id": "42-cfr-435.1200",
+   "title": "42 CFR 435.1200 — Medicaid agency responsibilities for a coordinated eligibility and enrollment process with other insurance affordability programs",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.1200.md"
+  },
+  {
+   "id": "42-cfr-435.1205",
+   "title": "42 CFR 435.1205 — Alignment with exchange initial open enrollment period",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.1205.md"
+  },
+  {
+   "id": "42-cfr-435.123",
+   "title": "42 CFR 435.123 — Individuals eligible as qualified Medicare beneficiaries",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.123.md"
+  },
+  {
+   "id": "42-cfr-435.135",
+   "title": "42 CFR 435.135 — Individuals who become ineligible for cash assistance as a result of OASDI cost-of-living increases received after April 1977",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.135.md"
+  },
+  {
+   "id": "42-cfr-435.170",
+   "title": "42 CFR 435.170 — Pregnant women eligible for extended or continuous eligibility",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.170.md"
+  },
+  {
+   "id": "42-cfr-435.219",
+   "title": "42 CFR 435.219 — Individuals receiving State plan home and community-based services",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.219.md"
+  },
+  {
+   "id": "42-cfr-435.4",
+   "title": "42 CFR 435.4 — Definitions and use of terms",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.4.md"
+  },
+  {
+   "id": "42-cfr-435.603",
+   "title": "42 CFR 435.603 — Application of modified adjusted gross income (MAGI)",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.603.md"
+  },
+  {
+   "id": "42-cfr-435.610",
+   "title": "42 CFR 435.610 — Assignment of rights to benefits",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.610.md"
+  },
+  {
+   "id": "42-cfr-435.725",
+   "title": "42 CFR 435.725 — Post-eligibility treatment of income of institutionalized individuals in SSI States: Application of patient income to the cost of care",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.725.md"
+  },
+  {
+   "id": "42-cfr-435.726",
+   "title": "42 CFR 435.726 — Post-eligibility treatment of income of individuals receiving home and community-based services furnished under a waiver: Application of patient income to the cost of care",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.726.md"
+  },
+  {
+   "id": "42-cfr-435.905",
+   "title": "42 CFR 435.905 — Availability and accessibility of program information",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.905.md"
+  },
+  {
+   "id": "42-cfr-435.907",
+   "title": "42 CFR 435.907 — Application",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.907.md"
+  },
+  {
+   "id": "42-cfr-435.909",
+   "title": "42 CFR 435.909 — Automatic entitlement to Medicaid following a determination of eligibility under other programs",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.909.md"
+  },
+  {
+   "id": "42-cfr-435.910",
+   "title": "42 CFR 435.910 — Use of social security number",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.910.md"
+  },
+  {
+   "id": "42-cfr-435.914",
+   "title": "42 CFR 435.914 — Case documentation",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.914.md"
+  },
+  {
+   "id": "42-cfr-435.916",
+   "title": "42 CFR 435.916 — Periodic renewal of Medicaid eligibility",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.916.md"
+  },
+  {
+   "id": "42-cfr-435.917",
+   "title": "42 CFR 435.917 — Notice of agency's decision concerning eligibility, benefits, or services",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.917.md"
+  },
+  {
+   "id": "42-cfr-435.923",
+   "title": "42 CFR 435.923 — Authorized representatives",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.923.md"
+  },
+  {
+   "id": "42-cfr-435.926",
+   "title": "42 CFR 435.926 — Continuous eligibility for children",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.926.md"
+  },
+  {
+   "id": "42-cfr-435.940",
+   "title": "42 CFR 435.940 — Basis and scope",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.940.md"
+  },
+  {
+   "id": "42-cfr-435.952",
+   "title": "42 CFR 435.952 — Use of information and requests of additional information from individuals",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.952.md"
+  },
+  {
+   "id": "42-cfr-435.956",
+   "title": "42 CFR 435.956 — Verification of other non-financial information",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.956.md"
+  },
+  {
+   "id": "42-cfr-435",
+   "title": "Eligibility in the States, District of Columbia, the Northern Mariana Islands, and American Samoa",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-435.md"
+  },
+  {
+   "id": "42-cfr-440.100",
+   "title": "42 CFR 440.100 — Dental services",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-440.100.md"
+  },
+  {
+   "id": "42-cfr-440.110",
+   "title": "42 CFR 440.110 — Physical therapy, occupational therapy, and services for individuals with speech, hearing, and language disorders",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-440.110.md"
+  },
+  {
+   "id": "42-cfr-440.130",
+   "title": "42 CFR 440.130 — Diagnostic, screening, preventive, and rehabilitative services",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-440.130.md"
+  },
+  {
+   "id": "42-cfr-440.140",
+   "title": "42 CFR 440.140 — Inpatient hospital services, nursing facility services, and intermediate care facility services for individuals age 65 or older in institutions for mental diseases",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-440.140.md"
+  },
+  {
+   "id": "42-cfr-440.160",
+   "title": "42 CFR 440.160 — Inpatient psychiatric services for individuals under age 21",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-440.160.md"
+  },
+  {
+   "id": "42-cfr-440.166",
+   "title": "42 CFR 440.166 — Nurse practitioner services",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-440.166.md"
+  },
+  {
+   "id": "42-cfr-440.255",
+   "title": "42 CFR 440.255 — Limited services available to certain aliens",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-440.255.md"
+  },
+  {
+   "id": "42-cfr-440.50",
+   "title": "42 CFR 440.50 — Physicians' services and medical and surgical services of a dentist",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-440.50.md"
+  },
+  {
+   "id": "42-cfr-440.60",
+   "title": "42 CFR 440.60 — Medical or other remedial care provided by licensed practitioners",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-440.60.md"
+  },
+  {
+   "id": "42-cfr-440.70",
+   "title": "42 CFR 440.70 — Home health services",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-440.70.md"
+  },
+  {
+   "id": "42-cfr-440",
+   "title": "Services: General Provisions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-440.md"
+  },
+  {
+   "id": "42-cfr-447.10",
+   "title": "42 CFR 447.10 — Prohibition against reassignment of provider claims",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-447.10.md"
+  },
+  {
+   "id": "42-cfr-447.253",
+   "title": "42 CFR 447.253 — Other requirements",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-447.253.md"
+  },
+  {
+   "id": "42-cfr-447.272",
+   "title": "42 CFR 447.272 — Inpatient services: Application of upper payment limits",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-447.272.md"
+  },
+  {
+   "id": "42-cfr-447.45",
+   "title": "42 CFR 447.45 — Timely claims payment",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-447.45.md"
+  },
+  {
+   "id": "42-cfr-447.502",
+   "title": "42 CFR 447.502 — Definitions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-447.502.md"
+  },
+  {
+   "id": "42-cfr-447.518",
+   "title": "42 CFR 447.518 — State plan requirements, findings, and assurances",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-447.518.md"
+  },
+  {
+   "id": "42-cfr-447.56",
+   "title": "42 CFR 447.56 — Limitations on premiums and cost sharing",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-447.56.md"
+  },
+  {
+   "id": "42-cfr-447",
+   "title": "Payments for Services",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-447.md"
+  },
+  {
+   "id": "42-cfr-455.100",
+   "title": "42 CFR 455.100 — Purpose",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.100.md"
+  },
+  {
+   "id": "42-cfr-455.101",
+   "title": "42 CFR 455.101 — Definitions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.101.md"
+  },
+  {
+   "id": "42-cfr-455.102",
+   "title": "42 CFR 455.102 — Determination of ownership or control percentages",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.102.md"
+  },
+  {
+   "id": "42-cfr-455.104",
+   "title": "42 CFR 455.104 — Disclosure by Medicaid providers and fiscal agents: Information on ownership and control",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.104.md"
+  },
+  {
+   "id": "42-cfr-455.105",
+   "title": "42 CFR 455.105 — Disclosure by providers: Information related to business transactions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.105.md"
+  },
+  {
+   "id": "42-cfr-455.13",
+   "title": "42 CFR 455.13 — Methods for identification, investigation, and referral",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.13.md"
+  },
+  {
+   "id": "42-cfr-455.14",
+   "title": "42 CFR 455.14 — Preliminary investigation",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.14.md"
+  },
+  {
+   "id": "42-cfr-455.17",
+   "title": "42 CFR 455.17 — Reporting requirements",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.17.md"
+  },
+  {
+   "id": "42-cfr-455.2",
+   "title": "42 CFR 455.2 — Definitions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.2.md"
+  },
+  {
+   "id": "42-cfr-455.21",
+   "title": "42 CFR 455.21 — Cooperation with State Medicaid fraud control units",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.21.md"
+  },
+  {
+   "id": "42-cfr-455.23",
+   "title": "42 CFR 455.23 — Suspension of payments in cases of fraud",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.23.md"
+  },
+  {
+   "id": "42-cfr-455.410",
+   "title": "42 CFR 455.410 — Enrollment and screening of providers",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.410.md"
+  },
+  {
+   "id": "42-cfr-455.412",
+   "title": "42 CFR 455.412 — Verification of provider licenses",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.412.md"
+  },
+  {
+   "id": "42-cfr-455.414",
+   "title": "42 CFR 455.414 — Revalidation of enrollment",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.414.md"
+  },
+  {
+   "id": "42-cfr-455.416",
+   "title": "42 CFR 455.416 — Termination or denial of enrollment",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.416.md"
+  },
+  {
+   "id": "42-cfr-455.432",
+   "title": "42 CFR 455.432 — Site visits",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.432.md"
+  },
+  {
+   "id": "42-cfr-455.434",
+   "title": "42 CFR 455.434 — Criminal background checks",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.434.md"
+  },
+  {
+   "id": "42-cfr-455.436",
+   "title": "42 CFR 455.436 — Federal database checks",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.436.md"
+  },
+  {
+   "id": "42-cfr-455.450",
+   "title": "42 CFR 455.450 — Screening levels for Medicaid providers",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.450.md"
+  },
+  {
+   "id": "42-cfr-455.460",
+   "title": "42 CFR 455.460 — Application fee",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.460.md"
+  },
+  {
+   "id": "42-cfr-455.470",
+   "title": "42 CFR 455.470 — Temporary moratoria",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.470.md"
+  },
+  {
+   "id": "42-cfr-455",
+   "title": "Program Integrity: Medicaid",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-455.md"
+  },
+  {
+   "id": "42-cfr-600.305",
+   "title": "42 CFR 600.305 — Eligible individuals",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-600.305.md"
+  },
+  {
+   "id": "42-cfr-600.335",
+   "title": "42 CFR 600.335 — Appeals",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-600.335.md"
+  },
+  {
+   "id": "42-cfr-600.405",
+   "title": "42 CFR 600.405 — Standard health plan coverage",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-600.405.md"
+  },
+  {
+   "id": "42-cfr-600.5",
+   "title": "42 CFR 600.5 — Definitions and use of terms",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-600.5.md"
+  },
+  {
+   "id": "42-cfr-600.505",
+   "title": "42 CFR 600.505 — Premiums",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-600.505.md"
+  },
+  {
+   "id": "42-cfr-600.705",
+   "title": "42 CFR 600.705 — BHP trust fund",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-600.705.md"
+  },
+  {
+   "id": "42-cfr-600.715",
+   "title": "42 CFR 600.715 — Corrective action, restitution, and disallowance of questioned BHP transactions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-600.715.md"
+  },
+  {
+   "id": "42-cfr-600",
+   "title": "Administration, Eligibility, Essential Health Benefits, Performance Standards, Service Delivery Requirements, Premium and Cost Sharing, Allotments, and Reconcilation",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/42-cfr-600.md"
+  },
+  {
+   "id": "45-cfr-155.20",
+   "title": "45 CFR 155.20 — Definitions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-155.20.md"
+  },
+  {
+   "id": "45-cfr-155.300",
+   "title": "45 CFR 155.300 — Definitions and general standards for eligibility determinations",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-155.300.md"
+  },
+  {
+   "id": "45-cfr-155.410",
+   "title": "45 CFR 155.410 — Initial and annual open enrollment periods",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-155.410.md"
+  },
+  {
+   "id": "45-cfr-155.420",
+   "title": "45 CFR 155.420 — Special enrollment periods",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-155.420.md"
+  },
+  {
+   "id": "45-cfr-155.720",
+   "title": "45 CFR 155.720 — Enrollment of employees into QHPs under SHOP for plan years beginning prior to January 1, 2018",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-155.720.md"
+  },
+  {
+   "id": "45-cfr-155.725",
+   "title": "45 CFR 155.725 — Enrollment periods under SHOP for plan years beginning prior to January 1, 2018",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-155.725.md"
+  },
+  {
+   "id": "45-cfr-155",
+   "title": "Exchange Establishment Standards and Other Related Standards Under the Affordable Care Act",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-155.md"
+  },
+  {
+   "id": "45-cfr-260.20",
+   "title": "45 CFR 260.20 — What is the purpose of the TANF program?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-260.20.md"
+  },
+  {
+   "id": "45-cfr-260.31",
+   "title": "45 CFR 260.31 — What does the term “assistance” mean?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-260.31.md"
+  },
+  {
+   "id": "45-cfr-260.50",
+   "title": "45 CFR 260.50 — What is the purpose of this subpart?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-260.50.md"
+  },
+  {
+   "id": "45-cfr-260",
+   "title": "General Temporary Assistance for Needy Families (TANF) Provisions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-260.md"
+  },
+  {
+   "id": "45-cfr-261.1",
+   "title": "45 CFR 261.1 — What does this part cover?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-261.1.md"
+  },
+  {
+   "id": "45-cfr-261.10",
+   "title": "45 CFR 261.10 — What work requirements must an individual meet?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-261.10.md"
+  },
+  {
+   "id": "45-cfr-261.11",
+   "title": "45 CFR 261.11 — Which recipients must have an assessment under TANF?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-261.11.md"
+  },
+  {
+   "id": "45-cfr-261.12",
+   "title": "45 CFR 261.12 — What is an individual responsibility plan?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-261.12.md"
+  },
+  {
+   "id": "45-cfr-261.13",
+   "title": "45 CFR 261.13 — May an individual be penalized for not following an individual responsibility plan?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-261.13.md"
+  },
+  {
+   "id": "45-cfr-261.14",
+   "title": "45 CFR 261.14 — What is the penalty if an individual refuses to engage in work?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-261.14.md"
+  },
+  {
+   "id": "45-cfr-261.2",
+   "title": "45 CFR 261.2 — What definitions apply to this part?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-261.2.md"
+  },
+  {
+   "id": "45-cfr-261.56",
+   "title": "45 CFR 261.56 — What happens if a parent cannot obtain needed child care?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-261.56.md"
+  },
+  {
+   "id": "45-cfr-261.61",
+   "title": "45 CFR 261.61 — How must a State document a work-eligible individual's hours of participation?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-261.61.md"
+  },
+  {
+   "id": "45-cfr-261.62",
+   "title": "45 CFR 261.62 — What must a State do to verify the accuracy of its work participation information?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-261.62.md"
+  },
+  {
+   "id": "45-cfr-261.70",
+   "title": "45 CFR 261.70 — What safeguards are there to ensure that participants in work activities do not displace other workers?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-261.70.md"
+  },
+  {
+   "id": "45-cfr-261",
+   "title": "Ensuring That Recipients Work",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-261.md"
+  },
+  {
+   "id": "45-cfr-264.1",
+   "title": "45 CFR 264.1 — What restrictions apply to the length of time Federal TANF assistance may be provided?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-264.1.md"
+  },
+  {
+   "id": "45-cfr-264.10",
+   "title": "45 CFR 264.10 — Must States do computer matching of data records under IEVS to verify recipient information?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-264.10.md"
+  },
+  {
+   "id": "45-cfr-264.30",
+   "title": "45 CFR 264.30 — What procedures exist to ensure cooperation with the child support enforcement requirements?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-264.30.md"
+  },
+  {
+   "id": "45-cfr-264",
+   "title": "Other Accountability Provisions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-264.md"
+  },
+  {
+   "id": "45-cfr-265.3",
+   "title": "45 CFR 265.3 — What reports must the State file on a quarterly basis?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-265.3.md"
+  },
+  {
+   "id": "45-cfr-265.7",
+   "title": "45 CFR 265.7 — How will we determine if the State is meeting the quarterly reporting requirements?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-265.7.md"
+  },
+  {
+   "id": "45-cfr-265.9",
+   "title": "45 CFR 265.9 — What information must the State file annually?",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-265.9.md"
+  },
+  {
+   "id": "45-cfr-265",
+   "title": "Data Collection and Reporting Requirements",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-265.md"
+  },
+  {
+   "id": "45-cfr-400.155",
+   "title": "45 CFR 400.155 — Other services",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-400.155.md"
+  },
+  {
+   "id": "45-cfr-400",
+   "title": "Refugee Resettlement Program",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-400.md"
+  },
+  {
+   "id": "45-cfr-75.303",
+   "title": "45 CFR 75.303 — Internal controls (SUPERSEDED 2025-10-01)",
+   "doc_type": "federal_instrument",
+   "status": "superseded",
+   "path": "instruments/45-cfr-75.303.md"
+  },
+  {
+   "id": "45-cfr-75.342",
+   "title": "45 CFR 75.342 — Monitoring and reporting program performance (SUPERSEDED 2025-10-01)",
+   "doc_type": "federal_instrument",
+   "status": "superseded",
+   "path": "instruments/45-cfr-75.342.md"
+  },
+  {
+   "id": "45-cfr-75.351",
+   "title": "45 CFR 75.351 — Subrecipient and contractor determinations (SUPERSEDED 2025-10-01)",
+   "doc_type": "federal_instrument",
+   "status": "superseded",
+   "path": "instruments/45-cfr-75.351.md"
+  },
+  {
+   "id": "45-cfr-75.352",
+   "title": "45 CFR 75.352 — Requirements for pass-through entities (SUPERSEDED 2025-10-01)",
+   "doc_type": "federal_instrument",
+   "status": "superseded",
+   "path": "instruments/45-cfr-75.352.md"
+  },
+  {
+   "id": "45-cfr-75.403",
+   "title": "45 CFR 75.403 — Factors affecting allowability of costs (SUPERSEDED 2025-10-01)",
+   "doc_type": "federal_instrument",
+   "status": "superseded",
+   "path": "instruments/45-cfr-75.403.md"
+  },
+  {
+   "id": "45-cfr-75.404",
+   "title": "45 CFR 75.404 — Reasonable costs (SUPERSEDED 2025-10-01)",
+   "doc_type": "federal_instrument",
+   "status": "superseded",
+   "path": "instruments/45-cfr-75.404.md"
+  },
+  {
+   "id": "45-cfr-75.430",
+   "title": "45 CFR 75.430 — Compensation—personal services (SUPERSEDED 2025-10-01)",
+   "doc_type": "federal_instrument",
+   "status": "superseded",
+   "path": "instruments/45-cfr-75.430.md"
+  },
+  {
+   "id": "45-cfr-75",
+   "title": "Uniform Administrative Requirements, Cost Principles, and Audit Requirements for HHS Awards (SUPERSEDED 2025-10-01)",
+   "doc_type": "federal_instrument",
+   "status": "superseded",
+   "path": "instruments/45-cfr-75.md"
+  },
+  {
+   "id": "45-cfr-84.4",
+   "title": "45 CFR 84.4 — Disability",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-84.4.md"
+  },
+  {
+   "id": "45-cfr-84.60",
+   "title": "45 CFR 84.60 — Children, parents, caregivers, foster parents, and prospective parents in the child welfare system",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-84.60.md"
+  },
+  {
+   "id": "45-cfr-84.68",
+   "title": "45 CFR 84.68 — General prohibitions against discrimination",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-84.68.md"
+  },
+  {
+   "id": "45-cfr-84.69",
+   "title": "45 CFR 84.69 — Illegal use of drugs",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-84.69.md"
+  },
+  {
+   "id": "45-cfr-84.81",
+   "title": "45 CFR 84.81 — Duties",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-84.81.md"
+  },
+  {
+   "id": "45-cfr-84",
+   "title": "Nondiscrimination on the Basis of Disability in Programs or Activities Receiving Federal Financial Assistance",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-84.md"
+  },
+  {
+   "id": "45-cfr-98.16",
+   "title": "45 CFR 98.16 — Plan provisions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-98.16.md"
+  },
+  {
+   "id": "45-cfr-98.20",
+   "title": "45 CFR 98.20 — A child's eligibility for child care services",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-98.20.md"
+  },
+  {
+   "id": "45-cfr-98.41",
+   "title": "45 CFR 98.41 — Health and safety requirements",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-98.41.md"
+  },
+  {
+   "id": "45-cfr-98.43",
+   "title": "45 CFR 98.43 — Criminal background checks",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-98.43.md"
+  },
+  {
+   "id": "45-cfr-98.45",
+   "title": "45 CFR 98.45 — Equal access",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-98.45.md"
+  },
+  {
+   "id": "45-cfr-98.54",
+   "title": "45 CFR 98.54 — Administrative costs",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-98.54.md"
+  },
+  {
+   "id": "45-cfr-98.57",
+   "title": "45 CFR 98.57 — Cost allocation",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-98.57.md"
+  },
+  {
+   "id": "45-cfr-98.60",
+   "title": "45 CFR 98.60 — Availability of funds",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-98.60.md"
+  },
+  {
+   "id": "45-cfr-98.65",
+   "title": "45 CFR 98.65 — Audits and financial reporting",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-98.65.md"
+  },
+  {
+   "id": "45-cfr-98.90",
+   "title": "45 CFR 98.90 — Monitoring",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-98.90.md"
+  },
+  {
+   "id": "45-cfr-98",
+   "title": "Child Care and Development Fund",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-98.md"
+  },
+  {
+   "id": "49-cfr-15",
+   "title": "Protection of Sensitive Security Information",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-15.md"
+  },
+  {
+   "id": "49-cfr-1520.5",
+   "title": "49 CFR 1520.5 — Sensitive security information",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-1520.5.md"
+  },
+  {
+   "id": "49-cfr-1520",
+   "title": "Protection of Sensitive Security Information",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-1520.md"
+  },
+  {
+   "id": "49-cfr-383.110",
+   "title": "49 CFR 383.110 — General requirement",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-383.110.md"
+  },
+  {
+   "id": "49-cfr-383.131",
+   "title": "49 CFR 383.131 — Test manuals",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-383.131.md"
+  },
+  {
+   "id": "49-cfr-383.21",
+   "title": "49 CFR 383.21 — Number of drivers' licenses",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-383.21.md"
+  },
+  {
+   "id": "49-cfr-383.3",
+   "title": "49 CFR 383.3 — Applicability",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-383.3.md"
+  },
+  {
+   "id": "49-cfr-383.5",
+   "title": "49 CFR 383.5 — Definitions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-383.5.md"
+  },
+  {
+   "id": "49-cfr-383.51",
+   "title": "49 CFR 383.51 — Disqualification of drivers",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-383.51.md"
+  },
+  {
+   "id": "49-cfr-383.53",
+   "title": "49 CFR 383.53 — Penalties",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-383.53.md"
+  },
+  {
+   "id": "49-cfr-383.71",
+   "title": "49 CFR 383.71 — Driver application and certification procedures",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-383.71.md"
+  },
+  {
+   "id": "49-cfr-383.73",
+   "title": "49 CFR 383.73 — State procedures",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-383.73.md"
+  },
+  {
+   "id": "49-cfr-383.75",
+   "title": "49 CFR 383.75 — Third-party testing",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-383.75.md"
+  },
+  {
+   "id": "49-cfr-383.77",
+   "title": "49 CFR 383.77 — Substitute for knowledge and driving skills tests for drivers with military CMV experience",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-383.77.md"
+  },
+  {
+   "id": "49-cfr-383.79",
+   "title": "49 CFR 383.79 — Driving skills testing of out-of-State students; knowledge and driving skills testing of military personnel",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-383.79.md"
+  },
+  {
+   "id": "49-cfr-383",
+   "title": "Commercial Driver's License Standards; Requirements and Penalties",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-383.md"
+  },
+  {
+   "id": "49-cfr-580.13",
+   "title": "49 CFR 580.13 — Disclosure of odometer information by power of attorney",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-580.13.md"
+  },
+  {
+   "id": "49-cfr-580.17",
+   "title": "49 CFR 580.17 — Exemptions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-580.17.md"
+  },
+  {
+   "id": "49-cfr-580.3",
+   "title": "49 CFR 580.3 — Definitions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-580.3.md"
+  },
+  {
+   "id": "49-cfr-580",
+   "title": "Odometer Disclosure Requirements",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-580.md"
+  },
+  {
+   "id": "49-cfr-670",
+   "title": "Public Transportation Safety Program",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-670.md"
+  },
+  {
+   "id": "49-cfr-671",
+   "title": "Rail Transit Roadway Worker Protection",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-671.md"
+  },
+  {
+   "id": "49-cfr-672",
+   "title": "Public Transportation Safety Certification Training Program",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-672.md"
+  },
+  {
+   "id": "49-cfr-673",
+   "title": "Public Transportation Agency Safety Plans",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-673.md"
+  },
+  {
+   "id": "49-cfr-674",
+   "title": "State Safety Oversight",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/49-cfr-674.md"
+  },
+  {
+   "id": "6-cfr-37.11",
+   "title": "6 CFR 37.11 — Application and documents the applicant must provide",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/6-cfr-37.11.md"
+  },
+  {
+   "id": "6-cfr-37.13",
+   "title": "6 CFR 37.13 — Document verification requirements",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/6-cfr-37.13.md"
+  },
+  {
+   "id": "6-cfr-37.17",
+   "title": "6 CFR 37.17 — Requirements for the surface of the driver's license or identification card",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/6-cfr-37.17.md"
+  },
+  {
+   "id": "6-cfr-37.21",
+   "title": "6 CFR 37.21 — Temporary or limited-term driver's licenses and identification cards",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/6-cfr-37.21.md"
+  },
+  {
+   "id": "6-cfr-37.23",
+   "title": "6 CFR 37.23 — Reissued REAL ID driver's licenses and identification cards",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/6-cfr-37.23.md"
+  },
+  {
+   "id": "6-cfr-37.25",
+   "title": "6 CFR 37.25 — Renewal of REAL ID driver's licenses and identification cards",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/6-cfr-37.25.md"
+  },
+  {
+   "id": "6-cfr-37.29",
+   "title": "6 CFR 37.29 — Prohibition against holding more than one REAL ID card or more than one driver's license",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/6-cfr-37.29.md"
+  },
+  {
+   "id": "6-cfr-37.3",
+   "title": "6 CFR 37.3 — Definitions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/6-cfr-37.3.md"
+  },
+  {
+   "id": "6-cfr-37",
+   "title": "Real ID Driver's Licenses and Identification Cards",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/6-cfr-37.md"
+  },
+  {
+   "id": "7-cfr-210.13",
+   "title": "7 CFR 210.13 — Facilities management",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-210.13.md"
+  },
+  {
+   "id": "7-cfr-210.16",
+   "title": "7 CFR 210.16 — Food service management companies",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-210.16.md"
+  },
+  {
+   "id": "7-cfr-210.2",
+   "title": "7 CFR 210.2 — Definitions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-210.2.md"
+  },
+  {
+   "id": "7-cfr-210.21",
+   "title": "7 CFR 210.21 — Procurement",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-210.21.md"
+  },
+  {
+   "id": "7-cfr-210.7",
+   "title": "7 CFR 210.7 — Reimbursement for school food authorities",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-210.7.md"
+  },
+  {
+   "id": "7-cfr-210",
+   "title": "National School Lunch Program",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-210.md"
+  },
+  {
+   "id": "7-cfr-220.16",
+   "title": "7 CFR 220.16 — Procurement standards",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-220.16.md"
+  },
+  {
+   "id": "7-cfr-220.2",
+   "title": "7 CFR 220.2 — Definitions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-220.2.md"
+  },
+  {
+   "id": "7-cfr-220.7",
+   "title": "7 CFR 220.7 — Requirements for participation",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-220.7.md"
+  },
+  {
+   "id": "7-cfr-220",
+   "title": "School Breakfast Program",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-220.md"
+  },
+  {
+   "id": "7-cfr-225.15",
+   "title": "7 CFR 225.15 — Management responsibilities of sponsors",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-225.15.md"
+  },
+  {
+   "id": "7-cfr-225.17",
+   "title": "7 CFR 225.17 — Procurement standards",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-225.17.md"
+  },
+  {
+   "id": "7-cfr-225.2",
+   "title": "7 CFR 225.2 — Definitions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-225.2.md"
+  },
+  {
+   "id": "7-cfr-225.6",
+   "title": "7 CFR 225.6 — State agency responsibilities",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-225.6.md"
+  },
+  {
+   "id": "7-cfr-225",
+   "title": "Summer Food Service Program",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-225.md"
+  },
+  {
+   "id": "7-cfr-226.2",
+   "title": "7 CFR 226.2 — Definitions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-226.2.md"
+  },
+  {
+   "id": "7-cfr-226.21",
+   "title": "7 CFR 226.21 — Food service management companies",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-226.21.md"
+  },
+  {
+   "id": "7-cfr-226.22",
+   "title": "7 CFR 226.22 — Procurement standards",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-226.22.md"
+  },
+  {
+   "id": "7-cfr-226.6",
+   "title": "7 CFR 226.6 — State agency administrative responsibilities",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-226.6.md"
+  },
+  {
+   "id": "7-cfr-226",
+   "title": "Child and Adult Care Food Program",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-226.md"
+  },
+  {
+   "id": "7-cfr-248.10",
+   "title": "7 CFR 248.10 — Coupon and market management",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-248.10.md"
+  },
+  {
+   "id": "7-cfr-248",
+   "title": "WIC Farmers' Market Nutrition Program (FMNP)",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-248.md"
+  },
+  {
+   "id": "7-cfr-249",
+   "title": "Senior Farmers' Market Nutrition Program (SFMNP)",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-249.md"
+  },
+  {
+   "id": "7-cfr-250.2",
+   "title": "7 CFR 250.2 — Definitions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-250.2.md"
+  },
+  {
+   "id": "7-cfr-250.31",
+   "title": "7 CFR 250.31 — Procurement requirements",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-250.31.md"
+  },
+  {
+   "id": "7-cfr-250.53",
+   "title": "7 CFR 250.53 — Contract provisions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-250.53.md"
+  },
+  {
+   "id": "7-cfr-250",
+   "title": "Donation of Foods for Use in the United States, Its Territories and Possessions and Areas Under Its Jurisdiction",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-250.md"
+  },
+  {
+   "id": "7-cfr-273.1",
+   "title": "7 CFR 273.1 — Household concept",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-273.1.md"
+  },
+  {
+   "id": "7-cfr-273.10",
+   "title": "7 CFR 273.10 — Determining household eligibility and benefit levels",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-273.10.md"
+  },
+  {
+   "id": "7-cfr-273.11",
+   "title": "7 CFR 273.11 — Action on households with special circumstances",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-273.11.md"
+  },
+  {
+   "id": "7-cfr-273.12",
+   "title": "7 CFR 273.12 — Reporting requirements",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-273.12.md"
+  },
+  {
+   "id": "7-cfr-273.13",
+   "title": "7 CFR 273.13 — Notice of adverse action",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-273.13.md"
+  },
+  {
+   "id": "7-cfr-273.14",
+   "title": "7 CFR 273.14 — Recertification",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-273.14.md"
+  },
+  {
+   "id": "7-cfr-273.16",
+   "title": "7 CFR 273.16 — Disqualification for intentional Program violation",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-273.16.md"
+  },
+  {
+   "id": "7-cfr-273.18",
+   "title": "7 CFR 273.18 — Claims against households",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-273.18.md"
+  },
+  {
+   "id": "7-cfr-273.2",
+   "title": "7 CFR 273.2 — Office operations and application processing",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-273.2.md"
+  },
+  {
+   "id": "7-cfr-273.24",
+   "title": "7 CFR 273.24 — Time limit for able-bodied adults",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-273.24.md"
+  },
+  {
+   "id": "7-cfr-273.4",
+   "title": "7 CFR 273.4 — Citizenship and alien status",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-273.4.md"
+  },
+  {
+   "id": "7-cfr-273.5",
+   "title": "7 CFR 273.5 — Students",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-273.5.md"
+  },
+  {
+   "id": "7-cfr-273.7",
+   "title": "7 CFR 273.7 — Work provisions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-273.7.md"
+  },
+  {
+   "id": "7-cfr-273.9",
+   "title": "7 CFR 273.9 — Income and deductions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-273.9.md"
+  },
+  {
+   "id": "7-cfr-273",
+   "title": "Certification of Eligible Households",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-273.md"
+  },
+  {
+   "id": "7-cfr-280.1",
+   "title": "7 CFR 280.1 — Interim disaster procedures",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-280.1.md"
+  },
+  {
+   "id": "7-cfr-280",
+   "title": "Emergency Food Assistance for Victims of Disasters",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/7-cfr-280.md"
+  },
+  {
    "id": "cjis-sp-6-1",
    "title": "Criminal Justice Information Services (CJIS) Security Policy",
    "doc_type": "federal_instrument",
@@ -790,6 +2960,86 @@
   }
  ],
  "edges": [
+  {
+   "from": "17-cfr-230.251",
+   "type": "related",
+   "to": "17-cfr-230"
+  },
+  {
+   "from": "17-cfr-230.405",
+   "type": "related",
+   "to": "17-cfr-230"
+  },
+  {
+   "from": "17-cfr-230.504",
+   "type": "related",
+   "to": "17-cfr-230"
+  },
+  {
+   "from": "17-cfr-230.506",
+   "type": "related",
+   "to": "17-cfr-230"
+  },
+  {
+   "from": "17-cfr-230.701",
+   "type": "related",
+   "to": "17-cfr-230"
+  },
+  {
+   "from": "17-cfr-230",
+   "type": "related",
+   "to": "17-cfr-230.504"
+  },
+  {
+   "from": "17-cfr-230",
+   "type": "related",
+   "to": "17-cfr-230.506"
+  },
+  {
+   "from": "17-cfr-230",
+   "type": "related",
+   "to": "17-cfr-230.701"
+  },
+  {
+   "from": "17-cfr-230",
+   "type": "related",
+   "to": "17-cfr-230.251"
+  },
+  {
+   "from": "17-cfr-230",
+   "type": "related",
+   "to": "17-cfr-230.405"
+  },
+  {
+   "from": "2-cfr-180.220",
+   "type": "related",
+   "to": "2-cfr-180"
+  },
+  {
+   "from": "2-cfr-180.300",
+   "type": "related",
+   "to": "2-cfr-180"
+  },
+  {
+   "from": "2-cfr-180.305",
+   "type": "related",
+   "to": "2-cfr-180"
+  },
+  {
+   "from": "2-cfr-180",
+   "type": "related",
+   "to": "2-cfr-180.300"
+  },
+  {
+   "from": "2-cfr-180",
+   "type": "related",
+   "to": "2-cfr-180.220"
+  },
+  {
+   "from": "2-cfr-180",
+   "type": "related",
+   "to": "2-cfr-180.305"
+  },
   {
    "from": "2-cfr-200.1",
    "type": "related",
@@ -1179,6 +3429,141 @@
    "from": "2-cfr-200",
    "type": "related",
    "to": "2-cfr-200.62"
+  },
+  {
+   "from": "23-cfr-645.301",
+   "type": "related",
+   "to": "23-cfr-645"
+  },
+  {
+   "from": "23-cfr-645",
+   "type": "related",
+   "to": "23-cfr-645.301"
+  },
+  {
+   "from": "24-cfr-576.100",
+   "type": "related",
+   "to": "24-cfr-576"
+  },
+  {
+   "from": "24-cfr-576.101",
+   "type": "related",
+   "to": "24-cfr-576"
+  },
+  {
+   "from": "24-cfr-576.102",
+   "type": "related",
+   "to": "24-cfr-576"
+  },
+  {
+   "from": "24-cfr-576.2",
+   "type": "related",
+   "to": "24-cfr-576"
+  },
+  {
+   "from": "24-cfr-576.400",
+   "type": "related",
+   "to": "24-cfr-576"
+  },
+  {
+   "from": "28-cfr-23.20",
+   "type": "related",
+   "to": "28-cfr-23"
+  },
+  {
+   "from": "28-cfr-23",
+   "type": "related",
+   "to": "28-cfr-23.20"
+  },
+  {
+   "from": "28-cfr-35.104",
+   "type": "related",
+   "to": "28-cfr-35"
+  },
+  {
+   "from": "28-cfr-35.106",
+   "type": "related",
+   "to": "28-cfr-35"
+  },
+  {
+   "from": "28-cfr-35.108",
+   "type": "related",
+   "to": "28-cfr-35"
+  },
+  {
+   "from": "28-cfr-35.130",
+   "type": "related",
+   "to": "28-cfr-35"
+  },
+  {
+   "from": "28-cfr-35.131",
+   "type": "related",
+   "to": "28-cfr-35"
+  },
+  {
+   "from": "28-cfr-35.136",
+   "type": "related",
+   "to": "28-cfr-35"
+  },
+  {
+   "from": "28-cfr-35.150",
+   "type": "related",
+   "to": "28-cfr-35"
+  },
+  {
+   "from": "28-cfr-35.151",
+   "type": "related",
+   "to": "28-cfr-35"
+  },
+  {
+   "from": "28-cfr-35.164",
+   "type": "related",
+   "to": "28-cfr-35"
+  },
+  {
+   "from": "28-cfr-35",
+   "type": "related",
+   "to": "28-cfr-35.130"
+  },
+  {
+   "from": "28-cfr-35",
+   "type": "related",
+   "to": "28-cfr-35.164"
+  },
+  {
+   "from": "28-cfr-35",
+   "type": "related",
+   "to": "28-cfr-35.104"
+  },
+  {
+   "from": "28-cfr-35",
+   "type": "related",
+   "to": "28-cfr-35.131"
+  },
+  {
+   "from": "28-cfr-35",
+   "type": "related",
+   "to": "28-cfr-35.136"
+  },
+  {
+   "from": "28-cfr-35",
+   "type": "related",
+   "to": "28-cfr-35.106"
+  },
+  {
+   "from": "28-cfr-35",
+   "type": "related",
+   "to": "28-cfr-35.108"
+  },
+  {
+   "from": "28-cfr-35",
+   "type": "related",
+   "to": "28-cfr-35.150"
+  },
+  {
+   "from": "28-cfr-35",
+   "type": "related",
+   "to": "28-cfr-35.151"
   },
   {
    "from": "34-cfr-300.101",
@@ -1859,6 +4244,1746 @@
    "from": "34-cfr-300",
    "type": "related",
    "to": "34-cfr-300.627"
+  },
+  {
+   "from": "34-cfr-303.117",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.120",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.209",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.24",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.25",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.29",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.302",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.303",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.310",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.320",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.321",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.34",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.344",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.4",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.400",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.401",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.405",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.409",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.414",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.420",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.430",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.431",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.521",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-303.600",
+   "type": "related",
+   "to": "34-cfr-303"
+  },
+  {
+   "from": "34-cfr-99.1",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.10",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.11",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.12",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.20",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.21",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.22",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.3",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.30",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.31",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.32",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.33",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.34",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.35",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.36",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.37",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.4",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.5",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.6",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.63",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.64",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.7",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "34-cfr-99.8",
+   "type": "related",
+   "to": "34-cfr-99"
+  },
+  {
+   "from": "42-cfr-433.135",
+   "type": "related",
+   "to": "42-cfr-433"
+  },
+  {
+   "from": "42-cfr-433.138",
+   "type": "related",
+   "to": "42-cfr-433"
+  },
+  {
+   "from": "42-cfr-433.145",
+   "type": "related",
+   "to": "42-cfr-433"
+  },
+  {
+   "from": "42-cfr-433.146",
+   "type": "related",
+   "to": "42-cfr-433"
+  },
+  {
+   "from": "42-cfr-433.147",
+   "type": "related",
+   "to": "42-cfr-433"
+  },
+  {
+   "from": "42-cfr-433.312",
+   "type": "related",
+   "to": "42-cfr-433"
+  },
+  {
+   "from": "42-cfr-433.32",
+   "type": "related",
+   "to": "42-cfr-433"
+  },
+  {
+   "from": "42-cfr-433.37",
+   "type": "related",
+   "to": "42-cfr-433"
+  },
+  {
+   "from": "42-cfr-433.400",
+   "type": "related",
+   "to": "42-cfr-433"
+  },
+  {
+   "from": "42-cfr-433.51",
+   "type": "related",
+   "to": "42-cfr-433"
+  },
+  {
+   "from": "42-cfr-433.52",
+   "type": "related",
+   "to": "42-cfr-433"
+  },
+  {
+   "from": "42-cfr-433.54",
+   "type": "related",
+   "to": "42-cfr-433"
+  },
+  {
+   "from": "42-cfr-433.56",
+   "type": "related",
+   "to": "42-cfr-433"
+  },
+  {
+   "from": "42-cfr-433",
+   "type": "related",
+   "to": "42-cfr-433.32"
+  },
+  {
+   "from": "42-cfr-433",
+   "type": "related",
+   "to": "42-cfr-433.138"
+  },
+  {
+   "from": "42-cfr-433",
+   "type": "related",
+   "to": "42-cfr-433.51"
+  },
+  {
+   "from": "42-cfr-433",
+   "type": "related",
+   "to": "42-cfr-433.56"
+  },
+  {
+   "from": "42-cfr-433",
+   "type": "related",
+   "to": "42-cfr-433.37"
+  },
+  {
+   "from": "42-cfr-433",
+   "type": "related",
+   "to": "42-cfr-433.135"
+  },
+  {
+   "from": "42-cfr-433",
+   "type": "related",
+   "to": "42-cfr-433.145"
+  },
+  {
+   "from": "42-cfr-433",
+   "type": "related",
+   "to": "42-cfr-433.146"
+  },
+  {
+   "from": "42-cfr-433",
+   "type": "related",
+   "to": "42-cfr-433.147"
+  },
+  {
+   "from": "42-cfr-433",
+   "type": "related",
+   "to": "42-cfr-433.400"
+  },
+  {
+   "from": "42-cfr-433",
+   "type": "related",
+   "to": "42-cfr-433.52"
+  },
+  {
+   "from": "42-cfr-433",
+   "type": "related",
+   "to": "42-cfr-433.54"
+  },
+  {
+   "from": "42-cfr-433",
+   "type": "related",
+   "to": "42-cfr-433.312"
+  },
+  {
+   "from": "42-cfr-435.10",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.1009",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.1010",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.110",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.1110",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.120",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.1200",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.1205",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.123",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.135",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.170",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.219",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.4",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.603",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.610",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.725",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.726",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.905",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.907",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.909",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.910",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.914",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.916",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.917",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.923",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.926",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.940",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.952",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-435.956",
+   "type": "related",
+   "to": "42-cfr-435"
+  },
+  {
+   "from": "42-cfr-440.100",
+   "type": "related",
+   "to": "42-cfr-440"
+  },
+  {
+   "from": "42-cfr-440.110",
+   "type": "related",
+   "to": "42-cfr-440"
+  },
+  {
+   "from": "42-cfr-440.130",
+   "type": "related",
+   "to": "42-cfr-440"
+  },
+  {
+   "from": "42-cfr-440.140",
+   "type": "related",
+   "to": "42-cfr-440"
+  },
+  {
+   "from": "42-cfr-440.160",
+   "type": "related",
+   "to": "42-cfr-440"
+  },
+  {
+   "from": "42-cfr-440.166",
+   "type": "related",
+   "to": "42-cfr-440"
+  },
+  {
+   "from": "42-cfr-440.255",
+   "type": "related",
+   "to": "42-cfr-440"
+  },
+  {
+   "from": "42-cfr-440.50",
+   "type": "related",
+   "to": "42-cfr-440"
+  },
+  {
+   "from": "42-cfr-440.60",
+   "type": "related",
+   "to": "42-cfr-440"
+  },
+  {
+   "from": "42-cfr-440.70",
+   "type": "related",
+   "to": "42-cfr-440"
+  },
+  {
+   "from": "42-cfr-440",
+   "type": "related",
+   "to": "42-cfr-440.130"
+  },
+  {
+   "from": "42-cfr-440",
+   "type": "related",
+   "to": "42-cfr-440.70"
+  },
+  {
+   "from": "42-cfr-440",
+   "type": "related",
+   "to": "42-cfr-440.255"
+  },
+  {
+   "from": "42-cfr-440",
+   "type": "related",
+   "to": "42-cfr-440.50"
+  },
+  {
+   "from": "42-cfr-440",
+   "type": "related",
+   "to": "42-cfr-440.60"
+  },
+  {
+   "from": "42-cfr-440",
+   "type": "related",
+   "to": "42-cfr-440.100"
+  },
+  {
+   "from": "42-cfr-440",
+   "type": "related",
+   "to": "42-cfr-440.110"
+  },
+  {
+   "from": "42-cfr-440",
+   "type": "related",
+   "to": "42-cfr-440.140"
+  },
+  {
+   "from": "42-cfr-440",
+   "type": "related",
+   "to": "42-cfr-440.160"
+  },
+  {
+   "from": "42-cfr-440",
+   "type": "related",
+   "to": "42-cfr-440.166"
+  },
+  {
+   "from": "42-cfr-447.10",
+   "type": "related",
+   "to": "42-cfr-447"
+  },
+  {
+   "from": "42-cfr-447.253",
+   "type": "related",
+   "to": "42-cfr-447"
+  },
+  {
+   "from": "42-cfr-447.272",
+   "type": "related",
+   "to": "42-cfr-447"
+  },
+  {
+   "from": "42-cfr-447.45",
+   "type": "related",
+   "to": "42-cfr-447"
+  },
+  {
+   "from": "42-cfr-447.502",
+   "type": "related",
+   "to": "42-cfr-447"
+  },
+  {
+   "from": "42-cfr-447.518",
+   "type": "related",
+   "to": "42-cfr-447"
+  },
+  {
+   "from": "42-cfr-447.56",
+   "type": "related",
+   "to": "42-cfr-447"
+  },
+  {
+   "from": "42-cfr-447",
+   "type": "related",
+   "to": "42-cfr-447.45"
+  },
+  {
+   "from": "42-cfr-447",
+   "type": "related",
+   "to": "42-cfr-447.10"
+  },
+  {
+   "from": "42-cfr-447",
+   "type": "related",
+   "to": "42-cfr-447.272"
+  },
+  {
+   "from": "42-cfr-447",
+   "type": "related",
+   "to": "42-cfr-447.56"
+  },
+  {
+   "from": "42-cfr-447",
+   "type": "related",
+   "to": "42-cfr-447.253"
+  },
+  {
+   "from": "42-cfr-447",
+   "type": "related",
+   "to": "42-cfr-447.502"
+  },
+  {
+   "from": "42-cfr-447",
+   "type": "related",
+   "to": "42-cfr-447.518"
+  },
+  {
+   "from": "42-cfr-455.100",
+   "type": "related",
+   "to": "42-cfr-455"
+  },
+  {
+   "from": "42-cfr-455.101",
+   "type": "related",
+   "to": "42-cfr-455"
+  },
+  {
+   "from": "42-cfr-455.102",
+   "type": "related",
+   "to": "42-cfr-455"
+  },
+  {
+   "from": "42-cfr-455.104",
+   "type": "related",
+   "to": "42-cfr-455"
+  },
+  {
+   "from": "42-cfr-455.105",
+   "type": "related",
+   "to": "42-cfr-455"
+  },
+  {
+   "from": "42-cfr-455.13",
+   "type": "related",
+   "to": "42-cfr-455"
+  },
+  {
+   "from": "42-cfr-455.14",
+   "type": "related",
+   "to": "42-cfr-455"
+  },
+  {
+   "from": "42-cfr-455.17",
+   "type": "related",
+   "to": "42-cfr-455"
+  },
+  {
+   "from": "42-cfr-455.2",
+   "type": "related",
+   "to": "42-cfr-455"
+  },
+  {
+   "from": "42-cfr-455.21",
+   "type": "related",
+   "to": "42-cfr-455"
+  },
+  {
+   "from": "42-cfr-455.23",
+   "type": "related",
+   "to": "42-cfr-455"
+  },
+  {
+   "from": "42-cfr-455.410",
+   "type": "related",
+   "to": "42-cfr-455"
+  },
+  {
+   "from": "42-cfr-455.412",
+   "type": "related",
+   "to": "42-cfr-455"
+  },
+  {
+   "from": "42-cfr-455.414",
+   "type": "related",
+   "to": "42-cfr-455"
+  },
+  {
+   "from": "42-cfr-455.416",
+   "type": "related",
+   "to": "42-cfr-455"
+  },
+  {
+   "from": "42-cfr-455.432",
+   "type": "related",
+   "to": "42-cfr-455"
+  },
+  {
+   "from": "42-cfr-455.434",
+   "type": "related",
+   "to": "42-cfr-455"
+  },
+  {
+   "from": "42-cfr-455.436",
+   "type": "related",
+   "to": "42-cfr-455"
+  },
+  {
+   "from": "42-cfr-455.450",
+   "type": "related",
+   "to": "42-cfr-455"
+  },
+  {
+   "from": "42-cfr-455.460",
+   "type": "related",
+   "to": "42-cfr-455"
+  },
+  {
+   "from": "42-cfr-455.470",
+   "type": "related",
+   "to": "42-cfr-455"
+  },
+  {
+   "from": "42-cfr-600.305",
+   "type": "related",
+   "to": "42-cfr-600"
+  },
+  {
+   "from": "42-cfr-600.335",
+   "type": "related",
+   "to": "42-cfr-600"
+  },
+  {
+   "from": "42-cfr-600.405",
+   "type": "related",
+   "to": "42-cfr-600"
+  },
+  {
+   "from": "42-cfr-600.5",
+   "type": "related",
+   "to": "42-cfr-600"
+  },
+  {
+   "from": "42-cfr-600.505",
+   "type": "related",
+   "to": "42-cfr-600"
+  },
+  {
+   "from": "42-cfr-600.705",
+   "type": "related",
+   "to": "42-cfr-600"
+  },
+  {
+   "from": "42-cfr-600.715",
+   "type": "related",
+   "to": "42-cfr-600"
+  },
+  {
+   "from": "42-cfr-600",
+   "type": "related",
+   "to": "42-cfr-600.305"
+  },
+  {
+   "from": "42-cfr-600",
+   "type": "related",
+   "to": "42-cfr-600.5"
+  },
+  {
+   "from": "42-cfr-600",
+   "type": "related",
+   "to": "42-cfr-600.335"
+  },
+  {
+   "from": "42-cfr-600",
+   "type": "related",
+   "to": "42-cfr-600.505"
+  },
+  {
+   "from": "42-cfr-600",
+   "type": "related",
+   "to": "42-cfr-600.405"
+  },
+  {
+   "from": "42-cfr-600",
+   "type": "related",
+   "to": "42-cfr-600.705"
+  },
+  {
+   "from": "42-cfr-600",
+   "type": "related",
+   "to": "42-cfr-600.715"
+  },
+  {
+   "from": "45-cfr-155.20",
+   "type": "related",
+   "to": "45-cfr-155"
+  },
+  {
+   "from": "45-cfr-155.300",
+   "type": "related",
+   "to": "45-cfr-155"
+  },
+  {
+   "from": "45-cfr-155.410",
+   "type": "related",
+   "to": "45-cfr-155"
+  },
+  {
+   "from": "45-cfr-155.420",
+   "type": "related",
+   "to": "45-cfr-155"
+  },
+  {
+   "from": "45-cfr-155.720",
+   "type": "related",
+   "to": "45-cfr-155"
+  },
+  {
+   "from": "45-cfr-155.725",
+   "type": "related",
+   "to": "45-cfr-155"
+  },
+  {
+   "from": "45-cfr-260.20",
+   "type": "related",
+   "to": "45-cfr-260"
+  },
+  {
+   "from": "45-cfr-260.31",
+   "type": "related",
+   "to": "45-cfr-260"
+  },
+  {
+   "from": "45-cfr-260.50",
+   "type": "related",
+   "to": "45-cfr-260"
+  },
+  {
+   "from": "45-cfr-260",
+   "type": "related",
+   "to": "45-cfr-260.31"
+  },
+  {
+   "from": "45-cfr-260",
+   "type": "related",
+   "to": "45-cfr-260.20"
+  },
+  {
+   "from": "45-cfr-260",
+   "type": "related",
+   "to": "45-cfr-260.50"
+  },
+  {
+   "from": "45-cfr-261.1",
+   "type": "related",
+   "to": "45-cfr-261"
+  },
+  {
+   "from": "45-cfr-261.10",
+   "type": "related",
+   "to": "45-cfr-261"
+  },
+  {
+   "from": "45-cfr-261.11",
+   "type": "related",
+   "to": "45-cfr-261"
+  },
+  {
+   "from": "45-cfr-261.12",
+   "type": "related",
+   "to": "45-cfr-261"
+  },
+  {
+   "from": "45-cfr-261.13",
+   "type": "related",
+   "to": "45-cfr-261"
+  },
+  {
+   "from": "45-cfr-261.14",
+   "type": "related",
+   "to": "45-cfr-261"
+  },
+  {
+   "from": "45-cfr-261.2",
+   "type": "related",
+   "to": "45-cfr-261"
+  },
+  {
+   "from": "45-cfr-261.56",
+   "type": "related",
+   "to": "45-cfr-261"
+  },
+  {
+   "from": "45-cfr-261.61",
+   "type": "related",
+   "to": "45-cfr-261"
+  },
+  {
+   "from": "45-cfr-261.62",
+   "type": "related",
+   "to": "45-cfr-261"
+  },
+  {
+   "from": "45-cfr-261.70",
+   "type": "related",
+   "to": "45-cfr-261"
+  },
+  {
+   "from": "45-cfr-264.1",
+   "type": "related",
+   "to": "45-cfr-264"
+  },
+  {
+   "from": "45-cfr-264.10",
+   "type": "related",
+   "to": "45-cfr-264"
+  },
+  {
+   "from": "45-cfr-264.30",
+   "type": "related",
+   "to": "45-cfr-264"
+  },
+  {
+   "from": "45-cfr-264",
+   "type": "related",
+   "to": "45-cfr-264.30"
+  },
+  {
+   "from": "45-cfr-264",
+   "type": "related",
+   "to": "45-cfr-264.1"
+  },
+  {
+   "from": "45-cfr-264",
+   "type": "related",
+   "to": "45-cfr-264.10"
+  },
+  {
+   "from": "45-cfr-265.3",
+   "type": "related",
+   "to": "45-cfr-265"
+  },
+  {
+   "from": "45-cfr-265.7",
+   "type": "related",
+   "to": "45-cfr-265"
+  },
+  {
+   "from": "45-cfr-265.9",
+   "type": "related",
+   "to": "45-cfr-265"
+  },
+  {
+   "from": "45-cfr-265",
+   "type": "related",
+   "to": "45-cfr-265.3"
+  },
+  {
+   "from": "45-cfr-265",
+   "type": "related",
+   "to": "45-cfr-265.7"
+  },
+  {
+   "from": "45-cfr-265",
+   "type": "related",
+   "to": "45-cfr-265.9"
+  },
+  {
+   "from": "45-cfr-400.155",
+   "type": "related",
+   "to": "45-cfr-400"
+  },
+  {
+   "from": "45-cfr-400",
+   "type": "related",
+   "to": "45-cfr-400.155"
+  },
+  {
+   "from": "45-cfr-75.303",
+   "type": "related",
+   "to": "45-cfr-75"
+  },
+  {
+   "from": "45-cfr-75.342",
+   "type": "related",
+   "to": "45-cfr-75"
+  },
+  {
+   "from": "45-cfr-75.351",
+   "type": "related",
+   "to": "45-cfr-75"
+  },
+  {
+   "from": "45-cfr-75.352",
+   "type": "related",
+   "to": "45-cfr-75"
+  },
+  {
+   "from": "45-cfr-75.403",
+   "type": "related",
+   "to": "45-cfr-75"
+  },
+  {
+   "from": "45-cfr-75.404",
+   "type": "related",
+   "to": "45-cfr-75"
+  },
+  {
+   "from": "45-cfr-75.430",
+   "type": "related",
+   "to": "45-cfr-75"
+  },
+  {
+   "from": "45-cfr-75",
+   "type": "related",
+   "to": "2-cfr-200"
+  },
+  {
+   "from": "45-cfr-84.4",
+   "type": "related",
+   "to": "45-cfr-84"
+  },
+  {
+   "from": "45-cfr-84.60",
+   "type": "related",
+   "to": "45-cfr-84"
+  },
+  {
+   "from": "45-cfr-84.68",
+   "type": "related",
+   "to": "45-cfr-84"
+  },
+  {
+   "from": "45-cfr-84.69",
+   "type": "related",
+   "to": "45-cfr-84"
+  },
+  {
+   "from": "45-cfr-84.81",
+   "type": "related",
+   "to": "45-cfr-84"
+  },
+  {
+   "from": "45-cfr-84",
+   "type": "related",
+   "to": "45-cfr-84.60"
+  },
+  {
+   "from": "45-cfr-84",
+   "type": "related",
+   "to": "45-cfr-84.68"
+  },
+  {
+   "from": "45-cfr-84",
+   "type": "related",
+   "to": "45-cfr-84.81"
+  },
+  {
+   "from": "45-cfr-84",
+   "type": "related",
+   "to": "45-cfr-84.69"
+  },
+  {
+   "from": "45-cfr-84",
+   "type": "related",
+   "to": "45-cfr-84.4"
+  },
+  {
+   "from": "45-cfr-98.16",
+   "type": "related",
+   "to": "45-cfr-98"
+  },
+  {
+   "from": "45-cfr-98.20",
+   "type": "related",
+   "to": "45-cfr-98"
+  },
+  {
+   "from": "45-cfr-98.41",
+   "type": "related",
+   "to": "45-cfr-98"
+  },
+  {
+   "from": "45-cfr-98.43",
+   "type": "related",
+   "to": "45-cfr-98"
+  },
+  {
+   "from": "45-cfr-98.45",
+   "type": "related",
+   "to": "45-cfr-98"
+  },
+  {
+   "from": "45-cfr-98.54",
+   "type": "related",
+   "to": "45-cfr-98"
+  },
+  {
+   "from": "45-cfr-98.57",
+   "type": "related",
+   "to": "45-cfr-98"
+  },
+  {
+   "from": "45-cfr-98.60",
+   "type": "related",
+   "to": "45-cfr-98"
+  },
+  {
+   "from": "45-cfr-98.65",
+   "type": "related",
+   "to": "45-cfr-98"
+  },
+  {
+   "from": "45-cfr-98.90",
+   "type": "related",
+   "to": "45-cfr-98"
+  },
+  {
+   "from": "45-cfr-98",
+   "type": "related",
+   "to": "45-cfr-98.43"
+  },
+  {
+   "from": "45-cfr-98",
+   "type": "related",
+   "to": "45-cfr-98.45"
+  },
+  {
+   "from": "45-cfr-98",
+   "type": "related",
+   "to": "45-cfr-98.20"
+  },
+  {
+   "from": "45-cfr-98",
+   "type": "related",
+   "to": "45-cfr-98.41"
+  },
+  {
+   "from": "45-cfr-98",
+   "type": "related",
+   "to": "45-cfr-98.16"
+  },
+  {
+   "from": "45-cfr-98",
+   "type": "related",
+   "to": "45-cfr-98.54"
+  },
+  {
+   "from": "45-cfr-98",
+   "type": "related",
+   "to": "45-cfr-98.57"
+  },
+  {
+   "from": "45-cfr-98",
+   "type": "related",
+   "to": "45-cfr-98.60"
+  },
+  {
+   "from": "45-cfr-98",
+   "type": "related",
+   "to": "45-cfr-98.65"
+  },
+  {
+   "from": "45-cfr-98",
+   "type": "related",
+   "to": "45-cfr-98.90"
+  },
+  {
+   "from": "49-cfr-1520.5",
+   "type": "related",
+   "to": "49-cfr-1520"
+  },
+  {
+   "from": "49-cfr-383.110",
+   "type": "related",
+   "to": "49-cfr-383"
+  },
+  {
+   "from": "49-cfr-383.131",
+   "type": "related",
+   "to": "49-cfr-383"
+  },
+  {
+   "from": "49-cfr-383.21",
+   "type": "related",
+   "to": "49-cfr-383"
+  },
+  {
+   "from": "49-cfr-383.3",
+   "type": "related",
+   "to": "49-cfr-383"
+  },
+  {
+   "from": "49-cfr-383.5",
+   "type": "related",
+   "to": "49-cfr-383"
+  },
+  {
+   "from": "49-cfr-383.51",
+   "type": "related",
+   "to": "49-cfr-383"
+  },
+  {
+   "from": "49-cfr-383.53",
+   "type": "related",
+   "to": "49-cfr-383"
+  },
+  {
+   "from": "49-cfr-383.71",
+   "type": "related",
+   "to": "49-cfr-383"
+  },
+  {
+   "from": "49-cfr-383.73",
+   "type": "related",
+   "to": "49-cfr-383"
+  },
+  {
+   "from": "49-cfr-383.75",
+   "type": "related",
+   "to": "49-cfr-383"
+  },
+  {
+   "from": "49-cfr-383.77",
+   "type": "related",
+   "to": "49-cfr-383"
+  },
+  {
+   "from": "49-cfr-383.79",
+   "type": "related",
+   "to": "49-cfr-383"
+  },
+  {
+   "from": "49-cfr-383",
+   "type": "related",
+   "to": "49-cfr-383.71"
+  },
+  {
+   "from": "49-cfr-383",
+   "type": "related",
+   "to": "49-cfr-383.21"
+  },
+  {
+   "from": "49-cfr-383",
+   "type": "related",
+   "to": "49-cfr-383.51"
+  },
+  {
+   "from": "49-cfr-383",
+   "type": "related",
+   "to": "49-cfr-383.75"
+  },
+  {
+   "from": "49-cfr-383",
+   "type": "related",
+   "to": "49-cfr-383.5"
+  },
+  {
+   "from": "49-cfr-383",
+   "type": "related",
+   "to": "49-cfr-383.77"
+  },
+  {
+   "from": "49-cfr-383",
+   "type": "related",
+   "to": "49-cfr-383.110"
+  },
+  {
+   "from": "49-cfr-383",
+   "type": "related",
+   "to": "49-cfr-383.131"
+  },
+  {
+   "from": "49-cfr-383",
+   "type": "related",
+   "to": "49-cfr-383.3"
+  },
+  {
+   "from": "49-cfr-383",
+   "type": "related",
+   "to": "49-cfr-383.53"
+  },
+  {
+   "from": "49-cfr-383",
+   "type": "related",
+   "to": "49-cfr-383.73"
+  },
+  {
+   "from": "49-cfr-383",
+   "type": "related",
+   "to": "49-cfr-383.79"
+  },
+  {
+   "from": "49-cfr-580.13",
+   "type": "related",
+   "to": "49-cfr-580"
+  },
+  {
+   "from": "49-cfr-580.17",
+   "type": "related",
+   "to": "49-cfr-580"
+  },
+  {
+   "from": "49-cfr-580.3",
+   "type": "related",
+   "to": "49-cfr-580"
+  },
+  {
+   "from": "49-cfr-580",
+   "type": "related",
+   "to": "49-cfr-580.3"
+  },
+  {
+   "from": "49-cfr-580",
+   "type": "related",
+   "to": "49-cfr-580.17"
+  },
+  {
+   "from": "49-cfr-580",
+   "type": "related",
+   "to": "49-cfr-580.13"
+  },
+  {
+   "from": "6-cfr-37.11",
+   "type": "related",
+   "to": "6-cfr-37"
+  },
+  {
+   "from": "6-cfr-37.13",
+   "type": "related",
+   "to": "6-cfr-37"
+  },
+  {
+   "from": "6-cfr-37.17",
+   "type": "related",
+   "to": "6-cfr-37"
+  },
+  {
+   "from": "6-cfr-37.21",
+   "type": "related",
+   "to": "6-cfr-37"
+  },
+  {
+   "from": "6-cfr-37.23",
+   "type": "related",
+   "to": "6-cfr-37"
+  },
+  {
+   "from": "6-cfr-37.25",
+   "type": "related",
+   "to": "6-cfr-37"
+  },
+  {
+   "from": "6-cfr-37.29",
+   "type": "related",
+   "to": "6-cfr-37"
+  },
+  {
+   "from": "6-cfr-37.3",
+   "type": "related",
+   "to": "6-cfr-37"
+  },
+  {
+   "from": "6-cfr-37",
+   "type": "related",
+   "to": "6-cfr-37.11"
+  },
+  {
+   "from": "6-cfr-37",
+   "type": "related",
+   "to": "6-cfr-37.3"
+  },
+  {
+   "from": "6-cfr-37",
+   "type": "related",
+   "to": "6-cfr-37.25"
+  },
+  {
+   "from": "6-cfr-37",
+   "type": "related",
+   "to": "6-cfr-37.13"
+  },
+  {
+   "from": "6-cfr-37",
+   "type": "related",
+   "to": "6-cfr-37.17"
+  },
+  {
+   "from": "6-cfr-37",
+   "type": "related",
+   "to": "6-cfr-37.21"
+  },
+  {
+   "from": "6-cfr-37",
+   "type": "related",
+   "to": "6-cfr-37.23"
+  },
+  {
+   "from": "6-cfr-37",
+   "type": "related",
+   "to": "6-cfr-37.29"
+  },
+  {
+   "from": "7-cfr-210.13",
+   "type": "related",
+   "to": "7-cfr-210"
+  },
+  {
+   "from": "7-cfr-210.16",
+   "type": "related",
+   "to": "7-cfr-210"
+  },
+  {
+   "from": "7-cfr-210.2",
+   "type": "related",
+   "to": "7-cfr-210"
+  },
+  {
+   "from": "7-cfr-210.21",
+   "type": "related",
+   "to": "7-cfr-210"
+  },
+  {
+   "from": "7-cfr-210.7",
+   "type": "related",
+   "to": "7-cfr-210"
+  },
+  {
+   "from": "7-cfr-210",
+   "type": "related",
+   "to": "7-cfr-210.21"
+  },
+  {
+   "from": "7-cfr-210",
+   "type": "related",
+   "to": "7-cfr-210.16"
+  },
+  {
+   "from": "7-cfr-210",
+   "type": "related",
+   "to": "7-cfr-210.2"
+  },
+  {
+   "from": "7-cfr-210",
+   "type": "related",
+   "to": "7-cfr-210.7"
+  },
+  {
+   "from": "7-cfr-210",
+   "type": "related",
+   "to": "7-cfr-210.13"
+  },
+  {
+   "from": "7-cfr-220.16",
+   "type": "related",
+   "to": "7-cfr-220"
+  },
+  {
+   "from": "7-cfr-220.2",
+   "type": "related",
+   "to": "7-cfr-220"
+  },
+  {
+   "from": "7-cfr-220.7",
+   "type": "related",
+   "to": "7-cfr-220"
+  },
+  {
+   "from": "7-cfr-220",
+   "type": "related",
+   "to": "7-cfr-220.7"
+  },
+  {
+   "from": "7-cfr-220",
+   "type": "related",
+   "to": "7-cfr-220.16"
+  },
+  {
+   "from": "7-cfr-220",
+   "type": "related",
+   "to": "7-cfr-220.2"
+  },
+  {
+   "from": "7-cfr-225.15",
+   "type": "related",
+   "to": "7-cfr-225"
+  },
+  {
+   "from": "7-cfr-225.17",
+   "type": "related",
+   "to": "7-cfr-225"
+  },
+  {
+   "from": "7-cfr-225.2",
+   "type": "related",
+   "to": "7-cfr-225"
+  },
+  {
+   "from": "7-cfr-225.6",
+   "type": "related",
+   "to": "7-cfr-225"
+  },
+  {
+   "from": "7-cfr-225",
+   "type": "related",
+   "to": "7-cfr-225.17"
+  },
+  {
+   "from": "7-cfr-225",
+   "type": "related",
+   "to": "7-cfr-225.15"
+  },
+  {
+   "from": "7-cfr-225",
+   "type": "related",
+   "to": "7-cfr-225.2"
+  },
+  {
+   "from": "7-cfr-225",
+   "type": "related",
+   "to": "7-cfr-225.6"
+  },
+  {
+   "from": "7-cfr-226.2",
+   "type": "related",
+   "to": "7-cfr-226"
+  },
+  {
+   "from": "7-cfr-226.21",
+   "type": "related",
+   "to": "7-cfr-226"
+  },
+  {
+   "from": "7-cfr-226.22",
+   "type": "related",
+   "to": "7-cfr-226"
+  },
+  {
+   "from": "7-cfr-226.6",
+   "type": "related",
+   "to": "7-cfr-226"
+  },
+  {
+   "from": "7-cfr-226",
+   "type": "related",
+   "to": "7-cfr-226.22"
+  },
+  {
+   "from": "7-cfr-226",
+   "type": "related",
+   "to": "7-cfr-226.21"
+  },
+  {
+   "from": "7-cfr-226",
+   "type": "related",
+   "to": "7-cfr-226.6"
+  },
+  {
+   "from": "7-cfr-226",
+   "type": "related",
+   "to": "7-cfr-226.2"
+  },
+  {
+   "from": "7-cfr-248.10",
+   "type": "related",
+   "to": "7-cfr-248"
+  },
+  {
+   "from": "7-cfr-248",
+   "type": "related",
+   "to": "7-cfr-248.10"
+  },
+  {
+   "from": "7-cfr-250.2",
+   "type": "related",
+   "to": "7-cfr-250"
+  },
+  {
+   "from": "7-cfr-250.31",
+   "type": "related",
+   "to": "7-cfr-250"
+  },
+  {
+   "from": "7-cfr-250.53",
+   "type": "related",
+   "to": "7-cfr-250"
+  },
+  {
+   "from": "7-cfr-250",
+   "type": "related",
+   "to": "7-cfr-250.53"
+  },
+  {
+   "from": "7-cfr-250",
+   "type": "related",
+   "to": "7-cfr-250.31"
+  },
+  {
+   "from": "7-cfr-250",
+   "type": "related",
+   "to": "7-cfr-250.2"
+  },
+  {
+   "from": "7-cfr-273.1",
+   "type": "related",
+   "to": "7-cfr-273"
+  },
+  {
+   "from": "7-cfr-273.10",
+   "type": "related",
+   "to": "7-cfr-273"
+  },
+  {
+   "from": "7-cfr-273.11",
+   "type": "related",
+   "to": "7-cfr-273"
+  },
+  {
+   "from": "7-cfr-273.12",
+   "type": "related",
+   "to": "7-cfr-273"
+  },
+  {
+   "from": "7-cfr-273.13",
+   "type": "related",
+   "to": "7-cfr-273"
+  },
+  {
+   "from": "7-cfr-273.14",
+   "type": "related",
+   "to": "7-cfr-273"
+  },
+  {
+   "from": "7-cfr-273.16",
+   "type": "related",
+   "to": "7-cfr-273"
+  },
+  {
+   "from": "7-cfr-273.18",
+   "type": "related",
+   "to": "7-cfr-273"
+  },
+  {
+   "from": "7-cfr-273.2",
+   "type": "related",
+   "to": "7-cfr-273"
+  },
+  {
+   "from": "7-cfr-273.24",
+   "type": "related",
+   "to": "7-cfr-273"
+  },
+  {
+   "from": "7-cfr-273.4",
+   "type": "related",
+   "to": "7-cfr-273"
+  },
+  {
+   "from": "7-cfr-273.5",
+   "type": "related",
+   "to": "7-cfr-273"
+  },
+  {
+   "from": "7-cfr-273.7",
+   "type": "related",
+   "to": "7-cfr-273"
+  },
+  {
+   "from": "7-cfr-273.9",
+   "type": "related",
+   "to": "7-cfr-273"
+  },
+  {
+   "from": "7-cfr-280.1",
+   "type": "related",
+   "to": "7-cfr-280"
   }
  ]
 }
