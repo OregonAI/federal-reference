@@ -1,0 +1,380 @@
+{
+  "group_filter": null,
+  "groups": {
+    "manifest": {
+      "changed": 0,
+      "checked": 50,
+      "fetch_failed": 0,
+      "no_baseline": 44,
+      "unchanged": 6,
+      "unreadable_json": 0,
+      "watch_path_missing": 0
+    }
+  },
+  "groups_in_scope": [
+    "manifest"
+  ],
+  "mode": null,
+  "schema_version": 1,
+  "sources": [
+    {
+      "group": "manifest",
+      "had_baseline": true,
+      "id": "2-cfr-200",
+      "outcome": "unchanged",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-07-29/title-2.xml?part=200"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": true,
+      "id": "34-cfr-300",
+      "outcome": "unchanged",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-28/title-34.xml?part=300"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": true,
+      "id": "irs-pub-1075",
+      "outcome": "unchanged",
+      "url": "https://www.irs.gov/pub/irs-pdf/p1075.pdf"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": true,
+      "id": "cjis-sp-6-1",
+      "outcome": "unchanged",
+      "url": "https://le.fbi.gov/file-repository/cjis_security_policy_v6-1_20260625.pdf"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": true,
+      "id": "pl-113-128",
+      "outcome": "unchanged",
+      "url": "https://www.govinfo.gov/content/pkg/PLAW-113publ128/pdf/PLAW-113publ128.pdf"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": true,
+      "id": "pl-115-224",
+      "outcome": "unchanged",
+      "url": "https://www.govinfo.gov/content/pkg/PLAW-115publ224/pdf/PLAW-115publ224.pdf"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "45-cfr-155",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-45.xml?part=155"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "7-cfr-273",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-7.xml?part=273"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "42-cfr-435",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-13/title-42.xml?part=435"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "45-cfr-75",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2025-09-30/title-45.xml?part=75"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "34-cfr-99",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-34.xml?part=99"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "42-cfr-455",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-13/title-42.xml?part=455"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "34-cfr-303",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-34.xml?part=303"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "49-cfr-1520",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-49.xml?part=1520"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "49-cfr-15",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-49.xml?part=15"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "24-cfr-576",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-20/title-24.xml?part=576"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "45-cfr-261",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-45.xml?part=261"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "45-cfr-260",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-45.xml?part=260"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "45-cfr-400",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-45.xml?part=400"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "17-cfr-230",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-17/title-17.xml?part=230"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "49-cfr-674",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-49.xml?part=674"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "49-cfr-670",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-49.xml?part=670"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "49-cfr-671",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-49.xml?part=671"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "49-cfr-672",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-49.xml?part=672"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "49-cfr-673",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-49.xml?part=673"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "7-cfr-210",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-7.xml?part=210"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "28-cfr-23",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-28.xml?part=23"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "49-cfr-580",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-49.xml?part=580"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "42-cfr-433",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-13/title-42.xml?part=433"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "49-cfr-383",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-49.xml?part=383"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "2-cfr-170",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-2.xml?part=170"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "6-cfr-37",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-07-06/title-6.xml?part=37"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "7-cfr-220",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-7.xml?part=220"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "7-cfr-226",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-7.xml?part=226"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "45-cfr-84",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-45.xml?part=84"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "45-cfr-98",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-45.xml?part=98"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "7-cfr-225",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-7.xml?part=225"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "42-cfr-600",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-13/title-42.xml?part=600"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "28-cfr-35",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-28.xml?part=35"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "10-cfr-440",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-26/title-10.xml?part=440"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "7-cfr-250",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-7.xml?part=250"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "45-cfr-265",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-45.xml?part=265"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "42-cfr-440",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-13/title-42.xml?part=440"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "23-cfr-645",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-07-13/title-23.xml?part=645"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "7-cfr-280",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-7.xml?part=280"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "42-cfr-447",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-13/title-42.xml?part=447"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "45-cfr-264",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-45.xml?part=264"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "7-cfr-248",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-7.xml?part=248"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "7-cfr-249",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-7.xml?part=249"
+    },
+    {
+      "group": "manifest",
+      "had_baseline": false,
+      "id": "2-cfr-180",
+      "outcome": "no_baseline",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-2.xml?part=180"
+    }
+  ],
+  "totals": {
+    "changed": 0,
+    "fetch_failed": 0,
+    "no_baseline": 44,
+    "total": 50,
+    "unchanged": 6,
+    "unreadable_json": 0,
+    "watch_path_missing": 0
+  }
+}
