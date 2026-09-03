@@ -25,3 +25,24 @@ from __future__ import annotations
 CONSOLIDATIONS: dict[str, dict] = {
     "2-cfr-200": {"date": "2021-02-22", "into": "200.1", "scope": "Subpart A's definitions"},
 }
+
+# A WHOLE PART removed from the CFR, which is not a section consolidation and cannot be
+# recorded as one: there is no `into` SECTION, because there is no surviving part to hold it.
+# 45 CFR 75 was removed in its entirety on 2025-10-01; eCFR 404s for it, so this corpus pins
+# the part at its last-in-force date and holds the cited sections as superseded documents.
+#
+# WHAT IS AND IS NOT RECORDED HERE. The date, the fact of the removal, and the successor part
+# are NOT here -- they are `amended_on`, `status: superseded` and `superseded_by` in the part
+# document's own frontmatter, which src/split_cfr_sections.py reads (part_facts()). Recording
+# them a second time is the drift this module's own docstring argues against. What is here is
+# the one thing no snapshot and no frontmatter field states: WHY the agency did it. `why` is a
+# clause, spliced after "...removed from the CFR in its entirety that same date". A part with
+# no entry here still gets a true, less specific sentence -- the same fallback ladder
+# `scope` has above.
+PART_REMOVALS: dict[str, dict] = {
+    "45-cfr-75": {
+        "why": "when HHS retired its own Uniform Guidance for [2 CFR 200](./2-cfr-200.md) "
+               "government-wide (HHS-specific modifications relocated to 2 CFR 300, not yet "
+               "held here)",
+    },
+}

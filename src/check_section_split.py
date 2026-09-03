@@ -18,6 +18,15 @@ is a no-regression check on the FIRST part; it reads the same whether these four
 assume there is only one part or not, because 2 CFR 200 is that one part either way. This is
 the check that actually exercises a second one, the same reason check_issuing_body.py exists
 for #33.
+
+WHAT ELSE IS PROVED HERE. The file has since taken on a second, unrelated-to-#34 proof: that
+a WHOLLY SUPERSEDED part -- one removed from the CFR in its entirety, so its current snapshot
+and its last-in-force snapshot are the same bytes -- still splits, and that a `current:` entry
+for such a part is an error rather than a publishable section. That block lives at the end of
+this file and states its own reasoning in a header comment. It is here, and not in a file of
+its own, because it needs exactly the machinery the #34 proof already builds: the same
+constraint holds for it unchanged -- synthetic part, temp directory and monkeypatch, restored
+in `finally`, never touching the real corpus.
 """
 from __future__ import annotations
 
@@ -410,6 +419,169 @@ def main() -> int:
             setattr(splitter, name, val)
         scanner.ecfr_versions = saved_ecfr_versions
         tmp2.cleanup()
+
+    # --- A WHOLLY SUPERSEDED PART: the whole part gone, not two sections out of a live one --
+    # 45 CFR 75 was removed from the CFR IN ITS ENTIRETY on 2025-10-01 -- eCFR 404s for it --
+    # so the part is pinned at its last-in-force date and `_meta/snapshots/45-cfr-75.xml` is
+    # BYTE-IDENTICAL to `_meta/snapshots/45-cfr-75-2025-09-30.xml`. run_part()'s removed-section
+    # branch asserted "a removed section must NOT be in the current part snapshot", which is
+    # right for the 2 CFR 200 case it was written for and vacuous here: every removed section is
+    # in that snapshot BY CONSTRUCTION. The fixture below reproduces exactly that shape -- the
+    # two snapshots are the same bytes, written from one variable. A fixture whose snapshots
+    # DIFFERED would pass whether or not the splitter understands superseded parts, and would
+    # prove nothing.
+    saved_globals3 = {name: getattr(splitter, name)
+                      for name in ("ROOT", "SNAPSHOTS", "INSTRUMENTS", "CITED_DIR", "MANIFEST")}
+    saved_ecfr_versions3 = scanner.ecfr_versions
+    tmp3 = tempfile.TemporaryDirectory()
+    try:
+        root3 = pathlib.Path(tmp3.name)
+        (root3 / "_meta" / "snapshots").mkdir(parents=True)
+        (root3 / "_meta" / "cited-sections").mkdir(parents=True)
+        (root3 / "instruments").mkdir(parents=True)
+        splitter.ROOT = root3
+        splitter.SNAPSHOTS = root3 / "_meta" / "snapshots"
+        splitter.INSTRUMENTS = root3 / "instruments"
+        splitter.CITED_DIR = root3 / "_meta" / "cited-sections"
+        splitter.MANIFEST = root3 / "_meta" / "source-manifest.yml"
+        scanner.ecfr_versions = lambda title, part: {}
+
+        def cited_file(part_id, title, part, current, removed):
+            """The same line-building scan_cited_sections.main() does -- see write_cited()
+            above; repeated here rather than reached across two temp-directory scopes."""
+            lines = scanner.static_header(title, part) + [
+                "", "scanned_files: 1", "total_citations: 1", "",
+                scanner.CURRENT_COMMENT, "current:",
+            ]
+            for e in current:
+                lines += [f"  - section: {scanner.q(e['section'])}",
+                          f"    citations: {e['citations']}",
+                          f"    cited_in: [{', '.join(scanner.q(c) for c in e['cited_in'])}]"]
+            lines += [""] + scanner.REMOVED_COMMENT + ["removed:"]
+            for e in removed:
+                lines += [f"  - section: {scanner.q(e['section'])}",
+                          f"    citations: {e['citations']}",
+                          f"    cited_in: [{', '.join(scanner.q(c) for c in e['cited_in'])}]",
+                          f"    removed_on: {scanner.q(e['removed_on'])}",
+                          f"    name_when_in_force: {scanner.q(e['name_when_in_force'])}"]
+            lines += [""] + scanner.UNRESOLVABLE_COMMENT + ["unresolvable:"]
+            (splitter.CITED_DIR / f"{part_id}.yml").write_text(
+                "\n".join(lines) + "\n", encoding="utf-8")
+
+        def manifest_for(*entries):
+            splitter.MANIFEST.write_text(yaml.safe_dump({"sources": list(entries)}),
+                                          encoding="utf-8")
+
+        def part_doc(part_id, **fm):
+            (splitter.INSTRUMENTS / f"{part_id}.md").write_text(
+                "---\n" + yaml.safe_dump(fm, sort_keys=False) + "---\n\n## Full text\n",
+                encoding="utf-8")
+
+        # (a) ---------------------------------------------------------------------------
+        gone_id, gone_title, gone_part = "9-cfr-12", 9, 12
+        manifest_for(
+            {"id": gone_id, "title": "Retired Fixture Requirements",
+             "citation": "9 CFR 12", "instrument_kind": "cfr_part",
+             "issuing_body": "Department of Fixtures",
+             "url": "https://example.invalid/title-9/part-12.xml", "format": "xml",
+             "reproduction_basis": "17 U.S.C. § 105"},
+            {"id": "9-cfr-14", "title": "Retired Fixture Requirements II",
+             "citation": "9 CFR 14", "instrument_kind": "cfr_part",
+             "issuing_body": "Department of Fixtures",
+             "url": "https://example.invalid/title-9/part-14.xml", "format": "xml",
+             "reproduction_basis": "17 U.S.C. § 105"})
+        part_doc(gone_id, as_of="2025-09-30", amended_on="2025-10-01",
+                 superseded_by="9-cfr-13", status="superseded", retrieved="2026-01-02")
+
+        gone_xml = (
+            b'<PART><SECTION TYPE="SECTION" N="12.99"><HEAD>&#167; 12.99 Retired rule.</HEAD>'
+            b'<P>Recipients shall have complied.</P></SECTION></PART>'
+        )
+        # THE WHOLE POINT: one variable, written to both paths. The "current" snapshot of a
+        # part that no longer exists IS its last-in-force snapshot.
+        (splitter.SNAPSHOTS / f"{gone_id}.xml").write_bytes(gone_xml)
+        (splitter.SNAPSHOTS / f"{gone_id}-2025-09-30.xml").write_bytes(gone_xml)
+        gone_secs = splitter.sections_from(gone_xml, "12")
+        (splitter.SNAPSHOTS / f"{gone_id}.txt").write_text(gone_secs["12.99"][1],
+                                                            encoding="utf-8")
+        check("fixture check: the wholly-superseded part's current and last-in-force "
+              "snapshots are the SAME bytes (as 45 CFR 75's are)",
+              (splitter.SNAPSHOTS / f"{gone_id}.xml").read_bytes()
+              == (splitter.SNAPSHOTS / f"{gone_id}-2025-09-30.xml").read_bytes(),
+              "the fixture would pass by construction if these differed")
+        cited_file(gone_id, gone_title, gone_part, current=[],
+                   removed=[{"section": "12.99", "citations": 4, "cited_in": ["audits"],
+                             "removed_on": "2025-10-01",
+                             "name_when_in_force": "Retired rule."}])
+
+        rc_gone = splitter.run_part(gone_id, argparse.Namespace(check=False, refetch=False))
+        gone_doc_path = splitter.INSTRUMENTS / f"{gone_id}.99.md"
+        check("a WHOLLY SUPERSEDED part splits: a removed section that is (necessarily) "
+              "still in the pinned current snapshot is not an error",
+              rc_gone == 0, f"got rc={rc_gone}")
+        gone_doc = gone_doc_path.read_text(encoding="utf-8") if gone_doc_path.is_file() else ""
+        gone_fm = yaml.safe_load(gone_doc.split("---")[1]) if gone_doc else {}
+        # (a)'s second half, and the reason the relaxation is not a licence: the section must
+        # still be published as SUPERSEDED, cut from the point-in-time snapshot. The wrong fix
+        # this repo already reverted made --check pass by publishing removed federal law as
+        # current text; these four assertions are what makes that fix fail here.
+        check("...and it is still published as SUPERSEDED, not quietly promoted to live text",
+              gone_fm.get("status") == "superseded", f"got status={gone_fm.get('status')!r}")
+        check("...still cut from the point-in-time snapshot, not the current one",
+              gone_fm.get("snapshot_id") == f"{gone_id}-2025-09-30",
+              f"got snapshot_id={gone_fm.get('snapshot_id')!r}")
+        check("...still dated at its last-in-force date, not the part's live as_of",
+              gone_fm.get("as_of") == "2025-09-30" and gone_fm.get("amended_on") == "2025-10-01",
+              f"got as_of={gone_fm.get('as_of')!r} amended_on={gone_fm.get('amended_on')!r}")
+        check("...still titled so a corpus-index row alone cannot read as current law",
+              str(gone_fm.get("title", "")).endswith("(SUPERSEDED 2025-10-01)"),
+              f"got title={gone_fm.get('title')!r}")
+        check("...and points at the successor the PART document names, not back at the "
+              "superseded part itself",
+              gone_fm.get("superseded_by") == "9-cfr-13",
+              f"got superseded_by={gone_fm.get('superseded_by')!r}")
+        check("...and its note says the whole part is gone, not just this section",
+              "9 CFR 12 itself was removed from the CFR in its entirety" in gone_doc,
+              "whole-part removal not stated in the section's own note")
+        rc_gone_check = splitter.run_part(gone_id,
+                                          argparse.Namespace(check=True, refetch=False))
+        check("...and --check verifies what it just wrote (the round trip a green CI needs)",
+              rc_gone_check == 0, f"got rc={rc_gone_check}")
+
+        # (b) THE CONVERSE GATE -----------------------------------------------------------
+        # Without this, (a) is a hole: relaxing "removed sections may appear in the current
+        # snapshot" for a superseded part, and stopping there, leaves the checker unable to
+        # object when the SAME identical-snapshot coincidence is used to call those sections
+        # current. That is precisely the reverted edit -- all 7 cited sections of 45 CFR 75
+        # hand-moved from `removed:` to `current:` in the GENERATED cited-sections file, which
+        # turned the gate green by publishing removed federal law as current text. A part that
+        # no longer exists has no sections in force, so a `current:` entry must FAIL.
+        live_id = "9-cfr-14"
+        part_doc(live_id, as_of="2025-09-30", amended_on="2025-10-01",
+                 superseded_by="9-cfr-13", status="superseded", retrieved="2026-01-02")
+        live_xml = (
+            b'<PART><SECTION TYPE="SECTION" N="14.10"><HEAD>&#167; 14.10 Retired rule II.</HEAD>'
+            b'<P>Recipients shall have complied.</P></SECTION></PART>'
+        )
+        (splitter.SNAPSHOTS / f"{live_id}.xml").write_bytes(live_xml)
+        (splitter.SNAPSHOTS / f"{live_id}-2025-09-30.xml").write_bytes(live_xml)
+        live_secs = splitter.sections_from(live_xml, "14")
+        (splitter.SNAPSHOTS / f"{live_id}.txt").write_text(live_secs["14.10"][1],
+                                                            encoding="utf-8")
+        cited_file(live_id, 9, 14,
+                   current=[{"section": "14.10", "citations": 4, "cited_in": ["audits"]}],
+                   removed=[])
+        rc_live = splitter.run_part(live_id, argparse.Namespace(check=False, refetch=False))
+        check("a section listed as CURRENT in a wholly superseded part is an error",
+              rc_live == 1, f"got rc={rc_live}")
+        check("...and no document claiming it is current law was written",
+              not (splitter.INSTRUMENTS / f"{live_id}.10.md").is_file(),
+              "a status: current document was published for a part that no longer exists")
+    finally:
+        for name, val in saved_globals3.items():
+            setattr(splitter, name, val)
+        scanner.ecfr_versions = saved_ecfr_versions3
+        tmp3.cleanup()
 
     print()
     if fails:

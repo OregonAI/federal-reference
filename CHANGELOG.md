@@ -7,6 +7,44 @@ Repo-curation dates only — official effective dates live in frontmatter.
 ## [Unreleased]
 
 ### Fixed
+- 2026-09-02 — `split_cfr_sections.py --check` had no data model for a part removed from the
+  CFR IN ITS ENTIRETY, and failed red on `45 CFR 75` (`error: 75.352 is listed as removed but
+  IS in the current part snapshot`). The removed-section branch assumed removal always means
+  "a section vanished from a part that still exists" — the 2 CFR 200 case it was written for.
+  45 CFR 75 was removed whole on 2025-10-01, so the part is pinned at its last-in-force date
+  and `_meta/snapshots/45-cfr-75.xml` is byte-identical to
+  `_meta/snapshots/45-cfr-75-2025-09-30.xml` (both sha256 `884d33a3…`); every removed section
+  is in the "current" snapshot by construction and `sec in current` carries zero information
+  for this part. `part_dates()` is now `part_facts()`, returning the `status`, `amended_on`
+  and `superseded_by` it was already parsing out of the part document's frontmatter and
+  discarding — no new field in the hand-authored `_meta/source-manifest.yml` (ADR-0005), which
+  would restate a fact the part document already carries. For a section removed by the
+  amendment that removed its whole part, the "removed but still in the current snapshot" test
+  is skipped (the section is still cut from the point-in-time snapshot and still emitted
+  `status: superseded` — it is never reclassified as live), its unrecorded successor is
+  inherited from the part document's own `superseded_by` instead of pointing back at the
+  superseded part, and its note says the whole part is gone rather than "no successor section
+  is recorded here"; the one fact no snapshot or frontmatter field states — why the agency did
+  it — is hand-recorded once in `src/cfr_consolidations.py` as `PART_REMOVALS`, the same file
+  and the same fallback ladder `CONSOLIDATIONS` already uses. In its place, and this is what
+  keeps the gate honest, a section listed under `current:` for a wholly superseded part is now
+  an ERROR: a part that no longer exists has no sections in force. That converse gate fails
+  the exact edit PR #75's review caught and reverted (all 7 cited sections of 45 CFR 75
+  hand-moved from `removed:` to `current:` in the GENERATED cited-sections file, turning the
+  gate green by publishing removed federal law as current text) instead of letting it pass.
+  The third assertion in that branch — "absent from the `<date>` snapshot too" — is unchanged
+  in substance: it asserts there are BYTES to cut, which means the same thing for either kind
+  of part; only the word "too" is now conditional, because it referred to a check that does
+  not run for a wholly superseded section and a gate must not report a check it did not
+  perform. Proved in `src/check_section_split.py` against two synthetic parts whose current
+  and last-in-force snapshots are written from ONE variable (a fixture where they differed
+  would pass by construction and prove nothing): both fail against the unfixed splitter — the
+  `current:` case failing in the most damning way, `rc=0` with a `status: current` document
+  published for a part that no longer exists — and both pass after. `2 CFR 200`, the live-part
+  case, splits byte-identically; `instruments/` is untouched by the fix. Not closed here:
+  `ingest_instruments.build()` still hardcodes `status: "current"` / `superseded_by: None`, so
+  re-running it over 45 CFR 75 would republish the PART document as current law, and nothing
+  gates part documents — #77.
 - 2026-09-01 — `split_cfr_sections.py --check` could reach the network and mutate the working
   tree (#58). Two call sites in `run_part()` did the same thing, one layer under the other:
   the historical-snapshot fetch/write for a removed section whose `_meta/snapshots/<id>.xml`
