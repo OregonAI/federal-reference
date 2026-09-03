@@ -18,6 +18,15 @@ is a no-regression check on the FIRST part; it reads the same whether these four
 assume there is only one part or not, because 2 CFR 200 is that one part either way. This is
 the check that actually exercises a second one, the same reason check_issuing_body.py exists
 for #33.
+
+WHAT ELSE IS PROVED HERE. The file has since taken on a second, unrelated-to-#34 proof: that
+a WHOLLY SUPERSEDED part -- one removed from the CFR in its entirety, so its current snapshot
+and its last-in-force snapshot are the same bytes -- still splits, and that a `current:` entry
+for such a part is an error rather than a publishable section. That block lives at the end of
+this file and states its own reasoning in a header comment. It is here, and not in a file of
+its own, because it needs exactly the machinery the #34 proof already builds: the same
+constraint holds for it unchanged -- synthetic part, temp directory and monkeypatch, restored
+in `finally`, never touching the real corpus.
 """
 from __future__ import annotations
 

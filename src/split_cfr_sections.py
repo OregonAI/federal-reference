@@ -232,7 +232,7 @@ def hist_retrieved(part_id: str, hist_xml: pathlib.Path, fetched: bool,
                     removed_secs: list[str]) -> str:
     """`retrieved` for SUPERSEDED sections cut from THIS historical snapshot -- not the part.
 
-    This used to be inherited from the part, justified by the same reasoning as `part_dates`:
+    This used to be inherited from the part, justified by the same reasoning as `part_facts`:
     a section carries the same bytes as the part, so it inherits the part's dates. That
     argument does NOT apply here. The superseded sections are cut from a different file — the
     point-in-time snapshot — fetched at a different time from a different URL. Inheriting the
@@ -300,11 +300,16 @@ def _target_doc(part_id: str, consolidation: dict | None, default: str | None) -
     no consolidation is recorded for this part.
 
     Pulled out because this exact expression was written three times with a DIFFERENT
-    `default` in each copy (None in build() and run_part()'s current-section loop, `part_id`
-    in run_part()'s removed-section loop) -- the divergence is load-bearing (it decides
-    whether an unrecorded consolidation yields `superseded_by: null` or `superseded_by:
-    <part_id>`), so a reader had to diff three near-identical lines to learn the rule instead
-    of reading one parameter.
+    `default` in each copy -- the divergence is load-bearing (it decides whether an
+    unrecorded consolidation yields `superseded_by: null`, the part, or the part's own
+    successor), so a reader had to diff three near-identical lines to learn the rule instead
+    of reading one parameter. The three defaults:
+
+      - None in build() and in run_part()'s current-section loop.
+      - run_part()'s removed-section loop passes `default_target`: `part_id` for a section
+        dropped from a part that still exists, and the part document's own `superseded_by`
+        (falling back to `part_id` when it names none) for a section that died with its
+        WHOLE part, where pointing at the removed part would be a dead end.
     """
     if consolidation and consolidation.get("into"):
         return f"{part_id}.{consolidation['into'].split('.', 1)[-1]}"
