@@ -19,6 +19,15 @@ Repo-curation dates only — official effective dates live in frontmatter.
   `FAIL  <sid>: raw snapshot committed but no document claims it (id or snapshot_id) --
   ingestion may have failed partway`, append to `fails`, and continue — the same reporting
   path, and the same CI-failing exit code, every other mismatch already uses. #53
+- 2026-09-04 — `instrument_kind` is a bare `mcp.extra_document_fields` entry with no enum
+  support in corpus-toolkit's schema layer, so a document spelled `"CFR_PART"` instead of
+  `"cfr_part"` was schema-valid, served by `get_document`/`search_corpus`, and refused BY
+  NAME by citation resolution because `_held_cfr_parts()` (`src/citation_schemes.py`) gates
+  on the exact literal — the "could not check" reported as "is not there" class #35 fixed,
+  one field over (#56). Added `src/check_instrument_kind.py`, asserting every document's
+  `instrument_kind` is one of the five known values (`cfr_part`, `cfr_section`,
+  `irs_publication`, `fbi_policy`, `public_law`) and failing loudly by document id and
+  value; wired into the `generated` CI job alongside `check_issuing_body.py`.
 - 2026-09-02 — `split_cfr_sections.py --check` had no data model for a part removed from the
   CFR IN ITS ENTIRETY, and failed red on `45 CFR 75` (`error: 75.352 is listed as removed but
   IS in the current part snapshot`). The removed-section branch assumed removal always means

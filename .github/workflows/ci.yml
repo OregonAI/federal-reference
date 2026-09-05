@@ -144,6 +144,14 @@ jobs:
       # fixed or not. This is the one gate that actually proves the second part.
       - name: A second cfr_part must not inherit the first part's issuer
         run: python3 src/check_issuing_body.py
+      # `instrument_kind` is a bare `mcp.extra_document_fields` entry -- corpus-toolkit's
+      # schema layer has no enum mechanism for an extra field's values (#56). A document
+      # spelled "CFR_PART" instead of "cfr_part" is schema-valid, sits in instruments/,
+      # is served by get_document/search_corpus, and is refused BY NAME when cited because
+      # `_held_cfr_parts()` gates on the exact literal. This closes that one field over
+      # from #35.
+      - name: instrument_kind must be one of the five known values
+        run: python3 src/check_instrument_kind.py
       # corpus-verify-provenance CANNOT catch extraction loss: source_sha256 hashes the
       # committed .txt, and that .txt is written by the extractor from the same string that
       # goes into the document, so the whole chain compares the extractor against itself.
