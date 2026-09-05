@@ -7,6 +7,18 @@ Repo-curation dates only — official effective dates live in frontmatter.
 ## [Unreleased]
 
 ### Fixed
+- 2026-09-04 — `check_extraction.py` raised an unhandled `KeyError` instead of a clean `FAIL`
+  when a manifest source had a committed raw snapshot but no document claimed it (`sid` not
+  present in `docs` at all — no `instruments/*.md` file carries it as `id` or `snapshot_id`).
+  The `owner is None` fallback read `docs[sid][0][1]` directly rather than checking `sid in
+  docs` first, so a half-ingested source (reachable whenever ingestion raises after the raw
+  snapshot is committed but before the document is written — see #33's follow-up for the one
+  path that reordering closed) crashed with a traceback pointing at an internal dict access
+  instead of this checker's own `FAIL <sid>: ...` reporting format, which reads as tooling
+  breakage rather than a corpus defect. Now: when `sid not in docs`, print
+  `FAIL  <sid>: raw snapshot committed but no document claims it (id or snapshot_id) --
+  ingestion may have failed partway`, append to `fails`, and continue — the same reporting
+  path, and the same CI-failing exit code, every other mismatch already uses. #53
 - 2026-09-02 — `split_cfr_sections.py --check` had no data model for a part removed from the
   CFR IN ITS ENTIRETY, and failed red on `45 CFR 75` (`error: 75.352 is listed as removed but
   IS in the current part snapshot`). The removed-section branch assumed removal always means
