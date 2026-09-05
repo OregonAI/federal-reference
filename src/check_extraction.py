@@ -110,6 +110,11 @@ def main() -> int:
         # section documents carry only a slice and are covered by provenance's slice check.
         owner = next((p for i, p in docs.get(sid, []) if "." not in i.replace(sid, "")), None)
         if owner is None:
+            if sid not in docs:
+                print(f"  FAIL  {sid}: raw snapshot committed but no document claims it "
+                      f"(id or snapshot_id) -- ingestion may have failed partway")
+                fails.append(sid)
+                continue
             owner = docs[sid][0][1]
         body = owner.read_text().split("## Full text\n\n", 1)[-1]
         got = tokens(body)
