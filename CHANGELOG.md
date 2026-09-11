@@ -7,6 +7,25 @@ Repo-curation dates only — official effective dates live in frontmatter.
 ## [Unreleased]
 
 ### Fixed
+- 2026-09-10 — Follow-up to the same day's #55 fix, below, found by a standards/spec review
+  of that change before it merged. `_range_re`/`_list_sec_re` (`src/citation_schemes.py`)
+  had no left digit boundary before `{part}\.`, so a DIFFERENT title's section digits inside
+  the same citation string could be attributed to the anchor part: "45 CFR 98.1, see also 12
+  CFR 398.20-25" resolved to `['45-cfr-98', '45-cfr-98.20']` — a held document handed back
+  for a string whose only "398.20" is a 12 CFR citation, not 45 CFR 98's. Both patterns now
+  require a `(?<![\d.])` boundary before the part number. Also: the module comment above
+  `from federal_ids import MAX_RANGE` claimed federal_ids.py "only ever needs to expand 2 CFR
+  200 today" — false, and measurably so (`candidates("17 CFR 230.504, 230.506")` already
+  drops the held `17-cfr-230.506`); reworded to state the real reason (federal_ids.py is
+  copied byte-identical into sibling corpora, so generalizing it is a coordinated cross-repo
+  change out of scope here) and to record that live cross-corpus gap instead of erasing it.
+  `check_citations.py` gained three checks: the held-ness gate must refuse an unheld part's
+  multi-section citation exactly once, not once per section named (deleting the gate left
+  the prior suite green with 0 FAILs — confirmed, then fixed); the cross-title collision
+  above must not recur; and a "known gap (#55, cross-corpus)" pin on `candidates()` itself
+  still answering only the first section for a multi-section citation against any held part
+  other than 2 CFR 200, so that gap stays filed rather than sliding back to silent. #55
+  remains open for the coordinated `federal_ids.py` change.
 - 2026-09-10 — `_cfr()`'s (`src/citation_schemes.py`) list/range expansion for a multi-section
   citation ("6 CFR 37.71, 37.72", "200.331 through 200.333") was gated on
   `f"{title}-cfr-{part}" == "2-cfr-200"` — a literal — so a citation naming several sections
