@@ -115,6 +115,13 @@ mcp:
     - superseded_by
     # Named by resolve_citation when it REFUSES a citation to a version we do not hold.
     - known_cited_versions_not_held
+    # ADR-0006's deliberate exception to *version is identity*: a U.S.C. section carries a
+    # currency statement built from OLRC's OWN release-point stamp -- NOT verbatim (OLRC's
+    # tag reads "Online@119-103"; see usc_currency() for the reformatting into ADR-0006's
+    # "current through Pub. L. N" wording) -- because a U.S.C. section has no siblings to
+    # disambiguate (unlike CJIS or IRS Pub 1075) -- only a history. Required non-empty on
+    # every usc_section document; see check_instrument_kind.py.
+    - currency
 
 status:
   # Quarterly, and this is the OPPOSITE of the audits corpus's reasoning. An audit report is

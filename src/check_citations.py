@@ -24,10 +24,27 @@ import re
 import sys
 import tempfile
 
+import yaml
+
 from corpus_toolkit import config as cfg
 from corpus_toolkit.mcp.framework import CorpusFramework
 
 CONFIG = "_meta/corpus.yml"
+
+# Extracts the NUMBER the usc-section refusal claims, as an int, from the fixed phrase
+# "holds N section(s) of the U.S. Code". A bare `str(n) in note` substring check is NOT
+# safe here: a held section's own citation can contain arbitrary digits (`42 USC 1320d`
+# contains a literal "3"), so a coincidental digit anywhere in the note would make the
+# assertion pass without checking anything -- caught by hand during this file's own
+# break-it verification (n hand-typed to 1 passed a bare substring check because "3" sits
+# inside "1320d"). Anchoring on the fixed "holds N section(s)" wording is what makes this
+# an assertion about the COUNT rather than about whether any digit appears anywhere.
+_USC_NOTE_COUNT = re.compile(r"holds (\d+) sections?\b")
+
+
+def _usc_note_count(note: str) -> int | None:
+    m = _USC_NOTE_COUNT.search(note or "")
+    return int(m.group(1)) if m else None
 
 
 def main() -> int:
@@ -293,6 +310,36 @@ def main() -> int:
             ids, note = served._cfr_one(t, p, None)
             check(f"{doc_id}: resolver agrees with the index that this part is held (AC5)",
                   ids == [doc_id], f"got {ids}, note={note!r}")
+
+        # --- ADR-0006: THE DERIVED COUNT ACTUALLY MOVES ---------------------------------
+        #
+        # The durable half of "break it, watch it fire": a hand-typed count in the refusal
+        # would pass every assertion above and still be WRONG the moment a second section is
+        # ingested, because nothing would have forced it to change. Injecting a second
+        # synthetic usc_section straight into the SAME `served.HELD` this try block already
+        # owns (restored in `finally` below, same as the CFR fixture above) proves the count
+        # is recomputed from HELD on every call rather than cached or typed -- a typed
+        # constant passes the single-document assertions above and fails this one.
+        real_usc_count = sum(
+            1 for fm2 in served.HELD.values() if fm2.get("instrument_kind") == "usc_section")
+        served.HELD["42-usc-1320d"] = {
+            "id": "42-usc-1320d", "citation": "42 USC 1320d",
+            "instrument_kind": "usc_section", "as_of": "2026-01-01",
+            "currency": "current through Pub. L. 119-1",
+        }
+        served.HELD["6-usc-101"] = {
+            "id": "6-usc-101", "citation": "6 USC 101",
+            "instrument_kind": "usc_section", "as_of": "2026-01-01",
+            "currency": "current through Pub. L. 119-1",
+        }
+        expected_n = real_usc_count + 2
+        m = served.USC.search("50 USC 9999")
+        ids, note = served._usc(m)
+        check("the derived count MOVES when a second (synthetic) usc_section is held",
+              _usc_note_count(note) == expected_n,
+              f"note={note!r}, expected count {expected_n}, got {_usc_note_count(note)}")
+        check("...and both injected citations are named in the same note",
+              "42 USC 1320d" in note and "6 USC 101" in note, note[:400])
     finally:
         served.HELD.clear()
         served.HELD.update(_saved_held)
@@ -335,11 +382,78 @@ def main() -> int:
     check("a different title's section digits are not attributed to the anchor part",
           "45-cfr-98.20" not in ids, f"got {ids}")
 
+    # --- ADR-0006: the usc-section refusal states the PARTIAL hold, and the count is real --
+    #
+    # This is the ticket. Before #61 the note here read "this corpus does not hold the U.S.
+    # Code" -- true the day it was written, false the moment a section landed. The rewrite
+    # must never claim either extreme ("holds the U.S. Code" / "does not hold the U.S.
+    # Code"), must name the REAL held count, and that count must be independently
+    # recomputable -- never read back through the resolver's own helper, which is exactly
+    # the circularity federal_ids.py's docstring records as the bug that let `pl-113-128-wioa`
+    # go unnoticed.
     ids, note = resolve("42 U.S.C. 1396")
     check("a U.S. Code section never resolves to a public law",
           not any(i.startswith("pl-") for i in ids), f"resolved to {ids}")
-    check("the U.S. Code answer explains the code/enacted distinction",
-          "u.s. code" in note.lower(), note[:80])
+    check("the note never claims the extreme this corpus does not hold",
+          "holds the u.s. code" not in note.lower()
+          and "does not hold the u.s. code" not in note.lower(),
+          note[:200])
+
+    # AN INDEPENDENT RECOUNT, deliberately NOT via `schemes._held()` (see that call's own
+    # rationale above) and deliberately NOT a whole-file substring test either: a document
+    # whose PROSE happens to quote the string "instrument_kind: usc_section" (in a curator
+    # note describing this very feature, say) would inflate a substring count and make the
+    # derived-count assertion agree with a wrong number without either side having a real
+    # disagreement. Reading just the frontmatter block, the way `schemes._held()` itself
+    # does, keeps the recount blind to prose while staying independent of the resolver.
+    def _is_usc_section_document(path: pathlib.Path) -> bool:
+        text = path.read_text(encoding="utf-8")
+        if not text.startswith("---\n"):
+            return False
+        end = text.find("\n---", 4)
+        if end == -1:
+            return False
+        fm = yaml.safe_load(text[4:end])
+        return isinstance(fm, dict) and fm.get("instrument_kind") == "usc_section"
+
+    usc_held_count = sum(
+        1 for p in pathlib.Path("instruments").glob("*.md")
+        if _is_usc_section_document(p))
+    check("at least one usc_section document is held "
+          "(else the count below could agree with zero and pass vacuously)",
+          usc_held_count > 0, "0 usc_section documents found under instruments/")
+    check("the note names the REAL held count, recomputed independently by this checker",
+          _usc_note_count(note) == usc_held_count,
+          f"note={note!r}, checker independently counted {usc_held_count}, "
+          f"note says {_usc_note_count(note)}")
+    for held_id, held_fm in sorted(schemes.HELD.items()):
+        if held_fm.get("instrument_kind") == "usc_section":
+            check(f"the note names {held_fm.get('citation')!r}, a section actually held",
+                  held_fm.get("citation", "") in note, note[:250])
+
+    ids, _ = resolve("20 USC 1232g")
+    check("20 USC 1232g resolves to the section this corpus holds",
+          ids == ["20-usc-1232g"], f"got {ids}")
+    ids, note2 = resolve("20 USC 1234")
+    check("20 USC 1234 -- an unheld section of a PARTIALLY held title -- refuses",
+          not ids, f"got {ids}")
+    # NOT the same assertion as the line above wearing a different sentence: that check
+    # already fails if `ids` is non-empty at all, so a second assertion over the SAME `ids`
+    # cannot fail independently of it -- a check that cannot fail is not a check. This one
+    # instead targets the shape of bug the suffix-boundary fix in federal_ids.py exists to
+    # prevent: a citation whose digits are a PREFIX of a held section's must not resolve to
+    # that held section (`20 USC 1232` must never become `20-usc-1232g`).
+    ids_prefix, _ = resolve("20 USC 1232")
+    check("20 USC 1232 -- a PREFIX of the held 1232g -- does not resolve to it",
+          "20-usc-1232g" not in ids_prefix, f"got {ids_prefix}")
+
+    # THE REFUSAL IS ASSERTED OVER A TABLE OF SPELLINGS, the same reason the CJIS/IRS
+    # refusals are: a guardrail that only holds for the one string tested is not a guardrail.
+    for c in ("20 USC 1232g", "20 U.S.C. § 1232g", "20 USC §§ 1232g", "42 U.S.C. 1396",
+              "20 usc 1234"):
+        ids3, _ = resolve(c)
+        check(f"no U.S.C. spelling ever resolves to a public law: {c!r}",
+              not any(i.startswith("pl-") for i in ids3), f"got {ids3}")
 
     ids, _ = resolve("Pub. L. 113-128")
     check("a held public law resolves", ids == ["pl-113-128"], f"got {ids}")
@@ -406,6 +520,46 @@ def main() -> int:
         derived = candidates(c)
         check(f"a sibling cannot reach a held document from {c!r}",
               not any(d in schemes.HELD for d in derived), f"derived {derived}")
+
+    # --- ADR-0006: U.S.C. section ids are derivable by a sibling, pure side --------------
+    # federal_ids.candidates() must derive a U.S.C. section id the same non-circular way it
+    # derives every other id -- see that file's docstring. Four cases: the plain case, the
+    # substitution guard (a missing `-N` suffix group would silently resolve `1320d-2` to
+    # a DIFFERENT section, `1320d`), a subsection tail staying inside its section rather
+    # than becoming a different document, and ADR-0004's surviving rule asserted on the
+    # pure side too -- a U.S.C. citation must never derive a pl- id.
+    check("20 USC 1232g derives 20-usc-1232g",
+          candidates("20 USC 1232g") == ["20-usc-1232g"],
+          f"got {candidates('20 USC 1232g')}")
+    check("42 USC 1320d-2 derives the SUFFIXED section, not 1320d",
+          candidates("42 USC 1320d-2") == ["42-usc-1320d-2"],
+          f"got {candidates('42 USC 1320d-2')}")
+    # A THREE-LETTER SUFFIX MUST NOT TRUNCATE TO A DIFFERENT, SHORTER, REAL SECTION. The
+    # single `1320d-2` case above exercises the suffix group at all, but a cap of `[a-z]{0,2}`
+    # on the letter run (as this regex briefly carried) silently truncated a real longer
+    # section into a real shorter one instead of refusing: `42 USC 1395ddd` (Medicare
+    # Integrity Program) became `42-usc-1395dd` (EMTALA), and `21 USC 360bbb-3` (an EUA
+    # provision) became `21-usc-360bb` (orphan drugs) while also dropping its own `-3`. Each
+    # of those is the exact "refusal names the wrong held instrument" failure CONTEXT.md's
+    # Refusal entry rules on, just reached through the pure derivation side rather than the
+    # resolver. A 6-digit section number (longer than any real U.S.C. section gets) must
+    # refuse the same way, for the same reason: `\d{1,5}` truncating to five real digits
+    # would silently name a different, shorter, real section too.
+    for cite, expect in (
+        ("42 USC 1395ddd", ["42-usc-1395ddd"]),
+        ("21 USC 360bbb-3", ["21-usc-360bbb-3"]),
+        ("42 U.S.C. 1395ccc", ["42-usc-1395ccc"]),
+        ("20 USC 123456", []),
+    ):
+        got = candidates(cite)
+        check(f"{cite!r} derives {expect or 'nothing'}, never a shorter real section",
+              got == expect, f"got {got}")
+    check("a subsection tail stays inside the section, not a separate document",
+          candidates("20 U.S.C. § 1232g(b)(1)(A)") == ["20-usc-1232g"],
+          f"got {candidates('20 U.S.C. § 1232g(b)(1)(A)')}")
+    check("a U.S.C. citation never derives a pl- id (ADR-0004 survives its own supersession)",
+          not any(d.startswith("pl-") for d in candidates("20 USC 1232g")),
+          f"got {candidates('20 USC 1232g')}")
 
     print()
     if fails:

@@ -1,6 +1,6 @@
 {
  "corpus": "federal-reference",
- "n_nodes": 422,
+ "n_nodes": 423,
  "n_edges": 605,
  "n_edges_external": 0,
  "nodes": [
@@ -360,6 +360,13 @@
    "doc_type": "federal_instrument",
    "status": "current",
    "path": "instruments/2-cfr-200.md"
+  },
+  {
+   "id": "20-usc-1232g",
+   "title": "Family educational and privacy rights",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/20-usc-1232g.md"
   },
   {
    "id": "23-cfr-645.301",

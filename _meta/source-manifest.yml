@@ -795,3 +795,56 @@ sources:
       mentions across ERF) -- the compliance signal a claim ranking would not have
       surfaced.
     reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  # ADR-0006: the U.S. Code sections Oregon cites, section by section, on demand. NEVER a
+  # title -- see the ADR for why the unit is the section and the trigger is a claim. Source
+  # is OLRC (uscode.house.gov), the official codifier, which publishes USLM XML per title at
+  # a release point; govinfo is the recorded fallback, not a second source, and Cornell LII
+  # is refused (ADR-0006's "Source of truth" section). The URL below is OLRC's current
+  # release-point download for Title 20 as a whole -- ingest_instruments.py extracts ONLY
+  # the cited section from it, per instrument_kind: usc_section, never the whole title.
+  - id: "20-usc-1232g"
+    url: "https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc20@119-103.zip"
+    format: "xml"
+    instrument_kind: "usc_section"
+    citation: "20 USC 1232g"
+    title: "Family educational and privacy rights"
+    signal: "authority"
+    why: >
+      FERPA -- the statute #36 measured at 1 authority claim against 34 CFR 99's 27, which
+      is what forced this question rather than settling it: #36 concluded there was no
+      urgency on FERPA's own numbers, and ADR-0006 was decided on the OPPOSITE case instead
+      -- 42 USC 1320d (HIPAA) carries 6 authority claims against 45 CFR 160 and 164's 2
+      combined, where the statute is what Oregon actually claims and the regulation is not.
+      An entry justified only by FERPA's own weak number would argue against itself; FERPA
+      is held first because it is what #36 measured, not because its own demand is large.
+    reproduction_basis: "17 U.S.C. § 105 — the U.S. Code as published by the Office of the Law Revision Counsel"
+    sha256: ""
+    notes: >
+      LEFT UNSEEDED ON PURPOSE. `record_source_hash()` hashes the DECOMPRESSED title XML
+      (see `_unzip_single_xml`), but corpus-detect-changes fetches this same URL and hashes
+      whatever the wire returns -- the ZIP -- because `corpus_toolkit.sources.changes` has
+      no zip handling at all. Recording our hash here would be a manifest baseline the
+      detector can never reproduce, reporting CHANGED every run, forever (confirmed on a
+      synthetic archive: the zip and its one unzipped member hash to two different
+      digests). `sha256: ""` is exactly the case ADR-0015 already handles: an unseeded
+      source is seeded, and not counted as drift, on the run that first fetches it. Filed
+      as OregonAI/corpus-toolkit#199 -- zip-wrapped sources are unhashable by the
+      detector as it stands, which is general and not specific to this one source.
+
+      Measured against the live site 2026-09-10 (slice 0 of #61's implementation). OLRC
+      does NOT serve a stable per-section URL for USLM XML -- only the per-title
+      release-point ZIP (confirmed: /download/download.shtml links `xml_usc20@119-103.zip`
+      per title, no equivalent per-section artifact). Title 20's USLM XML is 22,540,244
+      bytes uncompressed (3,356,450 bytes zipped) -- large relative to one cited section,
+      and the cost this ADR's "Consequences" section flags: every further section cited
+      from Title 20 will fetch and commit the same ~22 MB file again under its own manifest
+      entry, until source entries are keyed by title rather than by section. Reported, not
+      solved, per the ticket. The currency stamp lives in TWO places in the artifact: the
+      title's own `<meta><docPublicationName>Online@119-103</docPublicationName>` (a release
+      point token, not prose) and, in the SAME words ADR-0006 asks for, OLRC's download page
+      itself: "All files are current through Public Law 119-103." `currency` is built from
+      the former, reformatted to read like the latter. Section 1232g's amendment history IS
+      machine-readable: every amending Pub. L. in its `<sourceCredit>` carries a structured
+      `<date date="YYYY-MM-DD">`, not just prose -- the most recent is 2013-01-14
+      (Pub. L. 111-296, title I, § 103(d)), which is what `amended_on` states.
