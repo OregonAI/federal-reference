@@ -37,13 +37,14 @@ from __future__ import annotations
 
 import re
 import sys
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from ingest_instruments import (  # noqa: E402
-    SNAPSHOTS, extract_cfr, extract_pdf, is_page_number, page_furniture,
+    SNAPSHOTS, extract_cfr, extract_pdf, extract_usc, is_page_number, page_furniture,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -96,13 +97,25 @@ def main() -> int:
     for src in manifest["sources"]:
         sid = src["id"]
         fmt = src["format"]
+        kind = src["instrument_kind"]
         raw_path = SNAPSHOTS / f"{sid}.{fmt}"
         if not raw_path.is_file():
             print(f"  SKIP  {sid}: raw snapshot not committed")
             continue
 
-        if fmt == "xml":
+        # DISPATCHED ON instrument_kind, NEVER ON `fmt` -- the same rule ingest_instruments.py
+        # follows, and for the same reason. USLM and eCFR are BOTH `format: xml`; keying on
+        # `fmt` alone would run a USLM title through extract_cfr, which reads
+        # `TYPE="SECTION"` attributes USLM does not have and returns silently EMPTY text
+        # (confirmed against Title 20's own XML: 0 chars, no exception) rather than raising --
+        # a checker that "asks the extractor what the extractor did" only holds if BOTH sides
+        # ask the SAME extractor the ingest actually used.
+        if kind == "cfr_part":
             expect = tokens(extract_cfr(raw_path.read_bytes())[0])
+        elif kind == "usc_section":
+            usc_title, usc_sec = sid.split("-usc-", 1)
+            root = ET.fromstring(raw_path.read_bytes())
+            expect = tokens(extract_usc(root, usc_title, usc_sec)[0])
         else:
             expect = raw_tokens_pdf(raw_path)
 

@@ -88,7 +88,8 @@ guessing, and `src/check_citations.py` enforces it in CI:
 | `CJIS Security Policy, Version 6.0` | **refused** — the refusal holds across spellings, not one canonical form |
 | `2 CFR 200.53` | returned, labelled **not current law**, removed 2021-02-22 |
 | `2 CFR 200.200` | returns the **part**, and says it did so instead of the section |
-| `42 U.S.C. 1396` | **refused** — enacted public laws are held, not the codified Code |
+| `20 USC 1232g` | **resolves** — ADR-0006: FERPA is held, section by section |
+| `42 U.S.C. 1396` | **refused** — this corpus holds *some* U.S. Code sections, not the Code; the refusal names how many and that this one is not among them |
 
 The dangerous failure is not "did not resolve", which is visible. It is "resolved to
 something plausible that is not what was cited" — an answer an agent would act on.

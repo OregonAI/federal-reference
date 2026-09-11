@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Assert every document's `instrument_kind` is one of this corpus's five known values.
+"""Assert every document's `instrument_kind` is one of this corpus's six known values.
 
     python3 src/check_instrument_kind.py
 
@@ -17,8 +17,21 @@ other tool (`get_document`, `search_corpus`), and is refused BY NAME when cited 
 
 This is a corpus-local check, not a corpus-toolkit schema feature, because the enum is this
 corpus's own convention (`_meta/source-manifest.yml`'s intake note documents the four intake
-kinds; `cfr_section` is the fifth, produced by `split_cfr_sections.py`) -- other corpora use
+kinds; `cfr_section` is the fifth, produced by `split_cfr_sections.py`; `usc_section` is the
+sixth, ADR-0006's U.S. Code sections Oregon cites) -- other corpora use
 `extra_document_fields` for values with no fixed vocabulary.
+
+ALSO CHECKED HERE: every `usc_section` document declares a non-empty `currency` (OLRC's own
+"current through Pub. L. N" stamp -- ADR-0006's deliberate exception to *version is
+identity*, since a U.S.C. section has no siblings to disambiguate, only a history). A
+document whose `currency` is missing or empty is schema-valid and silently uncurrent -- the
+same "could not check" class this file already exists to close, one field over.
+
+NON-VACUITY OF THE CURRENCY RULE IS NOT THIS SCRIPT'S JOB. It iterates documents that
+exist, so with zero usc_section documents it would pass by saying nothing. The corpus-level
+"at least one usc_section is held" assertion -- the one that keeps the refusal's derived
+count from agreeing with zero -- lives in check_citations.py, where it can also see the
+refusal it protects.
 """
 from __future__ import annotations
 
@@ -36,6 +49,7 @@ KNOWN_INSTRUMENT_KINDS = {
     "irs_publication",
     "fbi_policy",
     "public_law",
+    "usc_section",
 }
 
 
@@ -65,12 +79,20 @@ def main() -> int:
             f"{doc_id} declares instrument_kind={kind!r}, which is not a recognized kind "
             f"-- allowed values are {sorted(KNOWN_INSTRUMENT_KINDS)}",
         )
+        if kind == "usc_section":
+            currency = fm.get("currency")
+            check(
+                f"{doc_id}: usc_section declares a non-empty currency",
+                bool(currency),
+                f"{doc_id} is a usc_section with currency={currency!r} -- ADR-0006 requires "
+                f"OLRC's own 'current through Pub. L. N' stamp on every usc_section document",
+            )
 
     print()
     if fails:
         print(f"FAILED: {len(fails)} assertion(s): {'; '.join(fails)}", file=sys.stderr)
         return 1
-    print("Every document's instrument_kind is one of the five known values.")
+    print("Every document's instrument_kind is one of the six known values.")
     return 0
 
 

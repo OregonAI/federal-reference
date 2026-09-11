@@ -25,12 +25,14 @@ from __future__ import annotations
 
 import argparse
 import gzip
+import io
 import json
 import re
 import sys
 import time
 import urllib.request
 import xml.etree.ElementTree as ET
+import zipfile
 from pathlib import Path
 
 import yaml
@@ -48,13 +50,15 @@ UA = ("OregonAI-corpus-bot/0.1 (+https://github.com/OregonAI/federal-reference; 
 # a citation to one revision must never resolve to another's text.
 IRS_REV = re.compile(r"\(\s*Rev\.?\s*(\d{1,2}[-/]\d{4})\s*\)", re.I)
 
-# These three kinds really are constant per kind: every IRS publication comes from the IRS,
-# every CJIS policy from the FBI's CJIS Division, every public law from Congress. `cfr_part`
+# These four kinds really are constant per kind: every IRS publication comes from the IRS,
+# every CJIS policy from the FBI's CJIS Division, every public law and every codified U.S.
+# Code section from Congress (OLRC only codifies what Congress enacted). `cfr_part`
 # is deliberately NOT in this table — see resolve_issuing_body().
 ISSUING_BODY_BY_KIND = {
     "irs_publication": "Internal Revenue Service",
     "fbi_policy": "Federal Bureau of Investigation, CJIS Division",
     "public_law": "United States Congress",
+    "usc_section": "United States Congress",
 }
 
 
@@ -178,6 +182,27 @@ def write_manifest_hash(rid: str, sha: str) -> bool:
     return changed
 
 
+def _unzip_single_xml(raw: bytes) -> bytes:
+    """OLRC's release-point download is a ZIP archive holding one XML file per title
+    (`xml_usc20@119-103.zip` -> `usc20.xml`), not raw XML on the wire.
+
+    `fetch()` caches DECOMPRESSED bytes at `dest`, and `dest` for a usc_section source is
+    named `<id>.xml` (see main()) -- so what lands on disk must actually be XML, or
+    `source_format: xml` would be a claim about the file that is false the moment anyone
+    opens it. Raises if the archive holds anything other than exactly one `.xml` member:
+    a release-point ZIP with more than one XML file, or none, means this function's
+    assumption about OLRC's packaging has changed and guessing which member is the title
+    would be exactly the kind of silent substitution this corpus exists to refuse.
+    """
+    with zipfile.ZipFile(io.BytesIO(raw)) as zf:
+        members = [n for n in zf.namelist() if n.lower().endswith(".xml")]
+        if len(members) != 1:
+            raise ValueError(
+                f"expected exactly one .xml member in the release-point archive, found "
+                f"{members!r}")
+        return zf.read(members[0])
+
+
 def fetch(url: str, dest: Path, refetch: bool) -> bytes:
     """Fetch `url`, caching the DECOMPRESSED bytes at `dest`.
 
@@ -188,6 +213,12 @@ def fetch(url: str, dest: Path, refetch: bool) -> bytes:
     ingested since, needed a real fetch). `urllib` never decompresses on its own even when
     a request declares it can accept a compressed body, so both halves are needed: send
     `Accept-Encoding`, then undo it by hand if the response says it used it.
+
+    OLRC's per-title USLM release point is a SECOND kind of compression, on the wire
+    unconditionally rather than only when negotiated: the URL itself ends `.zip`
+    (`releasepoints/us/pl/119/103/xml_usc20@119-103.zip`), and what is served is a ZIP
+    archive, not XML with a Content-Encoding header. `_unzip_single_xml` undoes that
+    unconditionally when the URL says so, so the cached bytes at `dest` are the XML itself.
     """
     if dest.is_file() and not refetch:
         return dest.read_bytes()
@@ -196,6 +227,8 @@ def fetch(url: str, dest: Path, refetch: bool) -> bytes:
     raw = resp.read()
     if resp.headers.get("Content-Encoding", "").lower() == "gzip":
         raw = gzip.decompress(raw)
+    if url.lower().endswith(".zip"):
+        raw = _unzip_single_xml(raw)
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_bytes(raw)
     return raw
@@ -287,6 +320,105 @@ def extract_cfr(raw: bytes) -> tuple[str, dict]:
         n_app += kind == "APPENDIX"
     text = re.sub(r"\n{3,}", "\n\n", "\n".join(out)).strip()
     return text, {"sections": n_sec, "appendices": n_app, "subparts": n_sub}
+
+
+# ---------------------------------------------------------------- USLM (U.S. Code, ADR-0006)
+
+USLM_NS = "{http://xml.house.gov/schemas/uslm/1.0}"
+
+
+def _uslm_find_section(root, title: str, sec: str):
+    """The `<section>` element for `{title} USC {sec}`, by its USLM `identifier`.
+
+    Walks the whole parsed title tree rather than reaching for it with XPath: ElementTree's
+    supported subset cannot select on an attribute VALUE for a namespaced tag in one
+    expression, and a linear scan of a tree already parsed in memory is cheap next to the
+    network fetch that produced it.
+    """
+    ident = f"/us/usc/t{title}/s{sec}"
+    for el in root.iter(f"{USLM_NS}section"):
+        if el.get("identifier") == ident:
+            return el
+    return None
+
+
+def usc_currency(root) -> str:
+    """OLRC's own currency stamp, transcribed and reformatted to the wording ADR-0006 names.
+
+    The title's `<meta><docPublicationName>` carries the release point as
+    `Online@119-103` — Congress 119, law 103. OLRC's own download page states the identical
+    fact in prose: *"All files are current through Public Law 119-103."* That is the exact
+    phrase ADR-0006 asks this field to carry ("current through Pub. L. N"), so the release
+    point is reformatted into it rather than left in OLRC's internal `Online@` shorthand,
+    which no reader outside OLRC's own tooling would recognize as a currency statement.
+
+    Raises rather than guessing when the tag is missing or does not parse — a `currency`
+    this corpus cannot read from the source is not one it should publish.
+    """
+    el = root.find(f"{USLM_NS}meta/{USLM_NS}docPublicationName")
+    text = (el.text or "").strip() if el is not None else ""
+    m = re.match(r"Online@(\d+)-(\d+)$", text)
+    if not m:
+        raise ValueError(f"cannot read a release point from docPublicationName={text!r}")
+    return f"current through Pub. L. {m.group(1)}-{m.group(2)}"
+
+
+def usc_amended_on(section_el) -> str:
+    """The most recent amendment date for THIS section, from its own `<sourceCredit>`.
+
+    Every amending Pub. L. in a USLM sourceCredit carries a machine-readable
+    `<date date="YYYY-MM-DD">` beside the citation prose — the section's amendment history
+    is read structurally, the same way `cfr_amended_on` reads eCFR's version API rather than
+    parsing a date out of running text. Raises when a section carries no sourceCredit or no
+    dated amendment: an undated `amended_on` is not a fact this corpus can state.
+    """
+    credit = section_el.find(f"{USLM_NS}sourceCredit")
+    if credit is None:
+        raise ValueError("section has no <sourceCredit>; cannot state amended_on")
+    dates = [d.get("date") for d in credit.iter(f"{USLM_NS}date") if d.get("date")]
+    if not dates:
+        raise ValueError("<sourceCredit> carries no dated amendment; cannot state amended_on")
+    return max(dates)
+
+
+def extract_usc(root, title: str, sec: str) -> tuple[str, dict]:
+    """Parsed USLM title tree -> markdown for ONE cited section, current text per ADR-0001.
+
+    Only the CITED section is extracted, never the title — ADR-0006 holds sections, on
+    demand, and never holds a title as a document — so the committed document and its own
+    provenance stay small even though the fetched title XML (tens of megabytes) is not.
+    `guard_headings` runs over every emitted line for the same `FULLTEXT_RE` reason
+    `extract_cfr` carries it: any source line starting `## ` at column zero would silently
+    truncate the document there.
+
+    KEEPS the source credit and the statutory notes, not the operative text alone. For a
+    codified section those are part of what OLRC publishes AS the section — the amendment
+    history IS the provenance a compliance reader needs — and dropping part of what a
+    citing rule relies on is this corpus's worst failure mode.
+
+    Takes an already-parsed `root`, not raw bytes, so a caller needing BOTH the text and a
+    fact read from elsewhere in the same tree (the title's currency stamp, this section's
+    own amendment date) parses the multi-megabyte document once rather than once per fact.
+    """
+    section_el = _uslm_find_section(root, title, sec)
+    if section_el is None:
+        raise ValueError(f"no <section> for {title} USC {sec} in the raw USLM")
+
+    heading_el = section_el.find(f"{USLM_NS}heading")
+    num_el = section_el.find(f"{USLM_NS}num")
+    heading = _flatten(heading_el) if heading_el is not None else ""
+    out = [f"### § {sec} {heading}".rstrip()]
+    n_sub = 0
+    for child in section_el:
+        if child in (heading_el, num_el):
+            continue
+        t = guard_headings(_flatten(child))
+        if t:
+            out.append(t)
+        if child.tag == f"{USLM_NS}subsection":
+            n_sub += 1
+    text = re.sub(r"\n{3,}", "\n\n", "\n".join(out)).strip()
+    return text, {"subsections": n_sub}
 
 
 # ---------------------------------------------------------------- PDF
@@ -464,6 +596,12 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
         "version": version,
         "as_of": as_of,
         "amended_on": src.get("amended_on"),
+        # ADR-0006's deliberate exception to *version is identity*: OLRC's own "current
+        # through Pub. L. N" stamp, verbatim (see usc_currency()). A U.S.C. section has no
+        # siblings to disambiguate by a version in the id — only a history — so this rides
+        # as a field instead. Present ONLY on usc_section; every other kind leaves it unset
+        # rather than publishing a `currency: null` that means nothing for a CFR part.
+        **({"currency": src["currency"]} if src["instrument_kind"] == "usc_section" else {}),
         "reproduction_basis": " ".join(str(src["reproduction_basis"]).split()),
         "superseded_by": None,
         # Carried into the DOCUMENT, not left in the manifest. src/citation_schemes.py names
@@ -517,6 +655,7 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
              f"- Version: {version or 'not versioned'}\n"
              f"- Text as of: {fm['as_of']}"
              + (f" (upstream last amended {fm['amended_on']})" if fm.get("amended_on") else "")
+             + (f"\n- {fm['currency']} (OLRC)" if fm.get("currency") else "")
              + f"\n- Extent: {stat_line}\n"
              f"- Reproduction basis: {fm['reproduction_basis']}\n"]
     parts.append(
@@ -530,6 +669,13 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
             + ", ".join(gap)
             + " of this instrument, which are NOT held here. A citation to one of those is "
               "not answered by the text below, and must not be treated as if it were.\n")
+    if src["instrument_kind"] == "usc_section":
+        parts.append(
+            "\n> **Partial hold (ADR-0006).** This corpus holds the U.S. Code sections "
+            "Oregon cites, section by section, on demand — never a title, and never the "
+            "Code speculatively. The set held changes as sections are cited; `usc-section` "
+            "in `src/citation_schemes.py` names the current count and refuses any other "
+            "U.S.C. citation by name rather than by silence.\n")
     parts.append("\n## Full text\n\n" + text + "\n")
     return "\n".join(parts)
 
@@ -603,9 +749,27 @@ def main() -> int:
             fresh = not snap.is_file() or args.refetch
             raw = fetch(src["url"], snap, args.refetch)
 
+            # DISPATCHED ON instrument_kind, NEVER ON `fmt`. USLM is `format: xml`, same as
+            # eCFR — the first source to be BOTH is exactly what makes this load-bearing: a
+            # format-keyed dispatch would run a USLM title through extract_cfr, which reads
+            # `TYPE="SECTION"` attributes USLM does not have and returns silently EMPTY text
+            # (confirmed: 0 chars on Title 20's own XML) rather than raising, which the
+            # `len(text) < 2000` guard below would then report as "scanned or broken" -- a
+            # true-sounding diagnosis of the wrong file. check_extraction.py's dispatch must
+            # agree with this one, or the checker re-derives a different "expected" than what
+            # was actually committed and reports a fidelity defect that is really a disagreement
+            # about which extractor ran.
             if src["instrument_kind"] == "cfr_part":
                 text, stats = extract_cfr(raw)
                 src = {**src, "amended_on": src.get("amended_on") or cfr_amended_on(src["url"])}
+            elif src["instrument_kind"] == "usc_section":
+                usc_title, usc_sec = src["id"].split("-usc-", 1)
+                usc_root = ET.fromstring(raw)
+                text, stats = extract_usc(usc_root, usc_title, usc_sec)
+                section_el = _uslm_find_section(usc_root, usc_title, usc_sec)
+                src = {**src,
+                       "amended_on": src.get("amended_on") or usc_amended_on(section_el),
+                       "currency": usc_currency(usc_root)}
             else:
                 text, stats = extract_pdf(snap)
             if len(text) < 2000:

@@ -56,7 +56,13 @@ _sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 # 200. That is #35's failure mode (federal-reference#12) recurring cross-corpus, and it is
 # what check_citations.py's "known gap (#55, cross-corpus)" check below pins down so it
 # cannot slide from filed to silent. #55 stays open for the coordinated federal_ids.py fix.
-from federal_ids import MAX_RANGE  # noqa: E402
+# USC joins the import for ADR-0006: the suffix-aware section regex (`1320d-2`, never
+# truncated to `1320d`) is a CONTRACT the sibling side already relies on via
+# federal_ids.candidates(), and this corpus's own resolver must parse the identical thing
+# or the two can disagree about which section a citation names -- the exact substitution
+# ADR-0004/-0006 exist to refuse. RANGE and LIST_SEC are still NOT imported, for the
+# reason above: this resolver builds them per PART.
+from federal_ids import MAX_RANGE, USC  # noqa: E402
 
 INSTRUMENTS = pathlib.Path(__file__).resolve().parent.parent / "instruments"
 
@@ -527,31 +533,66 @@ register_scheme("federal-act-name", ACT_RE, resolver=_act)
 
 
 # --------------------------------------------------------------------------- U.S. Code
-# `42 U.S.C. 1396`, `29 USC § 3101`.
+# `42 U.S.C. 1396`, `20 USC § 1232g`, `29 USC § 3101`. ADR-0006 (supersedes ADR-0004): this
+# corpus holds the U.S. Code sections Oregon cites, section by section, on demand -- never a
+# title, never the Code speculatively, and a U.S.C. section is STILL never mapped onto a
+# public law. That rule is ADR-0004's and survives its own supersession unchanged.
 #
-# REGISTERED EVEN THOUGH IT NEVER RESOLVES — a deliberate exception to the rule that a
-# scheme resolving nothing is worse than none. Left unmatched, a U.S.C. citation returns
-# "no citation scheme recognized this format", which invites the reader to conclude the
-# corpus merely failed to parse it. Matched, it returns the true and more useful statement:
-# this corpus holds ENACTED PUBLIC LAWS and named federal publications, not the codified
-# U.S. Code, and here are the public laws it does hold.
-#
-# It must never map a U.S.C. section onto a public law. The codified section and the enacted
-# text are different documents, and they diverge as later acts amend the code. The seed
-# sketched exactly that aliasing ("with the U.S.C. sections it created as aliases"); it is
-# not implemented, because it would resolve a citation to a document that is not what was
-# cited.
-USC_RE = r"(?i)(?P<title>\d{1,2})\s*U\.?\s?S\.?\s?C\.?\s*(?:§{1,2}\s*)?(?P<sec>\d{1,5}[a-z]{0,2})\b"
+# THE REGEX IS IMPORTED FROM federal_ids.py, not redefined here (see the import comment
+# above) -- the suffix group (`1320d-2`, not truncated to `1320d`) is a cross-corpus contract
+# the sibling side already relies on, and a second, possibly-drifted copy here would be the
+# exact class of bug that contract exists to prevent.
+def _held_usc_sections() -> dict[str, dict]:
+    """{document id: frontmatter} for every usc_section document actually held.
+
+    One kind of `_held_cfr_parts()` over: filtered straight out of HELD, itself read from the
+    documents at import (see `_held()`'s docstring) -- never a literal. ADR-0006 makes a
+    partial hold the PERMANENT state of this corpus with respect to the U.S. Code, so the
+    count this feeds into the refusal below changes every time a section is ingested; a
+    typed number here is the same staleness bug `_held_cfr_parts()` already exists to close,
+    with a larger blast radius, because the refusal is the one place a wrong count is served
+    directly to a caller.
+    """
+    return {doc_id: fm for doc_id, fm in HELD.items() if fm.get("instrument_kind") == "usc_section"}
 
 
 def _usc(m, nodes=None):
-    laws = ", ".join(f"{HELD[i].get('citation', i)} ({i})" for i in sorted(_PUBLAW.values()))
+    """Resolve a held U.S.C. section, or refuse by naming the real partial hold.
+
+    THE MEMBERSHIP ANSWER AND THE REFUSAL COME FROM THE SAME LOOKUP: this looks the cited
+    section up in HELD directly, and only builds the refusal -- from `_held_usc_sections()`,
+    in this same call -- when that lookup misses. So "the cited section is not among them" is
+    a fact this function just established, never a separate claim that could disagree with
+    what the held branch would have returned.
+
+    THE COUNT IS THE LENGTH OF THE LIST IT PRINTS, computed in the call rather than cached or
+    typed (contrast `_PUBLAW`, built once at module level -- the count here must NOT follow
+    that pattern, the same way `_cfr_one`'s "It holds {listing}" sentence is built fresh
+    every time from `_held_cfr_parts()`). `held`, `n` and `listing` all come from ONE dict in
+    ONE sentence below, so there is no arrangement in which the number printed disagrees with
+    the citations printed beside it.
+    """
+    title, sec = m.group("title"), m.group("sec").lower()
+    doc_id = f"{title}-usc-{sec}"
+    fm = HELD.get(doc_id)
+    if fm is not None and fm.get("instrument_kind") == "usc_section":
+        currency = fm.get("currency")
+        return [doc_id], (f"OLRC states this section is {currency}." if currency else None)
+
+    held = _held_usc_sections()
+    n = len(held)
+    listing = sorted(hfm.get("citation", i) for i, hfm in held.items())
+    unit = "section" if n == 1 else "sections"
+    if n > 10:
+        shown = ", ".join(listing[:10]) + f", and {n - 10} more"
+    else:
+        shown = ", ".join(listing) or "none"
     return [], (
-        f"this corpus does not hold the U.S. Code. It holds enacted public laws and named "
-        f"federal publications: {laws or 'none'}. The codified section and the enacted text "
-        f"are different documents that diverge as later acts amend the code, so "
-        f"{m.group('title')} U.S.C. {m.group('sec')} is not answered by substituting one "
-        f"for the other.")
+        f"{title} U.S.C. {m.group('sec')} is not held. This corpus holds {n} {unit} of the "
+        f"U.S. Code — {shown} — and {title} U.S.C. {m.group('sec')} is not among them. The "
+        f"codified section and the enacted text are different documents that diverge as "
+        f"later acts amend the code, so a U.S. Code citation is never answered by "
+        f"substituting a public law for it.")
 
 
-register_scheme("usc-section", USC_RE, resolver=_usc)
+register_scheme("usc-section", USC, resolver=_usc)

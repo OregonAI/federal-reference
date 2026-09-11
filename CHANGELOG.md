@@ -6,6 +6,68 @@ Repo-curation dates only — official effective dates live in frontmatter.
 
 ## [Unreleased]
 
+### Added
+- 2026-09-10 — ADR-0006: this corpus now holds the U.S. Code sections Oregon cites, section
+  by section, on demand, superseding ADR-0004's blanket refusal. First section: **20 USC
+  1232g** (FERPA), ingested from OLRC (`uscode.house.gov`)'s per-title USLM XML release
+  point (govinfo is the recorded fallback; Cornell LII is refused — see the ADR). A new
+  `usc_section` instrument kind (`src/check_instrument_kind.py`, now six known values) holds
+  current text per ADR-0001 (`as_of`, `amended_on`) plus a `currency` field carrying OLRC's
+  own "current through Pub. L. N" stamp, wired into `_meta/corpus.yml`'s
+  `mcp.extra_document_fields` — the deliberate exception to *version is identity* ADR-0006
+  names, because a U.S.C. section has no siblings to disambiguate, only a history.
+
+  **The refusal and the first section land in the same commit, by construction, not by
+  discipline alone.** The old `usc-section` scheme answered "this corpus does not hold the
+  U.S. Code" — true the day it was written, false the moment a section landed. `_usc()` in
+  `src/citation_schemes.py` now looks the cited section up in `HELD` directly and, only on a
+  miss, builds the refusal from a new `_held_usc_sections()` (one kind of `_held_cfr_parts()`
+  over) IN THE SAME CALL: count, listing and the "not among them" claim all come from the one
+  dict, so the count cannot go stale the way a hand-typed number would (see
+  `_held_cfr_parts()`'s own docstring for the class of bug this repeats one field over). The
+  note never says "holds"/"does not hold" "the U.S. Code" in either direction, names the real
+  count with correct singular/plural, and — ADR-0004's central rule, restated rather than
+  weakened by its own supersession — a U.S.C. citation still never resolves to a `pl-` id.
+
+  Three defects were confirmed to actually fire, then reverted, per the ticket's own "break
+  it, watch the named rule fire, restore":
+  1. the derived count hand-typed as a literal `1` in place of `len(held)` — the single-
+     document assertion still passed (the literal happened to equal the real count), but the
+     synthetic second-section proof (which injects two more `usc_section` documents straight
+     into `HELD` and re-resolves) failed exactly as expected, naming the mismatch;
+  2. `instruments/20-usc-1232g.md` moved aside — the "at least one usc_section is held" gate
+     fired, which is what stops the count-matches-zero assertion from ever passing vacuously;
+  3. the old "this corpus does not hold the U.S. Code" sentence pasted back — the
+     wording gate fired immediately, and the cascading count/listing assertions failed with
+     it (a refusal with the old wording cannot also carry a real count).
+
+  Also: `src/federal_ids.py` (the parity-locked cross-corpus contract) gained a `USC` regex
+  with a suffix group — `42 USC 1320d-2` derives `42-usc-1320d-2`, never the different section
+  `1320d` — imported into `citation_schemes.py` rather than copied, per that file's own
+  no-second-copy rule. `src/ingest_instruments.py` and `src/check_extraction.py` now dispatch
+  extraction on `instrument_kind`, never on `format`: USLM and eCFR are both `format: xml`,
+  and format-based dispatch would silently run a USLM title through `extract_cfr` (confirmed:
+  0 chars extracted from Title 20's own XML, no exception) — a latent trap the ADR-0006 work
+  would otherwise have tripped over and mistaken for a corpus defect. `fetch()` grows a ZIP
+  branch: OLRC's release-point download is a ZIP archive, not raw XML on the wire, so the
+  cached snapshot at `_meta/snapshots/20-usc-1232g.xml` is the extracted title XML itself,
+  keeping `source_format: xml` true to what is actually on disk. `src/slicing.py` is
+  UNCHANGED and deliberately so: `extract_usc` extracts only the cited section (never the
+  whole title, per ADR-0006), so the committed `.txt` snapshot and the document's own full
+  text are identical by construction — an identity slice, the same reason a bare CFR part
+  needs no slicing, not the shared-snapshot case CFR sections use.
+
+  **Reported, not solved (per the ticket):** ADR-0005 makes the source manifest hand-authored,
+  so this adds one entry per cited section — comfortable at one, and 742 distinct U.S.C.
+  targets are cited across ERF's catalog. It bites sooner than "forty": OLRC serves USLM only
+  as a per-TITLE release-point ZIP (confirmed — no stable per-section URL), so a second
+  section cited from Title 20 would fetch and commit the same ~22 MB title XML again under
+  its own manifest entry, unless source entries are keyed by title with a shared
+  `snapshot_id` the way CFR parts already share one across their split sections. That is a
+  manifest-shape change, not a scaling annoyance, and it is the thing that will force the
+  question ADR-0006 itself names: whether U.S.C. entries should be derived from the
+  cited-sections scan the way ADR-0003 derives its list. #61
+
 ### Fixed
 - 2026-09-10 — Follow-up to the same day's #55 fix, below, found by a standards/spec review
   of that change before it merged. `_range_re`/`_list_sec_re` (`src/citation_schemes.py`)
