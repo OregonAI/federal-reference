@@ -48,8 +48,18 @@ LIST_SEC = re.compile(r"(?:,|;|\band\b|&)\s*§{0,2}\s*200\.(\d{1,4})\b", re.I)
 # substitute one section of the U.S. Code for another, the exact failure this platform exists
 # to refuse. The trailing subsection tail (`(b)(1)(A)`) is matched and ignored: a subsection is
 # inside the section, never a different document.
+#
+# The letter run is UNBOUNDED and followed by a hard right boundary
+# `(?![0-9A-Za-z])`, on purpose: capping it at two letters (or the digit run at five)
+# let a longer real section TRUNCATE into a different, real, wrong one --
+# `42 USC 1395ddd` (Medicare Integrity Program) silently became `1395dd` (EMTALA), and
+# `21 USC 360bbb-3` (an EUA provision) became `360bb` (orphan drugs), dropping the `-3`
+# too. That is the exact substitution this comment already warned the suffix group
+# exists to prevent, just one letter later. Refusing to match at all is the honest
+# outcome; a shorter real section id from a citation that named a different, real
+# section is not.
 USC = re.compile(r"\b(?P<title>\d{1,2})\s*U\.?\s?S\.?\s?C\.?\s*(?:§{1,2}\s*)?"
-                 r"(?P<sec>\d{1,5}[a-z]{0,2}(?:-\d{1,3})?)(?:\([^)]*\))*", re.I)
+                 r"(?P<sec>\d{1,5}[a-z]*(?:-[0-9a-z]{1,4})?)(?![0-9A-Za-z])(?:\([^)]*\))*", re.I)
 
 # `IRS Pub 1075`, `IRS Publication 1075 (Rev. 11-2021)`, `IRS Pub 1075 Revision 9/2016`
 IRSPUB = re.compile(r"\bIRS\s+Pub(?:lication)?\.?\s*(?P<num>\d{3,4})\b", re.I)

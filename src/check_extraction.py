@@ -29,7 +29,9 @@ Tokens are compared as a multiset, so duplicates and reordering are caught too, 
 furniture is excluded the same way the extractor excludes it -- by asking the extractor,
 rather than by reimplementing the rule and hoping the two agree.
 
-Requires the raw snapshots, which this corpus commits (12 MB). A corpus on
+Requires the raw snapshots, which this corpus commits (tens of MB, dominated by the
+per-title USLM snapshots ADR-0006 introduced -- one title alone is ~22 MB, since OLRC
+serves USLM only per title, not per section). A corpus on
 `snapshot_policy: hash-only` cannot run this, and should say so rather than imply provenance
 covers it.
 """

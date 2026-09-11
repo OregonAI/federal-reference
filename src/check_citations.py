@@ -24,6 +24,8 @@ import re
 import sys
 import tempfile
 
+import yaml
+
 from corpus_toolkit import config as cfg
 from corpus_toolkit.mcp.framework import CorpusFramework
 
@@ -397,9 +399,26 @@ def main() -> int:
           and "does not hold the u.s. code" not in note.lower(),
           note[:200])
 
+    # AN INDEPENDENT RECOUNT, deliberately NOT via `schemes._held()` (see that call's own
+    # rationale above) and deliberately NOT a whole-file substring test either: a document
+    # whose PROSE happens to quote the string "instrument_kind: usc_section" (in a curator
+    # note describing this very feature, say) would inflate a substring count and make the
+    # derived-count assertion agree with a wrong number without either side having a real
+    # disagreement. Reading just the frontmatter block, the way `schemes._held()` itself
+    # does, keeps the recount blind to prose while staying independent of the resolver.
+    def _is_usc_section_document(path: pathlib.Path) -> bool:
+        text = path.read_text(encoding="utf-8")
+        if not text.startswith("---\n"):
+            return False
+        end = text.find("\n---", 4)
+        if end == -1:
+            return False
+        fm = yaml.safe_load(text[4:end])
+        return isinstance(fm, dict) and fm.get("instrument_kind") == "usc_section"
+
     usc_held_count = sum(
         1 for p in pathlib.Path("instruments").glob("*.md")
-        if "instrument_kind: usc_section" in p.read_text(encoding="utf-8"))
+        if _is_usc_section_document(p))
     check("at least one usc_section document is held "
           "(else the count below could agree with zero and pass vacuously)",
           usc_held_count > 0, "0 usc_section documents found under instruments/")
@@ -418,8 +437,15 @@ def main() -> int:
     ids, note2 = resolve("20 USC 1234")
     check("20 USC 1234 -- an unheld section of a PARTIALLY held title -- refuses",
           not ids, f"got {ids}")
-    check("...and the refusal does not silently substitute the held section instead",
-          "20-usc-1232g" not in ids, f"got {ids}")
+    # NOT the same assertion as the line above wearing a different sentence: that check
+    # already fails if `ids` is non-empty at all, so a second assertion over the SAME `ids`
+    # cannot fail independently of it -- a check that cannot fail is not a check. This one
+    # instead targets the shape of bug the suffix-boundary fix in federal_ids.py exists to
+    # prevent: a citation whose digits are a PREFIX of a held section's must not resolve to
+    # that held section (`20 USC 1232` must never become `20-usc-1232g`).
+    ids_prefix, _ = resolve("20 USC 1232")
+    check("20 USC 1232 -- a PREFIX of the held 1232g -- does not resolve to it",
+          "20-usc-1232g" not in ids_prefix, f"got {ids_prefix}")
 
     # THE REFUSAL IS ASSERTED OVER A TABLE OF SPELLINGS, the same reason the CJIS/IRS
     # refusals are: a guardrail that only holds for the one string tested is not a guardrail.
@@ -508,6 +534,26 @@ def main() -> int:
     check("42 USC 1320d-2 derives the SUFFIXED section, not 1320d",
           candidates("42 USC 1320d-2") == ["42-usc-1320d-2"],
           f"got {candidates('42 USC 1320d-2')}")
+    # A THREE-LETTER SUFFIX MUST NOT TRUNCATE TO A DIFFERENT, SHORTER, REAL SECTION. The
+    # single `1320d-2` case above exercises the suffix group at all, but a cap of `[a-z]{0,2}`
+    # on the letter run (as this regex briefly carried) silently truncated a real longer
+    # section into a real shorter one instead of refusing: `42 USC 1395ddd` (Medicare
+    # Integrity Program) became `42-usc-1395dd` (EMTALA), and `21 USC 360bbb-3` (an EUA
+    # provision) became `21-usc-360bb` (orphan drugs) while also dropping its own `-3`. Each
+    # of those is the exact "refusal names the wrong held instrument" failure CONTEXT.md's
+    # Refusal entry rules on, just reached through the pure derivation side rather than the
+    # resolver. A 6-digit section number (longer than any real U.S.C. section gets) must
+    # refuse the same way, for the same reason: `\d{1,5}` truncating to five real digits
+    # would silently name a different, shorter, real section too.
+    for cite, expect in (
+        ("42 USC 1395ddd", ["42-usc-1395ddd"]),
+        ("21 USC 360bbb-3", ["21-usc-360bbb-3"]),
+        ("42 U.S.C. 1395ccc", ["42-usc-1395ccc"]),
+        ("20 USC 123456", []),
+    ):
+        got = candidates(cite)
+        check(f"{cite!r} derives {expect or 'nothing'}, never a shorter real section",
+              got == expect, f"got {got}")
     check("a subsection tail stays inside the section, not a separate document",
           candidates("20 U.S.C. § 1232g(b)(1)(A)") == ["20-usc-1232g"],
           f"got {candidates('20 U.S.C. § 1232g(b)(1)(A)')}")

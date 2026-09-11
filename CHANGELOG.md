@@ -100,6 +100,94 @@ Repo-curation dates only — official effective dates live in frontmatter.
   matches against part 37 rather than never matching at all. An unheld part still gets
   exactly one refusal and no expansion attempt — `_cfr_one` already owns that check per
   section, and the fix does not touch it. #55
+- 2026-09-10 — Review remediation on #61's ADR-0006 landing, four confirmed defects and one
+  reconciled gate/implementation disagreement, all measured before the fix and re-verified
+  after:
+
+  1. **`federal_ids.py`'s `USC` regex silently truncated a longer real section into a
+     shorter, different, real one**, exactly the substitution class its own suffix-group
+     comment already warned about, one letter later: capping the suffix at `[a-z]{0,2}`
+     meant `42 USC 1395ddd` (Medicare Integrity Program) derived `42-usc-1395dd` (EMTALA),
+     and `21 USC 360bbb-3` (an EUA provision) derived `21-usc-360bb` (orphan drugs, `-3`
+     dropped too) — and the refusal then quoted the WRONG section back at the caller
+     ("...1395dd is not held... and 1395dd is not among them" for a citation that never
+     named 1395dd). Fixed by making the letter run unbounded and requiring a hard right
+     boundary (`(?![0-9A-Za-z])`) instead of a length cap, so a longer section refuses
+     rather than truncates. `check_citations.py` gains a table covering both reported
+     spellings plus a 6-digit section number, asserting the correct id or an honest empty
+     result — never a shorter real section.
+  2. **`ingest_instruments.py`'s `extract_usc` fabricated text that exists nowhere in the
+     pinned source.** It flattened a whole `<subsection>` subtree in one call; USLM keeps
+     `<num>`, `<heading>` and the body as sibling elements with no whitespace between them
+     on the wire, so the flatten ran a heading's last word into the next element's first
+     word ("...regulations" + "Not later than..." → "regulationsNot...", 13 such joins in
+     the committed `instruments/20-usc-1232g.md`) and collapsed the whole section's
+     (1)/(A)/(i) paragraph structure onto 15 lines. `check_extraction.py` could not catch
+     it: both sides call `extract_usc`, so it compared the extractor with itself. Fixed by
+     rendering per element instead of per subtree (`_render_uslm`/`_emit_uslm_child`), the
+     same granularity `extract_cfr` already uses for `HEAD`/`P` — 238 lines, no fused
+     tokens, confirmed against the raw XML. `20-usc-1232g` re-ingested from the same cached
+     snapshot (no re-fetch) to regenerate the document and `.txt` snapshot from the fixed
+     extractor.
+  3. **The manifest `sha256` for a zip-served source was hashed over the wrong bytes.**
+     `fetch()` unzips OLRC's release-point download before returning `raw`, and that
+     unzipped `raw` was what got hashed into the manifest — but corpus-detect-changes
+     fetches the same URL for itself and hashes exactly what the wire returns (the ZIP),
+     because `corpus_toolkit.sources.changes` has no zip handling at all. That baseline
+     could never be reproduced by the detector and would have reported this source CHANGED
+     on every future run, exit 0, forever — record_source_hash's own docstring calls a
+     wrong hash "worse than an empty one" for exactly this reason. Fixed by leaving
+     `sha256: ""` for any zip-served source: ADR-0015 (corpus-toolkit) already seeds an
+     unrecorded baseline, without ever counting it as drift, on the run that first fetches
+     it — this hands the detector precisely the case it already handles correctly. The
+     underlying gap is general, not specific to this source, and is filed as
+     OregonAI/corpus-toolkit#199 rather than fixed here (`changes.py` is a different repo).
+  4. **CI's step name still said "five known values"** while `check_instrument_kind.py`
+     itself had already moved to six in the same original change. Renamed the step.
+  5. **The >10-item truncation in `_usc()`'s refusal listing contradicted
+     `check_citations.py`'s own per-held-citation assertion** ("every held usc_section
+     citation appears in the note"), which the truncation would have failed on correct
+     behaviour at the 11th held section — in a corpus ADR-0006 says will keep growing
+     toward 742 cited targets. Removed the cap so `_usc()` matches its sibling `_cfr_one`
+     (which lists all 50 held CFR parts with no cap): a long refusal is the honest cost of
+     a real partial hold.
+
+  Also, from the same review, two weaknesses in `check_citations.py`'s own new coverage:
+  the "does not silently substitute" assertion ran on the same `ids` the previous line had
+  already asserted empty and so could not fail independently — replaced with a real prefix-
+  collision case (`20 USC 1232`, a prefix of the held `1232g`, must not resolve to it); and
+  the independent recount of held `usc_section` documents was a whole-file substring search
+  for `"instrument_kind: usc_section"`, which prose could inflate — replaced with a
+  frontmatter-only parse, keeping it independent of `schemes._held()` without being blind to
+  prose.
+
+  Two doc-accuracy fixes found in the same pass: `_meta/corpus.yml` and `build()`'s comment
+  both called the `currency` field OLRC's stamp "verbatim", but `usc_currency()`'s own
+  docstring says it is transcribed and REFORMATTED (`Online@119-103` → "current through
+  Pub. L. 119-103") — the two comments now say what is actually true. And
+  `check_extraction.py`'s docstring still said the committed raw snapshots are "12 MB";
+  they are 57 MB after this change (dominated by the one ~22 MB per-title USLM snapshot),
+  so the figure is now qualitative rather than a number that goes stale on the next ingest.
+
+  One duplication cleanup: `_held_cfr_parts()` and `_held_usc_sections()` were the same
+  dict comprehension with one literal changed; both now call a shared `_held_of_kind(kind)`.
+  One redundant-walk cleanup: `main()` called `_uslm_find_section` a second time, right
+  after `extract_usc` had already called it once internally, to get the element
+  `usc_amended_on` needed — a second full linear scan of a 22 MB parsed tree for an element
+  already in hand. `extract_usc` now returns the located `<section>` element alongside the
+  text and stats.
+
+  **Not done, and why:** `src/federal_ids.py` is copied verbatim into sibling corpora
+  (executive-regulatory-frameworks confirmed; see #55's own note on this file), and this
+  change edits its `USC` regex — the copies are now behind, and behind a regex that was
+  briefly wrong. No propagation issue was opened per-repo (this review already opened one
+  issue, in corpus-toolkit, and AGENTS.md caps issues at two per task): whoever next syncs
+  `federal_ids.py` into a sibling should carry this file's `check_citations.py`-equivalent
+  suffix-boundary test table along with it, not just the regex. The snapshot-naming
+  ("Mysterious Name": `_meta/snapshots/20-usc-1232g.xml` holds all of Title 20, not just the
+  cited section) is real but is the ADR-0005/manifest-shape friction already reported above,
+  not a defect this ticket's fix touches. #61
+
 - 2026-09-04 — `check_extraction.py` raised an unhandled `KeyError` instead of a clean `FAIL`
   when a manifest source had a committed raw snapshot but no document claimed it (`sid` not
   present in `docs` at all — no `instruments/*.md` file carries it as `id` or `snapshot_id`).

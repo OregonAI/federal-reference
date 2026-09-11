@@ -288,16 +288,26 @@ def _cfr(m, nodes=None):
     return cands, ("; ".join(notes) or None)
 
 
+def _held_of_kind(kind: str) -> dict[str, dict]:
+    """{doc_id: frontmatter} for every held document of one `instrument_kind`.
+
+    Filtered straight out of HELD — itself read from the documents at import, not a literal
+    (see `_held()`) — so a newly ingested document of that kind becomes resolvable, and an
+    unheld one is correctly refused BY NAME, without editing this file. #35: `_held_cfr_parts`
+    used to compare against a literal ("2", "200"), so a part sitting right there in HELD,
+    loaded from its own document's frontmatter, was reported "not held" anyway. Shared by
+    every kind-scoped refusal below rather than one dict comprehension per kind, so the next
+    kind to need a real filter (excluding a superseded document, say) changes this once.
+    """
+    return {doc_id: fm for doc_id, fm in HELD.items() if fm.get("instrument_kind") == kind}
+
+
 def _held_cfr_parts() -> dict[str, dict]:
     """{'title-cfr-part': frontmatter} for every cfr_part document actually held.
 
-    Filtered straight out of HELD — itself read from the documents at import, not a literal
-    (see `_held()`) — so a newly ingested part becomes resolvable, and an unheld one is
-    correctly refused BY NAME, without editing this file. #35: this used to be a comparison
-    against a literal ("2", "200"), so a part sitting right there in HELD, loaded from its own
-    document's frontmatter, was reported "not held" anyway.
+    See `_held_of_kind()` — this is that filter, scoped to `cfr_part`.
     """
-    return {doc_id: fm for doc_id, fm in HELD.items() if fm.get("instrument_kind") == "cfr_part"}
+    return _held_of_kind("cfr_part")
 
 
 def _cfr_one(title, part, sec):
@@ -545,15 +555,14 @@ register_scheme("federal-act-name", ACT_RE, resolver=_act)
 def _held_usc_sections() -> dict[str, dict]:
     """{document id: frontmatter} for every usc_section document actually held.
 
-    One kind of `_held_cfr_parts()` over: filtered straight out of HELD, itself read from the
-    documents at import (see `_held()`'s docstring) -- never a literal. ADR-0006 makes a
+    See `_held_of_kind()` -- this is that filter, scoped to `usc_section`. ADR-0006 makes a
     partial hold the PERMANENT state of this corpus with respect to the U.S. Code, so the
     count this feeds into the refusal below changes every time a section is ingested; a
-    typed number here is the same staleness bug `_held_cfr_parts()` already exists to close,
+    typed number here is the same staleness bug `_held_of_kind()` already exists to close,
     with a larger blast radius, because the refusal is the one place a wrong count is served
     directly to a caller.
     """
-    return {doc_id: fm for doc_id, fm in HELD.items() if fm.get("instrument_kind") == "usc_section"}
+    return _held_of_kind("usc_section")
 
 
 def _usc(m, nodes=None):
@@ -583,10 +592,14 @@ def _usc(m, nodes=None):
     n = len(held)
     listing = sorted(hfm.get("citation", i) for i, hfm in held.items())
     unit = "section" if n == 1 else "sections"
-    if n > 10:
-        shown = ", ".join(listing[:10]) + f", and {n - 10} more"
-    else:
-        shown = ", ".join(listing) or "none"
+    # NO TRUNCATION, matching `_cfr_one` (which lists all 50 held parts with no cap). A
+    # cap here would contradict check_citations.py's own per-held-citation assertion --
+    # "every held usc_section citation appears in the note" -- the moment the 11th
+    # section landed, in a corpus ADR-0006 says will keep growing toward 742 cited
+    # targets. A long note is the honest cost of a real partial hold; a note that stops
+    # naming what it holds past some count is a guard that would fire on correct
+    # behaviour, which is worse.
+    shown = ", ".join(listing) or "none"
     return [], (
         f"{title} U.S.C. {m.group('sec')} is not held. This corpus holds {n} {unit} of the "
         f"U.S. Code — {shown} — and {title} U.S.C. {m.group('sec')} is not among them. The "

@@ -819,8 +819,19 @@ sources:
       An entry justified only by FERPA's own weak number would argue against itself; FERPA
       is held first because it is what #36 measured, not because its own demand is large.
     reproduction_basis: "17 U.S.C. § 105 — the U.S. Code as published by the Office of the Law Revision Counsel"
-    sha256: "b589729a6b368d5364a43cc8f2e76e645f5754f64169c655ebcebd83d1facd0f"
+    sha256: ""
     notes: >
+      LEFT UNSEEDED ON PURPOSE. `record_source_hash()` hashes the DECOMPRESSED title XML
+      (see `_unzip_single_xml`), but corpus-detect-changes fetches this same URL and hashes
+      whatever the wire returns -- the ZIP -- because `corpus_toolkit.sources.changes` has
+      no zip handling at all. Recording our hash here would be a manifest baseline the
+      detector can never reproduce, reporting CHANGED every run, forever (confirmed on a
+      synthetic archive: the zip and its one unzipped member hash to two different
+      digests). `sha256: ""` is exactly the case ADR-0015 already handles: an unseeded
+      source is seeded, and not counted as drift, on the run that first fetches it. Filed
+      as OregonAI/corpus-toolkit#199 -- zip-wrapped sources are unhashable by the
+      detector as it stands, which is general and not specific to this one source.
+
       Measured against the live site 2026-09-10 (slice 0 of #61's implementation). OLRC
       does NOT serve a stable per-section URL for USLM XML -- only the per-title
       release-point ZIP (confirmed: /download/download.shtml links `xml_usc20@119-103.zip`

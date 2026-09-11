@@ -133,7 +133,7 @@ def cfr_amended_on(url: str) -> str:
     return max(dates)
 
 
-def record_source_hash(rid: str, raw: bytes, fmt: str) -> str:
+def record_source_hash(rid: str, raw: bytes, fmt: str, url: str = "") -> str:
     """Record the hash corpus-detect-changes will compare against. Returns a status line.
 
     PDFs go through `pdftotext`, which is not present in every environment. When it is
@@ -141,7 +141,24 @@ def record_source_hash(rid: str, raw: bytes, fmt: str) -> str:
     produced by a different function than the detector uses is worse than an empty one,
     because an empty one is visibly unpopulated while a wrong one looks authoritative and
     reports CHANGED forever.
+
+    THE SAME RULE COVERS `url`.lower().endswith(".zip"). `raw` here is the DECOMPRESSED
+    bytes `fetch()` cached (see `_unzip_single_xml`) -- but corpus-detect-changes fetches
+    this same URL for itself and hashes exactly what the wire returns, because
+    `corpus_toolkit.sources.changes` has no ZIP handling at all: no zip branch, and
+    `_format_for` only ever picks a text/xml/json converter. Hashing our unzipped bytes
+    here would seed a baseline the detector can never reproduce -- confirmed on a
+    synthetic archive: the zip bytes and their single unzipped member hash to two
+    different digests -- so this source would report CHANGED on every future run, exit 0,
+    forever. Skipping the write is not a gap: ADR-0015 in corpus-toolkit already seeds an
+    unrecorded (`sha256: ""`) baseline on the run that first fetches a source and never
+    counts an unseeded source as drift, so leaving it empty here hands the detector
+    exactly the case it already handles correctly. The underlying gap -- zip-wrapped
+    sources are unhashable by the detector as it stands -- is filed as
+    OregonAI/corpus-toolkit#199, not fixed here: `changes.py` is a different repo.
     """
+    if url.lower().endswith(".zip"):
+        return f"sha256 for {rid} left unrecorded: zip-wrapped source (see docstring)"
     from corpus_toolkit.sources.changes import content_hash
     try:
         sha = content_hash(raw, fmt)
@@ -381,8 +398,58 @@ def usc_amended_on(section_el) -> str:
     return max(dates)
 
 
-def extract_usc(root, title: str, sec: str) -> tuple[str, dict]:
-    """Parsed USLM title tree -> markdown for ONE cited section, current text per ADR-0001.
+# Structural elements that carry their OWN `<num>`/`<heading>` and therefore need to
+# recurse rather than be flattened whole. Everything else that shows up as a child of one
+# of these (`content`, `chapeau`, `continuation`, `sourceCredit`, a note's own `<p>`) has no
+# num/heading of its own, so flattening IT whole in one `_flatten()` call cannot fuse it
+# with a sibling's text -- the failure mode below is specific to elements that DO carry a
+# label, because USLM keeps that label and the body as siblings with no whitespace between
+# them on the wire.
+_USLM_CONTAINERS = {f"{USLM_NS}{t}" for t in
+                    ("subsection", "paragraph", "subparagraph", "clause", "subclause",
+                     "note", "notes")}
+
+
+def _emit_uslm_child(child, out: list[str]) -> None:
+    """One child of a USLM structural element -> one or more lines appended to `out`."""
+    if child.tag in _USLM_CONTAINERS:
+        _render_uslm(child, out)
+    else:
+        t = guard_headings(_flatten(child))
+        if t:
+            out.append(t)
+
+
+def _render_uslm(el, out: list[str]) -> None:
+    """Append `el`'s own num+heading as one line, then one line per child in turn.
+
+    `_flatten()` joins `itertext()` over a whole subtree with no separator inserted at
+    element boundaries, and USLM keeps `<num>`, `<heading>`, and the body (`<content>`,
+    nested `<paragraph>`s, ...) as SIBLING elements with no whitespace between them in the
+    wire XML. Calling `_flatten()` on a whole `<subsection>` therefore ran a heading's last
+    word into the next element's first word with nothing between them -- "...regulations"
+    immediately followed by "Not later than 240 days..." became "regulationsNot..." -- and
+    collapsed every (1)/(A)/(i) paragraph in the subsection onto one line, tokens that exist
+    nowhere in the pinned source. Recursing per element instead, the way `extract_cfr` walks
+    `HEAD` and each `P` rather than the whole `DIV8`, keeps each fact on its own line and
+    never runs two source strings together that the source itself kept apart.
+    """
+    num_el = el.find(f"{USLM_NS}num")
+    heading_el = el.find(f"{USLM_NS}heading")
+    num_text = _flatten(num_el) if num_el is not None else ""
+    heading_text = _flatten(heading_el) if heading_el is not None else ""
+    label = f"{num_text} {heading_text}".strip()
+    if label:
+        out.append(guard_headings(label))
+    for child in el:
+        if child in (num_el, heading_el):
+            continue
+        _emit_uslm_child(child, out)
+
+
+def extract_usc(root, title: str, sec: str):
+    """Parsed USLM title tree -> (markdown, stats, the `<section>` element) for ONE cited
+    section, current text per ADR-0001.
 
     Only the CITED section is extracted, never the title — ADR-0006 holds sections, on
     demand, and never holds a title as a document — so the committed document and its own
@@ -399,6 +466,11 @@ def extract_usc(root, title: str, sec: str) -> tuple[str, dict]:
     Takes an already-parsed `root`, not raw bytes, so a caller needing BOTH the text and a
     fact read from elsewhere in the same tree (the title's currency stamp, this section's
     own amendment date) parses the multi-megabyte document once rather than once per fact.
+    RETURNS the located `<section>` element too, alongside the text and stats, for that
+    same reason one level further: `main()` needs it again for `usc_amended_on()`, and this
+    function has already walked the whole tree to find it once. A second call to
+    `_uslm_find_section` for the same id would be a second full linear scan of that tree for
+    an element the caller already has in hand.
     """
     section_el = _uslm_find_section(root, title, sec)
     if section_el is None:
@@ -412,13 +484,11 @@ def extract_usc(root, title: str, sec: str) -> tuple[str, dict]:
     for child in section_el:
         if child in (heading_el, num_el):
             continue
-        t = guard_headings(_flatten(child))
-        if t:
-            out.append(t)
         if child.tag == f"{USLM_NS}subsection":
             n_sub += 1
+        _emit_uslm_child(child, out)
     text = re.sub(r"\n{3,}", "\n\n", "\n".join(out)).strip()
-    return text, {"subsections": n_sub}
+    return text, {"subsections": n_sub}, section_el
 
 
 # ---------------------------------------------------------------- PDF
@@ -596,8 +666,10 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
         "version": version,
         "as_of": as_of,
         "amended_on": src.get("amended_on"),
-        # ADR-0006's deliberate exception to *version is identity*: OLRC's own "current
-        # through Pub. L. N" stamp, verbatim (see usc_currency()). A U.S.C. section has no
+        # ADR-0006's deliberate exception to *version is identity*: OLRC's own release-point
+        # stamp, reformatted into the "current through Pub. L. N" wording ADR-0006 names --
+        # NOT verbatim; see usc_currency()'s own docstring for what it is transcribed FROM
+        # and reformatted INTO. A U.S.C. section has no
         # siblings to disambiguate by a version in the id — only a history — so this rides
         # as a field instead. Present ONLY on usc_section; every other kind leaves it unset
         # rather than publishing a `currency: null` that means nothing for a CFR part.
@@ -765,8 +837,7 @@ def main() -> int:
             elif src["instrument_kind"] == "usc_section":
                 usc_title, usc_sec = src["id"].split("-usc-", 1)
                 usc_root = ET.fromstring(raw)
-                text, stats = extract_usc(usc_root, usc_title, usc_sec)
-                section_el = _uslm_find_section(usc_root, usc_title, usc_sec)
+                text, stats, section_el = extract_usc(usc_root, usc_title, usc_sec)
                 src = {**src,
                        "amended_on": src.get("amended_on") or usc_amended_on(section_el),
                        "currency": usc_currency(usc_root)}
@@ -788,7 +859,7 @@ def main() -> int:
             # converter. Storing ours there swaps one permanent false positive for another
             # while looking fixed. Verified: content_hash on the committed XML equals what
             # the drift job computed from the live URL, to the character.
-            note = record_source_hash(rid, raw, fmt)
+            note = record_source_hash(rid, raw, fmt, src["url"])
             if note:
                 print(f"    {note}")
             doc_path = OUT_DIR / f"{doc_id(src, version)}.md"
