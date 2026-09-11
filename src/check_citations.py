@@ -20,6 +20,7 @@ not a check.
 from __future__ import annotations
 
 import pathlib
+import re
 import sys
 import tempfile
 
@@ -160,16 +161,18 @@ def main() -> int:
         scratch_instruments.mkdir()
         scratch_snapshots.mkdir()
 
-        # A second part's current text: § 37.72 is split out as its own document (case 1),
-        # § 37.73 exists in the part but is not split (case 2). § 37.1 never existed (case 3).
-        # §§ 37.99 and 37.98 show up only in a dated snapshot -- removed. 37.99 has NO
-        # recorded _CONSOLIDATIONS entry at all; 37.98's entry is deliberately given a `date`
-        # and `into` but no `scope` -- the exact shape of the review's own repro
-        # (`_CONSOLIDATIONS['6-cfr-37'] = {'date':..., 'into':...}`, no `scope`), which
-        # fabricated "Subpart A's definitions" for this part before the fix. Both must
-        # produce the generic, non-fabricated note (case 4).
+        # A second part's current text: §§ 37.71 and 37.72 are split out as their own
+        # documents (case 1, and #55's own repro -- a multi-section citation against a
+        # SECOND held part), § 37.73 exists in the part but is not split (case 2). § 37.1
+        # never existed (case 3). §§ 37.99 and 37.98 show up only in a dated snapshot --
+        # removed. 37.99 has NO recorded _CONSOLIDATIONS entry at all; 37.98's entry is
+        # deliberately given a `date` and `into` but no `scope` -- the exact shape of the
+        # review's own repro (`_CONSOLIDATIONS['6-cfr-37'] = {'date':..., 'into':...}`, no
+        # `scope`), which fabricated "Subpart A's definitions" for this part before the fix.
+        # Both must produce the generic, non-fabricated note (case 4).
         (scratch_instruments / "6-cfr-37.md").write_text(
-            "---\nid: 6-cfr-37\n---\n### § 37.72\ntext.\n### § 37.73\ntext.\n",
+            "---\nid: 6-cfr-37\n---\n### § 37.71\ntext.\n### § 37.72\ntext.\n"
+            "### § 37.73\ntext.\n",
             encoding="utf-8")
         (scratch_snapshots / "6-cfr-37-2020-01-01.txt").write_text(
             "### § 37.72\ntext.\n### § 37.73\ntext.\n### § 37.99\ntext.\n### § 37.98\ntext.\n",
@@ -183,6 +186,10 @@ def main() -> int:
 
         served.HELD["6-cfr-37"] = {
             "id": "6-cfr-37", "citation": "6 CFR 37", "instrument_kind": "cfr_part",
+            "as_of": "2026-01-01",
+        }
+        served.HELD["6-cfr-37.71"] = {
+            "id": "6-cfr-37.71", "citation": "6 CFR 37.71", "instrument_kind": "cfr_section",
             "as_of": "2026-01-01",
         }
         served.HELD["6-cfr-37.72"] = {
@@ -206,6 +213,24 @@ def main() -> int:
         ids, note = served._cfr_one("6", "37", "72")
         check("case 1 (split section) resolves to its own document",
               ids == ["6-cfr-37.72"], f"got {ids}, note={note!r}")
+
+        # --- #55: multi-section expansion (list/range) must not be hardcoded to 2 CFR 200 --
+        #
+        # `_cfr()` used to gate list/range expansion on `f"{title}-cfr-{part}" == PART_ID`
+        # ("2-cfr-200" literally), so a citation naming several sections of any OTHER held
+        # part answered only the first and silently dropped the rest -- exactly the failure
+        # federal-reference#12 exists to prevent for 2 CFR 200, just not generalized past it.
+        # Called through `served._cfr` (the actual registered resolver, not `_cfr_one`) with a
+        # match built from `served.CFR_RE`, the same served-module seam used above.
+        m = re.search(served.CFR_RE, "6 CFR 37.71, 37.72")
+        ids, note = served._cfr(m)
+        check("a comma-list against a second held part resolves every section, not just the "
+              "first", ids == ["6-cfr-37.71", "6-cfr-37.72"], f"got {ids}, note={note!r}")
+
+        m = re.search(served.CFR_RE, "6 CFR 37.71 through 37.72")
+        ids, note = served._cfr(m)
+        check("a range against a second held part resolves every section in it",
+              ids == ["6-cfr-37.71", "6-cfr-37.72"], f"got {ids}, note={note!r}")
 
         ids, note = served._cfr_one("6", "37", "73")
         check("case 2 (unsplit-but-current) returns the part, labelled as such",

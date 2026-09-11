@@ -7,6 +7,18 @@ Repo-curation dates only — official effective dates live in frontmatter.
 ## [Unreleased]
 
 ### Fixed
+- 2026-09-10 — `_cfr()`'s (`src/citation_schemes.py`) list/range expansion for a multi-section
+  citation ("6 CFR 37.71, 37.72", "200.331 through 200.333") was gated on
+  `f"{title}-cfr-{part}" == "2-cfr-200"` — a literal — so a citation naming several sections
+  of any OTHER held CFR part resolved only the first and silently dropped the rest, the exact
+  failure federal-reference#12 fixed for 2 CFR 200 but never generalized past it (#55). The
+  gate is now `_held_cfr_parts()` membership, so it fires for any held part; the RANGE/
+  LIST_SEC patterns this expansion matches against are no longer reused from
+  `federal_ids.py` (whose versions match only a literal `200.`, by design — see that file's
+  docstring) but built per-part locally (`_range_re`/`_list_sec_re`), so "37.71, 37.72"
+  matches against part 37 rather than never matching at all. An unheld part still gets
+  exactly one refusal and no expansion attempt — `_cfr_one` already owns that check per
+  section, and the fix does not touch it. #55
 - 2026-09-04 — `check_extraction.py` raised an unhandled `KeyError` instead of a clean `FAIL`
   when a manifest source had a committed raw snapshot but no document claimed it (`sid` not
   present in `docs` at all — no `instruments/*.md` file carries it as `id` or `snapshot_id`).

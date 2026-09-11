@@ -31,14 +31,17 @@ from corpus_toolkit.mcp.framework import register_scheme
 
 import sys as _sys
 _sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-# The compound-citation regexes live in federal_ids.py — the parity-locked cross-corpus
-# contract file — and are IMPORTED, not copied: the sibling side already expanded lists
-# and ranges while this corpus's own resolver did not (federal-reference#12), and a
-# second copy here would be a fourth thing to keep byte-identical.
-from federal_ids import LIST_SEC, MAX_RANGE, RANGE  # noqa: E402
+# MAX_RANGE (the "too wide to be a real range" cutoff) lives in federal_ids.py — the
+# parity-locked cross-corpus contract file — and is IMPORTED, not copied, so both sides
+# apply the same cutoff. RANGE and LIST_SEC are NOT imported from there: that file's
+# versions match the literal "200." prefix, because federal_ids.py is PURE and cannot know
+# which parts this corpus holds (see its own docstring) -- it only ever needs to expand
+# 2 CFR 200 today. This resolver, by contrast, knows exactly which parts are held, so it
+# builds the equivalent patterns per PART below instead of reusing the 200-only ones
+# (federal-reference#55).
+from federal_ids import MAX_RANGE  # noqa: E402
 
 INSTRUMENTS = pathlib.Path(__file__).resolve().parent.parent / "instruments"
-PART_ID = "2-cfr-200"
 
 
 def _held() -> dict[str, dict]:
@@ -192,35 +195,57 @@ CFR_RE = (r"(?i)(?P<title>\d{1,2})\s*C\.?\s?F\.?\s?R\.?\s*(?:Part\s+)?§{0,2}\s*
           r"(?P<part>\d{1,4})(?:\.(?P<sec>\d{1,4}))?\b")
 
 
+def _range_re(part: str) -> re.Pattern:
+    """`{part}.331-{part}.333`, `{part}.510 through {part}.512`, en/em dashes included.
+
+    Built PER PART rather than reused from federal_ids.RANGE, which matches only a literal
+    `200.` — this corpus knows which part it is resolving, so it is not limited to the one
+    part federal_ids.py can hard-code (federal-reference#55)."""
+    p = re.escape(part)
+    return re.compile(
+        rf"{p}\.(\d{{1,4}})\s*(?:-|–|—|to|through|thru)\s*(?:{p}\.)?(\d{{1,4}})\b", re.I)
+
+
+def _list_sec_re(part: str) -> re.Pattern:
+    """A section continuing a list: the `, {part}.303` in "2 CFR 200.302, 200.303". Requires
+    a list separator immediately before it, exactly like federal_ids.LIST_SEC, but keyed off
+    the actual part being resolved rather than a literal `200.` (federal-reference#55)."""
+    p = re.escape(part)
+    return re.compile(rf"(?:,|;|\band\b|&)\s*§{{0,2}}\s*{p}\.(\d{{1,4}})\b", re.I)
+
+
 def _cfr(m, nodes=None):
     """Resolve the anchor section, then every list/range continuation in the SAME
     citation — "2 CFR 200.302, 200.303" and "200.331 through 200.333" are one citation
     naming several sections, and answering only the first silently dropped documents
     this corpus holds (federal-reference#12; the sibling-side federal_ids.candidates()
-    fixed this long ago, so the two sides disagreed about the same string)."""
+    fixed this long ago, so the two sides disagreed about the same string).
+
+    Works for ANY held CFR part, not just 2 CFR 200 (federal-reference#55) — the range/list
+    patterns are built per-part above rather than reused from federal_ids.py's 200-only
+    ones. Gated on `_held_cfr_parts()` rather than run unconditionally: an unheld part
+    already gets one true refusal from `_cfr_one` below, and expanding further would only
+    re-derive the same "not held" note once per extra section named, never a section this
+    corpus does not have — `_cfr_one` still owns that check per section either way."""
     title, part, sec = m.group("title"), m.group("part"), m.group("sec")
     cands, note = _cfr_one(title, part, sec)
-    # RANGE/LIST_SEC (federal_ids.py) match literal "200." text — that file is a parity-locked
-    # cross-corpus contract (see its own docstring), copied verbatim into sibling corpora, so
-    # generalizing multi-section expansion to another part is a different and larger change
-    # than this file's held-ness gate below. Filed as #55 rather than done here.
-    if f"{title}-cfr-{part}" != PART_ID or sec is None:
+    if sec is None or f"{title}-cfr-{part}" not in _held_cfr_parts():
         return cands, note
     secs, notes = [sec], ([note] if note else [])
     text = m.string
-    rm = RANGE.search(text)
+    rm = _range_re(part).search(text)
     if rm:
         lo, hi = int(rm.group(1)), int(rm.group(2))
         if lo < hi and hi - lo <= MAX_RANGE:
             secs.extend(str(n) for n in range(lo, hi + 1) if str(n) not in secs)
-    for extra in LIST_SEC.findall(text):
+    for extra in _list_sec_re(part).findall(text):
         if extra not in secs:
             secs.append(extra)
     for s in secs[1:]:
         c2, n2 = _cfr_one(title, part, s)
         cands.extend(i for i in c2 if i not in cands)
         if n2:
-            notes.append(f"§ 200.{s}: {n2}" if len(secs) > 1 else n2)
+            notes.append(f"§ {part}.{s}: {n2}" if len(secs) > 1 else n2)
     return cands, ("; ".join(notes) or None)
 
 
