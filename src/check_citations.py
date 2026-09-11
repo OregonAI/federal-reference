@@ -20,6 +20,7 @@ not a check.
 from __future__ import annotations
 
 import pathlib
+import re
 import sys
 import tempfile
 
@@ -160,16 +161,18 @@ def main() -> int:
         scratch_instruments.mkdir()
         scratch_snapshots.mkdir()
 
-        # A second part's current text: § 37.72 is split out as its own document (case 1),
-        # § 37.73 exists in the part but is not split (case 2). § 37.1 never existed (case 3).
-        # §§ 37.99 and 37.98 show up only in a dated snapshot -- removed. 37.99 has NO
-        # recorded _CONSOLIDATIONS entry at all; 37.98's entry is deliberately given a `date`
-        # and `into` but no `scope` -- the exact shape of the review's own repro
-        # (`_CONSOLIDATIONS['6-cfr-37'] = {'date':..., 'into':...}`, no `scope`), which
-        # fabricated "Subpart A's definitions" for this part before the fix. Both must
-        # produce the generic, non-fabricated note (case 4).
+        # A second part's current text: §§ 37.71 and 37.72 are split out as their own
+        # documents (case 1, and #55's own repro -- a multi-section citation against a
+        # SECOND held part), § 37.73 exists in the part but is not split (case 2). § 37.1
+        # never existed (case 3). §§ 37.99 and 37.98 show up only in a dated snapshot --
+        # removed. 37.99 has NO recorded _CONSOLIDATIONS entry at all; 37.98's entry is
+        # deliberately given a `date` and `into` but no `scope` -- the exact shape of the
+        # review's own repro (`_CONSOLIDATIONS['6-cfr-37'] = {'date':..., 'into':...}`, no
+        # `scope`), which fabricated "Subpart A's definitions" for this part before the fix.
+        # Both must produce the generic, non-fabricated note (case 4).
         (scratch_instruments / "6-cfr-37.md").write_text(
-            "---\nid: 6-cfr-37\n---\n### § 37.72\ntext.\n### § 37.73\ntext.\n",
+            "---\nid: 6-cfr-37\n---\n### § 37.71\ntext.\n### § 37.72\ntext.\n"
+            "### § 37.73\ntext.\n",
             encoding="utf-8")
         (scratch_snapshots / "6-cfr-37-2020-01-01.txt").write_text(
             "### § 37.72\ntext.\n### § 37.73\ntext.\n### § 37.99\ntext.\n### § 37.98\ntext.\n",
@@ -183,6 +186,10 @@ def main() -> int:
 
         served.HELD["6-cfr-37"] = {
             "id": "6-cfr-37", "citation": "6 CFR 37", "instrument_kind": "cfr_part",
+            "as_of": "2026-01-01",
+        }
+        served.HELD["6-cfr-37.71"] = {
+            "id": "6-cfr-37.71", "citation": "6 CFR 37.71", "instrument_kind": "cfr_section",
             "as_of": "2026-01-01",
         }
         served.HELD["6-cfr-37.72"] = {
@@ -206,6 +213,24 @@ def main() -> int:
         ids, note = served._cfr_one("6", "37", "72")
         check("case 1 (split section) resolves to its own document",
               ids == ["6-cfr-37.72"], f"got {ids}, note={note!r}")
+
+        # --- #55: multi-section expansion (list/range) must not be hardcoded to 2 CFR 200 --
+        #
+        # `_cfr()` used to gate list/range expansion on `f"{title}-cfr-{part}" == PART_ID`
+        # ("2-cfr-200" literally), so a citation naming several sections of any OTHER held
+        # part answered only the first and silently dropped the rest -- exactly the failure
+        # federal-reference#12 exists to prevent for 2 CFR 200, just not generalized past it.
+        # Called through `served._cfr` (the actual registered resolver, not `_cfr_one`) with a
+        # match built from `served.CFR_RE`, the same served-module seam used above.
+        m = re.search(served.CFR_RE, "6 CFR 37.71, 37.72")
+        ids, note = served._cfr(m)
+        check("a comma-list against a second held part resolves every section, not just the "
+              "first", ids == ["6-cfr-37.71", "6-cfr-37.72"], f"got {ids}, note={note!r}")
+
+        m = re.search(served.CFR_RE, "6 CFR 37.71 through 37.72")
+        ids, note = served._cfr(m)
+        check("a range against a second held part resolves every section in it",
+              ids == ["6-cfr-37.71", "6-cfr-37.72"], f"got {ids}, note={note!r}")
 
         ids, note = served._cfr_one("6", "37", "73")
         check("case 2 (unsplit-but-current) returns the part, labelled as such",
@@ -279,6 +304,37 @@ def main() -> int:
         served._former_section_numbers.cache_clear()
         tmp.cleanup()
 
+    # --- #55 review: the held-ness gate on multi-section expansion is load-bearing --------
+    #
+    # #55's own reasoning is two-directional: the gate is redundant in ONE direction --
+    # RANGE/LIST_SEC could never match an unheld part's own citation regardless of the gate
+    # -- but NOT the other: an unheld part already gets exactly ONE refusal from _cfr_one,
+    # and the gate is what stops a multi-section citation against it from turning that one
+    # refusal into a copy per extra section named. Confirmed by deleting the gate outright
+    # (`if sec is None:` only) in a scratch copy: this whole suite stayed green, 0 FAILs --
+    # the load-bearing half of the reasoning had no check. This does: real HELD data, a real
+    # unheld part (29 CFR 1910 is not among instruments/*.md), a multi-section citation
+    # against it.
+    m = re.search(served.CFR_RE, "29 CFR 1910.147, 1910.148")
+    ids, note = served._cfr(m)
+    check("an unheld part's multi-section citation refuses ONCE, not once per named section",
+          not ids and (note or "").lower().count("does not hold") == 1,
+          f"got {ids}, note={note!r}")
+
+    # --- #55 review: a different title's digits must not be attributed to the anchor part -
+    #
+    # `_range_re`/`_list_sec_re` used to have no left digit boundary before `{part}\.`, so a
+    # DIFFERENT title's section digits inside the same string could be attributed to the
+    # anchor part: "45 CFR 98.1, see also 12 CFR 398.20-25" resolved to
+    # ['45-cfr-98', '45-cfr-98.20'] -- a held document handed back for a string whose only
+    # "398.20" is a 12 CFR citation, not a 45 CFR 98 one. That is AGENTS.md hard rule 4
+    # ("never invent or infer a citation"), in exactly the direction this file's own
+    # docstring calls the dangerous one.
+    m = re.search(served.CFR_RE, "45 CFR 98.1, see also 12 CFR 398.20-25")
+    ids, note = served._cfr(m)
+    check("a different title's section digits are not attributed to the anchor part",
+          "45-cfr-98.20" not in ids, f"got {ids}")
+
     ids, note = resolve("42 U.S.C. 1396")
     check("a U.S. Code section never resolves to a public law",
           not any(i.startswith("pl-") for i in ids), f"resolved to {ids}")
@@ -314,6 +370,31 @@ def main() -> int:
             continue
         check(f"{doc_id} is derivable from {cite!r} by a sibling",
               doc_id in candidates(cite), f"sibling would derive {candidates(cite)}")
+
+    # --- known gap (#55, cross-corpus): candidates() still only expands 2 CFR 200 ----------
+    #
+    # federal_ids.py is copied byte-identical into every sibling corpus (see its own
+    # docstring) -- generalizing its RANGE/LIST_SEC to key off the part parsed from the
+    # citation, rather than the literal "200.", is a coordinated cross-repo change and out of
+    # scope for #55 alone (see #55's own "What would fix it", and the comment above
+    # `from federal_ids import MAX_RANGE` in citation_schemes.py). This corpus's OWN
+    # resolver (`_cfr()`) was generalized to expand any held part; `candidates()`, the path
+    # every sibling walks for exact-id lookup, was not. Pinned here rather than left silent
+    # (per #55's "a known, filed limitation rather than a silent one"): a sibling deriving
+    # ids from a multi-section citation against any held part OTHER than 2 CFR 200 gets only
+    # the FIRST section today, silently missing the rest -- federal-reference#12's failure
+    # mode, cross-corpus. #55 stays open for the coordinated federal_ids.py fix; when it
+    # lands, this assertion starts failing and should be replaced with one asserting the
+    # full expansion instead.
+    for c, held_first, still_dropped in (
+        ("17 CFR 230.504, 230.506", "17-cfr-230.504", "17-cfr-230.506"),
+        ("2 CFR 180.300 and 180.305", "2-cfr-180.300", "2-cfr-180.305"),
+        ("7 CFR 273.7 through 273.9", "7-cfr-273.7", "7-cfr-273.9"),
+    ):
+        derived = candidates(c)
+        check(f"known gap (#55): {c!r} still derives only {held_first!r}, silently "
+              f"dropping the held {still_dropped!r} -- cross-repo federal_ids.py fix not "
+              f"yet landed", derived == [held_first], f"got {derived}")
 
     # THE INVERSE OF DERIVABILITY, and the assertion whose absence let the siblings answer a
     # citation this corpus refuses. Derivability alone is satisfied by an id that is too

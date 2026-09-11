@@ -31,14 +31,34 @@ from corpus_toolkit.mcp.framework import register_scheme
 
 import sys as _sys
 _sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-# The compound-citation regexes live in federal_ids.py — the parity-locked cross-corpus
-# contract file — and are IMPORTED, not copied: the sibling side already expanded lists
-# and ranges while this corpus's own resolver did not (federal-reference#12), and a
-# second copy here would be a fourth thing to keep byte-identical.
-from federal_ids import LIST_SEC, MAX_RANGE, RANGE  # noqa: E402
+# MAX_RANGE (the "too wide to be a real range" cutoff) lives in federal_ids.py — the
+# parity-locked cross-corpus contract file — and is IMPORTED, not copied, so both sides
+# apply the same cutoff. RANGE and LIST_SEC are NOT imported from there, and NOT because
+# federal_ids.py "only ever needs to expand 2 CFR 200 today" -- that claim is false, and
+# measurably so: `candidates("17 CFR 230.504, 230.506")` drops the held 17-cfr-230.506
+# right now, in this corpus, same for "2 CFR 180.300 and 180.305" and "7 CFR 273.7 through
+# 273.9". Purity is not the obstacle either -- `candidates()` already parses the part it
+# needs from the citation string (`hits[0].group('part')`), and returning an id from a pure
+# function is explicitly not a claim the document exists (see federal_ids.py's own
+# docstring).
+#
+# The real reason: federal_ids.py is copied BYTE-IDENTICAL into every sibling corpus (see
+# its docstring), so generalizing RANGE/LIST_SEC there has to land the same way in every
+# copy at once -- a coordinated cross-repo change, not a one-file fix, and out of scope for
+# #55 (see that issue's own "What would fix it"). This resolver knows exactly which parts
+# THIS corpus holds, so for its own in-corpus resolution it builds the equivalent patterns
+# per PART below instead of waiting on that coordination (federal-reference#55).
+#
+# THE GAP THIS LEAVES: federal_ids.candidates() -- the path every SIBLING corpus walks for
+# exact-id lookup -- still only expands 2 CFR 200's multi-section citations. A sibling
+# resolving "17 CFR 230.504, 230.506" against this corpus's published index still gets only
+# the first id, silently dropping a document this corpus holds, for every held part except
+# 200. That is #35's failure mode (federal-reference#12) recurring cross-corpus, and it is
+# what check_citations.py's "known gap (#55, cross-corpus)" check below pins down so it
+# cannot slide from filed to silent. #55 stays open for the coordinated federal_ids.py fix.
+from federal_ids import MAX_RANGE  # noqa: E402
 
 INSTRUMENTS = pathlib.Path(__file__).resolve().parent.parent / "instruments"
-PART_ID = "2-cfr-200"
 
 
 def _held() -> dict[str, dict]:
@@ -78,8 +98,9 @@ def _section_numbers(text: str, part: str) -> frozenset[str]:
 #
 # COMPUTED PER PART, ON DEMAND, FROM WHAT IS HELD — not a module-level pair of constants for
 # "the" part. #35: the whole file used to assume there was only ever one part; these two used
-# to be computed once at import for PART_ID alone, so a second ingested part had no section
-# data at all and fell through to "not held" before it even reached this logic. Cached because
+# to be computed once at import for the single hard-coded 2-cfr-200 literal, so a second
+# ingested part had no section data at all and fell through to "not held" before it even
+# reached this logic. Cached because
 # each is a disk read and a citation to the same part is resolved many times in one run.
 _SNAPSHOTS = INSTRUMENTS.parent / "_meta" / "snapshots"
 
@@ -192,35 +213,72 @@ CFR_RE = (r"(?i)(?P<title>\d{1,2})\s*C\.?\s?F\.?\s?R\.?\s*(?:Part\s+)?§{0,2}\s*
           r"(?P<part>\d{1,4})(?:\.(?P<sec>\d{1,4}))?\b")
 
 
+def _range_re(part: str) -> re.Pattern:
+    """`{part}.331-{part}.333`, `{part}.510 through {part}.512`, en/em dashes included.
+
+    Built PER PART rather than reused from federal_ids.RANGE, which matches only a literal
+    `200.` — this corpus knows which part it is resolving, so it is not limited to the one
+    part federal_ids.py can hard-code (federal-reference#55).
+
+    `(?<![\\d.])` guards BOTH occurrences of `{p}\\.`. Without it, "45 CFR 98.1, see also 12
+    CFR 398.20-25" resolves part 98's pattern against the "98.20-25" tail of "3**98**.20-25"
+    -- a different title's section handed back as if this corpus's 45 CFR 98 held it. Anchoring
+    on a digit/dot immediately before the part number closes that; it does NOT need to also
+    restrict the search window to text after the anchor match, because the range's OWN low
+    bound is the anchor's own `{part}.{sec}` text and must still be found there."""
+    p = re.escape(part)
+    return re.compile(
+        rf"(?<![\d.]){p}\.(\d{{1,4}})\s*(?:-|–|—|to|through|thru)\s*"
+        rf"(?:(?<![\d.]){p}\.)?(\d{{1,4}})\b", re.I)
+
+
+def _list_sec_re(part: str) -> re.Pattern:
+    """A section continuing a list: the `, {part}.303` in "2 CFR 200.302, 200.303". Requires
+    a list separator immediately before it, exactly like federal_ids.LIST_SEC, but keyed off
+    the actual part being resolved rather than a literal `200.` (federal-reference#55).
+
+    Same `(?<![\\d.])` guard as `_range_re`, and for the same reason: without it a list
+    continuation for part 98 can match inside another title's "398.20", not just the range
+    form."""
+    p = re.escape(part)
+    return re.compile(rf"(?:,|;|\band\b|&)\s*§{{0,2}}\s*(?<![\d.]){p}\.(\d{{1,4}})\b", re.I)
+
+
 def _cfr(m, nodes=None):
     """Resolve the anchor section, then every list/range continuation in the SAME
     citation — "2 CFR 200.302, 200.303" and "200.331 through 200.333" are one citation
     naming several sections, and answering only the first silently dropped documents
     this corpus holds (federal-reference#12; the sibling-side federal_ids.candidates()
-    fixed this long ago, so the two sides disagreed about the same string)."""
+    fixed this long ago, so the two sides disagreed about the same string).
+
+    Works for ANY held CFR part, not just 2 CFR 200 (federal-reference#55) — the range/list
+    patterns are built per-part above rather than reused from federal_ids.py's 200-only
+    ones. Gated on `_held_cfr_parts()` rather than run unconditionally: an unheld part
+    already gets one true refusal from `_cfr_one` below, and expanding further would only
+    re-derive the same "not held" note once per extra section named, never a section this
+    corpus does not have — `_cfr_one` still owns that check per section either way."""
     title, part, sec = m.group("title"), m.group("part"), m.group("sec")
     cands, note = _cfr_one(title, part, sec)
-    # RANGE/LIST_SEC (federal_ids.py) match literal "200." text — that file is a parity-locked
-    # cross-corpus contract (see its own docstring), copied verbatim into sibling corpora, so
-    # generalizing multi-section expansion to another part is a different and larger change
-    # than this file's held-ness gate below. Filed as #55 rather than done here.
-    if f"{title}-cfr-{part}" != PART_ID or sec is None:
+    if sec is None or f"{title}-cfr-{part}" not in _held_cfr_parts():
         return cands, note
     secs, notes = [sec], ([note] if note else [])
     text = m.string
-    rm = RANGE.search(text)
+    rm = _range_re(part).search(text)
     if rm:
         lo, hi = int(rm.group(1)), int(rm.group(2))
         if lo < hi and hi - lo <= MAX_RANGE:
             secs.extend(str(n) for n in range(lo, hi + 1) if str(n) not in secs)
-    for extra in LIST_SEC.findall(text):
+    for extra in _list_sec_re(part).findall(text):
         if extra not in secs:
             secs.append(extra)
     for s in secs[1:]:
         c2, n2 = _cfr_one(title, part, s)
         cands.extend(i for i in c2 if i not in cands)
         if n2:
-            notes.append(f"§ 200.{s}: {n2}" if len(secs) > 1 else n2)
+            # `s` is always drawn from secs[1:], so len(secs) > 1 holds for every iteration
+            # here by construction — the "just n2, no prefix" arm was dead code chasing a
+            # condition this loop can never make false.
+            notes.append(f"§ {part}.{s}: {n2}")
     return cands, ("; ".join(notes) or None)
 
 
