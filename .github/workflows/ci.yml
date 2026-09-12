@@ -150,7 +150,7 @@ jobs:
       # is served by get_document/search_corpus, and is refused BY NAME when cited because
       # `_held_cfr_parts()` gates on the exact literal. This closes that one field over
       # from #35.
-      - name: instrument_kind must be one of the six known values
+      - name: instrument_kind must be one of the known values
         run: python3 src/check_instrument_kind.py
       # corpus-verify-provenance CANNOT catch extraction loss: source_sha256 hashes the
       # committed .txt, and that .txt is written by the extractor from the same string that
