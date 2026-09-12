@@ -273,11 +273,24 @@ def committed_amended_on(part_id: str, sec: str) -> str | None:
     published field from a committed document" shape as hist_retrieved().
 
     THE KNOWN LIMIT OF "TRUSTS": trusting the document IS the document is not verifying it --
-    a hand-edited `amended_on` in an already-committed document now round-trips through this
+    a hand-edited `amended_on` in an already-committed document round-trips through this
     function unchallenged, since it is read back from the very file `--check` then diffs
-    against. #73 tracks whether a genuinely independent offline anchor (a candidate: the part
-    snapshot's own `<CITA>` source notes) is worth building; this function is the honest
-    interim, not the fix.
+    against.
+
+    #73 RESOLVED THIS, 2026-09-11, and NOT by making this function smarter. Two things changed
+    around it:
+
+    1. The `<CITA>` anchor this docstring proposed was MEASURED and rejected. Across the 48
+       part snapshots on disk there are 1,452 CITA nodes against 3,194 sections -- 0.45 per
+       section, and distributed nothing like evenly (17 CFR 230: 200 CITA for 214 sections;
+       2 CFR 200: 14 for 180). An anchor present for under half the corpus, unpredictably,
+       cannot verify a field; it would have moved the silent pass rather than removing it.
+
+    2. So the verification is online and EXPLICIT: `--check --verify-amended-on` compares
+       against ecfr_versions() and fails on disagreement, restoring the tamper detection that
+       existed before #58. Plain `--check` stays hermetic, still calls this function -- and
+       now PRINTS how many dates it echoed rather than verified. The bug was never that this
+       function trusts the document; it is that a green `--check` read as though it had not.
     """
     doc = INSTRUMENTS / f"{part_id}.{sec.split('.', 1)[1]}.md"
     if not doc.is_file():
@@ -554,7 +567,10 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
     # names, one call earlier than the historical-snapshot fetch this issue was filed against.
     # --check skips it; committed_amended_on() (used below, per section) is the offline
     # substitute.
-    vers = {} if args.check else ecfr_versions(int(title), int(part))
+    # #73: `--check --verify-amended-on` DOES fetch, on purpose. Plain `--check` stays
+    # hermetic and, below, stops claiming it verified a field it only echoed.
+    vers = (ecfr_versions(int(title), int(part))
+            if (not args.check or getattr(args, "verify_amended_on", False)) else {})
     consolidation = CONSOLIDATIONS.get(part_id)
 
     # --- historical snapshots, ONE PER DISTINCT removal date -----------------------------
@@ -568,6 +584,9 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
         by_date.setdefault(entry["removed_on"], []).append(entry)
 
     stale: list[str] = []
+    # #73: sections whose `amended_on` this run ECHOED rather than verified. Not a failure --
+    # a stated limit, so a green --check cannot be read as "the dates were checked".
+    unverified_amended_on: list[str] = []
 
     def emit(path, text: str) -> None:
         """Write, or in --check mode record a mismatch.
@@ -665,8 +684,24 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
                   file=sys.stderr)
             return 1
         head, body = current[sec]
-        amended = (committed_amended_on(part_id, sec) if args.check
-                   else (vers.get(sec) or {}).get("amendment_date"))
+        # #73: under plain --check this reads the field back from the very document emit()
+        # then diffs against, so the comparison is a tautology and a hand-edited date passes.
+        # It is still the right value to write (guessing None would make every current
+        # section read as stale) -- what was wrong was calling that outcome "verified".
+        # unverified_amended_on records it so cmd_check can say so out loud.
+        if args.check and not getattr(args, "verify_amended_on", False):
+            amended = committed_amended_on(part_id, sec)
+            unverified_amended_on.append(sec)
+        else:
+            amended = (vers.get(sec) or {}).get("amendment_date")
+            if args.check:
+                committed = committed_amended_on(part_id, sec)
+                if committed != amended:
+                    # The tamper case #73 was filed for: upstream and the committed document
+                    # disagree about when this section was last amended. Reported here rather
+                    # than left to the body diff, which would not mention the date at all.
+                    stale.append(f"{part_id}.{sec.split('.', 1)[1]}: amended_on is "
+                                 f"{committed!r} but eCFR says {amended!r}")
         out = INSTRUMENTS / f"{part_id}.{sec.split('.', 1)[1]}.md"
         # A removed section's target lands HERE, among the current sections, if this section
         # IS that consolidation's `into` -- computed from the shared record, not hardcoded to
@@ -774,7 +809,21 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
                 print(f"\nRe-run: python3 src/split_cfr_sections.py --part-id {part_id}",
                       file=sys.stderr)
             return 1
-        print(f"  {written} section documents are current")
+        # #73: SAY WHAT WAS NOT CHECKED. `amended_on` under a hermetic --check is read back
+        # from the document being verified, so it always agrees with itself -- a hand-edited
+        # date passes silently, on the one field AGENTS.md rule 2 leans on hardest ("a federal
+        # requirement without a version is not a citation, it is a rumour"). Printing the
+        # count keeps a green run from reading as "the dates were verified", which is the
+        # substitution this corpus refuses everywhere: could not check is never reported as
+        # is not there.
+        if unverified_amended_on:
+            print(f"  {written} section documents are current — but {len(unverified_amended_on)} "
+                  f"`amended_on` value(s) were ECHOED, NOT VERIFIED (no offline anchor; #73).\n"
+                  f"    To verify them against eCFR: python3 src/split_cfr_sections.py "
+                  f"--check --verify-amended-on --part-id {part_id}")
+        else:
+            print(f"  {written} section documents are current "
+                  f"(`amended_on` verified against eCFR)")
         return 0
 
     print(f"  wrote {written} section documents")
@@ -790,7 +839,16 @@ def main() -> int:
                     help="re-fetch historical snapshots even if committed")
     ap.add_argument("--check", action="store_true",
                     help="verify the committed section documents match what this would write")
+    ap.add_argument("--verify-amended-on", action="store_true",
+                    help="with --check: verify each current section's `amended_on` against "
+                         "eCFR's versions endpoint instead of reading it back from the "
+                         "document being verified (#73). Reaches the NETWORK -- run it where "
+                         "that is allowed (scheduled.yml), not in the hermetic PR gate.")
     args = ap.parse_args()
+
+    if args.verify_amended_on and not args.check:
+        print("error: --verify-amended-on only means anything with --check", file=sys.stderr)
+        return 2
 
     if args.check and args.refetch:
         # #58: --check is a read-only, offline verification step -- "re-fetch, but only
