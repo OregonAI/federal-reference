@@ -61,6 +61,15 @@ ISSUING_BODY_BY_KIND = {
     "usc_section": "United States Congress",
 }
 
+# KINDS WHOSE ISSUER IS DATA, NOT A PROPERTY OF THE KIND. `cfr_part` was the original
+# member and the reason this distinction exists (2 CFR 200 is OMB's, 28 CFR 35 is DOJ's).
+# `agency_guidance` joins it for the same reason and more sharply: it is a deliberately
+# broad kind covering security and doctrine instruments from CMS, FNS, SSA, FEMA, CISA,
+# GSA and a private standards body, so there is no issuer to key off at all. One generic
+# kind with a declared issuer is honest; eight single-member kinds would encode the
+# issuer in the taxonomy and still have to be read from the entry.
+ISSUER_IS_PER_ENTRY = {"cfr_part", "agency_guidance"}
+
 
 def resolve_issuing_body(src: dict) -> str:
     """The federal agency that issued this instrument.
@@ -82,13 +91,13 @@ def resolve_issuing_body(src: dict) -> str:
     place.
     """
     kind = src["instrument_kind"]
-    if kind == "cfr_part":
+    if kind in ISSUER_IS_PER_ENTRY:
         body = src.get("issuing_body")
         if not body:
             raise ValueError(
-                f"{src['id']!r} is a cfr_part with no issuing_body declared in "
-                f"{MANIFEST.name} — the issuing agency is a fact about this specific part "
-                "and must be stated, not assumed")
+                f"{src['id']!r} is a {kind} with no issuing_body declared in "
+                f"{MANIFEST.name} — the issuing agency is a fact about this specific "
+                "instrument and must be stated, not assumed")
         return body
     return ISSUING_BODY_BY_KIND[kind]
 
@@ -841,6 +850,30 @@ def main() -> int:
                 src = {**src,
                        "amended_on": src.get("amended_on") or usc_amended_on(section_el),
                        "currency": usc_currency(usc_root)}
+            elif src["instrument_kind"] == "agency_guidance":
+                # THE ONE KIND THAT SPANS FORMATS, so it is the one place format has to be
+                # consulted -- and that is not a violation of the rule above, it is the
+                # other half of it. That rule exists because two KINDS shared one format
+                # (eCFR XML and USLM XML), so format could not identify the extractor. Here
+                # one kind spans two formats: CMS and FEMA publish PDFs, FNS and the two
+                # private standards bodies publish HTML pages. Kind alone cannot identify
+                # the extractor either. Both rules reduce to: dispatch on whichever of the
+                # two actually determines the parser, and never guess.
+                #
+                # Before this, the `else` below ran extract_pdf() on everything that was not
+                # CFR or U.S.C. That held only because every other kind happened to be a
+                # PDF; an HTML entry reached a PDF parser and died with PdfStreamError,
+                # which reads as a corrupt download rather than "this was never a PDF".
+                if fmt == "html":
+                    from corpus_toolkit.html_to_text import html_to_text
+                    text = html_to_text(raw)          # takes bytes, not str
+                    stats = {"chars": len(text)}
+                elif fmt == "pdf":
+                    text, stats = extract_pdf(snap)
+                else:
+                    raise ValueError(
+                        f"{rid}: agency_guidance supports format html or pdf, not {fmt!r} "
+                        "— declare one rather than letting a parser be guessed")
             else:
                 text, stats = extract_pdf(snap)
             if len(text) < 2000:
