@@ -54,6 +54,32 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python3 src/check_source_urls.py
 
+  # VERIFY `amended_on` AGAINST eCFR (#73). The PR gate runs `--check` hermetically, and for
+  # this one field that check is a tautology: committed_amended_on() reads the value back from
+  # the document emit() then diffs against, so a hand-edited date that is ALSO edited in the
+  # generated prose line round-trips unchallenged. Measured, not assumed -- editing both
+  # consistently in 2-cfr-200.303 passes `--check` rc=0 and fails this job rc=1.
+  #
+  # The offline anchor #73 proposed (the part snapshot's <CITA> notes) was measured and
+  # rejected: 1,452 CITA nodes against 3,194 sections across the 48 snapshots, 0.45 per
+  # section and wildly uneven (17 CFR 230 has 200 for 214 sections; 2 CFR 200 has 14 for 180).
+  # An anchor missing for most of the corpus would move the silent pass, not remove it.
+  #
+  # So it is online and it lives HERE, where the network is already allowed, rather than
+  # weakening the hermetic PR gate. Weekly is the right cadence: an amendment date changing
+  # upstream is a real event, and this is the only thing that would notice.
+  amended-on:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: amended_on must match eCFR's versions endpoint
+        run: python3 src/split_cfr_sections.py --check --verify-amended-on
+
   # POPULATE THE DRIFT BASELINE, on demand.
   #
   # corpus-detect-changes compares a fresh fetch against `sha256:` in the manifest. Those
