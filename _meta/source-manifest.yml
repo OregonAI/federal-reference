@@ -848,3 +848,174 @@ sources:
       machine-readable: every amending Pub. L. in its `<sourceCredit>` carries a structured
       `<date date="YYYY-MM-DD">`, not just prose -- the most recent is 2013-01-14
       (Pub. L. 111-296, title I, § 103(d)), which is what `amended_on` states.
+
+  # ── NAMED SECURITY AND DOCTRINE INSTRUMENTS ─────────────────────────────────────────
+  # Added 2026-09-12 on the operator's decision, closing federal-reference#22/#23/#24/#25.
+  #
+  # These carry `signal: named` — this manifest's own third signal, "high-stakes instrument
+  # named in the seed regardless of citation count". The four issues had parked them behind a
+  # stricter bar (a named Oregon agency bound by contract or grant condition, evidenced). The
+  # operator's ruling: the state uses these whether or not a policy link can be produced on
+  # demand, and `named` exists precisely for that case — it is what already admitted IRS Pub
+  # 1075 at 7 mentions and 0 authority claims.
+  #
+  # Research backing each entry, with citations and the evidence tier per instrument:
+  # docs/research/oregon-binding-to-federal-security-instruments.md
+  #
+  # THREE ENTRIES NAME A DIFFERENT DOCUMENT THAN THE ISSUE DID, because the issue named one
+  # that would not deliver what it asked for. Each says so in its own `notes`.
+
+  - id: arc-ampe
+    url: https://www.cms.gov/files/document/arc-ampe-vol-1-v102-508-5cr-04112025.pdf
+    format: pdf
+    instrument_kind: agency_guidance
+    issuing_body: Centers for Medicare & Medicaid Services
+    citation: ARC-AMPE Vol. I
+    title: Acceptable Risk Controls for ACA, Medicaid and Partner Entities, Volume I
+    signal: named
+    why: |
+      CMS security controls for state entities operating Exchanges, Medicaid, CHIP and BHP.
+      Oregon side: OHA and the state Marketplace. Four ODHS/OHA ISPO policies in
+      executive-regulatory-frameworks name ARC-AMPE directly.
+    reproduction_basis: 17 U.S.C. § 105 — work of the U.S. government (CMS)
+    notes: |
+      NOT MARS-E, which #22 named. ARC-AMPE Vol. I fn. 6: "ARC-AMPE supersedes and replaces
+      MARS-E and the NEE GRC Framework effective upon publication." Ingesting MARS-E 2.2
+      would hold a superseded instrument as current. Oregon's own ISPO policies already cite
+      ARC-AMPE; oha-ispo-090-013 still names MARS-E v2.2 and is itself behind.
+
+  - id: fns-handbook-901
+    url: https://www.fns.usda.gov/sso/fns-handbook-901-v2-advance-planning-documents
+    format: html
+    instrument_kind: agency_guidance
+    issuing_body: Department of Agriculture / Food and Nutrition Service
+    citation: FNS Handbook 901
+    title: Advance Planning Document Handbook
+    signal: named
+    why: |
+      Named in #22. Governs FNS approval of state system funding for SNAP and WIC.
+      Oregon side: ODHS.
+    reproduction_basis: 17 U.S.C. § 105 — work of the U.S. government (USDA FNS)
+    notes: |
+      HELD AS NAMED, but it is NOT the SNAP security instrument #22 was reaching for.
+      Handbook 901 is the Advance Planning Document handbook — funding approval. The SNAP
+      systems-security obligation is 7 CFR 277.18(m)(2)-(3), a part this corpus does not
+      hold (it holds 7 CFR 273, not 277). Tracked separately; see the research note.
+
+  - id: ssa-tssr
+    url: https://www.ssa.gov/dataexchange/security.html
+    format: html
+    instrument_kind: agency_guidance
+    issuing_body: Social Security Administration
+    citation: SSA TSSR
+    title: Technical System Security Requirements for Electronic Information Exchange
+    signal: named
+    why: |
+      Binds any agency with an SSA data-exchange agreement. Seven Oregon ISPO policies cite
+      SSA's information-exchange security requirements; oha-ispo-090-003 ¶17 is operative.
+    reproduction_basis: 17 U.S.C. § 105 — work of the U.S. government (SSA)
+    notes: |
+      FETCH IS EXPECTED TO FAIL AND THAT IS RECORDED, NOT HIDDEN. ssa.gov returned HTTP 403
+      to every automated request during research (WebFetch and curl with a browser UA). The
+      Oregon-side binding is well evidenced; the federal text is not publicly retrievable by
+      this corpus. Expect an access-failures.json entry and a summary-level document until
+      that changes. Copies on other states' sites exist and are primary as to THOSE states,
+      not to this instrument — do not substitute one.
+
+  - id: pci-dss
+    url: https://www.pcisecuritystandards.org/terms_and_conditions/
+    format: html
+    instrument_kind: agency_guidance
+    issuing_body: PCI Security Standards Council, LLC
+    citation: PCI DSS
+    title: Payment Card Industry Data Security Standard
+    signal: named
+    why: |
+      Binds any Oregon agency accepting card payments. DOC Policy 30.1.5 §III.A.1-2 and
+      Oregon Accounting Manual 10.35.00.PR ¶.137 ("must also comply") are both operative.
+    reproduction_basis: |
+      SUMMARY AND OFFICIAL LINK ONLY — not a U.S. government work and not reproducible.
+      PCI SSC terms of use grant access "solely for your own personal, non-commercial,
+      review, study and informational purposes" and state "you may not publish, distribute,
+      copy... any Content." Copyrighted work of a private LLC; 17 U.S.C. § 105 does not
+      apply. Determined per ADR-0002 on 2026-09-12 from the Council's own terms.
+    notes: |
+      The copyright determination #23 asked for FIRST, answered: this is a small ingest, not
+      a large one. Full text is never mirrored.
+
+  - id: nims
+    url: https://www.fema.gov/sites/default/files/2020-07/fema_nims_doctrine-2017.pdf
+    format: pdf
+    instrument_kind: agency_guidance
+    issuing_body: Federal Emergency Management Agency
+    citation: NIMS (2017)
+    title: National Incident Management System
+    signal: named
+    why: |
+      The strongest Oregon binding of any instrument added here, and the only one resting on
+      an Oregon administrative rule rather than an agency policy: OAR 104-010-0005(3)(b)
+      makes NIMS compliance an eligibility condition for the Emergency Management Performance
+      Grant programme. See also ORS 401.038(1).
+    reproduction_basis: 17 U.S.C. § 105 — work of the U.S. government (FEMA)
+    notes: |
+      Version is identity: the 2017 Third Edition is the current doctrine. A citation to an
+      earlier edition must not resolve to this document.
+
+  - id: cisa-cpg
+    url: https://www.cisa.gov/sites/default/files/2023-03/CISA_CPG_REPORT_v1.0.1_FINAL.pdf
+    format: pdf
+    instrument_kind: agency_guidance
+    issuing_body: Cybersecurity and Infrastructure Security Agency
+    citation: CISA CPGs v1.0.1
+    title: Cross-Sector Cybersecurity Performance Goals
+    signal: named
+    why: |
+      Named in #24. Widely used by state agencies as a baseline.
+    reproduction_basis: 17 U.S.C. § 105 — work of the U.S. government (CISA)
+    notes: |
+      NO OREGON BINDING FOUND, and the entry says so rather than implying one. The CPGs are
+      NOT among the seven mandatory best practices in the State and Local Cybersecurity Grant
+      Program; Oregon's own plan commits to "support, promote, and utilize" them. Held under
+      `named` because the state uses them, not because a rule requires them.
+
+  - id: fedramp
+    url: https://www.fedramp.gov/
+    format: html
+    instrument_kind: agency_guidance
+    issuing_body: General Services Administration / FedRAMP Program Management Office
+    citation: FedRAMP SAF
+    title: FedRAMP Security Assessment Framework
+    signal: named
+    why: |
+      Reaches Oregon conditionally rather than statewide: IRS Pub 1075 §3.3.1(a) requires
+      FedRAMP authorisation for cloud services handling federal tax information, and this
+      corpus already holds Pub 1075. DAS 107-004-150 treats FedRAMP as "may also be
+      acceptable", not as mandatory.
+    reproduction_basis: 17 U.S.C. § 105 — work of the U.S. government (GSA)
+    notes: |
+      44 U.S.C. § 3502(1) defines "agency" as federal executive-branch bodies, so FedRAMP
+      does not bind Oregon directly. The operative path is through Pub 1075. Held so that
+      chain resolves rather than dead-ending.
+
+  - id: govramp
+    url: https://govramp.org/terms-conditions
+    format: html
+    instrument_kind: agency_guidance
+    issuing_body: GovRAMP (formerly StateRAMP)
+    citation: GovRAMP
+    title: GovRAMP security assessment program (formerly StateRAMP)
+    signal: named
+    why: |
+      Named in #25. Oregon's statewide cloud standards are "informed by" it; a 2024 DAS
+      briefing describes the state as "in the process of adopting" it, and a 2025 draft
+      policy makes GovRAMP an exemption route rather than a requirement.
+    reproduction_basis: |
+      SUMMARY AND OFFICIAL LINK ONLY — not a U.S. government work. GovRAMP operates as a
+      501(c)(6) nonprofit, so 17 U.S.C. § 105 does not apply. Its terms assert ownership of
+      "documents, downloadable files" and grant NO redistribution licence. The basis is the
+      ABSENCE OF A GRANT, not an express prohibition — stated that way deliberately, because
+      the two are different and a future terms change could alter one without the other.
+      Determined per ADR-0002 on 2026-09-12.
+    notes: |
+      RENAMED: StateRAMP now does business as GovRAMP. Searching the old name alone will
+      start missing material. NO OREGON BINDING FOUND — held under `named`, like the CPGs.

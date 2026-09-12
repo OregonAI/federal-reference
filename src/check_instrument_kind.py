@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Assert every document's `instrument_kind` is one of this corpus's six known values.
+"""Assert every document's `instrument_kind` is one of this corpus's known values.
 
     python3 src/check_instrument_kind.py
 
@@ -50,6 +50,13 @@ KNOWN_INSTRUMENT_KINDS = {
     "fbi_policy",
     "public_law",
     "usc_section",
+    # #95: security and doctrine instruments that are none of the above -- CMS's ARC-AMPE,
+    # CISA's CPGs, and the others the operator admitted under `signal: named`. Deliberately
+    # ONE broad kind rather than one per issuer: the issuer is already declared per entry
+    # (ingest_instruments.ISSUER_IS_PER_ENTRY), so a kind per publisher would encode the
+    # issuer twice and still have to be read from the manifest. It is also the first kind
+    # that spans formats, which is why extraction consults `format` for it.
+    "agency_guidance",
 }
 
 
@@ -92,7 +99,8 @@ def main() -> int:
     if fails:
         print(f"FAILED: {len(fails)} assertion(s): {'; '.join(fails)}", file=sys.stderr)
         return 1
-    print("Every document's instrument_kind is one of the six known values.")
+    print(f"Every document's instrument_kind is one of the "
+          f"{len(KNOWN_INSTRUMENT_KINDS)} known values.")
     return 0
 
 
