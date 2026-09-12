@@ -807,6 +807,7 @@ def main() -> int:
     OUT_DIR.mkdir(exist_ok=True)
     SNAPSHOTS.mkdir(parents=True, exist_ok=True)
     ok = failed = 0
+    ingested_ids: set[str] = set()
     for src in sources:
         rid, fmt = src["id"], src["format"]
         try:
@@ -901,6 +902,7 @@ def main() -> int:
                 build(src, text, sha, stats, version, as_of, retrieved),
                 encoding="utf-8")
             ok += 1
+            ingested_ids.add(rid)
             print(f"  {rid:22} {len(text):>9,} chars  {stats}  version={version}")
             if fresh:
                 time.sleep(2)
@@ -909,6 +911,34 @@ def main() -> int:
             print(f"  {rid:22} FAILED: {type(e).__name__}: {e}", file=sys.stderr)
 
     print(f"\n{ok} ingested, {failed} failed.")
+
+    # RE-APPLY THE POST-PROCESSING THIS RUN JUST UNDID.
+    #
+    # anchor_sections.py inserts `### ` anchors into BOTH the snapshot .txt and the
+    # document body, and records the fact in conversion_notes. This loop regenerates
+    # both FROM THE SOURCE, so a re-ingest of an anchored document silently drops every
+    # anchor and the note describing them. Measured on pl-113-128: 157 anchors in each
+    # file before, 0 after, conversion_notes gone, 317 lines rewritten.
+    #
+    # ci.yml runs `anchor_sections.py --check`, so this could never reach main -- but
+    # the recovery was "re-ingest, watch CI go red, remember that a second script owns
+    # part of this document, re-run it". A step that undoes another step's work and
+    # leaves a gate to notice is not finished; it has delegated its cleanup to whoever
+    # reads the failure.
+    #
+    # Idempotent by construction, so re-anchoring costs nothing when nothing was lost.
+    if ingested_ids:
+        from anchor_sections import RULES as _ANCHOR_RULES, process as _anchor
+        touched = {i for i in ingested_ids
+                   if i in _ANCHOR_RULES or any(r["doc"] == i for r in _ANCHOR_RULES.values())}
+        if touched:
+            print(f"\nre-anchoring {len(touched)} document(s) this run regenerated: "
+                  f"{', '.join(sorted(touched))}")
+            rc = _anchor(check=False, only=touched)
+            if rc:
+                print("  anchoring reported a problem — the documents above are NOT in "
+                      "their committed shape", file=sys.stderr)
+                return 1
     return 1 if failed else 0
 
 

@@ -87,11 +87,27 @@ def anchor_text(text: str, match) -> tuple[str, int]:
     return "\n".join(out) + ("\n" if text.endswith("\n") else ""), n
 
 
-def process(check: bool) -> int:
+def process(check: bool, only: set[str] | None = None) -> int:
+    """Anchor every RULES document, or just `only` when given.
+
+    `only` exists so ingest_instruments.py can re-anchor exactly what it rewrote.
+    A re-ingest regenerates the snapshot .txt and the document body FROM THE PDF,
+    which drops every `### ` this inserted and the conversion note recording it --
+    measured on pl-113-128: 157 anchors in both files, 0 after. The gate here
+    catches it, so it cannot reach main, but "re-ingest then notice CI is red then
+    remember to re-run this" is a two-step dance nobody should have to know. The
+    ingest is not finished until the document is back in its committed shape.
+
+    Safe to call unconditionally: anchoring is idempotent by construction (an
+    already-anchored line is never re-anchored), so a document that did not need
+    it is untouched.
+    """
     from corpus_toolkit.repo import hash_snapshot
 
     stale = []
     for snap_id, rule in RULES.items():
+        if only is not None and snap_id not in only and rule["doc"] not in only:
+            continue
         txt_path = SNAPSHOTS / f"{snap_id}.txt"
         md_path = INSTRUMENTS / f"{rule['doc']}.md"
         txt = txt_path.read_text(encoding="utf-8")
