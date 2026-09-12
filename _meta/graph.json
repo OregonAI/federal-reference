@@ -1,6 +1,6 @@
 {
  "corpus": "federal-reference",
- "n_nodes": 423,
+ "n_nodes": 425,
  "n_edges": 605,
  "n_edges_external": 0,
  "nodes": [
@@ -2936,6 +2936,20 @@
    "doc_type": "federal_instrument",
    "status": "current",
    "path": "instruments/7-cfr-280.md"
+  },
+  {
+   "id": "arc-ampe",
+   "title": "Acceptable Risk Controls for ACA, Medicaid and Partner Entities, Volume I",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/arc-ampe.md"
+  },
+  {
+   "id": "cisa-cpg",
+   "title": "Cross-Sector Cybersecurity Performance Goals",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/cisa-cpg.md"
   },
   {
    "id": "cjis-sp-6-1",
