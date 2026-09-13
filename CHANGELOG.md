@@ -69,6 +69,127 @@ Repo-curation dates only — official effective dates live in frontmatter.
   cited-sections scan the way ADR-0003 derives its list. #61
 
 ### Fixed
+- 2026-09-12 — `src/ingest_instruments.py:build()` hardcoded `"status": "current"` and
+  `"superseded_by": None` for every part document, so re-running the ingester over 45 CFR 75 —
+  removed from the CFR in its entirety on 2025-10-01, hand-published `status: superseded` in
+  dcd0d41 — would republish it as current law, with a live `relationships.related` pointing at
+  its own (equally superseded) split sections instead of at 2 CFR 200 and a body claiming
+  "This copy is CURRENT text." Confirmed by running the pre-fix code, network and all, over the
+  real committed snapshot: it wrote back `amended_on: '2024-10-02'` (eCFR's versions endpoint,
+  asked what the part IS today, answers a question a wholly-removed part cannot) and
+  `status: current`. #78 gave the SECTION splitter a model for this (`part_facts()`, reading
+  the fact back from the part document's own frontmatter rather than a second declaration); #77
+  named the same gap in the PART ingester and left it unfixed because it needed its own review.
+  New `existing_supersession()` reads `status`/`superseded_by`/`amended_on` back from whatever
+  is already committed at a part's own path — the same "read the file this run is about to
+  overwrite" shape `_recorded_retrieved()` already uses for `retrieved`, not `part_facts()`
+  itself (importing it would import `split_cfr_sections.py`, which already imports back from
+  this module — a real cycle, not a style choice). When the committed document says
+  `superseded`, `main()` now trusts its `amended_on` instead of calling eCFR's live versions
+  endpoint about a part no longer there to describe; `build()` threads `status`/`superseded_by`
+  through instead of hardcoding them, renders the whole-part note's mechanical removal reason
+  from `cfr_consolidations.PART_REMOVALS` (the record #78 built for the identical sentence in
+  each removed section's own document, rather than a third hand-typed copy), and points
+  `relationships.related` at the successor rather than at `cited_section_ids()`'s now-equally-
+  gone list. New `--check` flag on `ingest_instruments.py` itself (compares every source to what
+  is committed, writes nothing) satisfies the literal AC but cannot be CI-wired for the whole
+  manifest — a `cfr_part` not already superseded still needs a live `cfr_amended_on()` lookup
+  by design (ADR-0001), so plain `--check` here is not hermetic the way
+  `split_cfr_sections.py --check` is. `src/check_part_supersession.py` (new, `generated` job) is
+  the hermetic, CI-wired proof of the fixture shape instead. #77
+
+  **A same-day two-axis review (Standards + Spec) of the above found eight Standards and eight
+  Spec issues, all addressed in this same commit:**
+
+  - **`--check` was writing to disk and hitting the network** (S1) — `(SNAPSHOTS /
+    f"{rid}.txt").write_text(...)` and the manifest-hash write ran unconditionally, ABOVE the
+    `if args.check:` branch. Measured in a clean copy: running `--check` stripped every one of
+    157/29/69 committed anchors from `pl-113-128`/`pl-115-224`/`irs-pub-1075` (`anchor_sections.py`
+    inserts those in a separate pass this run never reaches under `--check`), which then failed
+    `anchor_sections.py --check`, a CI gate. Both writes are now guarded on `not args.check`;
+    `hash_snapshot()` already reads whatever `.txt` is on disk rather than the one just written
+    (its own docstring: "never re-derived from the source at verification time"), so skipping the
+    write does not change the hash `--check` compares against.
+  - **A superseded part with no `amended_on` published fabricated prose** (S2) — `"removed from
+    the CFR in its entirety on **None**"` — and silently dropped the SUPERSEDED title marker a
+    sibling corpus's `[title, doc_type, path]` lookup depends on to see the supersession at all.
+    `build()` now raises rather than publishing a part it cannot state a removal date for.
+  - **The gate's own "control" assertion was a tautology, and its own comment described the
+    result backwards** (S3) — it called `build()` with no `status`/`superseded_by` arguments and
+    asserted `status == "current"`, which is simply `build()`'s DEFAULT PARAMETER VALUE and holds
+    whether or not the fm-dict hardcode this whole change replaced is still there. Confirmed by
+    applying that exact mutation (re-hardcoding `"status": "current"` / `"superseded_by": None`
+    inside `build()`'s own fm dict) and observing the tautological check stay green while four
+    REAL assertions elsewhere in the same script went red; reverted after confirming. Removed
+    rather than kept as a check that cannot fail.
+  - **`existing_supersession()` failed OPEN on an unreadable document, in the direction of the
+    bug** (S5) — a hand-mangled 45 CFR 75 frontmatter (no `---` delimiter, invalid YAML, or a
+    non-mapping) used to read back as `("current", None, None)`, exactly as if never superseded,
+    reachable THROUGH the function #77 wrote to prevent this. `part_facts()` — the function's own
+    named model — does not tolerate that case; this now matches it and raises instead.
+  - **The generator rendered curatorial "why we hold it" prose it was never asked to own** (P1,
+    P2, P3) — the issue asked only that the mechanical removal note be rendered from
+    `cfr_consolidations.PART_REMOVALS`; the landed fix additionally rewrote the SECOND paragraph
+    of the whole-part note, dropping the hand-written "28 audit citations" figure for an unmeasured,
+    unsignaled "Oregon material cites sections... for periods when they were in force" — exactly
+    the `audited`/`authority` conflation CONTEXT.md's "three intake signals" entry warns against,
+    and dropping the ADR-0001/ADR-0003 legal rationale clause ("against awards made before that
+    date") for why superseded text is held at all. New `existing_curator_note()` reads this
+    curated sentence back from whatever is already committed, the same read-back idiom
+    `_recorded_retrieved()`/`existing_supersession()` already use, and `build()` preserves it
+    verbatim across re-ingest; only a part superseded for the FIRST time (nothing committed yet)
+    falls back to new `_default_curator_note()`, built purely from new
+    `citation_signal_counts()` — a per-signal sum over `_meta/cited-sections/<part>.yml`'s own
+    `citations`/`cited_in` fields, the same committed file `cited_section_ids()` already reads.
+    **The "27 vs 28" question is resolved, not sidestepped**: summing 45 CFR 75's own
+    `_meta/cited-sections/45-cfr-75.yml` by `cited_in` gives `{"audits": 27, "erf": 3}` — 27 + 3 =
+    **30** across the 7 held sections. 28 was neither total and was wrong the day dcd0d41 wrote it
+    (both files landed in that same commit). The preserved curator sentence now states "30 times
+    across the 7 sections held here — 27 from Oregon's single audits, 3 from Oregon rules",
+    naming both signals rather than collapsing them, and keeps the legal-rationale clause.
+    `instruments/45-cfr-75.md`'s diff against origin/main is now: the YAML title line-wrap
+    PyYAML's `width=100` chose for the longer title (unavoidable); the mechanical paragraph's
+    wording, which now matches the shared `PART_REMOVALS["45-cfr-75"]["why"]` text already used,
+    unchanged, by the 7 already-split section documents (consistency with siblings, not scope
+    creep — and changing that shared constant instead would have desynced those 7 untouched
+    documents from what `split_cfr_sections.py --check` expects of them); and this generator's
+    standard double-blank-line spacing before the blockquote and the disclaimer (every OTHER
+    generated part document, e.g. `2-cfr-200.md`, has the same spacing — the original hand-typed
+    single-blank-line spacing was the outlier, not the generator). The curator sentence itself,
+    once corrected as above, is preserved byte-for-byte on every subsequent re-ingest.
+  - **The gate never exercised `main()` itself** (S4) — `check_part_supersession.py` calls
+    `existing_supersession()`/`build()` directly; a refactor dropping the `status=`/
+    `superseded_by=` kwargs at the real call site in `main()` would leave every other gate green.
+    `--only 45-cfr-75` IS hermetic (already `status: superseded`, so no live eCFR lookup; its
+    snapshot is already committed, so no fetch) and is now wired into `ci.yml`'s `generated` job.
+  - **A future part latched into `superseded` PERMANENTLY, with no gate on the reverse
+    direction** (P7) — the fixture pinned 45 CFR 75 as the one part that must read back
+    superseded, but nothing pinned that no OTHER part is. A new assertion in
+    `check_part_supersession.py` scans every committed `cfr_part` document and fails if any part
+    other than 45 CFR 75 is committed `status: superseded`.
+  - **A green `--check` for 45 CFR 75 did not disclose that `amended_on` was echoed, not
+    verified** (P8) — the same gap #73 named and disclosed for the analogous per-SECTION case in
+    `split_cfr_sections.committed_amended_on()`, one day before this commit, and this change
+    adopted the trusting half without the disclosure half. `--check` output for a superseded part
+    now states plainly: `amended_on ECHOED, NOT VERIFIED`. Unlike the per-section case, there is
+    no live-verify half to add here: eCFR 404s for a WHOLLY removed part, not just its sections,
+    so there is no endpoint left to check the date against at all.
+  - **The commit message's environment diagnosis was wrong, and a second claim rested on it**
+    (S7) — it stated the installed `corpus-toolkit` (1.26.1) did not match the pinned requirement
+    (v1.36.1). `pip show`'s 1.26.1 is stale editable-install metadata; the actual installed code
+    (`/home/dzinck/corpus-toolkit`) is at `v1.36.1-4-g0076109` (pyproject 1.36.2) — ahead of the
+    pin, not behind it, so "all green" was measured against unpinned toolkit code, the opposite of
+    the original claim. The dependent claim — that this explains `relationships.related`
+    reordering on a re-ingested 2 CFR 200 — is therefore withdrawn on that premise and
+    re-measured directly: re-running `ingest_instruments.py --check --only 2-cfr-200` against the
+    correctly-identified toolkit version STILL reproduces the same-set-different-order diff, so a
+    toolkit version mismatch was never the cause. The likelier cause, unconfirmed and not fixed
+    here: `_meta/cited-sections/2-cfr-200.yml`'s `current:` list is sorted by citation count at
+    scan time, and that count is rescanned against sibling repos that change over time — 200.511
+    sits at a different position in the file today than the one baked into the committed
+    document's `relationships.related`, which is a staleness gap between the cited-sections file
+    and the last-regenerated part document, not a corpus-toolkit issue, and predates and is
+    unrelated to #77 (reproduces against the unmodified pre-#77 code too).
 - 2026-09-10 — Follow-up to the same day's #55 fix, below, found by a standards/spec review
   of that change before it merged. `_range_re`/`_list_sec_re` (`src/citation_schemes.py`)
   had no left digit boundary before `{part}\.`, so a DIFFERENT title's section digits inside
