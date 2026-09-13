@@ -62,6 +62,7 @@ def main() -> int:
     # that breaks the script outright (`ModuleNotFoundError: No module named 'src'`), so the
     # import stays here, done once for the whole function rather than twice.
     import src.citation_schemes as schemes
+    from src.federal_ids import MAX_RANGE as fi_MAX_RANGE
     from src.federal_ids import candidates
 
     def check(desc: str, ok: bool, detail: str = "") -> None:
@@ -550,6 +551,13 @@ def main() -> int:
         ("21 USC 360bbb-3", ["21-usc-360bbb-3"]),
         ("42 U.S.C. 1395ccc", ["42-usc-1395ccc"]),
         ("20 USC 123456", []),
+        # #99 review: real suffixes named as the hazard this scheme must never break,
+        # pinned individually rather than left to the range-vs-suffix section below to
+        # cover incidentally -- HIPAA's `1320d-2` is exercised separately above, these are
+        # the other three the issue and USC's own comment name by name.
+        ("15 USC 717b-1", ["15-usc-717b-1"]),
+        ("42 USC 290dd-2", ["42-usc-290dd-2"]),
+        ("29 USC 3101", ["29-usc-3101"]),
     ):
         got = candidates(cite)
         check(f"{cite!r} derives {expect or 'nothing'}, never a shorter real section",
@@ -560,6 +568,69 @@ def main() -> int:
     check("a U.S.C. citation never derives a pl- id (ADR-0004 survives its own supersession)",
           not any(d.startswith("pl-") for d in candidates("20 USC 1232g")),
           f"got {candidates('20 USC 1232g')}")
+
+    # --- #99: USC RANGES expand instead of deriving one unbuildable id --------------------
+    #
+    # The three real citations the issue found, none of which any single section can ever
+    # answer to before this fix (`38-usc-4301-4335` etc. name no section that exists).
+    # USERRA and the Hatch Act ranges are narrow enough to expand under MAX_RANGE; the
+    # ADA-policy citation is `3 U.S.C. §§ 101-336`, misciting Pub. L. 101-336 as a U.S.C.
+    # section (a separate, pre-existing data problem, out of scope for #99) -- its 235-wide
+    # span is exactly the "drafting artefact, not a real range" MAX_RANGE exists to refuse,
+    # so it must fall back to the base section alone, the same way the CFR branch keeps its
+    # own first-matched section when a range falls outside MAX_RANGE.
+    ids = candidates("38 USC 4301-4335")
+    check("38 USC 4301-4335 (USERRA) expands to every section, not one unbuildable id",
+          ids == [f"38-usc-{n}" for n in range(4301, 4336)],
+          f"got {len(ids)} ids, first={ids[0] if ids else None}, last={ids[-1] if ids else None}")
+    check("...and the section #400's most-cited table already wants is among them",
+          "38-usc-4301" in ids, f"got {ids[:3]}")
+
+    ids = candidates("5 USC §§ 1501-1508")
+    check("5 USC §§ 1501-1508 (Hatch Act) expands to all 8 sections",
+          ids == [f"5-usc-{n}" for n in range(1501, 1509)], f"got {ids}")
+
+    ids = candidates("3 U.S.C. §§ 101-336")
+    check("3 U.S.C. §§ 101-336 -- a 235-section span, too wide under MAX_RANGE to be a real "
+          "range -- falls back to the base section instead of 236 fabricated ids",
+          ids == ["3-usc-101"], f"got {len(ids)} ids: {ids[:5]}{'...' if len(ids) > 5 else ''}")
+
+    # --- #99: the range/suffix boundary itself, both directions -----------------------
+    #
+    # A genuine suffix must never be read as a range (the letter-before-the-hyphen signal
+    # this scheme relies on -- see USC's own comment for why it, and not §§-vs-§ or
+    # magnitude, is the reliable one).
+    check("42 USC 1320d-2 (HIPAA) is not mistaken for a range 1320-2",
+          candidates("42 USC 1320d-2") == ["42-usc-1320d-2"], f"got {candidates('42 USC 1320d-2')}")
+
+    # A range must not be mistaken for a suffix and truncated to its first number's id alone
+    # with the rest of the digits silently dropped -- the original defect, restated as a
+    # positive assertion rather than only the unbuildable-id one above.
+    check("38 USC 4301-4335 never derives the truncated 38-usc-4301-4335",
+          "38-usc-4301-4335" not in candidates("38 USC 4301-4335"),
+          f"got {candidates('38 USC 4301-4335')}")
+
+    # Ambiguous cases: a numeric hyphen pair with no reliable range signal (reversed or
+    # equal endpoints) must not be guessed at either direction -- the base section alone is
+    # returned, per AGENTS.md's overriding rule that "could not check is never reported as
+    # is not there" cuts both ways: an unclear case is not confidently expanded either.
+    for cite, expect in (
+        ("10 USC 50-10", ["10-usc-50"]),   # second < first: reversed, not a range
+        ("10 USC 50-50", ["10-usc-50"]),   # second == first: degenerate, not a range
+    ):
+        got = candidates(cite)
+        check(f"{cite!r} is ambiguous and does not guess a range", got == expect, f"got {got}")
+
+    # The MAX_RANGE boundary itself, exercised directly rather than only through the
+    # 235-wide real-world case above: a range of exactly MAX_RANGE width expands, one wider
+    # does not.
+    exact = candidates(f"10 USC 100-{100 + fi_MAX_RANGE}")
+    check(f"a range of exactly MAX_RANGE ({fi_MAX_RANGE}) width expands",
+          exact == [f"10-usc-{n}" for n in range(100, 100 + fi_MAX_RANGE + 1)],
+          f"got {len(exact)} ids")
+    over = candidates(f"10 USC 100-{100 + fi_MAX_RANGE + 1}")
+    check("a range one wider than MAX_RANGE does not expand, falls back to the base section",
+          over == ["10-usc-100"], f"got {len(over)} ids: {over[:3]}")
 
     print()
     if fails:
