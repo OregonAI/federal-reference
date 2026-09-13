@@ -69,6 +69,40 @@ Repo-curation dates only — official effective dates live in frontmatter.
   cited-sections scan the way ADR-0003 derives its list. #61
 
 ### Fixed
+- 2026-09-13 — `src/federal_ids.py`'s `USC` pattern (the parity-locked cross-corpus
+  contract) could not tell a genuine section SUFFIX from a section RANGE: its suffix group
+  matched both, so `38 USC 4301-4335` (USERRA) derived `38-usc-4301-4335` — an id no
+  document can ever have, since no section is named `4301-4335`. Found in review of
+  executive-regulatory-frameworks#410, which registered `federal-usc` and made the defect
+  reachable: before that PR these strings returned an honest "no citation scheme recognized
+  this format"; after it they returned a checked-looking negative about an unbuildable id.
+  Three real citations hit this — `38 USC 4301-4335`, `3 U.S.C. §§ 101-336`, `5 USC §§
+  1501-1508` (Hatch Act) — and `38-usc-4301`, already in demand per ERF#400's most-cited
+  table, was never derived from any of them.
+
+  The fix distinguishes the two by whether a letter sits directly before the hyphen —
+  every real suffix already in this file's own hazard comments (`1320d-2`, `360bbb-3`,
+  `717b-1`, `290dd-2`) has one, and no real range found in this corpus does. `§§` vs `§`
+  was tried and rejected as the signal: USERRA's citation carries no section mark at all.
+  A pure-digit base followed by `-NNNNN` is now read as a candidate range endpoint and,
+  following the CFR branch's own precedent (`RANGE`/`MAX_RANGE`), EXPANDS to every section
+  between — `38 USC 4301-4335` now derives all 35 ids, `5 USC §§ 1501-1508` all 8 — capped
+  by the same `MAX_RANGE` the CFR branch uses, which also correctly refuses to expand `3
+  U.S.C. §§ 101-336` (235 sections — that string mis-cites Pub. L. 101-336, a separate,
+  pre-existing data problem out of scope here) into 236 fabricated ids; the base section
+  (`3-usc-101`) is still returned, matching the CFR branch's own behavior when its range
+  falls outside `MAX_RANGE`. A reversed or degenerate numeric pair (`10 USC 50-10`) is left
+  ambiguous on purpose — the base section is returned, no range is guessed. Every real
+  suffix hazard case above, plus the three ERF citations and the range/suffix boundary
+  itself, is pinned in `src/check_citations.py`, confirmed to fail (9 assertions) when the
+  fix is reverted. Because `citation_schemes.py`'s own `_usc()` resolver imports `USC`
+  directly, its single-match behavior for a range citation also improves automatically:
+  it now looks up the range's first section (e.g. `38-usc-4301`) instead of the
+  unbuildable full-range string — measured, not a scope change to that file. This repo's
+  own copy of `federal_ids.py` needs no propagation; `executive-regulatory-frameworks` and
+  `oregon-audits` carry byte-identical mirrors and need a follow-on PR each per the parity
+  gate. federal-reference#99
+
 - 2026-09-12 — `src/ingest_instruments.py:build()` hardcoded `"status": "current"` and
   `"superseded_by": None` for every part document, so re-running the ingester over 45 CFR 75 —
   removed from the CFR in its entirety on 2025-10-01, hand-published `status: superseded` in
