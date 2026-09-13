@@ -4,6 +4,13 @@
   python3 src/ingest_instruments.py                # ingest everything
   python3 src/ingest_instruments.py --only 2-cfr-200
   python3 src/ingest_instruments.py --refetch      # ignore cached snapshots
+  python3 src/ingest_instruments.py --check        # compare to what is committed; write nothing
+
+Runs in no CI workflow: every source needs a live fetch, and a `cfr_part` not already
+committed `status: superseded` needs a live `cfr_amended_on()` lookup too (ADR-0001's "current
+text" model), so `--check` is not hermetic here the way it is in split_cfr_sections.py. Use it
+by hand; src/check_part_supersession.py is the hermetic, CI-wired proof for the one thing this
+module got wrong without needing the network to catch it (#77).
 
 TWO PATHS, dispatched on `instrument_kind`, and only one of them is new here.
 
@@ -37,6 +44,9 @@ from pathlib import Path
 
 import yaml
 from pypdf import PdfReader
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from cfr_consolidations import PART_REMOVALS  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = ROOT / "_meta" / "source-manifest.yml"
@@ -630,6 +640,55 @@ def _recorded_retrieved(doc_path: Path) -> str | None:
     return str(value) if value else None
 
 
+def existing_supersession(doc_path: Path) -> tuple[str, str | None, str | None]:
+    """(status, superseded_by, amended_on) already committed at `doc_path`, or
+    ("current", None, None) when nothing is committed there yet.
+
+    #77: `build()` used to hardcode `status: "current"` and `superseded_by: None`
+    unconditionally, so re-running this ingester over a WHOLLY SUPERSEDED part (45 CFR 75,
+    removed from the CFR in its entirety 2025-10-01, hand-published superseded in dcd0d41)
+    would republish it as current law on the next run.
+
+    Mirrors split_cfr_sections.part_facts()'s reading of these same three fields from a
+    part document's own frontmatter -- the model #78 built for the sibling problem in the
+    SECTION splitter, and the one this fix is told to match rather than invent a second one.
+    Not the SAME function: part_facts() requires the file to already exist (it only ever
+    runs AFTER this module has ingested the part at least once) and also reads `as_of` and
+    `retrieved`, which the caller here already has from source_dates(). It also cannot be
+    imported from split_cfr_sections.py without that module importing back from this one
+    (`from ingest_instruments import _flatten, fetch, resolve_issuing_body`) -- a real
+    import cycle, not a style choice, so this is a second reader of the same three fields
+    rather than one shared function. `_meta/source-manifest.yml` is not the alternative
+    either: it is hand-authored on purpose (ADR-0005), and a field there would be a THIRD
+    copy of a fact the document already carries.
+
+    Reading the very file this ingester is about to overwrite sounds circular until you
+    notice `_recorded_retrieved()`, two functions up, already does exactly this for
+    `retrieved`, for the same reason: a fact a human accepted into the committed document at
+    PR time has nowhere else to live.
+    """
+    if not doc_path.is_file():
+        return "current", None, None
+    try:
+        fm = yaml.safe_load(doc_path.read_text(encoding="utf-8").split("---")[1])
+    except (IndexError, yaml.YAMLError):
+        return "current", None, None
+    if not isinstance(fm, dict):
+        return "current", None, None
+    return (str(fm.get("status") or "current"),
+            (str(fm["superseded_by"]) if fm.get("superseded_by") else None),
+            (str(fm["amended_on"]) if fm.get("amended_on") else None))
+
+
+def _id_to_citation(doc_id_: str) -> str:
+    """"2-cfr-200" -> "2 CFR 200", for naming a successor part in prose. Returns the id
+    unchanged if it is not a bare `<title>-cfr-<part>` id -- a successor need not be a CFR
+    part at all, and guessing a citation shape for something that is not one would be
+    exactly the kind of invented fact AGENTS.md's anti-fabrication rules forbid."""
+    m = re.match(r"^(\d+)-cfr-(\d+)$", doc_id_)
+    return f"{m.group(1)} CFR {m.group(2)}" if m else doc_id_
+
+
 def source_dates(src: dict, snap: Path, fresh: bool, doc_path: Path) -> tuple[str, str]:
     """(as_of, retrieved) — from the SOURCE, never from the wall clock.
 
@@ -657,14 +716,25 @@ def source_dates(src: dict, snap: Path, fresh: bool, doc_path: Path) -> tuple[st
 
 
 def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
-          as_of: str, retrieved: str) -> str:
+          as_of: str, retrieved: str, status: str = "current",
+          superseded_by: str | None = None) -> str:
+    """`status`/`superseded_by` default to the values every part document had before #77 --
+    a brand-new part, or one no caller has told this function is superseded, is current. The
+    caller (main()) is what actually derives them per-part via `existing_supersession()`;
+    check_section_split.py's two direct `build()` calls exercise fixtures that are neither,
+    so they keep passing and keep getting "current" documents, unchanged."""
     rid = doc_id(src, version)
+    superseded = status == "superseded"
     fm = {
         "schema_version": 1,
         "corpus": "federal-reference",
         "jurisdiction": "us",
         "id": rid,
-        "title": src["title"],
+        # THE TITLE CARRIES THE SUPERSESSION, same reasoning as split_cfr_sections.build():
+        # a sibling corpus resolving through corpus-index.json's [title, doc_type, path] rows
+        # sees only the title, and `status: superseded` in frontmatter is invisible there.
+        "title": (f"{src['title']} (SUPERSEDED {src.get('amended_on')})"
+                  if superseded and src.get("amended_on") else src["title"]),
         "doc_type": "federal_instrument",
         "citation": (f"{src['citation']} (Rev. {version})"
                      if src["instrument_kind"] == "irs_publication" and version
@@ -684,7 +754,7 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
         # rather than publishing a `currency: null` that means nothing for a CFR part.
         **({"currency": src["currency"]} if src["instrument_kind"] == "usc_section" else {}),
         "reproduction_basis": " ".join(str(src["reproduction_basis"]).split()),
-        "superseded_by": None,
+        "superseded_by": superseded_by,
         # Carried into the DOCUMENT, not left in the manifest. src/citation_schemes.py names
         # these when it refuses a citation to a version we do not hold ("Oregon cites 5.6,
         # 5.9.4 and 6.0, none of which is held") -- and a refusal that cannot say what is
@@ -699,7 +769,7 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
         **({"snapshot_id": src["id"]} if rid != src["id"] else {}),
         "retrieved": retrieved,
         "source_sha256": sha,
-        "status": "current",
+        "status": status,
         # federal_instrument is in VERBATIM_REQUIRED, so this is not a free choice — the
         # doc_type IS the assertion that we may reproduce, and CI then requires that we did.
         "content_mode": "verbatim",
@@ -718,7 +788,17 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
         # genuinely cited at zero sections, which is the same "wrong answer that looks like a
         # right one" #33 was about one field over. Gated on the KIND now, so it applies to
         # whichever part is being built, the same fix #33 made for issuing_body.
-        **({"relationships": {"related": cited_section_ids(rid)}}
+        #
+        # #77: a WHOLLY SUPERSEDED part is the one case where `cited_section_ids(rid)` is the
+        # wrong edge to publish. Every id it would return names one of THIS part's own
+        # (equally superseded) split sections -- outbound edges into a dead end, the exact
+        # failure the comment above names for the opposite gap. What a reader actually needs
+        # from a gone part's own edge is where the LIVE text moved to, so this points at
+        # `superseded_by` instead -- and 45 CFR 75's committed `relationships.related:
+        # [2-cfr-200]` (dcd0d41) is exactly that, not its own seven split sections.
+        **({"relationships": {"related": [superseded_by] if superseded_by else []}}
+           if superseded and src["instrument_kind"] == "cfr_part" else
+           {"relationships": {"related": cited_section_ids(rid)}}
            if src["instrument_kind"] == "cfr_part" else {}),
         "maintainer": "@morficflux",
         # Written EMPTY on purpose; a human sets them at PR approval. An ingester that
@@ -735,15 +815,43 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
              f"- Issued by: {fm['issuing_body']}\n"
              f"- Version: {version or 'not versioned'}\n"
              f"- Text as of: {fm['as_of']}"
-             + (f" (upstream last amended {fm['amended_on']})" if fm.get("amended_on") else "")
+             + (f" (removed from the CFR {fm['amended_on']})"
+                if superseded and fm.get("amended_on") else
+                f" (upstream last amended {fm['amended_on']})" if fm.get("amended_on") else "")
              + (f"\n- {fm['currency']} (OLRC)" if fm.get("currency") else "")
              + f"\n- Extent: {stat_line}\n"
              f"- Reproduction basis: {fm['reproduction_basis']}\n"]
-    parts.append(
-        "\n_NON-AUTHORITATIVE copy. This is a federal requirement and carries penalties "
-        "state policy does not — read it at the source URL before relying on it. This copy "
-        "is CURRENT text, which is not necessarily the text in force when a rule citing it "
-        "was written._\n")
+    if superseded and src["instrument_kind"] == "cfr_part":
+        # #77: the whole-part note. WHY it was removed is rendered from PART_REMOVALS
+        # (cfr_consolidations.py) rather than hand-written a third time -- the same record
+        # split_cfr_sections.build() already renders into each removed section's own
+        # whole-part sentence (#78). A part with no entry there still gets a true, less
+        # specific sentence, the same fallback ladder `why`/`scope` use everywhere else in
+        # this pair of modules.
+        why = (PART_REMOVALS.get(rid) or {}).get("why")
+        successor = _id_to_citation(superseded_by) if superseded_by else None
+        drop_in = (f", and do not treat {successor} as a drop-in replacement without "
+                   f"comparing them" if successor else "")
+        parts.append(
+            f"\n> **This part no longer exists.** It was removed from the CFR in its "
+            f"entirety on **{fm['amended_on']}**"
+            + (f" — {why}" if why else "")
+            + f". The text below is its **last-in-force** text, as of {fm['as_of']}.\n>\n"
+            f"> It is held because Oregon material cites sections within it for periods "
+            f"when they were in force. **The current definition may differ.** Do not read "
+            f"this as current law{drop_in} — no specific section-to-section "
+            f"correspondence is recorded here.\n")
+    if superseded:
+        parts.append(
+            "\n_NON-AUTHORITATIVE copy. This is a federal requirement and carries penalties "
+            "state policy does not — read it at the source URL before relying on it. This is "
+            f"**superseded** text, as it stood on {fm['as_of']}, and is NOT current law._\n")
+    else:
+        parts.append(
+            "\n_NON-AUTHORITATIVE copy. This is a federal requirement and carries penalties "
+            "state policy does not — read it at the source URL before relying on it. This copy "
+            "is CURRENT text, which is not necessarily the text in force when a rule citing it "
+            "was written._\n")
     if gap:
         parts.append(
             "\n> **Version gap.** Oregon material cites version(s) "
@@ -794,7 +902,24 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--only", metavar="ID")
     ap.add_argument("--refetch", action="store_true")
+    # #77: there was no gate at all on what this script writes for a PART document -- the
+    # sibling section-splitter has had one since #58/#78 (`split_cfr_sections.py --check`);
+    # this is the missing one. Builds every source in memory and compares it to what is
+    # already committed; writes nothing, exits 1 on any mismatch. See existing_supersession()
+    # for the one place this stays hermetic on purpose: a cfr_part already committed
+    # `status: superseded` trusts its own committed amended_on/superseded_by rather than
+    # asking eCFR's live versions endpoint about a part that is no longer there to describe.
+    ap.add_argument("--check", action="store_true",
+                    help="compare every document to what this ingester would write; "
+                         "write nothing, exit 1 on any mismatch")
     args = ap.parse_args()
+
+    if args.check and args.refetch:
+        print("error: --check and --refetch are mutually exclusive -- --check verifies "
+              "what is already committed against cached snapshots; --refetch replaces "
+              "them. Running both leaves it unclear afterward which one actually happened.",
+              file=sys.stderr)
+        return 1
 
     sys.path.insert(0, str(ROOT / "src"))
     from corpus_toolkit.repo import hash_snapshot
@@ -841,9 +966,24 @@ def main() -> int:
             # agree with this one, or the checker re-derives a different "expected" than what
             # was actually committed and reports a fidelity defect that is really a disagreement
             # about which extractor ran.
+            part_status, part_superseded_by = "current", None
             if src["instrument_kind"] == "cfr_part":
                 text, stats = extract_cfr(raw)
-                src = {**src, "amended_on": src.get("amended_on") or cfr_amended_on(src["url"])}
+                part_status, part_superseded_by, committed_amended_on = \
+                    existing_supersession(OUT_DIR / f"{rid}.md")
+                if part_status == "superseded":
+                    # #77: the part is gone from the CFR in its entirety (45 CFR 75,
+                    # dcd0d41). Nothing LIVE describes it any more -- cfr_amended_on() asks
+                    # eCFR's versions endpoint what the part IS today, and a wholly-removed
+                    # part is answered by neither "current" nor a clean history, the same
+                    # gap split_cfr_sections.committed_amended_on() exists to name for the
+                    # analogous per-section case. So this trusts the date already accepted
+                    # into the document at PR time rather than asking a live source a
+                    # question it cannot answer.
+                    src = {**src, "amended_on": committed_amended_on}
+                else:
+                    src = {**src,
+                           "amended_on": src.get("amended_on") or cfr_amended_on(src["url"])}
             elif src["instrument_kind"] == "usc_section":
                 usc_title, usc_sec = src["id"].split("-usc-", 1)
                 usc_root = ET.fromstring(raw)
@@ -898,9 +1038,19 @@ def main() -> int:
                 print(f"    {note}")
             doc_path = OUT_DIR / f"{doc_id(src, version)}.md"
             as_of, retrieved = source_dates(src, snap, fresh, doc_path)
-            doc_path.write_text(
-                build(src, text, sha, stats, version, as_of, retrieved),
-                encoding="utf-8")
+            built = build(src, text, sha, stats, version, as_of, retrieved,
+                          status=part_status, superseded_by=part_superseded_by)
+            if args.check:
+                committed = doc_path.read_text(encoding="utf-8") if doc_path.is_file() else None
+                if committed != built:
+                    failed += 1
+                    print(f"  {rid:22} MISMATCH — committed document does not match what "
+                          f"this ingester would write", file=sys.stderr)
+                    continue
+                ok += 1
+                print(f"  {rid:22} ok — matches committed document")
+                continue
+            doc_path.write_text(built, encoding="utf-8")
             ok += 1
             ingested_ids.add(rid)
             print(f"  {rid:22} {len(text):>9,} chars  {stats}  version={version}")
@@ -910,7 +1060,8 @@ def main() -> int:
             failed += 1
             print(f"  {rid:22} FAILED: {type(e).__name__}: {e}", file=sys.stderr)
 
-    print(f"\n{ok} ingested, {failed} failed.")
+    print(f"\n{ok} matched, {failed} mismatched." if args.check
+          else f"\n{ok} ingested, {failed} failed.")
 
     # RE-APPLY THE POST-PROCESSING THIS RUN JUST UNDID.
     #
@@ -927,6 +1078,7 @@ def main() -> int:
     # reads the failure.
     #
     # Idempotent by construction, so re-anchoring costs nothing when nothing was lost.
+    # Never reached under --check: nothing above added to `ingested_ids` without writing.
     if ingested_ids:
         from anchor_sections import RULES as _ANCHOR_RULES, process as _anchor
         touched = {i for i in ingested_ids

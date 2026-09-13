@@ -144,6 +144,18 @@ jobs:
       # fixed or not. This is the one gate that actually proves the second part.
       - name: A second cfr_part must not inherit the first part's issuer
         run: python3 src/check_issuing_body.py
+      # #77: ingest_instruments.py had no gate on PART documents at all -- split_cfr_sections.py
+      # --check above only ever looked at the SECTION documents split out of a part (#78's own
+      # fix). A wholly superseded part (45 CFR 75, removed from the CFR entirely 2025-10-01)
+      # would have been republished `status: current` on the next re-ingest, with nothing here
+      # to notice. ingest_instruments.py itself runs in no workflow (see the comment two checks
+      # up) and its own new `--check` flag needs a live eCFR lookup for every part NOT already
+      # superseded, so it cannot be this gate. This is the hermetic proof instead, against
+      # synthetic fixtures and 45 CFR 75's real, already-committed snapshot -- same shape as
+      # check_issuing_body.py and check_section_split.py, same reason: mostly negative
+      # assertions, the last one confirmed to fail on the exact call shape #77 replaced.
+      - name: A wholly superseded part must not be republished as current
+        run: python3 src/check_part_supersession.py
       # `instrument_kind` is a bare `mcp.extra_document_fields` entry -- corpus-toolkit's
       # schema layer has no enum mechanism for an extra field's values (#56). A document
       # spelled "CFR_PART" instead of "cfr_part" is schema-valid, sits in instruments/,
