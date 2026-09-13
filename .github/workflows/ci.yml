@@ -150,12 +150,24 @@ jobs:
       # would have been republished `status: current` on the next re-ingest, with nothing here
       # to notice. ingest_instruments.py itself runs in no workflow (see the comment two checks
       # up) and its own new `--check` flag needs a live eCFR lookup for every part NOT already
-      # superseded, so it cannot be this gate. This is the hermetic proof instead, against
-      # synthetic fixtures and 45 CFR 75's real, already-committed snapshot -- same shape as
-      # check_issuing_body.py and check_section_split.py, same reason: mostly negative
-      # assertions, the last one confirmed to fail on the exact call shape #77 replaced.
+      # superseded, so it cannot be this gate for the corpus as a whole. This is the hermetic
+      # proof instead, against synthetic fixtures and 45 CFR 75's real, already-committed
+      # snapshot -- same shape as check_issuing_body.py and check_section_split.py, same
+      # reason: mostly negative assertions, several confirmed to fail (a real one, `git log`
+      # has no trace of it because it was applied and reverted by hand during review) when
+      # build()'s status/superseded_by threading is reverted to the pre-#77 hardcode.
       - name: A wholly superseded part must not be republished as current
         run: python3 src/check_part_supersession.py
+      # #77 review (S4): the ONE part this gate above cannot exercise is `main()` itself --
+      # `check_part_supersession.py` calls `existing_supersession()`/`build()` directly, and a
+      # refactor that dropped the two kwargs at the real call site (main():~1246) would leave
+      # every other gate green. Unlike the corpus-wide `--check` above, `--only 45-cfr-75` IS
+      # hermetic: it is already `status: superseded`, so `existing_supersession()` trusts the
+      # committed `amended_on` instead of a live eCFR lookup, and `fetch()` reads the snapshot
+      # already committed at `_meta/snapshots/45-cfr-75.xml` -- confirmed to need no network
+      # and write nothing (`git status --porcelain` clean before and after).
+      - name: main() itself must not republish 45 CFR 75 as current
+        run: python3 src/ingest_instruments.py --check --only 45-cfr-75
       # `instrument_kind` is a bare `mcp.extra_document_fields` entry -- corpus-toolkit's
       # schema layer has no enum mechanism for an extra field's values (#56). A document
       # spelled "CFR_PART" instead of "cfr_part" is schema-valid, sits in instruments/,

@@ -605,6 +605,133 @@ def cited_section_ids(part_id: str) -> list[str]:
             for key in ("current", "removed") for e in (doc.get(key) or [])]
 
 
+# Which intake SIGNAL a cited-sections entry's `cited_in` tag names, for prose that reports a
+# measured citation count without conflating the signals CONTEXT.md's "three intake signals"
+# entry says must never be conflated ("Writing 'most-cited' without naming the signal is how
+# that conflation happens"). `audits` is oregon-audits' body-text citations -- the same word
+# the ORIGINAL hand-written 45 CFR 75 note used ("Oregon's single audits cite Part 75").
+# `erf` is executive-regulatory-frameworks' -- Oregon's own rules, not a second audits count.
+_SIGNAL_LABELS = {"audits": "Oregon's single audits", "erf": "Oregon rules"}
+
+
+def citation_signal_counts(part_id: str) -> dict[str, int]:
+    """{signal: total citations}, summed from _meta/cited-sections/<part_id>.yml's own
+    per-section `citations` counts, grouped by `cited_in` -- the same committed file
+    `cited_section_ids()` just above already reads, so a part's edges and its own citation
+    count cannot disagree about which committed source they come from.
+
+    #77 review (P3): the "27 vs 28" discrepancy in 45 CFR 75's hand-written note was resolvable
+    from this exact file, which the ingester already reads -- CHANGELOG's original claim that
+    "no live source in this ingester computes a part-level citation count" was true only in the
+    narrowest sense. Both `current` AND `removed` entries count: a removed section cited by an
+    audit conducted while it was in force is a real, measured citation, not one that stops
+    counting when the section does -- the whole reason 45 CFR 75's sections are held as
+    `superseded` documents rather than dropped.
+
+    Returns {} for a part with no committed cited-sections file (never scanned yet) -- absence
+    of data, not a zero worth publishing as a fact.
+    """
+    path = ROOT / "_meta" / "cited-sections" / f"{part_id}.yml"
+    if not path.is_file():
+        return {}
+    doc = yaml.safe_load(path.read_text()) or {}
+    counts: dict[str, int] = {}
+    for key in ("current", "removed"):
+        for e in (doc.get(key) or []):
+            for sig in (e.get("cited_in") or []):
+                counts[sig] = counts.get(sig, 0) + int(e.get("citations") or 0)
+    return counts
+
+
+def _default_curator_note(rid: str) -> str:
+    """A plain, fully-DERIVED "why we hold it" sentence for a part superseded for the FIRST
+    time -- used only when `existing_curator_note()` finds nothing already committed to
+    preserve (see that function's docstring for why the two cases are different).
+
+    Built from `citation_signal_counts()` alone: a total and a per-signal breakdown, never an
+    unsignaled aggregate and never an adjective ("heavily cited", "frequently referenced").
+    AGENTS.md: "Prefer counts and reproductions over adjectives." This is deliberately less
+    specific than a human curator could write for a real case -- it does not know WHY the
+    counts matter (45 CFR 75's own preserved note adds "against awards made before that
+    date", the ADR-0001/ADR-0003 legal rationale, which is not a fact this function can
+    derive from the citation counts alone) -- but every word in it is something the corpus
+    can prove today, which is the bar AGENTS.md's hard rule 1 sets.
+    """
+    counts = citation_signal_counts(rid)
+    if not counts:
+        return "It is held because Oregon material cites sections within it."
+    total = sum(counts.values())
+    n_secs = len(cited_section_ids(rid))
+    breakdown = ", ".join(
+        f"{n} from {_SIGNAL_LABELS.get(sig, sig)}"
+        for sig, n in sorted(counts.items(), key=lambda kv: -kv[1]))
+    return (f"It is held because Oregon material cites sections within it {total} "
+            f"time{'s' if total != 1 else ''} across the {n_secs} section"
+            f"{'s' if n_secs != 1 else ''} held here — {breakdown}.")
+
+
+# The generator-owned trailer's fixed boundary phrase. existing_curator_note() splits on it
+# to recover just the CURATED leading clause a human (or _default_curator_note()) wrote,
+# stripping the generator-owned caveats build() always appends fresh after it -- see both
+# docstrings for why the caveats (in particular the successor-naming "drop-in" clause) must
+# never be part of what gets preserved verbatim.
+_CURATOR_NOTE_BOUNDARY = "**The current definition may differ.**"
+
+
+def existing_curator_note(doc_path: Path) -> str | None:
+    """The curator's "why we hold it" sentence already committed for a superseded part's
+    whole-part note, read back from `doc_path` -- the CURATED half of that note AGENTS.md
+    hard rule 2 confines to curator content, as opposed to the mechanical removal-date/
+    successor half build() derives fresh every run. Returns None when nothing is committed
+    yet, so build() can fall back to `_default_curator_note()` instead of fabricating a "why
+    we hold it" story for a part superseded for the first time.
+
+    #77 review (P1/P2/P3): the original fix rendered THIS half from scratch too, and in doing
+    so (a) dropped the ONE thing this ingester cannot derive -- 45 CFR 75's measured "28 audit
+    citations" figure -- replacing it with unmeasured, unsignaled prose ("Oregon material
+    cites sections... for periods when they were in force") that CONTEXT.md's own "three
+    intake signals" entry names as exactly the conflation to avoid, and (b) dropped the
+    ADR-0001/ADR-0003 legal rationale clause ("against awards made before that date") that
+    explains why a superseded part is held at all. Same "read the file this run is about to
+    overwrite" shape `_recorded_retrieved()` and `existing_supersession()` already use, one
+    function up and two functions up respectively -- a curator's sentence accepted into the
+    committed document at PR time has nowhere else to live, the same argument
+    `existing_supersession()`'s own docstring makes for `status`/`superseded_by`/`amended_on`.
+
+    Parses the whole-part blockquote generically (lines starting with `>`, split on the first
+    lone `>` line into paragraphs) rather than matching build()'s current exact wording, so a
+    hand-wrapped original (four ~90-char `> ` lines) and this generator's own single-line
+    output both read back the same logical sentence. Returns None on anything that does not
+    parse as at least two blockquote paragraphs -- a document with no whole-part note yet is
+    the same "nothing to preserve" case as a document that does not exist, not a malformed-
+    document case (see existing_supersession()'s docstring for why THAT one fails closed
+    instead: a missing note here just means _default_curator_note() runs, which is safe by
+    construction, whereas a missing status/superseded_by there means republishing removed law
+    as current, which is not).
+    """
+    if not doc_path.is_file():
+        return None
+    block_lines: list[str] = []
+    for line in doc_path.read_text(encoding="utf-8").splitlines():
+        if line.startswith(">"):
+            block_lines.append(line)
+        elif block_lines:
+            break
+    paragraphs: list[list[str]] = [[]]
+    for line in block_lines:
+        if line.strip() == ">":
+            paragraphs.append([])
+        else:
+            paragraphs[-1].append(line)
+    if len(paragraphs) < 2:
+        return None
+    curator_lines = [l[1:].lstrip() for para in paragraphs[1:] for l in para]
+    text = " ".join(l for l in (s.strip() for s in curator_lines) if l)
+    if not text:
+        return None
+    return text.split(_CURATOR_NOTE_BOUNDARY, 1)[0].strip() or None
+
+
 def doc_id(src: dict, version: str | None) -> str:
     """The document id, with the version in it when the version IS the identity.
 
@@ -666,15 +793,43 @@ def existing_supersession(doc_path: Path) -> tuple[str, str | None, str | None]:
     notice `_recorded_retrieved()`, two functions up, already does exactly this for
     `retrieved`, for the same reason: a fact a human accepted into the committed document at
     PR time has nowhere else to live.
+
+    FAILS CLOSED on a document that EXISTS but cannot be read, unlike a document that does
+    not exist at all. Those are different facts and used to return the same tuple: a missing
+    file legitimately has never been ingested (there is nothing to be wrong about, so
+    "current" is simply the right default for the very first ingest), but a file that IS
+    there and fails to parse (no `---` delimiter, invalid YAML, or frontmatter that parsed to
+    something other than a mapping) is a part document this ingester cannot read -- and
+    "cannot read" is not evidence of "current". `part_facts()` (this function's own model,
+    named above) does not tolerate that case either: it lets the exception propagate rather
+    than defaulting. #77's review (finding S5) found this function doing the opposite of its
+    own model, in the direction of the bug it exists to prevent: a bad merge that mangles 45
+    CFR 75's frontmatter used to make this return ("current", None, None) exactly as if the
+    part had never been superseded at all, so `main()` would go on to call the live
+    `cfr_amended_on()` and republish removed federal law as current text -- reached THROUGH
+    the function #77 wrote to stop it. Raising here instead means main()'s per-source
+    `except Exception` reports a loud FAILED for that one source and writes nothing, rather
+    than silently treating a document it could not read as one that needed no protecting.
     """
     if not doc_path.is_file():
         return "current", None, None
+    text = doc_path.read_text(encoding="utf-8")
     try:
-        fm = yaml.safe_load(doc_path.read_text(encoding="utf-8").split("---")[1])
-    except (IndexError, yaml.YAMLError):
-        return "current", None, None
+        fm = yaml.safe_load(text.split("---")[1])
+    except IndexError:
+        raise ValueError(
+            f"{doc_path} exists but has no '---' frontmatter delimiter to read "
+            "status/superseded_by/amended_on from -- refusing to treat an unreadable part "
+            "document as though it were current (see this function's own docstring, #77 "
+            "review finding S5)") from None
+    except yaml.YAMLError as e:
+        raise ValueError(
+            f"{doc_path} exists but its frontmatter does not parse as YAML ({e}) -- same "
+            "refusal as the missing-delimiter case above") from e
     if not isinstance(fm, dict):
-        return "current", None, None
+        raise ValueError(
+            f"{doc_path}'s frontmatter parsed but is not a mapping "
+            f"({type(fm).__name__}) -- same refusal as the two cases above")
     return (str(fm.get("status") or "current"),
             (str(fm["superseded_by"]) if fm.get("superseded_by") else None),
             (str(fm["amended_on"]) if fm.get("amended_on") else None))
@@ -717,14 +872,36 @@ def source_dates(src: dict, snap: Path, fresh: bool, doc_path: Path) -> tuple[st
 
 def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
           as_of: str, retrieved: str, status: str = "current",
-          superseded_by: str | None = None) -> str:
+          superseded_by: str | None = None, curator_note: str | None = None) -> str:
     """`status`/`superseded_by` default to the values every part document had before #77 --
     a brand-new part, or one no caller has told this function is superseded, is current. The
     caller (main()) is what actually derives them per-part via `existing_supersession()`;
     check_section_split.py's two direct `build()` calls exercise fixtures that are neither,
-    so they keep passing and keep getting "current" documents, unchanged."""
+    so they keep passing and keep getting "current" documents, unchanged.
+
+    `curator_note`, from `existing_curator_note()`, is the CURATED half of a superseded
+    whole-part note ("why we hold it") -- see that function's docstring (#77 review, P1/P2/
+    P3). None when nothing is committed yet; `_default_curator_note()` covers that case
+    below, inline, rather than being threaded as a second optional argument here.
+    """
     rid = doc_id(src, version)
     superseded = status == "superseded"
+    if superseded and not src.get("amended_on"):
+        # #77 review (S2): without this, a superseded part with no recorded `amended_on`
+        # (an incomplete edit -- `status: superseded` set by hand without also setting the
+        # date -- or a synthetic caller that forgets it) built `"(SUPERSEDED None)"` nowhere
+        # in the title at all (the title marker's own guard is `superseded and
+        # src.get("amended_on")`, so it silently OMITS the marker instead) while the body
+        # below fabricated "**removed from the CFR in its entirety on None**" -- a federal-
+        # law document stating a fact that does not exist, AGENTS.md hard rule 1, and losing
+        # the one mechanism (:888 above) a sibling corpus's [title, doc_type, path] lookup
+        # depends on to see the supersession at all. `amended_on` is not optional metadata
+        # for a superseded part; it is the removal date the rest of this function is built
+        # around, so a superseded part without one is refused rather than published broken.
+        raise ValueError(
+            f"{rid!r} is status='superseded' but has no amended_on -- the removal date is "
+            "load-bearing (the title marker and the body's removal sentence both need it) "
+            "and must not be published as a fabricated 'None'")
     fm = {
         "schema_version": 1,
         "corpus": "federal-reference",
@@ -832,13 +1009,23 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
         successor = _id_to_citation(superseded_by) if superseded_by else None
         drop_in = (f", and do not treat {successor} as a drop-in replacement without "
                    f"comparing them" if successor else "")
+        # #77 review (P1/P2/P3): the SECOND paragraph -- "why we hold it" -- is curator
+        # content per AGENTS.md hard rule 2, not a mechanical fact this ingester derives on
+        # its own authority the way the removal date/successor above are. `curator_note`
+        # (from `existing_curator_note()`, read back by main() from whatever is already
+        # committed at this part's own path) is used verbatim when present; only a part
+        # superseded for the FIRST time -- nothing committed yet to preserve -- falls back to
+        # `_default_curator_note()`'s plain, fully-derived sentence. The caveats after it
+        # (current-definition-may-differ, the successor-naming drop-in warning, no-section-
+        # correspondence) stay generator-owned and always fresh, because `drop_in` is
+        # data-dependent (the successor) in a way a preserved sentence must not go stale on.
+        note = curator_note or _default_curator_note(rid)
         parts.append(
             f"\n> **This part no longer exists.** It was removed from the CFR in its "
             f"entirety on **{fm['amended_on']}**"
             + (f" — {why}" if why else "")
             + f". The text below is its **last-in-force** text, as of {fm['as_of']}.\n>\n"
-            f"> It is held because Oregon material cites sections within it for periods "
-            f"when they were in force. **The current definition may differ.** Do not read "
+            f"> {note} {_CURATOR_NOTE_BOUNDARY} Do not read "
             f"this as current law{drop_in} — no specific section-to-section "
             f"correspondence is recorded here.\n")
     if superseded:
@@ -1024,7 +1211,24 @@ def main() -> int:
             if src["instrument_kind"] == "irs_publication" and not version:
                 version = irs_revision(text, snap)
 
-            (SNAPSHOTS / f"{rid}.txt").write_text(text, encoding="utf-8")
+            # BOTH WRITES BELOW ARE GUARDED ON `not args.check`. --check's whole contract is
+            # "compare every source to what is committed; write nothing" (see the flag's own
+            # --help text and this module's docstring), but before this fix both ran
+            # unconditionally, above the `if args.check:` branch several lines down. Measured
+            # damage from running `--check` in a clean copy: the freshly extracted `text` --
+            # UNANCHORED, because anchor_sections.py's re-anchoring pass below only ever runs
+            # when `ingested_ids` is non-empty, and --check never adds to it -- overwrote the
+            # committed, anchored .txt for every RULES source (pl-113-128, pl-115-224,
+            # irs-pub-1075: 157/29/69 anchors each, stripped to 0), which then failed
+            # `anchor_sections.py --check`, a CI gate (.github/workflows/ci.yml). Writing the
+            # manifest's sha256 back (write_manifest_hash(), reached via record_source_hash())
+            # is the same class of side effect one line lower. Neither write is needed to
+            # PRODUCE `built` for comparison below -- hash_snapshot() reads whatever .txt is
+            # ALREADY on disk (falling back to the raw snapshot) rather than the one just
+            # written, by its own docstring ("never re-derived from the source at verification
+            # time"), so skipping the write under --check does not change what `sha` is.
+            if not args.check:
+                (SNAPSHOTS / f"{rid}.txt").write_text(text, encoding="utf-8")
             sha = hash_snapshot(rid, fmt, SNAPSHOTS)
             # The MANIFEST hash is a different quantity from the document's source_sha256,
             # and conflating them is a trap I fell into once already. `source_sha256` is
@@ -1033,13 +1237,20 @@ def main() -> int:
             # converter. Storing ours there swaps one permanent false positive for another
             # while looking fixed. Verified: content_hash on the committed XML equals what
             # the drift job computed from the live URL, to the character.
-            note = record_source_hash(rid, raw, fmt, src["url"])
-            if note:
-                print(f"    {note}")
+            if not args.check:
+                note = record_source_hash(rid, raw, fmt, src["url"])
+                if note:
+                    print(f"    {note}")
             doc_path = OUT_DIR / f"{doc_id(src, version)}.md"
             as_of, retrieved = source_dates(src, snap, fresh, doc_path)
+            # #77 review (P1/P2/P3): read back BEFORE build() overwrites the file, same shape
+            # as existing_supersession() above -- None for a part superseded for the first
+            # time, in which case build() falls back to _default_curator_note() itself.
+            curator_note = (existing_curator_note(doc_path) if part_status == "superseded"
+                             else None)
             built = build(src, text, sha, stats, version, as_of, retrieved,
-                          status=part_status, superseded_by=part_superseded_by)
+                          status=part_status, superseded_by=part_superseded_by,
+                          curator_note=curator_note)
             if args.check:
                 committed = doc_path.read_text(encoding="utf-8") if doc_path.is_file() else None
                 if committed != built:
@@ -1048,7 +1259,19 @@ def main() -> int:
                           f"this ingester would write", file=sys.stderr)
                     continue
                 ok += 1
-                print(f"  {rid:22} ok — matches committed document")
+                # #77 review (P8): a superseded part's `amended_on` was TRUSTED from the
+                # committed document rather than verified (there is no live endpoint left to
+                # verify it against -- eCFR 404s for a wholly-removed part, not just its
+                # sections). Plain success output used to read as though every field had been
+                # checked; #73 named this exact gap for the analogous per-SECTION case
+                # (split_cfr_sections.committed_amended_on()) and its fix was disclosure, not
+                # silence: "a green --check read as though it had not [verified]." Same fix,
+                # here, for the one field this ingester echoes rather than checks.
+                disclosed = ("  — amended_on ECHOED, NOT VERIFIED (superseded part; eCFR has "
+                              "no live record for a part that no longer exists at all, see "
+                              "committed_amended_on()'s docstring in split_cfr_sections.py, "
+                              "#73)" if part_status == "superseded" else "")
+                print(f"  {rid:22} ok — matches committed document{disclosed}")
                 continue
             doc_path.write_text(built, encoding="utf-8")
             ok += 1
