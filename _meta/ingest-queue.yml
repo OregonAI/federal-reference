@@ -47,17 +47,17 @@
 # checkout. mentions_erf + mentions_audits == mentions always; cited_in names a
 # source only where that source's own mentions_* is nonzero.
 
-catalog_targets_total: 1358
+catalog_targets_total: 1359
 # #70: the non-CFR remainder of catalog_targets_total -- USC citations and named
 # instruments (HIPAA, WIOA, ...) that parse_cfr_citation() correctly excludes from
 # scanned_targets below. catalog_targets_total == scanned_targets +
 # catalog_non_cfr_targets, checked by --check the same way every other declared
 # number here is checked against a sibling number in this file.
-catalog_non_cfr_targets: 783
+catalog_non_cfr_targets: 784
 scanned_targets: 575
-held_parts: 42
+held_parts: 43
 audit_only_parts: 7
-unheld_parts: 540
+unheld_parts: 539
 total_authority_claims_all_parts: 651
 total_authority_claims_held: 599
 # Denominator for "we hold the top N": how many of the claims below a maintainer
@@ -194,8 +194,8 @@ queue:
   - part_id: "29-cfr-825"
     citation: "29 CFR 825"
     authority_claims: 1
-    mentions: 15
-    mentions_erf: 15
+    mentions: 16
+    mentions_erf: 16
     mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "40-cfr-763"
@@ -478,13 +478,6 @@ queue:
     mentions_erf: 43
     mentions_audits: 0
     cited_in: ["erf"]
-  - part_id: "42-cfr-2"
-    citation: "42 CFR 2"
-    authority_claims: 0
-    mentions: 40
-    mentions_erf: 39
-    mentions_audits: 1
-    cited_in: ["audits", "erf"]
   - part_id: "40-cfr-273"
     citation: "40 CFR 273"
     authority_claims: 0

@@ -1019,3 +1019,54 @@ sources:
     notes: |
       RENAMED: StateRAMP now does business as GovRAMP. Searching the old name alone will
       start missing material. NO OREGON BINDING FOUND — held under `named`, like the CPGs.
+
+  - id: "42-cfr-2"
+    sha256: "6bcef1c566860891111d31350a354347127d27b3d003da96c72f7febf84a04a8"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-09-10/title-42.xml?part=2"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "42 CFR 2"
+    title: "Confidentiality of Substance Use Disorder Patient Records"
+    issuing_body: "Department of Health and Human Services / Substance Abuse and Mental Health Services Administration"
+    signal: "named"
+    why: >
+      0 authority claims against dozens of ERF mentions -- the same shape as IRS Pub 1075
+      and CJIS, both admitted on `named` for their penalties rather than their citation
+      count. OHA behavioral health rules cite it throughout
+      (oar-309-008-0300, oar-309-014-0036, oar-309-018-0115) and DOC's oar-291-047-0140
+      does too; every one currently resolves to nothing. Part 2 governs substance use
+      disorder patient records, is stricter than HIPAA on consent and redisclosure, and
+      carries real consequences for OHA behavioral health programs. Split from #22 as #37.
+      Re-measured directly against ERF's own external-citations catalog and a fresh
+      oregon-audits scan on 2026-09-13 (both sibling repos checked out locally): 39
+      mentions in ERF, 1 in Oregon's single audits, 0 authority claims -- 40 total. #37's
+      own brief said 36 mentions across 38 ERF documents; the higher count here is not a
+      contradiction, it is the same catalog re-read on a later day, and is recorded because
+      this corpus does not let a stale count stand once a fresher one is in hand.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "7-cfr-277"
+    sha256: "96d70b89e66610d90138ef64b79454571504258b7f438114dd15005c999ed9f3"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-09-10/title-7.xml?part=277"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "7 CFR 277"
+    title: "Payments of Certain Administrative Costs of State Agencies"
+    issuing_body: "Department of Agriculture / Food and Nutrition Service"
+    signal: "named"
+    why: >
+      0 authority claims, 0 mentions -- in EITHER ERF or Oregon's single audits, measured
+      2026-09-13 against both sibling repos directly. This is not the 42 CFR Part 2 shape
+      (zero claims, real mentions); it is genuinely uncited by name anywhere in Oregon
+      material, which is exactly #97's own premise and is confirmed here rather than
+      assumed. Held anyway, `named`, the same basis as FNS Handbook 901 (already held here,
+      whose own manifest note already flags this exact gap) and IRS Pub 1075/CJIS: a
+      high-stakes obligation citation count cannot see. Split from #22 via #22's own
+      closing comment, filed as #97. This corpus holds 7 CFR 273 (SNAP certification of
+      eligible households) but not 277 (grants and cost-sharing to state agencies), where
+      the SNAP systems-security obligation actually lives: § 277.18(m)(2) requires a state
+      agency (Oregon side: ODHS) to "implement and maintain a comprehensive Security
+      Program for IS and installations involved in the administration of the SNAP", and
+      (m)(3) requires a biennial security review -- read it at the source, quoted here only
+      to state why this part is held, not as the requirement itself.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"

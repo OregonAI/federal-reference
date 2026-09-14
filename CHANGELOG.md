@@ -67,6 +67,59 @@ Repo-curation dates only — official effective dates live in frontmatter.
   manifest-shape change, not a scaling annoyance, and it is the thing that will force the
   question ADR-0006 itself names: whether U.S.C. entries should be derived from the
   cited-sections scan the way ADR-0003 derives its list. #61
+- 2026-09-13 — Ingested **42 CFR Part 2** (#37, split from #22) and **7 CFR Part 277**
+  (#97, split from #22's own closing comment) — both through the existing eCFR ingest
+  path unchanged, both `signal: named`.
+
+  **42 CFR 2** (Confidentiality of Substance Use Disorder Patient Records, HHS/SAMHSA).
+  Re-measured against ERF's own `external-citations.yml` and a fresh `oregon-audits` scan
+  (both sibling repos checked out locally, 2026-09-13): 0 authority claims, 39 ERF
+  mentions + 1 audit mention = 40 total — #37's own brief said 36 mentions across 38 ERF
+  documents; recorded as a correction, not a contradiction (same catalog, later day). All
+  four named OHA/DOC rules (`oar-309-008-0300`, `oar-309-014-0036`, `oar-309-018-0115`,
+  `oar-291-047-0140`) cite the literal string "42 CFR Part 2" and now resolve to
+  `42-cfr-2`, confirmed directly against `CorpusFramework.resolve_citation()`.
+  `as_of: 2026-09-10` (eCFR's own `up_to_date_as_of` for Title 42 that day — the exact
+  fetch date 404s: eCFR's point-in-time snapshots lag the calendar), `amended_on:
+  2024-09-17` from the part's own version record (the 2024 final rule #22 flagged, read
+  from the API rather than anticipated). `src/scan_cited_sections.py --title 42 --part 2`
+  found 3 section-shaped citations (§§ 2.1, 2.11, 2.19) — real demand, so those three
+  graduate to their own documents per ADR-0003, same as any other part; the other 37
+  mentions are part-level ("42 CFR Part 2") and stay inside the part document's own
+  `###` headings.
+
+  **7 CFR 277** (Payments of Certain Administrative Costs of State Agencies, USDA/FNS).
+  Confirmed, not assumed: this corpus holds 7 CFR 273 and did not hold 277 (`instruments/`
+  had `7-cfr-273.*` and no `7-cfr-277*`). Re-measured 2026-09-13 against both sibling
+  repos directly: 0 authority claims, 0 mentions anywhere — the part is not in ERF's
+  catalog and `scan_audit_mentions()` finds nothing in any of 242 audit reports.
+  `src/scan_cited_sections.py --title 7 --part 277` confirms the same at the section
+  level and correctly writes no cited-sections file (exit 1, "no ... section citations
+  found") — so, per ADR-0003's demand-driven split and its own standing-trigger note
+  (WIOA/Perkins V/CJIS/Pub 1075 get the identical treatment at zero section-shaped
+  citations), the part is held WHOLE with no section split: § 277.18 is addressable by
+  its own `###` heading inside the part document, not promoted to its own document,
+  because no citation evidence supports doing so. `fns-handbook-901`'s own manifest note
+  already named this exact gap ("The SNAP systems-security obligation is 7 CFR
+  277.18(m)(2)-(3), a CFR part this corpus does not hold") — now closed.
+  `as_of: 2026-09-10`, `amended_on: 2018-04-03` (the part's own version record).
+
+  Both documents verified token-for-token against their raw eCFR XML
+  (`check_extraction.py`) and round-trip clean under `ingest_instruments.py --check`.
+  `_meta/ingest-queue.yml` regenerated against both real sibling checkouts: `held_parts`
+  42 → 43 (only 42-cfr-2 moves it — 7-cfr-277 was never in ERF's catalog so was never a
+  queue row), the `42-cfr-2` row removed, `unheld_parts` 540 → 539; the regeneration also
+  picked up ERF's own incidental catalog drift since the file was last regenerated
+  (`catalog_targets_total` 1358 → 1359, one more mention on an unrelated existing row,
+  `29-cfr-825`) which is upstream movement, not something this change caused.
+  `instruments/` 425 → 430 (2 parts + 3 split sections). Every generated-artifact gate in
+  `.github/workflows/ci.yml`'s `generated` job re-run clean for both:
+  `anchor_sections.py --check`, `build_graph.py --check`, `corpus-generate-status
+  --check`, `split_cfr_sections.py --check` (+ `--verify-amended-on`, live, for the three
+  new sections), `check_section_split.py`, `scan_cited_sections.py --check`,
+  `check_ingest_queue.py`, `check_citations.py`, `check_issuing_body.py`,
+  `check_part_supersession.py`, `ingest_instruments.py --check --only 45-cfr-75`,
+  `check_instrument_kind.py`, `check_extraction.py`.
 
 ### Fixed
 - 2026-09-13 — `CONTRIBUTING.md` required an `Assisted-by:` trailer on agent-assisted
