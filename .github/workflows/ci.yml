@@ -183,3 +183,28 @@ jobs:
       # green. This one re-reads the raw PDF/XML.
       - name: Committed text must match the raw source
         run: python3 src/check_extraction.py
+
+  # #54: CONTRIBUTING.md requires an `Assisted-by:` trailer on agent-assisted commits, and
+  # nothing checked for it -- "a check that passes without checking anything", per AGENTS.md's
+  # own defect list. This job runs on `pull_request` ONLY, never on `push` to main: this
+  # repo's squash-merge setting (`squash_merge_commit_message: COMMIT_MESSAGES`) reliably
+  # breaks `git interpret-trailers --parse`'s reading of the trailer block on the commit that
+  # lands on main -- confirmed against six real agent-assisted squash-merges already on main,
+  # every one of them, regardless of whether the branch commit was well-formed. See
+  # src/check_commit_trailers.py's own module docstring for the full investigation. Checking
+  # the branch commits here, before GitHub touches them, is the only seam that can fail
+  # honestly -- a gate on the post-merge commit would redden on every future agent-assisted PR
+  # whether or not the author did anything wrong.
+  commit-trailers:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: "Every agent-assisted commit in this PR must carry a parseable Assisted-by: trailer"
+        env:
+          TRAILER_CHECK_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          TRAILER_CHECK_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: python3 src/check_commit_trailers.py
