@@ -732,6 +732,58 @@ def existing_curator_note(doc_path: Path) -> str | None:
     return text.split(_CURATOR_NOTE_BOUNDARY, 1)[0].strip() or None
 
 
+def existing_relationships(doc_path: Path) -> dict:
+    """Curator-added relationship edges already committed, read back so a re-ingest does not
+    erase them -- the same "read the file this run is about to overwrite" shape
+    `existing_curator_note()` and `existing_supersession()` use one function up and two
+    functions up respectively.
+
+    THIS CORPUS'S GRAPH IS "hand-authored or written by its own ingester" (build_graph.py's
+    own module docstring). `related`/`superseded_by` are mechanically derived per kind below
+    (cited_section_ids() for an in-force cfr_part, `[superseded_by]` for a superseded one) --
+    but a CROSS-INSTRUMENT edge this ingester has no way to derive on its own (34 CFR 99
+    implementing 20 USC 1232g; 42 CFR 2 being the stricter-than comparison to 45 CFR 160/164)
+    is exactly the curator content AGENTS.md hard rule 2 anticipates, and it has nowhere else
+    to live: these are `federal_instrument` documents, `## Full text` is exact-match verbatim
+    (check_extraction.py), and a doc_type in VERBATIM_REQUIRED has no `## Cross-references`
+    body section to hold it either (that section's own template note licenses only in-repo
+    RELATIVE-PATH links for other doc_types; this corpus's frontmatter `relationships` block
+    is what a sibling-relationship graph actually reads). So the edge is added directly to
+    frontmatter, once, and preserved here across every later regeneration.
+
+    Returns {} for a document that does not exist yet or carries no `relationships` block --
+    the same "nothing to preserve" case `existing_curator_note()` returns None for.
+    """
+    if not doc_path.is_file():
+        return {}
+    fm = yaml.safe_load(doc_path.read_text(encoding="utf-8").split("---", 2)[1]) or {}
+    return fm.get("relationships") or {}
+
+
+def merge_relationships(auto: dict, existing: dict) -> dict:
+    """Union `auto` (this run's mechanically DERIVED edges) with `existing` (whatever was
+    already committed, per `existing_relationships()`), per REL_KEY, deduped and order-
+    preserving (auto's own targets first, so `related`'s own split-section ids stay in
+    `cited_section_ids()`'s order when nothing curated has been added yet).
+
+    EVERY KEY IN `auto` IS KEPT, even an empty list -- a cfr_part with zero cited sections
+    still publishes `relationships: {related: []}` (the #34 fix: distinguishing a real "zero
+    sections cited" part from one whose relationships block was never written at all). A key
+    present only in `existing` -- `implements`/`implemented_by` today, since neither is ever
+    auto-derived -- is added only if it still has targets. A key BOTH sides declare --
+    `related`, for a cfr_part that has both its own split sections AND a curated comparison
+    edge -- unions rather than one replacing the other, so re-ingesting 42 CFR 2 to pick up a
+    new split section does not silently drop its hand-wired edge to 45 CFR 160/164, or vice
+    versa.
+    """
+    merged = dict(auto)
+    for key, vals in existing.items():
+        combined = list(dict.fromkeys([*(merged.get(key) or []), *(vals or [])]))
+        if combined:
+            merged[key] = combined
+    return merged
+
+
 def doc_id(src: dict, version: str | None) -> str:
     """The document id, with the version in it when the version IS the identity.
 
@@ -872,12 +924,19 @@ def source_dates(src: dict, snap: Path, fresh: bool, doc_path: Path) -> tuple[st
 
 def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
           as_of: str, retrieved: str, status: str = "current",
-          superseded_by: str | None = None, curator_note: str | None = None) -> str:
+          superseded_by: str | None = None, curator_note: str | None = None,
+          existing_rel: dict | None = None) -> str:
     """`status`/`superseded_by` default to the values every part document had before #77 --
     a brand-new part, or one no caller has told this function is superseded, is current. The
     caller (main()) is what actually derives them per-part via `existing_supersession()`;
     check_section_split.py's two direct `build()` calls exercise fixtures that are neither,
     so they keep passing and keep getting "current" documents, unchanged.
+
+    `existing_rel`, from `existing_relationships()`, is any curator-added cross-instrument
+    edge already committed (see that function's own docstring) -- unioned with whatever this
+    run derives mechanically via `merge_relationships()`, never replacing it. None (the
+    check_section_split.py fixtures' default) is treated as {}, same as a document that does
+    not exist yet.
 
     `curator_note`, from `existing_curator_note()`, is the CURATED half of a superseded
     whole-part note ("why we hold it") -- see that function's docstring (#77 review, P1/P2/
@@ -902,6 +961,15 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
             f"{rid!r} is status='superseded' but has no amended_on -- the removal date is "
             "load-bearing (the title marker and the body's removal sentence both need it) "
             "and must not be published as a fabricated 'None'")
+    # See merge_relationships()'s own docstring for what "auto" means per kind/status, and
+    # existing_relationships()'s for why a curator-added cross-instrument edge (read into
+    # `existing_rel` by the caller, from whatever is already committed) is unioned in rather
+    # than derived here.
+    _auto_rel = ({"related": [superseded_by] if superseded_by else []}
+                 if superseded and src["instrument_kind"] == "cfr_part" else
+                 {"related": cited_section_ids(rid)}
+                 if src["instrument_kind"] == "cfr_part" else {})
+    _rel = merge_relationships(_auto_rel, existing_rel or {})
     fm = {
         "schema_version": 1,
         "corpus": "federal-reference",
@@ -973,10 +1041,14 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
         # from a gone part's own edge is where the LIVE text moved to, so this points at
         # `superseded_by` instead -- and 45 CFR 75's committed `relationships.related:
         # [2-cfr-200]` (dcd0d41) is exactly that, not its own seven split sections.
-        **({"relationships": {"related": [superseded_by] if superseded_by else []}}
-           if superseded and src["instrument_kind"] == "cfr_part" else
-           {"relationships": {"related": cited_section_ids(rid)}}
-           if src["instrument_kind"] == "cfr_part" else {}),
+        #
+        # THE AUTO-DERIVED HALF ONLY -- unioned with any curator-added cross-instrument edge
+        # via merge_relationships() below (see existing_relationships()'s own docstring for
+        # why that half cannot be derived here: FERPA's statute/regulation edge, and the
+        # 42 CFR 2 <-> 45 CFR 160/164 comparison edge, are judgements no ingester makes on its
+        # own authority). Applies to every kind now, not only cfr_part, so a usc_section (no
+        # auto-derived edge of its own) can still carry and preserve a curated one.
+        **({"relationships": _rel} if (src["instrument_kind"] == "cfr_part" or _rel) else {}),
         "maintainer": "@morficflux",
         # Written EMPTY on purpose; a human sets them at PR approval. An ingester that
         # stamps a verification it did not perform is worse than a blank.
@@ -1250,7 +1322,8 @@ def main() -> int:
                              else None)
             built = build(src, text, sha, stats, version, as_of, retrieved,
                           status=part_status, superseded_by=part_superseded_by,
-                          curator_note=curator_note)
+                          curator_note=curator_note,
+                          existing_rel=existing_relationships(doc_path))
             if args.check:
                 committed = doc_path.read_text(encoding="utf-8") if doc_path.is_file() else None
                 if committed != built:

@@ -1070,3 +1070,67 @@ sources:
       (m)(3) requires a biennial security review -- read it at the source, quoted here only
       to state why this part is held, not as the requirement itself.
     reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  # ── HIPAA: 45 CFR 160 and 164 (#27) ─────────────────────────────────────────────────
+  # TWO DOCUMENTS, NOT ONE "HIPAA" ENTRY -- #27's own triage is explicit that merging them
+  # would force one `as_of`/`amended_on` pair to stand in for two parts amended on different
+  # schedules (160: 2026-03-24 and 2026-05-26; 164: 2024-06-25 and not since), reintroducing
+  # exactly the sharp edge ADR-0001 exists to avoid. 45 CFR 162 (Administrative
+  # Simplification -- transactions, code sets, identifiers) is DELIBERATELY EXCLUDED: 21
+  # mentions, 0 authority claims, a genuinely different subject (billing/transaction
+  # standards, not privacy or security), cited mainly by DHS/OHA billing rules. If wanted,
+  # it is its own intake decision. 42 USC 1320d (the HIPAA statute) is also excluded --
+  # ADR-0006 now holds cited U.S. Code sections on demand, but this issue's own scope is the
+  # two regulations, and adding the statute is a separate judgement this PR does not make.
+  - id: "45-cfr-160"
+    sha256: "c915d1143599d47dd65b8233a4f7f5a449e444981e161215736793d9c6d31de6"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-09-10/title-45.xml?part=160"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "45 CFR 160"
+    title: "General Administrative Requirements"
+    issuing_body: "Department of Health and Human Services / Office for Civil Rights"
+    signal: "named"
+    why: >
+      #27's own triage corrected the issue body's "most-cited authority" framing: measured
+      against ERF's external-citations catalog, 45 CFR 160 carries 0 authority claims. Named
+      instead, the same basis as IRS Pub 1075 and CJIS (both admitted at 0 authority claims
+      on their penalties, not their citation count) -- HIPAA binds OHA, ODHS and every
+      covered state program, and the penalties are real. Re-measured 2026-09-13 against
+      fresh checkouts of both sibling repos (executive-regulatory-frameworks@58e1839,
+      oregon-audits@ccd0247): 52 mentions in ERF (0 authority claims), 0 in oregon-audits'
+      own CFR-citation scan. #27's own brief said 50 ERF mentions; the higher count here is
+      the same catalog re-read on a later day, not a contradiction. oregon-audits carries no
+      "45 CFR 160" or "45 CFR 164" citation in either citation form, but DOES carry 4 prose
+      mentions of the word "HIPAA" across two reports (2025-29, 2020-37) -- stated here
+      rather than implying a compliance-audit surface the evidence does not show.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  - id: "45-cfr-164"
+    sha256: "bdaba263f49afd5dd9eb2af416662fa6f8223e12b87c355a5cfcea18b990b5be"
+    url: "https://www.ecfr.gov/api/versioner/v1/full/2026-09-10/title-45.xml?part=164"
+    format: "xml"
+    instrument_kind: "cfr_part"
+    citation: "45 CFR 164"
+    title: "Security and Privacy"
+    issuing_body: "Department of Health and Human Services / Office for Civil Rights"
+    signal: "named"
+    why: >
+      Same correction and basis as 45-cfr-160 (read that entry's `why` for the shared
+      reasoning): `named`, not `authority` -- 2 authority claims against 106 ERF mentions
+      (#27's brief said 101; the higher count is a fresher read of the same catalog, not a
+      contradiction), 0 mentions in oregon-audits' CFR-citation scan, 0 "45 CFR 164"
+      citations of either form in oregon-audits despite 4 prose "HIPAA" mentions across two
+      reports. Measured 2026-09-13 against the same fresh sibling checkouts.
+      CURRENCY, RECORDED PROMINENTLY BECAUSE #27 FLAGGED IT: eCFR's version record for this
+      part shows its most recent amendment as 2024-06-25, with NO amendment in 2025 or 2026
+      as of this ingest. The 2024-25 HIPAA Security Rule NPRM (proposed 2025-01-06) is a
+      PROPOSED rule -- not the CFR, not verbatim-eligible as regulation text, and is not
+      reflected here in any way. `amended_on` states only what eCFR's version record
+      reports on the day of this ingest; if that NPRM is finalized, this part's `amended_on`
+      will move and this document must be re-ingested rather than the change anticipated.
+      RELATED TO 42-cfr-2 (#22/#37, held): 42 CFR Part 2 is explicitly stricter than the
+      HIPAA baseline on consent and redisclosure for substance use disorder records, and
+      both this part and 45-cfr-160 carry a `relationships.related` edge to it and from it,
+      so the comparison is traversable in either direction now that both ends are held.
+    reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"

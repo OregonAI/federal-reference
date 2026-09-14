@@ -1,7 +1,7 @@
 {
  "corpus": "federal-reference",
- "n_nodes": 430,
- "n_edges": 611,
+ "n_nodes": 451,
+ "n_edges": 678,
  "n_edges_external": 0,
  "nodes": [
   {
@@ -2063,6 +2063,153 @@
    "path": "instruments/45-cfr-155.md"
   },
   {
+   "id": "45-cfr-160.103",
+   "title": "45 CFR 160.103 — Definitions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-160.103.md"
+  },
+  {
+   "id": "45-cfr-160",
+   "title": "General Administrative Requirements",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-160.md"
+  },
+  {
+   "id": "45-cfr-164.103",
+   "title": "45 CFR 164.103 — Definitions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-164.103.md"
+  },
+  {
+   "id": "45-cfr-164.304",
+   "title": "45 CFR 164.304 — Definitions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-164.304.md"
+  },
+  {
+   "id": "45-cfr-164.310",
+   "title": "45 CFR 164.310 — Physical safeguards",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-164.310.md"
+  },
+  {
+   "id": "45-cfr-164.402",
+   "title": "45 CFR 164.402 — Definitions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-164.402.md"
+  },
+  {
+   "id": "45-cfr-164.404",
+   "title": "45 CFR 164.404 — Notification to individuals",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-164.404.md"
+  },
+  {
+   "id": "45-cfr-164.410",
+   "title": "45 CFR 164.410 — Notification by a business associate",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-164.410.md"
+  },
+  {
+   "id": "45-cfr-164.412",
+   "title": "45 CFR 164.412 — Law enforcement delay",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-164.412.md"
+  },
+  {
+   "id": "45-cfr-164.501",
+   "title": "45 CFR 164.501 — Definitions",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-164.501.md"
+  },
+  {
+   "id": "45-cfr-164.502",
+   "title": "45 CFR 164.502 — Uses and disclosures of protected health information: General rules",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-164.502.md"
+  },
+  {
+   "id": "45-cfr-164.504",
+   "title": "45 CFR 164.504 — Uses and disclosures: Organizational requirements",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-164.504.md"
+  },
+  {
+   "id": "45-cfr-164.508",
+   "title": "45 CFR 164.508 — Uses and disclosures for which an authorization is required",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-164.508.md"
+  },
+  {
+   "id": "45-cfr-164.512",
+   "title": "45 CFR 164.512 — Uses and disclosures for which an authorization or opportunity to agree or object is not required",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-164.512.md"
+  },
+  {
+   "id": "45-cfr-164.514",
+   "title": "45 CFR 164.514 — Other requirements relating to uses and disclosures of protected health information",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-164.514.md"
+  },
+  {
+   "id": "45-cfr-164.520",
+   "title": "45 CFR 164.520 — Notice of privacy practices for protected health information",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-164.520.md"
+  },
+  {
+   "id": "45-cfr-164.522",
+   "title": "45 CFR 164.522 — Rights to request privacy protection for protected health information",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-164.522.md"
+  },
+  {
+   "id": "45-cfr-164.524",
+   "title": "45 CFR 164.524 — Access of individuals to protected health information",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-164.524.md"
+  },
+  {
+   "id": "45-cfr-164.526",
+   "title": "45 CFR 164.526 — Amendment of protected health information",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-164.526.md"
+  },
+  {
+   "id": "45-cfr-164.528",
+   "title": "45 CFR 164.528 — Accounting of disclosures of protected health information",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-164.528.md"
+  },
+  {
+   "id": "45-cfr-164",
+   "title": "Security and Privacy",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/45-cfr-164.md"
+  },
+  {
    "id": "45-cfr-260.20",
    "title": "45 CFR 260.20 — What is the purpose of the TANF program?",
    "doc_type": "federal_instrument",
@@ -3487,6 +3634,11 @@
    "to": "2-cfr-200.62"
   },
   {
+   "from": "20-usc-1232g",
+   "type": "implemented_by",
+   "to": "34-cfr-99"
+  },
+  {
    "from": "23-cfr-645.301",
    "type": "related",
    "to": "23-cfr-645"
@@ -4537,6 +4689,126 @@
    "to": "34-cfr-99"
   },
   {
+   "from": "34-cfr-99",
+   "type": "implements",
+   "to": "20-usc-1232g"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.30"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.3"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.31"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.6"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.4"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.5"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.7"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.8"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.10"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.11"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.12"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.20"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.21"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.22"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.32"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.33"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.34"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.35"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.36"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.37"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.63"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.1"
+  },
+  {
+   "from": "34-cfr-99",
+   "type": "related",
+   "to": "34-cfr-99.64"
+  },
+  {
    "from": "42-cfr-2.1",
    "type": "related",
    "to": "42-cfr-2"
@@ -4565,6 +4837,16 @@
    "from": "42-cfr-2",
    "type": "related",
    "to": "42-cfr-2.1"
+  },
+  {
+   "from": "42-cfr-2",
+   "type": "related",
+   "to": "45-cfr-164"
+  },
+  {
+   "from": "42-cfr-2",
+   "type": "related",
+   "to": "45-cfr-160"
   },
   {
    "from": "42-cfr-433.135",
@@ -5215,6 +5497,206 @@
    "from": "45-cfr-155.725",
    "type": "related",
    "to": "45-cfr-155"
+  },
+  {
+   "from": "45-cfr-160.103",
+   "type": "related",
+   "to": "45-cfr-160"
+  },
+  {
+   "from": "45-cfr-160",
+   "type": "related",
+   "to": "45-cfr-160.103"
+  },
+  {
+   "from": "45-cfr-160",
+   "type": "related",
+   "to": "42-cfr-2"
+  },
+  {
+   "from": "45-cfr-164.103",
+   "type": "related",
+   "to": "45-cfr-164"
+  },
+  {
+   "from": "45-cfr-164.304",
+   "type": "related",
+   "to": "45-cfr-164"
+  },
+  {
+   "from": "45-cfr-164.310",
+   "type": "related",
+   "to": "45-cfr-164"
+  },
+  {
+   "from": "45-cfr-164.402",
+   "type": "related",
+   "to": "45-cfr-164"
+  },
+  {
+   "from": "45-cfr-164.404",
+   "type": "related",
+   "to": "45-cfr-164"
+  },
+  {
+   "from": "45-cfr-164.410",
+   "type": "related",
+   "to": "45-cfr-164"
+  },
+  {
+   "from": "45-cfr-164.412",
+   "type": "related",
+   "to": "45-cfr-164"
+  },
+  {
+   "from": "45-cfr-164.501",
+   "type": "related",
+   "to": "45-cfr-164"
+  },
+  {
+   "from": "45-cfr-164.502",
+   "type": "related",
+   "to": "45-cfr-164"
+  },
+  {
+   "from": "45-cfr-164.504",
+   "type": "related",
+   "to": "45-cfr-164"
+  },
+  {
+   "from": "45-cfr-164.508",
+   "type": "related",
+   "to": "45-cfr-164"
+  },
+  {
+   "from": "45-cfr-164.512",
+   "type": "related",
+   "to": "45-cfr-164"
+  },
+  {
+   "from": "45-cfr-164.514",
+   "type": "related",
+   "to": "45-cfr-164"
+  },
+  {
+   "from": "45-cfr-164.520",
+   "type": "related",
+   "to": "45-cfr-164"
+  },
+  {
+   "from": "45-cfr-164.522",
+   "type": "related",
+   "to": "45-cfr-164"
+  },
+  {
+   "from": "45-cfr-164.524",
+   "type": "related",
+   "to": "45-cfr-164"
+  },
+  {
+   "from": "45-cfr-164.526",
+   "type": "related",
+   "to": "45-cfr-164"
+  },
+  {
+   "from": "45-cfr-164.528",
+   "type": "related",
+   "to": "45-cfr-164"
+  },
+  {
+   "from": "45-cfr-164",
+   "type": "related",
+   "to": "45-cfr-164.512"
+  },
+  {
+   "from": "45-cfr-164",
+   "type": "related",
+   "to": "45-cfr-164.502"
+  },
+  {
+   "from": "45-cfr-164",
+   "type": "related",
+   "to": "45-cfr-164.514"
+  },
+  {
+   "from": "45-cfr-164",
+   "type": "related",
+   "to": "45-cfr-164.524"
+  },
+  {
+   "from": "45-cfr-164",
+   "type": "related",
+   "to": "45-cfr-164.404"
+  },
+  {
+   "from": "45-cfr-164",
+   "type": "related",
+   "to": "45-cfr-164.528"
+  },
+  {
+   "from": "45-cfr-164",
+   "type": "related",
+   "to": "45-cfr-164.402"
+  },
+  {
+   "from": "45-cfr-164",
+   "type": "related",
+   "to": "45-cfr-164.501"
+  },
+  {
+   "from": "45-cfr-164",
+   "type": "related",
+   "to": "45-cfr-164.504"
+  },
+  {
+   "from": "45-cfr-164",
+   "type": "related",
+   "to": "45-cfr-164.520"
+  },
+  {
+   "from": "45-cfr-164",
+   "type": "related",
+   "to": "45-cfr-164.522"
+  },
+  {
+   "from": "45-cfr-164",
+   "type": "related",
+   "to": "45-cfr-164.304"
+  },
+  {
+   "from": "45-cfr-164",
+   "type": "related",
+   "to": "45-cfr-164.410"
+  },
+  {
+   "from": "45-cfr-164",
+   "type": "related",
+   "to": "45-cfr-164.412"
+  },
+  {
+   "from": "45-cfr-164",
+   "type": "related",
+   "to": "45-cfr-164.526"
+  },
+  {
+   "from": "45-cfr-164",
+   "type": "related",
+   "to": "45-cfr-164.103"
+  },
+  {
+   "from": "45-cfr-164",
+   "type": "related",
+   "to": "45-cfr-164.310"
+  },
+  {
+   "from": "45-cfr-164",
+   "type": "related",
+   "to": "45-cfr-164.508"
+  },
+  {
+   "from": "45-cfr-164",
+   "type": "related",
+   "to": "42-cfr-2"
   },
   {
    "from": "45-cfr-260.20",
