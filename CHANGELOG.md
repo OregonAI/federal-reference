@@ -69,6 +69,33 @@ Repo-curation dates only — official effective dates live in frontmatter.
   cited-sections scan the way ADR-0003 derives its list. #61
 
 ### Fixed
+- 2026-09-13 — `CONTRIBUTING.md` required an `Assisted-by:` trailer on agent-assisted
+  commits and nothing checked for it. New `src/check_commit_trailers.py`, wired into
+  ci.yml's `commit-trailers` job on `pull_request` (not `push`), fails a PR whose
+  branch carries a commit that looks agent-assisted (`Claude-Session:` or
+  `Co-authored-by:` naming Claude, matched as TEXT, not a parsed trailer, so a
+  commit whose own `Assisted-by:` got mangled the same way as the two below is still
+  caught) but whose `Assisted-by:` does not PARSE via `git interpret-trailers --parse`.
+
+  Investigated first, per federal-reference#54's own triage: is `Assisted-by:` the
+  trailer this repo actually writes, or has practice drifted to `Co-Authored-By:`/
+  `Claude-Session:` under a different name? Confirmed the former — `Assisted-by:` is
+  written, well-formed, on every branch commit checked from #92 onward. What was
+  broken is WHERE it can be checked: this repo's squash-merge setting
+  (`squash_merge_commit_message: COMMIT_MESSAGES`) breaks `git interpret-trailers`'s
+  reading of the trailer block on the commit that lands on `main`, every time,
+  regardless of how well the branch commit was written — confirmed against all six
+  agent-assisted squash-merges on `main` at the time of writing (`ce4d14f`, `3353cf6`,
+  `c0cbd55`, `1990c17`, `3b7270f`, `c1c6f5d`), via two distinct corruption shapes
+  (blank lines inserted between trailer lines on a single-commit squash; a
+  `---------` separator plus GitHub's own synthesized trailing `Co-authored-by:` on a
+  multi-commit squash, which shadows the real block earlier in the message). The two
+  PRs in this repo's history merged via an actual merge commit instead (#75, #59)
+  preserved their branch commits' trailers byte-for-byte and parse clean today
+  (`dcd0d41`, `bc10bde`, `acd8622`) — proof this is GitHub's squash doing the damage,
+  not the author. So the check runs on the PR's own branch commits, before GitHub
+  touches them; `CONTRIBUTING.md` now says so explicitly. federal-reference#54
+
 - 2026-09-13 — `src/federal_ids.py`'s `USC` pattern (the parity-locked cross-corpus
   contract) could not tell a genuine section SUFFIX from a section RANGE: its suffix group
   matched both, so `38 USC 4301-4335` (USERRA) derived `38-usc-4301-4335` — an id no
