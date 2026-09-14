@@ -121,7 +121,99 @@ Repo-curation dates only — official effective dates live in frontmatter.
   `check_part_supersession.py`, `ingest_instruments.py --check --only 45-cfr-75`,
   `check_instrument_kind.py`, `check_extraction.py`.
 
+- 2026-09-13 — Ingested **45 CFR Part 160** and **45 CFR Part 164** (#27, HIPAA Privacy,
+  Security and Breach Notification), and discovered **34 CFR 99** (#26, FERPA) was already
+  held — ingested whole by 2026-09-01's 44-part mass intake, before this session began.
+  Both issues carried a `signal: authority` framing #27's own triage had already corrected
+  in-issue to `named`; re-measured against fresh checkouts of both sibling repos
+  (`executive-regulatory-frameworks@58e1839`, `oregon-audits@ccd0247`, 2026-09-13) before
+  trusting either.
+
+  **45 CFR 160** (General Administrative Requirements) and **45 CFR 164** (Security and
+  Privacy), both HHS/Office for Civil Rights, both `signal: named`. #27's brief said 50/101
+  ERF mentions; measured today at 52/106 — the same catalog re-read on a later day, not a
+  contradiction, and consistent with this session's other two undercounts (#37, #26 itself).
+  0 and 2 authority claims respectively; 0 audit citations in either CFR-citation form
+  against 4 prose "HIPAA" mentions in two reports (2025-29, 2020-37) — stated rather than
+  implying a compliance-audit surface the evidence does not show. **45 CFR 162
+  (Administrative Simplification) is deliberately excluded** — 21 mentions, 0 claims, a
+  different subject (transactions/code sets/identifiers), cited mainly by DHS/OHA billing
+  rules; its own intake decision if wanted. **42 USC 1320d (the HIPAA statute) is also
+  excluded** — ADR-0006 could hold it on demand, but this issue's scope is the two
+  regulations and adding the statute is a separate judgement this PR does not make.
+
+  **Currency, recorded prominently because #27 flagged it as live upstream risk.** eCFR's
+  version record, read live: Part 160 last amended **2026-05-26** (also 2026-03-24); Part
+  164 last amended **2024-06-25**, with NO amendment since. The 2024-25 HIPAA Security Rule
+  NPRM (proposed 2025-01-06) has NOT reached the CFR — confirmed from the version record,
+  not assumed from the issue's warning — and nothing here anticipates it: `amended_on`
+  states only what eCFR reports on the day of this ingest. `as_of: 2026-09-10` for both,
+  eCFR's own `up_to_date_as_of` for Title 45 that day (the literal fetch date 404s; eCFR's
+  point-in-time snapshots lag the calendar by about three days — #103's own precedent).
+
+  **Part-vs-section, derived from measurement, not the issues' suggestion.**
+  `scan_cited_sections.py --title 45 --part 160` found 18 citations to exactly ONE section
+  (160.103, Definitions) — it graduates. `--title 45 --part 164` found 79 citations across
+  18 distinct sections (164.512 leading at 24) — all 18 graduate. Neither issue's own
+  example citation (`164.312(a)(1)`) appears among the measured demand; the split follows
+  what Oregon actually cites, not the issue's illustration.
+
+  **The 42 CFR 2 comparison edge, completed.** #27 (and #37, before it) named 42 CFR Part 2
+  as the instrument HIPAA is the stricter-than baseline for, and said the comparison edge
+  needed both ends. Both now exist: `42-cfr-2`'s `relationships.related` gained
+  `45-cfr-164` and `45-cfr-160`; both HIPAA parts carry the edge back. A reader who lands on
+  either can now traverse to the other via `graph_neighbors` — verified directly, both
+  directions, against the real committed graph.
+
+  **The FERPA statute/regulation edge, wired.** `20-usc-1232g` (FERPA's statute, held since
+  ADR-0006) and `34-cfr-99` (the regulation, held since 2026-09-01) had never been linked.
+  `34-cfr-99` now carries `relationships.implements: [20-usc-1232g]`; `20-usc-1232g` carries
+  the reciprocal `implemented_by: [34-cfr-99]`. Verified both directions via
+  `graph_neighbors`. 20 USC 1232g was NOT re-ingested — no new fetch, no changed `as_of`,
+  `amended_on`, hash, or text; only the frontmatter relationship was added.
+
+  **New generator support**, `src/ingest_instruments.py`: `existing_relationships()` and
+  `merge_relationships()` (mirroring the existing `existing_curator_note()` shape) let a
+  cross-instrument edge that no ingester can derive on its own authority — a statute a
+  regulation implements, a comparison between two unrelated parts — be added once to
+  frontmatter and survive every later regeneration, unioned rather than overwritten with
+  whatever the ingester still derives mechanically (a part's own split sections,
+  `superseded_by`). Applies to every `instrument_kind`, not only `cfr_part`, so a
+  `usc_section` (which previously got no `relationships` block at all) can carry one too.
+
+  Both new parts verified token-for-token against their raw eCFR XML
+  (`check_extraction.py`: 16,125 and 39,303 tokens). Six real citing documents confirmed to
+  resolve via `CorpusFramework.resolve_citation()`: `oar-333-010-0600` and
+  `oar-581-015-2000` → `34-cfr-99`; `oar-125-055-0100` → `45-cfr-164`; `oar-333-022-0210` →
+  `45-cfr-160`; plus section-level resolution for `45 CFR 164.512`, `34 CFR 99.31`, `45 CFR
+  160.103`, and `20 USC 1232g` (which also surfaces its OLRC currency note). `instruments/`
+  430 → 451 (2 parts + 19 split sections). `_meta/ingest-queue.yml` regenerated against
+  both real sibling checkouts: both HIPAA parts removed as newly-held (`held_parts` 43 →
+  45), `unheld_parts` 539 → 537 (plus incidental upstream catalog movement, same as
+  #103's own note). Every generated-artifact gate in `.github/workflows/ci.yml`'s
+  `generated` job re-run clean, plus the three `corpus-toolkit` gates it doesn't cover
+  (`corpus-validate-frontmatter`, `corpus-verify-provenance`): `anchor_sections.py --check`,
+  `build_graph.py --check`, `corpus-generate-status --check`, `split_cfr_sections.py
+  --check` (+ `--verify-amended-on`, live, for 45-cfr-160, 45-cfr-164, 34-cfr-99 and
+  42-cfr-2), `check_section_split.py`, `scan_cited_sections.py --check`,
+  `check_ingest_queue.py`, `check_citations.py`, `check_issuing_body.py`,
+  `check_part_supersession.py`, `ingest_instruments.py --check --only 45-cfr-75`,
+  `check_instrument_kind.py`, `check_extraction.py`.
+
 ### Fixed
+- 2026-09-13 — `34-cfr-99`'s own `relationships.related` was committed empty (`[]`) despite
+  23 sections having been split out of it: `cited_section_ids("34-cfr-99")` returns all 23
+  right now, so the part had been a graph dead end since 2026-09-01 — walkable DOWN from any
+  `34-cfr-99.NN` section to the part, never UP from the part to its own sections, exactly
+  the failure `src/ingest_instruments.py`'s own `build()` docstring names for the general
+  case. Root cause: `_meta/cited-sections/34-cfr-99.yml` did not exist yet the one time
+  `ingest_instruments.py` ran for this part in the 2026-09-01 mass intake, so
+  `cited_section_ids()` correctly returned `[]` at the time — nothing ever re-ran the
+  ingester afterward to pick up the file once it existed. Fixed by re-running
+  `ingest_instruments.py --only 34-cfr-99` now that the file is current; found while wiring
+  this PR's FERPA statute/regulation edge into the same document. Content, `as_of`,
+  `amended_on`, `retrieved` and `source_sha256` are all unchanged — confirmed via `git diff`
+  before committing — this is a pure relationships-field fix, not a re-ingest.
 - 2026-09-13 — `CONTRIBUTING.md` required an `Assisted-by:` trailer on agent-assisted
   commits and nothing checked for it. New `src/check_commit_trailers.py`, wired into
   ci.yml's `commit-trailers` job on `pull_request` (not `push`), fails a PR whose

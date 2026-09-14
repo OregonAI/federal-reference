@@ -6,17 +6,17 @@ Generated 2026-09-13. Non-authoritative; see DISCLAIMER.md.
 
 | doc_type | count |
 |---|---|
-| federal_instrument | 430 |
+| federal_instrument | 451 |
 
-**Total: 430**
+**Total: 451**
 
 ## Source manifest
 
-61 declared source(s) across 1 group(s) in `source-manifest.yml`.
+63 declared source(s) across 1 group(s) in `source-manifest.yml`.
 
 ## Freshness (reverify every 90 days)
 
-430 of 430 document(s) overdue for re-verification.
+451 of 451 document(s) overdue for re-verification.
 
 | id | doc_type | last_verified |
 |---|---|---|
@@ -70,5 +70,5 @@ Generated 2026-09-13. Non-authoritative; see DISCLAIMER.md.
 | 2-cfr-200.521 | federal_instrument | never |
 | 2-cfr-200.53 | federal_instrument | never |
 | 2-cfr-200.62 | federal_instrument | never |
-| … | *380 more* | |
+| … | *401 more* | |
 

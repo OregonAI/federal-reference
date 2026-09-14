@@ -55,14 +55,14 @@ catalog_targets_total: 1359
 # number here is checked against a sibling number in this file.
 catalog_non_cfr_targets: 784
 scanned_targets: 575
-held_parts: 43
+held_parts: 45
 audit_only_parts: 7
-unheld_parts: 539
+unheld_parts: 537
 total_authority_claims_all_parts: 651
-total_authority_claims_held: 599
+total_authority_claims_held: 601
 # Denominator for "we hold the top N": how many of the claims below a maintainer
 # would account for by ingesting the first N entries of `queue:`.
-total_authority_claims_unheld: 52
+total_authority_claims_unheld: 50
 
 queue:
   - part_id: "17-cfr-227"
@@ -70,13 +70,6 @@ queue:
     authority_claims: 3
     mentions: 4
     mentions_erf: 4
-    mentions_audits: 0
-    cited_in: ["erf"]
-  - part_id: "45-cfr-164"
-    citation: "45 CFR 164"
-    authority_claims: 2
-    mentions: 106
-    mentions_erf: 106
     mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "49-cfr-571"
@@ -448,13 +441,6 @@ queue:
     authority_claims: 0
     mentions: 58
     mentions_erf: 58
-    mentions_audits: 0
-    cited_in: ["erf"]
-  - part_id: "45-cfr-160"
-    citation: "45 CFR 160"
-    authority_claims: 0
-    mentions: 52
-    mentions_erf: 52
     mentions_audits: 0
     cited_in: ["erf"]
   - part_id: "10-cfr-20"
