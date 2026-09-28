@@ -6,6 +6,14 @@ Repo-curation dates only — official effective dates live in frontmatter.
 
 ## [Unreleased]
 
+### Source-Updated
+- 2026-09-28 — **7 CFR 210.21, 220.16, 225.17, 226.22** (the child-nutrition procurement
+  sections): `amended_on` 2024-07-01 → 2026-09-09, per eCFR's versioner, which now dates
+  all four to a 2026-09-09 amendment. The mirrored text is unchanged — eCFR's section XML
+  for 210.21 on 2026-08-31 and 2026-09-26 is byte-identical, and the four parts re-verify
+  verbatim against their committed snapshots — so this is the date field and the
+  "last amended" line only. Caught by the weekly `amended-on` job, red since 2026-09-14.
+
 ### Added
 - 2026-09-10 — ADR-0006: this corpus now holds the U.S. Code sections Oregon cites, section
   by section, on demand, superseding ADR-0004's blanket refusal. First section: **20 USC
