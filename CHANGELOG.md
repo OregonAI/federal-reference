@@ -6,6 +6,15 @@ Repo-curation dates only — official effective dates live in frontmatter.
 
 ## [Unreleased]
 
+### Fixed
+- 2026-09-28 — `src/check_source_urls.py` (the weekly `source-urls` job) reports a host that
+  blocks GitHub's runners as **BLOCKED — cannot verify**, not as a failure, via a dated
+  `KNOWN_BLOCKED` entry that records the refusing status and the evidence. First entry:
+  `www.cisa.gov`, 403 to runners since 2026-09-14; the CPG v1.0.1 PDF is live and
+  byte-identical to `_meta/snapshots/cisa-cpg.pdf` from outside GitHub. Any other status
+  from a listed host still fails, and a 2xx on a runner prints `unblock` so the entry
+  does not outlive the block.
+
 ### Source-Updated
 - 2026-09-28 — **7 CFR 210.21, 220.16, 225.17, 226.22** (the child-nutrition procurement
   sections): `amended_on` 2024-07-01 → 2026-09-09, per eCFR's versioner, which now dates
