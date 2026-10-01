@@ -866,6 +866,7 @@ sources:
   # that would not deliver what it asked for. Each says so in its own `notes`.
 
   - id: arc-ampe
+    sha256: "ad29589dc14457024706358e0a4d692ac738c75ef51f7c0913f229ee68520c6c"
     url: https://www.cms.gov/files/document/arc-ampe-vol-1-v102-508-5cr-04112025.pdf
     format: pdf
     instrument_kind: agency_guidance
@@ -885,6 +886,7 @@ sources:
       ARC-AMPE; oha-ispo-090-013 still names MARS-E v2.2 and is itself behind.
 
   - id: fns-handbook-901
+    sha256: "7948d771cf3719a33e914f32631a48a91a34f6719ed5d5832983709db2d53eee"
     url: https://www.fns.usda.gov/sso/fns-handbook-901-v2-advance-planning-documents
     format: html
     instrument_kind: agency_guidance
@@ -923,6 +925,7 @@ sources:
       not to this instrument — do not substitute one.
 
   - id: pci-dss
+    sha256: "50fa5fae0a0ac44396b9981dcc891cff7216a15f254740c8b7ff140ac8c4ae7c"
     url: https://www.pcisecuritystandards.org/terms_and_conditions/
     format: html
     instrument_kind: agency_guidance
@@ -979,6 +982,7 @@ sources:
       `named` because the state uses them, not because a rule requires them.
 
   - id: fedramp
+    sha256: "44a070bbd6a9ee5049b61f5243cab70c9ec3639d9c348e8458ee4f85e3ee907c"
     url: https://www.fedramp.gov/
     format: html
     instrument_kind: agency_guidance
@@ -998,6 +1002,7 @@ sources:
       chain resolves rather than dead-ending.
 
   - id: govramp
+    sha256: "888c92cb51daf267f04537a4d238336a36f637063b06fa667bdb1e08d1b90c98"
     url: https://govramp.org/terms-conditions
     format: html
     instrument_kind: agency_guidance
