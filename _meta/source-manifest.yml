@@ -186,7 +186,7 @@ sources:
     instrument_kind: "cfr_part"
     citation: "7 CFR 273"
     title: "Certification of Eligible Households"
-    issuing_body: "Department of Agriculture / Food and Nutrition Administration"
+    issuing_body: "Department of Agriculture / Food and Nutrition Service"
     signal: "authority"
     why: >
       33 authority claims and 57 mentions across ERF; no audit citations. Reached by the
@@ -447,7 +447,7 @@ sources:
     instrument_kind: "cfr_part"
     citation: "7 CFR 210"
     title: "National School Lunch Program"
-    issuing_body: "Department of Agriculture / Food and Nutrition Administration"
+    issuing_body: "Department of Agriculture / Food and Nutrition Service"
     signal: "authority"
     why: >
       15 authority claims and 26 mentions across ERF; no audit citations. Reached by the
@@ -546,7 +546,7 @@ sources:
     instrument_kind: "cfr_part"
     citation: "7 CFR 220"
     title: "School Breakfast Program"
-    issuing_body: "Department of Agriculture / Food and Nutrition Administration"
+    issuing_body: "Department of Agriculture / Food and Nutrition Service"
     signal: "authority"
     why: >
       12 authority claims and 20 mentions across ERF; no audit citations. Reached by the
@@ -560,7 +560,7 @@ sources:
     instrument_kind: "cfr_part"
     citation: "7 CFR 226"
     title: "Child and Adult Care Food Program"
-    issuing_body: "Department of Agriculture / Food and Nutrition Administration"
+    issuing_body: "Department of Agriculture / Food and Nutrition Service"
     signal: "authority"
     why: >
       12 authority claims and 19 mentions across ERF; no audit citations. Reached by the
@@ -603,7 +603,7 @@ sources:
     instrument_kind: "cfr_part"
     citation: "7 CFR 225"
     title: "Summer Food Service Program"
-    issuing_body: "Department of Agriculture / Food and Nutrition Administration"
+    issuing_body: "Department of Agriculture / Food and Nutrition Service"
     signal: "authority"
     why: >
       10 authority claims and 17 mentions across ERF; no audit citations. Reached by the
@@ -659,7 +659,7 @@ sources:
     instrument_kind: "cfr_part"
     citation: "7 CFR 250"
     title: "Donation of Foods for Use in the United States, Its Territories and Possessions and Areas Under Its Jurisdiction"
-    issuing_body: "Department of Agriculture / Food and Nutrition Administration"
+    issuing_body: "Department of Agriculture / Food and Nutrition Service"
     signal: "authority"
     why: >
       8 authority claims and 10 mentions across ERF; no audit citations. Reached by the
@@ -716,7 +716,7 @@ sources:
     instrument_kind: "cfr_part"
     citation: "7 CFR 280"
     title: "Emergency Food Assistance for Victims of Disasters"
-    issuing_body: "Department of Agriculture / Food and Nutrition Administration"
+    issuing_body: "Department of Agriculture / Food and Nutrition Service"
     signal: "authority"
     why: >
       7 authority claims and 7 mentions across ERF; no audit citations. Reached by the
@@ -760,7 +760,7 @@ sources:
     instrument_kind: "cfr_part"
     citation: "7 CFR 248"
     title: "WIC Farmers' Market Nutrition Program (FMNP)"
-    issuing_body: "Department of Agriculture / Food and Nutrition Administration"
+    issuing_body: "Department of Agriculture / Food and Nutrition Service"
     signal: "authority"
     why: >
       6 authority claims and 15 mentions across ERF; no audit citations. Reached by the
@@ -774,7 +774,7 @@ sources:
     instrument_kind: "cfr_part"
     citation: "7 CFR 249"
     title: "Senior Farmers' Market Nutrition Program (SFMNP)"
-    issuing_body: "Department of Agriculture / Food and Nutrition Administration"
+    issuing_body: "Department of Agriculture / Food and Nutrition Service"
     signal: "authority"
     why: >
       6 authority claims and 14 mentions across ERF; no audit citations. Reached by the
