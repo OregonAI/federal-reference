@@ -1,6 +1,6 @@
 # STATUS — Federal Reference — instruments Oregon must comply with
 
-Generated 2026-09-13. Non-authoritative; see DISCLAIMER.md.
+Generated 2026-10-01. Non-authoritative; see DISCLAIMER.md.
 
 ## Documents by type
 
