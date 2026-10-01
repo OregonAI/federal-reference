@@ -183,6 +183,13 @@ jobs:
       # green. This one re-reads the raw PDF/XML.
       - name: Committed text must match the raw source
         run: python3 src/check_extraction.py
+      # #102: the extraction guard used to be a flat `len(text) < 2000` applied to every
+      # instrument_kind, which rejected a genuinely short but fully-extracted cfr_part
+      # (7 CFR 280, one section, 1,554 chars) as "scanned or broken". ingest_instruments.py
+      # itself runs in no workflow (see the comment above `check_extraction.py`'s own step),
+      # so this is the hermetic, synthetic-fixture proof, same shape as check_issuing_body.py.
+      - name: A short-but-structured cfr_part must not be flagged as scanned or broken
+        run: python3 src/check_extraction_guard.py
 
   # #54: CONTRIBUTING.md requires an `Assisted-by:` trailer on agent-assisted commits, and
   # nothing checked for it -- "a check that passes without checking anything", per AGENTS.md's

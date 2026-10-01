@@ -1128,6 +1128,44 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
     return "\n".join(parts)
 
 
+# A flat character-count floor conflates two different failure modes that need different
+# evidence. "Scanned or broken" names a PDF/HTML extractor silently returning a near-empty
+# string from a document that visibly has real content -- there the extractor's own report
+# of HOW MUCH it found is unreliable (that is exactly the failure), so counting characters is
+# the only signal available, and 2,000 is the floor every such source has cleared.
+#
+# `cfr_part` (and `usc_section`) are structured XML: extract_cfr()/extract_usc() do not
+# guess at page furniture, they walk real `TYPE="SECTION"`/`TYPE="APPENDIX"` elements and
+# report exactly how many they found in `stats`. That count is the reliable signal for THIS
+# extractor, and it catches the real failure mode -- a document parsed with the wrong
+# schema, which is exactly how 0 chars came back for a USLM title run through extract_cfr()
+# (see the comment above the `extract_cfr()` call in main()) -- without also rejecting a
+# genuinely short part. 7 CFR 280 ("Emergency Food Assistance for Victims of Disasters") is
+# one real section and under 1,600 characters of actual, correctly-extracted federal text;
+# the flat floor called that "scanned or broken" when nothing was broken, it is just short.
+def extraction_is_broken(kind: str, text: str, stats: dict) -> str | None:
+    """None if `text`/`stats` look like a genuine extraction for `kind`, else a reason.
+
+    `kind == "cfr_part"`: broken means the structural walk found no SECTION or APPENDIX at
+    all, or found some but produced no text for them -- never a low character count on its
+    own, since a part can legitimately hold one short section.
+
+    Every other kind keeps the original flat floor: those extractors (PDF, HTML) have no
+    structural count to trust instead, so a near-empty result is the only signal that the
+    source was a scan, a redirect, or otherwise not the document it claims to be.
+    """
+    if kind == "cfr_part":
+        n_structural = stats.get("sections", 0) + stats.get("appendices", 0)
+        if n_structural == 0:
+            return "0 sections or appendices extracted — scanned, broken, or wrong XML schema"
+        if not text.strip():
+            return f"{n_structural} sections/appendices found but 0 chars of text — broken"
+        return None
+    if len(text) < 2000:
+        return f"only {len(text)} chars extracted — scanned or broken"
+    return None
+
+
 def irs_revision(text: str, pdf_path: Path) -> str:
     """The revision of an IRS publication, from TWO independent places that must agree.
 
@@ -1276,8 +1314,9 @@ def main() -> int:
                         "— declare one rather than letting a parser be guessed")
             else:
                 text, stats = extract_pdf(snap)
-            if len(text) < 2000:
-                raise ValueError(f"only {len(text)} chars extracted — scanned or broken")
+            broken = extraction_is_broken(src["instrument_kind"], text, stats)
+            if broken:
+                raise ValueError(broken)
 
             version = src.get("version")
             if src["instrument_kind"] == "irs_publication" and not version:
