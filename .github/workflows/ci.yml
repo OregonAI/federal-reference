@@ -183,6 +183,13 @@ jobs:
       # green. This one re-reads the raw PDF/XML.
       - name: Committed text must match the raw source
         run: python3 src/check_extraction.py
+      # #104: `split_cfr_sections.py --check` above verifies the SECTION side of the
+      # part<->section edge pair (every split section's own `related: [<part_id>]`); nothing
+      # verified the reverse, so a part whose cited-sections file grew after its last
+      # `ingest_instruments.py` run became a graph dead end reachable only downward from its
+      # sections, never upward from the part. 9 real parts were found in that state.
+      - name: A cfr_part must list every one of its own split sections
+        run: python3 src/check_part_edges.py
       # #102: the extraction guard used to be a flat `len(text) < 2000` applied to every
       # instrument_kind, which rejected a genuinely short but fully-extracted cfr_part
       # (7 CFR 280, one section, 1,554 chars) as "scanned or broken". ingest_instruments.py
