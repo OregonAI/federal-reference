@@ -38,22 +38,29 @@ def main() -> int:
 
     # --- the real bug: a genuinely short but fully-structured cfr_part must NOT be flagged
     short_text = "### PART 280\n\n### " + "x" * 200  # well under 2,000 chars
-    reason = extraction_is_broken("cfr_part", short_text, {"sections": 1, "appendices": 0})
+    reason = extraction_is_broken("cfr_part", short_text,
+                                   {"sections": 1, "appendices": 0, "body_chars": 200})
     check("a 1-section cfr_part under 2,000 chars is not 'scanned or broken'",
           reason is None, repr(reason))
 
     # --- the failure this guard must still catch: wrong schema / nothing structural found
-    reason = extraction_is_broken("cfr_part", "", {"sections": 0, "appendices": 0})
+    reason = extraction_is_broken("cfr_part", "", {"sections": 0, "appendices": 0,
+                                                    "body_chars": 0})
     check("a cfr_part with 0 sections and 0 appendices IS flagged",
           reason is not None, "extraction_is_broken returned None instead of a reason")
 
-    # --- structure found but somehow no text at all -- still broken, not a false negative
-    reason = extraction_is_broken("cfr_part", "   \n", {"sections": 2, "appendices": 0})
-    check("a cfr_part with sections found but empty text IS flagged",
+    # --- structure found but somehow no BODY text at all -- still broken, not a false
+    # negative. This is the shape extract_cfr() can actually produce: headings present
+    # (`text` itself is non-blank, "### head" for each section) but every section's own
+    # children carried no text, so `body_chars` is 0 while `sections` is not.
+    reason = extraction_is_broken("cfr_part", "### head one\n\n### head two\n",
+                                   {"sections": 2, "appendices": 0, "body_chars": 0})
+    check("a cfr_part with headings found but 0 chars of body text IS flagged",
           reason is not None, "extraction_is_broken returned None instead of a reason")
 
     # --- a long, well-formed cfr_part is never flagged regardless of char count
-    reason = extraction_is_broken("cfr_part", "### x\n" * 50, {"sections": 29, "appendices": 12})
+    reason = extraction_is_broken("cfr_part", "### x\n" * 50,
+                                   {"sections": 29, "appendices": 12, "body_chars": 9000})
     check("a long cfr_part with real stats is not flagged",
           reason is None, repr(reason))
 

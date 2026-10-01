@@ -48,6 +48,29 @@ Repo-curation dates only — official effective dates live in frontmatter.
   other kind. `src/check_extraction_guard.py` is the hermetic, synthetic-fixture proof
   (`ingest_instruments.py` itself runs in no CI workflow), wired into `ci.yml`'s `generated`
   job.
+- 2026-09-28 — `src/check_source_urls.py` (the weekly `source-urls` job) reports a host that
+  blocks GitHub's runners as **BLOCKED — cannot verify**, not as a failure, via a dated
+  `KNOWN_BLOCKED` entry that records the refusing status and the evidence. First entry:
+  `www.cisa.gov`, 403 to runners since 2026-09-14; the CPG v1.0.1 PDF is live and
+  byte-identical to `_meta/snapshots/cisa-cpg.pdf` from outside GitHub. Any other status
+  from a listed host still fails, and a 2xx on a runner prints `unblock` so the entry
+  does not outlive the block.
+
+### Source-Updated
+- 2026-09-28 — **7 CFR 210.21, 220.16, 225.17, 226.22** (the child-nutrition procurement
+  sections): `amended_on` 2024-07-01 → 2026-09-09, per eCFR's versioner, which now dates
+  all four to a 2026-09-09 amendment. The mirrored text is unchanged — eCFR's section XML
+  for 210.21 on 2026-08-31 and 2026-09-26 is byte-identical, and the four parts re-verify
+  verbatim against their committed snapshots — so this is the date field and the
+  "last amended" line only. Caught by the weekly `amended-on` job, red since 2026-09-14.
+- 2026-10-01 — **45 CFR 155, 45 CFR 261** (PART-level `amended_on`, surfaced incidentally by
+  #104's edge re-ingest, below): `2026-07-20` → `2026-09-23` and `2026-07-31` → `2026-09-29`
+  respectively, per eCFR's live versioner. Both parts' `as_of` stays pinned at `2026-08-31`
+  (the committed snapshot's own point-in-time URL; a re-ingest does not refetch or re-pin),
+  so each document now correctly states a real amendment postdating the text it holds — the
+  same "amended more recently than our pinned snapshot" fact `7-cfr-210`/`220`/`225`/`226`
+  surfaced above, not a defect in this change. Re-pinning either part to a newer `as_of` is a
+  separate, deliberate decision and out of scope here.
 
 ### Added
 - 2026-10-01 — **#104: 9 `cfr_part` documents were graph dead ends from above.**
@@ -82,31 +105,6 @@ Repo-curation dates only — official effective dates live in frontmatter.
   manifest, and `retrieved` is read back from the committed document and only moves on a
   real re-fetch of a changed/absent snapshot. Only `amended_on` is checked live on every
   `cfr_part` re-ingest.
-- 2026-09-28 — `src/check_source_urls.py` (the weekly `source-urls` job) reports a host that
-  blocks GitHub's runners as **BLOCKED — cannot verify**, not as a failure, via a dated
-  `KNOWN_BLOCKED` entry that records the refusing status and the evidence. First entry:
-  `www.cisa.gov`, 403 to runners since 2026-09-14; the CPG v1.0.1 PDF is live and
-  byte-identical to `_meta/snapshots/cisa-cpg.pdf` from outside GitHub. Any other status
-  from a listed host still fails, and a 2xx on a runner prints `unblock` so the entry
-  does not outlive the block.
-
-### Source-Updated
-- 2026-09-28 — **7 CFR 210.21, 220.16, 225.17, 226.22** (the child-nutrition procurement
-  sections): `amended_on` 2024-07-01 → 2026-09-09, per eCFR's versioner, which now dates
-  all four to a 2026-09-09 amendment. The mirrored text is unchanged — eCFR's section XML
-  for 210.21 on 2026-08-31 and 2026-09-26 is byte-identical, and the four parts re-verify
-  verbatim against their committed snapshots — so this is the date field and the
-  "last amended" line only. Caught by the weekly `amended-on` job, red since 2026-09-14.
-- 2026-10-01 — **45 CFR 155, 45 CFR 261** (PART-level `amended_on`, surfaced incidentally by
-  #104's edge re-ingest, below): `2026-07-20` → `2026-09-23` and `2026-07-31` → `2026-09-29`
-  respectively, per eCFR's live versioner. Both parts' `as_of` stays pinned at `2026-08-31`
-  (the committed snapshot's own point-in-time URL; a re-ingest does not refetch or re-pin),
-  so each document now correctly states a real amendment postdating the text it holds — the
-  same "amended more recently than our pinned snapshot" fact `7-cfr-210`/`220`/`225`/`226`
-  surfaced above, not a defect in this change. Re-pinning either part to a newer `as_of` is a
-  separate, deliberate decision and out of scope here.
-
-### Added
 - 2026-09-10 — ADR-0006: this corpus now holds the U.S. Code sections Oregon cites, section
   by section, on demand, superseding ADR-0004's blanket refusal. First section: **20 USC
   1232g** (FERPA), ingested from OLRC (`uscode.house.gov`)'s per-title USLM XML release

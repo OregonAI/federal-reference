@@ -302,7 +302,7 @@ def extract_cfr(raw: bytes) -> tuple[str, dict]:
     not just forms.
     """
     root = ET.fromstring(raw)
-    out, n_sec, n_app, n_sub = [], 0, 0, 0
+    out, n_sec, n_app, n_sub, body_chars = [], 0, 0, 0, 0
     for el in root.iter():
         kind = el.get("TYPE")
         # THE PART'S OWN AUTHORITY AND SOURCE NOTE. Visiting only SECTION and APPENDIX
@@ -351,11 +351,18 @@ def extract_cfr(raw: bytes) -> tuple[str, dict]:
             t = guard_headings(_flatten(child))
             if t:
                 out.append(t)
+                # Heading-only sections (an extraction that found the right structural
+                # elements but got no actual text out of them) are the "silently
+                # near-empty" failure the old flat floor used to catch -- count body chars
+                # separately from the heading line so extraction_is_broken() can still see
+                # that failure now that the heading alone keeps `text` non-blank.
+                body_chars += len(t)
         out.append("")
         n_sec += kind == "SECTION"
         n_app += kind == "APPENDIX"
     text = re.sub(r"\n{3,}", "\n\n", "\n".join(out)).strip()
-    return text, {"sections": n_sec, "appendices": n_app, "subparts": n_sub}
+    return text, {"sections": n_sec, "appendices": n_app, "subparts": n_sub,
+                  "body_chars": body_chars}
 
 
 # ---------------------------------------------------------------- USLM (U.S. Code, ADR-0006)
@@ -1057,7 +1064,11 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
     }
     head = yaml.safe_dump(fm, sort_keys=False, allow_unicode=True, width=100).rstrip()
 
-    stat_line = ", ".join(f"{v} {k}" for k, v in stats.items())
+    # `body_chars` (extract_cfr(), #104 review) is an internal signal for
+    # extraction_is_broken() alone -- rendering it here would mean every already-committed
+    # cfr_part document changes its "Extent:" line the next time it is re-ingested for an
+    # unrelated reason, which is not this change's job.
+    stat_line = ", ".join(f"{v} {k}" for k, v in stats.items() if k != "body_chars")
     gap = src.get("known_cited_versions_not_held") or []
     parts = [f"---\n{head}\n---\n", "## At a glance\n",
              f"**{src['citation']}** — {src['title']}\n\n"
@@ -1134,32 +1145,42 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
 # of HOW MUCH it found is unreliable (that is exactly the failure), so counting characters is
 # the only signal available, and 2,000 is the floor every such source has cleared.
 #
-# `cfr_part` (and `usc_section`) are structured XML: extract_cfr()/extract_usc() do not
-# guess at page furniture, they walk real `TYPE="SECTION"`/`TYPE="APPENDIX"` elements and
-# report exactly how many they found in `stats`. That count is the reliable signal for THIS
-# extractor, and it catches the real failure mode -- a document parsed with the wrong
-# schema, which is exactly how 0 chars came back for a USLM title run through extract_cfr()
-# (see the comment above the `extract_cfr()` call in main()) -- without also rejecting a
-# genuinely short part. 7 CFR 280 ("Emergency Food Assistance for Victims of Disasters") is
-# one real section and under 1,600 characters of actual, correctly-extracted federal text;
-# the flat floor called that "scanned or broken" when nothing was broken, it is just short.
+# `cfr_part` is structured XML: extract_cfr() does not guess at page furniture, it walks
+# real `TYPE="SECTION"`/`TYPE="APPENDIX"` elements and reports exactly how many it found,
+# plus how many characters of actual body text they held, in `stats`. That count is the
+# reliable signal for THIS extractor, and it catches the real failure mode -- a document
+# parsed with the wrong schema, which is exactly how 0 chars came back for a USLM title run
+# through extract_cfr() (see the comment above the `extract_cfr()` call in main()) -- without
+# also rejecting a genuinely short part. 7 CFR 280 ("Emergency Food Assistance for Victims of
+# Disasters") is one real section and under 1,600 characters of actual, correctly-extracted
+# federal text; the flat floor called that "scanned or broken" when nothing was broken, it is
+# just short.
+#
+# `usc_section` is also structured XML (extract_usc() walks real USLM `<subsection>`
+# elements) but it is NOT given the same structural carve-out below: extract_usc() only
+# reports a subsection COUNT, and a legitimate section can have zero subsections, so a count
+# alone cannot distinguish "short but real" from "broken" the way `cfr_part`'s body-char
+# total can. `usc_section` keeps the flat `len(text) < 2000` floor for now, which means a
+# short-but-real U.S.C. section can still be rejected the way 7 CFR 280 was (#102) -- a
+# known gap, not a claim that it is covered.
 def extraction_is_broken(kind: str, text: str, stats: dict) -> str | None:
     """None if `text`/`stats` look like a genuine extraction for `kind`, else a reason.
 
     `kind == "cfr_part"`: broken means the structural walk found no SECTION or APPENDIX at
-    all, or found some but produced no text for them -- never a low character count on its
-    own, since a part can legitimately hold one short section.
+    all, or found some but their combined body text is empty -- never a low character count
+    on its own, since a part can legitimately hold one short section.
 
-    Every other kind keeps the original flat floor: those extractors (PDF, HTML) have no
-    structural count to trust instead, so a near-empty result is the only signal that the
-    source was a scan, a redirect, or otherwise not the document it claims to be.
+    Every other kind keeps the original flat floor: those extractors (PDF, HTML, and
+    `usc_section`'s subsection count) have no body-text count to trust instead, so a
+    near-empty result is the only signal that the source was a scan, a redirect, or
+    otherwise not the document it claims to be.
     """
     if kind == "cfr_part":
         n_structural = stats.get("sections", 0) + stats.get("appendices", 0)
         if n_structural == 0:
             return "0 sections or appendices extracted — scanned, broken, or wrong XML schema"
-        if not text.strip():
-            return f"{n_structural} sections/appendices found but 0 chars of text — broken"
+        if stats.get("body_chars", 0) == 0:
+            return f"{n_structural} sections/appendices found but 0 chars of body text — broken"
         return None
     if len(text) < 2000:
         return f"only {len(text)} chars extracted — scanned or broken"
