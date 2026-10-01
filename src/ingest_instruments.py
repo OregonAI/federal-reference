@@ -1257,12 +1257,12 @@ def main() -> int:
             # eCFR — the first source to be BOTH is exactly what makes this load-bearing: a
             # format-keyed dispatch would run a USLM title through extract_cfr, which reads
             # `TYPE="SECTION"` attributes USLM does not have and returns silently EMPTY text
-            # (confirmed: 0 chars on Title 20's own XML) rather than raising, which the
-            # `len(text) < 2000` guard below would then report as "scanned or broken" -- a
-            # true-sounding diagnosis of the wrong file. check_extraction.py's dispatch must
-            # agree with this one, or the checker re-derives a different "expected" than what
-            # was actually committed and reports a fidelity defect that is really a disagreement
-            # about which extractor ran.
+            # (confirmed: 0 chars on Title 20's own XML) rather than raising, which
+            # `extraction_is_broken()` below then reports as "0 sections or appendices
+            # extracted" -- a true-sounding diagnosis of the wrong file. check_extraction.py's
+            # dispatch must agree with this one, or the checker re-derives a different
+            # "expected" than what was actually committed and reports a fidelity defect that
+            # is really a disagreement about which extractor ran.
             part_status, part_superseded_by = "current", None
             if src["instrument_kind"] == "cfr_part":
                 text, stats = extract_cfr(raw)
