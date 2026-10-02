@@ -109,6 +109,12 @@ def anchored_md(snap_id: str, md: str) -> tuple[str, int, int]:
     and a caller reaching this id should already know its list of anchored instruments
     (`RULES` itself), the same way `extraction_is_broken()`'s callers look its argument up
     rather than this function guessing a safe default.
+
+    The `conversion_notes` anchor count (`n_total`) is counted from `new_body` -- the .md
+    body being written -- not from the snapshot `.txt`, which is what the pre-#111 write
+    path counted. The two counts agree today (the body and the snapshot carry the same
+    anchors), so this is not a behavior change, only a change in which file the number
+    comes from.
     """
     rule = RULES[snap_id]
     head, sep, body = md.partition("\n## Full text\n")
@@ -159,7 +165,16 @@ def process(check: bool, only: set[str] | None = None) -> int:
 
         if check:
             if n_new or new_md != md:
-                stale.append(f"{snap_id}: {n_new} unanchored heading(s)")
+                if n_new:
+                    stale.append(f"{snap_id}: {n_new} unanchored heading(s)")
+                else:
+                    # n_new == 0 but new_md != md: every heading is already anchored, so
+                    # the mismatch is in the conversion_notes line anchored_md() writes
+                    # (its count now comes from the .md body, not the snapshot .txt --
+                    # equivalent today, but a reader should not have to work that out from
+                    # "0 unanchored heading(s)").
+                    stale.append(f"{snap_id}: conversion_notes count is stale "
+                                 f"(0 unanchored headings)")
             continue
 
         if n_new == 0 and new_md == md:
