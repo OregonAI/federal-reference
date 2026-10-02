@@ -7,6 +7,16 @@ Repo-curation dates only — official effective dates live in frontmatter.
 ## [Unreleased]
 
 ### Fixed
+- 2026-10-01 — **#111: `2-cfr-200` and `34-cfr-300`'s `relationships.related` order was
+  stale.** `cited_section_ids()` reads `_meta/cited-sections/<part_id>.yml` in file order;
+  that file's own order has moved since each part document was last ingested (sections
+  re-scanned, or moved between its `current`/`removed` lists), but the committed part
+  document was never regenerated to match — so a re-ingest reordered the same set of ids
+  rather than adding or dropping any. Confirmed no content changed: `source_sha256`,
+  `amended_on`, and every id in the list are identical before and after; only the order
+  moved, to match the `.yml` file both sides already agree is current. Re-ingested with
+  `python3 src/ingest_instruments.py --only <id>`.
+
 - 2026-10-01 — **#111: `ingest_instruments.py --check` false-flagged `pl-113-128`,
   `pl-115-224` and `irs-pub-1075` as drifted.** All three are RULES documents
   `anchor_sections.py` re-anchors after every real ingest (see that module's own
@@ -21,6 +31,20 @@ Repo-curation dates only — official effective dates live in frontmatter.
   re-deriving (and risking drifting from) it. `src/check_check_anchoring.py` is the
   hermetic, synthetic-fixture proof — `ingest_instruments.py` itself runs in no CI
   workflow — wired into `ci.yml`'s `generated` job.
+
+- 2026-10-01 — **#111's "12 drifted instruments" included 4 that were never ingested at
+  all**, re-measured rather than trusted: `fedramp`, `fns-handbook-901`, `govramp`, and
+  `pci-dss` have no document in `instruments/` and never have (`git log` shows none was
+  ever committed). `ingest_instruments.py --check` reports a MISMATCH for them because
+  `doc_path.read_text()` is `None` when the document does not exist — the same code path
+  a genuine drift takes, so it reads identically to one in `--check`'s own output. #95
+  (2026-09-12) already decided this on the record, not newly discovered here: their
+  source URLs serve landing/terms pages whose extracted "Full text" is site navigation,
+  and a document built from one was deliberately deleted rather than shipped. Nothing
+  here changes that decision — these 4 still need a real document URL or a summary-stub
+  `doc_type` this corpus does not have yet, which is a decision for a human, not a
+  re-ingest. Of #111's 12: 5 were real drift, now resolved (above); 3 were a `--check`
+  false positive, now fixed (above); 4 were never held at all, unchanged.
 
 - 2026-10-01 — **#102: "Food and Nutrition Administration" does not exist.** 9
   `_meta/source-manifest.yml` entries (`7-cfr-210`, `220`, `225`, `226`, `248`, `249`, `250`,
@@ -72,6 +96,14 @@ Repo-curation dates only — official effective dates live in frontmatter.
   does not outlive the block.
 
 ### Source-Updated
+- 2026-10-01 — **45 CFR 260, 264, 265** (#111): PART-level `amended_on` moved
+  `2026-07-31` → `2026-09-29` per eCFR's live versioner, the same real amendment #104's
+  edge re-ingest already surfaced for the sibling parts 45 CFR 155/261. The mirrored text
+  did not change — `source_sha256` unchanged for all three, `as_of` stays pinned at
+  `2026-08-31` (the committed snapshot's own point-in-time URL) — so each document now
+  correctly states a real amendment postdating the text it holds. Re-ingested with
+  `python3 src/ingest_instruments.py --only <id>`.
+
 - 2026-09-28 — **7 CFR 210.21, 220.16, 225.17, 226.22** (the child-nutrition procurement
   sections): `amended_on` 2024-07-01 → 2026-09-09, per eCFR's versioner, which now dates
   all four to a 2026-09-09 amendment. The mirrored text is unchanged — eCFR's section XML
