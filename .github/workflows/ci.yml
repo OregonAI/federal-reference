@@ -197,6 +197,14 @@ jobs:
       # so this is the hermetic, synthetic-fixture proof, same shape as check_issuing_body.py.
       - name: A short-but-structured cfr_part must not be flagged as scanned or broken
         run: python3 src/check_extraction_guard.py
+      # #111: `ingest_instruments.py --check` reported pl-113-128, pl-115-224 and
+      # irs-pub-1075 as drifted when nothing had -- it compared a fresh, UNANCHORED
+      # extraction to the committed, ANCHORED document, for the three ids anchor_sections.py
+      # re-anchors after every real ingest. ingest_instruments.py itself runs in no
+      # workflow (see check_extraction.py's own step above), so this is the hermetic,
+      # synthetic-fixture proof for the fix, same shape as check_issuing_body.py.
+      - name: ingest_instruments.py --check must compare against the anchored document
+        run: python3 src/check_check_anchoring.py
 
   # #54: CONTRIBUTING.md requires an `Assisted-by:` trailer on agent-assisted commits, and
   # nothing checked for it -- "a check that passes without checking anything", per AGENTS.md's

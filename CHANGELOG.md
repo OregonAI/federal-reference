@@ -7,6 +7,21 @@ Repo-curation dates only — official effective dates live in frontmatter.
 ## [Unreleased]
 
 ### Fixed
+- 2026-10-01 — **#111: `ingest_instruments.py --check` false-flagged `pl-113-128`,
+  `pl-115-224` and `irs-pub-1075` as drifted.** All three are RULES documents
+  `anchor_sections.py` re-anchors after every real ingest (see that module's own
+  docstring), so the committed document is always anchored while `--check` compared it to
+  the freshly extracted, UNANCHORED text — a mismatch on every run regardless of whether
+  anything actually drifted. Measured 2026-10-01: a real `ingest_instruments.py --only <id>`
+  (which re-anchors afterward) reproduces each committed document byte for byte; `--check`
+  alone reported all three MISMATCH. Factored the body+`conversion_notes` mutation
+  `anchor_sections.process()` applies when writing into a new pure function,
+  `anchored_md(snap_id, md)`, so `process()` and `ingest_instruments.py --check` share one
+  implementation of "what anchoring this document produces" instead of `--check`
+  re-deriving (and risking drifting from) it. `src/check_check_anchoring.py` is the
+  hermetic, synthetic-fixture proof — `ingest_instruments.py` itself runs in no CI
+  workflow — wired into `ci.yml`'s `generated` job.
+
 - 2026-10-01 — **#102: "Food and Nutrition Administration" does not exist.** 9
   `_meta/source-manifest.yml` entries (`7-cfr-210`, `220`, `225`, `226`, `248`, `249`, `250`,
   `273`, `280`) declared `issuing_body: "Department of Agriculture / Food and Nutrition
