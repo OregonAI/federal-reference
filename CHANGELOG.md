@@ -29,22 +29,30 @@ Repo-curation dates only — official effective dates live in frontmatter.
   `anchored_md(snap_id, md)`, so `process()` and `ingest_instruments.py --check` share one
   implementation of "what anchoring this document produces" instead of `--check`
   re-deriving (and risking drifting from) it. `src/check_check_anchoring.py` is the
-  hermetic, synthetic-fixture proof — `ingest_instruments.py` itself runs in no CI
-  workflow — wired into `ci.yml`'s `generated` job.
+  hermetic, synthetic-fixture proof that `anchored_md()` rebuilds every committed RULES
+  document byte for byte from its unanchored text — only `--check --only <id>` runs in CI,
+  never the corpus-wide `--check` — wired into `ci.yml`'s `generated` job alongside three
+  new steps that run the real path, `ingest_instruments.py --check --only pl-113-128` /
+  `pl-115-224` / `irs-pub-1075`.
 
 - 2026-10-01 — **#111's "12 drifted instruments" included 4 that were never ingested at
   all**, re-measured rather than trusted: `fedramp`, `fns-handbook-901`, `govramp`, and
   `pci-dss` have no document in `instruments/` and never have (`git log` shows none was
   ever committed). `ingest_instruments.py --check` reports a MISMATCH for them because
-  `doc_path.read_text()` is `None` when the document does not exist — the same code path
-  a genuine drift takes, so it reads identically to one in `--check`'s own output. #95
+  `committed` is `None` — `doc_path.read_text(...) if doc_path.is_file() else None` takes
+  the `None` arm when the document does not exist (`read_text()` itself never returns
+  `None`) — and `None != built` takes the same MISMATCH path real drift does, so it reads
+  identically to one in `--check`'s own output. #95
   (2026-09-12) already decided this on the record, not newly discovered here: their
   source URLs serve landing/terms pages whose extracted "Full text" is site navigation,
   and a document built from one was deliberately deleted rather than shipped. Nothing
   here changes that decision — these 4 still need a real document URL or a summary-stub
   `doc_type` this corpus does not have yet, which is a decision for a human, not a
-  re-ingest. Of #111's 12: 5 were real drift, now resolved (above); 3 were a `--check`
-  false positive, now fixed (above); 4 were never held at all, unchanged.
+  re-ingest. Of #111's 12: 2 (2 CFR 200, 34 CFR 300 — the `relationships.related` order
+  fix above) were real drift, now resolved; 3 were a `--check` false positive, now fixed
+  (above); 3 (45 CFR 260, 264, 265) are a real upstream amendment that is disclosed, not
+  resolved — see the Source-Updated entry below, which reserved/removed 21 sections this
+  corpus still mirrors as pre-amendment text; 4 were never held at all, unchanged.
 
 - 2026-10-01 — **#102: "Food and Nutrition Administration" does not exist.** 9
   `_meta/source-manifest.yml` entries (`7-cfr-210`, `220`, `225`, `226`, `248`, `249`, `250`,
@@ -97,11 +105,20 @@ Repo-curation dates only — official effective dates live in frontmatter.
 
 ### Source-Updated
 - 2026-10-01 — **45 CFR 260, 264, 265** (#111): PART-level `amended_on` moved
-  `2026-07-31` → `2026-09-29` per eCFR's live versioner, the same real amendment #104's
-  edge re-ingest already surfaced for the sibling parts 45 CFR 155/261. The mirrored text
-  did not change — `source_sha256` unchanged for all three, `as_of` stays pinned at
-  `2026-08-31` (the committed snapshot's own point-in-time URL) — so each document now
-  correctly states a real amendment postdating the text it holds. Re-ingested with
+  `2026-07-31` → `2026-09-29` per eCFR's live versioner, the same 2026-09-29 amendment
+  already recorded on 45 CFR 261. `source_sha256` is unchanged for all three, and `as_of`
+  stays pinned at `2026-08-31` (the committed snapshot's own point-in-time URL) —
+  **but this is not a clean date-only bump.** Comparing eCFR's 2026-09-30 point-in-time
+  XML against the committed 2026-08-31 snapshot section by section finds 21 sections
+  across the three parts changed in substance on 2026-09-29, most now `[Reserved]`:
+  260.10, .32, .50, .52, .70–.76; 264.0, .2, .40, .60, .61, .70, .71, .83, .85; 265.6. This
+  corpus still mirrors the pre-amendment text for all 21, including the split-section
+  document `instruments/45-cfr-260.50.md`, whose own `amended_on` (2026-07-31) this change
+  did not touch, and which eCFR now shows as `[Reserved]`. **This 2026-09-29 amendment is
+  disclosed, not resolved**: re-pinning the three parts to a post-amendment `as_of` and
+  deciding each reserved/removed section's status (via the 404-is-not-withdrawal
+  procedure — check the listing of record and any replacement before changing status) is
+  out of scope here and needs a follow-up. Re-ingested with
   `python3 src/ingest_instruments.py --only <id>`.
 
 - 2026-09-28 — **7 CFR 210.21, 220.16, 225.17, 226.22** (the child-nutrition procurement
