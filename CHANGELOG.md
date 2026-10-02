@@ -50,9 +50,28 @@ Repo-curation dates only — official effective dates live in frontmatter.
   `doc_type` this corpus does not have yet, which is a decision for a human, not a
   re-ingest. Of #111's 12: 2 (2 CFR 200, 34 CFR 300 — the `relationships.related` order
   fix above) were real drift, now resolved; 3 were a `--check` false positive, now fixed
-  (above); 3 (45 CFR 260, 264, 265) are a real upstream amendment that is disclosed, not
-  resolved — see the Source-Updated entry below, which reserved/removed 21 sections this
-  corpus still mirrors as pre-amendment text; 4 were never held at all, unchanged.
+  (above); 4 were never held at all, unchanged; 3 (45 CFR 260, 264, 265) remain flagged —
+  see the entry below, which disclosed a real upstream amendment but deliberately left
+  `amended_on` untouched so `--check` keeps reporting them — pending the re-ingest and
+  per-section status work, tracked separately.
+
+- 2026-10-01 — **45 CFR 260, 264, 265 (#111) are NOT re-ingested by this change — left
+  flagged, deliberately.** eCFR's live versioner reports a real amendment to all three
+  parts on 2026-09-29, but comparing eCFR's 2026-09-30 point-in-time XML against the
+  committed 2026-08-31 snapshots section by section finds that amendment RESERVED 21
+  sections across the three parts rather than making an editorial-only change: 260.10,
+  .32, .50, .52, .70–.76; 264.0, .2, .40, .60, .61, .70, .71, .83, .85; 265.6 — including
+  the held split-section document `instruments/45-cfr-260.50.md`, which eCFR now shows as
+  `[Reserved]`. The committed text for all three parts is still pre-amendment
+  (`source_sha256` unchanged, `as_of` pinned at `2026-08-31`), so bumping `amended_on` to
+  2026-09-29 without re-ingesting would make `ingest_instruments.py --check` and the
+  weekly `amended-on` job stop flagging a document that is actively serving removed
+  provisions as current law — the drift signal would go dark exactly when it matters
+  most. `amended_on` is deliberately left at `2026-07-31` for all three so `--check` keeps
+  reporting them. Re-pinning the three parts to a post-amendment `as_of` and determining
+  each reserved section's correct status (via the 404-is-not-withdrawal procedure — check
+  the listing of record and any replacement before changing status) is out of scope for
+  this change and is tracked as a separate, follow-up issue.
 
 - 2026-10-01 — **#102: "Food and Nutrition Administration" does not exist.** 9
   `_meta/source-manifest.yml` entries (`7-cfr-210`, `220`, `225`, `226`, `248`, `249`, `250`,
@@ -104,23 +123,6 @@ Repo-curation dates only — official effective dates live in frontmatter.
   does not outlive the block.
 
 ### Source-Updated
-- 2026-10-01 — **45 CFR 260, 264, 265** (#111): PART-level `amended_on` moved
-  `2026-07-31` → `2026-09-29` per eCFR's live versioner, the same 2026-09-29 amendment
-  already recorded on 45 CFR 261. `source_sha256` is unchanged for all three, and `as_of`
-  stays pinned at `2026-08-31` (the committed snapshot's own point-in-time URL) —
-  **but this is not a clean date-only bump.** Comparing eCFR's 2026-09-30 point-in-time
-  XML against the committed 2026-08-31 snapshot section by section finds 21 sections
-  across the three parts changed in substance on 2026-09-29, most now `[Reserved]`:
-  260.10, .32, .50, .52, .70–.76; 264.0, .2, .40, .60, .61, .70, .71, .83, .85; 265.6. This
-  corpus still mirrors the pre-amendment text for all 21, including the split-section
-  document `instruments/45-cfr-260.50.md`, whose own `amended_on` (2026-07-31) this change
-  did not touch, and which eCFR now shows as `[Reserved]`. **This 2026-09-29 amendment is
-  disclosed, not resolved**: re-pinning the three parts to a post-amendment `as_of` and
-  deciding each reserved/removed section's status (via the 404-is-not-withdrawal
-  procedure — check the listing of record and any replacement before changing status) is
-  out of scope here and needs a follow-up. Re-ingested with
-  `python3 src/ingest_instruments.py --only <id>`.
-
 - 2026-09-28 — **7 CFR 210.21, 220.16, 225.17, 226.22** (the child-nutrition procurement
   sections): `amended_on` 2024-07-01 → 2026-09-09, per eCFR's versioner, which now dates
   all four to a 2026-09-09 amendment. The mirrored text is unchanged — eCFR's section XML
