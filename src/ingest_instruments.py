@@ -302,7 +302,7 @@ def extract_cfr(raw: bytes) -> tuple[str, dict]:
     not just forms.
     """
     root = ET.fromstring(raw)
-    out, n_sec, n_app, n_sub = [], 0, 0, 0
+    out, n_sec, n_app, n_sub, body_chars = [], 0, 0, 0, 0
     for el in root.iter():
         kind = el.get("TYPE")
         # THE PART'S OWN AUTHORITY AND SOURCE NOTE. Visiting only SECTION and APPENDIX
@@ -351,11 +351,18 @@ def extract_cfr(raw: bytes) -> tuple[str, dict]:
             t = guard_headings(_flatten(child))
             if t:
                 out.append(t)
+                # Heading-only sections (an extraction that found the right structural
+                # elements but got no actual text out of them) are the "silently
+                # near-empty" failure the old flat floor used to catch -- count body chars
+                # separately from the heading line so extraction_is_broken() can still see
+                # that failure now that the heading alone keeps `text` non-blank.
+                body_chars += len(t)
         out.append("")
         n_sec += kind == "SECTION"
         n_app += kind == "APPENDIX"
     text = re.sub(r"\n{3,}", "\n\n", "\n".join(out)).strip()
-    return text, {"sections": n_sec, "appendices": n_app, "subparts": n_sub}
+    return text, {"sections": n_sec, "appendices": n_app, "subparts": n_sub,
+                  "body_chars": body_chars}
 
 
 # ---------------------------------------------------------------- USLM (U.S. Code, ADR-0006)
@@ -1057,7 +1064,11 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
     }
     head = yaml.safe_dump(fm, sort_keys=False, allow_unicode=True, width=100).rstrip()
 
-    stat_line = ", ".join(f"{v} {k}" for k, v in stats.items())
+    # `body_chars` (extract_cfr(), #104 review) is an internal signal for
+    # extraction_is_broken() alone -- rendering it here would mean every already-committed
+    # cfr_part document changes its "Extent:" line the next time it is re-ingested for an
+    # unrelated reason, which is not this change's job.
+    stat_line = ", ".join(f"{v} {k}" for k, v in stats.items() if k != "body_chars")
     gap = src.get("known_cited_versions_not_held") or []
     parts = [f"---\n{head}\n---\n", "## At a glance\n",
              f"**{src['citation']}** — {src['title']}\n\n"
@@ -1126,6 +1137,54 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
             "U.S.C. citation by name rather than by silence.\n")
     parts.append("\n## Full text\n\n" + text + "\n")
     return "\n".join(parts)
+
+
+# A flat character-count floor conflates two different failure modes that need different
+# evidence. "Scanned or broken" names a PDF/HTML extractor silently returning a near-empty
+# string from a document that visibly has real content -- there the extractor's own report
+# of HOW MUCH it found is unreliable (that is exactly the failure), so counting characters is
+# the only signal available, and 2,000 is the floor every such source has cleared.
+#
+# `cfr_part` is structured XML: extract_cfr() does not guess at page furniture, it walks
+# real `TYPE="SECTION"`/`TYPE="APPENDIX"` elements and reports exactly how many it found,
+# plus how many characters of actual body text they held, in `stats`. That count is the
+# reliable signal for THIS extractor, and it catches the real failure mode -- a document
+# parsed with the wrong schema, which is exactly how 0 chars came back for a USLM title run
+# through extract_cfr() (see the comment above the `extract_cfr()` call in main()) -- without
+# also rejecting a genuinely short part. 7 CFR 280 ("Emergency Food Assistance for Victims of
+# Disasters") is one real section and under 1,600 characters of actual, correctly-extracted
+# federal text; the flat floor called that "scanned or broken" when nothing was broken, it is
+# just short.
+#
+# `usc_section` is also structured XML (extract_usc() walks real USLM `<subsection>`
+# elements) but it is NOT given the same structural carve-out below: extract_usc() only
+# reports a subsection COUNT, and a legitimate section can have zero subsections, so a count
+# alone cannot distinguish "short but real" from "broken" the way `cfr_part`'s body-char
+# total can. `usc_section` keeps the flat `len(text) < 2000` floor for now, which means a
+# short-but-real U.S.C. section can still be rejected the way 7 CFR 280 was (#102) -- a
+# known gap, not a claim that it is covered.
+def extraction_is_broken(kind: str, text: str, stats: dict) -> str | None:
+    """None if `text`/`stats` look like a genuine extraction for `kind`, else a reason.
+
+    `kind == "cfr_part"`: broken means the structural walk found no SECTION or APPENDIX at
+    all, or found some but their combined body text is empty -- never a low character count
+    on its own, since a part can legitimately hold one short section.
+
+    Every other kind keeps the original flat floor: those extractors (PDF, HTML, and
+    `usc_section`'s subsection count) have no body-text count to trust instead, so a
+    near-empty result is the only signal that the source was a scan, a redirect, or
+    otherwise not the document it claims to be.
+    """
+    if kind == "cfr_part":
+        n_structural = stats.get("sections", 0) + stats.get("appendices", 0)
+        if n_structural == 0:
+            return "0 sections or appendices extracted — scanned, broken, or wrong XML schema"
+        if stats.get("body_chars", 0) == 0:
+            return f"{n_structural} sections/appendices found but 0 chars of body text — broken"
+        return None
+    if len(text) < 2000:
+        return f"only {len(text)} chars extracted — scanned or broken"
+    return None
 
 
 def irs_revision(text: str, pdf_path: Path) -> str:
@@ -1219,12 +1278,12 @@ def main() -> int:
             # eCFR — the first source to be BOTH is exactly what makes this load-bearing: a
             # format-keyed dispatch would run a USLM title through extract_cfr, which reads
             # `TYPE="SECTION"` attributes USLM does not have and returns silently EMPTY text
-            # (confirmed: 0 chars on Title 20's own XML) rather than raising, which the
-            # `len(text) < 2000` guard below would then report as "scanned or broken" -- a
-            # true-sounding diagnosis of the wrong file. check_extraction.py's dispatch must
-            # agree with this one, or the checker re-derives a different "expected" than what
-            # was actually committed and reports a fidelity defect that is really a disagreement
-            # about which extractor ran.
+            # (confirmed: 0 chars on Title 20's own XML) rather than raising, which
+            # `extraction_is_broken()` below then reports as "0 sections or appendices
+            # extracted" -- a true-sounding diagnosis of the wrong file. check_extraction.py's
+            # dispatch must agree with this one, or the checker re-derives a different
+            # "expected" than what was actually committed and reports a fidelity defect that
+            # is really a disagreement about which extractor ran.
             part_status, part_superseded_by = "current", None
             if src["instrument_kind"] == "cfr_part":
                 text, stats = extract_cfr(raw)
@@ -1276,8 +1335,9 @@ def main() -> int:
                         "— declare one rather than letting a parser be guessed")
             else:
                 text, stats = extract_pdf(snap)
-            if len(text) < 2000:
-                raise ValueError(f"only {len(text)} chars extracted — scanned or broken")
+            broken = extraction_is_broken(src["instrument_kind"], text, stats)
+            if broken:
+                raise ValueError(broken)
 
             version = src.get("version")
             if src["instrument_kind"] == "irs_publication" and not version:

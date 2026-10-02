@@ -7,6 +7,47 @@ Repo-curation dates only — official effective dates live in frontmatter.
 ## [Unreleased]
 
 ### Fixed
+- 2026-10-01 — **#102: "Food and Nutrition Administration" does not exist.** 9
+  `_meta/source-manifest.yml` entries (`7-cfr-210`, `220`, `225`, `226`, `248`, `249`, `250`,
+  `273`, `280`) declared `issuing_body: "Department of Agriculture / Food and Nutrition
+  Administration"` — no such body exists; the correct sub-agency is the **Food and Nutrition
+  Service**, already the name `fns-handbook-901` and `7-cfr-277` use correctly, and the name
+  several of these same parts' own extracted text uses ("FNS means the Food and Nutrition
+  Service of the U.S. Department of Agriculture"). Corrected in the manifest, then
+  `python3 src/ingest_instruments.py --only <id>` for each of the 9 parts to regenerate their
+  documents and `python3 src/split_cfr_sections.py --part-id <id>` to regenerate the sections
+  split from them — 44 documents in all (9 parts, 35 sections), plus the manifest: 97
+  occurrences corrected. `python3 src/split_cfr_sections.py --check` gates this going
+  forward (it reads `issuing_body` from the manifest and reports every document built from a
+  mismatched one as `STALE`).
+
+  **Side effect, not a second bug:** re-ingesting 7 CFR 210/220/225/226 live-verifies
+  `amended_on` against eCFR the same as every `cfr_part` re-ingest does (ADR-0001's "current
+  text" model), which moved each PART's `amended_on` from `2026-06-08` to `2026-09-09` — the
+  same real amendment #106 already picked up for these four parts' SECTION documents. The
+  mirrored text itself did not change (`source_sha256` unchanged; the pinned snapshot's `url`
+  and `as_of` are untouched — only the issuer string and the derived fields moved).
+
+  **Blocker encountered and fixed, not worked around:** re-ingesting `7-cfr-280` failed
+  `ValueError: only 1554 chars extracted — scanned or broken` — see the `extraction_is_broken`
+  entry below. 7 CFR 280 is genuinely one section and ~1,554 characters; nothing was scanned
+  or broken.
+
+- 2026-10-01 — **`ingest_instruments.py`'s extraction guard flagged a genuinely short
+  `cfr_part` as "scanned or broken."** The guard was a flat `len(text) < 2000` applied to
+  every `instrument_kind`. That is the right test for a PDF/HTML extractor, which has no
+  structural signal to fall back on if the page furniture logic silently drops everything —
+  but `cfr_part` is structured XML: `extract_cfr()` walks real `TYPE="SECTION"`/
+  `TYPE="APPENDIX"` elements and reports exactly how many it found. A part can be fully and
+  correctly extracted while still being short — 7 CFR 280 ("Emergency Food Assistance for
+  Victims of Disasters") is one section, 1,554 characters, and was the #102 blocker. New
+  `extraction_is_broken(kind, text, stats)` trusts the structural count for `cfr_part` (0
+  sections/appendices found, or text empty despite structure found, is the real failure
+  signature — the same shape as a USLM title silently misread by the CFR extractor, see the
+  comment above the `extract_cfr()` call site) and keeps the original flat floor for every
+  other kind. `src/check_extraction_guard.py` is the hermetic, synthetic-fixture proof
+  (`ingest_instruments.py` itself runs in no CI workflow), wired into `ci.yml`'s `generated`
+  job.
 - 2026-09-28 — `src/check_source_urls.py` (the weekly `source-urls` job) reports a host that
   blocks GitHub's runners as **BLOCKED — cannot verify**, not as a failure, via a dated
   `KNOWN_BLOCKED` entry that records the refusing status and the evidence. First entry:
@@ -22,8 +63,48 @@ Repo-curation dates only — official effective dates live in frontmatter.
   for 210.21 on 2026-08-31 and 2026-09-26 is byte-identical, and the four parts re-verify
   verbatim against their committed snapshots — so this is the date field and the
   "last amended" line only. Caught by the weekly `amended-on` job, red since 2026-09-14.
+- 2026-10-01 — **45 CFR 155, 45 CFR 261** (PART-level `amended_on`, surfaced incidentally by
+  #104's edge re-ingest, below): `2026-07-20` → `2026-09-23` and `2026-07-31` → `2026-09-29`
+  respectively, per eCFR's live versioner. Both parts' `as_of` stays pinned at `2026-08-31`
+  (the committed snapshot's own point-in-time URL; a re-ingest does not refetch or re-pin),
+  so each document now correctly states a real amendment postdating the text it holds — the
+  same "amended more recently than our pinned snapshot" fact `7-cfr-210`/`220`/`225`/`226`
+  surfaced above, not a defect in this change. Re-pinning either part to a newer `as_of` is a
+  separate, deliberate decision and out of scope here.
 
 ### Added
+- 2026-10-01 — **#104: 9 `cfr_part` documents were graph dead ends from above.**
+  `graph_neighbors`/`authority_chain` walk a document's own `relationships.related`, and the
+  graph is outbound-only, so a part is only discoverable from its own split sections if the
+  PART's frontmatter carries those edges too. `split_cfr_sections.py --check` only ever
+  verified the SECTION side of that pair (every split section's own `related: [<part_id>]`);
+  nothing verified the reverse. 9 parts drifted out of sync after the 2026-09-01 mass ingest
+  (same root cause as `34-cfr-99`, fixed in #26/#27): `24-cfr-576` (5 missing edges),
+  `34-cfr-303` (24), `42-cfr-435` (29), `42-cfr-455` (21), `45-cfr-155` (6), `45-cfr-261`
+  (11), `49-cfr-1520` (1), `7-cfr-273` (14), `7-cfr-280` (1) — 112 edges in all. Fixed by
+  re-running `python3 src/ingest_instruments.py --only <id>` for each (`7-cfr-273` and
+  `7-cfr-280` already needed re-ingesting for #102 above; the other 7 needed it for this
+  alone). New CI gate `src/check_part_edges.py` (`ci.yml`'s `generated` job) makes this class
+  of drift fail loudly instead of silently: real-data loop asserting every non-superseded
+  `cfr_part`'s `relationships.related` is a superset of its own `cited_section_ids()`, plus a
+  synthetic fixture proving a superseded part is correctly exempted (next paragraph).
+
+  **`45 CFR 75` is correctly excluded, not a 10th part this pass missed.** Without the
+  superseded-part filter, `cited_section_ids("45-cfr-75")` names 7 more ids `related` does
+  not carry — but `ingest_instruments.build()` deliberately points a WHOLLY SUPERSEDED part's
+  `related` at `[superseded_by]` (`2-cfr-200`) instead of its own, equally superseded, split
+  sections: a reader at a gone part needs pointing at where the live text moved to, not into
+  a dead end of its own removed history (#77). `45-cfr-75.md`'s committed
+  `relationships.related: [2-cfr-200]` already reflects this correctly and was not changed.
+  `check_part_edges.py` skips every `status: superseded` document for the same reason and
+  proves the exemption with a synthetic fixture rather than relying on 45 CFR 75 staying the
+  corpus's only example of the shape.
+
+  **Correction to the issue's own text:** re-running the ingester does NOT refresh
+  `as_of`/`retrieved` — `as_of` comes from the pinned point-in-time URL already in the
+  manifest, and `retrieved` is read back from the committed document and only moves on a
+  real re-fetch of a changed/absent snapshot. Only `amended_on` is checked live on every
+  `cfr_part` re-ingest.
 - 2026-09-10 — ADR-0006: this corpus now holds the U.S. Code sections Oregon cites, section
   by section, on demand, superseding ADR-0004's blanket refusal. First section: **20 USC
   1232g** (FERPA), ingested from OLRC (`uscode.house.gov`)'s per-title USLM XML release

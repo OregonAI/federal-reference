@@ -1,7 +1,7 @@
 {
  "corpus": "federal-reference",
  "n_nodes": 451,
- "n_edges": 678,
+ "n_edges": 790,
  "n_edges_external": 0,
  "nodes": [
   {
@@ -3674,6 +3674,31 @@
    "to": "24-cfr-576"
   },
   {
+   "from": "24-cfr-576",
+   "type": "related",
+   "to": "24-cfr-576.2"
+  },
+  {
+   "from": "24-cfr-576",
+   "type": "related",
+   "to": "24-cfr-576.100"
+  },
+  {
+   "from": "24-cfr-576",
+   "type": "related",
+   "to": "24-cfr-576.101"
+  },
+  {
+   "from": "24-cfr-576",
+   "type": "related",
+   "to": "24-cfr-576.102"
+  },
+  {
+   "from": "24-cfr-576",
+   "type": "related",
+   "to": "24-cfr-576.400"
+  },
+  {
    "from": "28-cfr-23.20",
    "type": "related",
    "to": "28-cfr-23"
@@ -4574,6 +4599,126 @@
    "to": "34-cfr-303"
   },
   {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.24"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.405"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.120"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.400"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.600"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.4"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.25"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.34"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.117"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.209"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.302"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.303"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.310"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.321"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.344"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.409"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.414"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.420"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.430"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.431"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.521"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.29"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.320"
+  },
+  {
+   "from": "34-cfr-303",
+   "type": "related",
+   "to": "34-cfr-303.401"
+  },
+  {
    "from": "34-cfr-99.1",
    "type": "related",
    "to": "34-cfr-99"
@@ -5124,6 +5269,151 @@
    "to": "42-cfr-435"
   },
   {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.1010"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.907"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.916"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.1200"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.726"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.910"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.914"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.926"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.940"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.956"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.1009"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.10"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.603"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.917"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.952"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.110"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.120"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.123"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.135"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.170"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.219"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.610"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.725"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.905"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.909"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.923"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.1205"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.4"
+  },
+  {
+   "from": "42-cfr-435",
+   "type": "related",
+   "to": "42-cfr-435.1110"
+  },
+  {
    "from": "42-cfr-440.100",
    "type": "related",
    "to": "42-cfr-440"
@@ -5399,6 +5689,111 @@
    "to": "42-cfr-455"
   },
   {
+   "from": "42-cfr-455",
+   "type": "related",
+   "to": "42-cfr-455.23"
+  },
+  {
+   "from": "42-cfr-455",
+   "type": "related",
+   "to": "42-cfr-455.102"
+  },
+  {
+   "from": "42-cfr-455",
+   "type": "related",
+   "to": "42-cfr-455.436"
+  },
+  {
+   "from": "42-cfr-455",
+   "type": "related",
+   "to": "42-cfr-455.414"
+  },
+  {
+   "from": "42-cfr-455",
+   "type": "related",
+   "to": "42-cfr-455.104"
+  },
+  {
+   "from": "42-cfr-455",
+   "type": "related",
+   "to": "42-cfr-455.2"
+  },
+  {
+   "from": "42-cfr-455",
+   "type": "related",
+   "to": "42-cfr-455.410"
+  },
+  {
+   "from": "42-cfr-455",
+   "type": "related",
+   "to": "42-cfr-455.13"
+  },
+  {
+   "from": "42-cfr-455",
+   "type": "related",
+   "to": "42-cfr-455.14"
+  },
+  {
+   "from": "42-cfr-455",
+   "type": "related",
+   "to": "42-cfr-455.101"
+  },
+  {
+   "from": "42-cfr-455",
+   "type": "related",
+   "to": "42-cfr-455.416"
+  },
+  {
+   "from": "42-cfr-455",
+   "type": "related",
+   "to": "42-cfr-455.432"
+  },
+  {
+   "from": "42-cfr-455",
+   "type": "related",
+   "to": "42-cfr-455.450"
+  },
+  {
+   "from": "42-cfr-455",
+   "type": "related",
+   "to": "42-cfr-455.470"
+  },
+  {
+   "from": "42-cfr-455",
+   "type": "related",
+   "to": "42-cfr-455.17"
+  },
+  {
+   "from": "42-cfr-455",
+   "type": "related",
+   "to": "42-cfr-455.21"
+  },
+  {
+   "from": "42-cfr-455",
+   "type": "related",
+   "to": "42-cfr-455.100"
+  },
+  {
+   "from": "42-cfr-455",
+   "type": "related",
+   "to": "42-cfr-455.105"
+  },
+  {
+   "from": "42-cfr-455",
+   "type": "related",
+   "to": "42-cfr-455.412"
+  },
+  {
+   "from": "42-cfr-455",
+   "type": "related",
+   "to": "42-cfr-455.434"
+  },
+  {
+   "from": "42-cfr-455",
+   "type": "related",
+   "to": "42-cfr-455.460"
+  },
+  {
    "from": "42-cfr-600.305",
    "type": "related",
    "to": "42-cfr-600"
@@ -5497,6 +5892,36 @@
    "from": "45-cfr-155.725",
    "type": "related",
    "to": "45-cfr-155"
+  },
+  {
+   "from": "45-cfr-155",
+   "type": "related",
+   "to": "45-cfr-155.420"
+  },
+  {
+   "from": "45-cfr-155",
+   "type": "related",
+   "to": "45-cfr-155.20"
+  },
+  {
+   "from": "45-cfr-155",
+   "type": "related",
+   "to": "45-cfr-155.300"
+  },
+  {
+   "from": "45-cfr-155",
+   "type": "related",
+   "to": "45-cfr-155.410"
+  },
+  {
+   "from": "45-cfr-155",
+   "type": "related",
+   "to": "45-cfr-155.720"
+  },
+  {
+   "from": "45-cfr-155",
+   "type": "related",
+   "to": "45-cfr-155.725"
   },
   {
    "from": "45-cfr-160.103",
@@ -5784,6 +6209,61 @@
    "to": "45-cfr-261"
   },
   {
+   "from": "45-cfr-261",
+   "type": "related",
+   "to": "45-cfr-261.14"
+  },
+  {
+   "from": "45-cfr-261",
+   "type": "related",
+   "to": "45-cfr-261.12"
+  },
+  {
+   "from": "45-cfr-261",
+   "type": "related",
+   "to": "45-cfr-261.13"
+  },
+  {
+   "from": "45-cfr-261",
+   "type": "related",
+   "to": "45-cfr-261.10"
+  },
+  {
+   "from": "45-cfr-261",
+   "type": "related",
+   "to": "45-cfr-261.61"
+  },
+  {
+   "from": "45-cfr-261",
+   "type": "related",
+   "to": "45-cfr-261.11"
+  },
+  {
+   "from": "45-cfr-261",
+   "type": "related",
+   "to": "45-cfr-261.62"
+  },
+  {
+   "from": "45-cfr-261",
+   "type": "related",
+   "to": "45-cfr-261.2"
+  },
+  {
+   "from": "45-cfr-261",
+   "type": "related",
+   "to": "45-cfr-261.56"
+  },
+  {
+   "from": "45-cfr-261",
+   "type": "related",
+   "to": "45-cfr-261.1"
+  },
+  {
+   "from": "45-cfr-261",
+   "type": "related",
+   "to": "45-cfr-261.70"
+  },
+  {
    "from": "45-cfr-264.1",
    "type": "related",
    "to": "45-cfr-264"
@@ -6047,6 +6527,11 @@
    "from": "49-cfr-1520.5",
    "type": "related",
    "to": "49-cfr-1520"
+  },
+  {
+   "from": "49-cfr-1520",
+   "type": "related",
+   "to": "49-cfr-1520.5"
   },
   {
    "from": "49-cfr-383.110",
@@ -6549,9 +7034,84 @@
    "to": "7-cfr-273"
   },
   {
+   "from": "7-cfr-273",
+   "type": "related",
+   "to": "7-cfr-273.11"
+  },
+  {
+   "from": "7-cfr-273",
+   "type": "related",
+   "to": "7-cfr-273.9"
+  },
+  {
+   "from": "7-cfr-273",
+   "type": "related",
+   "to": "7-cfr-273.7"
+  },
+  {
+   "from": "7-cfr-273",
+   "type": "related",
+   "to": "7-cfr-273.2"
+  },
+  {
+   "from": "7-cfr-273",
+   "type": "related",
+   "to": "7-cfr-273.10"
+  },
+  {
+   "from": "7-cfr-273",
+   "type": "related",
+   "to": "7-cfr-273.24"
+  },
+  {
+   "from": "7-cfr-273",
+   "type": "related",
+   "to": "7-cfr-273.1"
+  },
+  {
+   "from": "7-cfr-273",
+   "type": "related",
+   "to": "7-cfr-273.5"
+  },
+  {
+   "from": "7-cfr-273",
+   "type": "related",
+   "to": "7-cfr-273.12"
+  },
+  {
+   "from": "7-cfr-273",
+   "type": "related",
+   "to": "7-cfr-273.14"
+  },
+  {
+   "from": "7-cfr-273",
+   "type": "related",
+   "to": "7-cfr-273.18"
+  },
+  {
+   "from": "7-cfr-273",
+   "type": "related",
+   "to": "7-cfr-273.4"
+  },
+  {
+   "from": "7-cfr-273",
+   "type": "related",
+   "to": "7-cfr-273.13"
+  },
+  {
+   "from": "7-cfr-273",
+   "type": "related",
+   "to": "7-cfr-273.16"
+  },
+  {
    "from": "7-cfr-280.1",
    "type": "related",
    "to": "7-cfr-280"
+  },
+  {
+   "from": "7-cfr-280",
+   "type": "related",
+   "to": "7-cfr-280.1"
   }
  ]
 }
