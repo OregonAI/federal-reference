@@ -200,11 +200,39 @@ jobs:
       # #111: `ingest_instruments.py --check` reported pl-113-128, pl-115-224 and
       # irs-pub-1075 as drifted when nothing had -- it compared a fresh, UNANCHORED
       # extraction to the committed, ANCHORED document, for the three ids anchor_sections.py
-      # re-anchors after every real ingest. ingest_instruments.py itself runs in no
-      # workflow (see check_extraction.py's own step above), so this is the hermetic,
-      # synthetic-fixture proof for the fix, same shape as check_issuing_body.py.
+      # re-anchors after every real ingest. Only `--check --only <id>` runs in this job (the
+      # three steps below, and `--only 45-cfr-75` above) -- the corpus-wide `--check` does
+      # not, because it needs a live eCFR lookup for every part not already superseded. This
+      # step is the hermetic, synthetic-fixture proof for the fix itself, same shape as
+      # check_issuing_body.py; the three steps below are the real path, same shape as
+      # `--only 45-cfr-75` above.
       - name: ingest_instruments.py --check must compare against the anchored document
         run: python3 src/check_check_anchoring.py
+      # Review finding (reingest-drifted-instruments): the step above is a synthetic proof
+      # of the fix's mechanics; it never calls `ingest_instruments.py` itself, so a revert of
+      # the ingester's own `anchored_md()` call would leave it green. These three run the
+      # real path `--check --only 45-cfr-75` already establishes is hermetic for this job:
+      # each of pl-113-128, pl-115-224 and irs-pub-1075 is a committed RULES snapshot read
+      # from `_meta/snapshots/`, so no network and no write (`git status --porcelain` clean
+      # before and after). `--only` takes exactly one id -- a comma-separated list fails with
+      # "no manifest source with id" -- hence three steps, not one.
+      - name: main() itself must not re-flag pl-113-128 as drifted
+        run: python3 src/ingest_instruments.py --check --only pl-113-128
+      - name: main() itself must not re-flag pl-115-224 as drifted
+        run: python3 src/ingest_instruments.py --check --only pl-115-224
+      - name: main() itself must not re-flag irs-pub-1075 as drifted
+        run: python3 src/ingest_instruments.py --check --only irs-pub-1075
+      # #111 step 3 ("decide whether CI should run the full --check"), recorded where a
+      # future reader will see it: the corpus-wide `ingest_instruments.py --check` stays
+      # out of this job, not just for now. It needs a live eCFR lookup per part (no `--only
+      # <id>` hermetic shortcut at that scale), it is not write-free (fetch() caches raw
+      # bytes for any source with no snapshot yet -- re-measured 2026-10-01: 49 matched /
+      # 14 mismatched on main, 57/6 on this branch, and either run leaves 4 untracked
+      # `_meta/snapshots/*.html` files for sources with no document at all), and per-PR it
+      # would also flag every part whose `amended_on` moved since the PR branched, which is
+      # not this PR's drift. Proposed instead: a scheduled job, separate from `pull_request`
+      # and `push`, that runs the full `--check` and reports results to an issue. Recording
+      # the proposal, not deciding it -- an operator still has to stand the job up.
 
   # #54: CONTRIBUTING.md requires an `Assisted-by:` trailer on agent-assisted commits, and
   # nothing checked for it -- "a check that passes without checking anything", per AGENTS.md's
