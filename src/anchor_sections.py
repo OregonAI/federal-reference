@@ -87,6 +87,52 @@ def anchor_text(text: str, match) -> tuple[str, int]:
     return "\n".join(out) + ("\n" if text.endswith("\n") else ""), n
 
 
+def anchored_md(snap_id: str, md: str) -> tuple[str, int, int]:
+    """Apply `snap_id`'s RULES anchoring to a document body, plus the `conversion_notes`
+    line a real write applies alongside it -- the BODY+NOTE half of what `process()` writes
+    when it anchors a document. (The other half, the snapshot `.txt` and the resulting
+    `source_sha256`, is intentionally not here: `hash_snapshot()` hashes the committed `.txt`
+    on disk, not a string in memory, so there is nothing pure to factor out for it, and
+    `ingest_instruments.py --check`'s own comment already establishes that skipping that
+    write never changes the hash `--check` compares.)
+
+    Pure and side-effect-free, so both `process()` (writing to disk) and
+    `ingest_instruments.py`'s `--check` (comparing in memory, never writing) can call it and
+    see the same anchoring `process()` would actually commit -- one implementation of "what
+    anchoring this document produces," not two that can drift apart.
+
+    Returns `(new_md, n_new, n_total)`: the anchored document, how many NEW anchors this
+    call inserted (0 for an already-anchored body, by `anchor_text()`'s own idempotence),
+    and the running total of anchors in the result.
+
+    Raises `KeyError` for a `snap_id` not in `RULES` -- there is no anchoring rule to apply,
+    and a caller reaching this id should already know its list of anchored instruments
+    (`RULES` itself), the same way `extraction_is_broken()`'s callers look its argument up
+    rather than this function guessing a safe default.
+
+    The `conversion_notes` anchor count (`n_total`) is counted from `new_body` -- the .md
+    body being written -- not from the snapshot `.txt`, which is what the pre-#111 write
+    path counted. The two counts agree today (the body and the snapshot carry the same
+    anchors), so this is not a behavior change, only a change in which file the number
+    comes from.
+    """
+    rule = RULES[snap_id]
+    head, sep, body = md.partition("\n## Full text\n")
+    new_body, n_new = anchor_text(body, rule["match"])
+    n_total = sum(1 for l in new_body.splitlines() if l.startswith("### "))
+    new_md = head + sep + new_body
+
+    note = (f'conversion_notes: "{n_total} section anchors (### ) inserted at '
+            f'extraction for navigability — the anchor prefixes existing heading '
+            f'lines and adds no words; see src/anchor_sections.py"')
+    if re.search(r"^conversion_notes:", new_md, re.M):
+        new_md = re.sub(r"^conversion_notes:.*$", note, new_md, count=1, flags=re.M)
+    else:
+        new_md = re.sub(r"^content_mode: verbatim$",
+                        f"content_mode: verbatim\n{note}", new_md, count=1, flags=re.M)
+    return new_md, n_new, n_total
+
+
 def process(check: bool, only: set[str] | None = None) -> int:
     """Anchor every RULES document, or just `only` when given.
 
@@ -115,13 +161,20 @@ def process(check: bool, only: set[str] | None = None) -> int:
         n_total = sum(1 for l in new_txt.splitlines() if l.startswith("### "))
 
         md = md_path.read_text(encoding="utf-8")
-        head, sep, body = md.partition("\n## Full text\n")
-        new_body, _ = anchor_text(body, rule["match"])
-        new_md = head + sep + new_body
+        new_md, _, _ = anchored_md(snap_id, md)
 
         if check:
             if n_new or new_md != md:
-                stale.append(f"{snap_id}: {n_new} unanchored heading(s)")
+                if n_new:
+                    stale.append(f"{snap_id}: {n_new} unanchored heading(s)")
+                else:
+                    # n_new == 0 but new_md != md: every heading is already anchored, so
+                    # the mismatch is in the conversion_notes line anchored_md() writes
+                    # (its count now comes from the .md body, not the snapshot .txt --
+                    # equivalent today, but a reader should not have to work that out from
+                    # "0 unanchored heading(s)").
+                    stale.append(f"{snap_id}: conversion_notes count is stale "
+                                 f"(0 unanchored headings)")
             continue
 
         if n_new == 0 and new_md == md:
@@ -130,21 +183,14 @@ def process(check: bool, only: set[str] | None = None) -> int:
         txt_path.write_text(new_txt, encoding="utf-8")
         md_path.write_text(new_md, encoding="utf-8")
 
-        # hash + conversion note: the snapshot's normalized text changed, so the
-        # recorded hash must follow it (hash_snapshot's txt branch).
+        # hash: the snapshot's normalized text changed, so the recorded hash must follow
+        # it (hash_snapshot's txt branch). conversion_notes is already in new_md, from
+        # anchored_md() above.
         fmt = re.search(r"^source_format:\s*(\w+)", new_md, re.M).group(1)
         sha = hash_snapshot(snap_id, fmt, SNAPSHOTS)
         new_md = md_path.read_text(encoding="utf-8")
         new_md = re.sub(r"^source_sha256:\s*\S+$", f"source_sha256: {sha}",
                         new_md, count=1, flags=re.M)
-        note = (f'conversion_notes: "{n_total} section anchors (### ) inserted at '
-                f'extraction for navigability — the anchor prefixes existing heading '
-                f'lines and adds no words; see src/anchor_sections.py"')
-        if re.search(r"^conversion_notes:", new_md, re.M):
-            new_md = re.sub(r"^conversion_notes:.*$", note, new_md, count=1, flags=re.M)
-        else:
-            new_md = re.sub(r"^content_mode: verbatim$",
-                            f"content_mode: verbatim\n{note}", new_md, count=1, flags=re.M)
         md_path.write_text(new_md, encoding="utf-8")
         print(f"  anchored {snap_id}: {n_new} new, {n_total} total; sha -> {sha[:12]}…")
 

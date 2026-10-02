@@ -1386,7 +1386,20 @@ def main() -> int:
                           existing_rel=existing_relationships(doc_path))
             if args.check:
                 committed = doc_path.read_text(encoding="utf-8") if doc_path.is_file() else None
-                if committed != built:
+                # #111: a real ingest of pl-113-128 / pl-115-224 / irs-pub-1075 is always
+                # followed by anchor_sections.py re-anchoring the result (see the
+                # `ingested_ids` block below) -- so the COMMITTED document for these three is
+                # always anchored, while `built` above is the freshly extracted text,
+                # UNANCHORED. Comparing them raw reports a false MISMATCH on every run,
+                # whether or not anything actually drifted (measured 2026-10-01: all three
+                # reproduce the committed document byte for byte once anchored). Apply the
+                # same anchoring pass here, via the one function `process()` itself calls
+                # for this, so --check sees what a real ingest would actually leave committed.
+                from anchor_sections import RULES as _ANCHOR_RULES, anchored_md
+                compare = built
+                if rid in _ANCHOR_RULES:
+                    compare, _, _ = anchored_md(rid, built)
+                if committed != compare:
                     failed += 1
                     print(f"  {rid:22} MISMATCH — committed document does not match what "
                           f"this ingester would write", file=sys.stderr)

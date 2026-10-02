@@ -7,6 +7,72 @@ Repo-curation dates only — official effective dates live in frontmatter.
 ## [Unreleased]
 
 ### Fixed
+- 2026-10-01 — **#111: `2-cfr-200` and `34-cfr-300`'s `relationships.related` order was
+  stale.** `cited_section_ids()` reads `_meta/cited-sections/<part_id>.yml` in file order;
+  that file's own order has moved since each part document was last ingested (sections
+  re-scanned, or moved between its `current`/`removed` lists), but the committed part
+  document was never regenerated to match — so a re-ingest reordered the same set of ids
+  rather than adding or dropping any. Confirmed no content changed: `source_sha256`,
+  `amended_on`, and every id in the list are identical before and after; only the order
+  moved, to match the `.yml` file both sides already agree is current. Re-ingested with
+  `python3 src/ingest_instruments.py --only <id>`.
+
+- 2026-10-01 — **#111: `ingest_instruments.py --check` false-flagged `pl-113-128`,
+  `pl-115-224` and `irs-pub-1075` as drifted.** All three are RULES documents
+  `anchor_sections.py` re-anchors after every real ingest (see that module's own
+  docstring), so the committed document is always anchored while `--check` compared it to
+  the freshly extracted, UNANCHORED text — a mismatch on every run regardless of whether
+  anything actually drifted. Measured 2026-10-01: a real `ingest_instruments.py --only <id>`
+  (which re-anchors afterward) reproduces each committed document byte for byte; `--check`
+  alone reported all three MISMATCH. Factored the body+`conversion_notes` mutation
+  `anchor_sections.process()` applies when writing into a new pure function,
+  `anchored_md(snap_id, md)`, so `process()` and `ingest_instruments.py --check` share one
+  implementation of "what anchoring this document produces" instead of `--check`
+  re-deriving (and risking drifting from) it. `src/check_check_anchoring.py` is the
+  hermetic, synthetic-fixture proof that `anchored_md()` rebuilds every committed RULES
+  document byte for byte from its unanchored text — only `--check --only <id>` runs in CI,
+  never the corpus-wide `--check` — wired into `ci.yml`'s `generated` job alongside three
+  new steps that run the real path, `ingest_instruments.py --check --only pl-113-128` /
+  `pl-115-224` / `irs-pub-1075`.
+
+- 2026-10-01 — **#111's "12 drifted instruments" included 4 that were never ingested at
+  all**, re-measured rather than trusted: `fedramp`, `fns-handbook-901`, `govramp`, and
+  `pci-dss` have no document in `instruments/` and never have (`git log` shows none was
+  ever committed). `ingest_instruments.py --check` reports a MISMATCH for them because
+  `committed` is `None` — `doc_path.read_text(...) if doc_path.is_file() else None` takes
+  the `None` arm when the document does not exist (`read_text()` itself never returns
+  `None`) — and `None != built` takes the same MISMATCH path real drift does, so it reads
+  identically to one in `--check`'s own output. #95
+  (2026-09-12) already decided this on the record, not newly discovered here: their
+  source URLs serve landing/terms pages whose extracted "Full text" is site navigation,
+  and a document built from one was deliberately deleted rather than shipped. Nothing
+  here changes that decision — these 4 still need a real document URL or a summary-stub
+  `doc_type` this corpus does not have yet, which is a decision for a human, not a
+  re-ingest. Of #111's 12: 2 (2 CFR 200, 34 CFR 300 — the `relationships.related` order
+  fix above) were real drift, now resolved; 3 were a `--check` false positive, now fixed
+  (above); 4 were never held at all, unchanged; 3 (45 CFR 260, 264, 265) remain flagged —
+  see the entry below, which disclosed a real upstream amendment but deliberately left
+  `amended_on` untouched so `--check` keeps reporting them — pending the re-ingest and
+  per-section status work, tracked separately.
+
+- 2026-10-01 — **45 CFR 260, 264, 265 (#111) are NOT re-ingested by this change — left
+  flagged, deliberately.** eCFR's live versioner reports a real amendment to all three
+  parts on 2026-09-29, but comparing eCFR's 2026-09-30 point-in-time XML against the
+  committed 2026-08-31 snapshots section by section finds that amendment RESERVED 21
+  sections across the three parts rather than making an editorial-only change: 260.10,
+  .32, .50, .52, .70–.76; 264.0, .2, .40, .60, .61, .70, .71, .83, .85; 265.6 — including
+  the held split-section document `instruments/45-cfr-260.50.md`, which eCFR now shows as
+  `[Reserved]`. The committed text for all three parts is still pre-amendment
+  (`source_sha256` unchanged, `as_of` pinned at `2026-08-31`), so bumping `amended_on` to
+  2026-09-29 without re-ingesting would make `ingest_instruments.py --check` and the
+  weekly `amended-on` job stop flagging a document that is actively serving removed
+  provisions as current law — the drift signal would go dark exactly when it matters
+  most. `amended_on` is deliberately left at `2026-07-31` for all three so `--check` keeps
+  reporting them. Re-pinning the three parts to a post-amendment `as_of` and determining
+  each reserved section's correct status (via the 404-is-not-withdrawal procedure — check
+  the listing of record and any replacement before changing status) is out of scope for
+  this change and is tracked as a separate, follow-up issue.
+
 - 2026-10-01 — **#102: "Food and Nutrition Administration" does not exist.** 9
   `_meta/source-manifest.yml` entries (`7-cfr-210`, `220`, `225`, `226`, `248`, `249`, `250`,
   `273`, `280`) declared `issuing_body: "Department of Agriculture / Food and Nutrition
