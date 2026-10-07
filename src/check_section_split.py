@@ -194,7 +194,7 @@ def main() -> int:
             ctx37, "37.98", "§ 37.98 Another repealed rule.", "### § 37.98\ntext.",
             {"citations": 1, "cited_in": ["erf"], "removed_on": "2024-05-01"},
             sha="babecafe", amended_on="2024-05-01",
-            superseded_by="6-cfr-37",  # falls back to the part itself -- no specific target
+            superseded_by=None,
             hist=splitter.HistCtx(hist_id="6-cfr-37-2024-04-30",
                                   hist_url="https://example.invalid/hist",
                                   hist_retrieved="2026-01-03",
@@ -673,6 +673,7 @@ def main() -> int:
         SECTION_REPEALS["9-cfr-20"] = {
             "date": "2026-09-29", "fr": "91 FR 99999", "published": "July 31, 2026",
             "url": "https://example.invalid/fr/2026-00000",
+            "why": "removed it as obsolete-for-test-reasons",
             "sections": {"20.10": "42 U.S.C. 1(a)"}}
         cited4(current=["20.11"], removed=["20.10"])
         rc4 = splitter.run_part("9-cfr-20", ns())
@@ -693,6 +694,9 @@ def main() -> int:
               "says no CFR section received the content",
               "91 FR 99999" in d4 and "42 U.S.C. 1(a)" in d4
               and "consolidated" not in d4.lower(), "repeal note missing or fabricated")
+        check("...and the stated reason comes from the record, not from build()",
+              "removed it as obsolete-for-test-reasons (42 U.S.C. 1(a))" in d4
+              and "duplicative" not in d4, "reason text not taken from the record")
         check("...and --check verifies what was written (round trip)",
               splitter.run_part("9-cfr-20", ns(check=True)) == 0, "")
         SECTION_REPEALS.clear()

@@ -80,6 +80,7 @@ import yaml
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from ingest_instruments import _flatten, fetch, resolve_issuing_body  # noqa: E402  (same extraction)
 from cfr_consolidations import CONSOLIDATIONS, PART_REMOVALS, SECTION_REPEALS  # noqa: E402
+from scan_cited_sections import RESERVED_RE  # noqa: E402  (one definition of '[Reserved]')
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SNAPSHOTS = ROOT / "_meta" / "snapshots"
@@ -144,7 +145,7 @@ def sections_from(raw: bytes, part: str) -> dict[str, tuple[str, str]]:
 
 def is_reserved_stub(head: str) -> bool:
     """'§ 260.50 [Reserved]' -- a heading with nothing in force behind it."""
-    return bool(re.search(r"\[(?:Removed and )?Reserved\]", head or "", re.I))
+    return bool(RESERVED_RE.search(head or ""))
 
 
 def subject(head: str, part: str) -> str:
@@ -324,8 +325,8 @@ def _target_doc(part_id: str, consolidation: dict | None, default: str | None) -
     of reading one parameter. The three defaults:
 
       - None in build() and in run_part()'s current-section loop.
-      - run_part()'s removed-section loop passes `default_target`: `part_id` for a section
-        dropped from a part that still exists, and the part document's own `superseded_by`
+      - run_part()'s removed-section loop passes `default_target`: `None` for a section
+        dropped from a part that still exists (no destination recorded => none asserted), and the part document's own `superseded_by`
         (falling back to `part_id` when it names none) for a section that died with its
         WHOLE part, where pointing at the removed part would be a dead end.
     """
@@ -361,8 +362,8 @@ def build(ctx: PartCtx, sec: str, head: str, body: str, meta: dict, sha: str,
     is None for the ordinary case: a section dropped from a part that still exists.
 
     `repeal` is set when src/cfr_consolidations.py's SECTION_REPEALS records the amending rule
-    that removed THIS section outright: `{"fr", "published", "url", "statute"}`. It adds the
-    rule's own stated reason to the note and never a destination."""
+    that removed THIS section outright: `{"fr", "published", "url", "why", "statute"}`
+    (`statute` may be empty). It adds the rule's own stated reason (`why`) to the note and never a destination."""
     live = hist is None  # not `superseded_by is None`: a repeal is superseded with NO successor
     doc_id = f"{ctx.part_id}.{sec.split('.', 1)[1]}"
     citation = f"{ctx.title} CFR {sec}"
@@ -451,9 +452,10 @@ def build(ctx: PartCtx, sec: str, head: str, body: str, meta: dict, sha: str,
                     f"{_removal_clause(consolidation, target_doc)}.")
         if repeal:
             lead += (f" The amending rule ([{repeal['fr']}]({repeal['url']}), "
-                     f"{repeal['published']}) removed and reserved it as duplicative of "
-                     f"statutory language ({repeal['statute']}); it names no CFR section the "
-                     f"content moved to, so this is a repeal, not a relocation.")
+                     f"{repeal['published']}) {repeal['why']}"
+                     + (f" ({repeal['statute']})" if repeal.get("statute") else "")
+                     + "; it names no CFR section the content moved to, so this is a "
+                     "repeal, not a relocation.")
         parts.append(
             f"\n> **This section no longer exists.** {lead} The text below is its "
             f"**last-in-force** text, as of {hist.last_in_force}.\n>\n"
@@ -793,9 +795,7 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
         # record at all already gets from _removal_clause().
         entry_consolidation = (consolidation if consolidation
                                 and consolidation.get("date") == removed_on else None)
-        # Where an unrecorded successor points. For a section dropped from a live part that
-        # is the part itself -- "the section is gone, the part it was in is where to look".
-        # For a section that died WITH its part, pointing at the part is a dead end: the part
+        # Where an unrecorded successor points. For a section that died WITH its part, pointing at the part is a dead end: the part
         # document is superseded too, and it already names its own successor. Inherited from
         # there rather than recorded again per section.
         # For a section dropped from a LIVE part the default is now None, not the part: a part
@@ -807,7 +807,7 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
         rrec = SECTION_REPEALS.get(part_id)
         repeal = None
         if rrec and rrec.get("date") == removed_on and sec in rrec.get("sections", {}):
-            repeal = {**{k: rrec[k] for k in ("fr", "published", "url")},
+            repeal = {**{k: rrec[k] for k in ("fr", "published", "url", "why")},
                       "statute": rrec["sections"][sec]}
         out = INSTRUMENTS / f"{part_id}.{sec.split('.', 1)[1]}.md"
         emit(out, build(ctx, sec, head, body, entry, hist_sha, entry["removed_on"], target_doc,

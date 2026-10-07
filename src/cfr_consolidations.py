@@ -65,6 +65,7 @@ _TANF_RULE = {
     "date": "2026-09-29",
     "fr": "91 FR 48268",
     "published": "July 31, 2026",
+    "why": "removed and reserved it as duplicative of statutory language",
     "url": "https://www.federalregister.gov/documents/2026/07/31/2026-15567/"
            "reducing-bureaucracy-and-burden-for-family-assistance-programs",
 }
