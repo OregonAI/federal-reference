@@ -18,15 +18,17 @@ current:
   - section: "260.20"
     citations: 6
     cited_in: ["erf"]
-  - section: "260.50"
-    citations: 4
-    cited_in: ["erf"]
 
 # REMOVED from the CFR, but still cited by Oregon material. These carry their
 # LAST-IN-FORCE text from a point-in-time snapshot, marked superseded. Resolving one
 # of these to current text would answer with law that was not in force when it was
 # cited -- a wrong answer wearing a right answer's clothes.
 removed:
+  - section: "260.50"
+    citations: 4
+    cited_in: ["erf"]
+    removed_on: "2026-09-29"
+    name_when_in_force: "§ 260.50 What is the purpose of this subpart?"
 
 # NO eCFR version record at all -- not current, not a recorded removal. Most likely a
 # pre-recodification section number eCFR's versioner never tracked (see this part's own

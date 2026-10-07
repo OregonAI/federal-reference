@@ -74,10 +74,7 @@ Source:64 FR 17900, Apr. 12, 1999, unless otherwise noted.
 (d) States may not use sampling to report expenditure data, data included in the Work Outcomes of TANF Exiters Report, or data included in the Secondary School Diploma or its Recognized Equivalent Attainment Rate.
 [64 FR 17900, Apr. 12, 1999, as amended at 89 FR 53877, June 28, 2024]
 
-### § 265.6 Must States file reports electronically?
-Link to an amendment published at 91 FR 48289, July 31, 2026.
-Each State must file all reports (i.e., the TANF Data Report, the TANF Financial Report (or, as applicable, the Territorial Financial Report), the SSP-MOE Data Report, the Work Outcomes of TANF Exiters Report, and the Secondary School Diploma or its Recognized Equivalent Attainment Rate) electronically, based on format specifications that we will provide.
-[89 FR 53877, June 28, 2024]
+### § 265.6 [Reserved]
 
 ### § 265.7 How will we determine if the State is meeting the quarterly reporting requirements?
 (a) Each State's quarterly reports (the TANF Data Report, the TANF Financial Report (or Territorial Financial Report), the SSP-MOE Data Report, and the Work Outcomes of TANF Exiters Report) must be complete and accurate and filed by the due date.

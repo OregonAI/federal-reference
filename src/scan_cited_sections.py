@@ -194,17 +194,53 @@ def ecfr_versions(title: int, part: int) -> dict[str, dict]:
     """
     url = f"https://www.ecfr.gov/api/versioner/v1/versions/title-{title}.json?part={part}"
     data = json.loads(urllib.request.urlopen(url, timeout=180).read())
-    out: dict[str, dict] = {}
-    for rec in data.get("content_versions") or data.get("versions") or []:
+    return latest_records(data.get("content_versions") or data.get("versions") or [])
+
+
+RESERVED_RE = re.compile(r"\[(?:Removed and )?Reserved\]", re.I)
+
+
+def latest_records(records: list[dict]) -> dict[str, dict]:
+    """Collapse eCFR version records to the LATEST one per section identifier.
+
+    The returned record also carries `last_in_force_name`: the most recent name that is not a
+    `[Reserved]` stub, or None if the section never had one. That is how `is_removed()` and
+    `name_when_in_force()` can describe a section eCFR renamed to "[Reserved]" instead of
+    flagging `removed: true`.
+    """
+    by_ident: dict[str, list[dict]] = {}
+    for rec in records:
         ident = rec.get("identifier")
-        if not ident:
-            continue
-        prev = out.get(ident)
-        # Keep the LATEST record per section -- that is the one that says whether it is
-        # still here. Records arrive oldest-first but that is not promised, so compare.
-        if prev is None or (rec.get("amendment_date") or "") >= (prev.get("amendment_date") or ""):
-            out[ident] = rec
+        if ident:
+            by_ident.setdefault(ident, []).append(rec)
+    out: dict[str, dict] = {}
+    for ident, recs in by_ident.items():
+        # Stable sort: records arrive oldest-first but that is not promised, so compare; on a
+        # tie the later-listed record wins, as before.
+        recs = sorted(recs, key=lambda r: r.get("amendment_date") or "")
+        latest = dict(recs[-1])
+        names = [" ".join(str(r.get("name") or "").split()) for r in recs]
+        latest["last_in_force_name"] = next(
+            (n for n in reversed(names) if n and not RESERVED_RE.search(n)), None)
+        out[ident] = latest
     return out
+
+
+def is_removed(rec: dict) -> bool:
+    """Gone from the CFR: eCFR's own `removed: true`, OR a section the amendment left behind
+    as a `[Reserved]` stub (45 CFR 260.50 on 2026-09-29: latest record "§ 260.50 [Reserved]",
+    `removed: false`) that HAD substantive text before. A stub that never had any is not a
+    removal and stays current-shaped, as before."""
+    if rec.get("removed"):
+        return True
+    return bool(RESERVED_RE.search(str(rec.get("name") or ""))) and bool(
+        rec.get("last_in_force_name"))
+
+
+def name_when_in_force(rec: dict) -> str:
+    if rec.get("removed"):
+        return " ".join(str(rec.get("name") or "").split())
+    return rec.get("last_in_force_name") or " ".join(str(rec.get("name") or "").split())
 
 
 def q(s: str) -> str:
@@ -941,9 +977,9 @@ def main() -> int:
                   f"a real citation pointing at nothing, named in the unresolvable: "
                   f"section rather than dropped", file=sys.stderr)
             unresolvable.append(entry)
-        elif rec.get("removed"):
+        elif is_removed(rec):
             entry["removed_on"] = rec["amendment_date"]
-            entry["name_when_in_force"] = " ".join(str(rec.get("name") or "").split())
+            entry["name_when_in_force"] = name_when_in_force(rec)
             removed.append(entry)
         else:
             current.append(entry)

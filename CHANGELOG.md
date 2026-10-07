@@ -6,7 +6,58 @@ Repo-curation dates only — official effective dates live in frontmatter.
 
 ## [Unreleased]
 
+### Source-Updated
+- 2026-10-06 — **#113: `45-cfr-260`, `45-cfr-261`, `45-cfr-264`, `45-cfr-265` re-pinned
+  to eCFR as of 2026-10-05** (manifest `source_url` moved from 2026-08-31; parts and every
+  held current section re-ingested / re-split). Re-measured against eCFR's versioner rather
+  than trusting the issue: the 2026-09-29 amendment touched 12 section records in 260 (.10,
+  .32, .50, .52, .70–.76), **19** in 261 (the issue's count of 7 held sections was right;
+  its original 21-section scope omitted part 261 entirely), 11 in 264 (.0, .2, .40, .60,
+  .61, .70, .71, .83, .85) and 1 in 265 (.6). Every one is a removal ("Remove and
+  reserve") by [91 FR 48268](https://www.federalregister.gov/documents/2026/07/31/2026-15567/reducing-bureaucracy-and-burden-for-family-assistance-programs) (July 31, 2026, FR Doc. 2026-15567, "Reducing Bureaucracy and Burden for Family Assistance Programs", effective 2026-09-29). **Held sections still current after the amendment, re-pinned text
+  only:** 45 CFR 260.20, 260.31, 261.2, 261.56, 261.61, 261.62, 264.1, 264.10, 264.30,
+  265.3, 265.7, 265.9 (none was touched by the rule; only `as_of`/`retrieved`/hash moved).
+
+### Superseded
+- 2026-10-06 — **#113: eight held sections were removed by [91 FR 48268](https://www.federalregister.gov/documents/2026/07/31/2026-15567/reducing-bureaucracy-and-burden-for-family-assistance-programs) (July 31, 2026, FR Doc. 2026-15567, "Reducing Bureaucracy and Burden for Family Assistance Programs", effective 2026-09-29)** and are now held as
+  `status: superseded` documents with their last-in-force text (eCFR as of 2026-09-28),
+  per the removed-section rule in `src/split_cfr_sections.py`. **Repealed, not
+  relocated:** the rule's amendatory instructions are bare "Remove and reserve" (no
+  redesignation), and its preamble removes each section as "merely restat[ing] statutory
+  language" already found in the statute — so `superseded_by` is **null** for every one
+  (no successor section is recorded; none was invented). Statute named by the preamble
+  for each section is recorded in `src/cfr_consolidations.py` `SECTION_REPEALS` and
+  quoted in each document's note:
+  `45 CFR 260.50` (42 U.S.C. 602(a)(7); 4 Oregon citations — the issue's named example,
+  which eCFR now shows as `[Reserved]`), `261.1` (42 U.S.C. 602; 1), `261.10` (42 U.S.C.
+  602(a)(1)(A)(ii), (a)(1)(B)(iv); 4), `261.11` (608(b); 3), `261.12` (608(b)(2); 10),
+  `261.13` (608(b)(3); 10), `261.14` (607(e)(1), 609(a)(14); 11), `261.70` (607(f); 1). The
+  cited-sections `removed:` lists of `45-cfr-260` and `45-cfr-261` carry them. The 260.50
+  preamble also states that the Family Violence Option and §§ 260.58/260.59 remain in
+  effect. 404-is-not-withdrawal check: eCFR returns `[Reserved]` (260.50, 261.1, 261.70) or
+  no content (261.10-.14) at/after 2026-09-29, and the point-in-time text for 2026-09-28
+  still holds all eight, so each was in force when Oregon material cited it. Oregon
+  documents in ERF and oregon-audits that cite them are citing law in force at the time
+  and are not touched. 45 CFR 264 and 265 hold no section the rule removed.
+
 ### Fixed
+- 2026-10-06 — **#113: a section the CFR "removed and reserved" in place classified as
+  CURRENT.** `scan_cited_sections.py` read only eCFR's `removed: true`; a section the
+  amendment left as a `[Reserved]` stub (45 CFR 260.50, 261.1, 261.70) has `removed: false`
+  and a latest record just renamed "[Reserved]", so a re-scan would have kept it in
+  `current:` and `split_cfr_sections.py` would have republished a `[Reserved]` heading as
+  `status: current`. New `latest_records()` / `is_removed()` / `name_when_in_force()`
+  classify it as removed (with its last substantive name), and `split_cfr_sections.py`
+  treats `[Reserved]` headings as not in force (so a removed section may remain in the
+  current part snapshot as a stub; a stub that never had text, like 34 CFR 99.6, is
+  unchanged and still splits as current).
+  Separately: a section removed from a LIVE part with no recorded consolidation used to get
+  `superseded_by: <the part>` — a destination nothing recorded; it is now null (a recorded
+  consolidation, as for 2 CFR 200.53/.62, is unchanged), and the citation resolver says "no
+  successor section is recorded" instead of "the current treatment is in <part>".
+  Proved in `src/check_section_split.py` (synthetic part) and `src/check_citations.py`
+  (real documents); both run in CI.
+
 - 2026-10-01 — **#111: `2-cfr-200` and `34-cfr-300`'s `relationships.related` order was
   stale.** `cited_section_ids()` reads `_meta/cited-sections/<part_id>.yml` in file order;
   that file's own order has moved since each part document was last ingested (sections

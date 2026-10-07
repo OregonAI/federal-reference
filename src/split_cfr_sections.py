@@ -79,7 +79,8 @@ import yaml
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from ingest_instruments import _flatten, fetch, resolve_issuing_body  # noqa: E402  (same extraction)
-from cfr_consolidations import CONSOLIDATIONS, PART_REMOVALS  # noqa: E402
+from cfr_consolidations import CONSOLIDATIONS, PART_REMOVALS, SECTION_REPEALS  # noqa: E402
+from scan_cited_sections import RESERVED_RE  # noqa: E402  (one definition of '[Reserved]')
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SNAPSHOTS = ROOT / "_meta" / "snapshots"
@@ -140,6 +141,11 @@ def sections_from(raw: bytes, part: str) -> dict[str, tuple[str, str]]:
                 body.append(t)
         out[f"{part}.{m.group(1)}"] = (head, "\n".join(body))
     return out
+
+
+def is_reserved_stub(head: str) -> bool:
+    """'§ 260.50 [Reserved]' -- a heading with nothing in force behind it."""
+    return bool(RESERVED_RE.search(head or ""))
 
 
 def subject(head: str, part: str) -> str:
@@ -319,8 +325,8 @@ def _target_doc(part_id: str, consolidation: dict | None, default: str | None) -
     of reading one parameter. The three defaults:
 
       - None in build() and in run_part()'s current-section loop.
-      - run_part()'s removed-section loop passes `default_target`: `part_id` for a section
-        dropped from a part that still exists, and the part document's own `superseded_by`
+      - run_part()'s removed-section loop passes `default_target`: `None` for a section
+        dropped from a part that still exists (no destination recorded => none asserted), and the part document's own `superseded_by`
         (falling back to `part_id` when it names none) for a section that died with its
         WHOLE part, where pointing at the removed part would be a dead end.
     """
@@ -348,12 +354,17 @@ def _removal_clause(consolidation: dict | None, target_doc: str | None) -> str:
 def build(ctx: PartCtx, sec: str, head: str, body: str, meta: dict, sha: str,
           amended_on: str | None, superseded_by: str | None,
           hist: HistCtx | None = None, consolidation: dict | None = None,
-          supersedes: list[str] | None = None, part_removal: dict | None = None) -> str:
+          supersedes: list[str] | None = None, part_removal: dict | None = None,
+          repeal: dict | None = None) -> str:
     """`part_removal` is set (possibly to an EMPTY dict) when this section was removed by the
     amendment that removed the WHOLE PART -- `{}` meaning "wholly superseded, no `why`
     recorded", which still earns the whole-part sentence, just without the reason clause. It
-    is None for the ordinary case: a section dropped from a part that still exists."""
-    live = superseded_by is None
+    is None for the ordinary case: a section dropped from a part that still exists.
+
+    `repeal` is set when src/cfr_consolidations.py's SECTION_REPEALS records the amending rule
+    that removed THIS section outright: `{"fr", "published", "url", "why", "statute"}`
+    (`statute` may be empty). It adds the rule's own stated reason (`why`) to the note and never a destination."""
+    live = hist is None  # not `superseded_by is None`: a repeal is superseded with NO successor
     doc_id = f"{ctx.part_id}.{sec.split('.', 1)[1]}"
     citation = f"{ctx.title} CFR {sec}"
     subj = subject(head, ctx.part)
@@ -439,6 +450,12 @@ def build(ctx: PartCtx, sec: str, head: str, body: str, meta: dict, sha: str,
         else:
             lead = (f"It was removed from the CFR on **{meta['removed_on']}**, "
                     f"{_removal_clause(consolidation, target_doc)}.")
+        if repeal:
+            lead += (f" The amending rule ([{repeal['fr']}]({repeal['url']}), "
+                     f"{repeal['published']}) {repeal['why']}"
+                     + (f" ({repeal['statute']})" if repeal.get("statute") else "")
+                     + "; it names no CFR section the content moved to, so this is a "
+                     "repeal, not a relocation.")
         parts.append(
             f"\n> **This section no longer exists.** {lead} The text below is its "
             f"**last-in-force** text, as of {hist.last_in_force}.\n>\n"
@@ -538,8 +555,12 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
     src = manifest_entry(part_id)
     issuing_body = resolve_issuing_body(src)
     pdoc = part_facts(part_id)
-    current = sections_from(part_xml.read_bytes(), part)
-    print(f"  part snapshot: {len(current)} sections")
+    all_in_part = sections_from(part_xml.read_bytes(), part)
+    # A section the amendment "removed and reserved" stays in the part snapshot as a bare
+    # `§ 260.50 [Reserved]` heading. It is NOT in force: leaving it in `current` made it
+    # publishable as a current section (and made a removal look like a contradiction below).
+    current = {k: v for k, v in all_in_part.items() if not is_reserved_stub(v[0])}
+    print(f"  part snapshot: {len(all_in_part)} sections ({len(current)} in force)")
 
     ctx = PartCtx(part_id=part_id, title=title, part=part, part_title=src["title"],
                   issuing_body=issuing_body, part_as_of=pdoc.as_of,
@@ -679,11 +700,15 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
             return 1
         # Unreachable for a superseded part (the gate above returns first) and unchanged for a
         # live one, where `current` really is the current snapshot.
-        if sec not in current:
+        # all_in_part, not `current`: a section that was NEVER substantive and sits in the part
+        # as `[Reserved]` (34 CFR 99.6, cited 5 times) is legitimately a current-shaped
+        # document. The scanner only moves a stub to `removed:` when it HAD text (see
+        # scan_cited_sections.is_removed), so a stub that reaches here is that case.
+        if sec not in all_in_part:
             print(f"error: {sec} is listed as current but absent from the part snapshot",
                   file=sys.stderr)
             return 1
-        head, body = current[sec]
+        head, body = all_in_part[sec]
         # #73: under plain --check this reads the field back from the very document emit()
         # then diffs against, so the comparison is a tautology and a hand-edited date passes.
         # It is still the right value to write (guessing None would make every current
@@ -770,19 +795,27 @@ def run_part(part_id: str, args: argparse.Namespace) -> int:
         # record at all already gets from _removal_clause().
         entry_consolidation = (consolidation if consolidation
                                 and consolidation.get("date") == removed_on else None)
-        # Where an unrecorded successor points. For a section dropped from a live part that
-        # is the part itself -- "the section is gone, the part it was in is where to look".
-        # For a section that died WITH its part, pointing at the part is a dead end: the part
+        # Where an unrecorded successor points. For a section that died WITH its part, pointing at the part is a dead end: the part
         # document is superseded too, and it already names its own successor. Inherited from
         # there rather than recorded again per section.
-        default_target = (pdoc.superseded_by or part_id) if whole_part else part_id
+        # For a section dropped from a LIVE part the default is now None, not the part: a part
+        # that lost the section does not hold its content, and `superseded_by` naming it
+        # asserted a destination nothing recorded (45 CFR 260.50 et al. were repealed as
+        # duplicative of statute, 91 FR 48268). A recorded consolidation still wins.
+        default_target = (pdoc.superseded_by or part_id) if whole_part else None
         target_doc = _target_doc(part_id, entry_consolidation, default_target)
+        rrec = SECTION_REPEALS.get(part_id)
+        repeal = None
+        if rrec and rrec.get("date") == removed_on and sec in rrec.get("sections", {}):
+            repeal = {**{k: rrec[k] for k in ("fr", "published", "url", "why")},
+                      "statute": rrec["sections"][sec]}
         out = INSTRUMENTS / f"{part_id}.{sec.split('.', 1)[1]}.md"
         emit(out, build(ctx, sec, head, body, entry, hist_sha, entry["removed_on"], target_doc,
                          hist=hist, consolidation=entry_consolidation,
-                         part_removal=(PART_REMOVALS.get(part_id) or {}) if whole_part else None))
+                         part_removal=(PART_REMOVALS.get(part_id) or {}) if whole_part else None,
+                         repeal=repeal))
         written += 1
-        print(f"    {sec} superseded -> {target_doc}  ({entry['citations']} citations)")
+        print(f"    {sec} superseded -> {target_doc or '(no successor recorded)'}  ({entry['citations']} citations)")
 
     if args.check:
         # An EXTRA section document nobody generates is drift too -- a hand-added file, or one
