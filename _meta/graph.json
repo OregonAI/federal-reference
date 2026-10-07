@@ -2225,9 +2225,9 @@
   },
   {
    "id": "45-cfr-260.50",
-   "title": "45 CFR 260.50 — What is the purpose of this subpart?",
+   "title": "45 CFR 260.50 — What is the purpose of this subpart? (SUPERSEDED 2026-09-29)",
    "doc_type": "federal_instrument",
-   "status": "current",
+   "status": "superseded",
    "path": "instruments/45-cfr-260.50.md"
   },
   {
@@ -2239,44 +2239,44 @@
   },
   {
    "id": "45-cfr-261.1",
-   "title": "45 CFR 261.1 — What does this part cover?",
+   "title": "45 CFR 261.1 — What does this part cover? (SUPERSEDED 2026-09-29)",
    "doc_type": "federal_instrument",
-   "status": "current",
+   "status": "superseded",
    "path": "instruments/45-cfr-261.1.md"
   },
   {
    "id": "45-cfr-261.10",
-   "title": "45 CFR 261.10 — What work requirements must an individual meet?",
+   "title": "45 CFR 261.10 — What work requirements must an individual meet? (SUPERSEDED 2026-09-29)",
    "doc_type": "federal_instrument",
-   "status": "current",
+   "status": "superseded",
    "path": "instruments/45-cfr-261.10.md"
   },
   {
    "id": "45-cfr-261.11",
-   "title": "45 CFR 261.11 — Which recipients must have an assessment under TANF?",
+   "title": "45 CFR 261.11 — Which recipients must have an assessment under TANF? (SUPERSEDED 2026-09-29)",
    "doc_type": "federal_instrument",
-   "status": "current",
+   "status": "superseded",
    "path": "instruments/45-cfr-261.11.md"
   },
   {
    "id": "45-cfr-261.12",
-   "title": "45 CFR 261.12 — What is an individual responsibility plan?",
+   "title": "45 CFR 261.12 — What is an individual responsibility plan? (SUPERSEDED 2026-09-29)",
    "doc_type": "federal_instrument",
-   "status": "current",
+   "status": "superseded",
    "path": "instruments/45-cfr-261.12.md"
   },
   {
    "id": "45-cfr-261.13",
-   "title": "45 CFR 261.13 — May an individual be penalized for not following an individual responsibility plan?",
+   "title": "45 CFR 261.13 — May an individual be penalized for not following an individual responsibility plan? (SUPERSEDED 2026-09-29)",
    "doc_type": "federal_instrument",
-   "status": "current",
+   "status": "superseded",
    "path": "instruments/45-cfr-261.13.md"
   },
   {
    "id": "45-cfr-261.14",
-   "title": "45 CFR 261.14 — What is the penalty if an individual refuses to engage in work?",
+   "title": "45 CFR 261.14 — What is the penalty if an individual refuses to engage in work? (SUPERSEDED 2026-09-29)",
    "doc_type": "federal_instrument",
-   "status": "current",
+   "status": "superseded",
    "path": "instruments/45-cfr-261.14.md"
   },
   {
@@ -2309,9 +2309,9 @@
   },
   {
    "id": "45-cfr-261.70",
-   "title": "45 CFR 261.70 — What safeguards are there to ensure that participants in work activities do not displace other workers?",
+   "title": "45 CFR 261.70 — What safeguards are there to ensure that participants in work activities do not displace other workers? (SUPERSEDED 2026-09-29)",
    "doc_type": "federal_instrument",
-   "status": "current",
+   "status": "superseded",
    "path": "instruments/45-cfr-261.70.md"
   },
   {
@@ -6211,6 +6211,26 @@
   {
    "from": "45-cfr-261",
    "type": "related",
+   "to": "45-cfr-261.61"
+  },
+  {
+   "from": "45-cfr-261",
+   "type": "related",
+   "to": "45-cfr-261.62"
+  },
+  {
+   "from": "45-cfr-261",
+   "type": "related",
+   "to": "45-cfr-261.2"
+  },
+  {
+   "from": "45-cfr-261",
+   "type": "related",
+   "to": "45-cfr-261.56"
+  },
+  {
+   "from": "45-cfr-261",
+   "type": "related",
    "to": "45-cfr-261.14"
   },
   {
@@ -6231,27 +6251,7 @@
   {
    "from": "45-cfr-261",
    "type": "related",
-   "to": "45-cfr-261.61"
-  },
-  {
-   "from": "45-cfr-261",
-   "type": "related",
    "to": "45-cfr-261.11"
-  },
-  {
-   "from": "45-cfr-261",
-   "type": "related",
-   "to": "45-cfr-261.62"
-  },
-  {
-   "from": "45-cfr-261",
-   "type": "related",
-   "to": "45-cfr-261.2"
-  },
-  {
-   "from": "45-cfr-261",
-   "type": "related",
-   "to": "45-cfr-261.56"
   },
   {
    "from": "45-cfr-261",

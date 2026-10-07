@@ -1,61 +1,6 @@
----
-schema_version: 1
-corpus: federal-reference
-jurisdiction: us
-id: 45-cfr-260
-title: General Temporary Assistance for Needy Families (TANF) Provisions
-doc_type: federal_instrument
-citation: 45 CFR 260
-authority_level: federal
-issuing_body: Department of Health and Human Services / Administration for Children and Families / Office
-  of Family Assistance
-instrument_kind: cfr_part
-version: null
-as_of: '2026-10-05'
-amended_on: '2026-09-29'
-reproduction_basis: 17 U.S.C. § 105 — edition of the CFR published by the U.S. government
-superseded_by: null
-source_url: https://www.ecfr.gov/api/versioner/v1/full/2026-10-05/title-45.xml?part=260
-source_format: xml
-retrieved: '2026-10-06'
-source_sha256: 900a0d908a1f077aac0b47436031e8e47aee2d0852fdc301c5502fd5f455533e
-status: current
-content_mode: verbatim
-relationships:
-  related:
-  - 45-cfr-260.31
-  - 45-cfr-260.20
-  - 45-cfr-260.50
-maintainer: '@morficflux'
-last_verified: ''
-verified_by: ''
----
-
-## At a glance
-
-**45 CFR 260** — General Temporary Assistance for Needy Families (TANF) Provisions
-
-- Issued by: Department of Health and Human Services / Administration for Children and Families / Office of Family Assistance
-- Version: not versioned
-- Text as of: 2026-10-05 (upstream last amended 2026-09-29)
-- Extent: 17 sections, 0 appendices, 3 subparts
-- Reproduction basis: 17 U.S.C. § 105 — edition of the CFR published by the U.S. government
-
-
-_NON-AUTHORITATIVE copy. This is a federal requirement and carries penalties state policy does not — read it at the source URL before relying on it. This copy is CURRENT text, which is not necessarily the text in force when a rule citing it was written._
-
-
-## Full text
-
-### PART 260—GENERAL TEMPORARY ASSISTANCE FOR NEEDY FAMILIES (TANF) PROVISIONS
-
-Authority:42 U.S.C. 601, 601 note, 603, 604, 606, 607, 608, 609, 610, 611, 619, and 1308.
-
-Source:64 FR 17878, Apr. 12, 1999, unless otherwise noted.
-
-### Subpart A—What Rules Generally Apply to the TANF Program?
-
-### § 260.10 [Reserved]
+### § 260.10 What does this part cover?
+Link to an amendment published at 91 FR 48288, July 31, 2026.
+This part includes regulatory provisions that generally apply to the Temporary Assistance for Needy Families (TANF) program.
 
 ### § 260.20 What is the purpose of the TANF program?
 The TANF program has the following four purposes:
@@ -187,7 +132,13 @@ WtW cash assistance has the meaning specified at § 260.32.
 (1) Does not apply to the use of the term assistance at part 263, subpart A, or at part 264, subpart B, of this chapter; and
 (2) Does not preclude a State from providing other types of benefits and services in support of the TANF goal at § 260.20(a).
 
-### § 260.32 [Reserved]
+### § 260.32 What does the term “WtW cash assistance” mean?
+Link to an amendment published at 91 FR 48288, July 31, 2026.
+(a) For the purpose of § 264.1(b)(1)(iii) of this chapter, WtW cash assistance only includes benefits that:
+(1) Meet the definition of assistance at § 260.31; and
+(2) Are directed at basic needs.
+(b) Thus, it includes benefits described in paragraphs (a)(1) and (a)(2) of § 260.31, but excludes benefits described in paragraph (a)(3) of § 260.31.
+(c) It only includes benefits identified in paragraphs (a) and (b) of this section when they are provided in the form of cash payments, checks, reimbursements, electronic funds transfers, or any other form that can legally be converted to currency.
 
 ### § 260.33 When are expenditures on State or local tax credits allowable expenditures for TANF-related purposes?
 (a) To be an allowable expenditure for TANF-related purposes, any tax credit program must be reasonably calculated to accomplish one of the purposes of the TANF program, as specified at § 260.20.
@@ -227,9 +178,9 @@ WtW cash assistance has the meaning specified at § 260.32.
 (a) In determining whether a State is subject to a penalty under parts 261 through 265 of this chapter, we will not apply the regulatory provisions in parts 260 through 265 of this chapter retroactively. We will judge State actions that occurred prior to the effective date of these rules and expenditures of funds received prior to the effective date only against a reasonable interpretation of the statutory provisions in title IV-A of the Act.
 (b) The effective date of these rules is October 1, 1999.
 
-### Subpart B—What Special Provisions Apply to Victims of Domestic Violence?
-
-### § 260.50 [Reserved]
+### § 260.50 What is the purpose of this subpart?
+Link to an amendment published at 91 FR 48288, July 31, 2026.
+Under section 402(a)(7) of the Act, under its TANF plan, a State may elect to implement a special program to serve victims of domestic violence and to waive program requirements for such individuals. This subpart explains how adoption of these provisions affects the penalty determinations applicable if a State fails to meet its work participation rate or comply with the five-year limit on Federal assistance.
 
 ### § 260.51 What definitions apply to this subpart?
 Family Violence Option (or FVO) means the provision at section 402(a)(7) of the Act under which a State certifies in its State plan if it has elected the option to implement comprehensive strategies for identifying and serving victims of domestic violence.
@@ -237,7 +188,12 @@ Federally recognized good cause domestic violence waiver means a good cause dome
 Good cause domestic violence waiver means a waiver of one or more program requirements granted by a State to a victim of domestic violence under the FVO, as described at § 260.52(c).
 Victim of domestic violence means an individual who is battered or subject to extreme cruelty under the definition at section 408(a)(7)(C)(iii) of the Act.
 
-### § 260.52 [Reserved]
+### § 260.52 What are the basic provisions of the Family Violence Option (FVO)?
+Link to an amendment published at 91 FR 48288, July 31, 2026.
+Section 402(a)(7) of the Act provides that States electing the FVO certify that they have established and are enforcing standards and procedures to:
+(a) Screen and identify individuals receiving TANF and MOE assistance with a history of domestic violence, while maintaining the confidentiality of such individuals;
+(b) Refer such individuals to counseling and supportive services; and
+(c) Provide waivers, pursuant to a determination of good cause, of normal program requirements to such individuals for so long as necessary in cases where compliance would make it more difficult for such individuals to escape domestic violence or unfairly penalize those who are or have been victimized by such violence or who are at risk of further domestic violence.
 
 ### § 260.54 Do States have flexibility to grant good cause domestic violence waivers?
 (a) Yes; States have broad flexibility to grant these waivers to victims of domestic violence. For example, they may determine which program requirements to waive and decide how long each waiver might be necessary.
@@ -269,6 +225,80 @@ To be federally recognized, good cause domestic violence waivers must:
 (c) To receive the penalty relief specified in paragraphs (a) and (b) of this section, the State must submit the information specified at § 265.9(b)(5) of this chapter.
 [64 FR 17878, Apr. 12, 1999]
 
-### Subpart C—What Special Provisions Apply to States that Were Operating Programs Under Approved Waivers?
+### § 260.70 What is the purpose of this subpart?
+Link to an amendment published at 91 FR 48288, July 31, 2026.
+(a) Under section 415 of the Act, if a State was granted a waiver under section 1115 of the Act and that waiver was in effect on August 22, 1996, the amendments made by PRWORA do not apply for the period of the waiver, to the extent that they are inconsistent with the waiver and the State elects to continue its waiver.
+(b) Identification of waiver inconsistencies is relevant for the determination of penalties in three areas:
+(1) Under § 261.50 of this chapter for failing to meet the work participation rates at part 261 of this chapter;
+(2) Under § 264.2 of this chapter for failing to comply with the five-year limit on Federal assistance at subpart A of part 264 of this chapter; and
+(3) Under § 261.54 of this chapter for failing to impose sanctions on individuals who fail to work.
+(c) This subpart explains how we will determine waiver inconsistencies and apply them in the penalty determination process for these penalties.
 
-### §§ 260.70-260.76 [Reserved]
+### § 260.71 What definitions apply to this subpart?
+Link to an amendment published at 91 FR 48288, July 31, 2026.
+(a) Inconsistent means that complying with the TANF work participation or sanction requirements at section 407 of the Act or the time-limit requirement at section 408(a)(7) of the Act would necessitate that a State change a policy reflected in an approved waiver.
+(b) Waiver consists of the work participation or time-limit component of the State's demonstration project under section 1115 of the Act. The component includes the revised AFDC requirements indicated in the State's waiver list, as approved by the Secretary under the authority of section 1115, and the associated AFDC provisions that did not need to be waived.
+(c) Control group and experimental group have the meanings specified in the terms and conditions of the State's demonstration.
+
+### § 260.72 What basic requirements must State demonstration components meet for the purpose of determining if inconsistencies exist with respect to work requirements or time limits?
+Link to an amendment published at 91 FR 48288, July 31, 2026.
+(a) The policies must be consistent with the requirements of section 415 of the Act and the requirements of this subpart.
+(b) The policies must be within the scope of the approved waivers both in terms of geographical coverage and the coverage of the types of cases specified in the waiver approval package.
+(c) The State must have applied its waiver policies on a continuous basis from the date that it implemented its TANF program, except that it may have adopted modifications that have the effect of making its policies more consistent with the provisions of PRWORA.
+(d) An inconsistency may not apply beyond the earlier of the following dates:
+(1) The expiration of waiver authority as determined in accordance with the demonstration terms and conditions; or
+(2) For any specific inconsistency, the date upon which the State discontinued the applicable waiver policy.
+(e) The State must submit the Governor's certification specified in § 260.75.
+(f) In general, the policies in this subpart do not have the effect of delaying the date when a State might be subject to the work or time-limit penalties at §§ 261.50, 261.54, and 264.1 of this chapter or the data collection requirements at part 265 of this chapter.
+
+### § 260.73 How do existing welfare reform waivers affect the participation rates and work rules?
+Link to an amendment published at 91 FR 48288, July 31, 2026.
+(a) If a State is implementing a work participation component under a waiver, in accordance with this subpart, the provisions of section 407 of the Act will not apply in determining if a penalty should be imposed, to the extent that the provision is inconsistent with the waiver.
+(b) For the purpose of determining if the State's demonstration has a work participation component, the waiver list for the demonstration must include one or more specific provisions that directly correspond to the work policies in section 407 of the Act (i.e., change allowable JOBS activities, exemptions from JOBS participation, hours of required JOBS participation, or sanctions for noncompliance with JOBS participation).
+(c) Corresponding to the inconsistencies certified by the Governor under § 260.75:
+(1) We will calculate the State's work participation rates, by:
+(i) Excluding cases exempted from participation under the demonstration component and, if applicable, experimental and control cases not otherwise exempted, in calculating the rate;
+(ii) Defining work activities as defined in the demonstration component in determining the numerator; and
+(iii) Including cases meeting the required number of hours of participation in work activities in accordance with demonstration component policy, in determining the numerator.
+(2) We will determine whether a State is taking appropriate sanctions when an individual refuses to work based on the State's certified waiver policies.
+(d) We will use the data submitted by States pursuant to § 265.3 of this chapter to calculate and make public a State's work participation rates under both the TANF requirements and the State's alternative waiver requirements.
+
+### § 260.74 How do existing welfare reform waivers affect the application of the Federal time-limit provisions?
+Link to an amendment published at 91 FR 48288, July 31, 2026.
+(a)(1) If a State is implementing a time-limit component under a waiver, in accordance with this subpart, the provisions of section 408(a)(7) of the Act will not apply in determining if a penalty should be imposed, to the extent that they are inconsistent with the waiver.
+(2) For the purpose of determining if the State's demonstration has a time-limit component, the waiver list for the demonstration must include provisions that directly correspond to the time-limit policies enumerated in section 408(a)(7) of the Act (i.e., address which individuals or families are subject to, or exempt from, terminations of assistance based solely on the passage of time or who qualifies for extensions to the time limit).
+(b)(1) Generally, under an approved waiver, except as provided in paragraph (b)(3) of this section, a State will count, toward the Federal five-year limit, all months for which the head-of-household or spouse of the head-of-household subject to the State time limit receives assistance with Federal TANF funds, just as it would if it did not have an approved waiver.
+(2) The State need not count, toward the Federal five-year limit, any months for which a head-of-household or spouse of the head-of-household receives assistance with Federal TANF funds while that individual is exempt from the State's time limit under the State's approved waiver.
+(3) Where a State has continued a time limit under waivers that only terminates assistance for adults, the State need not count, toward the Federal five-year limit, any months for which an adult subject to the State time limit receives assistance with Federal TANF funds.
+(4) The State may continue to provide assistance with Federal TANF funds for more than 60 months, without a numerical limit, to families provided extensions to the State time limit, under the provisions of the terms and conditions of the approved waiver.
+(c) Corresponding to the inconsistencies certified by the Governor under § 260.75, we will calculate the State's time-limit exceptions by:
+(1) Excluding, from the determination of the number of months of Federal assistance received by a family:
+(i) Any month in which the adult(s) were exempt from the State's time limit under the terms of an approved waiver or any months in which the children received assistance under a waiver that only terminated assistance to adults; and
+(ii) If applicable, experimental and control group cases not otherwise exempted; and
+(2) Applying the State's waiver policies with respect to the availability of extensions to the time limit.
+
+### § 260.75 If a State is claiming a waiver inconsistency for work requirements or time limits, what must the Governor certify?
+Link to an amendment published at 91 FR 48288, July 31, 2026.
+(a) The Governor of the State must certify in writing to the Secretary that:
+(1) The applicable policies have been continually applied in operating the TANF program, as described in § 260.72(c);
+(2) The inconsistencies claimed by the State are within the scope of the approved waivers, as described in § 260.72(b);
+(b) The certification must identify the specific inconsistencies that the State chooses to continue with respect to work and time limits.
+(1) If the waiver inconsistency claim includes work provisions, the certification must specify the standards that will apply, in lieu of the provisions in subparts B and C of part 261 of this chapter, to determine:
+(i) The number of two-parent and all-parent cases that are exempt from participation, if any, for the purpose of determining the denominator of the work participation rate;
+(ii) The number of nonexempt two-parent and all-parent cases that are participating in work activities for the purpose of determining the numerator of the work participation rate, including standards applicable to;
+(A) Countable work activities; and
+(B) Required hours of work for participation for individual participants; and
+(iii) The penalty against an individual or family when an individual refuses to work.
+(2) If the waiver inconsistency claim includes time-limit provisions, the certification must include the standards that will apply, in lieu of the provisions in § 264.1 of this chapter, in determining:
+(i) Which families are counted toward the Federal time limit; and
+(ii) Whether a family is eligible for an extension of its time limit on federally funded assistance.
+(3) If the State is continuing policies for evaluation purposes in accordance with § 260.76:
+(i) The certification must specify any special work or time-limit standards that apply to the control group and experimental group cases; and
+(ii) The State may choose to exclude cases assigned to the experimental and control groups, which are not otherwise exempt, for the purpose of calculating the work participation rate or determining State compliance related to limiting assistance to families including adults who have received 60 months of Federal TANF assistance. In doing so, the State may effectively exclude all experimental group cases and/or control group cases, not otherwise exempt, but may not exclude individual cases on a selective basis.
+(c) The certification may include a claim of inconsistency with respect to hours of required participation in work activities only if the State has written evidence that, when implemented, the waiver policies established specific requirements related to hours of work for nonexempt individuals.
+(d)(1) The Governor's certification must be provided no later than October 1, 1999.
+(2) If a State modifies its waiver policies in a way that has a substantive effect on the determination of its work sanctions, or the calculation of its work participation rates or its time-limit exceptions, it must submit an amended certification no later than the end of the fiscal quarter in which the modifications take effect.
+
+### § 260.76 What special rules apply to States that are continuing evaluations of their waiver demonstrations?
+Link to an amendment published at 91 FR 48288, July 31, 2026.
+If a State is continuing research that employs an experimental design in order to complete an impact evaluation of a waiver demonstration, the experimental and control groups may continue to be subject to prior AFDC law, except as modified by the waiver.
