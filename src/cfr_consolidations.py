@@ -46,3 +46,37 @@ PART_REMOVALS: dict[str, dict] = {
                "held here)",
     },
 }
+
+# SECTIONS REPEALED OUTRIGHT, NOT RELOCATED. A removed section is not always a consolidation:
+# `CONSOLIDATIONS` above records where content WENT, and a repeal has no such place. What the
+# amending rule's own preamble does state is WHY (and, here, which statute the section merely
+# restated), and that is recorded per section so the superseded document can say it without
+# inventing a destination. A section listed here still gets `superseded_by: null` -- the
+# statute is not a document this corpus holds, and the part is not where the text went.
+#
+# 91 FR 48268 (July 31, 2026, FR Doc. 2026-15567, "Reducing Bureaucracy and Burden for Family
+# Assistance Programs", effective 2026-09-29) removed and reserved sections of 45 CFR 260-265.
+# Each `sections` value below is the statutory citation the preamble's discussion of THAT
+# section gives as where its language "is already found"; read from the Federal Register text
+# (https://www.federalregister.gov/documents/full_text/text/2026/07/31/2026-15567.txt), never
+# inferred. The rule's amendatory instructions are bare "Remove and reserve" -- no instruction
+# redesignates any section.
+_TANF_RULE = {
+    "date": "2026-09-29",
+    "fr": "91 FR 48268",
+    "published": "July 31, 2026",
+    "url": "https://www.federalregister.gov/documents/2026/07/31/2026-15567/"
+           "reducing-bureaucracy-and-burden-for-family-assistance-programs",
+}
+SECTION_REPEALS: dict[str, dict] = {
+    "45-cfr-260": {**_TANF_RULE, "sections": {"260.50": "42 U.S.C. 602(a)(7)"}},
+    "45-cfr-261": {**_TANF_RULE, "sections": {
+        "261.1": "42 U.S.C. 602",
+        "261.10": "42 U.S.C. 602(a)(1)(A)(ii) and 42 U.S.C. 602(a)(1)(B)(iv)",
+        "261.11": "42 U.S.C. 608(b)",
+        "261.12": "42 U.S.C. 608(b)(2)",
+        "261.13": "42 U.S.C. 608(b)(3)",
+        "261.14": "42 U.S.C. 607(e)(1) and 42 U.S.C. 609(a)(14)",
+        "261.70": "42 U.S.C. 607(f)",
+    }},
+}

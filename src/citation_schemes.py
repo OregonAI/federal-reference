@@ -377,8 +377,11 @@ def _cfr_one(title, part, sec):
         return [doc], (
             f"§ {part}.{sec} was REMOVED from the CFR on {fm.get('amended_on')}. What is "
             f"returned is its LAST-IN-FORCE text (as of {fm.get('as_of')}), held because "
-            f"Oregon material still cites it. It is NOT current law — the current treatment "
-            f"is in {fm.get('superseded_by')}, and the two may differ.")
+            f"Oregon material still cites it. It is NOT current law — "
+            + (f"the current treatment is in {fm.get('superseded_by')}, and the two may differ."
+               if fm.get("superseded_by") else
+               "no successor section is recorded for it, so "
+               "do not assume any current section says the same thing."))
 
     return [doc], None
 

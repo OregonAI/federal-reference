@@ -114,6 +114,18 @@ def main() -> int:
         check(f"2 CFR 200.{sec} is labelled NOT current law",
               "not current law" in note.lower() and "removed" in note.lower(), note[:80])
 
+    # --- 45 CFR 260-265, repealed 2026-09-29 (91 FR 48268): superseded, NO destination ----
+    # eCFR now shows these as `[Reserved]` (or not at all). The held documents are the
+    # last-in-force text; the rule names no CFR section the content moved to, so the answer
+    # must say that rather than point at the part or at "None".
+    for cite, doc in (("45 CFR 260.50", "45-cfr-260.50"), ("45 CFR 261.14", "45-cfr-261.14"),
+                      ("45 CFR 261.1", "45-cfr-261.1")):
+        ids, note = resolve(cite)
+        check(f"{cite} resolves to its superseded document", ids == [doc], f"got {ids}")
+        check(f"{cite} is labelled NOT current law and names no invented successor",
+              "not current law" in (note or "").lower() and "None" not in (note or "")
+              and "current treatment is in" not in (note or ""), (note or "")[:120])
+
     # --- sections resolve to sections, not to the part ----------------------------------
     ids, _ = resolve("2 CFR 200.303")
     check("2 CFR 200.303 resolves to the section, not the part",

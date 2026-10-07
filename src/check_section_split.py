@@ -43,7 +43,7 @@ import ingest_instruments  # noqa: E402
 import scan_cited_sections as scanner  # noqa: E402
 import slicing  # noqa: E402
 import split_cfr_sections as splitter  # noqa: E402
-from cfr_consolidations import CONSOLIDATIONS  # noqa: E402
+from cfr_consolidations import CONSOLIDATIONS, SECTION_REPEALS  # noqa: E402
 
 fails: list[str] = []
 
@@ -582,6 +582,135 @@ def main() -> int:
             setattr(splitter, name, val)
         scanner.ecfr_versions = saved_ecfr_versions3
         tmp3.cleanup()
+
+    # --- A SECTION REMOVED FROM A LIVE PART BY "REMOVE AND RESERVE" (45 CFR 260/261/264/265, ----
+    # --- 2026-09-29, 91 FR 48268) --------------------------------------------------------------
+    # eCFR does not mark such a section `removed: true` when it leaves a `[Reserved]` stub in
+    # place: its LATEST version record is just a rename to "§ 260.50 [Reserved]". Read naively
+    # (scan_cited_sections.py used to read only `removed`), a held section the rule repealed
+    # classifies as CURRENT and would be republished as `status: current` text of a heading that
+    # now says [Reserved] -- the exact "wrong answer wearing a right answer's clothes" this
+    # corpus exists not to give. Synthetic fixtures, same constraint as the blocks above.
+    recs = scanner.latest_records([
+        {"identifier": "20.10", "name": "§ 20.10   What is the purpose?",
+         "amendment_date": "2026-07-31", "removed": False},
+        {"identifier": "20.10", "name": "§ 20.10   [Reserved]",
+         "amendment_date": "2026-09-29", "removed": False},
+        {"identifier": "20.11", "name": "§ 20.11   Definitions.",
+         "amendment_date": "2026-07-31", "removed": False},
+        {"identifier": "20.12", "name": "§ 20.12   Old rule.",
+         "amendment_date": "2026-07-31", "removed": False},
+        {"identifier": "20.12", "name": "§ 20.12   Old rule.",
+         "amendment_date": "2026-09-29", "removed": True},
+    ])
+    check("a section whose latest version is a [Reserved] stub is classified as removed",
+          scanner.is_removed(recs["20.10"]), f"got {recs['20.10']!r}")
+    check("...and its name-when-in-force is the last SUBSTANTIVE name, not '[Reserved]'",
+          scanner.name_when_in_force(recs["20.10"]) == "§ 20.10 What is the purpose?",
+          f"got {scanner.name_when_in_force(recs['20.10'])!r}")
+    check("a section that is still substantive is not classified as removed",
+          not scanner.is_removed(recs["20.11"]), "")
+    check("an eCFR `removed: true` record is still classified as removed",
+          scanner.is_removed(recs["20.12"]), "")
+
+    saved_globals4 = {name: getattr(splitter, name)
+                      for name in ("ROOT", "SNAPSHOTS", "INSTRUMENTS", "CITED_DIR", "MANIFEST")}
+    saved_ecfr_versions4 = scanner.ecfr_versions
+    saved_repeals = dict(SECTION_REPEALS)
+    tmp4 = tempfile.TemporaryDirectory()
+    try:
+        root4 = pathlib.Path(tmp4.name)
+        (root4 / "_meta" / "snapshots").mkdir(parents=True)
+        (root4 / "_meta" / "cited-sections").mkdir(parents=True)
+        (root4 / "instruments").mkdir(parents=True)
+        splitter.ROOT = root4
+        splitter.SNAPSHOTS = root4 / "_meta" / "snapshots"
+        splitter.INSTRUMENTS = root4 / "instruments"
+        splitter.CITED_DIR = root4 / "_meta" / "cited-sections"
+        splitter.MANIFEST = root4 / "_meta" / "source-manifest.yml"
+        scanner.ecfr_versions = lambda title, part: {}
+        splitter.MANIFEST.write_text(yaml.safe_dump({"sources": [
+            {"id": "9-cfr-20", "title": "Reserved Fixture Requirements",
+             "citation": "9 CFR 20", "instrument_kind": "cfr_part",
+             "issuing_body": "Department of Fixtures",
+             "url": "https://example.invalid/title-9/part-20.xml", "format": "xml",
+             "reproduction_basis": "17 U.S.C. § 105"}]}), encoding="utf-8")
+        (splitter.INSTRUMENTS / "9-cfr-20.md").write_text(
+            "---\n" + yaml.safe_dump({"as_of": "2026-10-05", "amended_on": "2026-09-29",
+                                      "status": "current", "superseded_by": None,
+                                      "retrieved": "2026-10-06"}) + "---\n\n## Full text\n",
+            encoding="utf-8")
+        cur_xml = (
+            b'<PART><SECTION TYPE="SECTION" N="20.10"><HEAD>&#167; 20.10 [Reserved]</HEAD>'
+            b'</SECTION><SECTION TYPE="SECTION" N="20.11"><HEAD>&#167; 20.11 Definitions.</HEAD>'
+            b'<P>Terms are defined.</P></SECTION></PART>')
+        old_xml = (
+            b'<PART><SECTION TYPE="SECTION" N="20.10"><HEAD>&#167; 20.10 Purpose.</HEAD>'
+            b'<P>This restates the statute.</P></SECTION></PART>')
+        (splitter.SNAPSHOTS / "9-cfr-20.xml").write_bytes(cur_xml)
+        (splitter.SNAPSHOTS / "9-cfr-20-2026-09-28.xml").write_bytes(old_xml)
+        (splitter.SNAPSHOTS / "9-cfr-20.txt").write_text(
+            "\n\n".join(v[1] for v in splitter.sections_from(cur_xml, "20").values()),
+            encoding="utf-8")
+
+        def cited4(current, removed):
+            lines = scanner.static_header(9, 20) + [
+                "", "scanned_files: 1", "total_citations: 1", "", scanner.CURRENT_COMMENT,
+                "current:"]
+            for sec in current:
+                lines += [f"  - section: {scanner.q(sec)}", "    citations: 1",
+                          '    cited_in: ["erf"]']
+            lines += [""] + scanner.REMOVED_COMMENT + ["removed:"]
+            for sec in removed:
+                lines += [f"  - section: {scanner.q(sec)}", "    citations: 1",
+                          '    cited_in: ["erf"]', '    removed_on: "2026-09-29"',
+                          '    name_when_in_force: "§ 20.10 Purpose."']
+            lines += [""] + scanner.UNRESOLVABLE_COMMENT + ["unresolvable:"]
+            (splitter.CITED_DIR / "9-cfr-20.yml").write_text("\n".join(lines) + "\n",
+                                                             encoding="utf-8")
+
+        ns = lambda **kw: argparse.Namespace(**{"check": False, "refetch": False, **kw})
+        SECTION_REPEALS["9-cfr-20"] = {
+            "date": "2026-09-29", "fr": "91 FR 99999", "published": "July 31, 2026",
+            "url": "https://example.invalid/fr/2026-00000",
+            "sections": {"20.10": "42 U.S.C. 1(a)"}}
+        cited4(current=["20.11"], removed=["20.10"])
+        rc4 = splitter.run_part("9-cfr-20", ns())
+        check("a section left as a [Reserved] stub in the live part still splits as REMOVED, "
+              "not 'removed but IS in the current part snapshot'", rc4 == 0, f"got rc={rc4}")
+        d4p = splitter.INSTRUMENTS / "9-cfr-20.10.md"
+        d4 = d4p.read_text(encoding="utf-8") if d4p.is_file() else ""
+        f4 = yaml.safe_load(d4.split("---")[1]) if d4 else {}
+        check("...it is published superseded, from the day-before snapshot, with its old text",
+              f4.get("status") == "superseded" and f4.get("as_of") == "2026-09-28"
+              and f4.get("snapshot_id") == "9-cfr-20-2026-09-28"
+              and "This restates the statute." in d4, f"got {f4!r}")
+        check("...and superseded_by is NULL: no destination is recorded, so none is invented "
+              "(not the part, which does not hold the content either)",
+              "superseded_by" in f4 and f4["superseded_by"] is None,
+              f"got superseded_by={f4.get('superseded_by')!r}")
+        check("...and its note cites the amending Federal Register rule and the statute, and "
+              "says no CFR section received the content",
+              "91 FR 99999" in d4 and "42 U.S.C. 1(a)" in d4
+              and "consolidated" not in d4.lower(), "repeal note missing or fabricated")
+        check("...and --check verifies what was written (round trip)",
+              splitter.run_part("9-cfr-20", ns(check=True)) == 0, "")
+        SECTION_REPEALS.clear()
+        splitter.run_part("9-cfr-20", ns())
+        d4b = d4p.read_text(encoding="utf-8")
+        check("...a removed section with NO repeal record still says only what is known",
+              "91 FR" not in d4b and "no longer exists" in d4b, "")
+        cited4(current=["20.10", "20.11"], removed=[])
+        check("a never-substantive [Reserved] stub listed as CURRENT still splits (34 CFR 99.6 "
+              "is committed that way; the scanner only moves a stub that HAD text to removed:)",
+              splitter.run_part("9-cfr-20", ns()) == 0, "regressed 34 CFR 99.6's shape")
+    finally:
+        for name, val in saved_globals4.items():
+            setattr(splitter, name, val)
+        scanner.ecfr_versions = saved_ecfr_versions4
+        SECTION_REPEALS.clear()
+        SECTION_REPEALS.update(saved_repeals)
+        tmp4.cleanup()
 
     print()
     if fails:
