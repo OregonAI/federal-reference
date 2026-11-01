@@ -2,25 +2,19 @@
   "schema_version": 1,
   "sources": [
     {
-      "consecutive_failures": 1,
-      "first_failed_at": "2026-10-01",
-      "group": "manifest",
-      "id": "20-usc-1232g"
-    },
-    {
-      "consecutive_failures": 1,
+      "consecutive_failures": 2,
       "first_failed_at": "2026-10-01",
       "group": "manifest",
       "id": "cisa-cpg"
     },
     {
-      "consecutive_failures": 1,
+      "consecutive_failures": 2,
       "first_failed_at": "2026-10-01",
       "group": "manifest",
       "id": "nims"
     },
     {
-      "consecutive_failures": 1,
+      "consecutive_failures": 2,
       "first_failed_at": "2026-10-01",
       "group": "manifest",
       "id": "ssa-tssr"
