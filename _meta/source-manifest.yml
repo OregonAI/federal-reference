@@ -819,7 +819,7 @@ sources:
       An entry justified only by FERPA's own weak number would argue against itself; FERPA
       is held first because it is what #36 measured, not because its own demand is large.
     reproduction_basis: "17 U.S.C. § 105 — the U.S. Code as published by the Office of the Law Revision Counsel"
-    sha256: ""
+    sha256: "edf61be1189849391db5754f851b3e19ba1088509709b931acff7776f60ada53"
     notes: >
       LEFT UNSEEDED ON PURPOSE. `record_source_hash()` hashes the DECOMPRESSED title XML
       (see `_unzip_single_xml`), but corpus-detect-changes fetches this same URL and hashes

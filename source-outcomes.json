@@ -3,10 +3,10 @@
   "groups": {
     "manifest": {
       "archive_unreadable": 0,
-      "changed": 0,
+      "changed": 5,
       "checked": 63,
-      "fetch_failed": 4,
-      "no_baseline": 5,
+      "fetch_failed": 3,
+      "no_baseline": 1,
       "unchanged": 54,
       "unreadable_json": 0,
       "watch_path_missing": 0
@@ -36,7 +36,7 @@
       "group": "manifest",
       "had_baseline": true,
       "id": "irs-pub-1075",
-      "outcome": "unchanged",
+      "outcome": "changed",
       "url": "https://www.irs.gov/pub/irs-pdf/p1075.pdf"
     },
     {
@@ -135,14 +135,14 @@
       "had_baseline": true,
       "id": "45-cfr-261",
       "outcome": "unchanged",
-      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-45.xml?part=261"
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-05/title-45.xml?part=261"
     },
     {
       "group": "manifest",
       "had_baseline": true,
       "id": "45-cfr-260",
       "outcome": "unchanged",
-      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-45.xml?part=260"
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-05/title-45.xml?part=260"
     },
     {
       "group": "manifest",
@@ -310,7 +310,7 @@
       "had_baseline": true,
       "id": "45-cfr-265",
       "outcome": "unchanged",
-      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-45.xml?part=265"
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-05/title-45.xml?part=265"
     },
     {
       "group": "manifest",
@@ -345,7 +345,7 @@
       "had_baseline": true,
       "id": "45-cfr-264",
       "outcome": "unchanged",
-      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-08-31/title-45.xml?part=264"
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-05/title-45.xml?part=264"
     },
     {
       "group": "manifest",
@@ -372,21 +372,21 @@
       "group": "manifest",
       "had_baseline": false,
       "id": "20-usc-1232g",
-      "outcome": "fetch_failed",
+      "outcome": "no_baseline",
       "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc20@119-103.zip"
     },
     {
       "group": "manifest",
-      "had_baseline": false,
+      "had_baseline": true,
       "id": "arc-ampe",
-      "outcome": "no_baseline",
+      "outcome": "unchanged",
       "url": "https://www.cms.gov/files/document/arc-ampe-vol-1-v102-508-5cr-04112025.pdf"
     },
     {
       "group": "manifest",
-      "had_baseline": false,
+      "had_baseline": true,
       "id": "fns-handbook-901",
-      "outcome": "no_baseline",
+      "outcome": "changed",
       "url": "https://www.fns.usda.gov/sso/fns-handbook-901-v2-advance-planning-documents"
     },
     {
@@ -398,9 +398,9 @@
     },
     {
       "group": "manifest",
-      "had_baseline": false,
+      "had_baseline": true,
       "id": "pci-dss",
-      "outcome": "no_baseline",
+      "outcome": "changed",
       "url": "https://www.pcisecuritystandards.org/terms_and_conditions/"
     },
     {
@@ -419,16 +419,16 @@
     },
     {
       "group": "manifest",
-      "had_baseline": false,
+      "had_baseline": true,
       "id": "fedramp",
-      "outcome": "no_baseline",
+      "outcome": "changed",
       "url": "https://www.fedramp.gov/"
     },
     {
       "group": "manifest",
-      "had_baseline": false,
+      "had_baseline": true,
       "id": "govramp",
-      "outcome": "no_baseline",
+      "outcome": "changed",
       "url": "https://govramp.org/terms-conditions"
     },
     {
@@ -462,9 +462,9 @@
   ],
   "totals": {
     "archive_unreadable": 0,
-    "changed": 0,
-    "fetch_failed": 4,
-    "no_baseline": 5,
+    "changed": 5,
+    "fetch_failed": 3,
+    "no_baseline": 1,
     "total": 63,
     "unchanged": 54,
     "unreadable_json": 0,
