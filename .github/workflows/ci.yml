@@ -86,6 +86,9 @@ jobs:
       # src/ scripts need pypdf (pinned) as well as the toolkit — check_extraction.py
       # re-reads the raw PDFs, and ingest_instruments.py imports it at module load.
       - run: pip install -r requirements.txt
+      # nist-sp-800-53-r5 opts into `pdf_engine: pypdf+pdftotext` (poppler rejoins the words pypdf
+      # splits), so the ingest --check and check_extraction.py below need pdftotext.
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
       - name: Section anchors must be current
         run: python3 src/anchor_sections.py --check
       - name: Authority graph must be current

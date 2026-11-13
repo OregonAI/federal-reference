@@ -40,7 +40,7 @@ SP 800-53 Rev. 5 is a 492-page PDF. Three facts shaped the hold:
 4. **What NIST says it changed after the held text is stated beside the text.** The control list
    of release 5.2.0 is read from NIST's listing of record into
    `_meta/nist-sp-800-53-r5-release-5-2-0.yml`; each listed control's document says the held text
-   does not include that change. `amended_on` carries the release date, not the date of the text.
+   does not include that change. `amended_on` is the date of the held text (2020-12-10, as the PDF prints it), not a release date; later releases (5.1.x, 5.2.0) are named in the note beside the text.
 5. **Resolution never widens.** A catalog control with no document resolves to the publication
    with a note naming its `### ` heading; a control the catalog lacks, or an enhancement the Rev. 5
    text lacks, resolves to nothing and says so.

@@ -40,6 +40,9 @@ def held_documents(root: pathlib.Path):
     for path in sorted((root / "instruments").glob("*.md")):
         text = path.read_text(encoding="utf-8", errors="ignore")
         fm = yaml.safe_load(text.split("---", 2)[1]) or {}
+        # The body only: a `related` edge to nist-sp-800-53-r5 in the front matter is not a
+        # mention of 800-53 in the document's own words.
+        text = text.split("---", 2)[2]
         if str(fm.get("instrument_kind", "")).startswith("nist_"):
             continue            # a NIST document citing itself is not a held document citing NIST
         yield fm.get("id", path.stem), text
@@ -114,8 +117,12 @@ def main() -> int:
                     print(f"      {cls:22} {by_class[cls]:4} mentions, {resolved[cls]:4} resolve")
         print(f"      by document: {dict(per_doc.most_common())}")
 
-    print("\nCONTROL TOKENS in documents that name 800-53 (the issue's regex, verbatim: it also "
-          "matches CSF subcategories such as PR.AC-3), each sent as `NIST SP 800-53 Rev. 5 <token>`")
+    print("\nCONTROL-ID COVERAGE (not mention-level resolution): control ids cited in documents that "
+          "name 800-53 (the issue's regex, verbatim: it also matches CSF subcategories such as "
+          "PR.AC-3), each sent as a SYNTHETIC `NIST SP 800-53 Rev. 5 <id>` whatever revision or "
+          "context the citing text gives it. This shows every cited id now has a document; it does "
+          "not show that a bare `AC-2` in CJIS 6.1's text links anywhere -- the mention-level "
+          "figure above, built from the documents' own words, is the resolution measure.")
     tokens: collections.Counter = collections.Counter()
     for doc_id, text in docs:
         if not re.search(r"800[-‑ ]?53", text, re.I):
@@ -136,8 +143,8 @@ def main() -> int:
     bad = {t: n for t, n in real.items() if not control_resolves(t)}
     print(f"  {sum(tokens.values())} tokens by the issue's regex; {sum(embedded_tokens.values())} "
           f"of them sit inside a longer id (NIST CSF `PR.AC-3` etc. -- not 800-53 controls)")
-    print(f"  {sum(real.values())} control-shaped tokens: {ok_tokens} resolve to a held control "
-          f"document, {sum(bad.values())} do not")
+    print(f"  {sum(real.values())} control-shaped tokens: {ok_tokens} now have a control document "
+          f"(as `NIST SP 800-53 Rev. 5 <id>`), {sum(bad.values())} do not")
     if bad:
         print(f"      unresolved: {dict(sorted(bad.items(), key=lambda kv: -kv[1]))}")
     return 0

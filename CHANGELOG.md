@@ -22,8 +22,10 @@ Repo-curation dates only — official effective dates live in frontmatter.
   since the issue was written. **Resolving inside the corpus, before -> after:** SP 800-53
   mentions 0 -> 120 of 137 (91 Rev. 5-named, 29 unversioned and answered with a note naming the
   revision returned; the 17 that do not are 2 Rev. 4 and 15 SP 800-53A/B, correctly refused);
-  control tokens 0 -> 4,252 of 4,254 control-shaped tokens (the 2 left are CJIS 6.1's own `IA-0`
-  heading, not a control); **FIPS 140 0 -> 0 of 59 and SP 800-63 0 -> 0 of 50 -- not held by this
+  **control-id coverage** (not resolution: each id is sent as a synthetic
+  `NIST SP 800-53 Rev. 5 <id>` whatever revision or context the citing text gives it, so a bare
+  `AC-2` in CJIS 6.1's text still links to nothing) 0 -> 4,252 of 4,254 control ids cited by held
+  documents now have a document (the 2 left are CJIS 6.1's own `IA-0` heading, not a control); **FIPS 140 0 -> 0 of 59 and SP 800-63 0 -> 0 of 50 -- not held by this
   change** (see Not done). The control list re-derives as **259 base controls / 4,252 tokens**,
   not the issue's 228 / 3,758: the issue's 228 counted `AC-2` and `AC-2(1)` as two controls and
   counted NIST CSF subcategories (`PR.AC-3`) as 800-53 controls; run verbatim over the same
@@ -39,7 +41,15 @@ Repo-curation dates only — official effective dates live in frontmatter.
   nothing superseding Rev. 5; it also records release 5.2.0 (2025-08-27), distributed as OSCAL, not
   a PDF -- `_meta/nist-sp-800-53-r5-release-5-2-0.yml` records its control list (machine-read from
   the page) and each listed control's document says the held text does NOT include it
-  (`amended_on` = 2025-08-27, the release date, not the date of the text). Citation scheme:
+  (`amended_on` = 2020-12-10, the date the held text prints, not a release date; NIST has also
+  issued 5.1.x releases, which the documents say are not included and whose changes are not
+  recorded here). Held documents cite it through graph edges too: each of the five citing
+  documents (6 CFR 37, IRS Pub 1075, CJIS 6.1, ARC-AMPE, CISA CPGs) carries a `related` edge to
+  `nist-sp-800-53-r5`, derived by `ingest_instruments.py` from the cited-controls list. Words pypdf
+  split in the PDF's text layer (`Matt hew Barrett`, `federa l`) are rejoined where poppler's
+  `pdftotext` reads them whole (manifest `pdf_engine: pypdf+pdftotext`; `check_extraction.py`
+  fails on any that remain), and a control that ends its family stops at the family heading rather
+  than carrying the next family's heading and `Quick link` line (9 control documents). Citation scheme:
   `federal_ids.candidates()` derives `nist-sp-800-53-r<N>[.<control>]` (version in the id; Rev. 4,
   release numbers, unversioned and 800-53A/B derive nothing a sibling could mis-resolve) and the
   in-corpus resolver answers held controls, points at the catalog heading for the rest, and
@@ -48,6 +58,12 @@ Repo-curation dates only — official effective dates live in frontmatter.
   `ingest_instruments.py --check --only nist-sp-800-53-r5`, `check_nist_controls.py`;
   `check_extraction.py` proves the committed text is an exact prefix of the raw PDF's tokens.
   `src/measure_nist_resolution.py` reproduces the before/after table.
+  **Not done:** FIPS 140 (59 mentions) and SP 800-63 (50) are not ingested -- the standard for one
+  publication (manifest, snapshot, extraction check, citation scheme, section-addressable) was not
+  met for a second in the same change; the publication's References and Appendices A-C are not
+  mirrored (Appendix A adapts third-party definitions, ADR-0002; a human determination); the
+  release 5.2.0 text and the 5.1.x changes are not held (the PDF predates them); and
+  `src/federal_ids.py` is not yet propagated to the sibling corpora (below).
   **`src/federal_ids.py` changed and is a three-repo parity file: executive-regulatory-frameworks
   and oregon-audits need verbatim copies before siblings can derive these ids.**
 
