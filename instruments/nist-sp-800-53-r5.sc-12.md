@@ -1,0 +1,113 @@
+---
+schema_version: 1
+corpus: federal-reference
+jurisdiction: us
+id: nist-sp-800-53-r5.sc-12
+title: NIST SP 800-53 Rev. 5 SC-12 — CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT
+doc_type: federal_instrument
+citation: NIST SP 800-53 Rev. 5 SC-12
+authority_level: federal
+issuing_body: National Institute of Standards and Technology
+instrument_kind: nist_control
+version: Rev. 5
+as_of: '2026-11-12'
+amended_on: '2025-08-27'
+reproduction_basis: '17 U.S.C. § 105 — work of the U.S. government (NIST). Determined per document on
+  2026-11-12 against the publication itself, not assumed from its issuer: its Authority statement (PDF
+  page 3) reads "This publication may be used by nongovernmental organizations on a voluntary basis and
+  is not subject to copyright in the United States. Attribution would, however, be appreciated by NIST."
+  Held here: the front matter and Chapter Three (the control catalog) only. Chapter Three names ISO/IEC
+  standards solely as bibliographic references and reproduces none of their text. NOT mirrored: the References
+  bibliography and Appendices A-C; Appendix A (glossary) adapts third-party definitions (ISO/IEC 15026,
+  ISO 25237, ISO/IEC 29100, ISO 15288, IETF RFC 4949), which ADR-0002 treats as not reproducible by being
+  incorporated, and whose reproducibility has not been determined.'
+superseded_by: null
+source_url: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf
+source_format: pdf
+snapshot_id: nist-sp-800-53-r5
+retrieved: '2026-11-12'
+source_sha256: f401769fe5982296eb56237f92333d1c729ebe2a0e5bc94fb33627207f2f88e7
+status: current
+content_mode: verbatim
+relationships:
+  related:
+  - nist-sp-800-53-r5
+maintainer: '@morficflux'
+last_verified: ''
+verified_by: ''
+---
+
+## At a glance
+
+**NIST SP 800-53 Rev. 5 SC-12** — CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT
+
+- Issued by: National Institute of Standards and Technology
+- Publication: NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations ([nist-sp-800-53-r5](./nist-sp-800-53-r5.md))
+- Version: Rev. 5 (September 2020, includes updates as of 2020-12-10)
+- Text as of: 2026-11-12
+- Cited by held documents: 33 times (cjis-sp-6-1 ×26, 6-cfr-37 ×4, irs-pub-1075-11-2021 ×3)
+- Reproduction basis: 17 U.S.C. § 105 — work of the U.S. government (NIST). Determined per document on 2026-11-12 against the publication itself, not assumed from its issuer: its Authority statement (PDF page 3) reads "This publication may be used by nongovernmental organizations on a voluntary basis and is not subject to copyright in the United States. Attribution would, however, be appreciated by NIST." Held here: the front matter and Chapter Three (the control catalog) only. Chapter Three names ISO/IEC standards solely as bibliographic references and reproduces none of their text. NOT mirrored: the References bibliography and Appendices A-C; Appendix A (glossary) adapts third-party definitions (ISO/IEC 15026, ISO 25237, ISO/IEC 29100, ISO 15288, IETF RFC 4949), which ADR-0002 treats as not reproducible by being incorporated, and whose reproducibility has not been determined.
+
+
+_NON-AUTHORITATIVE copy of one control, cut from the SP 800-53 Rev. 5 snapshot this corpus holds. Whether and how this binds a given agency depends on the instrument that incorporates it — read it at the source URL before relying on it. This copy is the Rev. 5 text of record, which is not necessarily the text a citing document meant (a document citing Rev. 4 is not answered by it)._
+
+
+## Full text
+
+### SC-12 CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT
+Control:  Establish and manage cryptographic keys when cryptography is employed within the
+system in accordance with the following key management requirements: [Assignment:
+organization-defined requirements for key generation, distribution, storage, access, and
+destruction].
+Discussion:  Cryptographic key management and establishment can be performed using manual
+procedures or automated mechanisms with supporting manual procedures. Organizations define
+key management requirements in accordance with applicable laws, executive orders, directives,
+regulations, policies, standards, and guidelines and specify appropriate options, parameters, and
+levels. Organizations manage trust stores to ensure that only approved trust anchors are part of
+such trust stores. This includes certificates with visibility external to organizational systems and
+certificates related to the internal operations of systems. [
+NIST CMVP] and [NIST CAVP] provide
+additional information on validated cryptographic modules and algorithms that can be used in
+cryptographic key management and establishment.
+Related Controls:  AC-17, AU-9, AU-10, CM-3, IA-3, IA-7, SA-4, SA-8, SA-9, SC-8, SC-11, SC-12, SC-
+13, SC-17, SC-20, SC-37, SC-40, SI-3, SI-7.
+CHAPTER THREE   PAGE 308
+This publication is available free of charge from: https://doi.org/10.6028/NIST.SP.800-53r5
+Control Enhancements:
+(1) CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT | AVAILABILITY
+Maintain availability of information in the event of the loss of cryptographic keys by users.
+Discussion:  Escrowing of encryption keys is a common practice for ensuring availability in
+the event of key loss. A forgotten passphrase is an example of losing a cryptographic key.
+Related Controls:  None.
+(2) CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT | SYMMETRIC KEYS
+Produce, control, and distribute symmetric cryptographic keys using [Selection: NIST FIPS-
+validated; NSA-approved] key management technology and processes.
+Discussion:  [SP 800-56A], [SP 800-56B], and [SP 800-56C] provide guidance on cryptographic
+key establishment schemes and key derivation methods. [SP 800-57-1], [SP 800-57-2], and
+[SP 800-57-3] provide guidance on cryptographic key management.
+Related Controls:  None.
+(3) CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT | ASYMMETRIC KEYS
+Produce, control, and distribute asymmetric cryptographic keys using [Selection: NSA-
+approved key management technology and processes; prepositioned keying material;
+DoD-approved or DoD-issued Medium Assurance PKI certificates; DoD-approved or DoD-
+issued Medium Hardware Assurance PKI certificates and hardware security tokens that
+protect the user’s private key; certificates issued in accordance with organization-defined
+requirements].
+Discussion:  [SP 800-56A], [SP 800-56B], and [SP 800-56C] provide guidance on cryptographic
+key establishment schemes and key derivation methods. [SP 800-57-1], [SP 800-57-2], and
+[SP 800-57-3] provide guidance on cryptographic key management.
+Related Controls:  None.
+(4) CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT | PKI CERTIFICATES
+[Withdrawn: Incorporated into SC-12(3).]
+(5) CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT | PKI CERTIFICATES / HARDWARE TOKENS
+[Withdrawn: Incorporated into SC-12(3).]
+(6) CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT | PHYSICAL CONTROL OF KEYS
+Maintain physical control of cryptographic keys when stored information is encrypted by
+external service providers.
+Discussion:  For organizations that use external service providers (e.g., cloud service or data
+center providers), physical control of cryptographic keys provides additional assurance that
+information stored by such external providers is not subject to unauthorized disclosure or
+modification.
+Related Controls:  None.
+References:  [FIPS 140-3], [SP 800-56A], [SP 800-56B], [SP 800-56C], [SP 800-57-1], [SP 800-57-2],
+[SP 800-57-3], [SP 800-63-3], [IR 7956], [IR 7966].
