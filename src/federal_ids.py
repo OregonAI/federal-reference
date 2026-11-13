@@ -162,20 +162,22 @@ NIST_800_53 = re.compile(
     r"(?:NIST\s*(?:Special\s+Publication\s*|SP\s*)?|Special\s+Publication\s*|\bSP\s*)?"
     r"(?<![0-9A-Za-z-])800[-\u2011]53(?P<sfx>[A-Za-z](?![A-Za-z]))?(?![0-9])", re.I)
 NIST_REV = re.compile(
-    r"\A[\s,(:]*(?:Rev(?:ision|\.)?\s*(?P<rev>\d{1,2})|r(?P<rev2>\d{1,2}))(?P<rel>\.\d+)*(?![0-9A-Za-z])",
+    r"\A[\s,(:]*(?:Rev(?:ision|\.)?\s*(?P<rev>\d{1,2})|r(?P<rev2>\d{1,2}))(?P<rel>(?:\.\d+)+)?(?![0-9A-Za-z])",
     re.I)
 # A control id with any enhancements: `AC-2`, `AC-2(1)`, `SC-7(3)(a)` is NOT a thing here --
 # enhancements are `(N)`. The 20 two-letter families of Rev. 5; an unlisted prefix is not a
 # control (CSF subcategories `PR.AC-3` and CJIS's own `IA-0` must not become ids).
 NIST_FAMILIES = frozenset("AC AT AU CA CM CP IA IR MA MP PE PL PM PS RA SA SC SI SR PT".split())
-NIST_CONTROL = re.compile(r"(?<![A-Za-z0-9.])(?P<fam>[A-Z]{2})-(?P<num>\d{1,2})(?:\(\d{1,2}\))*(?![0-9A-Za-z])")
+NIST_CONTROL = re.compile(r"(?<![A-Za-z0-9.])(?P<fam>[A-Z]{2})-(?P<num>\d{1,2})"
+                         r"(?P<enh>(?:\(\d{1,2}\))*)(?![0-9A-Za-z])")
 # Where a control list ends: the next publication named.
 _NIST_TAIL_STOP = re.compile(r"\b(?:FIPS|SP|NIST|ISO|CJIS|IRS|CFR|C\.F\.R\.|OMB|PUB)\b")
 
 
 def nist_800_53(citation: str):
-    """(revision, release_suffix, [control ids]) for the first SP 800-53 citation in the
-    string, or None if it names no revision-qualified 800-53. Shared by candidates() and by
+    """(revision or None, release_suffix, [control ids]) for the first SP 800-53 citation in the
+    string, or None if it names no 800-53 at all (800-53A/B do not count). `revision` is None for
+    an unversioned citation. Shared by candidates() and by
     federal-reference's own resolver, so the two cannot disagree about what was cited.
     """
     for m in NIST_800_53.finditer(citation):
@@ -183,10 +185,8 @@ def nist_800_53(citation: str):
             continue
         tail = citation[m.end():]
         r = NIST_REV.match(tail)
-        if not r:
-            return None
-        rev = r.group("rev") or r.group("rev2")
-        rest = tail[r.end():]
+        rev = (r.group("rev") or r.group("rev2")) if r else None
+        rest = tail[r.end():] if r else tail
         stop = _NIST_TAIL_STOP.search(rest)
         if stop:
             rest = rest[:stop.start()]
@@ -197,7 +197,7 @@ def nist_800_53(citation: str):
                 # `-0` is never a control (CJIS's own `IA-0` heading is not one).
                 if int(c.group("num")) and cid not in ctrls:
                     ctrls.append(cid)
-        return rev, r.group("rel") or "", ctrls
+        return rev, (r.group("rel") or "") if r else "", ctrls
     return None
 
 
@@ -318,7 +318,8 @@ def candidates(citation: str) -> list[str]:
     nist = nist_800_53(c)
     if nist:
         rev, rel, ctrls = nist
-        if rel:
+        # Unversioned or release-numbered: nothing derivable (see NIST_800_53's comment).
+        if rev is None or rel:
             return []
         pub = f"nist-sp-800-53-r{rev}"
         return [f"{pub}.{cid}" for cid in ctrls] or [pub]
