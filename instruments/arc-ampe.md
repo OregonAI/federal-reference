@@ -20,6 +20,9 @@ retrieved: '2026-09-12'
 source_sha256: 64b95b7ffd21ecaf1a4b6665b36a63e9edc6615ff9466ef86e250ecc7fbd59e9
 status: current
 content_mode: verbatim
+relationships:
+  related:
+  - nist-sp-800-53-r5
 maintainer: '@morficflux'
 last_verified: ''
 verified_by: ''

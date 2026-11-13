@@ -11,7 +11,7 @@ issuing_body: National Institute of Standards and Technology
 instrument_kind: nist_control
 version: Rev. 5
 as_of: '2026-11-12'
-amended_on: '2025-08-27'
+amended_on: '2020-12-10'
 reproduction_basis: '17 U.S.C. § 105 — work of the U.S. government (NIST). Determined per document on
   2026-11-12 against the publication itself, not assumed from its issuer: its Authority statement (PDF
   page 3) reads "This publication may be used by nongovernmental organizations on a voluntary basis and
@@ -26,7 +26,7 @@ source_url: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53
 source_format: pdf
 snapshot_id: nist-sp-800-53-r5
 retrieved: '2026-11-12'
-source_sha256: f401769fe5982296eb56237f92333d1c729ebe2a0e5bc94fb33627207f2f88e7
+source_sha256: b95751a224e7e518338b7c19a541c4be4dbe261305ca6834fce3e3251bd391ee
 status: current
 content_mode: verbatim
 relationships:
@@ -75,7 +75,3 @@ CHAPTER THREE   PAGE 130
 This publication is available free of charge from: https://doi.org/10.6028/NIST.SP.800-53r5
 Control Enhancements:  None
 References:  None.
-CHAPTER THREE   PAGE 131
-This publication is available free of charge from: https://doi.org/10.6028/NIST.SP.800-53r5
-3.7   IDENTIFICATION AND AUTHENTICATION
-Quick link to Identification and Authentication Summary Table

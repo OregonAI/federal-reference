@@ -11,7 +11,7 @@ issuing_body: National Institute of Standards and Technology
 instrument_kind: nist_publication
 version: Rev. 5
 as_of: '2026-11-12'
-amended_on: '2025-08-27'
+amended_on: '2020-12-10'
 reproduction_basis: '17 U.S.C. § 105 — work of the U.S. government (NIST). Determined per document on
   2026-11-12 against the publication itself, not assumed from its issuer: its Authority statement (PDF
   page 3) reads "This publication may be used by nongovernmental organizations on a voluntary basis and
@@ -25,7 +25,7 @@ superseded_by: null
 source_url: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf
 source_format: pdf
 retrieved: '2026-11-12'
-source_sha256: f401769fe5982296eb56237f92333d1c729ebe2a0e5bc94fb33627207f2f88e7
+source_sha256: b95751a224e7e518338b7c19a541c4be4dbe261305ca6834fce3e3251bd391ee
 status: current
 content_mode: verbatim
 conversion_notes: "322 section anchors (### ) inserted at extraction for navigability — the anchor prefixes existing heading lines and adds no words; see src/anchor_sections.py"
@@ -301,19 +301,21 @@ verified_by: ''
 
 - Issued by: National Institute of Standards and Technology
 - Version: Rev. 5
-- Text as of: 2026-11-12 (upstream last amended 2025-08-27)
+- Text as of: 2026-11-12 (upstream last amended 2020-12-10)
 - Extent: 492 pages
 - Reproduction basis: 17 U.S.C. § 105 — work of the U.S. government (NIST). Determined per document on 2026-11-12 against the publication itself, not assumed from its issuer: its Authority statement (PDF page 3) reads "This publication may be used by nongovernmental organizations on a voluntary basis and is not subject to copyright in the United States. Attribution would, however, be appreciated by NIST." Held here: the front matter and Chapter Three (the control catalog) only. Chapter Three names ISO/IEC standards solely as bibliographic references and reproduces none of their text. NOT mirrored: the References bibliography and Appendices A-C; Appendix A (glossary) adapts third-party definitions (ISO/IEC 15026, ISO 25237, ISO/IEC 29100, ISO 15288, IETF RFC 4949), which ADR-0002 treats as not reproducible by being incorporated, and whose reproducibility has not been determined.
 
 
-_NON-AUTHORITATIVE copy. This is a federal requirement and carries penalties state policy does not — read it at the source URL before relying on it. This copy is CURRENT text, which is not necessarily the text in force when a rule citing it was written._
+_NON-AUTHORITATIVE copy. This is a federal requirement and carries penalties state policy does not — read it at the source URL before relying on it. This copy is the Rev. 5 PDF of record (updates as of 2020-12-10), not NIST's current release; see the release note below, which is not necessarily the text in force when a rule citing it was written._
 
 
 > **Held in part, on purpose.** This document reproduces the front matter and Chapter Three (the control catalog) of NIST SP 800-53 Rev. 5, September 2020, as the PDF of record at the source URL (it prints "includes updates as of 12-10-2020"). What follows the catalog is **NOT mirrored** — the References bibliography, Appendix A (glossary), Appendix B (acronyms) and Appendix C (control summaries) — because Appendix A adapts third-party definitions (ISO/IEC 15026, ISO 25237, ISO/IEC 29100, ISO 15288, IETF RFC 4949) whose reproducibility has not been determined (ADR-0002); read those at the source URL. The raw PDF snapshot holds all of it.
 
 > **259 controls have their own documents** (`nist-sp-800-53-r5.<family>-<n>`, e.g. `nist-sp-800-53-r5.ac-2`): the controls that held documents cite by name (ADR-0003, `_meta/cited-controls/nist-sp-800-53-r5.yml`). Every other control is in the text below under its `### ` heading.
 
-> **Release 5.2.0 postdates this text.** NIST's listing of record ([https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final](https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final)) says NIST issued release 5.2.0 of SP 800-53 on 2025-08-27, adding, revising or updating the controls named in [_meta/nist-sp-800-53-r5-release-5-2-0.yml](../_meta/nist-sp-800-53-r5-release-5-2-0.yml). The text below is the Rev. 5 PDF of record and does NOT include those changes; `amended_on` carries the release date, not the date of this text.
+> **NIST has issued later releases of Rev. 5 (5.1.x and 5.2.0) that are not included here.** The text below is the Rev. 5 PDF of record, dated 2020-12-10 (`amended_on` is that date); NIST distributes the later releases as OSCAL and a summary of changes, not as a replacement PDF. Only release 5.2.0's changed controls are recorded here, from NIST's listing of record; the 5.1.x changes are not.
+
+> **Release 5.2.0 postdates this text.** NIST's listing of record ([https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final](https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final)) says NIST issued release 5.2.0 of SP 800-53 on 2025-08-27, adding, revising or updating the controls named in [_meta/nist-sp-800-53-r5-release-5-2-0.yml](../_meta/nist-sp-800-53-r5-release-5-2-0.yml). The text below is the Rev. 5 PDF of record and does NOT include those changes.
 
 
 ## Full text
@@ -375,7 +377,7 @@ NIST in accordance with its assigned statutory responsibilities. The information
 including concepts, practices, and methodologies may be used by federal agencies even before the
 completion of such companion publications. Thus, until each publication is completed, current
 requirements, guidelines, and procedures, where they exist, remain operative. For planning and
-transition purposes, federa l agencies may wish to closely follow the development of these new
+transition purposes, federal agencies may wish to closely follow the development of these new
 publications by NIST.
 Organizations are encouraged to review draft publications during the designated public comment
 periods and provide feedback to NIST. Many NIST publications, other than the ones noted above,
@@ -474,21 +476,21 @@ overall quality, thoroughness, and usefulness of this publication.
 HISTORICAL CONTRIBUTIONS TO NIST SPECIAL PUBLICATION 800-53
 The authors wanted to acknowledge the many individuals who contributed to previous versions
 of Special Publication 800-53 since its inception in 2005. They include Marshall Abrams, Dennis
-Bailey, Lee Badger, Curt Barker, Matt hew Barrett, Nadya Bartol, Frank Belz, Paul Bicknell, Deb
+Bailey, Lee Badger, Curt Barker, Matthew Barrett, Nadya Bartol, Frank Belz, Paul Bicknell, Deb
 Bodeau, Paul Brusil, Brett Burley, Bill Burr, Dawn Cappelli, Roger Caslow, Corinne Castanza, Mike
 Cooper, Matt Coose, Dominic Cussatt, George Dinolt, Randy Easter, Kurt Eleam,  Denise Farrar,
 Dave Ferraiolo, Cita Furlani, Harriett Goldman, Peter Gouldmann, Tim Grance, Jennifer Guild,
-Gary Guissanie, Sarbari Gupta, Priscilla Guthrie , Richard Hale, Peggy Himes, Bennett Hodge,
-William Hunteman, Cynthia Irvine, Arnold Johnson, Roger Johnson, Don ald Jones, Lisa Kaiser,
-Stuart Katzke, Sharon Keller, Tom Kellerman n, Cass Kelly, Eustace King, Daniel Klemm, Steve
-LaFountain, Annabelle Lee, R obert Lentz, Steven Lipner, William MacGregor, Thomas Macklin,
+Gary Guissanie, Sarbari Gupta, Priscilla Guthrie, Richard Hale, Peggy Himes, Bennett Hodge,
+William Hunteman, Cynthia Irvine, Arnold Johnson, Roger Johnson, Donald Jones, Lisa Kaiser,
+Stuart Katzke, Sharon Keller, Tom Kellermann, Cass Kelly, Eustace King, Daniel Klemm, Steve
+LaFountain, Annabelle Lee, Robert Lentz, Steven Lipner, William MacGregor, Thomas Macklin,
 Thomas Madden, Robert Martin, Erika McCallister, Tim McChesney, Michael McEvilley, Rosalie
-McQuaid, Peter Mell, John Mildner, Pam Miller, Sandra Miravalle, Joji Montelibano, Doug las
+McQuaid, Peter Mell, John Mildner, Pam Miller, Sandra Miravalle, Joji Montelibano, Douglas
 Montgomery, George Moore, Rama Moorthy, Mark Morrison, Harvey Newstrom, Sherrill Nicely,
 Robert Niemeyer, LouAnna Notargiacomo, Pat O’Reilly, Tim Polk, Karen Quigg, Steve Quinn,
 Mark Riddle, Ed Roback, Cheryl Roby, George Rogers, Scott Rose, Mike Rubin, Karen Scarfone,
 Roger Schell, Jackie Snouffer, Ray Snouffer, Murugiah Souppaya, Gary Stoneburner, Keith
-Stouffer, Marianne Swanson, Pat Toth, Glenda Turner, Pat rick Viscuso, Joe Weiss, Richard
+Stouffer, Marianne Swanson, Pat Toth, Glenda Turner, Patrick Viscuso, Joe Weiss, Richard
 Wilsher, Mark Wilson, John Woodward, and Carol Woody.
 v
 This publication is available free of charge from: https://doi.org/10.6028/NIST.SP.800-53r5
@@ -509,15 +511,15 @@ RISK MANAGEMENT
 Organizations must exercise due diligence in managing information security and privacy risk. This
 is accomplished, in part, by  establishing a comprehensive risk management program that uses
 the flexibility inherent in NIST publications to categorize systems, select and implement security
-and priva cy controls that meet mission and business needs, assess the effectiveness of the
+and privacy controls that meet mission and business needs, assess the effectiveness of the
 controls, authorize the systems for operation, and continuously monitor the systems. Exercising
 due diligence and implementing robust and comprehensive information security and privacy risk
 management programs can facilitate compliance with applicable laws, regulations, executive
 orders, and governmentwide policies. Risk management frameworks and risk management
 processes are essential in developing, implementing, and maintaining the protection measures
 necessary to address stakeholder needs and the current threats to organizational operations
-and assets, individuals, other organizations, and the Nation. Employing effective risk -based
-processes, procedures, methods, and technol ogies ensure s that information systems and
+and assets, individuals, other organizations, and the Nation. Employing effective risk-based
+processes, procedures, methods, and technologies ensures that information systems and
 organizations have the necessary trustworthiness and resiliency to support essential mission and
 business functions, the U.S. critical infrastructure, and continuity of government.
 vii
@@ -526,9 +528,9 @@ COMMON SECURITY AND PRIVACY FOUNDATIONS
 In working with the Office of Management and Budget to develop standards and guidelines
 required by FISMA, NIST consults with federal agencies, state, local, and tribal governments, and
 private sector organizations to improve information security and privacy, avoid unnecessary and
-costly duplication of effort , and help ensure that its publications are complementary with the
+costly duplication of effort, and help ensure that its publications are complementary with the
 standards and guidelines used for the protection of national security systems. In addition to a
-comprehensive and t ransparent public review and comment process, NIST is engaged in a
+comprehensive and transparent public review and comment process, NIST is engaged in a
 collaborative partnership with the Office of Management and Budget, Office of the Director  of
 National Intelligence, Department of Defense, Committee on National Security Systems, Federal
 CIO Council, and Federal Privacy Council to establish a Risk Management Framework (RMF) for
@@ -547,39 +549,39 @@ DEVELOPMENT OF INFORMATION SYSTEMS, COMPONENTS, AND SERVICES
 With a renewed emphasis on the use of trustworthy, secure information systems and supply
 chain security, it is essential that organizations express their security and privacy requirements
 with clarity and specificity in order to  obtain the systems, components, and services necessary
-for mission and business success. Accordingly, this publica tion provides controls in the System
+for mission and business success. Accordingly, this publication provides controls in the System
 and Services Acquisition (SA) and Supply Chain Risk Management (SR) families that are directed
 at developers. The scope of the controls in those families includes information system, system
 component, and system service development and  the associated developers whether the
 development is conducted internally by organizations or externally through the contracting and
-acquisition processes. Th e affected controls in the control catalog include SA-8, SA-10, SA-11,
+acquisition processes. The affected controls in the control catalog include SA-8, SA-10, SA-11,
 SA-15, SA-16, SA-17, SA-20, SA-21, SR-3, SR-4, SR-5, SR-6, SR-7, SR-8, SR-9, and SR-11.
 ix
 This publication is available free of charge from: https://doi.org/10.6028/NIST.SP.800-53r5
 INFORMATION SYSTEMS — A BROAD-BASED PERSPECTIVE
 As we push computers to “the edge,” building an increasingly complex world of interconnected
-systems and devices, security and privacy continue to do minate the national dialogue. There is
+systems and devices, security and privacy continue to dominate the national dialogue. There is
 an urgent need to further strengthen the underlying systems, products, and services that we
 depend on in every sector of the critical infrastructure to ensure that those systems, products,
 and services are sufficiently trustworthy and provide the necessary resilience to support the
-economic and national security interests of th e United States. NIST Special Publication 800-53,
+economic and national security interests of the United States. NIST Special Publication 800-53,
 Revision 5, responds to this need by embarking on a proactive and systemic approach to develop
 and make available to a broad base of public and private sector organizations a comprehensive
 set of security and privacy safeguarding measures for all types of computing platforms, including
-general purpose computing systems, cyber -physical systems, clou d systems, mobile systems,
+general purpose computing systems, cyber-physical systems, cloud systems, mobile systems,
 industrial control systems, and Internet of Things (IoT) devices. Safeguarding measures include
 both security and privacy controls to protect the critical and essential operations and assets of
 organizations and the privacy of individuals. The objective is to make the systems we depend on
-more penetration resistant to attacks , limit the damage from those attacks when they occur ,
+more penetration resistant to attacks, limit the damage from those attacks when they occur,
 and make the systems resilient, survivable, and protective of individuals’ privacy.
 x
 This publication is available free of charge from: https://doi.org/10.6028/NIST.SP.800-53r5
 CONTROL BASELINES
 The control baselines that have previously been included in NIST Special Publication 800-53 have
-been relocated to NIST Special Publication 800 -53B. SP 800- 53B contains security and privacy
+been relocated to NIST Special Publication 800-53B. SP 800-53B contains security and privacy
 control baselines for federal information systems and organizations. It provides guidance for
-tailoring control baselines and for developing o verlays to support the security and privacy
-requirements of stakeholder s and their organizations.  CNSS Instruction 1253  provides control
+tailoring control baselines and for developing overlays to support the security and privacy
+requirements of stakeholders and their organizations.  CNSS Instruction 1253  provides control
 baselines and guidance for security categorization and security control selection for national
 security systems.
 xi
@@ -605,7 +607,7 @@ CHAPTER ONE   INTRODUCTION .....................................................
 1.1   PURPOSE AND APPLICABILITY ................................................................................................... 2
 1.2   TARGET AUDIENCE .................................................................................................................. 3
 1.3   ORGANIZATIONAL RESPONSIBILITIES......................................................................................... 3
-1.4   RELATIONSHIP TO OTHER PUBLICATIONS ................................................................................... 5
+1.4   RELATIONSHIP TO OTHER PUBLICATIONS................................................................................... 5
 1.5   REVISIONS AND EXTENSIONS .................................................................................................... 5
 1.6   PUBLICATION ORGANIZATION .................................................................................................. 5
 CHAPTER TWO   THE FUNDAMENTALS ............................................................................................ 7
@@ -623,18 +625,18 @@ CHAPTER THREE   THE CONTROLS ...................................................
 3.6   CONTINGENCY PLANNING .................................................................................................... 115
 3.7   IDENTIFICATION AND AUTHENTICATION ............................................................................... 131
 3.8   INCIDENT RESPONSE ............................................................................................................ 149
-3.9   MAINTENANCE .................................................................................................................... 162
+3.9   MAINTENANCE.................................................................................................................... 162
 3.10   MEDIA PROTECTION .......................................................................................................... 171
 3.11   PHYSICAL AND ENVIRONMENTAL PROTECTION .................................................................... 179
 3.12   PLANNING ........................................................................................................................ 194
 3.13   PROGRAM MANAGEMENT ................................................................................................. 203
 3.14   PERSONNEL SECURITY ........................................................................................................ 222
 3.15   PERSONALLY IDENTIFIABLE INFORMATION PROCESSING AND TRANSPARENCY ....................... 229
-3.16   RISK ASSESSMENT .............................................................................................................. 238
+3.16   RISK ASSESSMENT.............................................................................................................. 238
 3.17   SYSTEM AND SERVICES ACQUISITION .................................................................................. 249
 3.18   SYSTEM AND COMMUNICATIONS PROTECTION ................................................................... 292
 3.19   SYSTEM AND INFORMATION INTEGRITY .............................................................................. 332
-3.20   SUPPLY CHAIN RISK MANAGEMENT ..................................................................................... 363
+3.20   SUPPLY CHAIN RISK MANAGEMENT..................................................................................... 363
 REFERENCES ................................................................................................................................ 374
 APPENDIX A   GLOSSARY .............................................................................................................. 394
 APPENDIX B   ACRONYMS ............................................................................................................ 424
@@ -1900,7 +1902,7 @@ EVIDENCE OF CONTROL IMPLEMENTATION
 During control selection and implementation, it is important for organizations to consider  the
 evidence (e.g., artifacts, documentation) that will be needed to support current and future
 control assessments. Such assessments help determine whether the controls are implemented
-correctly, operating as intended, and satisfying security and privacy policies— thus, providing
+correctly, operating as intended, and satisfying security and privacy policies—thus, providing
 essential information for senior leaders to make informed risk-based decisions.
 CHAPTER THREE   PAGE 16
 This publication is available free of charge from: https://doi.org/10.6028/NIST.SP.800-53r5
@@ -6036,7 +6038,7 @@ Related Controls:  CM-10, SC-44.
 warranty or without the provision of source code; and
 (b) Allow exceptions only for compelling mission or operational requirements and with
 the approval of the authorizing official.
-Discussion:  Binary or machine executable code applies to all sources of binary or machine-
+Discussion:  Binary or machineexecutable code applies to all sources of binary or machine-
 executable code, including commercial software and firmware and open-source software.
 Organizations assess software products without accompanying source code or from sources
 with limited or no warranty for potential security impacts. The assessments address the fact
@@ -10246,14 +10248,14 @@ modification.
 Discussion:  An information security program plan is a formal document that provides an
 overview of the security requirements for an organization-wide information security program
 PROGRAM MANAGEMENT CONTROLS
-[FISMA], [ PRIVACT], and [ OMB A -130] require federal agencies to develop, implement, and
-provide oversight for organization-wide information security and privacy p rograms to help
+[FISMA], [PRIVACT], and [OMB A-130] require federal agencies to develop, implement, and
+provide oversight for organization-wide information security and privacy programs to help
 ensure the confidentiality, integrity, and availability of federal information processed, stored,
 and transmitted by federal information systems and to protect individual privacy. The program
 management (PM) controls described in this section are implemented at the organization level
-and not direct ed at individual information  systems. The PM  controls have been designed to
-facilitate organizational compliance with applicable federal laws, e xecutive orders, directives,
-policies, regulations, and standards. The controls are independent of [ FIPS 200] impact levels
+and not directed at individual information  systems. The PM  controls have been designed to
+facilitate organizational compliance with applicable federal laws, executive orders, directives,
+policies, regulations, and standards. The controls are independent of [FIPS 200] impact levels
 and, therefore, are not associated with the control baselines described in [SP 800-53B].
 Organizations document program management controls in the information security and privacy
 program plans. The organization-wide information security program plan (see PM-1) and privacy
@@ -10610,8 +10612,8 @@ successfully breach or compromise organizational systems. One of the best techni
 address this concern is for organizations to share threat information, including threat events (i.e.,
 tactics, techniques, and procedures) that organizations have experienced, mitigations that
 organizations have found are effective against certain types of threats, and threat intelligence
-(i.e., indications and warnings about threats). Threat information sharing may be bilateral or
-multilateral. Bilateral threat sharing includes government-to-commercial and government-to-
+(i.e., indications and warnings about threats). Threat informationsharing may be bilateral or
+multilateral. Bilateral threatsharing includes government-to-commercial and government-to-
 government cooperatives. Multilateral threat sharing includes organizations taking part in threat-
 sharing consortia. Threat information may require special agreements and protection, or it may
 be freely shared.

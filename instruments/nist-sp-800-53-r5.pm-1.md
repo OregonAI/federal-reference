@@ -11,7 +11,7 @@ issuing_body: National Institute of Standards and Technology
 instrument_kind: nist_control
 version: Rev. 5
 as_of: '2026-11-12'
-amended_on: '2025-08-27'
+amended_on: '2020-12-10'
 reproduction_basis: '17 U.S.C. § 105 — work of the U.S. government (NIST). Determined per document on
   2026-11-12 against the publication itself, not assumed from its issuer: its Authority statement (PDF
   page 3) reads "This publication may be used by nongovernmental organizations on a voluntary basis and
@@ -26,7 +26,7 @@ source_url: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53
 source_format: pdf
 snapshot_id: nist-sp-800-53-r5
 retrieved: '2026-11-12'
-source_sha256: f401769fe5982296eb56237f92333d1c729ebe2a0e5bc94fb33627207f2f88e7
+source_sha256: b95751a224e7e518338b7c19a541c4be4dbe261305ca6834fce3e3251bd391ee
 status: current
 content_mode: verbatim
 relationships:
@@ -78,14 +78,14 @@ modification.
 Discussion:  An information security program plan is a formal document that provides an
 overview of the security requirements for an organization-wide information security program
 PROGRAM MANAGEMENT CONTROLS
-[FISMA], [ PRIVACT], and [ OMB A -130] require federal agencies to develop, implement, and
-provide oversight for organization-wide information security and privacy p rograms to help
+[FISMA], [PRIVACT], and [OMB A-130] require federal agencies to develop, implement, and
+provide oversight for organization-wide information security and privacy programs to help
 ensure the confidentiality, integrity, and availability of federal information processed, stored,
 and transmitted by federal information systems and to protect individual privacy. The program
 management (PM) controls described in this section are implemented at the organization level
-and not direct ed at individual information  systems. The PM  controls have been designed to
-facilitate organizational compliance with applicable federal laws, e xecutive orders, directives,
-policies, regulations, and standards. The controls are independent of [ FIPS 200] impact levels
+and not directed at individual information  systems. The PM  controls have been designed to
+facilitate organizational compliance with applicable federal laws, executive orders, directives,
+policies, regulations, and standards. The controls are independent of [FIPS 200] impact levels
 and, therefore, are not associated with the control baselines described in [SP 800-53B].
 Organizations document program management controls in the information security and privacy
 program plans. The organization-wide information security program plan (see PM-1) and privacy

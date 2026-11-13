@@ -1,7 +1,7 @@
 {
  "corpus": "federal-reference",
  "n_nodes": 711,
- "n_edges": 1308,
+ "n_edges": 1313,
  "n_edges_external": 0,
  "nodes": [
   {
@@ -8584,6 +8584,11 @@
    "to": "6-cfr-37.29"
   },
   {
+   "from": "6-cfr-37",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
    "from": "7-cfr-210.13",
    "type": "related",
    "to": "7-cfr-210"
@@ -8932,6 +8937,26 @@
    "from": "7-cfr-280",
    "type": "related",
    "to": "7-cfr-280.1"
+  },
+  {
+   "from": "arc-ampe",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "cisa-cpg",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "cjis-sp-6-1",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "irs-pub-1075-11-2021",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
   },
   {
    "from": "nist-sp-800-53-r5.ac-1",
