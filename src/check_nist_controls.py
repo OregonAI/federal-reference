@@ -73,6 +73,8 @@ def test_federal_ids() -> None:
 #   * a withdrawn control with no body
 #   * a prefix-sharing id (`AC-2` vs `AC-20`)
 #   * the Appendix C summary table, whose lines start with the same ids in mixed case
+#   * a family heading + Quick-link line between two families (the last control of the family
+#     must not end with them)
 #   * the line `REFERENCES` that closes the catalog (the last control would otherwise run to EOF)
 FIXTURE = """FIGURE 1: CONTROL STRUCTURE
 AU-4 AUDIT STORAGE CAPACITY
@@ -92,6 +94,9 @@ AC-13 SUPERVISION AND REVIEW \u2014 ACCESS CONTROL
 [Withdrawn: Incorporated into AC-2 and AU-6.]
 AC-20 USE OF EXTERNAL SYSTEMS
 Control: a. Establish terms.
+CHAPTER THREE   PAGE 58
+3.18   SYSTEM AND COMMUNICATIONS PROTECTION
+Quick link to System and Communications Protection Summary Table
 SC-7  BOUNDARY PROTECTION
 Control: a. Monitor communications.
 SR-12 COMPONENT DISPOSAL
@@ -167,6 +172,15 @@ def test_slicing() -> None:
           sl("ac-20").startswith("### AC-20 ") and "AC-2 ACCOUNT" not in sl("ac-20"))
     check("the double-space heading (SC-7  BOUNDARY PROTECTION) is found",
           sl("sc-7").startswith("### SC-7  BOUNDARY PROTECTION"))
+    ac20 = sl("ac-20")
+    check("the last control of a family does not end with the next family's heading or its "
+          "Quick-link line",
+          "3.18" not in ac20 and "Quick link" not in ac20 and "SYSTEM AND COMMUNICATIONS" not in ac20
+          and "Establish terms." in ac20, repr(ac20))
+    check("...nor with the next page's running header that precedes it",
+          ac20.rstrip().endswith("Control: a. Establish terms."), repr(ac20[-80:]))
+    check("a numbered list item in a control (`3. Access ...`) is not a family heading",
+          "Control: a. Establish terms." in sl("ac-20"))
     sr12 = sl("sr-12")
     check("the last control stops at the REFERENCES anchor, not end of file",
           "Dispose of components." in sr12 and "OMB A-130" not in sr12
@@ -291,6 +305,8 @@ def test_derive() -> None:
         "b": ("cfr_part", "no mention of the publication here, but AC-20 appears."),
         "c": ("nist_control", "NIST SP 800-53 AC-1 AC-1 AC-1 is the publication talking to itself."),
         "d": ("fbi_policy", "Per 800-53: AC-1; also AC-2(3)."),
+        # the `related` edge this change adds is not the document naming the publication
+        "e": ("cfr_part", "---\nrelationships:\n  related:\n  - nist-sp-800-53-r5\n---\nAC-2 AC-2."),
     }
     out = derive(held, cat)
     byid = {c["id"]: c for c in out["controls"]}
@@ -361,7 +377,7 @@ def test_publication_build() -> None:
     src = {"id": "nist-sp-800-53-r5", "url": "https://example.test/x.pdf", "format": "pdf",
            "instrument_kind": "nist_publication", "citation": "NIST SP 800-53 Rev. 5",
            "title": "Security and Privacy Controls for Information Systems and Organizations",
-           "version": "Rev. 5", "amended_on": "2025-08-27",
+           "version": "Rev. 5", "amended_on": "2020-12-10",
            "reproduction_basis": "basis under test"}
     md = build(src, held_scope(FIXTURE), "cd" * 32, {"pages": 492}, "Rev. 5",
                "2026-11-12", "2026-11-12")
@@ -375,10 +391,112 @@ def test_publication_build() -> None:
           "the appendices are not mirrored) so a partial hold is never read as the whole",
           "NOT mirrored" in glance and "Appendix A" in glance and "Chapter Three" in glance,
           glance[-600:])
+    check("the disclaimer does not call the held Rev. 5 PDF CURRENT text (release 5.2.0 postdates it)",
+          "CURRENT text" not in glance and "Rev. 5 PDF of record" in glance, glance[:900])
     check("it carries the release 5.2.0 caveat read from the release file",
           "5.2.0" in glance and "does NOT include" in glance)
+    check("amended_on is the held text's own date, and the note does not say it is a release date",
+          f["amended_on"] == "2020-12-10" and "carries the release date" not in glance
+          and "5.1.x" in glance and "later releases" in glance.lower(), glance[-900:])
     check("the Full text is the scoped text, verbatim",
           md.split("## Full text\n\n", 1)[1].rstrip("\n") == held_scope(FIXTURE))
+
+
+def test_publication_kind_is_not_800_53() -> None:
+    """A second nist_publication (FIPS 140, SP 800-63 are next on #42) must not inherit the
+    800-53 catalog cut, the 800-53 scope note, the 5.2.0 caveat, or the 800-53 extraction check."""
+    from check_extraction import uses_catalog_prefix_check
+    from ingest_instruments import build, held_scope_for
+
+    src = {"id": "fips-140-3", "url": "https://example.test/f.pdf", "format": "pdf",
+           "instrument_kind": "nist_publication", "citation": "FIPS 140-3",
+           "title": "Security Requirements for Cryptographic Modules", "version": "140-3",
+           "amended_on": "2019-03-22", "reproduction_basis": "basis under test"}
+    body = "FIPS PUB 140-3\n" + "Security requirements. " * 120
+    check("a nist_publication that is not SP 800-53 is not cut at the 800-53 catalog",
+          held_scope_for(src, body) == body)
+    check("the 800-53 publication still is",
+          held_scope_for({"id": "nist-sp-800-53-r5", "instrument_kind": "nist_publication"},
+                         FIXTURE) != FIXTURE)
+    md = build(src, body, "ef" * 32, {"pages": 60}, "140-3", "2026-11-12", "2026-11-12")
+    glance = md.split("## Full text", 1)[0]
+    check("its document carries none of the 800-53 notes",
+          not any(w in glance for w in ("Chapter Three", "Appendix A", "5.2.0", "800-53",
+                                        "Held in part", "control documents")), glance[-700:])
+    check("and no CURRENT-text claim either", "CURRENT text" not in glance)
+    check("the 800-53 extraction check applies to 800-53 only",
+          uses_catalog_prefix_check("nist-sp-800-53-r5", "nist_publication")
+          and not uses_catalog_prefix_check("fips-140-3", "nist_publication")
+          and not uses_catalog_prefix_check("nist-sp-800-53-r5", "cfr_part"))
+
+
+def test_published_names_are_whole() -> None:
+    """Names are published as printed. pypdf split words in this PDF's front matter
+    (`Matt hew Barrett`, `R obert Lentz`); the held text must carry them whole, in the publication
+    document and in the snapshot every control document is cut from."""
+    doc = (ROOT / "instruments" / "nist-sp-800-53-r5.md").read_text(encoding="utf-8")
+    snap = (ROOT / "_meta" / "snapshots" / "nist-sp-800-53-r5.txt").read_text(encoding="utf-8")
+    for where, text in (("the publication document", doc), ("the snapshot", snap)):
+        check(f"{where} names the acknowledged contributors whole, as printed",
+              all(n in text for n in ("Matthew Barrett", "Robert Lentz", "Donald Jones",
+                                      "Tom Kellermann", "federal agencies")), where)
+        check(f"{where} carries none of the split-word forms",
+              not any(n in text for n in ("Matt hew", "R obert", "Don ald", "Kellerman n",
+                                          "federa l")), where)
+
+
+def test_split_word_repair() -> None:
+    from ingest_instruments import repair_split_words
+
+    py = [["Matt hew Barrett, Nadya  Bartol", "R obert Lentz", "a cost-", "effective plan ,"]]
+    pop = [["Matthew Barrett, Nadya Bartol", "Robert Lentz", "a costeffective", "plan,"]]
+    got = repair_split_words(py, pop)
+    check("a word pypdf split is rejoined where poppler read it whole, spacing elsewhere kept",
+          got[0][:2] == ["Matthew Barrett, Nadya  Bartol", "Robert Lentz"], str(got))
+    check("a stray space before punctuation is closed the same way",
+          got[0][3] == "effective plan,", str(got))
+    check("poppler's dropped hyphen is NOT adopted (`cost-` / `effective` stays as printed)",
+          got[0][2] == "a cost-", str(got))
+    check("a page where the two engines read different words is left exactly as pypdf read it",
+          repair_split_words([["alpha beta"]], [["gamma delta"]]) == [["alpha beta"]])
+    try:
+        repair_split_words([["a"]], [["a"], ["b"]])
+        check("a page-count mismatch between the engines raises", False)
+    except ValueError:
+        check("a page-count mismatch between the engines raises", True)
+
+
+def test_unrepaired_split_words() -> None:
+    from check_extraction import split_word_problems
+
+    check("a still-split word that poppler reads whole is reported",
+          split_word_problems(["Matt hew Barrett"], ["Matthew Barrett"]) != [])
+    check("legitimately separate words are not reported",
+          split_word_problems(["a cost- effective plan"], ["a costeffective plan"]) == [])
+    check("a clean page reports nothing",
+          split_word_problems(["Matthew Barrett"], ["Matthew Barrett"]) == [])
+
+
+def test_citing_documents_link_to_the_publication() -> None:
+    """The point of #42: a walk from a citing document reaches the publication. Edges are derived
+    from the cited-controls file's own `documents_scanned`, and graph.json carries them."""
+    import json
+    import yaml
+    from ingest_instruments import cited_nist_publications
+
+    pub = "nist-sp-800-53-r5"
+    scanned = yaml.safe_load((ROOT / "_meta" / "cited-controls" / f"{pub}.yml").read_text(
+        encoding="utf-8"))["documents_scanned"]
+    check("the five held documents that name 800-53 are the ones derived",
+          all(cited_nist_publications(d) == [pub] for d in scanned) and len(scanned) == 5,
+          str(scanned))
+    check("a document that does not name 800-53 gets no edge",
+          cited_nist_publications("2-cfr-200") == [] and cited_nist_publications(pub) == [])
+    graph = json.loads((ROOT / "_meta" / "graph.json").read_text(encoding="utf-8"))
+    edges = {(e["from"], e["to"]) for e in graph["edges"] if e["type"] == "related"}
+    missing = [d for d in scanned if (d, pub) not in edges]
+    check("graph.json has an edge from every citing document into the publication",
+          not missing, f"missing: {missing}")
 
 
 def test_resolution() -> None:
@@ -440,6 +558,11 @@ def main() -> int:
     test_scope()
     test_extraction_prefix()
     test_publication_build()
+    test_publication_kind_is_not_800_53()
+    test_citing_documents_link_to_the_publication()
+    test_published_names_are_whole()
+    test_split_word_repair()
+    test_unrepaired_split_words()
     test_resolution()
     print()
     if FAILS:

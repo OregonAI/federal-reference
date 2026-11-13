@@ -1149,14 +1149,19 @@ sources:
   - id: "nist-sp-800-53-r5"
     url: "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf"
     format: "pdf"
+    # pypdf splits words in this PDF's front matter ("Matt hew Barrett", "federa l"), which would
+    # publish contributors' names other than as printed; poppler's pdftotext reads them whole, and
+    # its reading is used only to rejoin the words pypdf split (see repair_split_words()).
+    pdf_engine: "pypdf+pdftotext"
     instrument_kind: "nist_publication"
     citation: "NIST SP 800-53 Rev. 5"
     title: "Security and Privacy Controls for Information Systems and Organizations"
     version: "Rev. 5"
-    # The date of NIST's most recent release of this publication (5.2.0, 2025-08-27), per NIST's
-    # listing of record. It is NOT the date of the held text (the PDF prints "includes updates as
-    # of 12-10-2020") -- the document and every control NIST lists say so beside the text.
-    amended_on: "2025-08-27"
+    # The date the held text prints: "includes updates as of 12-10-2020" (CONTRIBUTING: dates are
+    # transcribed as the source prints them). NIST has issued later releases (5.1.x, 5.2.0) that
+    # the held PDF does not include; the document and every control NIST lists say so beside the
+    # text, and `amended_on` is not overloaded to carry a release date.
+    amended_on: "2020-12-10"
     why: >
       Required by documents already held: 6 CFR 37 (which incorporates it by reference at
       Appendix A to Subpart A and cites it as "NIST SP 800-53 Rev. 5"), IRS Pub 1075, CJIS SP 6.1,

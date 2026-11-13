@@ -50,9 +50,29 @@ def _section(raw_text: str, sec: str) -> str:
     start = re.search(rf"^### §*\s*{re.escape(sec)}(?!\d)", raw_text, re.M)
     if start is None:
         raise LookupError(f"no `### ` heading for § {sec} in the snapshot")
-    nxt = re.search(r"^### ", raw_text[start.end():], re.M)
+    rest = raw_text[start.end():]
+    nxt = re.search(r"^### ", rest, re.M)
+    fam = _NIST_FAMILY_HEADING.search(rest)
     end = start.end() + nxt.start() if nxt else len(raw_text)
+    if fam and (not nxt or fam.start() < nxt.start()):
+        # The control is the last of its family. Family headings (`3.7   IDENTIFICATION AND
+        # AUTHENTICATION`) are not anchored, so without this the slice ran on through the next
+        # family's heading and its `Quick link to ...` line. The running page header that sits
+        # above the heading belongs to the next section's page, so it goes too.
+        end = start.end() + fam.start()
+        kept = raw_text[start.start():end].rstrip("\n").split("\n")
+        while kept and _NIST_PAGE_FURNITURE.match(kept[-1].strip()):
+            kept.pop()
+        return "\n".join(kept) + "\n"
     return raw_text[start.start():end]
+
+
+# `3.7   IDENTIFICATION AND AUTHENTICATION`: the chapter's family heading (section number, two or
+# more spaces, ALL-CAPS title). A numbered list item inside a control (`3. Access ...`) has a
+# period and one space, so it cannot match.
+_NIST_FAMILY_HEADING = re.compile(r"^3\.\d{1,2} {2,}[A-Z][A-Z ,&-]+$", re.M)
+_NIST_PAGE_FURNITURE = re.compile(r"^(?:CHAPTER THREE\s+PAGE \d+|This publication is available "
+                                  r"free of charge from:.*)$")
 
 
 def _nist_control(raw_text: str, fam: str, num: str) -> str:
@@ -67,8 +87,20 @@ def _nist_control(raw_text: str, fam: str, num: str) -> str:
     start = re.search(rf"^### {fam.upper()}-{int(num)}(?!\d)\s", raw_text, re.M)
     if start is None:
         raise LookupError(f"no `### {fam.upper()}-{int(num)}` heading in the snapshot")
-    nxt = re.search(r"^### ", raw_text[start.end():], re.M)
+    rest = raw_text[start.end():]
+    nxt = re.search(r"^### ", rest, re.M)
+    fam = _NIST_FAMILY_HEADING.search(rest)
     end = start.end() + nxt.start() if nxt else len(raw_text)
+    if fam and (not nxt or fam.start() < nxt.start()):
+        # The control is the last of its family. Family headings (`3.7   IDENTIFICATION AND
+        # AUTHENTICATION`) are not anchored, so without this the slice ran on through the next
+        # family's heading and its `Quick link to ...` line. The running page header that sits
+        # above the heading belongs to the next section's page, so it goes too.
+        end = start.end() + fam.start()
+        kept = raw_text[start.start():end].rstrip("\n").split("\n")
+        while kept and _NIST_PAGE_FURNITURE.match(kept[-1].strip()):
+            kept.pop()
+        return "\n".join(kept) + "\n"
     return raw_text[start.start():end]
 
 

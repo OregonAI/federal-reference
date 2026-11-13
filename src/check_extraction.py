@@ -49,6 +49,8 @@ from ingest_instruments import (  # noqa: E402
     SNAPSHOTS, extract_cfr, extract_pdf, extract_usc, is_page_number, page_furniture,
 )
 
+from nist_controls import PUBLICATION_ID  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 INSTRUMENTS = ROOT / "instruments"
 
@@ -61,18 +63,16 @@ def tokens(text: str) -> list[str]:
     return TOKEN.findall(text)
 
 
-def raw_tokens_pdf(path: Path) -> list[str]:
+def raw_tokens_pdf(path: Path, engine: str = "pypdf") -> list[str]:
     """Tokens in the raw PDF, minus only what page furniture legitimately removes.
 
     Furniture is identified with the SAME functions the extractor uses, restricted to the
     same band, so this check cannot pass by accidentally sharing a bug with the extractor in
     the other direction: if the band logic is wrong, the counts diverge and this fails.
     """
-    from pypdf import PdfReader
-    from ingest_instruments import FURNITURE_BAND
+    from ingest_instruments import FURNITURE_BAND, pdf_pages
 
-    reader = PdfReader(str(path))
-    pages = [(p.extract_text() or "").splitlines() for p in reader.pages]
+    pages = pdf_pages(path, engine)
     head, foot = page_furniture(pages)
     kept: list[str] = []
     for lines in pages:
@@ -109,6 +109,47 @@ def prefix_problem(expect: list[str], got: list[str]) -> str | None:
     return None
 
 
+def split_word_problems(py_lines: list[str], pop_lines: list[str]) -> list[str]:
+    """Adjacent words on one held line whose concatenation poppler reads as ONE word on the same
+    page while neither half is a word poppler read -- a word still split in the committed text.
+    Independent of repair_split_words (it asks poppler's word set, not the repair's alignment), so
+    a repair that missed a split is caught here instead of agreeing with itself."""
+    pop_words = {w for line in pop_lines for w in line.split()}
+    found = []
+    for line in py_lines:
+        ws = line.split()
+        for a, b in zip(ws, ws[1:]):
+            if a + b in pop_words and a not in pop_words and b not in pop_words:
+                found.append(f"{a!r} {b!r} -> {a + b!r}")
+    return found
+
+
+def held_split_words(raw_path: Path, engine: str) -> str | None:
+    """For an entry that opts into poppler's reading (`pdf_engine: pypdf+pdftotext`): None if no
+    word on a held page is still split where poppler reads it whole, else a description. Pages
+    after the catalog-closing REFERENCES heading are not held and not checked."""
+    if engine == "pypdf":
+        return None
+    from ingest_instruments import pdf_pages
+    from nist_controls import CATALOG_START, is_catalog_end
+    pages, pop = pdf_pages(raw_path, engine), pdf_pages(raw_path, "pdftotext")
+    started = False
+    bad: list[str] = []
+    for n, (py, pp) in enumerate(zip(pages, pop), 1):
+        started = started or any(CATALOG_START.match(l.strip()) for l in py)
+        if started and any(is_catalog_end(l) for l in py):
+            break
+        bad += [f"p.{n}: {x}" for x in split_word_problems(py, pp)]
+    return (f"{len(bad)} word(s) still split where pdftotext reads them whole: "
+            f"{'; '.join(bad[:5])}") if bad else None
+
+
+def uses_catalog_prefix_check(doc_id: str, kind: str) -> bool:
+    """The prefix check is written for SP 800-53's catalog cut; another nist_publication (FIPS 140,
+    SP 800-63) is held whole and is checked token-for-token like any other PDF."""
+    return kind == "nist_publication" and doc_id == PUBLICATION_ID
+
+
 def main() -> int:
     manifest = yaml.safe_load((ROOT / "_meta" / "source-manifest.yml").read_text())
     docs = {}
@@ -140,7 +181,7 @@ def main() -> int:
             root = ET.fromstring(raw_path.read_bytes())
             expect = tokens(extract_usc(root, usc_title, usc_sec)[0])
         else:
-            expect = raw_tokens_pdf(raw_path)
+            expect = raw_tokens_pdf(raw_path, src.get("pdf_engine", "pypdf"))
 
         # The document that owns this snapshot whole (the part, or the publication itself);
         # section documents carry only a slice and are covered by provenance's slice check.
@@ -155,8 +196,10 @@ def main() -> int:
         body = owner.read_text().split("## Full text\n\n", 1)[-1]
         got = tokens(body)
 
-        if kind == "nist_publication":
+        if uses_catalog_prefix_check(sid, kind):
             problem = prefix_problem(expect, got)
+            if problem is None:
+                problem = held_split_words(raw_path, src.get("pdf_engine", "pypdf"))
             if problem is None:
                 print(f"  ok    {sid}: {len(got):>7,} of {len(expect):,} raw tokens, an exact "
                       f"prefix ending at the catalog (REFERENCES onward deliberately not held)")

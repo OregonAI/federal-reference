@@ -62,10 +62,13 @@ def derive(held: dict[str, tuple[str, str]], catalog: set[str]) -> dict:
     scanned: list[str] = []
     for doc_id in sorted(held):
         kind, text = held[doc_id]
-        if kind in NIST_KINDS or not MENTIONS_800_53.search(text):
+        # The BODY only: a document's own front matter now carries the `related` edge to the
+        # publication, which must not make it "a document that names 800-53".
+        body = text.split("\n---\n", 1)[1] if text.startswith("---\n") and "\n---\n" in text else text
+        if kind in NIST_KINDS or not MENTIONS_800_53.search(body):
             continue
         scanned.append(doc_id)
-        base, enh = scan_text(text)
+        base, enh = scan_text(body)
         per_doc[doc_id] = base
         enh_total.update({k.split("(", 1)[0]: v for k, v in enh.items()})
     total: Counter = Counter()
