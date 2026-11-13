@@ -1,0 +1,36 @@
+# Release 5.2.0 of NIST SP 800-53 -- what NIST says it changed, and that the held text predates it.
+#
+# DERIVED by parsing the "Planning Note (08/27/2025)" on NIST's listing of record for Rev. 5
+# (`source_url`), fetched 2026-11-12 (page sha256 fe269d019f3603545dd4e069865204158f2af157634e3fa0c10fdb3f3de6a0b1); the ids
+# below are machine-read from that note, and `planning_note_verbatim` is the note as the page
+# prints it. Read by src/split_nist_controls.py to put a per-control caveat on every held
+# control NIST lists. It is a statement about what the held text LACKS, not text of the
+# publication: the Rev. 5 PDF of record (nvlpubs.nist.gov, September 2020, updates as of
+# 2020-12-10) does not contain release 5.2.0, and the release is distributed by NIST as OSCAL
+# (github.com/usnistgov/oscal-content), which is outside what this corpus fetches.
+publication: nist-sp-800-53-r5
+release: "5.2.0"
+issued: "2025-08-27"
+source_url: https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final
+changes_summary_url: https://csrc.nist.gov/files/projects/Risk-Management/800-53%20Comment%20Site/SP800-53-r5.2.0-changes.pdf
+retrieved: "2026-11-12"
+page_sha256: fe269d019f3603545dd4e069865204158f2af157634e3fa0c10fdb3f3de6a0b1
+# Control ids are lower-case, unpadded (`SA-04` -> sa-4); an enhancement keeps its `(n)`.
+new_controls_or_enhancements: [sa-15(13), sa-24, si-2(7)]
+revised: [si-7(12)]
+discussion_updated: [sa-4, sa-5, sa-8, sa-8(14), si-2, si-2(5)]
+related_controls_updated: [au-2, au-3, ca-7, ir-4, ir-6, ir-8, sa-15, si-2, si-7]
+# "Updates to Related Controls: All -01 Controls" -- every family's -1 (policy and procedures) control.
+related_controls_updated_all_dash_01: true
+planning_note_verbatim: |
+  Planning Note (08/27/2025):
+  On August 27, 2025, NIST issued a minor release of
+  SP 800-53 (Release 5.2.0)
+  that includes:
+  New Control/Control Enhancements: SA-15(13), SA-24, SI-02(07)
+  Revisions to Existing Controls: SI-07(12)
+  Updates to Control Discussion: SA-04, SA-05, SA-08, SA-08(14), SI-02, SI-02(05)
+  Updates to Related Controls: All -01 Controls, AU-02, AU-03, CA-07, IR-04, IR-06, IR-08, SA-15, SI-02, SI-07
+  A list of all the changes in the patch release is
+  available
+  under Supplemental Material.

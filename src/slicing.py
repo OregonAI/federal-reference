@@ -34,6 +34,11 @@ import re
 # The bare part id (no trailing `.NNN`) must NOT match -- it owns its whole snapshot.
 DOC_ID = re.compile(r"^\d{1,2}-cfr-(\d{1,4})\.(\d+)$")
 
+# #42: a control of NIST SP 800-53 Rev. 5, `nist-sp-800-53-r5.ac-2`. Cut from the publication's
+# one snapshot exactly as a CFR section is cut from its part's: between one `### ` heading and
+# the next, raising rather than widening when the heading is missing.
+NIST_DOC_ID = re.compile(r"^nist-sp-800-53-r5\.([a-z]{2})-(\d{1,2})$")
+
 
 def _section(raw_text: str, sec: str) -> str:
     """The span of the part text belonging to § `sec`, heading included.
@@ -45,12 +50,64 @@ def _section(raw_text: str, sec: str) -> str:
     start = re.search(rf"^### §*\s*{re.escape(sec)}(?!\d)", raw_text, re.M)
     if start is None:
         raise LookupError(f"no `### ` heading for § {sec} in the snapshot")
-    nxt = re.search(r"^### ", raw_text[start.end():], re.M)
+    rest = raw_text[start.end():]
+    nxt = re.search(r"^### ", rest, re.M)
+    fam = _NIST_FAMILY_HEADING.search(rest)
     end = start.end() + nxt.start() if nxt else len(raw_text)
+    if fam and (not nxt or fam.start() < nxt.start()):
+        # The control is the last of its family. Family headings (`3.7   IDENTIFICATION AND
+        # AUTHENTICATION`) are not anchored, so without this the slice ran on through the next
+        # family's heading and its `Quick link to ...` line. The running page header that sits
+        # above the heading belongs to the next section's page, so it goes too.
+        end = start.end() + fam.start()
+        kept = raw_text[start.start():end].rstrip("\n").split("\n")
+        while kept and _NIST_PAGE_FURNITURE.match(kept[-1].strip()):
+            kept.pop()
+        return "\n".join(kept) + "\n"
+    return raw_text[start.start():end]
+
+
+# `3.7   IDENTIFICATION AND AUTHENTICATION`: the chapter's family heading (section number, two or
+# more spaces, ALL-CAPS title). A numbered list item inside a control (`3. Access ...`) has a
+# period and one space, so it cannot match.
+_NIST_FAMILY_HEADING = re.compile(r"^3\.\d{1,2} {2,}[A-Z][A-Z ,&-]+$", re.M)
+_NIST_PAGE_FURNITURE = re.compile(r"^(?:CHAPTER THREE\s+PAGE \d+|This publication is available "
+                                  r"free of charge from:.*)$")
+
+
+def _nist_control(raw_text: str, fam: str, num: str) -> str:
+    """The span belonging to control `FAM-N`, heading included.
+
+    `(?!\\d)` is load-bearing for the reason `_section`'s is: without it `AC-2` also matches
+    the heading of `AC-20`. The id is followed by whitespace in every real heading (one or two
+    spaces -- pypdf emits two for SC-7, SC-13 and five others). The span ends at the next
+    `### `, which for the last control (SR-12) is the `### REFERENCES` line anchor_sections.py
+    adds at the catalog's close, so a control never silently absorbs the bibliography.
+    """
+    start = re.search(rf"^### {fam.upper()}-{int(num)}(?!\d)\s", raw_text, re.M)
+    if start is None:
+        raise LookupError(f"no `### {fam.upper()}-{int(num)}` heading in the snapshot")
+    rest = raw_text[start.end():]
+    nxt = re.search(r"^### ", rest, re.M)
+    fam = _NIST_FAMILY_HEADING.search(rest)
+    end = start.end() + nxt.start() if nxt else len(raw_text)
+    if fam and (not nxt or fam.start() < nxt.start()):
+        # The control is the last of its family. Family headings (`3.7   IDENTIFICATION AND
+        # AUTHENTICATION`) are not anchored, so without this the slice ran on through the next
+        # family's heading and its `Quick link to ...` line. The running page header that sits
+        # above the heading belongs to the next section's page, so it goes too.
+        end = start.end() + fam.start()
+        kept = raw_text[start.start():end].rstrip("\n").split("\n")
+        while kept and _NIST_PAGE_FURNITURE.match(kept[-1].strip()):
+            kept.pop()
+        return "\n".join(kept) + "\n"
     return raw_text[start.start():end]
 
 
 def slice(doc_id: str, snapshot_id: str, raw_text: str) -> str:  # noqa: A001
+    n = NIST_DOC_ID.match(doc_id or "")
+    if n:
+        return _nist_control(raw_text, n.group(1), n.group(2))
     m = DOC_ID.match(doc_id or "")
     if not m:
         # The part itself, and every non-CFR instrument, owns its whole snapshot.

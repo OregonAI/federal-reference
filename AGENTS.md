@@ -186,6 +186,8 @@ PR. See toolkit `docs/replication-guide.md`.
 |---|---|---|
 | `_meta/graph.json` | `src/build_graph.py` | `generated` job, every PR |
 | `STATUS.md` | `corpus-generate-status` | `generated` job, every PR (plus a weekly repair in the `drift` job) |
+| `_meta/cited-controls/nist-sp-800-53-r5.yml` | `src/scan_cited_controls.py` | `generated` job, every PR (`--check` re-derives it; it needs no sibling checkout) |
+| `instruments/nist-sp-800-53-r5.<control>.md` | `src/split_nist_controls.py` | `generated` job, every PR (`--check`) |
 
 Regenerate at the source and commit the result.
 

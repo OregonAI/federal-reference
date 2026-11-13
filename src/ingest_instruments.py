@@ -47,10 +47,12 @@ from pypdf import PdfReader
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from cfr_consolidations import PART_REMOVALS  # noqa: E402
+from nist_controls import PUBLICATION_ID as NIST_800_53_ID, held_scope  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = ROOT / "_meta" / "source-manifest.yml"
 SNAPSHOTS = ROOT / "_meta" / "snapshots"
+RELEASE_FILE = ROOT / "_meta" / "nist-sp-800-53-r5-release-5-2-0.yml"
 OUT_DIR = ROOT / "instruments"
 UA = ("OregonAI-corpus-bot/0.1 (+https://github.com/OregonAI/federal-reference; "
       "civic corpus ingest)")
@@ -69,6 +71,9 @@ ISSUING_BODY_BY_KIND = {
     "fbi_policy": "Federal Bureau of Investigation, CJIS Division",
     "public_law": "United States Congress",
     "usc_section": "United States Congress",
+    # #42: every NIST publication, and every control cut from one, is NIST's.
+    "nist_publication": "National Institute of Standards and Technology",
+    "nist_control": "National Institute of Standards and Technology",
 }
 
 # KINDS WHOSE ISSUER IS DATA, NOT A PROPERTY OF THE KIND. `cfr_part` was the original
@@ -546,7 +551,77 @@ def is_page_number(line: str, npages: int) -> bool:
         len(s) <= 18 and npages > 1
 
 
-def extract_pdf(path: Path) -> tuple[str, dict]:
+def poppler_pages(text: str, npages: int) -> list[list[str]]:
+    """`pdftotext` output -> one list of lines per page (it ends every page with a form feed, so
+    the split leaves one trailing empty string, which is not a page)."""
+    return [chunk.splitlines() for chunk in text.split("\f")[:npages]]
+
+
+def pdf_pages(path: Path, engine: str = "pypdf") -> list[list[str]]:
+    """The raw lines of every page. `engine` is `pypdf` (the default), `pdftotext` (poppler) or
+    `pypdf+pdftotext` (pypdf's text with its split words rejoined, see repair_split_words).
+
+    pypdf splits words inside some text layers (`Matt hew Barrett`, `federa l`); AGENTS.md names
+    poppler's pdftotext as the tool for a text-layer spacing fault, and a manifest entry opts in
+    with `pdf_engine: pypdf+pdftotext` (pdftotext alone reads this publication's headings and
+    list numbers in a different order and drops line-end hyphens). The extractor and src/check_extraction.py both read pages
+    through this one function, so what the check compares is the engine the ingest used.
+    """
+    if engine == "pdftotext":
+        import subprocess
+        out = subprocess.run(["pdftotext", "-enc", "UTF-8", str(path), "-"], check=True,
+                             capture_output=True).stdout.decode("utf-8")
+        return poppler_pages(out, len(PdfReader(str(path)).pages))
+    if engine not in ("pypdf", "pypdf+pdftotext"):
+        raise ValueError(f"unknown pdf_engine {engine!r} (pypdf, pdftotext or pypdf+pdftotext)")
+    pages = [(p.extract_text() or "").splitlines() for p in PdfReader(str(path)).pages]
+    return repair_split_words(pages, pdf_pages(path, "pdftotext")) if engine != "pypdf" else pages
+
+
+def repair_split_words(py_pages: list[list[str]], pop_pages: list[list[str]]) -> list[list[str]]:
+    """pypdf's pages with every word pypdf SPLIT rejoined where poppler read it whole.
+
+    pypdf splits words inside some text layers (`Matt hew Barrett`, `federa l`, `AC-20 .`). poppler
+    reads those whole but is not safe to adopt wholesale: it drops the hyphen of a word broken at
+    a line end (`cost-` / `effective` -> `costeffective`, `IR-2(3)` -> `IR2(3)`), and orders list
+    numbers and headings differently. So the text stays pypdf's, and one change only is taken
+    from poppler: where two or more CONSECUTIVE words on one pypdf line, concatenated, equal a
+    word that poppler read on the same page and pypdf did not (counted, so each is used once),
+    they become that word. Nothing is invented: the characters are the same
+    in both engines, only the spacing between them differs. A hyphen poppler dropped cannot
+    match (the characters differ), so it is never adopted. Whitespace outside the repaired spans
+    is left exactly as pypdf had it (anchor_sections depends on the double space in `SC-7  BOUNDARY`).
+    """
+    from collections import Counter
+    if len(py_pages) != len(pop_pages):
+        raise ValueError(f"pypdf read {len(py_pages)} pages and pdftotext {len(pop_pages)}")
+    out = []
+    for py, pop in zip(py_pages, pop_pages):
+        # The words poppler read on this page that pypdf did not: a split word's whole form is
+        # one of these, and each can be used once.
+        unmatched = (Counter(w for line in pop for w in line.split())
+                     - Counter(w for line in py for w in line.split()))
+        lines = []
+        for line in py:
+            toks = [(m.start(), m.end(), m.group()) for m in re.finditer(r"\S+", line)]
+            pieces, i, last = [], 0, 0
+            while i < len(toks):
+                k = next((k for k in range(2, min(7, len(toks) - i) + 1)
+                          if unmatched["".join(t[2] for t in toks[i:i + k])] > 0), None)
+                if k is None:
+                    i += 1
+                    continue
+                joined = "".join(t[2] for t in toks[i:i + k])
+                unmatched[joined] -= 1
+                pieces.append(line[last:toks[i][0]] + joined)
+                last = toks[i + k - 1][1]
+                i += k
+            lines.append("".join(pieces) + line[last:])
+        out.append(lines)
+    return out
+
+
+def extract_pdf(path: Path, engine: str = "pypdf") -> tuple[str, dict]:
     """PDF -> text, stripping page furniture ONLY where page furniture can occur.
 
     THE BAND IS THE WHOLE POINT. Both filters used to run against every line on every page,
@@ -565,8 +640,7 @@ def extract_pdf(path: Path) -> tuple[str, dict]:
     applying what it learned outside that band was never justified: a running header that
     also occurs as body prose would be erased document-wide.
     """
-    reader = PdfReader(str(path))
-    pages = [(p.extract_text() or "").splitlines() for p in reader.pages]
+    pages = pdf_pages(path, engine)
     head, foot = page_furniture(pages)
     out = []
     for lines in pages:
@@ -583,10 +657,50 @@ def extract_pdf(path: Path) -> tuple[str, dict]:
             out.append(s)
     text = re.sub(r"\n{3,}", "\n\n", "\n".join(out)).strip()
     text = guard_headings(text)
-    return text, {"pages": len(reader.pages)}
+    return text, {"pages": len(pages)}
 
 
 # ---------------------------------------------------------------- document
+
+def is_nist_800_53(src: dict) -> bool:
+    """True for the one publication whose catalog cut, scope note and release caveat are written
+    for SP 800-53 Rev. 5. Keyed on the id, not on `instrument_kind == "nist_publication"`: FIPS 140
+    and SP 800-63 (#42's next items) take the same kind and must not inherit any of it."""
+    return src.get("instrument_kind") == "nist_publication" and src["id"] == NIST_800_53_ID
+
+
+def held_scope_for(src: dict, text: str) -> str:
+    """The part of the extracted publication this corpus reproduces: the catalog cut for SP 800-53
+    Rev. 5, and the whole text for any other publication."""
+    return held_scope(text) if is_nist_800_53(src) else text
+
+
+def cited_control_ids(pub_id: str) -> list[str]:
+    """Document ids for the controls split out of a NIST publication (`nist-sp-800-53-r5`), in
+    catalog order, from the committed `_meta/cited-controls/<pub_id>.yml` that
+    src/scan_cited_controls.py writes -- the same list src/split_nist_controls.py works from, so
+    the publication's edges and the control documents cannot disagree. A publication with no such
+    file yet (the first ingest, before the scan can run) lists none."""
+    path = ROOT / "_meta" / "cited-controls" / f"{pub_id}.yml"
+    if not path.is_file():
+        return []
+    entries = (yaml.safe_load(path.read_text(encoding="utf-8")) or {}).get("controls") or []
+    return [f"{pub_id}.{e['id']}" for e in entries]
+
+
+def cited_nist_publications(doc_id: str) -> list[str]:
+    """The NIST publications `doc_id` cites by control, per the committed
+    `_meta/cited-controls/<publication>.yml` files (src/scan_cited_controls.py writes them; its
+    `documents_scanned` is every held document that names the publication). Gives a citing
+    document its `related` edge to the publication, so graph_neighbors / authority_chain from it
+    stop dead-ending (#42). Derived, not curated: the list cannot disagree with the scan."""
+    out = []
+    for path in sorted((ROOT / "_meta" / "cited-controls").glob("*.yml")):
+        data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+        if doc_id in (data.get("documents_scanned") or []) and data.get("publication"):
+            out.append(data["publication"])
+    return out
+
 
 def cited_section_ids(part_id: str) -> list[str]:
     """Document ids for the sections split out of `part_id` (e.g. `2-cfr-200`), in citation
@@ -975,7 +1089,13 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
     _auto_rel = ({"related": [superseded_by] if superseded_by else []}
                  if superseded and src["instrument_kind"] == "cfr_part" else
                  {"related": cited_section_ids(rid)}
-                 if src["instrument_kind"] == "cfr_part" else {})
+                 if src["instrument_kind"] == "cfr_part" else
+                 {"related": cited_control_ids(rid)}
+                 if is_nist_800_53(src) else {})
+    # A document that cites a NIST publication by control gets an edge to it (#42).
+    _nist_edges = [] if src["instrument_kind"] == "nist_publication" else cited_nist_publications(rid)
+    if _nist_edges:
+        _auto_rel = {**_auto_rel, "related": [*(_auto_rel.get("related") or []), *_nist_edges]}
     _rel = merge_relationships(_auto_rel, existing_rel or {})
     fm = {
         "schema_version": 1,
@@ -1055,7 +1175,8 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
         # 42 CFR 2 <-> 45 CFR 160/164 comparison edge, are judgements no ingester makes on its
         # own authority). Applies to every kind now, not only cfr_part, so a usc_section (no
         # auto-derived edge of its own) can still carry and preserve a curated one.
-        **({"relationships": _rel} if (src["instrument_kind"] == "cfr_part" or _rel) else {}),
+        **({"relationships": _rel}
+           if (src["instrument_kind"] == "cfr_part" or is_nist_800_53(src) or _rel) else {}),
         "maintainer": "@morficflux",
         # Written EMPTY on purpose; a human sets them at PR approval. An ingester that
         # stamps a verification it did not perform is worse than a blank.
@@ -1116,6 +1237,18 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
             "\n_NON-AUTHORITATIVE copy. This is a federal requirement and carries penalties "
             "state policy does not — read it at the source URL before relying on it. This is "
             f"**superseded** text, as it stood on {fm['as_of']}, and is NOT current law._\n")
+    elif src["instrument_kind"] == "nist_publication":
+        # NOT "CURRENT text": the held PDF is a dated edition and NIST has issued later releases,
+        # so that sentence would be false (AGENTS.md rule 3). Same wording the control documents use.
+        edition = ("the Rev. 5 PDF of record (updates as of 2020-12-10), not NIST's current "
+                   "release; see the release note below" if is_nist_800_53(src) else
+                   f"the {version or 'named'} edition held at the source URL, not necessarily "
+                   "NIST's current release")
+        parts.append(
+            "\n_NON-AUTHORITATIVE copy. This is a federal requirement and carries penalties "
+            "state policy does not — read it at the source URL before relying on it. This copy "
+            f"is {edition}, which is not necessarily the text in force when a rule citing it "
+            "was written._\n")
     else:
         parts.append(
             "\n_NON-AUTHORITATIVE copy. This is a federal requirement and carries penalties "
@@ -1135,8 +1268,52 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
             "Code speculatively. The set held changes as sections are cited; `usc-section` "
             "in `src/citation_schemes.py` names the current count and refuses any other "
             "U.S.C. citation by name rather than by silence.\n")
+    if is_nist_800_53(src):
+        parts.append(_nist_publication_note(rid, version, fm))
     parts.append("\n## Full text\n\n" + text + "\n")
     return "\n".join(parts)
+
+
+def _nist_publication_note(rid: str, version: str | None, fm: dict) -> str:
+    """The generator-owned scope statement for a NIST publication held in part (#42).
+
+    Says what is held, what is NOT and why, and which controls have their own documents -- so a
+    partial hold is never read as the whole publication. Everything stated here is either read
+    from the committed files it names (the cited-controls list, the release file) or is the
+    documented boundary of nist_controls.held_scope().
+    """
+    n_controls = len(cited_control_ids(rid))
+    out = [
+        f"\n> **Held in part, on purpose.** This document reproduces the front matter and "
+        f"Chapter Three (the control catalog) of NIST SP 800-53 {version}, September 2020, "
+        f"as the PDF of record at the source URL (it prints \"includes updates as of "
+        f"12-10-2020\"). What follows the catalog is **NOT mirrored** — the References "
+        f"bibliography, Appendix A (glossary), Appendix B (acronyms) and Appendix C (control "
+        f"summaries) — because Appendix A adapts third-party definitions (ISO/IEC 15026, ISO 25237, "
+        f"ISO/IEC 29100, ISO 15288, IETF RFC 4949) whose reproducibility has not been "
+        f"determined (ADR-0002); read those at the source URL. The raw PDF snapshot holds all "
+        f"of it.\n"]
+    if n_controls:
+        out.append(
+            f"\n> **{n_controls} controls have their own documents** "
+            f"(`{rid}.<family>-<n>`, e.g. `{rid}.ac-2`): the controls that held documents cite "
+            f"by name (ADR-0003, `_meta/cited-controls/{rid}.yml`). Every other control is in "
+            f"the text below under its `### ` heading.\n")
+    out.append(
+        "\n> **NIST has issued later releases of Rev. 5 (5.1.x and 5.2.0) that are not included "
+        "here.** The text below is the Rev. 5 PDF of record, dated 2020-12-10 (`amended_on` is "
+        "that date); NIST distributes the later releases as OSCAL and a summary of changes, not "
+        "as a replacement PDF. Only release 5.2.0's changed controls are recorded here, from "
+        "NIST's listing of record; the 5.1.x changes are not.\n")
+    if RELEASE_FILE.is_file():
+        rel = yaml.safe_load(RELEASE_FILE.read_text(encoding="utf-8"))
+        out.append(
+            f"\n> **Release {rel['release']} postdates this text.** NIST's listing of record "
+            f"([{rel['source_url']}]({rel['source_url']})) says NIST issued release "
+            f"{rel['release']} of SP 800-53 on {rel['issued']}, adding, revising or updating "
+            f"the controls named in [_meta/{RELEASE_FILE.name}](../_meta/{RELEASE_FILE.name}). "
+            f"The text below is the Rev. 5 PDF of record and does NOT include those changes.\n")
+    return "".join(out)
 
 
 # A flat character-count floor conflates two different failure modes that need different
@@ -1333,6 +1510,10 @@ def main() -> int:
                     raise ValueError(
                         f"{rid}: agency_guidance supports format html or pdf, not {fmt!r} "
                         "— declare one rather than letting a parser be guessed")
+            elif src["instrument_kind"] == "nist_publication":
+                # Held in part: the catalog and what precedes it (see held_scope()).
+                text, stats = extract_pdf(snap, src.get("pdf_engine", "pypdf"))
+                text = held_scope_for(src, text)
             else:
                 text, stats = extract_pdf(snap)
             broken = extraction_is_broken(src["instrument_kind"], text, stats)

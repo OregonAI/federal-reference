@@ -62,7 +62,7 @@ _sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 # or the two can disagree about which section a citation names -- the exact substitution
 # ADR-0004/-0006 exist to refuse. RANGE and LIST_SEC are still NOT imported, for the
 # reason above: this resolver builds them per PART.
-from federal_ids import MAX_RANGE, USC  # noqa: E402
+from federal_ids import MAX_RANGE, NIST_800_53, NIST_CONTROL, USC, nist_800_53  # noqa: E402
 
 INSTRUMENTS = pathlib.Path(__file__).resolve().parent.parent / "instruments"
 
@@ -612,3 +612,115 @@ def _usc(m, nodes=None):
 
 
 register_scheme("usc-section", USC, resolver=_usc)
+
+
+# --------------------------------------------------------------------------- NIST SP 800-53
+# `NIST SP 800-53 Rev. 5 AC-2(1)`, `NIST 800-53 Rev. 5, AC-1, AT-1`, `SP 800-53r5`. #42.
+#
+# THE REVISION IS PART OF THE IDENTITY, for CJIS's reason: Rev. 4 and Rev. 5 state different
+# controls (controls withdrawn, added and renumbered; the privacy controls folded in), so a
+# Rev. 4 citation answered with Rev. 5 text is a wrong answer wearing a right answer's
+# clothes. The parse is federal_ids.nist_800_53(), the SAME function the sibling-facing
+# candidates() uses, so the two cannot disagree about what was cited.
+#
+# WHAT RESOLVES, in order: a held control document; else the publication document (which holds
+# the whole catalog under `### ` headings) with a note naming the heading; else nothing, with
+# the reason. A control the catalog does not contain never resolves to the publication -- that
+# would hand back a document that does not contain what was cited.
+def _nist_publication() -> str | None:
+    return next((i for i in sorted(HELD)
+                 if i.startswith("nist-sp-800-53-")
+                 and HELD[i].get("instrument_kind") == "nist_publication"), None)
+
+
+@functools.lru_cache(maxsize=None)
+def _nist_text(doc_id: str) -> str:
+    """The `## Full text` of a held NIST document (anchored: its `### ` headings are the catalog)."""
+    path = INSTRUMENTS / f"{doc_id}.md"
+    return path.read_text(encoding="utf-8").split("## Full text\n\n", 1)[-1]
+
+
+def _nist_control_text(pub: str, cid: str) -> str | None:
+    """The text of control `cid` (`ac-2`), from its own document when held, else cut from the
+    publication's. None when the catalog has no such control."""
+    import slicing
+    own = f"{pub}.{cid}"
+    try:
+        return slicing.slice(own, pub, _nist_text(own if own in HELD else pub))
+    except (LookupError, FileNotFoundError):
+        return None
+
+
+def _nist(m, nodes=None):
+    pub = _nist_publication()
+    if pub is None:
+        return [], "no edition of NIST SP 800-53 is held by this corpus."
+    held_rev = re.search(r"\d+", str(HELD[pub].get("version") or ""))
+    held_rev = held_rev.group(0) if held_rev else None
+    parsed = nist_800_53(m.string)
+    if m.group("sfx") or parsed is None:
+        sfx = (m.group("sfx") or "").upper()
+        return [], (f"NIST SP 800-53{sfx} is a different publication from SP 800-53 and is "
+                    f"not held; this corpus holds SP 800-53 Rev. {held_rev} only.")
+    rev, rel, ctrls = parsed
+    if rev is not None and rev != held_rev:
+        return [], (
+            f"NIST SP 800-53 Rev. {rev} is NOT held — this corpus holds Rev. {held_rev} only. "
+            f"Controls were added, withdrawn and renumbered between revisions, so Rev. {held_rev} "
+            f"is not an answer to a Rev. {rev} citation.")
+    if rel:
+        return [], (
+            f"the citation names release {rev}{rel} of SP 800-53, which is NOT what is held: "
+            f"this corpus holds the Rev. {held_rev} PDF of record ({HELD[pub].get('retrieved')} "
+            f"retrieval of the September 2020 edition, updates as of 2020-12-10), which "
+            f"predates NIST's later releases. Their changes are listed in "
+            f"_meta/nist-sp-800-53-r5-release-5-2-0.yml; the text held is not an answer to a "
+            f"release-{rev}{rel} citation.")
+    notes: list[str] = []
+    if rev is None:
+        notes.append(f"the citation named no revision; what is returned is Rev. {held_rev}.")
+    if not ctrls:
+        return [pub], " ".join(notes) or None
+
+    enh = {}
+    for c in NIST_CONTROL.finditer(m.string):
+        enh.setdefault(f"{c.group('fam').lower()}-{int(c.group('num'))}", []).extend(
+            re.findall(r"\((\d+)\)", c.group("enh")))
+    out: list[str] = []
+    for cid in ctrls:
+        text = _nist_control_text(pub, cid)
+        label = cid.upper()
+        if text is None:
+            notes.append(f"{label} is not a control in the Rev. {held_rev} catalog held here "
+                         f"(the catalog is the `### ` headings of {pub}); nothing was returned "
+                         f"for it.")
+            continue
+        # An enhancement the Rev. 5 text does not have means the citation was NOT answered: the
+        # base control's document is not what was cited, so it is not returned for that token.
+        # (Enhancement numbers differ between revisions; a Rev. 4 habit carried into a Rev. 5
+        # citation is the usual cause.)
+        found, absent = [], []
+        for n in enh.get(cid, []):
+            line = re.search(rf"^\({n}\) ", text, re.M)
+            (found if line else absent).append(n)
+        for n in absent:
+            notes.append(f"{label}({n}): the Rev. {held_rev} text of {label} has no enhancement "
+                         f"({n}) — enhancement numbers differ between revisions; nothing is "
+                         f"claimed about it.")
+        if absent and not found:
+            continue
+        own = f"{pub}.{cid}"
+        if own in HELD:
+            out.append(own)
+        else:
+            notes.append(f"{label} has no document of its own (no held document cites it); it "
+                         f"is in {pub} under the heading `### {label}`.")
+            if pub not in out:
+                out.append(pub)
+        for n in found:
+            notes.append(f"{label}({n}) is an enhancement; it is part of the {label} "
+                         f"document, under `Control Enhancements:`.")
+    return out, " ".join(notes) or None
+
+
+register_scheme("nist-sp-800-53", NIST_800_53, resolver=_nist)

@@ -58,6 +58,7 @@ SNAPSHOTS = ROOT / "_meta" / "snapshots"
 INSTRUMENTS = ROOT / "instruments"
 
 sys.path.insert(0, str(ROOT / "src"))
+from nist_controls import CATALOG_START, is_catalog_end  # noqa: E402
 
 
 def _pub1075_heading(line: str) -> bool:
@@ -67,23 +68,56 @@ def _pub1075_heading(line: str) -> bool:
     return bool(re.match(r"^\d+(?:\.\d+){1,3}\s+\S", line))
 
 
+def _nist_control_heading(line: str) -> bool:
+    """`AC-2 ACCOUNT MANAGEMENT`, and `SC-7  BOUNDARY PROTECTION` (pypdf emits a double space
+    after 7 of the 322 ids). The title is ALL CAPS: Appendix C's summary table and every
+    cross-reference carry the same ids in mixed case, which is the filter that tells a heading
+    from a mention. Region-gated by NIST_REGION -- the Figure 1 example in chapter 2 has the
+    same shape."""
+    from federal_ids import NIST_FAMILIES
+    m = re.match(r"^([A-Z]{2})-\d{1,2}\s+[A-Z][^a-z]*$", line)
+    return bool(m) and m.group(1) in NIST_FAMILIES
+
+
+# THE CATALOG IS CHAPTER THREE. It opens at the first control (AC-1) and closes at the
+# standalone line `REFERENCES` (the TOC's own `REFERENCES ....... 374` carries dot-leaders and
+# is not that line). The close is anchored too, so the last control (SR-12) is bounded by a
+# `### ` heading instead of running to end of file -- the slicer cuts on the next heading.
+NIST_REGION = (lambda l: bool(CATALOG_START.match(l.strip())), is_catalog_end)
+
 RULES: dict[str, dict] = {
     "pl-113-128": {"doc": "pl-113-128",
                    "match": lambda l: bool(re.match(r"^SEC\. \d+\.", l))},
     "pl-115-224": {"doc": "pl-115-224",
                    "match": lambda l: bool(re.match(r"^SEC\. \d+\.", l))},
     "irs-pub-1075": {"doc": "irs-pub-1075-11-2021", "match": _pub1075_heading},
+    # #42: control-level anchors for SP 800-53 Rev. 5 -- unlike the three above, these ARE the
+    # grain citations take (3,758 control citations in held documents), which is why this
+    # publication is split (src/split_nist_controls.py) where Pub 1075's control ids were not.
+    "nist-sp-800-53-r5": {"doc": "nist-sp-800-53-r5",
+                          "match": lambda l: _nist_control_heading(l) or l.strip() == "REFERENCES",
+                          "region": NIST_REGION},
 }
 
 
-def anchor_text(text: str, match) -> tuple[str, int]:
+def anchor_text(text: str, match, region=None) -> tuple[str, int]:
+    """Prefix every line `match` accepts with `### `. `region=(start, end)` restricts that to
+    the lines from the first one `start` accepts through the first later one `end` accepts
+    (both inclusive; outside it nothing is anchored). Predicates see the line WITHOUT an
+    existing `### `, so a second pass over an anchored text finds the same region."""
     out, n = [], 0
+    state = "in" if region is None else "before"
     for line in text.splitlines():
-        if not line.startswith("### ") and match(line):
+        bare = line[4:] if line.startswith("### ") else line
+        if state == "before" and region[0](bare):
+            state = "in"
+        if state == "in" and not line.startswith("### ") and match(line):
             out.append("### " + line)
             n += 1
         else:
             out.append(line)
+        if state == "in" and region is not None and region[1](bare):
+            state = "after"
     return "\n".join(out) + ("\n" if text.endswith("\n") else ""), n
 
 
@@ -118,7 +152,7 @@ def anchored_md(snap_id: str, md: str) -> tuple[str, int, int]:
     """
     rule = RULES[snap_id]
     head, sep, body = md.partition("\n## Full text\n")
-    new_body, n_new = anchor_text(body, rule["match"])
+    new_body, n_new = anchor_text(body, rule["match"], rule.get("region"))
     n_total = sum(1 for l in new_body.splitlines() if l.startswith("### "))
     new_md = head + sep + new_body
 
@@ -157,7 +191,7 @@ def process(check: bool, only: set[str] | None = None) -> int:
         txt_path = SNAPSHOTS / f"{snap_id}.txt"
         md_path = INSTRUMENTS / f"{rule['doc']}.md"
         txt = txt_path.read_text(encoding="utf-8")
-        new_txt, n_new = anchor_text(txt, rule["match"])
+        new_txt, n_new = anchor_text(txt, rule["match"], rule.get("region"))
         n_total = sum(1 for l in new_txt.splitlines() if l.startswith("### "))
 
         md = md_path.read_text(encoding="utf-8")
