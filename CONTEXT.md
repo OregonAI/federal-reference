@@ -54,10 +54,17 @@ is how that conflation happens.
 
 **Internal edge density** — how often instruments this corpus *already holds* cite an
 unheld document. A fourth measure, and not one of the three intake signals: it measures
-this corpus's own dangling edges rather than Oregon's citation behaviour. FIPS 140 (47
-references from held documents) and NIST SP 800-53 (31) are the current leaders. Named
-here because it has been used in argument and needs a stable name; whether it becomes an
-intake signal is undecided.
+this corpus's own dangling edges rather than Oregon's citation behaviour. The operator ruled
+on #42 (2026-09-12) that it is **not** promoted to a named signal: a document that cites
+800-53 ninety-four times is a reader following a citation into nothing, and "required by
+documents already held" is a sufficient reason to import without one. A manifest entry
+admitted on this basis records no `signal`.
+
+**Control document** — one control of NIST SP 800-53 Rev. 5 (`nist-sp-800-53-r5.ac-2`), held
+because a held document cites it, cut from the publication's one snapshot. The enhancements
+`AC-2(1)`… are part of it, as the source prints them. See ADR-0007.
+_Avoid_: control family, baseline — a family is twenty-odd documents' worth, and a baseline
+(SP 800-53B) is a different publication this corpus does not hold.
 
 ## Text and provenance
 
