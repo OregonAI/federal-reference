@@ -63,6 +63,10 @@ def main() -> int:
     from corpus_toolkit import config as cfg
     from corpus_toolkit.mcp.framework import CorpusFramework
     fw = CorpusFramework(cfg.load("_meta/corpus.yml"))
+    # resolve_citation() appends a keyword-search "did you mean" list to every UNRESOLVED answer.
+    # That is a suggestion, never a resolution, and it costs a full-corpus search per miss, which
+    # made the "before" run (where nearly everything misses) take minutes. Switched off here.
+    fw.search_corpus = lambda *a, **k: []
 
     cache: dict = {}
 
