@@ -1,7 +1,7 @@
 {
  "corpus": "federal-reference",
- "n_nodes": 451,
- "n_edges": 790,
+ "n_nodes": 711,
+ "n_edges": 1308,
  "n_edges_external": 0,
  "nodes": [
   {
@@ -3146,6 +3146,1826 @@
    "doc_type": "federal_instrument",
    "status": "current",
    "path": "instruments/irs-pub-1075-11-2021.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ac-1",
+   "title": "NIST SP 800-53 Rev. 5 AC-1 — POLICY AND PROCEDURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ac-1.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ac-10",
+   "title": "NIST SP 800-53 Rev. 5 AC-10 — CONCURRENT SESSION CONTROL",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ac-10.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ac-11",
+   "title": "NIST SP 800-53 Rev. 5 AC-11 — DEVICE LOCK",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ac-11.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ac-12",
+   "title": "NIST SP 800-53 Rev. 5 AC-12 — SESSION TERMINATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ac-12.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ac-14",
+   "title": "NIST SP 800-53 Rev. 5 AC-14 — PERMITTED ACTIONS WITHOUT IDENTIFICATION OR AUTHENTICATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ac-14.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ac-16",
+   "title": "NIST SP 800-53 Rev. 5 AC-16 — SECURITY AND PRIVACY ATTRIBUTES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ac-16.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ac-17",
+   "title": "NIST SP 800-53 Rev. 5 AC-17 — REMOTE ACCESS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ac-17.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ac-18",
+   "title": "NIST SP 800-53 Rev. 5 AC-18 — WIRELESS ACCESS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ac-18.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ac-19",
+   "title": "NIST SP 800-53 Rev. 5 AC-19 — ACCESS CONTROL FOR MOBILE DEVICES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ac-19.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ac-2",
+   "title": "NIST SP 800-53 Rev. 5 AC-2 — ACCOUNT MANAGEMENT",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ac-2.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ac-20",
+   "title": "NIST SP 800-53 Rev. 5 AC-20 — USE OF EXTERNAL SYSTEMS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ac-20.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ac-21",
+   "title": "NIST SP 800-53 Rev. 5 AC-21 — INFORMATION SHARING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ac-21.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ac-22",
+   "title": "NIST SP 800-53 Rev. 5 AC-22 — PUBLICLY ACCESSIBLE CONTENT",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ac-22.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ac-23",
+   "title": "NIST SP 800-53 Rev. 5 AC-23 — DATA MINING PROTECTION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ac-23.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ac-24",
+   "title": "NIST SP 800-53 Rev. 5 AC-24 — ACCESS CONTROL DECISIONS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ac-24.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ac-3",
+   "title": "NIST SP 800-53 Rev. 5 AC-3 — ACCESS ENFORCEMENT",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ac-3.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ac-4",
+   "title": "NIST SP 800-53 Rev. 5 AC-4 — INFORMATION FLOW ENFORCEMENT",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ac-4.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ac-5",
+   "title": "NIST SP 800-53 Rev. 5 AC-5 — SEPARATION OF DUTIES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ac-5.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ac-6",
+   "title": "NIST SP 800-53 Rev. 5 AC-6 — LEAST PRIVILEGE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ac-6.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ac-7",
+   "title": "NIST SP 800-53 Rev. 5 AC-7 — UNSUCCESSFUL LOGON ATTEMPTS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ac-7.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ac-8",
+   "title": "NIST SP 800-53 Rev. 5 AC-8 — SYSTEM USE NOTIFICATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ac-8.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.at-1",
+   "title": "NIST SP 800-53 Rev. 5 AT-1 — POLICY AND PROCEDURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.at-1.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.at-2",
+   "title": "NIST SP 800-53 Rev. 5 AT-2 — LITERACY TRAINING AND AWARENESS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.at-2.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.at-3",
+   "title": "NIST SP 800-53 Rev. 5 AT-3 — ROLE-BASED TRAINING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.at-3.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.at-4",
+   "title": "NIST SP 800-53 Rev. 5 AT-4 — TRAINING RECORDS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.at-4.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.at-6",
+   "title": "NIST SP 800-53 Rev. 5 AT-6 — TRAINING FEEDBACK",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.at-6.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.au-1",
+   "title": "NIST SP 800-53 Rev. 5 AU-1 — POLICY AND PROCEDURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.au-1.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.au-10",
+   "title": "NIST SP 800-53 Rev. 5 AU-10 — NON-REPUDIATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.au-10.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.au-11",
+   "title": "NIST SP 800-53 Rev. 5 AU-11 — AUDIT RECORD RETENTION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.au-11.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.au-12",
+   "title": "NIST SP 800-53 Rev. 5 AU-12 — AUDIT RECORD GENERATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.au-12.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.au-13",
+   "title": "NIST SP 800-53 Rev. 5 AU-13 — MONITORING FOR INFORMATION DISCLOSURE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.au-13.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.au-16",
+   "title": "NIST SP 800-53 Rev. 5 AU-16 — CROSS-ORGANIZATIONAL AUDIT LOGGING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.au-16.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.au-2",
+   "title": "NIST SP 800-53 Rev. 5 AU-2 — EVENT LOGGING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.au-2.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.au-3",
+   "title": "NIST SP 800-53 Rev. 5 AU-3 — CONTENT OF AUDIT RECORDS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.au-3.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.au-4",
+   "title": "NIST SP 800-53 Rev. 5 AU-4 — AUDIT LOG STORAGE CAPACITY",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.au-4.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.au-5",
+   "title": "NIST SP 800-53 Rev. 5 AU-5 — RESPONSE TO AUDIT LOGGING PROCESS FAILURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.au-5.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.au-6",
+   "title": "NIST SP 800-53 Rev. 5 AU-6 — AUDIT RECORD REVIEW, ANALYSIS, AND REPORTING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.au-6.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.au-7",
+   "title": "NIST SP 800-53 Rev. 5 AU-7 — AUDIT RECORD REDUCTION AND REPORT GENERATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.au-7.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.au-8",
+   "title": "NIST SP 800-53 Rev. 5 AU-8 — TIME STAMPS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.au-8.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.au-9",
+   "title": "NIST SP 800-53 Rev. 5 AU-9 — PROTECTION OF AUDIT INFORMATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.au-9.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ca-1",
+   "title": "NIST SP 800-53 Rev. 5 CA-1 — POLICY AND PROCEDURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ca-1.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ca-2",
+   "title": "NIST SP 800-53 Rev. 5 CA-2 — CONTROL ASSESSMENTS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ca-2.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ca-3",
+   "title": "NIST SP 800-53 Rev. 5 CA-3 — INFORMATION EXCHANGE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ca-3.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ca-5",
+   "title": "NIST SP 800-53 Rev. 5 CA-5 — PLAN OF ACTION AND MILESTONES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ca-5.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ca-6",
+   "title": "NIST SP 800-53 Rev. 5 CA-6 — AUTHORIZATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ca-6.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ca-7",
+   "title": "NIST SP 800-53 Rev. 5 CA-7 — CONTINUOUS MONITORING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ca-7.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ca-8",
+   "title": "NIST SP 800-53 Rev. 5 CA-8 — PENETRATION TESTING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ca-8.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ca-9",
+   "title": "NIST SP 800-53 Rev. 5 CA-9 — INTERNAL SYSTEM CONNECTIONS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ca-9.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cm-1",
+   "title": "NIST SP 800-53 Rev. 5 CM-1 — POLICY AND PROCEDURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cm-1.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cm-10",
+   "title": "NIST SP 800-53 Rev. 5 CM-10 — SOFTWARE USAGE RESTRICTIONS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cm-10.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cm-11",
+   "title": "NIST SP 800-53 Rev. 5 CM-11 — USER-INSTALLED SOFTWARE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cm-11.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cm-12",
+   "title": "NIST SP 800-53 Rev. 5 CM-12 — INFORMATION LOCATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cm-12.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cm-13",
+   "title": "NIST SP 800-53 Rev. 5 CM-13 — DATA ACTION MAPPING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cm-13.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cm-14",
+   "title": "NIST SP 800-53 Rev. 5 CM-14 — SIGNED COMPONENTS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cm-14.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cm-2",
+   "title": "NIST SP 800-53 Rev. 5 CM-2 — BASELINE CONFIGURATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cm-2.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cm-3",
+   "title": "NIST SP 800-53 Rev. 5 CM-3 — CONFIGURATION CHANGE CONTROL",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cm-3.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cm-4",
+   "title": "NIST SP 800-53 Rev. 5 CM-4 — IMPACT ANALYSES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cm-4.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cm-5",
+   "title": "NIST SP 800-53 Rev. 5 CM-5 — ACCESS RESTRICTIONS FOR CHANGE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cm-5.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cm-6",
+   "title": "NIST SP 800-53 Rev. 5 CM-6 — CONFIGURATION SETTINGS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cm-6.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cm-7",
+   "title": "NIST SP 800-53 Rev. 5 CM-7 — LEAST FUNCTIONALITY",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cm-7.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cm-8",
+   "title": "NIST SP 800-53 Rev. 5 CM-8 — SYSTEM COMPONENT INVENTORY",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cm-8.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cm-9",
+   "title": "NIST SP 800-53 Rev. 5 CM-9 — CONFIGURATION MANAGEMENT PLAN",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cm-9.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cp-1",
+   "title": "NIST SP 800-53 Rev. 5 CP-1 — POLICY AND PROCEDURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cp-1.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cp-10",
+   "title": "NIST SP 800-53 Rev. 5 CP-10 — SYSTEM RECOVERY AND RECONSTITUTION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cp-10.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cp-11",
+   "title": "NIST SP 800-53 Rev. 5 CP-11 — ALTERNATE COMMUNICATIONS PROTOCOLS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cp-11.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cp-12",
+   "title": "NIST SP 800-53 Rev. 5 CP-12 — SAFE MODE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cp-12.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cp-13",
+   "title": "NIST SP 800-53 Rev. 5 CP-13 — ALTERNATIVE SECURITY MECHANISMS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cp-13.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cp-2",
+   "title": "NIST SP 800-53 Rev. 5 CP-2 — CONTINGENCY PLAN",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cp-2.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cp-3",
+   "title": "NIST SP 800-53 Rev. 5 CP-3 — CONTINGENCY TRAINING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cp-3.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cp-4",
+   "title": "NIST SP 800-53 Rev. 5 CP-4 — CONTINGENCY PLAN TESTING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cp-4.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cp-6",
+   "title": "NIST SP 800-53 Rev. 5 CP-6 — ALTERNATE STORAGE SITE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cp-6.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cp-7",
+   "title": "NIST SP 800-53 Rev. 5 CP-7 — ALTERNATE PROCESSING SITE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cp-7.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cp-8",
+   "title": "NIST SP 800-53 Rev. 5 CP-8 — TELECOMMUNICATIONS SERVICES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cp-8.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.cp-9",
+   "title": "NIST SP 800-53 Rev. 5 CP-9 — SYSTEM BACKUP",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.cp-9.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ia-1",
+   "title": "NIST SP 800-53 Rev. 5 IA-1 — POLICY AND PROCEDURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ia-1.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ia-10",
+   "title": "NIST SP 800-53 Rev. 5 IA-10 — ADAPTIVE AUTHENTICATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ia-10.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ia-11",
+   "title": "NIST SP 800-53 Rev. 5 IA-11 — RE-AUTHENTICATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ia-11.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ia-12",
+   "title": "NIST SP 800-53 Rev. 5 IA-12 — IDENTITY PROOFING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ia-12.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ia-2",
+   "title": "NIST SP 800-53 Rev. 5 IA-2 — IDENTIFICATION AND AUTHENTICATION (ORGANIZATIONAL USERS)",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ia-2.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ia-3",
+   "title": "NIST SP 800-53 Rev. 5 IA-3 — DEVICE IDENTIFICATION AND AUTHENTICATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ia-3.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ia-4",
+   "title": "NIST SP 800-53 Rev. 5 IA-4 — IDENTIFIER MANAGEMENT",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ia-4.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ia-5",
+   "title": "NIST SP 800-53 Rev. 5 IA-5 — AUTHENTICATOR MANAGEMENT",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ia-5.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ia-6",
+   "title": "NIST SP 800-53 Rev. 5 IA-6 — AUTHENTICATION FEEDBACK",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ia-6.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ia-7",
+   "title": "NIST SP 800-53 Rev. 5 IA-7 — CRYPTOGRAPHIC MODULE AUTHENTICATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ia-7.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ia-8",
+   "title": "NIST SP 800-53 Rev. 5 IA-8 — IDENTIFICATION AND AUTHENTICATION (NON-ORGANIZATIONAL USERS)",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ia-8.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ia-9",
+   "title": "NIST SP 800-53 Rev. 5 IA-9 — SERVICE IDENTIFICATION AND AUTHENTICATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ia-9.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ir-1",
+   "title": "NIST SP 800-53 Rev. 5 IR-1 — POLICY AND PROCEDURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ir-1.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ir-2",
+   "title": "NIST SP 800-53 Rev. 5 IR-2 — INCIDENT RESPONSE TRAINING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ir-2.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ir-3",
+   "title": "NIST SP 800-53 Rev. 5 IR-3 — INCIDENT RESPONSE TESTING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ir-3.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ir-4",
+   "title": "NIST SP 800-53 Rev. 5 IR-4 — INCIDENT HANDLING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ir-4.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ir-5",
+   "title": "NIST SP 800-53 Rev. 5 IR-5 — INCIDENT MONITORING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ir-5.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ir-6",
+   "title": "NIST SP 800-53 Rev. 5 IR-6 — INCIDENT REPORTING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ir-6.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ir-7",
+   "title": "NIST SP 800-53 Rev. 5 IR-7 — INCIDENT RESPONSE ASSISTANCE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ir-7.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ir-8",
+   "title": "NIST SP 800-53 Rev. 5 IR-8 — INCIDENT RESPONSE PLAN",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ir-8.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ir-9",
+   "title": "NIST SP 800-53 Rev. 5 IR-9 — INFORMATION SPILLAGE RESPONSE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ir-9.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ma-1",
+   "title": "NIST SP 800-53 Rev. 5 MA-1 — POLICY AND PROCEDURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ma-1.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ma-2",
+   "title": "NIST SP 800-53 Rev. 5 MA-2 — CONTROLLED MAINTENANCE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ma-2.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ma-3",
+   "title": "NIST SP 800-53 Rev. 5 MA-3 — MAINTENANCE TOOLS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ma-3.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ma-4",
+   "title": "NIST SP 800-53 Rev. 5 MA-4 — NONLOCAL MAINTENANCE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ma-4.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ma-5",
+   "title": "NIST SP 800-53 Rev. 5 MA-5 — MAINTENANCE PERSONNEL",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ma-5.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ma-6",
+   "title": "NIST SP 800-53 Rev. 5 MA-6 — TIMELY MAINTENANCE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ma-6.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5",
+   "title": "Security and Privacy Controls for Information Systems and Organizations",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.mp-1",
+   "title": "NIST SP 800-53 Rev. 5 MP-1 — POLICY AND PROCEDURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.mp-1.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.mp-2",
+   "title": "NIST SP 800-53 Rev. 5 MP-2 — MEDIA ACCESS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.mp-2.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.mp-3",
+   "title": "NIST SP 800-53 Rev. 5 MP-3 — MEDIA MARKING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.mp-3.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.mp-4",
+   "title": "NIST SP 800-53 Rev. 5 MP-4 — MEDIA STORAGE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.mp-4.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.mp-5",
+   "title": "NIST SP 800-53 Rev. 5 MP-5 — MEDIA TRANSPORT",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.mp-5.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.mp-6",
+   "title": "NIST SP 800-53 Rev. 5 MP-6 — MEDIA SANITIZATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.mp-6.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.mp-7",
+   "title": "NIST SP 800-53 Rev. 5 MP-7 — MEDIA USE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.mp-7.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.mp-8",
+   "title": "NIST SP 800-53 Rev. 5 MP-8 — MEDIA DOWNGRADING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.mp-8.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pe-1",
+   "title": "NIST SP 800-53 Rev. 5 PE-1 — POLICY AND PROCEDURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pe-1.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pe-10",
+   "title": "NIST SP 800-53 Rev. 5 PE-10 — EMERGENCY SHUTOFF",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pe-10.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pe-11",
+   "title": "NIST SP 800-53 Rev. 5 PE-11 — EMERGENCY POWER",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pe-11.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pe-12",
+   "title": "NIST SP 800-53 Rev. 5 PE-12 — EMERGENCY LIGHTING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pe-12.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pe-13",
+   "title": "NIST SP 800-53 Rev. 5 PE-13 — FIRE PROTECTION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pe-13.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pe-14",
+   "title": "NIST SP 800-53 Rev. 5 PE-14 — ENVIRONMENTAL CONTROLS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pe-14.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pe-15",
+   "title": "NIST SP 800-53 Rev. 5 PE-15 — WATER DAMAGE PROTECTION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pe-15.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pe-16",
+   "title": "NIST SP 800-53 Rev. 5 PE-16 — DELIVERY AND REMOVAL",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pe-16.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pe-17",
+   "title": "NIST SP 800-53 Rev. 5 PE-17 — ALTERNATE WORK SITE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pe-17.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pe-18",
+   "title": "NIST SP 800-53 Rev. 5 PE-18 — LOCATION OF SYSTEM COMPONENTS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pe-18.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pe-19",
+   "title": "NIST SP 800-53 Rev. 5 PE-19 — INFORMATION LEAKAGE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pe-19.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pe-2",
+   "title": "NIST SP 800-53 Rev. 5 PE-2 — PHYSICAL ACCESS AUTHORIZATIONS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pe-2.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pe-20",
+   "title": "NIST SP 800-53 Rev. 5 PE-20 — ASSET MONITORING AND TRACKING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pe-20.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pe-21",
+   "title": "NIST SP 800-53 Rev. 5 PE-21 — ELECTROMAGNETIC PULSE PROTECTION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pe-21.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pe-3",
+   "title": "NIST SP 800-53 Rev. 5 PE-3 — PHYSICAL ACCESS CONTROL",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pe-3.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pe-4",
+   "title": "NIST SP 800-53 Rev. 5 PE-4 — ACCESS CONTROL FOR TRANSMISSION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pe-4.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pe-5",
+   "title": "NIST SP 800-53 Rev. 5 PE-5 — ACCESS CONTROL FOR OUTPUT DEVICES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pe-5.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pe-6",
+   "title": "NIST SP 800-53 Rev. 5 PE-6 — MONITORING PHYSICAL ACCESS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pe-6.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pe-8",
+   "title": "NIST SP 800-53 Rev. 5 PE-8 — VISITOR ACCESS RECORDS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pe-8.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pe-9",
+   "title": "NIST SP 800-53 Rev. 5 PE-9 — POWER EQUIPMENT AND CABLING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pe-9.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pl-1",
+   "title": "NIST SP 800-53 Rev. 5 PL-1 — POLICY AND PROCEDURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pl-1.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pl-10",
+   "title": "NIST SP 800-53 Rev. 5 PL-10 — BASELINE SELECTION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pl-10.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pl-11",
+   "title": "NIST SP 800-53 Rev. 5 PL-11 — BASELINE TAILORING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pl-11.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pl-2",
+   "title": "NIST SP 800-53 Rev. 5 PL-2 — SYSTEM SECURITY AND PRIVACY PLANS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pl-2.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pl-4",
+   "title": "NIST SP 800-53 Rev. 5 PL-4 — RULES OF BEHAVIOR",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pl-4.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pl-7",
+   "title": "NIST SP 800-53 Rev. 5 PL-7 — CONCEPT OF OPERATIONS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pl-7.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pl-8",
+   "title": "NIST SP 800-53 Rev. 5 PL-8 — SECURITY AND PRIVACY ARCHITECTURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pl-8.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pl-9",
+   "title": "NIST SP 800-53 Rev. 5 PL-9 — CENTRAL MANAGEMENT",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pl-9.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-1",
+   "title": "NIST SP 800-53 Rev. 5 PM-1 — INFORMATION SECURITY PROGRAM PLAN",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-1.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-10",
+   "title": "NIST SP 800-53 Rev. 5 PM-10 — AUTHORIZATION PROCESS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-10.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-11",
+   "title": "NIST SP 800-53 Rev. 5 PM-11 — MISSION AND BUSINESS PROCESS DEFINITION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-11.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-12",
+   "title": "NIST SP 800-53 Rev. 5 PM-12 — INSIDER THREAT PROGRAM",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-12.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-13",
+   "title": "NIST SP 800-53 Rev. 5 PM-13 — SECURITY AND PRIVACY WORKFORCE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-13.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-14",
+   "title": "NIST SP 800-53 Rev. 5 PM-14 — TESTING, TRAINING, AND MONITORING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-14.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-15",
+   "title": "NIST SP 800-53 Rev. 5 PM-15 — SECURITY AND PRIVACY GROUPS AND ASSOCIATIONS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-15.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-18",
+   "title": "NIST SP 800-53 Rev. 5 PM-18 — PRIVACY PROGRAM PLAN",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-18.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-19",
+   "title": "NIST SP 800-53 Rev. 5 PM-19 — PRIVACY PROGRAM LEADERSHIP ROLE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-19.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-2",
+   "title": "NIST SP 800-53 Rev. 5 PM-2 — INFORMATION SECURITY PROGRAM LEADERSHIP ROLE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-2.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-20",
+   "title": "NIST SP 800-53 Rev. 5 PM-20 — DISSEMINATION OF PRIVACY PROGRAM INFORMATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-20.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-21",
+   "title": "NIST SP 800-53 Rev. 5 PM-21 — ACCOUNTING OF DISCLOSURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-21.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-22",
+   "title": "NIST SP 800-53 Rev. 5 PM-22 — PERSONALLY IDENTIFIABLE INFORMATION QUALITY MANAGEMENT",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-22.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-23",
+   "title": "NIST SP 800-53 Rev. 5 PM-23 — DATA GOVERNANCE BODY",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-23.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-26",
+   "title": "NIST SP 800-53 Rev. 5 PM-26 — COMPLAINT MANAGEMENT",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-26.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-27",
+   "title": "NIST SP 800-53 Rev. 5 PM-27 — PRIVACY REPORTING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-27.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-28",
+   "title": "NIST SP 800-53 Rev. 5 PM-28 — RISK FRAMING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-28.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-29",
+   "title": "NIST SP 800-53 Rev. 5 PM-29 — RISK MANAGEMENT PROGRAM LEADERSHIP ROLES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-29.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-3",
+   "title": "NIST SP 800-53 Rev. 5 PM-3 — INFORMATION SECURITY AND PRIVACY RESOURCES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-3.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-30",
+   "title": "NIST SP 800-53 Rev. 5 PM-30 — SUPPLY CHAIN RISK MANAGEMENT STRATEGY",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-30.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-31",
+   "title": "NIST SP 800-53 Rev. 5 PM-31 — CONTINUOUS MONITORING STRATEGY",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-31.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-4",
+   "title": "NIST SP 800-53 Rev. 5 PM-4 — PLAN OF ACTION AND MILESTONES PROCESS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-4.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-5",
+   "title": "NIST SP 800-53 Rev. 5 PM-5 — SYSTEM INVENTORY",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-5.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-7",
+   "title": "NIST SP 800-53 Rev. 5 PM-7 — ENTERPRISE ARCHITECTURE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-7.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-8",
+   "title": "NIST SP 800-53 Rev. 5 PM-8 — CRITICAL INFRASTRUCTURE PLAN",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-8.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pm-9",
+   "title": "NIST SP 800-53 Rev. 5 PM-9 — RISK MANAGEMENT STRATEGY",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pm-9.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ps-1",
+   "title": "NIST SP 800-53 Rev. 5 PS-1 — POLICY AND PROCEDURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ps-1.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ps-2",
+   "title": "NIST SP 800-53 Rev. 5 PS-2 — POSITION RISK DESIGNATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ps-2.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ps-3",
+   "title": "NIST SP 800-53 Rev. 5 PS-3 — PERSONNEL SCREENING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ps-3.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ps-4",
+   "title": "NIST SP 800-53 Rev. 5 PS-4 — PERSONNEL TERMINATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ps-4.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ps-5",
+   "title": "NIST SP 800-53 Rev. 5 PS-5 — PERSONNEL TRANSFER",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ps-5.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ps-6",
+   "title": "NIST SP 800-53 Rev. 5 PS-6 — ACCESS AGREEMENTS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ps-6.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ps-7",
+   "title": "NIST SP 800-53 Rev. 5 PS-7 — EXTERNAL PERSONNEL SECURITY",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ps-7.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ps-8",
+   "title": "NIST SP 800-53 Rev. 5 PS-8 — PERSONNEL SANCTIONS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ps-8.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ps-9",
+   "title": "NIST SP 800-53 Rev. 5 PS-9 — POSITION DESCRIPTIONS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ps-9.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pt-1",
+   "title": "NIST SP 800-53 Rev. 5 PT-1 — POLICY AND PROCEDURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pt-1.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pt-2",
+   "title": "NIST SP 800-53 Rev. 5 PT-2 — AUTHORITY TO PROCESS PERSONALLY IDENTIFIABLE INFORMATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pt-2.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pt-3",
+   "title": "NIST SP 800-53 Rev. 5 PT-3 — PERSONALLY IDENTIFIABLE INFORMATION PROCESSING PURPOSES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pt-3.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pt-4",
+   "title": "NIST SP 800-53 Rev. 5 PT-4 — CONSENT",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pt-4.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pt-5",
+   "title": "NIST SP 800-53 Rev. 5 PT-5 — PRIVACY NOTICE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pt-5.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pt-6",
+   "title": "NIST SP 800-53 Rev. 5 PT-6 — SYSTEM OF RECORDS NOTICE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pt-6.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.pt-7",
+   "title": "NIST SP 800-53 Rev. 5 PT-7 — SPECIFIC CATEGORIES OF PERSONALLY IDENTIFIABLE INFORMATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.pt-7.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ra-1",
+   "title": "NIST SP 800-53 Rev. 5 RA-1 — POLICY AND PROCEDURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ra-1.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ra-2",
+   "title": "NIST SP 800-53 Rev. 5 RA-2 — SECURITY CATEGORIZATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ra-2.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ra-3",
+   "title": "NIST SP 800-53 Rev. 5 RA-3 — RISK ASSESSMENT",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ra-3.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ra-5",
+   "title": "NIST SP 800-53 Rev. 5 RA-5 — VULNERABILITY MONITORING AND SCANNING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ra-5.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ra-7",
+   "title": "NIST SP 800-53 Rev. 5 RA-7 — RISK RESPONSE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ra-7.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ra-8",
+   "title": "NIST SP 800-53 Rev. 5 RA-8 — PRIVACY IMPACT ASSESSMENTS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ra-8.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.ra-9",
+   "title": "NIST SP 800-53 Rev. 5 RA-9 — CRITICALITY ANALYSIS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.ra-9.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sa-1",
+   "title": "NIST SP 800-53 Rev. 5 SA-1 — POLICY AND PROCEDURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sa-1.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sa-10",
+   "title": "NIST SP 800-53 Rev. 5 SA-10 — DEVELOPER CONFIGURATION MANAGEMENT",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sa-10.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sa-11",
+   "title": "NIST SP 800-53 Rev. 5 SA-11 — DEVELOPER TESTING AND EVALUATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sa-11.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sa-15",
+   "title": "NIST SP 800-53 Rev. 5 SA-15 — DEVELOPMENT PROCESS, STANDARDS, AND TOOLS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sa-15.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sa-16",
+   "title": "NIST SP 800-53 Rev. 5 SA-16 — DEVELOPER-PROVIDED TRAINING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sa-16.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sa-17",
+   "title": "NIST SP 800-53 Rev. 5 SA-17 — DEVELOPER SECURITY AND PRIVACY ARCHITECTURE AND DESIGN",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sa-17.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sa-2",
+   "title": "NIST SP 800-53 Rev. 5 SA-2 — ALLOCATION OF RESOURCES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sa-2.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sa-20",
+   "title": "NIST SP 800-53 Rev. 5 SA-20 — CUSTOMIZED DEVELOPMENT OF CRITICAL COMPONENTS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sa-20.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sa-21",
+   "title": "NIST SP 800-53 Rev. 5 SA-21 — DEVELOPER SCREENING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sa-21.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sa-22",
+   "title": "NIST SP 800-53 Rev. 5 SA-22 — UNSUPPORTED SYSTEM COMPONENTS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sa-22.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sa-3",
+   "title": "NIST SP 800-53 Rev. 5 SA-3 — SYSTEM DEVELOPMENT LIFE CYCLE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sa-3.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sa-4",
+   "title": "NIST SP 800-53 Rev. 5 SA-4 — ACQUISITION PROCESS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sa-4.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sa-5",
+   "title": "NIST SP 800-53 Rev. 5 SA-5 — SYSTEM DOCUMENTATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sa-5.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sa-8",
+   "title": "NIST SP 800-53 Rev. 5 SA-8 — SECURITY AND PRIVACY ENGINEERING PRINCIPLES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sa-8.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sa-9",
+   "title": "NIST SP 800-53 Rev. 5 SA-9 — EXTERNAL SYSTEM SERVICES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sa-9.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-1",
+   "title": "NIST SP 800-53 Rev. 5 SC-1 — POLICY AND PROCEDURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-1.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-10",
+   "title": "NIST SP 800-53 Rev. 5 SC-10 — NETWORK DISCONNECT",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-10.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-11",
+   "title": "NIST SP 800-53 Rev. 5 SC-11 — TRUSTED PATH",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-11.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-12",
+   "title": "NIST SP 800-53 Rev. 5 SC-12 — CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-12.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-13",
+   "title": "NIST SP 800-53 Rev. 5 SC-13 — CRYPTOGRAPHIC PROTECTION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-13.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-15",
+   "title": "NIST SP 800-53 Rev. 5 SC-15 — COLLABORATIVE COMPUTING DEVICES AND APPLICATIONS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-15.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-16",
+   "title": "NIST SP 800-53 Rev. 5 SC-16 — TRANSMISSION OF SECURITY AND PRIVACY ATTRIBUTES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-16.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-17",
+   "title": "NIST SP 800-53 Rev. 5 SC-17 — PUBLIC KEY INFRASTRUCTURE CERTIFICATES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-17.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-18",
+   "title": "NIST SP 800-53 Rev. 5 SC-18 — MOBILE CODE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-18.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-2",
+   "title": "NIST SP 800-53 Rev. 5 SC-2 — SEPARATION OF SYSTEM AND USER FUNCTIONALITY",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-2.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-20",
+   "title": "NIST SP 800-53 Rev. 5 SC-20 — SECURE NAME/ADDRESS RESOLUTION SERVICE (AUTHORITATIVE SOURCE)",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-20.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-21",
+   "title": "NIST SP 800-53 Rev. 5 SC-21 — SECURE NAME/ADDRESS RESOLUTION SERVICE (RECURSIVE OR CACHING RESOLVER)",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-21.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-22",
+   "title": "NIST SP 800-53 Rev. 5 SC-22 — ARCHITECTURE AND PROVISIONING FOR NAME/ADDRESS RESOLUTION SERVICE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-22.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-23",
+   "title": "NIST SP 800-53 Rev. 5 SC-23 — SESSION AUTHENTICITY",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-23.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-24",
+   "title": "NIST SP 800-53 Rev. 5 SC-24 — FAIL IN KNOWN STATE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-24.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-28",
+   "title": "NIST SP 800-53 Rev. 5 SC-28 — PROTECTION OF INFORMATION AT REST",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-28.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-3",
+   "title": "NIST SP 800-53 Rev. 5 SC-3 — SECURITY FUNCTION ISOLATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-3.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-31",
+   "title": "NIST SP 800-53 Rev. 5 SC-31 — COVERT CHANNEL ANALYSIS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-31.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-32",
+   "title": "NIST SP 800-53 Rev. 5 SC-32 — SYSTEM PARTITIONING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-32.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-35",
+   "title": "NIST SP 800-53 Rev. 5 SC-35 — EXTERNAL MALICIOUS CODE IDENTIFICATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-35.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-37",
+   "title": "NIST SP 800-53 Rev. 5 SC-37 — OUT-OF-BAND CHANNELS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-37.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-38",
+   "title": "NIST SP 800-53 Rev. 5 SC-38 — OPERATIONS SECURITY",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-38.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-39",
+   "title": "NIST SP 800-53 Rev. 5 SC-39 — PROCESS ISOLATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-39.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-4",
+   "title": "NIST SP 800-53 Rev. 5 SC-4 — INFORMATION IN SHARED SYSTEM RESOURCES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-4.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-42",
+   "title": "NIST SP 800-53 Rev. 5 SC-42 — SENSOR CAPABILITY AND DATA",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-42.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-43",
+   "title": "NIST SP 800-53 Rev. 5 SC-43 — USAGE RESTRICTIONS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-43.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-44",
+   "title": "NIST SP 800-53 Rev. 5 SC-44 — DETONATION CHAMBERS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-44.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-45",
+   "title": "NIST SP 800-53 Rev. 5 SC-45 — SYSTEM TIME SYNCHRONIZATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-45.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-47",
+   "title": "NIST SP 800-53 Rev. 5 SC-47 — ALTERNATE COMMUNICATIONS PATHS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-47.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-5",
+   "title": "NIST SP 800-53 Rev. 5 SC-5 — DENIAL-OF-SERVICE PROTECTION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-5.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-6",
+   "title": "NIST SP 800-53 Rev. 5 SC-6 — RESOURCE AVAILABILITY",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-6.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-7",
+   "title": "NIST SP 800-53 Rev. 5 SC-7 — BOUNDARY PROTECTION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-7.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sc-8",
+   "title": "NIST SP 800-53 Rev. 5 SC-8 — TRANSMISSION CONFIDENTIALITY AND INTEGRITY",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sc-8.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.si-1",
+   "title": "NIST SP 800-53 Rev. 5 SI-1 — POLICY AND PROCEDURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.si-1.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.si-10",
+   "title": "NIST SP 800-53 Rev. 5 SI-10 — INFORMATION INPUT VALIDATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.si-10.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.si-11",
+   "title": "NIST SP 800-53 Rev. 5 SI-11 — ERROR HANDLING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.si-11.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.si-12",
+   "title": "NIST SP 800-53 Rev. 5 SI-12 — INFORMATION MANAGEMENT AND RETENTION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.si-12.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.si-16",
+   "title": "NIST SP 800-53 Rev. 5 SI-16 — MEMORY PROTECTION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.si-16.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.si-18",
+   "title": "NIST SP 800-53 Rev. 5 SI-18 — PERSONALLY IDENTIFIABLE INFORMATION QUALITY OPERATIONS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.si-18.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.si-19",
+   "title": "NIST SP 800-53 Rev. 5 SI-19 — DE-IDENTIFICATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.si-19.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.si-2",
+   "title": "NIST SP 800-53 Rev. 5 SI-2 — FLAW REMEDIATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.si-2.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.si-3",
+   "title": "NIST SP 800-53 Rev. 5 SI-3 — MALICIOUS CODE PROTECTION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.si-3.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.si-4",
+   "title": "NIST SP 800-53 Rev. 5 SI-4 — SYSTEM MONITORING",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.si-4.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.si-5",
+   "title": "NIST SP 800-53 Rev. 5 SI-5 — SECURITY ALERTS, ADVISORIES, AND DIRECTIVES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.si-5.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.si-6",
+   "title": "NIST SP 800-53 Rev. 5 SI-6 — SECURITY AND PRIVACY FUNCTION VERIFICATION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.si-6.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.si-7",
+   "title": "NIST SP 800-53 Rev. 5 SI-7 — SOFTWARE, FIRMWARE, AND INFORMATION INTEGRITY",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.si-7.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.si-8",
+   "title": "NIST SP 800-53 Rev. 5 SI-8 — SPAM PROTECTION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.si-8.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sr-1",
+   "title": "NIST SP 800-53 Rev. 5 SR-1 — POLICY AND PROCEDURES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sr-1.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sr-10",
+   "title": "NIST SP 800-53 Rev. 5 SR-10 — INSPECTION OF SYSTEMS OR COMPONENTS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sr-10.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sr-11",
+   "title": "NIST SP 800-53 Rev. 5 SR-11 — COMPONENT AUTHENTICITY",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sr-11.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sr-12",
+   "title": "NIST SP 800-53 Rev. 5 SR-12 — COMPONENT DISPOSAL",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sr-12.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sr-2",
+   "title": "NIST SP 800-53 Rev. 5 SR-2 — SUPPLY CHAIN RISK MANAGEMENT PLAN",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sr-2.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sr-3",
+   "title": "NIST SP 800-53 Rev. 5 SR-3 — SUPPLY CHAIN CONTROLS AND PROCESSES",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sr-3.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sr-4",
+   "title": "NIST SP 800-53 Rev. 5 SR-4 — PROVENANCE",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sr-4.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sr-5",
+   "title": "NIST SP 800-53 Rev. 5 SR-5 — ACQUISITION STRATEGIES, TOOLS, AND METHODS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sr-5.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sr-6",
+   "title": "NIST SP 800-53 Rev. 5 SR-6 — SUPPLIER ASSESSMENTS AND REVIEWS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sr-6.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sr-8",
+   "title": "NIST SP 800-53 Rev. 5 SR-8 — NOTIFICATION AGREEMENTS",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sr-8.md"
+  },
+  {
+   "id": "nist-sp-800-53-r5.sr-9",
+   "title": "NIST SP 800-53 Rev. 5 SR-9 — TAMPER RESISTANCE AND DETECTION",
+   "doc_type": "federal_instrument",
+   "status": "current",
+   "path": "instruments/nist-sp-800-53-r5.sr-9.md"
   },
   {
    "id": "pl-113-128",
@@ -7112,6 +8932,2596 @@
    "from": "7-cfr-280",
    "type": "related",
    "to": "7-cfr-280.1"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ac-1",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ac-10",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ac-11",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ac-12",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ac-14",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ac-16",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ac-17",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ac-18",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ac-19",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ac-2",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ac-20",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ac-21",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ac-22",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ac-23",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ac-24",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ac-3",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ac-4",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ac-5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ac-6",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ac-7",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ac-8",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.at-1",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.at-2",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.at-3",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.at-4",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.at-6",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.au-1",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.au-10",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.au-11",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.au-12",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.au-13",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.au-16",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.au-2",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.au-3",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.au-4",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.au-5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.au-6",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.au-7",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.au-8",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.au-9",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ca-1",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ca-2",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ca-3",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ca-5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ca-6",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ca-7",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ca-8",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ca-9",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cm-1",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cm-10",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cm-11",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cm-12",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cm-13",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cm-14",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cm-2",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cm-3",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cm-4",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cm-5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cm-6",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cm-7",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cm-8",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cm-9",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cp-1",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cp-10",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cp-11",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cp-12",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cp-13",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cp-2",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cp-3",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cp-4",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cp-6",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cp-7",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cp-8",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.cp-9",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ia-1",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ia-10",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ia-11",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ia-12",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ia-2",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ia-3",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ia-4",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ia-5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ia-6",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ia-7",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ia-8",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ia-9",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ir-1",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ir-2",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ir-3",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ir-4",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ir-5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ir-6",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ir-7",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ir-8",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ir-9",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ma-1",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ma-2",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ma-3",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ma-4",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ma-5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ma-6",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ac-1"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ac-2"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ac-3"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ac-4"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ac-5"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ac-6"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ac-7"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ac-8"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ac-10"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ac-11"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ac-12"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ac-14"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ac-16"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ac-17"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ac-18"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ac-19"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ac-20"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ac-21"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ac-22"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ac-23"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ac-24"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.at-1"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.at-2"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.at-3"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.at-4"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.at-6"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.au-1"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.au-2"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.au-3"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.au-4"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.au-5"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.au-6"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.au-7"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.au-8"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.au-9"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.au-10"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.au-11"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.au-12"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.au-13"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.au-16"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ca-1"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ca-2"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ca-3"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ca-5"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ca-6"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ca-7"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ca-8"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ca-9"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cm-1"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cm-2"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cm-3"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cm-4"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cm-5"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cm-6"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cm-7"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cm-8"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cm-9"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cm-10"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cm-11"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cm-12"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cm-13"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cm-14"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cp-1"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cp-2"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cp-3"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cp-4"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cp-6"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cp-7"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cp-8"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cp-9"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cp-10"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cp-11"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cp-12"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.cp-13"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ia-1"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ia-2"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ia-3"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ia-4"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ia-5"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ia-6"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ia-7"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ia-8"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ia-9"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ia-10"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ia-11"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ia-12"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ir-1"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ir-2"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ir-3"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ir-4"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ir-5"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ir-6"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ir-7"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ir-8"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ir-9"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ma-1"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ma-2"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ma-3"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ma-4"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ma-5"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ma-6"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.mp-1"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.mp-2"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.mp-3"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.mp-4"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.mp-5"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.mp-6"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.mp-7"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.mp-8"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pe-1"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pe-2"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pe-3"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pe-4"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pe-5"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pe-6"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pe-8"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pe-9"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pe-10"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pe-11"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pe-12"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pe-13"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pe-14"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pe-15"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pe-16"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pe-17"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pe-18"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pe-19"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pe-20"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pe-21"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pl-1"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pl-2"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pl-4"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pl-7"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pl-8"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pl-9"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pl-10"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pl-11"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-1"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-2"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-3"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-4"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-5"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-7"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-8"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-9"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-10"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-11"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-12"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-13"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-14"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-15"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-18"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-19"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-20"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-21"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-22"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-23"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-26"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-27"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-28"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-29"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-30"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pm-31"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ps-1"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ps-2"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ps-3"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ps-4"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ps-5"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ps-6"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ps-7"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ps-8"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ps-9"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pt-1"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pt-2"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pt-3"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pt-4"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pt-5"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pt-6"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.pt-7"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ra-1"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ra-2"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ra-3"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ra-5"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ra-7"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ra-8"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.ra-9"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sa-1"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sa-2"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sa-3"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sa-4"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sa-5"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sa-8"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sa-9"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sa-10"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sa-11"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sa-15"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sa-16"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sa-17"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sa-20"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sa-21"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sa-22"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-1"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-2"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-3"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-4"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-5"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-6"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-7"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-8"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-10"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-11"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-12"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-13"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-15"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-16"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-17"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-18"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-20"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-21"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-22"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-23"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-24"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-28"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-31"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-32"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-35"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-37"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-38"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-39"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-42"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-43"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-44"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-45"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sc-47"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.si-1"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.si-2"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.si-3"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.si-4"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.si-5"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.si-6"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.si-7"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.si-8"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.si-10"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.si-11"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.si-12"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.si-16"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.si-18"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.si-19"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sr-1"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sr-2"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sr-3"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sr-4"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sr-5"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sr-6"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sr-8"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sr-9"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sr-10"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sr-11"
+  },
+  {
+   "from": "nist-sp-800-53-r5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5.sr-12"
+  },
+  {
+   "from": "nist-sp-800-53-r5.mp-1",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.mp-2",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.mp-3",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.mp-4",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.mp-5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.mp-6",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.mp-7",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.mp-8",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pe-1",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pe-10",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pe-11",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pe-12",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pe-13",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pe-14",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pe-15",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pe-16",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pe-17",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pe-18",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pe-19",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pe-2",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pe-20",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pe-21",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pe-3",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pe-4",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pe-5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pe-6",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pe-8",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pe-9",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pl-1",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pl-10",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pl-11",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pl-2",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pl-4",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pl-7",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pl-8",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pl-9",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-1",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-10",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-11",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-12",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-13",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-14",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-15",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-18",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-19",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-2",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-20",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-21",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-22",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-23",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-26",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-27",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-28",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-29",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-3",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-30",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-31",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-4",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-7",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-8",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pm-9",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ps-1",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ps-2",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ps-3",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ps-4",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ps-5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ps-6",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ps-7",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ps-8",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ps-9",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pt-1",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pt-2",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pt-3",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pt-4",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pt-5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pt-6",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.pt-7",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ra-1",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ra-2",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ra-3",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ra-5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ra-7",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ra-8",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.ra-9",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sa-1",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sa-10",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sa-11",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sa-15",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sa-16",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sa-17",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sa-2",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sa-20",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sa-21",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sa-22",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sa-3",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sa-4",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sa-5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sa-8",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sa-9",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-1",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-10",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-11",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-12",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-13",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-15",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-16",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-17",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-18",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-2",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-20",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-21",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-22",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-23",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-24",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-28",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-3",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-31",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-32",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-35",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-37",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-38",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-39",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-4",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-42",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-43",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-44",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-45",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-47",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-6",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-7",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sc-8",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.si-1",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.si-10",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.si-11",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.si-12",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.si-16",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.si-18",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.si-19",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.si-2",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.si-3",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.si-4",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.si-5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.si-6",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.si-7",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.si-8",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sr-1",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sr-10",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sr-11",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sr-12",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sr-2",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sr-3",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sr-4",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sr-5",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sr-6",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sr-8",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
+  },
+  {
+   "from": "nist-sp-800-53-r5.sr-9",
+   "type": "related",
+   "to": "nist-sp-800-53-r5"
   }
  ]
 }

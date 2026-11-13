@@ -1,22 +1,22 @@
 # STATUS — Federal Reference — instruments Oregon must comply with
 
-Generated 2026-11-01. Non-authoritative; see DISCLAIMER.md.
+Generated 2026-11-12. Non-authoritative; see DISCLAIMER.md.
 
 ## Documents by type
 
 | doc_type | count |
 |---|---|
-| federal_instrument | 451 |
+| federal_instrument | 711 |
 
-**Total: 451**
+**Total: 711**
 
 ## Source manifest
 
-63 declared source(s) across 1 group(s) in `source-manifest.yml`.
+64 declared source(s) across 1 group(s) in `source-manifest.yml`.
 
 ## Freshness (reverify every 90 days)
 
-451 of 451 document(s) overdue for re-verification.
+711 of 711 document(s) overdue for re-verification.
 
 | id | doc_type | last_verified |
 |---|---|---|
@@ -70,5 +70,5 @@ Generated 2026-11-01. Non-authoritative; see DISCLAIMER.md.
 | 2-cfr-200.521 | federal_instrument | never |
 | 2-cfr-200.53 | federal_instrument | never |
 | 2-cfr-200.62 | federal_instrument | never |
-| … | *401 more* | |
+| … | *661 more* | |
 

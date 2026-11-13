@@ -168,6 +168,28 @@ jobs:
       # and write nothing (`git status --porcelain` clean before and after).
       - name: main() itself must not republish 45 CFR 75 as current
         run: python3 src/ingest_instruments.py --check --only 45-cfr-75
+      # #42: NIST SP 800-53 Rev. 5 is held in part, with each control a held document cites cut
+      # into its own document (ADR-0003 applied to a publication). Four gates, because four
+      # different things can rot silently:
+      #   - the cited-controls LIST is derived from this repo's own held documents (unlike
+      #     scan_cited_sections.py it needs no sibling checkout, so --check is a real
+      #     re-derivation, not a header check): a newly held document citing an unsplit control
+      #     turns this red;
+      #   - the control DOCUMENTS are generated from that list and the anchored snapshot;
+      #   - the publication document itself re-ingests byte-identically from its committed PDF
+      #     (hermetic: the PDF is a committed snapshot, nothing is fetched or written);
+      #   - the grammar/scan/anchor/slice/split/resolution logic, mostly negative assertions
+      #     (Rev. 4 must not be answered by Rev. 5 text), each watched FAIL before it passed.
+      # check_extraction.py above proves the committed publication text is an exact prefix of the
+      # raw PDF's tokens, ending at the catalog; anchor_sections.py --check covers its anchors.
+      - name: The cited-controls list must match the held documents' citations
+        run: python3 src/scan_cited_controls.py --check
+      - name: NIST control documents must match the cited-controls list
+        run: python3 src/split_nist_controls.py --check
+      - name: main() itself must not re-flag nist-sp-800-53-r5 as drifted
+        run: python3 src/ingest_instruments.py --check --only nist-sp-800-53-r5
+      - name: NIST SP 800-53 citation grammar, scan, anchors, slicing, splitting and resolution
+        run: python3 src/check_nist_controls.py
       # `instrument_kind` is a bare `mcp.extra_document_fields` entry -- corpus-toolkit's
       # schema layer has no enum mechanism for an extra field's values (#56). A document
       # spelled "CFR_PART" instead of "cfr_part" is schema-valid, sits in instruments/,
