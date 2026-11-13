@@ -58,6 +58,7 @@ SNAPSHOTS = ROOT / "_meta" / "snapshots"
 INSTRUMENTS = ROOT / "instruments"
 
 sys.path.insert(0, str(ROOT / "src"))
+from nist_controls import CATALOG_START, is_catalog_end  # noqa: E402
 
 
 def _pub1075_heading(line: str) -> bool:
@@ -82,8 +83,7 @@ def _nist_control_heading(line: str) -> bool:
 # standalone line `REFERENCES` (the TOC's own `REFERENCES ....... 374` carries dot-leaders and
 # is not that line). The close is anchored too, so the last control (SR-12) is bounded by a
 # `### ` heading instead of running to end of file -- the slicer cuts on the next heading.
-NIST_REGION = (lambda l: bool(re.match(r"^AC-1\s+POLICY AND PROCEDURES$", l)),
-               lambda l: l.strip() == "REFERENCES")
+NIST_REGION = (lambda l: bool(CATALOG_START.match(l.strip())), is_catalog_end)
 
 RULES: dict[str, dict] = {
     "pl-113-128": {"doc": "pl-113-128",

@@ -88,6 +88,27 @@ def raw_tokens_pdf(path: Path) -> list[str]:
     return kept
 
 
+def prefix_problem(expect: list[str], got: list[str]) -> str | None:
+    """None if `got` is exactly the raw token stream up to its `REFERENCES` heading.
+
+    For the one publication this corpus holds only in part (nist_publication: the front matter
+    and the control catalog, see nist_controls.held_scope). The committed text must be a strict
+    PREFIX of the raw PDF's token stream AND the next raw token must be the catalog-closing
+    `REFERENCES` -- so an altered or dropped token fails, a cut that stops early fails, and a cut
+    that runs on into the bibliography/glossary fails. The cut is thereby checked against the raw
+    source, not against the function that made it.
+    """
+    n = len(got)
+    if expect[:n] != got:
+        i = next((k for k, (a, b) in enumerate(zip(expect, got)) if a != b), min(n, len(expect)))
+        return (f"committed text diverges from the raw source at token {i}: raw "
+                f"{expect[i:i + 3]!r} vs committed {got[i:i + 3]!r}")
+    if n >= len(expect) or expect[n] != "REFERENCES":
+        return (f"committed text stops at token {n}, where the raw source continues "
+                f"{expect[n:n + 3]!r} instead of the catalog-closing REFERENCES heading")
+    return None
+
+
 def main() -> int:
     manifest = yaml.safe_load((ROOT / "_meta" / "source-manifest.yml").read_text())
     docs = {}
@@ -134,6 +155,15 @@ def main() -> int:
         body = owner.read_text().split("## Full text\n\n", 1)[-1]
         got = tokens(body)
 
+        if kind == "nist_publication":
+            problem = prefix_problem(expect, got)
+            if problem is None:
+                print(f"  ok    {sid}: {len(got):>7,} of {len(expect):,} raw tokens, an exact "
+                      f"prefix ending at the catalog (REFERENCES onward deliberately not held)")
+                continue
+            print(f"  FAIL  {sid}: {problem}")
+            fails.append(sid)
+            continue
         if got == expect:
             print(f"  ok    {sid}: {len(expect):>7,} tokens match the raw {fmt}")
             continue

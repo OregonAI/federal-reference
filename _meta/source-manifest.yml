@@ -1139,3 +1139,50 @@ sources:
       both this part and 45-cfr-160 carry a `relationships.related` edge to it and from it,
       so the comparison is traversable in either direction now that both ends are held.
     reproduction_basis: "17 U.S.C. § 105 — edition of the CFR published by the U.S. government"
+
+  # #42 -- NIST SP 800-53 Rev. 5, held in part. NO INTAKE SIGNAL is recorded, on purpose: this is
+  # the first instrument admitted because documents ALREADY HELD cite it, and the operator ruled
+  # (2026-09-12, on #42) that "internal edge density" is not to be promoted to a named signal
+  # with its own vocabulary -- "the material is required by documents already held, and that is
+  # sufficient." `signal` is therefore omitted rather than mislabelled `named` (it is not a
+  # seed-named, penalty-argued instrument) or `audited`/`authority` (it is neither).
+  - id: "nist-sp-800-53-r5"
+    url: "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf"
+    format: "pdf"
+    instrument_kind: "nist_publication"
+    citation: "NIST SP 800-53 Rev. 5"
+    title: "Security and Privacy Controls for Information Systems and Organizations"
+    version: "Rev. 5"
+    # The date of NIST's most recent release of this publication (5.2.0, 2025-08-27), per NIST's
+    # listing of record. It is NOT the date of the held text (the PDF prints "includes updates as
+    # of 12-10-2020") -- the document and every control NIST lists say so beside the text.
+    amended_on: "2025-08-27"
+    why: >
+      Required by documents already held: 6 CFR 37 (which incorporates it by reference at
+      Appendix A to Subpart A and cites it as "NIST SP 800-53 Rev. 5"), IRS Pub 1075, CJIS SP 6.1,
+      ARC-AMPE and the CISA CPGs. They cite it by control, so it is held with its controls as
+      `### ` headings and each cited control promoted to its own document (ADR-0003; the list is
+      derived into `_meta/cited-controls/nist-sp-800-53-r5.yml` by src/scan_cited_controls.py).
+    reproduction_basis: >
+      17 U.S.C. § 105 — work of the U.S. government (NIST). Determined per document on
+      2026-11-12 against the publication itself, not assumed from its issuer: its Authority
+      statement (PDF page 3) reads "This publication may be used by nongovernmental organizations
+      on a voluntary basis and is not subject to copyright in the United States. Attribution
+      would, however, be appreciated by NIST." Held here: the front matter and Chapter Three (the
+      control catalog) only. Chapter Three names ISO/IEC standards solely as bibliographic
+      references and reproduces none of their text. NOT mirrored: the References bibliography and
+      Appendices A-C; Appendix A (glossary) adapts third-party definitions (ISO/IEC 15026, ISO
+      25237, ISO/IEC 29100, ISO 15288, IETF RFC 4949), which ADR-0002 treats as not reproducible by
+      being incorporated, and whose reproducibility has not been determined.
+    sha256: "51a6c9f0aa40ce60e5cdfe56b3aab68539cdadb7c03de922e1968a3377f223cc"
+    notes: >
+      6.07 MB PDF, 492 pages, from nvlpubs.nist.gov (the publisher of record; DOI
+      10.6028/NIST.SP.800-53r5 resolves to it). NIST's listing of record
+      (https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final, read 2026-11-12) gives the edition as
+      "September 2020 (includes updates as of Dec. 10, 2020)", supersedes only the original
+      Rev. 5 of 09/23/2020, and states nothing superseding Rev. 5 itself. The same page records
+      release 5.2.0 (2025-08-27), a minor release distributed as OSCAL and a summary of changes,
+      NOT as a replacement PDF: see _meta/nist-sp-800-53-r5-release-5-2-0.yml. Held documents cite
+      Rev. 5 in all but two places (IRS Pub 1075 once and CJIS SP 6.1 once name Rev. 4); Rev. 4 is
+      a different edition and is not held. 800-53A and 800-53B are different publications and are
+      not held. Nothing here is marked superseded or withdrawn.

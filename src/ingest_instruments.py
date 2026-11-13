@@ -51,6 +51,7 @@ from cfr_consolidations import PART_REMOVALS  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = ROOT / "_meta" / "source-manifest.yml"
 SNAPSHOTS = ROOT / "_meta" / "snapshots"
+RELEASE_FILE = ROOT / "_meta" / "nist-sp-800-53-r5-release-5-2-0.yml"
 OUT_DIR = ROOT / "instruments"
 UA = ("OregonAI-corpus-bot/0.1 (+https://github.com/OregonAI/federal-reference; "
       "civic corpus ingest)")
@@ -69,6 +70,9 @@ ISSUING_BODY_BY_KIND = {
     "fbi_policy": "Federal Bureau of Investigation, CJIS Division",
     "public_law": "United States Congress",
     "usc_section": "United States Congress",
+    # #42: every NIST publication, and every control cut from one, is NIST's.
+    "nist_publication": "National Institute of Standards and Technology",
+    "nist_control": "National Institute of Standards and Technology",
 }
 
 # KINDS WHOSE ISSUER IS DATA, NOT A PROPERTY OF THE KIND. `cfr_part` was the original
@@ -588,6 +592,19 @@ def extract_pdf(path: Path) -> tuple[str, dict]:
 
 # ---------------------------------------------------------------- document
 
+def cited_control_ids(pub_id: str) -> list[str]:
+    """Document ids for the controls split out of a NIST publication (`nist-sp-800-53-r5`), in
+    catalog order, from the committed `_meta/cited-controls/<pub_id>.yml` that
+    src/scan_cited_controls.py writes -- the same list src/split_nist_controls.py works from, so
+    the publication's edges and the control documents cannot disagree. A publication with no such
+    file yet (the first ingest, before the scan can run) lists none."""
+    path = ROOT / "_meta" / "cited-controls" / f"{pub_id}.yml"
+    if not path.is_file():
+        return []
+    entries = (yaml.safe_load(path.read_text(encoding="utf-8")) or {}).get("controls") or []
+    return [f"{pub_id}.{e['id']}" for e in entries]
+
+
 def cited_section_ids(part_id: str) -> list[str]:
     """Document ids for the sections split out of `part_id` (e.g. `2-cfr-200`), in citation
     order.
@@ -975,7 +992,9 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
     _auto_rel = ({"related": [superseded_by] if superseded_by else []}
                  if superseded and src["instrument_kind"] == "cfr_part" else
                  {"related": cited_section_ids(rid)}
-                 if src["instrument_kind"] == "cfr_part" else {})
+                 if src["instrument_kind"] == "cfr_part" else
+                 {"related": cited_control_ids(rid)}
+                 if src["instrument_kind"] == "nist_publication" else {})
     _rel = merge_relationships(_auto_rel, existing_rel or {})
     fm = {
         "schema_version": 1,
@@ -1055,7 +1074,8 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
         # 42 CFR 2 <-> 45 CFR 160/164 comparison edge, are judgements no ingester makes on its
         # own authority). Applies to every kind now, not only cfr_part, so a usc_section (no
         # auto-derived edge of its own) can still carry and preserve a curated one.
-        **({"relationships": _rel} if (src["instrument_kind"] == "cfr_part" or _rel) else {}),
+        **({"relationships": _rel}
+           if (src["instrument_kind"] in ("cfr_part", "nist_publication") or _rel) else {}),
         "maintainer": "@morficflux",
         # Written EMPTY on purpose; a human sets them at PR approval. An ingester that
         # stamps a verification it did not perform is worse than a blank.
@@ -1135,8 +1155,47 @@ def build(src: dict, text: str, sha: str, stats: dict, version: str | None,
             "Code speculatively. The set held changes as sections are cited; `usc-section` "
             "in `src/citation_schemes.py` names the current count and refuses any other "
             "U.S.C. citation by name rather than by silence.\n")
+    if src["instrument_kind"] == "nist_publication":
+        parts.append(_nist_publication_note(rid, version, fm))
     parts.append("\n## Full text\n\n" + text + "\n")
     return "\n".join(parts)
+
+
+def _nist_publication_note(rid: str, version: str | None, fm: dict) -> str:
+    """The generator-owned scope statement for a NIST publication held in part (#42).
+
+    Says what is held, what is NOT and why, and which controls have their own documents -- so a
+    partial hold is never read as the whole publication. Everything stated here is either read
+    from the committed files it names (the cited-controls list, the release file) or is the
+    documented boundary of nist_controls.held_scope().
+    """
+    n_controls = len(cited_control_ids(rid))
+    out = [
+        f"\n> **Held in part, on purpose.** This document reproduces the front matter and "
+        f"Chapter Three (the control catalog) of NIST SP 800-53 {version}, September 2020, "
+        f"as the PDF of record at the source URL (it prints \"includes updates as of "
+        f"12-10-2020\"). What follows the catalog is **NOT mirrored** — the References "
+        f"bibliography, Appendix A (glossary), Appendix B (acronyms) and Appendix C (control "
+        f"summaries) — because Appendix A adapts third-party definitions (ISO/IEC 15026, ISO 25237, "
+        f"ISO/IEC 29100, ISO 15288, IETF RFC 4949) whose reproducibility has not been "
+        f"determined (ADR-0002); read those at the source URL. The raw PDF snapshot holds all "
+        f"of it.\n"]
+    if n_controls:
+        out.append(
+            f"\n> **{n_controls} controls have their own documents** "
+            f"(`{rid}.<family>-<n>`, e.g. `{rid}.ac-2`): the controls that held documents cite "
+            f"by name (ADR-0003, `_meta/cited-controls/{rid}.yml`). Every other control is in "
+            f"the text below under its `### ` heading.\n")
+    if RELEASE_FILE.is_file():
+        rel = yaml.safe_load(RELEASE_FILE.read_text(encoding="utf-8"))
+        out.append(
+            f"\n> **Release {rel['release']} postdates this text.** NIST's listing of record "
+            f"([{rel['source_url']}]({rel['source_url']})) says NIST issued release "
+            f"{rel['release']} of SP 800-53 on {rel['issued']}, adding, revising or updating "
+            f"the controls named in [_meta/{RELEASE_FILE.name}](../_meta/{RELEASE_FILE.name}). "
+            f"The text below is the Rev. 5 PDF of record and does NOT include those changes; "
+            f"`amended_on` carries the release date, not the date of this text.\n")
+    return "".join(out)
 
 
 # A flat character-count floor conflates two different failure modes that need different
@@ -1333,6 +1392,11 @@ def main() -> int:
                     raise ValueError(
                         f"{rid}: agency_guidance supports format html or pdf, not {fmt!r} "
                         "— declare one rather than letting a parser be guessed")
+            elif src["instrument_kind"] == "nist_publication":
+                # Held in part: the catalog and what precedes it (see held_scope()).
+                from nist_controls import held_scope
+                text, stats = extract_pdf(snap)
+                text = held_scope(text)
             else:
                 text, stats = extract_pdf(snap)
             broken = extraction_is_broken(src["instrument_kind"], text, stats)

@@ -57,6 +57,9 @@ KNOWN_INSTRUMENT_KINDS = {
     # issuer twice and still have to be read from the manifest. It is also the first kind
     # that spans formats, which is why extraction consults `format` for it.
     "agency_guidance",
+    # #42: NIST SP 800-53 Rev. 5 (held in part) and the controls cut from it.
+    "nist_publication",
+    "nist_control",
 }
 
 
