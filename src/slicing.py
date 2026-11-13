@@ -34,6 +34,11 @@ import re
 # The bare part id (no trailing `.NNN`) must NOT match -- it owns its whole snapshot.
 DOC_ID = re.compile(r"^\d{1,2}-cfr-(\d{1,4})\.(\d+)$")
 
+# #42: a control of NIST SP 800-53 Rev. 5, `nist-sp-800-53-r5.ac-2`. Cut from the publication's
+# one snapshot exactly as a CFR section is cut from its part's: between one `### ` heading and
+# the next, raising rather than widening when the heading is missing.
+NIST_DOC_ID = re.compile(r"^nist-sp-800-53-r5\.([a-z]{2})-(\d{1,2})$")
+
 
 def _section(raw_text: str, sec: str) -> str:
     """The span of the part text belonging to § `sec`, heading included.
@@ -50,7 +55,27 @@ def _section(raw_text: str, sec: str) -> str:
     return raw_text[start.start():end]
 
 
+def _nist_control(raw_text: str, fam: str, num: str) -> str:
+    """The span belonging to control `FAM-N`, heading included.
+
+    `(?!\\d)` is load-bearing for the reason `_section`'s is: without it `AC-2` also matches
+    the heading of `AC-20`. The id is followed by whitespace in every real heading (one or two
+    spaces -- pypdf emits two for SC-7, SC-13 and five others). The span ends at the next
+    `### `, which for the last control (SR-12) is the `### REFERENCES` line anchor_sections.py
+    adds at the catalog's close, so a control never silently absorbs the bibliography.
+    """
+    start = re.search(rf"^### {fam.upper()}-{int(num)}(?!\d)\s", raw_text, re.M)
+    if start is None:
+        raise LookupError(f"no `### {fam.upper()}-{int(num)}` heading in the snapshot")
+    nxt = re.search(r"^### ", raw_text[start.end():], re.M)
+    end = start.end() + nxt.start() if nxt else len(raw_text)
+    return raw_text[start.start():end]
+
+
 def slice(doc_id: str, snapshot_id: str, raw_text: str) -> str:  # noqa: A001
+    n = NIST_DOC_ID.match(doc_id or "")
+    if n:
+        return _nist_control(raw_text, n.group(1), n.group(2))
     m = DOC_ID.match(doc_id or "")
     if not m:
         # The part itself, and every non-CFR instrument, owns its whole snapshot.
