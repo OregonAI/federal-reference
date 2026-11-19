@@ -874,7 +874,7 @@
 <P>(d) <I>Meal patterns.</I> The meal requirements for the Program are designed to provide nutritious and well-balanced meals to each child. Sponsors must ensure that meals served meet all of the requirements. Except as otherwise provided in this section, the following tables present the minimum requirements for meals served to children in the Program. Children age 12 and up may be served larger portions based on the greater food needs of older children.</P>
 <P>(1) <I>Breakfast.</I> The minimum amount of meal components to be served as breakfast are as follows:</P>
 <DIV width="100%"><DIV class="gpotbl_div">
-<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%">
+<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%" data-point-width="250">
 <CAPTION><P class="title">Table 1 to Paragraph (<E T="01">d</E>)(1)&#x2014;Breakfast Meal Pattern</P></CAPTION>
 <THEAD>
 <TR>
@@ -966,7 +966,7 @@
 </DIV></DIV>
 <P>(2) <I>Lunch or supper.</I> The minimum amounts of meal components to be served as lunch or supper are as follows:</P>
 <DIV width="100%"><DIV class="gpotbl_div">
-<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%">
+<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%" data-point-width="250">
 <CAPTION><P class="title">Table 2 to Paragraph (<E T="01">d</E>)(2)&#x2014;Lunch or Supper Meal Pattern</P></CAPTION>
 <THEAD>
 <TR>
@@ -1054,7 +1054,7 @@
 </DIV></DIV>
 <P>(3) <I>Snacks.</I> The minimum amounts of meal components to be served as snacks are as follows. Select two of the following four components. (Juice may not be served when milk is served as the only other component.)</P>
 <DIV width="100%"><DIV class="gpotbl_div">
-<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%">
+<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%" data-point-width="250">
 <CAPTION><P class="title">Table 3 to Paragraph (<E T="01">d</E>)(3)&#x2014;Snack Meal Pattern</P></CAPTION>
 <THEAD>
 <TR>
@@ -1203,10 +1203,9 @@
 <P>(3) When economically feasible, dividing total requirements into smaller tasks or quantities so as to permit maximum participation by minority business enterprises,</P>
 <P>(4) Establishing delivery schedules which will assist minority business enterprises to meet deadlines, and</P>
 <P>(5) Using the services and assistance of the Small Business Administration, and the Office of Minority Business Enterprise of the Department of Commerce as required.</P>
-<P>(e) <I>Geographic preference.</I> (1) Sponsors participating in the Program may apply a geographic preference when procuring unprocessed locally grown or locally raised agricultural products, including the use of &#x201C;locally grown&#x201D;, &#x201C;locally raised&#x201D;, or &#x201C;locally caught&#x201D; as procurement specifications or selection criteria for unprocessed or minimally processed food items. When utilizing the geographic preference to procure such products, the sponsor making the purchase has the discretion to determine the local area to which the geographic preference option will be applied, so long as there are an appropriate number of qualified firms able to compete;</P>
-<P>(2) For the purpose of applying the optional geographic preference in paragraph (e)(1) of this section, &#x201C;unprocessed locally grown or locally raised agricultural products&#x201D; means only those agricultural products that retain their inherent character. The effects of the following food handling and preservation techniques shall not be considered as changing an agricultural product into a product of a different kind or character: Cooling; refrigerating; freezing; size adjustment made by peeling, slicing, dicing, cutting, chopping, shucking, and grinding; forming ground products into patties without any additives or fillers; drying/dehydration; washing; packaging (such as placing eggs in cartons), vacuum packing and bagging (such as placing vegetables in bags or combining two or more types of vegetables or fruits in a single package); addition of ascorbic acid or other preservatives to prevent oxidation of produce; butchering livestock and poultry; cleaning fish; and the pasteurization of milk.</P>
+<P>(e) Sponsors participating in the Program may apply the geographic preference option under &#xA7; 210.21(g) of this chapter.</P>
 <P>(f) All contracts in excess of $10,000 must contain a clause allowing termination for cause or for convenience by the sponsor including the manner by which it will be effected and the basis for settlement.</P>
-<CITA TYPE="N">[54 FR 18208, Apr. 27, 1989, as amended at 71 FR 39518, July 13, 2006; 76 FR 22607, Apr. 22, 2011; 81 FR 66492, Sept. 28, 2016; 83 FR 25361, June 1, 2018; 87 FR 57365, Sept. 19, 2022; 89 FR 32087, Apr. 25, 2024]
+<CITA TYPE="N">[54 FR 18208, Apr. 27, 1989, as amended at 71 FR 39518, July 13, 2006; 76 FR 22607, Apr. 22, 2011; 81 FR 66492, Sept. 28, 2016; 83 FR 25361, June 1, 2018; 87 FR 57365, Sept. 19, 2022; 89 FR 32087, Apr. 25, 2024; 91 FR 57248, Sept. 9, 2026]
 </CITA>
 </DIV8>
 
@@ -1260,7 +1259,7 @@
 <DIV8 N="225.20" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-7/section-225.20&quot;,&quot;citation&quot;:&quot;7 CFR 225.20&quot;}">
 <HEAD>&#xA7; 225.20 Information collection/recordkeeping&#x2014;OMB assigned control numbers.</HEAD>
 <DIV width="100%"><DIV class="gpotbl_div">
-<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%">
+<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%" data-point-width="75">
 <THEAD>
 <TR>
 <TH class="center border-top-single border-bottom-single border-right-single">7 CFR section where requirements are described</TH>

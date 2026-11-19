@@ -1301,7 +1301,7 @@
 <FR>1/2</FR> ounce equivalent infant cereal or ready-to-eat cereals; and 0 to 2 tablespoons of vegetable or fruit, or portions of both. Fruit juices and vegetable juices must not be served. A serving of grains must be whole grain-rich, enriched meal, or enriched flour.</P>
 <P>(5) <I>Infant meal pattern table.</I> The minimum amounts of meal components to serve to infants, as described in paragraph (b)(4) of this section, are:</P>
 <DIV width="100%"><DIV class="gpotbl_div">
-<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%">
+<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%" data-point-width="300">
 <CAPTION><P class="title">Table 1 to Paragraph (<E T="01">b</E>)(5)&#x2014;Infant Meal Patterns</P></CAPTION>
 <THEAD>
 <TR>
@@ -1390,7 +1390,7 @@
 <P>(c) <I>Meal patterns for children age 1 through 18 and adult participants.</I> Institutions and facilities must serve the meal components and quantities specified in the following meal patterns for children and adult participants in order to qualify for reimbursement.</P>
 <P>(1) <I>Breakfast.</I> Fluid milk, vegetables or fruit, or portions of both, and grains are required components of the breakfast meal. Meats/meat alternates may be offered to meet the entire grains requirement a maximum of three times per week. The minimum amounts of meal components to be served at breakfast are as follows:</P>
 <DIV width="100%"><DIV class="gpotbl_div">
-<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%">
+<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%" data-point-width="300">
 <CAPTION><P class="title">Table 2 to Paragraph (<E T="01">c</E>)(1)&#x2014;Child and Adult Care Food Program Breakfast</P><P class="headnote">[Select the appropriate components for a reimbursable meal]</P></CAPTION>
 <THEAD>
 <TR>
@@ -1443,7 +1443,7 @@
 </DIV></DIV>
 <P>(2) <I>Lunch and supper.</I> Fluid milk, meats/meat alternates, vegetables, fruits, and grains are required components in the lunch and supper meals. The minimum amounts of meal components to be served at lunch and supper are as follows:</P>
 <DIV width="100%"><DIV class="gpotbl_div">
-<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%">
+<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%" data-point-width="300">
 <CAPTION><P class="title">Table 3 to Paragraph (<E T="01">c</E>)(2)&#x2014;Child and Adult Care Food Program Lunch and Supper</P><P class="headnote">[Select the appropriate components for a reimbursable meal]</P></CAPTION>
 <THEAD>
 <TR>
@@ -1513,7 +1513,7 @@
 </DIV></DIV>
 <P>(3) <I>Snack.</I> Serve two of the following five components: Fluid milk, meats/meat alternates, vegetables, fruits, and grains. Fruit juice, vegetable juice, and milk may comprise only one component of the snack. The minimum amounts of meal components to be served at snacks are as follows:</P>
 <DIV width="100%"><DIV class="gpotbl_div">
-<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%">
+<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%" data-point-width="300">
 <CAPTION><P class="title">Table 4 to Paragraph (<E T="01">c</E>)(3)&#x2014;Child and Adult Care Food Program Snack</P><P class="headnote">[Select two of the five components for a reimbursable snack]</P></CAPTION>
 <THEAD>
 <TR>
@@ -1596,7 +1596,7 @@
 <P>(3) <I>Fluid milk substitutes for non-disability reasons.</I> (i) An institution or facility may offer fluid milk substitutes based on a written request from a child's parent or guardian, an adult participant, a person on behalf of an adult participant, a State licensed healthcare professional, or registered dietitian for participants with dietary needs that are not disabilities that identifies the reason for the substitute. An institution or facility choosing to offer fluid milk substitutes for a non-disability reason is not required to offer the specific fluid milk substitutes requested but may offer the fluid milk substitutes of its choice, provided the fluid milk substitutes offered meet the requirements of paragraph (g)(3)(ii) of this section. For disability-related meal modifications, see paragraph (g)(1) of this section.</P>
 <P>(ii) If an institution or facility chooses to offer one or more fluid milk substitutes for non-disability reasons, the fluid milk substitutes must provide, at a minimum, the nutrients listed in the following table. Fluid milk substitutes must be fortified in accordance with fortification guidelines issued by the Food and Drug Administration.</P>
 <DIV width="100%"><DIV class="gpotbl_div">
-<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%">
+<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%" data-point-width="175">
 <CAPTION><P class="title">Table 5 to Paragraph (<E T="01">g</E>)(3)(<E T="01">ii</E>)&#x2014;Nutrient Requirements for Fluid Milk Substitutes</P></CAPTION>
 <THEAD>
 <TR>
@@ -1693,9 +1693,8 @@
 <P>(b) <I>Compliance.</I> Institutions may use their own procedures for procurement with Program funds to the extent that:</P>
 <P>(1) Procurements by public institutions comply with applicable State or local laws and standards set forth in 2 CFR part 200, subpart D and USDA implementing regulations 2 CFR parts 400 and 415; and</P>
 <P>(2) Procurements by private nonprofit institutions comply with standards set forth in 2 CFR part 200, subpart D and USDA implementing regulations 2 CFR parts 400 and 415.</P>
-<P>(c) <I>Geographic preference.</I> (1) Institutions participating in the Program may apply a geographic preference when procuring unprocessed locally grown or locally raised agricultural products, including the use of &#x201C;locally grown&#x201D;, &#x201C;locally raised&#x201D;, or &#x201C;locally caught&#x201D; as procurement specifications or selection criteria for unprocessed or minimally processed food items. When utilizing the geographic preference to procure such products, the institution making the purchase has the discretion to determine the local area to which the geographic preference option will be applied so long as there are an appropriate number of qualified firms able to compete;</P>
-<P>(2) For the purpose of applying the optional geographic preference in paragraph (c)(1) of this section, &#x201C;unprocessed locally grown or locally raised agricultural products&#x201D; means only those agricultural products that retain their inherent character. The effects of the following food handling and preservation techniques will not be considered as changing an agricultural product into a product of a different kind or character: Cooling; refrigerating; freezing; size adjustment made by peeling, slicing, dicing, cutting, chopping, shucking, and grinding; forming ground products into patties without any additives or fillers; drying/dehydration; washing; packaging (such as placing eggs in cartons), vacuum packing and bagging (such as placing vegetables in bags or combining two or more types of vegetables or fruits in a single package); addition of ascorbic acid or other preservatives to prevent oxidation of produce; butchering livestock and poultry; cleaning fish; and the pasteurization of milk.</P>
-<CITA TYPE="N">[88 FR 57857, Aug. 23, 2023, as amended at 89 FR 32092, Apr. 25, 2024]
+<P>(c) <I>Geographic preference.</I> Institutions participating in the Program may apply the geographic preference option under &#xA7; 210.21(g) of this chapter.</P>
+<CITA TYPE="N">[88 FR 57857, Aug. 23, 2023, as amended at 89 FR 32092, Apr. 25, 2024; 91 FR 57249, Sept. 9, 2026]
 </CITA>
 </DIV8>
 
@@ -1894,7 +1893,7 @@
 <DIV8 N="226.27" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-7/section-226.27&quot;,&quot;citation&quot;:&quot;7 CFR 226.27&quot;}">
 <HEAD>&#xA7; 226.27 Information collection/recordkeeping&#x2014;OMB assigned control numbers.</HEAD>
 <DIV width="100%"><DIV class="gpotbl_div">
-<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%">
+<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%" data-point-width="100">
 <THEAD>
 <TR>
 <TH class="center border-top-single border-bottom-single">7 CFR section where requirements are described</TH>
