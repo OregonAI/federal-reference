@@ -215,7 +215,7 @@
 <P>(iv) Average sodium content of the meals offered to each age/grade group must not exceed the maximum level specified in paragraph (f) of this section.</P>
 <P>(c) <I>Meal pattern for school breakfasts for grades K through 12.</I> A school must offer the meal components and quantities required in the breakfast meal pattern established in the following table:</P>
 <DIV width="100%"><DIV class="gpotbl_div">
-<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%">
+<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%" data-point-width="280">
 <CAPTION><P class="title">Table 1 to Paragraph (<E T="01">c</E>) Introductory Text&#x2014;School Breakfast Program Meal Pattern</P></CAPTION>
 <THEAD>
 <TR>
@@ -356,7 +356,7 @@
 <FR>1/2</FR> cup of the fruit component for a reimbursable meal. If only three food items are offered at breakfast, school food authorities or schools may not exercise the offer versus serve option.</P>
 <P>(f) <I>Dietary specifications</I>&#x2014;(1) <I>Calories.</I> School breakfasts offered to each age/grade group must meet, on average over the school week, the minimum and maximum calorie levels specified in the following table:</P>
 <DIV width="100%"><DIV class="gpotbl_div">
-<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%">
+<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%" data-point-width="230">
 <CAPTION><P class="title">Table 2 to Paragraph (<E T="01">f</E>)(1)&#x2014;School Breakfast Program Calorie Ranges</P></CAPTION>
 <THEAD>
 <TR>
@@ -381,7 +381,7 @@
 <P>(3) <I>Added sugars.</I> By July 1, 2027, school breakfasts offered to all age/grade groups must, on average over the school week, provide less than 10 percent of total calories from added sugars.</P>
 <P>(4) <I>Sodium.</I> School breakfasts offered to each age/grade group must meet, on average over the school week, the levels of sodium specified in the following table within the established deadlines:</P>
 <DIV width="100%"><DIV class="gpotbl_div">
-<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%">
+<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%" data-point-width="200">
 <CAPTION><P class="title">Table 3 to Paragraph (<E T="01">f</E>)(4)&#x2014;School Breakfast Program Sodium Limits</P></CAPTION>
 <THEAD>
 <TR>
@@ -421,7 +421,7 @@
 <P>(o) <I>Breakfast requirements for preschoolers</I>&#x2014;(1) <I>Breakfasts served to preschoolers.</I> Schools serving breakfast to preschoolers under the School Breakfast Program must serve the meal components and quantities required in the breakfast meal pattern established for the Child and Adult Care Food Program under &#xA7; 226.20(a), (c)(1), and (d) of this chapter. In addition, schools serving breakfasts to this age group must comply with the requirements set forth in paragraphs (a), (c)(3), (g), and (k) through (m) of this section, as applicable.</P>
 <P>(2) <I>Preschooler breakfast meal pattern table.</I> The minimum amounts of meal components to be served at breakfast are as follows:</P>
 <DIV width="100%"><DIV class="gpotbl_div">
-<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%">
+<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%" data-point-width="225">
 <CAPTION><P class="title">Table 4 to Paragraph (<E T="01">o</E>)(2)&#x2014;Preschool Breakfast Meal Pattern</P><P class="headnote">[Select the appropriate components for a reimbursable meal]</P></CAPTION>
 <THEAD>
 <TR>
@@ -459,7 +459,7 @@
 <P>(p) <I>Breakfast requirements for infants</I>&#x2014;(1) <I>Breakfasts served to infants.</I> Schools serving breakfasts to infants ages birth through 11 months under the School Breakfast Program must serve the meal components and quantities required in the breakfast meal pattern established for the Child and Adult Care Food Program, under &#xA7; 226.20(a), (b), and (d) of this chapter. In addition, schools serving breakfasts to infants must comply with the requirements set forth in paragraphs (a), (c)(3), (g), and (k) through (m) of this section as applicable.</P>
 <P>(2) <I>Infant breakfast meal pattern table.</I> The minimum amounts of meal components to be served at breakfast are as follows:</P>
 <DIV width="100%"><DIV class="gpotbl_div">
-<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%">
+<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%" data-point-width="175">
 <CAPTION><P class="title">Table 5 to Paragraph (<E T="01">p</E>)(2)&#x2014;Infant Breakfast Meal Pattern</P></CAPTION>
 <THEAD>
 <TR>
@@ -653,11 +653,8 @@
 <P>(v) The contractor must identify the method by which it will report discounts, rebates and other applicable credits allocable to the contract that are not reported prior to conclusion of the contract; and</P>
 <P>(vi) The contractor must maintain documentation of costs and discounts, rebates, and other applicable credits, and must furnish such documentation upon request to the school food authority, the State agency, or the Department.</P>
 <P>(2) <I>Prohibited expenditures.</I> No expenditure may be made from the nonprofit school food service account for any cost resulting from a cost reimbursable contract that fails to include the requirements of this section, nor may any expenditure be made from the nonprofit school food service account that permits or results in the contractor receiving payments in excess of the contractor's actual, net allowable costs.</P>
-<P>(f) <I>Geographic preference.</I> (1) School food authorities participating in the Program, as well as State agencies making purchases on behalf of such school food authorities, may apply a geographic preference when procuring unprocessed locally grown or locally raised agricultural products, including the use of &#x201C;locally grown&#x201D;, &#x201C;locally raised&#x201D;, or &#x201C;locally caught&#x201D; as procurement specifications or selection criteria for unprocessed or minimally processed food items. When utilizing the geographic preference to procure such products, the school food authority making the purchase or the State agency making purchases on behalf of such school food authorities have the discretion to determine the local area to which the geographic preference option will be applied, so long as there are an appropriate number of qualified firms able to compete;</P>
-<P>(2) For the purpose of applying the optional geographic preference in paragraph (f)(1) of this section, &#x201C;unprocessed locally grown or locally raised agricultural products&#x201D; means only those agricultural products that retain their inherent character. The effects of the following food handling and preservation techniques shall not be considered as changing an agricultural product into a product of a different kind or character: Cooling; refrigerating; freezing; size adjustment made by peeling, slicing, dicing, cutting, chopping, shucking, and grinding; forming ground products into patties without any additives or fillers; drying/dehydration; washing; packaging (such as placing eggs in cartons), vacuum packing and bagging (such as placing vegetables in bags or combining two or more types of vegetables or fruits in a single package); addition of ascorbic acid or other preservatives to prevent oxidation of produce; butchering livestock and poultry; cleaning fish; and the pasteurization of milk.</P>
-<SECAUTH TYPE="N">(Pub. L. 79-396, 60 Stat. 231 (42 U.S.C. 1751); Pub. L. 89-642, 80 Stat. 885-890 (42 U.S.C. 1773); Pub. L. 91-248, 84 Stat. 207 (42 U.S.C. 1759))
-</SECAUTH>
-<CITA TYPE="N">[Amdt. 45, 48 FR 19355, Apr. 29, 1983, as amended at 64 FR 50743, Sept. 20, 1999; 71 FR 39517, July 13, 2006; 72 FR 61494, Oct. 31, 2007; 76 FR 22607, Apr. 22, 2011; 81 FR 66491, Sept. 28, 2016; 89 FR 32084, Apr. 25, 2024]
+<P>(f) <I>Geographic preference.</I> School food authorities participating in the Program may apply the geographic preference option under &#xA7; 210.21(g) of this chapter.</P>
+<CITA TYPE="N">[Amdt. 45, 48 FR 19355, Apr. 29, 1983, as amended at 64 FR 50743, Sept. 20, 1999; 71 FR 39517, July 13, 2006; 72 FR 61494, Oct. 31, 2007; 76 FR 22607, Apr. 22, 2011; 81 FR 66491, Sept. 28, 2016; 89 FR 32084, Apr. 25, 2024; 91 FR 57248, Sept. 9, 2026]
 </CITA>
 </DIV8>
 
@@ -716,7 +713,7 @@
 <DIV8 N="220.22" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-7/section-220.22&quot;,&quot;citation&quot;:&quot;7 CFR 220.22&quot;}">
 <HEAD>&#xA7; 220.22 Information collection/recordkeeping&#x2014;OMB assigned control numbers.</HEAD>
 <DIV width="100%"><DIV class="gpotbl_div">
-<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%">
+<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%" data-point-width="140">
 <THEAD>
 <TR>
 <TH class="center border-top-single border-bottom-single border-right-single">7 CFR section where<br/>requirements are described</TH>

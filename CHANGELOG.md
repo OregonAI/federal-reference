@@ -68,6 +68,17 @@ Repo-curation dates only — official effective dates live in frontmatter.
   and oregon-audits need verbatim copies before siblings can derive these ids.**
 
 ### Source-Updated
+- 2026-11-18 — **Weekly `amended-on` job (run 43976984344): 5 stale sections cleared by re-pinning
+  `45-cfr-84`, `7-cfr-210`, `7-cfr-220`, `7-cfr-225`, `7-cfr-226` to eCFR as of 2026-11-17**
+  (manifest `source_url` moved from 2026-08-31; parts re-ingested with `ingest_instruments.py
+  --only <id> --refetch`, held sections re-split with `split_cfr_sections.py --part-id <id>`).
+  Re-measured locally: the same 5 STALE sections as the run log (45 CFR 84.4 `2024-07-08` ->
+  `2026-11-03`; 7 CFR 210.21, 220.16, 225.17, 226.22 `2026-09-09` -> `2026-11-09`), no difference.
+  Re-fetching the old 2026-08-31 pin would not have cleared them (the snapshot is date-pinned);
+  the bodies changed for those 5 sections only (91 FR 57248/57249 geographic-preference
+  amendments to 210.21(g), 220.16(f), 225.17(e), 226.22(c); 84.4 gained a link to 91 FR 69223).
+  The other 16 held sections of these parts keep their text and only carry the new `as_of`,
+  `retrieved` and `source_sha256`, because they share the re-pinned part snapshot.
 - 2026-10-06 — **#113: `45-cfr-260`, `45-cfr-261`, `45-cfr-264`, `45-cfr-265` re-pinned
   to eCFR as of 2026-10-05** (manifest `source_url` moved from 2026-08-31; parts and every
   held current section re-ingested / re-split). Re-measured against eCFR's versioner rather
